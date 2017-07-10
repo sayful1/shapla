@@ -1,0 +1,42 @@
+.site-footer {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #19212a;
+	color: $color--light_grey;
+
+	a {
+		color: $color--grey;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+	.site-info{
+		padding-top: 15px;
+		padding-bottom: 15px;
+		display: block;
+		text-align: center;
+	}
+	.social-navigation {
+		padding-top: 15px;
+		padding-bottom: 15px;
+		display: table;
+		margin: 0 auto;
+	}
+}
+
+// media screen >= 768px
+@media screen and (min-width: $screen-md) {
+	.site-footer {
+		.site-info,
+		.social-navigation {
+			display: inline-block;
+		}
+		.site-info {}
+		.social-navigation {
+			float: right;
+		}
+	}
+}

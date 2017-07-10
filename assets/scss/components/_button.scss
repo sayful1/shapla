@@ -1,0 +1,82 @@
+.button,
+a.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	background-color: $btn-background;
+	color: $btn-color;
+	border: 0;
+	border-radius: 0;
+	cursor: pointer;
+	display: inline-block;
+	overflow: visible;
+	padding: 0.9em 1em;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	font-size: 100%;
+	font-weight: 400;
+	margin: 0;
+	left: auto;
+	line-height: 1;
+	outline:0;
+	position: relative;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	text-shadow: none;
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $btn-hover-background;
+		color: $btn-color;
+		text-decoration: none;
+	}
+
+	&.alt {
+		background-color: $btn-alt-background;
+		color: $btn-alt-color;
+		-webkit-font-smoothing: antialiased;
+
+		&:hover {
+			background-color: $btn-alt-hover-background;
+			color: $btn-alt-color;
+		}
+	}
+
+	&:disabled,
+	&:disabled[disabled],
+	&:disabled:hover,
+	&:disabled[disabled]:hover {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+
+	&.loading {
+		opacity: 0.25;
+		padding-right: 2.618em;
+
+		&::after {
+			@include fa-icon();
+		    content: "\f110";
+		    -webkit-animation: fa-spin .75s linear infinite;
+		    -moz-animation: fa-spin .75s linear infinite;
+		    animation: fa-spin .75s linear infinite;
+			vertical-align: top;
+			position: absolute;
+			top: 0.618em;
+			right: 1em;
+		}
+	}
+
+	&.added {
+		&::after {
+			@include fa-icon();
+			content: '\f00c';
+			margin-left: 0.618em;
+			vertical-align: bottom;
+		}
+	}
+}

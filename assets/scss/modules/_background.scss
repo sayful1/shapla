@@ -1,0 +1,15 @@
+.is {
+	@each $name, $color in $colors {
+		$color-invert: findColorInvert( $color );
+		&-#{$name},
+		&-hover-#{$name}:hover {
+	        background-color: $color;
+	        color: $color-invert;
+		}
+	}
+
+	&-transparent,
+	&-hover-transparent:hover {
+		background-color:transparent;
+	}
+}

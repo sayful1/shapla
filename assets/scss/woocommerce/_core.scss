@@ -1,0 +1,43 @@
+.woocommerce {
+
+	form.checkout {
+		@include clearfix;
+		position: static !important;
+
+		> .blockUI {
+			position: fixed !important;
+			@include loader();
+		}
+	}
+
+	.loader {
+		@include loader();
+	}
+
+	a.remove {
+		display: block;
+		font-size: 1.5em;
+		height: 1em;
+		width: 1em;
+		text-align: center;
+		line-height: 1;
+		border-radius: 100%;
+		color: $red !important; // Required for default theme compatibility
+		text-decoration: none;
+		font-weight: 500;
+		border: 0;
+
+		&:hover {
+			color: $white !important; // Required for default theme compatibility
+			background: $red;
+			text-decoration: none;
+		}
+	}
+
+	small.note {
+		display: block;
+		color: $subtext;
+		font-size: 0.857em;
+		margin-top: 10px;
+	}
+}

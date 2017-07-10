@@ -1,0 +1,53 @@
+.search {
+	.hentry.type-page{
+		margin-bottom: 60px;
+		overflow: hidden;
+
+		.entry-title {
+			font-family: inherit;
+			font-size: 30px;
+			font-weight: 500;
+			line-height: 1.25;
+			margin-bottom: 30px;
+			a {
+				color: $color__text-main;
+				
+				&:hover, &:focus {
+					color: $color__link;
+				}
+			}
+		}
+		.entry-summary {
+			margin: 0 0 30px 0;
+		}
+		.entry-meta {
+			width: 100%;
+			margin-right: 0;
+			float: right;
+			display: inline-block;
+		}
+		.entry-content {
+			width: 100%;
+			float: left;
+			display: inline-block;
+		}
+	}
+}
+
+@media only screen and ( min-width: 601px ) {
+	.search {
+		.hentry.type-page{
+			.entry-content {
+				width: 80%;
+				float: left;
+				display: inline-block;
+			}
+			.entry-meta {
+				width: 15%;
+				margin-right: 5%;
+				float: left;
+				display: inline-block;
+			}
+		}
+	}
+}

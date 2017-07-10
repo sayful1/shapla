@@ -1,0 +1,10 @@
+.clear,
+.entry-content,
+.hentry.type-post,
+.comment-content,
+.site-header,
+.site-content,
+.footer-widget-area,
+.site-footer {
+	@include clearfix;
+}

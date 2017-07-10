@@ -1,0 +1,137 @@
+/*!
+Theme Name: 	Shapla
+Author: 		Sayful Islam
+Author URI: 	https://sayfulislam.com
+Description: 	Shapla is a simple, easy-to-use and highly customizable WordPress theme. It features two page template full-width and full-screen as well as two widget regions, navigation and social menus, a logo, custom colors for header, widgets and footer, and more. The theme is fully responsive and is built on customizer that enable you to configure the website with live preview. The theme is SEO friendly, Cross browser compatible, fully translation ready and is compatible with WooCommerce and all other major plugins. Developers will love it's lean and extensible codebase making it a joy to customise and extend.
+Version: 		1.1.5
+License: 		GNU General Public License v2 or later
+License URI: 	http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: 	shapla
+Tags: 			one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, editor-style, featured-images, post-formats, sticky-post, threaded-comments, translation-ready, blog
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Normalize
+# Typography
+# Elements
+# Forms
+# Navigation
+	## Links
+	## Menus
+# Accessibility
+# Alignments
+# Clearings
+# Header
+# Widgets
+# Content
+	## Posts and pages
+	## Comments
+# Infinite scroll
+# Media
+	## Captions
+	## Galleries
+# Colors
+--------------------------------------------------------------*/
+@import "susy";
+@import "utilities/variables";
+@import "utilities/mixins";
+
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+@import "components/normalize";
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "components/layout";
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+@import "components/typography";
+
+/*--------------------------------------------------------------
+# Table
+--------------------------------------------------------------*/
+@import "components/table";
+
+/*--------------------------------------------------------------
+# Button
+--------------------------------------------------------------*/
+@import "components/button";
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+@import "components/forms";
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+@import "navigation/navigation";
+
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+@import "components/accessibility";
+
+/*--------------------------------------------------------------
+# Alignments
+--------------------------------------------------------------*/
+@import "components/alignments";
+
+/*--------------------------------------------------------------
+# Clearings
+--------------------------------------------------------------*/
+@import "components/clearings";
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+@import "components/header";
+
+/*--------------------------------------------------------------
+# Sidenav
+--------------------------------------------------------------*/
+@import "components/sidenav";
+
+/*--------------------------------------------------------------
+# Widgets
+--------------------------------------------------------------*/
+@import "components/widgets";
+
+/*--------------------------------------------------------------
+## Posts and pages
+--------------------------------------------------------------*/
+@import "posts-and-pages/posts-pages";
+
+/*--------------------------------------------------------------
+## Comments
+--------------------------------------------------------------*/
+@import "components/comments";
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+@import "components/footer";
+
+/*--------------------------------------------------------------
+# Infinite scroll
+--------------------------------------------------------------*/
+@import "components/infinite-scroll";
+
+/*--------------------------------------------------------------
+# Media, Captions and Galleries
+--------------------------------------------------------------*/
+@import "components/media";
+@import "components/captions";
+@import "components/galleries";

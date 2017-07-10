@@ -1,0 +1,54 @@
+// == WooCommerce Color
+$woocommerce:   				#a46497;
+
+// == Google Material Color
+$green: 						#4caf50;
+$blue: 							#2196f3;
+$yellow: 						#ffeb3b;
+$red: 							#f44336;
+$orange: 						#ff9800;
+$white : 						#ffffff;
+$pink: 							#e91e63;
+$purple: 						#9c27b0;
+$deep-purple: 					#673ab7;
+$indigo: 						#3f51b5;
+$black: 						#000000;
+
+$primary:           			#a46497;	// Primary color for buttons (alt)
+$primarytext:       			#ffffff;	// Text on primary color bg
+
+$secondary:         			#ebe9eb;	// Secondary buttons
+$secondarytext:     			#515151;	// Text on secondary color bg
+
+$highlight:         			$green;		// Prices, In stock labels, sales flash
+$highlightext:      			$white;		// Text on highlight color bg
+
+$contentbg:         			#ffffff;	// Content BG - Tabs (active state)
+$contenttext:       			#000000;	// Product Title, Price
+$subtext:           			#777777;	// small, breadcrumbs etc
+
+$alert-success: 				$green;
+$alert-info: 					$blue;
+$alert-warning: 				$yellow;
+$alert-danger: 					$red;
+
+// == Buttons
+$btn-color:              		#ffffff;
+$btn-background:                #2c2d33;
+$btn-hover-background:          #13141a;
+
+$btn-alt-color:              	#ffffff;
+$btn-alt-background:            #96588a;
+$btn-alt-hover-background:      #7d3f71;
+
+//== Grid breakpoints
+$screen-sm: 					576px;
+$screen-md: 					768px;
+$screen-lg: 					992px;
+$screen-xl: 					1200px;
+
+//== Grid containers
+$container-sm: 					540px;
+$container-md: 					720px;
+$container-lg: 					960px;
+$container-xl: 					1140px;

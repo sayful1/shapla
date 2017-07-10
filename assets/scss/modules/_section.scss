@@ -1,0 +1,15 @@
+.section {
+	background-color: $white;
+	padding: 3rem 1.5rem;
+
+	// Responsiveness
+	@media screen and (min-width: 1000px) {
+	    // Sizes
+	    &.is-medium {
+			padding: 9rem 1.5rem;
+	    }
+	    &.is-large {
+			padding: 18rem 1.5rem;
+	    }
+	}
+}

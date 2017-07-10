@@ -1,0 +1,165 @@
+.woocommerce {
+	.star-rating {
+		overflow: hidden;
+		position: relative;
+		height: 1em;
+		line-height: 1;
+		font-size: 1em;
+		width: 5.3em;
+		// float: right;
+		font-family: 'star';
+		font-weight: 400;
+
+		&::before {
+			content: "\53\53\53\53\53";
+			opacity: .25;
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+
+		span {
+			overflow: hidden;
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+			padding-top: 1.5em;
+		}
+
+		span::before {
+			content: '\53\53\53\53\53';
+			top: 0;
+			position: absolute;
+			left: 0;
+			color: $woocommerce;
+		}
+	}
+
+	.woocommerce-product-rating {
+		@include clearfix();
+		line-height: 2;
+		display: block;
+
+		.star-rating {
+			margin: 0.5em 4px 0 0;
+			float: left;
+		}
+	}
+
+	.products {
+		.star-rating {
+			display: block;
+			margin: 0 0 0.5em;
+			float: none;
+		}
+	}
+
+	.hreview-aggregate {
+		.star-rating {
+			margin: 10px 0 0;
+		}
+	}
+
+	#review_form {
+		#respond {
+			@include clearfix();
+			position: static;
+			margin: 0;
+			width: auto;
+			padding: 0;
+			background: transparent none;
+			border: 0;
+
+			p {
+				margin: 0 0 10px;
+			}
+
+			.form-submit {
+				input {
+					left: auto;
+				}
+			}
+
+			textarea {
+				box-sizing: border-box;
+				width: 100%;
+			}
+		}
+	}
+}
+
+// Star on Single Page
+p.stars {
+	display: inline-block;
+	margin: 0;
+
+	a {
+		position: relative;
+		height: 1em;
+		width: 1em;
+		text-indent: -999em;
+		display: inline-block;
+		text-decoration: none;
+		margin-right: 1px;
+		font-weight: 400;
+
+		&:before {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 1em;
+			height: 1em;
+			line-height: 1;
+			font-family: "star";
+			content: "\53";
+			color: #43454b;
+			text-indent: 0;
+			opacity: .25;
+		}
+
+		&:hover {
+			~ a:before {
+				content: "\53";
+				color: #43454b;
+				opacity: .25;
+			}
+		}
+	}
+
+	&:hover {
+		a {
+			&:before {
+				content: "\53";
+				color: #96588a;
+				opacity: 1;
+			}
+		}
+	}
+
+	&.selected {
+		a.active {
+			&:before {
+				content: "\53";
+				color: #96588a;
+				opacity: 1;
+			}
+
+			~ a:before {
+				content: "\53";
+				color: #43454b;
+				opacity: .25;
+			}
+		}
+
+		a:not(.active) {
+			&:before {
+				content: "\53";
+				color: #96588a;
+				opacity: 1;
+			}
+		}
+	}
+}

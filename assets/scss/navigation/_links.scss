@@ -1,0 +1,20 @@
+a {
+	color: $color--strikemaster;
+	text-decoration: none;
+
+	&:visited {
+		color: $color--strikemaster;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color--strikemaster;
+	}
+	&:focus {
+		outline: 0;
+	}
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+}

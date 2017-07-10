@@ -1,0 +1,13 @@
+.wc-forward {
+	&::after {
+		@include fa-icon();
+		content: '\f178';
+		margin-left: 0.618em;
+		vertical-align: middle;
+	}
+}
+
+a.added_to_cart {
+	white-space: nowrap;
+	display: inline-block;
+}
