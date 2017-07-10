@@ -1,0 +1,19 @@
+{
+  "name": "shapla",
+  "version": "1.1.4",
+  "description": "Shapla, easy-to-use and highly customizable WordPress theme.",
+  "author": {
+    "name": "Sayful Islam",
+    "email": "sayful.islam001@gmail.com",
+    "url": "https://profiles.wordpress.org/sayful"
+  },
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "susy": "^2.2.12"
+  }
+}
