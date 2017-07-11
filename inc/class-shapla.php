@@ -189,6 +189,11 @@ class Shapla {
 			}
 		}
 
+		$site_layout = get_theme_mod('site_layout', 'wide');
+		if ( $site_layout == 'boxed' ) {
+			$classes[] = 'boxed-layout';
+		}
+
 		// If our main sidebar doesn't contain widgets,
 		// adjust the layout to be full-width.
 		if ( ! is_active_sidebar( 'sidebar-1' ) ) {

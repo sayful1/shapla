@@ -31,6 +31,9 @@ Shapla is compatible with Jetpack, WooCommerce, Carousel Slider, Filterable Port
 
 # Changelog
 
+#### Master
+* Added - Added site layout option (Wide or Boxed).
+
 #### 1.1.5 - July 08, 2017
 * Added - Added option to make header sticky on scroll.
 
