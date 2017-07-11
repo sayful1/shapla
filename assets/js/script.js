@@ -54,14 +54,14 @@
 
 				// Toggle class for this element
 				el.classList.toggle( 'toggled-on' );
-				
+
 				// Toggle class for .sub-menu
 				el.nextElementSibling.classList.toggle( 'toggled-on' );
 
 				// Change area-expanded attribute value
 				var ariaExpanded = el.getAttribute( 'aria-expanded' ) === 'false' ? 'true' : 'false';
 				el.setAttribute( 'aria-expanded', ariaExpanded );
-				
+
 				// Change screen reader text
 				var screenReaderSpan = el.querySelector( '.screen-reader-text' );
 				var screenReaderSpanText = screenReaderSpan.textContent === screenReaderText.expand ? screenReaderText.collapse : screenReaderText.expand;
@@ -212,7 +212,7 @@
 
 (function() {
 	"use strict";
-	var masthead, content, stuck, stickPoint, distance, offset, adminbar;
+	var masthead, content, stuck, stickPoint, distance, offset;
 
 	// Check if sticky header is enabled
 	if ( ! Shapla.stickyHeader ) {
@@ -220,13 +220,12 @@
 	}
 
 	document.addEventListener("DOMContentLoaded", function() {
-		masthead = document.querySelector("#masthead");
-		content = document.querySelector("#content");
-		adminbar = document.querySelector("#wpadminbar");
-		stuck = false;
-		stickPoint = masthead.offsetTop;
+		masthead 		= document.querySelector("#masthead");
+		content 		= masthead.nextElementSibling;
+		stickPoint 	= masthead.offsetTop;
+		stuck 			= false;
 
-		window.onscroll = function(e) {
+		window.onscroll = function() {
 			offset = window.pageYOffset;
 			if ( window.innerWidth < 992) {
 				return;
