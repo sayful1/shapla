@@ -225,7 +225,7 @@
 		stickPoint 	= masthead.offsetTop;
 		stuck 			= false;
 
-		window.onscroll = function() {
+		window.addEventListener("scroll", function() {
 			offset = window.pageYOffset;
 			if ( window.innerWidth < 992) {
 				return;
@@ -241,6 +241,6 @@
 				content.style.marginTop = '';
 				stuck = false;
 			}
-		}
+		});
 	});
 })();
