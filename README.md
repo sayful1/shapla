@@ -1,18 +1,14 @@
 # Shapla
 
-Contributors		: sayful
+**Contributors:** sayful
+**Requires at least:** 4.4
+**Tested up to:** 4.8
+**Stable tag:** 1.1.5
+**License:** GPLv2 or later
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**Tags:** one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, editor-style, featured-images, post-formats, sticky-post, threaded-comments, translation-ready, blog
 
-Requires at least 	: 4.4
-
-Tested up to 		: 4.8
-
-Stable tag 			: 1.1.5
-
-License 			: GPLv2 or later
-
-License URI 		: http://www.gnu.org/licenses/gpl-2.0.html
-
-Tags				: one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, editor-style, featured-images, post-formats, sticky-post, threaded-comments, translation-ready, blog
+A simple, easy-to-use and highly customizable WordPress theme.
 
 # Description
 
@@ -76,8 +72,12 @@ Shapla is compatible with Jetpack, WooCommerce, Carousel Slider, Filterable Port
 #### 0.1.0 - Jan 25, 2017
 * Initial release
 
-# Credits
+## Copyright
 
-* Based on [Underscores](http://underscores.me/), (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
+Shapla is distributed under the terms of the GNU GPL
+
+Shapla bundles the following third-party resources:
+
+* [Underscores](http://underscores.me/), (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 * [normalize.css](http://necolas.github.io/normalize.css/), (C) 2012-2016 Nicolas Gallagher and Jonathan Neal, [MIT](http://opensource.org/licenses/MIT)
 * [Font Awesome 4.7.0](http://fontawesome.io) by @davegandy, License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
