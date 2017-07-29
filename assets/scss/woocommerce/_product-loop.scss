@@ -1,76 +1,76 @@
 .woocommerce {
-	.products ul,
-	ul.products {
-		margin: 0 0 1em;
-		padding: 0;
-		list-style: none outside;
-		clear: both;
-		@include clearfix();
+    .products ul,
+    ul.products {
+        margin: 0 0 1em;
+        padding: 0;
+        list-style: none outside;
+        clear: both;
+        @include clearfix();
 
-		li {
-			list-style: none outside;
-		}
-	}
+        li {
+            list-style: none outside;
+        }
+    }
 
-	ul.products {
-		li.product {
+    ul.products {
+        li.product {
 
-			h3,
-			.woocommerce-loop-product__title,
-			.woocommerce-loop-category__title {
-				padding: 0.5em 0;
-				margin: 0;
-				font-size: 1.1em;
-				font-weight: 400;
-				color: rgba($contenttext, .85);
-			}
+            h3,
+            .woocommerce-loop-product__title,
+            .woocommerce-loop-category__title {
+                padding: 0.5em 0;
+                margin: 0;
+                font-size: 1.1em;
+                font-weight: 400;
+                color: rgba($contenttext, .85);
+            }
 
-			a img {
-				width: 100%;
-				height: auto;
-				display: block;
-				margin: 0 0 0.5em;
-				box-shadow: none;
-			}
+            a img {
+                width: 100%;
+                height: auto;
+                display: block;
+                margin: 0 0 0.5em;
+                box-shadow: none;
+            }
 
-			strong {
-				display: block;
-			}
+            strong {
+                display: block;
+            }
 
-			.star-rating {
-				font-size: 0.857em;
-			}
+            .star-rating {
+                font-size: 0.857em;
+            }
 
-			.button {
-				margin-top: 1em;
-			}
+            .button {
+                margin-top: 1em;
+            }
 
-			.price {
-				color: rgba($contenttext, .85);
-				display: block;
-				font-weight: normal;
-				margin-bottom: 0.5em;
-				font-size: 0.857em;
+            .price {
+                color: rgba($contenttext, .85);
+                display: block;
+                font-weight: normal;
+                margin-bottom: 0.5em;
+                font-size: 0.857em;
 
-				del {
-					color: inherit;
-					opacity: 0.5;
-					display: inline-block;
-				}
+                del {
+                    color: inherit;
+                    opacity: 0.5;
+                    display: inline-block;
+                }
 
-				ins {
-					color: inherit;
-					background: none;
-					font-weight: 400;
-				}
+                ins {
+                    color: inherit;
+                    background: none;
+                    font-weight: 400;
+                }
 
-				.from {
-					font-size: 0.67em;
-					margin: -2px 0 0 0;
-					text-transform: uppercase;
-					color: rgba(desaturate($highlight, 75%), 0.5);
-				}
-			}
-		}
-	}
+                .from {
+                    font-size: 0.67em;
+                    margin: -2px 0 0 0;
+                    text-transform: uppercase;
+                    color: rgba(desaturate($highlight, 75%), 0.5);
+                }
+            }
+        }
+    }
 }

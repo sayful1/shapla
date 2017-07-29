@@ -1,14 +1,14 @@
 // Rem output with px fallback
 @mixin font-size($sizeValue: 1) {
-	font-size: ($sizeValue * 15) * 1px;
-	font-size: $sizeValue * 1rem;
+    font-size: ($sizeValue * 15) * 1px;
+    font-size: $sizeValue * 1rem;
 }
 
 // Center block
 @mixin center-block {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @mixin clearfix {
@@ -22,7 +22,7 @@
     }
 }
 
-@mixin fa-icon(){
+@mixin fa-icon() {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
@@ -32,15 +32,15 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin bg-color($bg_color, $color){
-    color:$color;
-    background-color:$bg_color;
+@mixin bg-color($bg_color, $color) {
+    color: $color;
+    background-color: $bg_color;
 }
 
-@mixin text-color($color){
-    color:$color;
+@mixin text-color($color) {
+    color: $color;
 }
 
-@mixin border-color($color){
-    border-color:$color;
+@mixin border-color($color) {
+    border-color: $color;
 }

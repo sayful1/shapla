@@ -1,79 +1,78 @@
-
 @mixin clearfix() {
-	&::before,
-	&::after {
-		content: " ";
-		display: table;
-	}
+    &::before,
+    &::after {
+        content: " ";
+        display: table;
+    }
 
-	&::after {
-		clear: both;
-	}
+    &::after {
+        clear: both;
+    }
 }
 
 @mixin loader() {
-	&::before {
-		display: inline-block;
-		font: normal normal normal 1em/1 FontAwesome;
-		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		content: "\f110";
-		-webkit-animation: fa-spin .75s linear infinite;
-		-moz-animation: fa-spin .75s linear infinite;
-		animation: fa-spin .75s linear infinite;
-		height: 30px;
-		width: 30px;
-		line-height: 30px;
-		font-size: 30px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin-left: -15px;
-		margin-top: -15px;
-	}
+    &::before {
+        display: inline-block;
+        font: normal normal normal 1em/1 FontAwesome;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        content: "\f110";
+        -webkit-animation: fa-spin .75s linear infinite;
+        -moz-animation: fa-spin .75s linear infinite;
+        animation: fa-spin .75s linear infinite;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        font-size: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -15px;
+        margin-top: -15px;
+    }
 }
 
 @mixin transform( $transform ) {
-	-webkit-transform: $transform;
-	-moz-transform: $transform;
-	-ms-transform: $transform;
-	-o-transform: $transform;
-	transform: $transform;
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
 }
 
 @mixin menu() {
-	@include clearfix();
+    @include clearfix();
 
-	li {
-		display: inline-block;
-	}
+    li {
+        display: inline-block;
+    }
 }
 
 @mixin mediaright() {
-	@include clearfix();
+    @include clearfix();
 
-	img {
-		float: right;
-		height: auto;
-	}
+    img {
+        float: right;
+        height: auto;
+    }
 }
 
 @mixin medialeft() {
-	@include clearfix();
+    @include clearfix();
 
-	img {
-		float: right;
-		height: auto;
-	}
+    img {
+        float: right;
+        height: auto;
+    }
 }
 
-@mixin fa-icon(){
-	display: inline-block;
-	font: normal normal normal 14px/1 FontAwesome;
-	font-size: inherit;
-	text-rendering: auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	line-height: 1;
+@mixin fa-icon() {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1;
 }

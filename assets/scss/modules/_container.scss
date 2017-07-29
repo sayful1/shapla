@@ -1,18 +1,18 @@
 .container {
     position: relative;
-    
+
     @media screen and (min-width: $tablet) {
         margin: 0 auto;
         max-width: $container-md;
         width: $container-md;
     }
-    
+
     @media screen and (min-width: $desktop) {
         margin: 0 auto;
         max-width: $container-lg;
         width: $container-lg;
     }
-    
+
     @media screen and (min-width: $widescreen) {
         margin: 0 auto;
         max-width: $container-xl;

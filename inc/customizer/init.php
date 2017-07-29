@@ -5,10 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add global configuration
-$shapla->customizer->add_config([
-	'option_type' 	=> 'theme_mod',
-	'capability' 	=> 'edit_theme_options',
-]);
+$shapla->customizer->add_config( [
+	'option_type' => 'theme_mod',
+	'capability'  => 'edit_theme_options',
+] );
 
 require get_template_directory() . '/inc/customizer/title_tagline.php';
 require get_template_directory() . '/inc/customizer/header.php';

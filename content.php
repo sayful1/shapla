@@ -21,5 +21,5 @@
 	 */
 	do_action( 'shapla_loop_post' );
 	?>
-	
+
 </article><!-- #post-## -->

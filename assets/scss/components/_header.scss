@@ -1,75 +1,75 @@
 .site-header {
-	background-color: #212A34;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-	color: $color--light_grey;
-	width: 100%;
-	z-index: 100;
-	transition: all 0.5s ease-in-out;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background-color: $color--white;
+    color: $color--dark_grey;
+    width: 100%;
+    z-index: 100;
+    transition: all 0.5s ease-in-out;
 
-	@media screen and (min-width: $screen-lg) {
-		&.is-sticky {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
-			position: fixed;
-			top: 0;
+    @media screen and (min-width: $screen-lg) {
+        &.is-sticky {
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+            position: fixed;
+            top: 0;
 
-			.admin-bar & {
-				top: 32px;
-			}
-		}
-	}
+            .admin-bar & {
+                top: 32px;
+            }
+        }
+    }
 
-	a {
-		color: $color--light_grey;
-		text-decoration: none;
+    a {
+        color: $color--dark_grey;
+        text-decoration: none;
 
-		&:hover,
-		&:focus {
-			color: $color--white;
-		}
-	}
+        &:hover,
+        &:focus {
+            color: $color--dark_grey;
+        }
+    }
 }
 
 .site-branding {
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-	display: inline-block;
-	float: left;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: inline-block;
+    float: left;
 
-	.custom-logo {
-		max-height: 40px;
-		width: auto;
-	}
+    .custom-logo {
+        max-height: 40px;
+        width: auto;
+    }
 }
 
 .site-title {
-	font-size: 30px;
-	line-height: 1.2;
-	margin: 0 0 5px;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0 0 5px;
 
-	> a {
-		color: $color--light_grey;
-		text-decoration: none;
-		display: block;
-	}
+    > a {
+        color: $color--dark_grey;
+        text-decoration: none;
+        display: block;
+    }
 }
 
 .site-description {
-	margin: 0;
-	font-size: $font-size-small;
-	opacity: 0.8;
-	line-height: 1.2;
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.8;
+    line-height: 1.2;
 }
 
 // Search form
 .search-toggle {
-	float: right;
-	margin: 15px 0 15px 5px;
-	text-align: center;
-	vertical-align: middle;
+    float: right;
+    margin: 15px 0 15px 5px;
+    text-align: center;
+    vertical-align: middle;
 
-	i.fa-search {
-		cursor: pointer;
-		font-size: 14px;
-		padding: 12px;
-	}
+    i.fa-search {
+        cursor: pointer;
+        font-size: 14px;
+        padding: 12px;
+    }
 }

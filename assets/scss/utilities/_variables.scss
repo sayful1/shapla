@@ -1,36 +1,36 @@
 // == Base Colors
-$color--strikemaster:  	#96588a !default;
-$color--dark_grey : 	#3a3a3a !default;
-$color--dove_grey : 	#666666 !default;
-$color--grey : 			#cccccc !default;
-$color--light_grey : 	#f1f1f1 !default;
+$color--strikemaster: #96588a !default;
+$color--dark_grey: #3a3a3a !default;
+$color--dove_grey: #666666 !default;
+$color--grey: #cccccc !default;
+$color--light_grey: #f1f1f1 !default;
 
 // == Colors
 // Start with assigning color names to specific hex values.
-$color--red: 			#f44336 !default;
-$color--green: 			#4caf50 !default;
-$color--blue: 			#2196f3 !default;
-$color--orange: 		#ff9800 !default;
-$color--yellow: 		#ffeb3b !default;
-$color--white: 			#ffffff !default;
-$color--black: 			#000000 !default;
-$color--teal: 			#009688 !default;
-$color--pink: 			#e91e63 !default;
-$color--purple: 		#9c27b0 !default;
+$color--red: #f44336 !default;
+$color--green: #4caf50 !default;
+$color--blue: #2196f3 !default;
+$color--orange: #ff9800 !default;
+$color--yellow: #ffeb3b !default;
+$color--white: #ffffff !default;
+$color--black: #000000 !default;
+$color--teal: #009688 !default;
+$color--pink: #e91e63 !default;
+$color--purple: #9c27b0 !default;
 
 // Create grayscale
-$color--gray-dark:		#212121 !default;
-$color--gray:			#424242 !default;
-$color--gray-light:		#616161 !default;
-$color--gray-lighter:	#e0e0e0 !default;
-$color--gray-lightest:  #f5f5f5 !default;
+$color--gray-dark: #212121 !default;
+$color--gray: #424242 !default;
+$color--gray-light: #616161 !default;
+$color--gray-lighter: #e0e0e0 !default;
+$color--gray-lightest: #f5f5f5 !default;
 
 // Reassign color vars to semantic color scheme
-$color--success: 		$color--green !default;
-$color--info: 			$color--teal !default;
-$color--warning: 		$color--orange !default;
-$color--danger: 		$color--red !default;
-$color--default: 		$color--light_grey !default;
+$color--success: $color--green !default;
+$color--info: $color--teal !default;
+$color--warning: $color--orange !default;
+$color--danger: $color--red !default;
+$color--default: $color--light_grey !default;
 
 $color__background-body: $color--white !default;
 $color__background-screen: $color--light_grey !default;
@@ -43,24 +43,24 @@ $color__link-hover: $color--strikemaster;
 $color__text-main: #404040;
 
 // == Site Navigation
-$nav-color-bg : $color--white;
-$nav-color-text : $color--dark_grey;
-$nav-color-hover-text : $color--white;
-$nav-color-hover-bg : $color--strikemaster;
+$nav-color-bg: $color--white;
+$nav-color-text: $color--dark_grey;
+$nav-color-hover-text: $color--white;
+$nav-color-hover-bg: $color--strikemaster;
 
-$nav-color-dropdown-bg : $color--white;
-$nav-color-dropdown-text : $color--dark_grey;
-$nav-color-dropdown-hover-bg : $color--strikemaster;
-$nav-color-dropdown-hover-text : $color--white;
+$nav-color-dropdown-bg: $color--white;
+$nav-color-dropdown-text: $color--dark_grey;
+$nav-color-dropdown-hover-bg: $color--strikemaster;
+$nav-color-dropdown-hover-text: $color--white;
 
 // == Buttons
-$btn-color:              		#ffffff;
-$btn-background:                #2c2d33;
-$btn-hover-background:          #13141a;
+$btn-color: #ffffff;
+$btn-background: #2c2d33;
+$btn-hover-background: #13141a;
 
-$btn-alt-color:              	#ffffff;
-$btn-alt-background:            #96588a;
-$btn-alt-hover-background:      #7d3f71;
+$btn-alt-color: #ffffff;
+$btn-alt-background: #96588a;
+$btn-alt-hover-background: #7d3f71;
 
 // == Form
 $color__border-input: $color--grey;
@@ -70,35 +70,35 @@ $color__text-input-focus: $color--dark_grey;
 $color__border-abbr: #666;
 
 //== Typography
-$font-family-sans-serif:  'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-family-monospace:   'Inconsolata', monospace !default;
+$font-family-sans-serif: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-monospace: 'Inconsolata', monospace !default;
 
-$font-size-base:          15px !default;
-$font-size-large:         18px !default;
-$font-size-small:         12px !default;
+$font-size-base: 15px !default;
+$font-size-large: 18px !default;
+$font-size-small: 12px !default;
 
-$font-size-h1:            36px !default;
-$font-size-h2:            30px !default;
-$font-size-h3:            24px !default;
-$font-size-h4:            20px !default;
-$font-size-h5:            18px !default;
-$font-size-h6:            16px !default;
+$font-size-h1: 36px !default;
+$font-size-h2: 30px !default;
+$font-size-h3: 24px !default;
+$font-size-h4: 20px !default;
+$font-size-h5: 18px !default;
+$font-size-h6: 16px !default;
 
-$line-height-base:        1.5 !default;
+$line-height-base: 1.5 !default;
 
-$headings-font-family:    $font-family-sans-serif !default;
-$headings-font-weight:    500 !default;
-$headings-line-height:    1.1 !default;
-$headings-color:          inherit !default;
+$headings-font-family: $font-family-sans-serif !default;
+$headings-font-weight: 500 !default;
+$headings-line-height: 1.1 !default;
+$headings-color: inherit !default;
 
 //== Table
-$table-background-color: 		transparent;
-$table-border-color: 			rgba(#000, .1);
-$table-background-color-even: 	rgba(#000, .016);
-$table-background-color-odd: 	rgba(#fff, .016);
-$table-background-color-thead: 	rgba(#eee, .65);
-$table-background-color-tfoot: 	rgba(#eee, .65);
-$table-cell-padding:            8px;
+$table-background-color: transparent;
+$table-border-color: rgba(#000, .1);
+$table-background-color-even: rgba(#000, .016);
+$table-background-color-odd: rgba(#fff, .016);
+$table-background-color-thead: rgba(#eee, .65);
+$table-background-color-tfoot: rgba(#eee, .65);
+$table-cell-padding: 8px;
 
 //== Widgets
 $widget-footer-background-color: #212a34;

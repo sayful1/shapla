@@ -1,89 +1,89 @@
 .hentry {
-	.entry-meta {
-		a {
-			color: $color__text-main;
-			&:hover {
-				color: $color__link-hover;
-				text-decoration: none;
-			}
-		}
+    .entry-meta {
+        a {
+            color: $color__text-main;
+            &:hover {
+                color: $color__link-hover;
+                text-decoration: none;
+            }
+        }
 
-		.posted-on,
-		.byline,
-		.cat-links,
-		.tags-links,
-		.comments-link,
-		.edit-link {
-			display: block;
-			margin-bottom: 15px;
-			.label:before {
-				padding-right: 5px;
-				font-family: FontAwesome;
-				font-style: normal;
-				font-weight: normal;
-				font-size: 15px;
-				line-height: 1;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-			}
-		}
+        .posted-on,
+        .byline,
+        .cat-links,
+        .tags-links,
+        .comments-link,
+        .edit-link {
+            display: block;
+            margin-bottom: 15px;
+            .label:before {
+                padding-right: 5px;
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
 
-		.updated:not(.published) {
-			display: none;
-		}
+        .updated:not(.published) {
+            display: none;
+        }
 
-		.byline {
-			.vcard {
-				margin-bottom: 15px;
-			}
-		}
+        .byline {
+            .vcard {
+                margin-bottom: 15px;
+            }
+        }
 
-		.cat-links a {
-			display: block;
-		}
-		
-		.posted-on .label:before {
-			content: "\f133";
-		}
-		.byline .label:before {
-			content: "\f2c0";
-		}
-		.cat-links .label:before {
-			content: "\f114";
-		}
-		.tags-links .label:before {
-			content: "\f02c";
-		}
-		.comments-link .label:before {
-			content: "\f0e5";
-		}
-		.edit-link .label:before {
-			content: "\f044";
-		}
-	}
+        .cat-links a {
+            display: block;
+        }
+
+        .posted-on .label:before {
+            content: "\f133";
+        }
+        .byline .label:before {
+            content: "\f2c0";
+        }
+        .cat-links .label:before {
+            content: "\f114";
+        }
+        .tags-links .label:before {
+            content: "\f02c";
+        }
+        .comments-link .label:before {
+            content: "\f0e5";
+        }
+        .edit-link .label:before {
+            content: "\f044";
+        }
+    }
 }
 
-@media only screen and ( max-width: 600px ) {
-	.hentry {
-		.entry-meta {
-			.byline {
-				.vcard {
-					display: none;
-				}
-			}
-			.posted-on,
-			.byline,
-			.cat-links,
-			.tags-links,
-			.comments-link,
-			.edit-link {
-				.label {
-					display: inline;
-				}
-			}
-			.cat-links a {
-				display: inline;
-			}
-		}
-	}
+@media only screen and (max-width: 600px) {
+    .hentry {
+        .entry-meta {
+            .byline {
+                .vcard {
+                    display: none;
+                }
+            }
+            .posted-on,
+            .byline,
+            .cat-links,
+            .tags-links,
+            .comments-link,
+            .edit-link {
+                .label {
+                    display: inline;
+                }
+            }
+            .cat-links a {
+                display: inline;
+            }
+        }
+    }
 }

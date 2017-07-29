@@ -1,6 +1,8 @@
-.sass-cache
-package.json
-gulpfile.js
-readme.txt
+# Folders
+.git/
+.idea/
+.sass-cache/
+
+# Files
 assets/css/style.css.map
 style.css.map

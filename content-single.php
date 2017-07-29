@@ -23,5 +23,5 @@
 	 */
 	do_action( 'shapla_single_post' );
 	?>
-	
+
 </div><!-- #post-## -->

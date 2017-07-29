@@ -10,17 +10,17 @@
 /**
  * Assign the Shapla version to a var
  */
-$theme 			= wp_get_theme( 'shapla' );
+$theme          = wp_get_theme( 'shapla' );
 $shapla_version = $theme['Version'];
 
-if ( ! defined('SHAPLA_VERSION') ) {
-	define('SHAPLA_VERSION', $shapla_version);
+if ( ! defined( 'SHAPLA_VERSION' ) ) {
+	define( 'SHAPLA_VERSION', $shapla_version );
 }
 
 $shapla = (object) array(
-	'version' 		=> $shapla_version,
-	'main' 			=> require get_template_directory() . '/inc/class-shapla.php',
-	'customizer' 	=> require get_template_directory() . '/inc/class-shapla-customizer.php',
+	'version'    => $shapla_version,
+	'main'       => require get_template_directory() . '/inc/class-shapla.php',
+	'customizer' => require get_template_directory() . '/inc/class-shapla-customizer.php',
 );
 
 /**
@@ -45,7 +45,6 @@ if ( shapla_is_woocommerce_activated() ) {
 	require get_template_directory() . '/inc/woocommerce/shapla-woocommerce-template-hooks.php';
 	require get_template_directory() . '/inc/woocommerce/shapla-woocommerce-template-functions.php';
 }
-
 
 
 if ( is_admin() ) {

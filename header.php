@@ -12,14 +12,14 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<?php endif; ?>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+	<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
+        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+	<?php endif; ?>
 
-<?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
@@ -27,22 +27,23 @@
 	<?php
 	/**
 	 * Functions hooked in to shapla_before_header
+	 *
+	 * * @hooked shapla_skip_links - 0
 	 */
 	do_action( 'shapla_before_header' ); ?>
 
-	<header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
-		<div class="shapla-container">
+    <header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
+        <div class="shapla-container">
 			<?php
 			/**
 			 * Functions hooked into shapla_header action
 			 *
-			 * @hooked shapla_skip_links - 0
 			 * @hooked shapla_site_branding - 20
 			 * @hooked shapla_primary_navigation - 30
 			 */
 			do_action( 'shapla_header' ); ?>
-		</div>
-	</header><!-- #masthead -->
+        </div>
+    </header><!-- #masthead -->
 
 	<?php
 	/**
@@ -50,4 +51,4 @@
 	 */
 	do_action( 'shapla_before_content' ); ?>
 
-	<div id="content" class="site-content">
+    <div id="content" class="site-content">

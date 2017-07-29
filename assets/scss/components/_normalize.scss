@@ -6,10 +6,12 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
+
 // Remove the margin in all browsers (opinionated).
 body {
     margin: 0;
 }
+
 // Add the correct display in IE 9-.
 article,
 aside,
@@ -25,6 +27,7 @@ section,
 summary {
     display: block
 }
+
 // Add the correct display in IE 9-.
 audio,
 video,
@@ -32,27 +35,30 @@ canvas,
 progress {
     display: inline-block;
 }
+
 // 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
 progress {
     vertical-align: baseline; // 2
 }
+
 // Add the correct display in iOS 4-7.
 audio:not([controls]) {
     display: none;
     height: 0;
 }
+
 // Add the correct display in IE. (Hidden)
 template,
 [hidden] {
     display: none;
 }
+
 // 1. Remove the gray background on active links in IE 10.
 // 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
 a {
     background-color: transparent; // 1
     -webkit-text-decoration-skip: objects; // 2
 }
-
 
 // Remove the outline on focused links when they are also active or hovered
 // in all browsers (opinionated).
@@ -124,12 +130,12 @@ pre, code, kbd, samp {
 
 // Remove the border on images inside links in IE 10-.
 img {
-  border-style: none;
+    border-style: none;
 }
 
 // Hide the overflow in IE.
 svg:not(:root) {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 // 1. Change the font styles in all browsers (opinionated).
@@ -160,7 +166,7 @@ button, select {
 // 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
 //    controls in Android 4.
 // 2. Correct the inability to style clickable types in iOS and Safari.
-button, 
+button,
 html [type="button"], // 1
 [type="reset"],
 [type="submit"] {
@@ -216,7 +222,6 @@ textarea {
     box-sizing: border-box; // 1
     padding: 0; // 2
 }
-
 
 // Correct the cursor style of increment and decrement buttons in Chrome.
 [type="number"]::-webkit-inner-spin-button,

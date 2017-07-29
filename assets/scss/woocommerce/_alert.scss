@@ -1,60 +1,60 @@
 .woocommerce-message,
 .woocommerce-error,
 .woocommerce-info {
-	border-left: .5em solid rgba(#000,.2);
-	color: #ffffff;
-	padding: 1em;
-	margin: 2em 0;
-	position: relative;
-	list-style: none outside;
-	@include clearfix();
-	width: auto;
-	word-wrap: break-word;
+    border-left: .5em solid rgba(#000, .2);
+    color: #ffffff;
+    padding: 1em;
+    margin: 2em 0;
+    position: relative;
+    list-style: none outside;
+    @include clearfix();
+    width: auto;
+    word-wrap: break-word;
 
-	a {
-		color: #fff;
-		font-weight: 700;
+    a {
+        color: #fff;
+        font-weight: 700;
 
-		&:hover {
-			color: #fff;
-			opacity: 0.7;
-		}
+        &:hover {
+            color: #fff;
+            opacity: 0.7;
+        }
 
-		&.button:hover {
-			opacity: 1;
-		}
-	}
+        &.button:hover {
+            opacity: 1;
+        }
+    }
 
-	.button {
-		float: right;
-		padding: 0;
-		background: none;
-		color: #fff;
-		box-shadow: none;
-		line-height: 1.618;
-		padding-left: 1em;
-		border-width: 0;
-		border-left-style: solid;
-		border-left-width: 1px !important;
-		border-left-color: rgba(255,255,255,0.25) !important;
-		border-radius: 0;
+    .button {
+        float: right;
+        padding: 0;
+        background: none;
+        color: #fff;
+        box-shadow: none;
+        line-height: 1.618;
+        padding-left: 1em;
+        border-width: 0;
+        border-left-style: solid;
+        border-left-width: 1px !important;
+        border-left-color: rgba(255, 255, 255, 0.25) !important;
+        border-radius: 0;
 
-		&:hover {
-			background: none;
-			color: #fff;
-			opacity: 0.7;
-		}
-	}
+        &:hover {
+            background: none;
+            color: #fff;
+            opacity: 0.7;
+        }
+    }
 }
 
 .woocommerce-message {
-	background-color: $alert-success;
+    background-color: $alert-success;
 }
 
 .woocommerce-info {
-	background-color: $alert-info;
+    background-color: $alert-info;
 }
 
 .woocommerce-error {
-	background-color: $alert-danger;
+    background-color: $alert-danger;
 }

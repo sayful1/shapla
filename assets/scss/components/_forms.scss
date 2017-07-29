@@ -14,36 +14,35 @@ input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
 textarea {
-	color: $color__text-input;
-	border: 1px solid $color__border-input;
-	padding: 0.6em 1em;
-	width: 100%;
+    color: $color__text-input;
+    border: 1px solid $color__border-input;
+    padding: 0.6em 1em;
+    width: 100%;
 
-
-	&:focus {
-		color: $color__text-input-focus;
-	}
+    &:focus {
+        color: $color__text-input-focus;
+    }
 }
 
 select {
-	padding: 8px 4px;
-	color: $color__text-input-focus;
-	border: 1px solid transparent;
-	border-bottom:1px solid $color__border-input;
+    padding: 8px 4px;
+    color: $color__text-input-focus;
+    border: 1px solid transparent;
+    border-bottom: 1px solid $color__border-input;
 }
 
 .post-password-form {
-	margin-bottom: 15px;
-	label {
-		display: block;
-		margin-bottom: 15px;
-	}
+    margin-bottom: 15px;
+    label {
+        display: block;
+        margin-bottom: 15px;
+    }
 
-	input[type="password"] {
-		margin-top: 10px;
-	}
+    input[type="password"] {
+        margin-top: 10px;
+    }
 
-	> :last-child {
-		margin-bottom: 0;
-	}
+    > :last-child {
+        margin-bottom: 0;
+    }
 }
