@@ -1,7 +1,8 @@
 $susy: (
-        columns: 12,
-        container: 1140px,
-        gutters: 1,
+        'columns': susy-repeat(12),
+        'gutters': 0.5,
+        'spread': 'narrow',
+        'container-spread': 'narrow',
 );
 
 .site-header,
@@ -21,25 +22,18 @@ $susy: (
 .site-content {
     margin-right: auto;
     margin-left: auto;
-    .content-area {
-        @include span(12);
-    }
-    .widget-area {
-        @include span(12);
-    }
 
     .content-area,
     .widget-area {
+        width: 100%;
         padding: 2em 1em;
     }
 }
 
 .hentry.type-post {
-    .entry-meta {
-        @include span(12);
-    }
+    .entry-meta,
     .entry-content {
-        @include span(12);
+        width: 100%;
     }
 }
 
@@ -66,7 +60,7 @@ $susy: (
     }
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: $screen-sm) {
     .site-content,
     .shapla-container {
         width: 540px;
@@ -88,20 +82,9 @@ $susy: (
             padding: 2em 0;
         }
     }
-
-    .hentry.type-post {
-        .entry-meta {
-            @include span(3 of 12);
-        }
-        // 117px + 23px right margin
-        .entry-content {
-            @include span(9 of 12 last);
-        }
-        // 399px
-    }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $screen-md) {
     .site-content,
     .shapla-container {
         width: 720px;
@@ -110,41 +93,40 @@ $susy: (
 
     .site-content {
         .content-area {
-            @include span(9 of 12);
+            width: span(12);
+            float: none;
         }
-        // 532px + 31px right margin
         .widget-area {
-            @include span(3 of 12 last);
+            width: span(12);
+            float: none;
         }
-        // 157px + 0px right margin
     }
 
     .left-sidebar {
         .site-content {
             .content-area {
-                @include span(9 of 12 last);
+                width: span(12);
             }
-            // 532px + 0px right margin
             .widget-area {
-                @include span(3 of 12);
+                width: span(12);
             }
-            // 157px + 31px right margin
         }
     }
 
     .hentry.type-post {
         .entry-meta {
-            @include span(3 of 12);
+            width: span(3 of 12);
+            margin-right: gutter();
+            float: left;
         }
-        // 116px + 23px right margin
         .entry-content {
-            @include span(9 of 12 last);
+            width: span(9 of 12);
+            float: right;
         }
-        // 393px
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: $screen-lg) {
     .site-content,
     .shapla-container {
         width: 960px;
@@ -153,41 +135,44 @@ $susy: (
 
     .site-content {
         .content-area {
-            @include span(9 of 12);
+            width: span(9 of 12);
+            margin-right: gutter();
+            float: left;
         }
-        // 710px + 41px right margin
         .widget-area {
-            @include span(3 of 12 last);
+            width: span(3 of 12);
+            float: right;
         }
-        // 209px + 0px right margin
     }
 
     .left-sidebar {
         .site-content {
             .content-area {
-                @include span(9 of 12 last);
+                width: span(9 of 12);
+                float: right;
             }
-            // 532px + 0px right margin
             .widget-area {
-                @include span(3 of 12);
+                width: span(3 of 12);
+                margin-right: gutter();
+                float: left;
             }
-            // 157px + 31px right margin
         }
     }
 
     .hentry.type-post {
         .entry-meta {
-            @include span(3 of 12);
+            width: span(2 of 9);
+            margin-right: gutter();
+            float: left;
         }
-        // 154px + 30px right margin
         .entry-content {
-            @include span(9 of 12 last);
+            width: span(7 of 9);
+            float: right;
         }
-        // 524px
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $screen-xl) {
     .site-content,
     .shapla-container {
         width: 1140px;
@@ -196,36 +181,40 @@ $susy: (
 
     .site-content {
         .content-area {
-            @include span(9 of 12);
+            width: span(9 of 12);
+            margin-right: gutter();
+            float: left;
         }
-        // 843px + 49px right margin
         .widget-area {
-            @include span(3 of 12 last);
+            width: span(3 of 12);
+            float: right;
         }
-        // 248px + 0px right margin
     }
 
     .left-sidebar {
         .site-content {
             .content-area {
-                @include span(9 of 12 last);
+                width: span(9 of 12);
+                margin-right: 0;
+                float: right;
             }
-            // 843px + 0px right margin
             .widget-area {
-                @include span(3 of 12);
+                width: span(3 of 12);
+                margin-right: gutter();
+                float: left;
             }
-            // 248px + 49px right margin
         }
     }
 
     .hentry.type-post {
         .entry-meta {
-            @include span(3 of 12);
+            width: span(2 of 9);
+            margin-right: gutter(1 of 9);
+            float: left;
         }
-        // 183px + 36px right margin
         .entry-content {
-            @include span(9 of 12 last);
+            width: span(7 of 9);
+            float: right;
         }
-        // 623px
     }
 }

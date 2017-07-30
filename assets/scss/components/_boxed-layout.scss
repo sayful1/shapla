@@ -12,27 +12,27 @@
         padding-left: 1rem;
         padding-right: 1rem;
     }
-    @include susy-breakpoint($screen-sm, 12) {
+    @media screen and (min-width: $screen-sm) {
         .site,
         .site-header {
             max-width: 570px;
         }
     }
-    @include susy-breakpoint($screen-md, 12) {
+    @media screen and (min-width: $screen-md) {
         .site,
         .site-header {
             max-width: 750px;
         }
 
     }
-    @include susy-breakpoint($screen-lg, 12) {
+    @media screen and (min-width: $screen-lg) {
         .site,
         .site-header {
             max-width: 990px;
         }
 
     }
-    @include susy-breakpoint($screen-xl, 12) {
+    @media screen and (min-width: $screen-xl) {
         .site,
         .site-header {
             max-width: 1170px;

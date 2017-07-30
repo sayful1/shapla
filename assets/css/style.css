@@ -301,7 +301,7 @@ textarea {
     .left-sidebar .site-content .content-area {
         width: 73.91304%;
         float: right;
-        margin-right: 0
+        margin-right: 0;
     }
 
     .left-sidebar .site-content .widget-area {
@@ -625,9 +625,7 @@ address {
 }
 
 code, pre {
-    -moz-osx-font-smoothing: auto;
-    -webkit-font-smoothing: auto;
-    font-family: "Inconsolata", monospace
+    font-family: "Inconsolata", monospace;
 }
 
 pre {

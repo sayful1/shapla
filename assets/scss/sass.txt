@@ -1,27 +1,27 @@
 Style: nested -- default
 ===============================================================
-sass --watch assets/scss/style.scss:style.css  -r susy
+sass --watch assets/scss/style.scss:style.css
 
 Style: expanded
 -- typical human-made CSS style
 ===============================================================
-sass --watch assets/scss/style.scss:style.css  -r susy --style expanded
+sass --watch assets/scss/style.scss:style.css --style expanded
 sass --watch assets/scss/editor-style.scss:editor-style.css --style expanded
 
 
 Style: compact
 -- Each CSS rule takes up only one line
 ===============================================================
-sass --watch assets/scss/style.scss:style.css  -r susy --style compact
+sass --watch assets/scss/style.scss:style.css --style compact
 sass --watch assets/scss/editor-style.scss:editor-style.css --style compact
 
 Style: compressed
 -- having no whitespace except that necessary
 to separate selectors and a newline at the end of the file
 =================================================================
-sass --watch assets/scss/style.scss:style.css  -r susy --style compressed
-sass --watch assets/scss/admin.scss:assets/css/admin.css -r susy --style compressed
+sass --watch assets/scss/style.scss:style.css --style compressed
+sass --watch assets/scss/admin.scss:assets/css/admin.css --style compressed
 sass --watch assets/scss/editor-style.scss:assets/css/editor-style.css --style compressed
-sass --watch assets/scss/woocommerce.scss:assets/css/woocommerce.css -r susy --style compressed
+sass --watch assets/scss/woocommerce.scss:assets/css/woocommerce.css --style compressed
 
-sass --watch assets/scss:assets/css -r susy --style compressed
+sass --watch assets/scss:assets/css --style compressed
