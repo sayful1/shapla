@@ -1,74 +1,44 @@
-@media screen and (min-width: 768px) {
+.footer-widget-area .shapla-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.shapla-container .widget {
+    width: 100%;
+    margin-right: 0;
+    float: left;
+}
+
+@media screen and (min-width: $screen-md) {
     .shapla-container .widget {
-        width: 47.82609%;
+        width: span(6 of 12);
+        margin-right: gutter(1 of 12);
         float: left;
     }
-
-    .shapla-container .widget:nth-child(2n+1) {
-        margin-left: 0;
-        margin-right: -100%;
-        clear: both;
-    }
-
-    .shapla-container .widget:nth-child(2n+2) {
-        margin-left: 52.17391%;
-        margin-right: -100%;
-        clear: none;
+    .shapla-container .widget:nth-of-type(2n+0) {
+        margin-right: 0;
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: $screen-lg) {
     .shapla-container .widget {
-        width: 30.43478%;
+        width: span(4 of 12);
+        margin-right: gutter(1 of 12);
         float: left;
     }
-
-    .shapla-container .widget:nth-child(3n+1) {
-        margin-left: 0;
-        margin-right: -100%;
-        clear: both;
-    }
-
-    .shapla-container .widget:nth-child(3n+2) {
-        margin-left: 34.78261%;
-        margin-right: -100%;
-        clear: none;
-    }
-
-    .shapla-container .widget:nth-child(3n+3) {
-        margin-left: 69.56522%;
-        margin-right: -100%;
-        clear: none;
+    .shapla-container .widget:nth-of-type(3n+0) {
+        margin-right: 0;
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: $screen-xl) {
     .shapla-container .widget {
-        width: 21.73913%;
+        width: span(3 of 12);
+        margin-right: gutter(1 of 12);
         float: left;
     }
-
-    .shapla-container .widget:nth-child(4n+1) {
-        margin-left: 0;
-        margin-right: -100%;
-        clear: both;
-    }
-
-    .shapla-container .widget:nth-child(4n+2) {
-        margin-left: 26.08696%;
-        margin-right: -100%;
-        clear: none;
-    }
-
-    .shapla-container .widget:nth-child(4n+3) {
-        margin-left: 52.17391%;
-        margin-right: -100%;
-        clear: none;
-    }
-
-    .shapla-container .widget:nth-child(4n+4) {
-        margin-left: 78.26087%;
-        margin-right: -100%;
-        clear: none;
+    .shapla-container .widget:nth-of-type(4n+0) {
+        margin-right: 0;
     }
 }
