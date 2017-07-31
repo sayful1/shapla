@@ -172,10 +172,13 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 		if ( is_active_sidebar( 'sidebar-2' ) ):
 			?>
             <div id="footer-widget-area" class="footer-widget-area">
-            <div class="shapla-container">
-				<?php dynamic_sidebar( 'sidebar-2' ); ?>
+                <div class="shapla-container">
+                    <div class="footer-widget">
+						<?php dynamic_sidebar( 'sidebar-2' ); ?>
+                    </div>
+                </div>
             </div>
-            </div><?php
+			<?php
 		endif;
 	}
 }

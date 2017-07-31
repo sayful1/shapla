@@ -1,53 +1,28 @@
-.footer-widget-area .shapla-container {
+.footer-widget {
     display: flex;
     flex-wrap: wrap;
-}
+    margin-right: -1rem;
+    margin-left: -1rem;
 
-.footer-widget-area .widget {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 100%;
-    margin-right: 0;
-}
+    .widget {
+        display: block;
+        position: relative;
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0 1rem 1rem;
 
-@media screen and (min-width: $screen-md) {
-    .footer-widget-area .widget {
-        flex-basis: span(6 of 12);
-        margin-right: gutter(1 of 12);
-
-        &:nth-of-type(2n+0) {
-            margin-right: 0;
+        @media screen and (min-width: $screen-sm) {
+            flex: 0 0 50%;
+            max-width: 50%;
         }
-    }
-}
-
-@media screen and (min-width: $screen-lg) {
-    .footer-widget-area .widget {
-        flex-basis: span(4 of 12);
-        margin-right: gutter(1 of 12);
-
-        &:nth-of-type(2n+0) {
-            margin-right: gutter(1 of 12);
+        @media screen and (min-width: $screen-lg) {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
         }
-        &:nth-of-type(3n+0) {
-            margin-right: 0;
-        }
-    }
-}
-
-@media screen and (min-width: $screen-xl) {
-    .footer-widget-area .widget {
-        flex-basis: span(3 of 12);
-        margin-right: gutter(1 of 12);
-
-        &:nth-of-type(2n+0) {
-            margin-right: gutter(1 of 12);
-        }
-        &:nth-of-type(3n+0) {
-            margin-right: gutter(1 of 12);
-        }
-        &:nth-of-type(4n+0) {
-            margin-right: 0;
+        @media screen and (min-width: $screen-xl) {
+            flex: 0 0 25%;
+            max-width: 25%;
         }
     }
 }
