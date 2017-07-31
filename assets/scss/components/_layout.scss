@@ -1,6 +1,6 @@
 $susy: (
         'columns': susy-repeat(12),
-        'gutters': 0.5,
+        'gutters': 2rem,
         'spread': 'narrow',
         'container-spread': 'narrow',
 );
@@ -9,8 +9,8 @@ $susy: (
 .footer-widget-area,
 .site-footer {
     .shapla-container {
-        padding-left: 1em;
-        padding-right: 1em;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
@@ -26,7 +26,7 @@ $susy: (
     .content-area,
     .widget-area {
         width: 100%;
-        padding: 2em 1em;
+        padding: 2rem 1rem;
     }
 }
 
@@ -79,7 +79,7 @@ $susy: (
     .site-content {
         .content-area,
         .widget-area {
-            padding: 2em 0;
+            padding: 2rem 0;
         }
     }
 }

@@ -32,17 +32,21 @@
         width: 100%;
 
         .cross-sells {
-            @include span(6 of 12);
+            width: span(6 of 12);
+            margin-right: gutter();
+            float: left;
 
             ul.products {
                 li {
-                    @include gallery(6);
+                    flex: 0 0 50%;
+                    max-width: 50%;
                 }
             }
         }
 
         .cart_totals {
-            @include span(6 of 12 last);
+            width: span(6 of 12);
+            float: right;
         }
 
         .shipping_calculator {
@@ -59,7 +63,7 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: $screen-md) {
     .woocommerce,
     .woocommerce-page {
 

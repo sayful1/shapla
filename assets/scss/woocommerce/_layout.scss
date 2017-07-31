@@ -1,7 +1,8 @@
 $susy: (
-        columns: 12,
-        container: 1140px,
-        gutters: 1,
+        'columns': susy-repeat(12),
+        'gutters': 2rem,
+        'spread': 'narrow',
+        'container-spread': 'narrow',
 );
 
 // My account
@@ -15,26 +16,6 @@ $susy: (
 
 .woocommerce,
 .woocommerce-page {
-    // Product loops
-    ul.products {
-        clear: both;
-        @include clearfix();
-
-        li.product {
-            float: none;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-    }
-
-    &.columns-1 {
-        ul.products {
-            li.product {
-                @include gallery(12);
-            }
-        }
-    }
 
     .woocommerce-result-count {
         float: left;
@@ -62,35 +43,17 @@ $susy: (
     }
 }
 
-@include susy-media($screen-sm) {
-    // Product loops
-    .woocommerce,
-    .woocommerce-page {
-        ul.products {
-            li.product {
-                @include gallery(6);
-                margin-bottom: gutter();
-            }
-        }
-
-        &.columns-2 {
-            ul.products {
-                li.product {
-                    @include gallery(6);
-                }
-            }
-        }
-    }
-}
-
-@include susy-media($screen-md) {
+@media screen and (min-width: $screen-md) {
     // My account
     .woocommerce-account {
         .woocommerce-MyAccount-navigation {
-            @include span(3 of 12)
+            width: span(3 of 12);
+            margin-right: gutter();
+            float: left;
         }
         .woocommerce-MyAccount-content {
-            @include span(9 of 12 last)
+            width: span(9 of 12);
+            float: right;
         }
     }
 
@@ -102,16 +65,21 @@ $susy: (
             width: 100%;
 
             .col-1 {
-                @include span(6 of 12);
+                width: span(6 of 12);
+                margin-right: gutter();
+                float: left;
             }
             .col-2 {
-                @include span(6 of 12 last);
+                width: span(6 of 12);
+                float: right;
             }
         }
 
         .woocommerce-checkout {
             .col2-set {
-                @include span(6 of 12);
+                width: span(6 of 12);
+                margin-right: gutter();
+                float: left;
 
                 .col-1,
                 .col-2 {
@@ -122,38 +90,79 @@ $susy: (
             }
             #order_review_heading,
             #order_review {
-                @include span(6 of 12 last);
-            }
-        }
-
-        // Product loops
-        ul.products {
-            li.product {
-                @include gallery(4);
-                margin-bottom: gutter();
+                width: span(6 of 12);
+                float: right;
             }
         }
 
         // Product Details
         div.product {
             div.images {
-                @include span(6 of 12);
+                width: span(6 of 12);
+                margin-right: gutter();
+                float: left;
             }
             div.summary {
-                @include span(6 of 12 last);
+                width: span(6 of 12);
+                float: right;
             }
         }
     }
 }
 
-@include susy-media($screen-lg) {
-    // Product loops
-    .woocommerce,
-    .woocommerce-page {
+//== Layout: WooCommerce Product Loop
+.woocommerce,
+.woocommerce-page {
+
+    ul.products {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -1rem;
+        margin-left: -1rem;
+
+        @include clearfix();
+
+        li.product {
+            margin: 0;
+            padding: 1rem;
+            position: relative;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+    @media screen and (min-width: $screen-sm) {
         ul.products {
             li.product {
-                @include gallery(4);
-                margin-bottom: gutter();
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        &.columns-2 {
+            ul.products {
+                li.product {
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: $screen-md) {
+        ul.products {
+            li.product {
+                flex: 0 0 calc(100% / 3);
+                max-width: calc(100% / 3);
+            }
+        }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+        ul.products {
+            li.product {
+                flex: 0 0 calc(100% / 3);
+                max-width: calc(100% / 3);
             }
         }
 
@@ -161,7 +170,8 @@ $susy: (
         &.columns-4 {
             ul.products {
                 li.product {
-                    @include gallery(4);
+                    flex: 0 0 calc(100% / 3);
+                    max-width: calc(100% / 3);
                 }
             }
         }
@@ -170,29 +180,36 @@ $susy: (
         &.columns-6 {
             ul.products {
                 li.product {
-                    @include gallery(3);
+                    flex: 0 0 25%;
+                    max-width: 25%;
                 }
             }
         }
     }
-}
 
-@include susy-media($screen-xl) {
+    @media screen and (min-width: $screen-xl) {
 
-    // Product loops
-    .woocommerce,
-    .woocommerce-page {
         ul.products {
             li.product {
-                @include gallery(3);
-                margin-bottom: gutter();
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+        }
+
+        &.columns-3 {
+            ul.products {
+                li.product {
+                    flex: 0 0 calc(100% / 3);
+                    max-width: calc(100% / 3);
+                }
             }
         }
 
         &.columns-4 {
             ul.products {
                 li.product {
-                    @include gallery(3);
+                    flex: 0 0 25%;
+                    max-width: 25%;
                 }
             }
         }
@@ -200,7 +217,8 @@ $susy: (
         &.columns-5 {
             ul.products {
                 li.product {
-                    @include gallery(2.4);
+                    flex: 0 0 20%;
+                    max-width: 20%;
                 }
             }
         }
@@ -208,7 +226,8 @@ $susy: (
         &.columns-6 {
             ul.products {
                 li.product {
-                    @include gallery(2);
+                    flex: 0 0 calc(100% / 6);
+                    max-width: calc(100% / 6);
                 }
             }
         }
