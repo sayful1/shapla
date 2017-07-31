@@ -1,44 +1,53 @@
 .footer-widget-area .shapla-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
 }
 
-.shapla-container .widget {
-    width: 100%;
+.footer-widget-area .widget {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 100%;
     margin-right: 0;
-    float: left;
 }
 
 @media screen and (min-width: $screen-md) {
-    .shapla-container .widget {
-        width: span(6 of 12);
+    .footer-widget-area .widget {
+        flex-basis: span(6 of 12);
         margin-right: gutter(1 of 12);
-        float: left;
-    }
-    .shapla-container .widget:nth-of-type(2n+0) {
-        margin-right: 0;
+
+        &:nth-of-type(2n+0) {
+            margin-right: 0;
+        }
     }
 }
 
 @media screen and (min-width: $screen-lg) {
-    .shapla-container .widget {
-        width: span(4 of 12);
+    .footer-widget-area .widget {
+        flex-basis: span(4 of 12);
         margin-right: gutter(1 of 12);
-        float: left;
-    }
-    .shapla-container .widget:nth-of-type(3n+0) {
-        margin-right: 0;
+
+        &:nth-of-type(2n+0) {
+            margin-right: gutter(1 of 12);
+        }
+        &:nth-of-type(3n+0) {
+            margin-right: 0;
+        }
     }
 }
 
 @media screen and (min-width: $screen-xl) {
-    .shapla-container .widget {
-        width: span(3 of 12);
+    .footer-widget-area .widget {
+        flex-basis: span(3 of 12);
         margin-right: gutter(1 of 12);
-        float: left;
-    }
-    .shapla-container .widget:nth-of-type(4n+0) {
-        margin-right: 0;
+
+        &:nth-of-type(2n+0) {
+            margin-right: gutter(1 of 12);
+        }
+        &:nth-of-type(3n+0) {
+            margin-right: gutter(1 of 12);
+        }
+        &:nth-of-type(4n+0) {
+            margin-right: 0;
+        }
     }
 }
