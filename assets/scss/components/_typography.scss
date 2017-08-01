@@ -127,12 +127,12 @@ pre {
 pre {
     background: $color--light_grey;
     font-family: $font-family-monospace;
-    font-size: 0.8em;
+    font-size: 1rem;
     border: 1px solid $color--grey;
-    margin-bottom: 1.6em;
+    margin-bottom: 1em;
     max-width: 100%;
     overflow: auto;
-    padding: 1.6em;
+    padding: 1em;
     white-space: pre-wrap;
     word-break: break-all;
     word-wrap: break-word;
@@ -142,7 +142,7 @@ code, kbd, tt, var {
     background: $color--light_grey;
     font-family: $font-family-monospace;
     padding: 4px 8px;
-    font-size: 0.8em;
+    font-size: 1rem;
 }
 
 abbr, acronym {
@@ -171,7 +171,7 @@ blockquote, q {
 }
 
 ul, ol {
-    margin: 0 0 20px 20px;
+    margin: 0 0 1rem 1rem;
     padding: 0;
 }
 
@@ -186,7 +186,7 @@ ol {
 li > ul,
 li > ol {
     margin-bottom: 0;
-    margin-left: 1.5em;
+    margin-left: 1.5rem;
 }
 
 dt {
@@ -194,5 +194,5 @@ dt {
 }
 
 dd {
-    margin: 0 1em 1em;
+    margin: 0 1rem 1rem;
 }

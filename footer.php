@@ -28,14 +28,16 @@ do_action( 'shapla_before_footer' ); ?>
 
 <footer id="colophon" class="site-footer" role="contentinfo">
     <div class="shapla-container">
-		<?php
-		/**
-		 * Functions hooked into shapla_footer action
-		 *
-		 * @hooked shapla_site_info - 20
-		 * @hooked shapla_social_navigation - 30
-		 */
-		do_action( 'shapla_footer' ); ?>
+        <div class="site-footer-inner">
+			<?php
+			/**
+			 * Functions hooked into shapla_footer action
+			 *
+			 * @hooked shapla_site_info - 20
+			 * @hooked shapla_social_navigation - 30
+			 */
+			do_action( 'shapla_footer' ); ?>
+        </div>
     </div>
 </footer><!-- #colophon -->
 

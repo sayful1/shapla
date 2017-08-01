@@ -103,7 +103,7 @@ $shapla->customizer->add_field( [
 				'.main-navigation li:focus > a',
 			),
 			'property'    => 'color',
-			'media_query' => '@media screen and (min-width: 768px)'
+			'media_query' => '@media screen and (min-width: 769px)'
 		),
 	),
 ] );

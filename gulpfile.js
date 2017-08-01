@@ -7,8 +7,7 @@ const livereload = require('gulp-livereload');
 gulp.task('sass', function () {
     gulp.src('./assets/scss/*.scss')
         .pipe(sass({
-            outputStyle: 'compressed',
-            includePaths: ['node_modules/susy/sass']
+            outputStyle: 'compressed'
         }).on('error', sass.logError))
         .pipe(gulp.dest('./assets/css'))
         .pipe(livereload());

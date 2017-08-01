@@ -34,6 +34,10 @@ table {
         }
     }
 
+    th {
+        font-weight: 500;
+    }
+
     td,
     th {
         padding: $table-cell-padding;
@@ -49,7 +53,7 @@ table {
     overflow-x: auto;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: $screen-md - 1px) {
     .table-responsive-small {
         overflow-x: hidden;
 

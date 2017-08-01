@@ -1,6 +1,6 @@
 .site-footer {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     background-color: #19212a;
     color: $color--light_grey;
 
@@ -13,31 +13,25 @@
             text-decoration: underline;
         }
     }
-    .site-info {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        display: block;
-        text-align: center;
-    }
+    .site-info,
     .social-navigation {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        display: table;
-        margin: 0 auto;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 }
 
-// media screen >= 768px
+.site-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+// media screen >= 769px
 @media screen and (min-width: $screen-md) {
-    .site-footer {
-        .site-info,
-        .social-navigation {
-            display: inline-block;
-        }
-        .site-info {
-        }
-        .social-navigation {
-            float: right;
-        }
+    .site-footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

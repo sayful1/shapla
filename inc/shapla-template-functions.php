@@ -78,8 +78,8 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 	 */
 	function shapla_primary_navigation() {
 		?>
-        <button id="menu-toggle" class="menu-toggle" aria-controls="primary-menu"
-                aria-expanded="false"><?php esc_html_e( 'Menu', 'shapla' ); ?></button>
+        <span id="menu-toggle" class="menu-toggle" aria-controls="primary-menu"
+                aria-expanded="false"><?php esc_html_e( 'Menu', 'shapla' ); ?></span>
         <div id="site-header-menu" class="site-header-menu">
             <nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php wp_nav_menu( array(
