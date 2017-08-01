@@ -34,14 +34,16 @@
 
     <header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
         <div class="shapla-container">
-			<?php
-			/**
-			 * Functions hooked into shapla_header action
-			 *
-			 * @hooked shapla_site_branding - 20
-			 * @hooked shapla_primary_navigation - 30
-			 */
-			do_action( 'shapla_header' ); ?>
+            <div class="site-header-inner">
+				<?php
+				/**
+				 * Functions hooked into shapla_header action
+				 *
+				 * @hooked shapla_site_branding - 20
+				 * @hooked shapla_primary_navigation - 30
+				 */
+				do_action( 'shapla_header' ); ?>
+            </div>
         </div>
     </header><!-- #masthead -->
 
