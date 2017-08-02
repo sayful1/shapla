@@ -1,16 +1,10 @@
-$susy: (
-        'columns': susy-repeat(12),
-        'gutters': 2rem,
-        'spread': 'narrow',
-        'container-spread': 'narrow',
-);
-
 // My account
 .woocommerce-account {
     .woocommerce-MyAccount-navigation,
     .woocommerce-MyAccount-content {
         float: none;
         width: 100%;
+        margin: 0;
     }
 }
 
@@ -47,12 +41,12 @@ $susy: (
     // My account
     .woocommerce-account {
         .woocommerce-MyAccount-navigation {
-            width: span(3 of 12);
-            margin-right: gutter();
+            width: 25%;
+            margin-right: 2rem;
             float: left;
         }
         .woocommerce-MyAccount-content {
-            width: span(9 of 12);
+            width: calc(75% - 2rem);
             float: right;
         }
     }
@@ -65,20 +59,20 @@ $susy: (
             width: 100%;
 
             .col-1 {
-                width: span(6 of 12);
-                margin-right: gutter();
+                width: calc(50% - 2rem);
+                margin-right: 2rem;
                 float: left;
             }
             .col-2 {
-                width: span(6 of 12);
+                width: 50%;
                 float: right;
             }
         }
 
         .woocommerce-checkout {
             .col2-set {
-                width: span(6 of 12);
-                margin-right: gutter();
+                width: calc(50% - 2rem);
+                margin-right: 2rem;
                 float: left;
 
                 .col-1,
@@ -90,7 +84,7 @@ $susy: (
             }
             #order_review_heading,
             #order_review {
-                width: span(6 of 12);
+                width: 50%;
                 float: right;
             }
         }
@@ -98,12 +92,12 @@ $susy: (
         // Product Details
         div.product {
             div.images {
-                width: span(6 of 12);
-                margin-right: gutter();
+                width: calc(50% - 2rem);
+                margin-right: 2rem;
                 float: left;
             }
             div.summary {
-                width: span(6 of 12);
+                width: 50%;
                 float: right;
             }
         }

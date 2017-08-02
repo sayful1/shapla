@@ -21,7 +21,7 @@
                 font-family: FontAwesome;
                 font-style: normal;
                 font-weight: normal;
-                font-size: 15px;
+                font-size: 14px;
                 line-height: 1;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
@@ -63,7 +63,7 @@
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: $screen-md - 1px) {
     .hentry {
         .entry-meta {
             .byline {

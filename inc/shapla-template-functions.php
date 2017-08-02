@@ -330,7 +330,7 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			if ( $show_comments_link ) {
 				echo '<div class="comments-link">';
-				echo '<div class="label">' . esc_attr( __( 'Comments', 'shapla' ) ) . '</div>';
+				echo '<div class="label">' . esc_attr( __( 'Comments ', 'shapla' ) ) . '</div>';
 				/* translators: %s: post title */
 				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'shapla' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
 				echo '</div>';
