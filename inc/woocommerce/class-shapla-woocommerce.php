@@ -20,6 +20,10 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'output_upsells' ), 15 );
+
+			// Add wrapper inside product
+			add_action( 'woocommerce_before_shop_loop_item', array( $this, 'wc_before_shop_loop_item' ), 1 );
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'wc_after_shop_loop_item' ), 100 );
 		}
 
 		/**
@@ -87,6 +91,14 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			$cols = apply_filters( 'shapla_wc_upsell_products_per_page', intval( $cols ) );
 			// Display 3 products in rows of 3
 			woocommerce_upsell_display( $cols, $cols );
+		}
+
+		public function wc_before_shop_loop_item() {
+			echo '<div class="product-item-inner">';
+		}
+
+		public function wc_after_shop_loop_item() {
+			echo '</div>';
 		}
 	}
 

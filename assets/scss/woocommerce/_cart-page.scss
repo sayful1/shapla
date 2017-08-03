@@ -32,8 +32,8 @@
         width: 100%;
 
         .cross-sells {
-            width: span(6 of 12);
-            margin-right: gutter();
+            width: calc(50% - 2rem);
+            margin-right: 2rem;
             float: left;
 
             ul.products {
@@ -45,7 +45,7 @@
         }
 
         .cart_totals {
-            width: span(6 of 12);
+            width: 50%;
             float: right;
         }
 

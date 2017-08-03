@@ -9,7 +9,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 	class Shapla_Customizer {
 		private $setting = array();
 		private $fields = array();
-		private $output_css = array();
 		private $panels = array();
 		private $sections = array();
 		private $allowed_field_types = array(
@@ -196,6 +195,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param string $id
 		 * @param array $args
+		 *
+		 * @throws Exception
 		 */
 		public function add_panel( $id, array $args ) {
 			if ( ! isset( $id, $args['title'] ) ) {
@@ -210,6 +211,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param string $id
 		 * @param array $args
+		 *
+		 * @throws Exception
 		 */
 		public function add_section( $id, array $args ) {
 			if ( ! isset( $id, $args['title'] ) ) {
@@ -223,6 +226,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 * Add settings field
 		 *
 		 * @param array $args
+		 *
+		 * @throws Exception
 		 */
 		public function add_field( array $args ) {
 			if ( ! isset( $args['settings'], $args['default'], $args['label'] ) ) {
@@ -237,6 +242,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param object $wp_customize
 		 * @param array $field
+		 *
+		 * @return WP_Customize_Control
 		 */
 		public function add_control( $wp_customize, $field ) {
 			$type = isset( $field['type'] ) ? $field['type'] : 'text';
@@ -257,6 +264,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param  object $wp_customize
 		 * @param  array $field
+		 *
+		 * @return WP_Customize_Image_Control
 		 */
 		public function image( $wp_customize, $field ) {
 			return new WP_Customize_Image_Control( $wp_customize, $field['settings'], array(
@@ -273,6 +282,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param  object $wp_customize
 		 * @param  array $field
+		 *
+		 * @return WP_Customize_Color_Control
 		 */
 		public function color( $wp_customize, $field ) {
 			return new WP_Customize_Color_Control( $wp_customize, $field['settings'], array(
@@ -289,6 +300,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param  object $wp_customize
 		 * @param  array $field
+		 *
+		 * @return WP_Customize_Control
 		 */
 		public function text( $wp_customize, $field ) {
 			return new WP_Customize_Control( $wp_customize, $field['settings'], array(
@@ -393,6 +406,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 *
 		 * @param  string $input
 		 * @param  mixed $setting
+		 *
+		 * @return string
 		 */
 		public function sanitize_select( $input, $setting ) {
 			global $wp_customize;

@@ -15,22 +15,22 @@
     ul.products {
         li.product {
 
-            h3,
-            .woocommerce-loop-product__title,
-            .woocommerce-loop-category__title {
-                padding: 0.5em 0;
-                margin: 0;
-                font-size: 1.1rem;
-                font-weight: 400;
-                color: rgba($contenttext, .85);
-            }
-
             a img {
                 width: 100%;
                 height: auto;
                 display: block;
-                margin: 0 0 0.5em;
+                margin: 0;
                 box-shadow: none;
+            }
+
+            h3,
+            .woocommerce-loop-product__title,
+            .woocommerce-loop-category__title {
+                padding: 0.5rem 0;
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: 400;
+                color: rgba($contenttext, .85);
             }
 
             strong {
@@ -38,19 +38,16 @@
             }
 
             .star-rating {
-                font-size: 0.857em;
-            }
-
-            .button {
-                margin-top: 1em;
+                font-size: 0.875rem;
+                margin: 0 0 0.5rem;
             }
 
             .price {
                 color: rgba($contenttext, .85);
                 display: block;
                 font-weight: normal;
-                margin-bottom: 0.5em;
-                font-size: 0.857em;
+                margin-bottom: 0.5rem;
+                font-size: 0.875rem;
 
                 del {
                     color: inherit;
@@ -71,6 +68,27 @@
                     color: rgba(desaturate($highlight, 75%), 0.5);
                 }
             }
+
+            .button,
+            .added_to_cart {
+                margin-top: 0.5rem;
+            }
         }
+    }
+}
+
+.product-item-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+    height: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(#000, 0.1);
+
+    .woocommerce-loop-product__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
