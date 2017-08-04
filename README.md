@@ -29,6 +29,11 @@ Shapla is compatible with Jetpack, WooCommerce, Carousel Slider, Filterable Port
 
 #### Master
 * Added - Added site layout option (Wide or Boxed).
+* Added - Added grid layout for blog.
+* Tweak - Change default header color.
+* Tweak - Update WooCommerce shop loop product style.
+* Tweak - Remove dependency over Susy grid using CSS3 flexbox.
+* Fixed - Showing published date instate of modified date.
 
 #### 1.1.5 - July 08, 2017
 * Added - Added option to make header sticky on scroll.

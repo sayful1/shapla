@@ -33,6 +33,12 @@ require get_template_directory() . '/inc/class-shapla-structured-data.php';
 require get_template_directory() . '/inc/customizer/init.php';
 
 /**
+ * Load Shapla modules
+ */
+include get_template_directory() . '/inc/modules/class-shapla-blog.php';
+
+
+/**
  * Load Jetpack compatibility class.
  */
 if ( class_exists( 'Jetpack' ) ) {

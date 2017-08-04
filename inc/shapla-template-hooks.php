@@ -90,6 +90,7 @@ add_action( 'shapla_single_post_after', 'shapla_display_comments', 20 );
  * @see  shapla_post_content()
  * @see  shapla_paging_nav()
  */
+add_action( 'shapla_loop_post', 'shapla_post_thumbnail', 10 );
 add_action( 'shapla_loop_post', 'shapla_post_header', 10 );
 add_action( 'shapla_loop_post', 'shapla_post_meta', 20 );
 add_action( 'shapla_loop_post', 'shapla_post_content', 30 );

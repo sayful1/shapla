@@ -1,0 +1,75 @@
+.blog-grid {
+    .site-main {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -1rem;
+    }
+    .page-header {
+        width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+    .hentry.type-post {
+        margin-bottom: 0;
+        flex: 0 0 calc(100% / 3);
+        max-width: calc(100% / 3);
+        padding: 1rem;
+    }
+    .blog-grid-inside {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-radius: 3px;
+        box-shadow: 0 1px 3px rgba(#000, 0.1), 0 0 0 1px rgba(#000, 0.1);
+
+        .post-thumbnail {
+            margin: 0;
+            padding: 0;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        .entry-header {
+            margin: 1rem;
+            padding: 0;
+            border: none;
+        }
+        .cat-links {
+            display: block;
+            margin-top: 0;
+            margin-bottom: .5rem;
+            line-height: 1.25;
+        }
+        .entry-title {
+            margin: 0;
+            padding: 0;
+            font-size: 1.25rem;
+        }
+        .entry-summary {
+            margin: 0 1rem 1rem;
+        }
+        .entry-footer {
+            margin: 0 1em 1.25rem;
+            overflow: hidden;
+        }
+        .byline,
+        .posted-on {
+            float: left;
+            font-size: .875rem;
+            line-height: 1.33;
+        }
+        .posted-on {
+            float: right;
+        }
+        .published:not(.updated) {
+            display: none;
+        }
+    }
+    .pagination {
+        width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}

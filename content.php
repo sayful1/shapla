@@ -15,6 +15,7 @@
 	/**
 	 * Functions hooked in to shapla_loop_post action.
 	 *
+	 * @hooked shapla_post_thumbnail       - 10
 	 * @hooked shapla_post_header          - 10
 	 * @hooked shapla_post_meta            - 20
 	 * @hooked shapla_post_content         - 30

@@ -28,7 +28,7 @@
             }
         }
 
-        .updated:not(.published) {
+        .published:not(.updated) {
             display: none;
         }
 

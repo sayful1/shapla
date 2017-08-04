@@ -10,14 +10,16 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-    </header><!-- .entry-header -->
-
-	<?php shapla_post_meta(); ?>
-
-    <div class="entry-content">
-		<?php the_excerpt(); ?>
-    </div><!-- .entry-summary -->
+	<?php
+	/**
+	 * Functions hooked in to shapla_loop_post action.
+	 *
+	 * @hooked shapla_post_thumbnail       - 10
+	 * @hooked shapla_post_header          - 10
+	 * @hooked shapla_post_meta            - 20
+	 * @hooked shapla_post_content         - 30
+	 */
+	do_action( 'shapla_loop_post' );
+	?>
 
 </article><!-- #post-## -->
