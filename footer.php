@@ -11,6 +11,8 @@
 
 ?>
 
+        </div>
+    </div>
 </div><!-- #content -->
 
 <?php do_action( 'shapla_before_footer_widget' ); ?>

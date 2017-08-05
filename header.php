@@ -54,3 +54,5 @@
 	do_action( 'shapla_before_content' ); ?>
 
     <div id="content" class="site-content">
+        <div class="shapla-container">
+            <div class="site-content-inner">

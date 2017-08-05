@@ -44,20 +44,21 @@
 
 .full-screen {
     .site-content {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-
+        .site-content-inner,
+        .shapla-container,
         .content-area {
-            width: 100%;
             margin: 0;
             padding: 0;
+            width: 100%;
+        }
+
+        .widget-area {
+            display: none;
         }
     }
 }
 
 @media screen and (min-width: $screen-sm) {
-    .site-content,
     .shapla-container {
         width: 540px;
         max-width: 100%;
@@ -81,7 +82,6 @@
 }
 
 @media screen and (min-width: $screen-md) {
-    .site-content,
     .shapla-container {
         width: 720px;
         max-width: 100%;
@@ -123,33 +123,36 @@
 }
 
 @media screen and (min-width: $screen-lg) {
-    .site-content,
     .shapla-container {
         width: 960px;
         max-width: 100%;
     }
 
     .site-content {
+        .site-content-inner {
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
         .content-area {
-            width: calc(75% - 2rem);
-            margin-right: 2rem;
+            width: 75%;
             float: left;
+            padding: 2rem 1rem;
         }
         .widget-area {
             width: 25%;
             float: right;
+            padding: 2rem 1rem;
         }
     }
 
     .left-sidebar {
         .site-content {
             .content-area {
-                width: calc(75% - 2rem);
+                width: 75%;
                 float: right;
             }
             .widget-area {
                 width: 25%;
-                margin-right: 2rem;
                 float: left;
             }
         }
@@ -157,36 +160,8 @@
 }
 
 @media screen and (min-width: $screen-xl) {
-    .site-content,
     .shapla-container {
         width: 1140px;
         max-width: 100%;
-    }
-
-    .site-content {
-        .content-area {
-            width: calc(75% - 2rem);
-            margin-right: 2rem;
-            float: left;
-        }
-        .widget-area {
-            width: 25%;
-            float: right;
-        }
-    }
-
-    .left-sidebar {
-        .site-content {
-            .content-area {
-                width: calc(75% - 2rem);
-                margin-right: 0;
-                float: right;
-            }
-            .widget-area {
-                width: 25%;
-                margin-right: 2rem;
-                float: left;
-            }
-        }
     }
 }
