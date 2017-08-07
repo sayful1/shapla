@@ -13,6 +13,15 @@ gulp.task('sass', function () {
         .pipe(livereload());
 });
 
+gulp.task('sass-main', function () {
+    gulp.src('./assets/scss/style.scss')
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(gulp.dest('.'))
+        .pipe(livereload());
+});
+
 gulp.task('js', function () {
     gulp.src('./assets/js/src/*.js')
         .pipe(concat('script.js'))
@@ -26,7 +35,8 @@ gulp.task('js', function () {
 gulp.task('watch', function () {
     livereload.listen();
     gulp.watch('./assets/scss/*.scss', ['sass']);
+    gulp.watch('./assets/scss/*.scss', ['sass-main']);
     gulp.watch('./assets/js/src/*.js', ['js']);
 });
 
-gulp.task('default', ['sass', 'js', 'watch']);
+gulp.task('default', ['sass', 'js', 'sass-main', 'watch']);

@@ -2,6 +2,7 @@
 .git/
 .idea/
 .sass-cache/
+node_modules/
 
 # Files
 assets/css/admin.css.map

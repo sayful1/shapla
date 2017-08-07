@@ -92,6 +92,7 @@
         menuToggle.addEventListener('click', function (event) {
             event.preventDefault();
             siteHeaderMenu.classList.toggle('toggled-on');
+            menuToggle.classList.toggle('toggled-on');
 
             // Change area-expanded attribute value
             var ariaExpanded = container.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
