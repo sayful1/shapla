@@ -68,6 +68,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 					?>
                 </header>
                 <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+				<?php $this->post_tag(); ?>
                 <footer class="entry-footer">
 					<?php
 					$this->post_author();
@@ -114,6 +115,24 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			}
 		}
 
+		private function post_tag( $echo = true ) {
+			$show_tag_list = get_theme_mod( 'show_blog_tag_list', false );
+			$tags_list     = get_the_tag_list( '', esc_html__( ', ', 'shapla' ) );
+			$html          = '';
+
+			if ( $show_tag_list && $tags_list ) {
+				$html .= '<div class="tags-links">';
+				$html .= $tags_list;
+				$html .= '</div>';
+			}
+
+			if ( ! $echo ) {
+				return $html;
+			}
+
+			echo $html;
+		}
+
 		/**
 		 * @param bool $echo
 		 *
@@ -141,21 +160,36 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 * @return string
 		 */
 		private function post_author( $echo = true ) {
-			$_author_name = get_theme_mod( 'show_blog_author_name', true );
+			$_author_avatar = get_theme_mod( 'show_blog_author_avatar', false );
+			$_author_name   = get_theme_mod( 'show_blog_author_name', true );
+			$html           = '';
+
+			if ( ! $_author_avatar && ! $_author_name ) {
+				return '';
+			}
+
+			$html .= '<span class="byline">';
+
+			if ( $_author_avatar ) {
+				$html .= '<span class="vcard">' . get_avatar( get_the_author_meta( 'ID' ), 20 ) . '</span> ';
+			}
+
 			if ( $_author_name ) {
-				$author = sprintf(
-					'<span class="byline">%s <span class="author vcard"><a class="url fn n" href="%s">%s</a></span></span>',
+				$html .= sprintf(
+					'<span class="author">%s <a class="url fn n" href="%s">%s</a></span>',
 					esc_html__( 'by', 'shapla' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					esc_html( get_the_author() )
 				);
-
-				if ( ! $echo ) {
-					return $author;
-				}
-
-				echo $author;
 			}
+
+			$html .= '</span>';
+
+			if ( ! $echo ) {
+				return $html;
+			}
+
+			echo $html;
 		}
 
 		/**

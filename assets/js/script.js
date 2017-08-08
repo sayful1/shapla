@@ -344,7 +344,7 @@
 
         window.onscroll = function (e) {
             offset = window.pageYOffset;
-            if (window.innerWidth < 992) {
+            if (window.innerWidth < 1100) {
                 return;
             }
             distance = stickPoint - offset;

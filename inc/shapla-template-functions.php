@@ -376,6 +376,24 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 
 endif;
 
+if ( ! function_exists( 'shapla_blog_header' ) ):
+	/**
+	 * Display the page header with a link to the single post
+	 *
+	 * @since 1.1.6
+	 */
+	function shapla_blog_header() {
+		if ( is_home() && ! is_front_page() ): ?>
+            <header class="page-header">
+                <h1 class="page-title">
+					<?php echo get_the_title( get_option( 'page_for_posts' ) ); ?>
+                </h1>
+            </header>
+		<?php endif;
+	}
+
+endif;
+
 if ( ! function_exists( 'shapla_page_content' ) ):
 	/**
 	 * Display the post content with a link to the single post

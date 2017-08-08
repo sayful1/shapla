@@ -19,6 +19,8 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) :
 
+				do_action( 'shapla_blog_loop_before' );
+
 				get_template_part( 'loop' );
 
 			else :
