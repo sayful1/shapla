@@ -383,6 +383,10 @@ if ( ! function_exists( 'shapla_blog_header' ) ):
 	 * @since 1.1.6
 	 */
 	function shapla_blog_header() {
+		$show_blog_page_title = get_theme_mod( 'show_blog_page_title', true );
+		if ( ! $show_blog_page_title ) {
+			return '';
+		}
 		if ( is_home() && ! is_front_page() ): ?>
             <header class="page-header">
                 <h1 class="page-title">

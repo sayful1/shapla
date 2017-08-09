@@ -3,7 +3,7 @@
 **Contributors:** sayful  
 **Requires at least:** 4.4  
 **Tested up to:** 4.8  
-**Stable tag:** 1.1.5  
+**Stable tag:** 1.2.0  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 **Tags:** one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, editor-style, featured-images, post-formats, sticky-post, threaded-comments, translation-ready, blog
@@ -27,12 +27,15 @@ Shapla is compatible with Jetpack, WooCommerce, Carousel Slider, Filterable Port
 
 # Changelog
 
-#### Master
+#### 1.2.0 - August 09, 2017
 * Added - Added site layout option (Wide or Boxed).
 * Added - Added grid layout for blog.
+* Added - Added option to hide/show page title on blog page.
 * Tweak - Change default header color.
 * Tweak - Update WooCommerce shop loop product style.
 * Tweak - Remove dependency over Susy grid using CSS3 flexbox.
+* Tweak - Show mobile menu for screen size smaller than 1101px.
+* Tweak - Updated menu icon with css
 * Fixed - Showing published date instate of modified date.
 
 #### 1.1.5 - July 08, 2017

@@ -102,3 +102,11 @@ $shapla->customizer->add_field( [
 	'default'  => 20,
 	'priority' => 20,
 ] );
+$shapla->customizer->add_field( [
+	'settings' => 'show_blog_page_title',
+	'type'     => 'checkbox',
+	'section'  => 'blog_layout_section',
+	'label'    => __( 'Show page title on Blog page', 'shapla' ),
+	'default'  => true,
+	'priority' => 30,
+] );
