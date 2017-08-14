@@ -230,7 +230,10 @@ if ( ! class_exists( 'Shapla' ) ):
 					'expand'   => __( 'expand child menu', 'shapla' ),
 					'collapse' => __( 'collapse child menu', 'shapla' ),
 				),
-				'stickyHeader'     => get_theme_mod( 'sticky_header', false ),
+				'stickyHeader'     => array(
+					'isEnabled' => get_theme_mod( 'sticky_header', false ),
+					'minWidth'  => 1025,
+				),
 			);
 
 			return $localize_script;

@@ -3,7 +3,7 @@
     var masthead, content, stuck, stickPoint, distance, offset, adminbar;
 
     // Check if sticky header is enabled
-    if (!Shapla.stickyHeader) {
+    if (!Shapla.stickyHeader.isEnabled) {
         return;
     }
 
@@ -42,7 +42,7 @@
 
         window.onscroll = function (e) {
             offset = window.pageYOffset;
-            if (window.innerWidth < 1100) {
+            if (window.innerWidth < Shapla.stickyHeader.minWidth) {
                 return;
             }
             distance = stickPoint - offset;

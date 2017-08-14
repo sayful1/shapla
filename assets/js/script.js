@@ -42,7 +42,6 @@
                     i = matches.length;
                     while (--i >= 0 && matches.item(i) !== el) {
                     }
-                    ;
                 } while ((i < 0) && (el = el.parentElement));
                 return el;
             };
@@ -305,7 +304,7 @@
     var masthead, content, stuck, stickPoint, distance, offset, adminbar;
 
     // Check if sticky header is enabled
-    if (!Shapla.stickyHeader) {
+    if (!Shapla.stickyHeader.isEnabled) {
         return;
     }
 
@@ -344,7 +343,7 @@
 
         window.onscroll = function (e) {
             offset = window.pageYOffset;
-            if (window.innerWidth < 1100) {
+            if (window.innerWidth < Shapla.stickyHeader.minWidth) {
                 return;
             }
             distance = stickPoint - offset;

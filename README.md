@@ -27,6 +27,11 @@ Shapla is compatible with Jetpack, WooCommerce, Carousel Slider, Filterable Port
 
 # Changelog
 
+#### Master
+* Fixed - Header text and link color is not working for toggle and search icon.
+* Tweak - Changed toggle menu width up to 1024px for iPad Pro width.
+* Tweak - Changed sticky header minimum width 1025px for iPad Pro width.
+
 #### 1.2.0 - August 09, 2017
 * Added - Added site layout option (Wide or Boxed).
 * Added - Added grid layout for blog.

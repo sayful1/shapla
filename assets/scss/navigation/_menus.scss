@@ -152,8 +152,8 @@
     }
 }
 
-// media screen >= 769px
-@media screen and (min-width: 1101px) {
+// media screen >= 1025px
+@media screen and (min-width: $nav-toggle-width) {
 
     .main-navigation {
         margin: 0;
@@ -209,7 +209,8 @@
                 color: $color--black;
 
                 &:hover, &:focus {
-                    color: $color--strikemaster;
+                    color: $color--black;
+                    background-color: whitesmoke;
                 }
             }
 
@@ -247,7 +248,8 @@
             .current-menu-ancestor > a,
             .current_page_item > a,
             .current_page_ancestor > a {
-                color: $color--strikemaster;
+                color: $color--black;
+                background-color: whitesmoke;
             }
         }
 

@@ -62,17 +62,17 @@ $shapla->customizer->add_field( [
 				'.site-title > a:hover',
 				'.site-title > a:focus',
 				'.site-description',
-				'.menu-toggle',
 				'.dropdown-toggle',
 				'.main-navigation a',
+				'.search-toggle i.fa-search'
 			),
 			'property' => 'color',
 		),
 		array(
 			'element'  => array(
-				'.menu-toggle',
+				'.menu-toggle span',
 			),
-			'property' => 'border-color',
+			'property' => 'background-color',
 		),
 	),
 ] );

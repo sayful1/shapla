@@ -1,6 +1,6 @@
 {
   "name": "shapla",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Shapla, easy-to-use and highly customizable WordPress theme.",
   "author": {
     "name": "Sayful Islam",
@@ -14,5 +14,9 @@
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sayful1/shapla.git"
   }
 }
