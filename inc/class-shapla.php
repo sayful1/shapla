@@ -130,19 +130,70 @@ if ( ! class_exists( 'Shapla' ) ):
 		 * @since  0.1.0
 		 */
 		public function widgets_init() {
-			register_sidebar( array(
-				'name'          => esc_html__( 'Sidebar', 'shapla' ),
-				'id'            => 'sidebar-1',
-				'description'   => esc_html__( 'Widgets added to this region will appear beside the main content.', 'shapla' ),
-				'before_widget' => '<section id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</section>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			) );
+			$sidebar_args['sidebar'] = array(
+				'name'        => __( 'Sidebar', 'shapla' ),
+				'id'          => 'sidebar-1',
+				'description' => esc_html__( 'Widgets added to this region will appear beside the main content. Only show left or right sidebar layout.', 'shapla' )
+			);
+
+			$rows    = intval( get_theme_mod( 'footer_widget_rows', 1 ) );
+			$regions = intval( get_theme_mod( 'footer_widget_columns', 4 ) );
+
+			for ( $row = 1; $row <= $rows; $row ++ ) {
+				for ( $region = 1; $region <= $regions; $region ++ ) {
+					$footer_n = $region + $regions * ( $row - 1 ); // Defines footer sidebar ID.
+					$footer   = sprintf( 'footer_%d', $footer_n );
+
+					if ( 1 == $rows ) {
+						$footer_region_name        = sprintf( __( 'Footer Column %1$d', 'shapla' ), $region );
+						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of the footer.', 'shapla' ), $region );
+					} else {
+						$footer_region_name        = sprintf( __( 'Footer Row %1$d - Column %2$d', 'shapla' ), $row, $region );
+						$footer_region_description = sprintf( __( 'Widgets added here will appear in column %1$d of footer row %2$d.', 'shapla' ), $region, $row );
+					}
+
+					$sidebar_args[ $footer ] = array(
+						'name'        => $footer_region_name,
+						'id'          => sprintf( 'footer-%d', $footer_n ),
+						'description' => $footer_region_description,
+					);
+				}
+			}
+
+			foreach ( $sidebar_args as $sidebar => $args ) {
+				$widget_tags = array(
+					'before_widget' => '<div id="%1$s" class="widget %2$s">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<h2 class="widget-title">',
+					'after_title'   => '</h2>',
+				);
+
+				/**
+				 * Dynamically generated filter hooks. Allow changing widget wrapper and title tags. See the list below.
+				 *
+				 * 'shapla_sidebar_widget_tags'
+				 *
+				 * 'shapla_footer_1_widget_tags'
+				 * 'shapla_footer_2_widget_tags'
+				 * 'shapla_footer_3_widget_tags'
+				 * 'shapla_footer_4_widget_tags'
+				 */
+				$filter_hook = sprintf( 'shapla_%s_widget_tags', $sidebar );
+				$widget_tags = apply_filters( $filter_hook, $widget_tags );
+
+				if ( is_array( $widget_tags ) ) {
+					register_sidebar( $args + $widget_tags );
+				}
+			}
+
+			/**
+			 * Deprecated on version 1.2.1 and
+			 * will be removed on version 2.0.0
+			 */
 			register_sidebar( array(
 				'name'          => esc_html__( 'Above Footer', 'shapla' ),
 				'id'            => 'sidebar-2',
-				'description'   => esc_html__( 'Widgets added to this region will appear beneath the main content and above the footer.', 'shapla' ),
+				'description'   => esc_html__( 'This region has been deprecated on version 1.2.1 and will be removed on version 2.0.0', 'shapla' ),
 				'before_widget' => '<section id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</section>',
 				'before_title'  => '<h2 class="widget-title">',

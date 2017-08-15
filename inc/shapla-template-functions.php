@@ -173,6 +173,48 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 	 * @return void
 	 */
 	function shapla_footer_widget() {
+		$rows    = intval( get_theme_mod( 'footer_widget_rows', 1 ) );
+		$regions = intval( get_theme_mod( 'footer_widget_columns', 4 ) );
+		for ( $row = 1; $row <= $rows; $row ++ ) :
+
+			// Defines the number of active columns in this footer row.
+			for ( $region = $regions; 0 < $region; $region -- ) {
+				if ( is_active_sidebar( 'footer-' . strval( $region + $regions * ( $row - 1 ) ) ) ) {
+					$columns = $region;
+					break;
+				}
+			}
+
+			if ( isset( $columns ) ) : ?>
+                <div id="footer-widget-area" class="footer-widget-area">
+                    <div class="shapla-container">
+                        <div class=<?php echo '"footer-widgets row-' . strval( $row ) . ' col-' . strval( $columns ) . '"'; ?>><?php
+
+							for ( $column = 1; $column <= $columns; $column ++ ) :
+								$footer_n = $column + $regions * ( $row - 1 );
+
+								if ( is_active_sidebar( 'footer-' . strval( $footer_n ) ) ) : ?>
+
+                                <div class="widget-block footer-widget-<?php echo strval( $column ); ?>">
+									<?php dynamic_sidebar( 'footer-' . strval( $footer_n ) ); ?>
+                                    </div><?php
+
+								endif;
+							endfor; ?>
+
+                        </div><!-- .footer-widgets.row-<?php echo strval( $row ); ?> -->
+                    </div>
+                </div>
+				<?php
+
+				unset( $columns );
+			endif;
+		endfor;
+
+		/**
+		 * Deprecated on version 1.2.1 and
+		 * will be removed on version 2.0.0
+		 */
 		if ( is_active_sidebar( 'sidebar-2' ) ):
 			?>
             <div id="footer-widget-area" class="footer-widget-area">

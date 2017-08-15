@@ -24,6 +24,27 @@ $shapla->customizer->add_section( 'site_footer_bottom_bar', array(
 	'priority'    => 20,
 ) );
 
+// Footer Widget Rows
+$shapla->customizer->add_field( [
+	'settings'    => 'footer_widget_rows',
+	'type'        => 'number',
+	'section'     => 'site_footer_widgets',
+	'label'       => __( 'Footer Widget Rows', 'shapla' ),
+	'description' => __( 'Select the number of widgets rows you want in the footer. After changing value, save and refresh the page.', 'shapla' ),
+	'default'     => 1,
+	'priority'    => 10,
+] );
+// Footer Widget Columns
+$shapla->customizer->add_field( [
+	'settings'    => 'footer_widget_columns',
+	'type'        => 'number',
+	'section'     => 'site_footer_widgets',
+	'label'       => __( 'Footer Widget Columns', 'shapla' ),
+	'description' => __( 'Select the number of columns you want in each widgets rows in the footer.  After changing value, save and refresh the page.', 'shapla' ),
+	'default'     => 4,
+	'priority'    => 20,
+] );
+
 // Footer Widget Area
 $shapla->customizer->add_field( [
 	'settings' => 'footer_widget_background_color',
@@ -31,7 +52,7 @@ $shapla->customizer->add_field( [
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Background Color', 'shapla' ),
 	'default'  => '#212a34',
-	'priority' => 10,
+	'priority' => 30,
 	'output'   => array(
 		array(
 			'element'  => array(
@@ -49,7 +70,7 @@ $shapla->customizer->add_field( [
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Text Color', 'shapla' ),
 	'default'  => '#f1f1f1',
-	'priority' => 10,
+	'priority' => 40,
 	'output'   => array(
 		array(
 			'element'  => array(
@@ -74,7 +95,7 @@ $shapla->customizer->add_field( [
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Link Color', 'shapla' ),
 	'default'  => '#f1f1f1',
-	'priority' => 10,
+	'priority' => 50,
 	'output'   => array(
 		array(
 			'element'  => '.footer-widget-area a',

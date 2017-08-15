@@ -1,3 +1,30 @@
+.footer-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
+    margin-left: -1rem;
+
+    .widget-block {
+        display: block;
+        position: relative;
+        margin: 0;
+        padding: 0 1rem 1rem;
+        flex: 1 0 100%;
+
+        @media screen and (min-width: $screen-sm) {
+            flex: 1 0 50%;
+        }
+        @media screen and (min-width: $screen-lg) {
+            flex: 1 0 33.333333%;
+        }
+
+        @media screen and (min-width: $screen-xl) {
+            flex: 1 0 25%;
+        }
+    }
+}
+
+// Deprecated on version 1.2.1 and will be removed on version 2.0.0
 .footer-widget {
     display: flex;
     flex-wrap: wrap;

@@ -79,6 +79,7 @@
         ul {
             display: none;
             margin-left: 14px;
+            padding: 0;
             box-shadow: none;
         }
     }
@@ -188,6 +189,9 @@
             display: block;
             left: -9999px;
             margin: 0;
+            padding: 0.5rem 0;
+            border-radius: 3px;
+            background-color: white;
             position: absolute;
             z-index: 99999;
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16),
