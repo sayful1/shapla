@@ -6,10 +6,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Shapla' ) ):
+if ( ! class_exists( 'Shapla' ) ) {
 
 	class Shapla {
 
+		private static $instance;
+
+		/**
+		 * @return Shapla
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
+		/**
+		 * Shapla constructor.
+		 */
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'shapla_setup' ) );
 			add_action( 'after_setup_theme', array( $this, 'content_width' ), 0 );
@@ -274,6 +290,11 @@ if ( ! class_exists( 'Shapla' ) ):
 			}
 		}
 
+		/**
+		 * Shapla localize script
+		 *
+		 * @return array
+		 */
 		private function localize_script() {
 			$localize_script = array(
 				'ajaxurl'          => admin_url( 'admin-ajax.php' ),
@@ -327,6 +348,6 @@ if ( ! class_exists( 'Shapla' ) ):
 		}
 	}
 
-endif;
+}
 
-return new Shapla();
+return Shapla::init();

@@ -10,7 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Shapla_Jetpack' ) ) :
+if ( ! class_exists( 'Shapla_Jetpack' ) ) {
+
 	class Shapla_Jetpack {
 
 		public function __construct() {
@@ -44,12 +45,13 @@ if ( ! class_exists( 'Shapla_Jetpack' ) ) :
 			while ( have_posts() ) {
 				the_post();
 				if ( is_search() ) :
-					get_template_part( 'template-parts/content', 'search' );
+					get_template_part( 'content', 'search' );
 				else :
-					get_template_part( 'template-parts/content', get_post_format() );
+					get_template_part( 'content', get_post_format() );
 				endif;
 			}
 		}
 	}
-endif;
+}
+
 return new Shapla_Jetpack();
