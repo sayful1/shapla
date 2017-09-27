@@ -4,9 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Shapla_Customizer' ) ):
+if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 	class Shapla_Customizer {
+
+		private static $instance;
 		private $setting = array();
 		private $fields = array();
 		private $panels = array();
@@ -22,6 +24,20 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 			'textarea',
 		);
 
+		/**
+		 * @return Shapla_Customizer
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
+		/**
+		 * Shapla_Customizer constructor.
+		 */
 		public function __construct() {
 			add_action( 'customize_register', array( $this, 'modify_customize_defaults' ) );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
@@ -47,23 +63,32 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 			$wp_customize->get_section( 'header_image' )->priority = 25;
 		}
 
+		/**
+		 * Generate inline style for theme customizer
+		 */
 		public function customize_css() {
 			$styles = $this->get_styles();
 
 			if ( $styles ) {
-				echo sprintf( '<style type="text/css">%s</style>', wp_strip_all_tags( $styles ) ) . "\n";
+				printf(
+					'<style type="text/css" id="shapla-inline-style">%s</style>',
+					wp_strip_all_tags( $styles )
+				);
 			}
 		}
 
+
 		/**
 		 * Gets all our styles and returns them as a string.
+		 *
+		 * @return string
 		 */
 		public function get_styles() {
 			// Get an array of all our fields
 			$fields = $this->fields;
 			// Check if we need to exit early
 			if ( empty( $fields ) || ! is_array( $fields ) ) {
-				return;
+				return '';
 			}
 			// initially we're going to format our styles as an array.
 			// This is going to make processing them a lot easier
@@ -135,6 +160,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 			return $final_css;
 		}
 
+		/**
+		 * Add panel, section and settings
+		 *
+		 * @param WP_Customize_Manager $wp_customize
+		 */
 		public function customize_register( $wp_customize ) {
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {
@@ -200,7 +230,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 */
 		public function add_panel( $id, array $args ) {
 			if ( ! isset( $id, $args['title'] ) ) {
-				throw new Exception( 'Required key is not set properly for adding panel.' );
+				throw new Exception( __( 'Required key is not set properly for adding panel.', 'shapla' ) );
 			}
 
 			$this->panels[] = array_merge( array( 'id' => $id ), $args );
@@ -216,7 +246,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 */
 		public function add_section( $id, array $args ) {
 			if ( ! isset( $id, $args['title'] ) ) {
-				throw new Exception( 'Required key is not set properly for adding section.' );
+				throw new Exception( __( 'Required key is not set properly for adding section.', 'shapla' ) );
 			}
 
 			$this->sections[] = array_merge( array( 'id' => $id ), $args );
@@ -231,7 +261,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 */
 		public function add_field( array $args ) {
 			if ( ! isset( $args['settings'], $args['default'], $args['label'] ) ) {
-				throw new Exception( 'Required key is not set properly for adding field.' );
+				throw new Exception( __( 'Required key is not set properly for adding field.', 'shapla' ) );
 			}
 
 			$this->fields[] = $args;
@@ -240,7 +270,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		/**
 		 * Displays a new controller on the Theme Customization admin screen
 		 *
-		 * @param object $wp_customize
+		 * @param WP_Customize_Manager $wp_customize
 		 * @param array $field
 		 *
 		 * @return WP_Customize_Control
@@ -262,7 +292,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		/**
 		 * add a simple, image uploader.
 		 *
-		 * @param  object $wp_customize
+		 * @param  WP_Customize_Manager $wp_customize
 		 * @param  array $field
 		 *
 		 * @return WP_Customize_Image_Control
@@ -280,7 +310,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		/**
 		 * add a simple, color input.
 		 *
-		 * @param  object $wp_customize
+		 * @param  WP_Customize_Manager $wp_customize
 		 * @param  array $field
 		 *
 		 * @return WP_Customize_Color_Control
@@ -298,7 +328,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		/**
 		 * add a simple, single-line text input.
 		 *
-		 * @param  object $wp_customize
+		 * @param  WP_Customize_Manager $wp_customize
 		 * @param  array $field
 		 *
 		 * @return WP_Customize_Control
@@ -338,7 +368,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		}
 
 		/**
-		 * Sanitize text
+		 * Sanitizes a Hex, RGB or RGBA color
 		 *
 		 * @param  string $color
 		 *
@@ -349,12 +379,40 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 				return '';
 			}
 
-			// 3 or 6 hex digits, or the empty string.
-			if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			// Trim unneeded whitespace
+			$color = str_replace( ' ', '', $color );
+
+			// If this is hex color, validate and return it
+			if ( 1 === preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
 				return $color;
 			}
 
-			return null;
+			// If this is rgb, validate and return it
+			if ( 'rgb(' === substr( $color, 0, 4 ) ) {
+				list( $red, $green, $blue ) = sscanf( $color, 'rgb(%d,%d,%d)' );
+
+				if ( ( $red >= 0 && $red <= 255 ) &&
+				     ( $green >= 0 && $green <= 255 ) &&
+				     ( $blue >= 0 && $blue <= 255 )
+				) {
+					return "rgb({$red},{$green},{$blue})";
+				}
+			}
+
+			// If this is rgba, validate and return it
+			if ( 'rgba(' === substr( $color, 0, 5 ) ) {
+				list( $red, $green, $blue, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
+
+				if ( ( $red >= 0 && $red <= 255 ) &&
+				     ( $green >= 0 && $green <= 255 ) &&
+				     ( $blue >= 0 && $blue <= 255 ) &&
+				     $alpha >= 0 && $alpha <= 1
+				) {
+					return "rgba({$red},{$green},{$blue},{$alpha})";
+				}
+			}
+
+			return '';
 		}
 
 		/**
@@ -365,7 +423,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 * @return string
 		 */
 		public function sanitize_textarea( $input ) {
-			return wp_filter_kses( force_balance_tags( $input ) );
+			return wp_filter_post_kses( $input );
 		}
 
 		/**
@@ -387,7 +445,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 		 * @return string
 		 */
 		public function sanitize_email( $input ) {
-			return is_email( $input ) ? sanitize_email( $input ) : '';
+			return sanitize_email( $input );
 		}
 
 		/**
@@ -438,6 +496,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ):
 			return intval( $input );
 		}
 	}
-endif;
+}
 
-return new Shapla_Customizer;
+return Shapla_Customizer::init();
