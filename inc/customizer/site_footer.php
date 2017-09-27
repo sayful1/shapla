@@ -25,7 +25,7 @@ $shapla->customizer->add_section( 'site_footer_bottom_bar', array(
 ) );
 
 // Footer Widget Rows
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings'    => 'footer_widget_rows',
 	'type'        => 'number',
 	'section'     => 'site_footer_widgets',
@@ -33,9 +33,9 @@ $shapla->customizer->add_field( [
 	'description' => __( 'Select the number of widgets rows you want in the footer. After changing value, save and refresh the page.', 'shapla' ),
 	'default'     => 1,
 	'priority'    => 10,
-] );
+) );
 // Footer Widget Columns
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings'    => 'footer_widget_columns',
 	'type'        => 'number',
 	'section'     => 'site_footer_widgets',
@@ -43,10 +43,10 @@ $shapla->customizer->add_field( [
 	'description' => __( 'Select the number of columns you want in each widgets rows in the footer.  After changing value, save and refresh the page.', 'shapla' ),
 	'default'     => 4,
 	'priority'    => 20,
-] );
+) );
 
 // Footer Widget Area
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'footer_widget_background_color',
 	'type'     => 'color',
 	'section'  => 'site_footer_widgets',
@@ -63,8 +63,9 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
-$shapla->customizer->add_field( [
+) );
+
+$shapla->customizer->add_field( array(
 	'settings' => 'footer_widget_text_color',
 	'type'     => 'color',
 	'section'  => 'site_footer_widgets',
@@ -88,8 +89,9 @@ $shapla->customizer->add_field( [
 			'property' => 'border-color',
 		),
 	),
-] );
-$shapla->customizer->add_field( [
+) );
+
+$shapla->customizer->add_field( array(
 	'settings' => 'footer_widget_link_color',
 	'type'     => 'color',
 	'section'  => 'site_footer_widgets',
@@ -102,10 +104,10 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );
 
 // Site Footer Bottom Bar Background Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'site_footer_bg_color',
 	'type'     => 'color',
 	'section'  => 'site_footer_bottom_bar',
@@ -118,10 +120,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Site Footer Bottom Bar Text Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'site_footer_text_color',
 	'type'     => 'color',
 	'section'  => 'site_footer_bottom_bar',
@@ -134,10 +136,10 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );
 
 // Site Footer Bottom Bar Link Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'site_footer_link_color',
 	'type'     => 'color',
 	'section'  => 'site_footer_bottom_bar',
@@ -150,7 +152,7 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );
 
 // Footer credit text
 $shapla->customizer->add_field( array(

@@ -28,7 +28,8 @@ Shapla is compatible with Jetpack, WooCommerce, Carousel Slider, Filterable Port
 # Changelog
 
 #### 1.2.2 - Master
-* Tweak - Update Shapla_Customizer::sanitize_color() method. 
+* Tweak - Update Shapla_Customizer::sanitize_color() method.
+* Fixed - Jetpack in infinite-scroll style not working properly.
 
 #### 1.2.1 - August 15, 2017
 * Fixed - Header text and link color is not working for toggle and search icon.

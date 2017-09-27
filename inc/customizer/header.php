@@ -32,7 +32,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Site Title Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'header_background_color',
 	'type'     => 'color',
 	'section'  => 'header_image',
@@ -45,10 +45,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Header text color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'header_text_color',
 	'type'     => 'color',
 	'section'  => 'header_image',
@@ -75,10 +75,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Header link color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'header_link_color',
 	'type'     => 'color',
 	'section'  => 'header_image',
@@ -106,7 +106,7 @@ $shapla->customizer->add_field( [
 			'media_query' => '@media screen and (min-width: 769px)'
 		),
 	),
-] );
+) );
 
 // Sticky Header
 $shapla->customizer->add_field( array(

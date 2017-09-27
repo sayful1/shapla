@@ -33,6 +33,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 * Add custom footer text on plugins page.
 		 *
 		 * @param string $text
+		 *
+		 * @return string
 		 */
 		public function admin_footer_text( $text ) {
 			global $hook_suffix;

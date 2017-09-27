@@ -7,7 +7,7 @@ $shapla->customizer->add_section( 'layout_section', array(
 ) );
 
 // Site Layout
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings'    => 'site_layout',
 	'type'        => 'radio',
 	'section'     => 'layout_section',
@@ -19,10 +19,10 @@ $shapla->customizer->add_field( [
 		'wide'  => __( 'Wide', 'shapla' ),
 		'boxed' => __( 'Boxed', 'shapla' ),
 	),
-] );
+) );
 
 // General Layout
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'general_layout',
 	'type'     => 'radio',
 	'section'  => 'layout_section',
@@ -34,4 +34,4 @@ $shapla->customizer->add_field( [
 		'left-sidebar'  => __( 'Left Sidebar', 'shapla' ),
 		'full-width'    => __( 'No Sidebar', 'shapla' ),
 	),
-] );
+) );

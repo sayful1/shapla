@@ -26,7 +26,7 @@ $shapla->customizer->add_section( 'button_alternate', array(
 ) );
 
 // Button Background Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_primary_background_color',
 	'type'     => 'color',
 	'section'  => 'button_primary',
@@ -46,10 +46,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Button Background Hover Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_primary_background_hover_color',
 	'type'     => 'color',
 	'section'  => 'button_primary',
@@ -69,10 +69,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Button Text Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_primary_text_color',
 	'type'     => 'color',
 	'section'  => 'button_primary',
@@ -92,10 +92,10 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );
 
 // Button Text Hover Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_primary_text_hover_color',
 	'type'     => 'color',
 	'section'  => 'button_primary',
@@ -115,11 +115,11 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );
 
 
 // Alternate Button Background Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_alternate_background_color',
 	'type'     => 'color',
 	'section'  => 'button_alternate',
@@ -139,10 +139,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Alternate Button Background Hover Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_alternate_background_hover_color',
 	'type'     => 'color',
 	'section'  => 'button_alternate',
@@ -162,10 +162,10 @@ $shapla->customizer->add_field( [
 			'property' => 'background-color',
 		),
 	),
-] );
+) );
 
 // Alternate Button Text Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_alternate_text_color',
 	'type'     => 'color',
 	'section'  => 'button_alternate',
@@ -185,10 +185,10 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );
 
 // Alternate Button Text Hover Color
-$shapla->customizer->add_field( [
+$shapla->customizer->add_field( array(
 	'settings' => 'button_alternate_text_hover_color',
 	'type'     => 'color',
 	'section'  => 'button_alternate',
@@ -208,4 +208,4 @@ $shapla->customizer->add_field( [
 			'property' => 'color',
 		),
 	),
-] );
+) );

@@ -1,8 +1,22 @@
 <?php
 
-if ( ! class_exists( 'Shapla_WooCommerce' ) ):
+if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 
 	class Shapla_WooCommerce {
+
+		private static $instance;
+
+		/**
+		 * @return Shapla_WooCommerce
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
 		public function __construct() {
 			// Declare WooCommerce support.
 			add_action( 'after_setup_theme', array( $this, 'woocommerce_setup' ) );
@@ -45,6 +59,9 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			return $classes;
 		}
 
+		/**
+		 * Add support for WooCommerce
+		 */
 		public function woocommerce_setup() {
 			add_theme_support( 'woocommerce' );
 			add_theme_support( 'wc-product-gallery-zoom' );
@@ -52,6 +69,13 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			add_theme_support( 'wc-product-gallery-slider' );
 		}
 
+		/**
+		 * Disable WooCommerce default styles
+		 *
+		 * @param $enqueue_styles
+		 *
+		 * @return mixed
+		 */
 		public function dequeue_wc_styles( $enqueue_styles ) {
 			// Remove the gloss
 			unset( $enqueue_styles['woocommerce-general'] );
@@ -63,22 +87,46 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			return $enqueue_styles;
 		}
 
+		/**
+		 * Load scripts for WooCommerce
+		 */
 		public function woocommerce_scripts() {
 			wp_enqueue_style( 'shapla-woocommerce-style', get_template_directory_uri() . '/assets/css/woocommerce.css', array(), null, 'all' );
 		}
 
+		/**
+		 * Set number of products to show per page
+		 *
+		 * @param $cols
+		 *
+		 * @return int
+		 */
 		public function loop_shop_per_page( $cols ) {
 			$cols = get_theme_mod( 'wc_products_per_page', 12 );
 
 			return apply_filters( 'shapla_wc_products_per_page', intval( $cols ) );
 		}
 
+		/**
+		 * Set number of products to show per column
+		 *
+		 * @param $cols
+		 *
+		 * @return int
+		 */
 		public function loop_shop_columns( $cols ) {
 			$cols = get_theme_mod( 'wc_products_per_row', 4 );
 
 			return apply_filters( 'shapla_wc_products_per_row', intval( $cols ) );
 		}
 
+		/**
+		 * Set number of related products per row
+		 *
+		 * @param $args
+		 *
+		 * @return mixed
+		 */
 		public function related_products_args( $args ) {
 			$cols                   = get_theme_mod( 'wc_products_per_row', 4 );
 			$args['posts_per_page'] = apply_filters( 'shapla_wc_related_products_per_page', intval( $cols ) );
@@ -86,6 +134,9 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			return $args;
 		}
 
+		/**
+		 * Set up sales display
+		 */
 		public function output_upsells() {
 			$cols = get_theme_mod( 'wc_products_per_row', 4 );
 			$cols = apply_filters( 'shapla_wc_upsell_products_per_page', intval( $cols ) );
@@ -93,15 +144,21 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ):
 			woocommerce_upsell_display( $cols, $cols );
 		}
 
+		/**
+		 * Add custom div before show loop item
+		 */
 		public function wc_before_shop_loop_item() {
 			echo '<div class="product-item-inner">';
 		}
 
+		/**
+		 * Close custom div after shop loop item
+		 */
 		public function wc_after_shop_loop_item() {
 			echo '</div>';
 		}
 	}
 
-endif;
+}
 
-return new Shapla_WooCommerce();
+return Shapla_WooCommerce::init();
