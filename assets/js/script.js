@@ -1,6 +1,8 @@
 /**
  * File navigation.js.
  *
+ * @global Shapla
+ *
  * Handles toggling the navigation menu for small screens and
  * enables TAB key navigation support for dropdown menus.
  */
@@ -224,9 +226,13 @@
     }
 })();
 
+/**
+ * @global Shapla
+ */
 (function () {
     "use strict";
-    var masthead, content, stuck, stickPoint, distance, offset, adminbar;
+
+    var masthead, content, stuck, stickPoint, distance, offset;
 
     // Check if sticky header is enabled
     if (!Shapla.stickyHeader.isEnabled) {
@@ -261,12 +267,11 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         masthead = document.querySelector("#masthead");
-        content = document.querySelector("#content");
-        adminbar = document.querySelector("#wpadminbar");
+        content = masthead.nextElementSibling;
         stuck = false;
         stickPoint = masthead.offsetTop;
 
-        window.onscroll = function (e) {
+        document.addEventListener("scroll", function () {
             offset = window.pageYOffset;
             if (window.innerWidth < Shapla.stickyHeader.minWidth) {
                 return;
@@ -282,6 +287,6 @@
                 content.style.marginTop = '';
                 stuck = false;
             }
-        }
+        });
     });
 })();
