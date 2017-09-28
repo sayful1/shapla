@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Add new section
 $shapla->customizer->add_section( 'layout_section', array(
 	'title'       => __( 'Layout', 'shapla' ),

@@ -9,7 +9,7 @@ if ( ! function_exists( 'shapla_is_woocommerce_activated' ) ) {
 	 * Query WooCommerce activation
 	 */
 	function shapla_is_woocommerce_activated() {
-		return class_exists( 'woocommerce' ) ? true : false;
+		return class_exists( 'woocommerce' );
 	}
 }
 
@@ -18,7 +18,7 @@ if ( ! function_exists( 'shapla_is_shaplatools_activated' ) ) {
 	 * Query ShaplaTools activation
 	 */
 	function shapla_is_shaplatools_activated() {
-		return class_exists( 'shaplatools' ) ? true : false;
+		return class_exists( 'shaplatools' );
 	}
 }
 

@@ -4,10 +4,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Shapla_Meta_Boxes' ) ):
+if ( ! class_exists( 'Shapla_Meta_Boxes' ) ) {
 
 	class Shapla_Meta_Boxes {
 
+		private static $instance;
+
+		/**
+		 * @return Shapla_Meta_Boxes
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
+		/**
+		 * Shapla_Meta_Boxes constructor.
+		 */
 		public function __construct() {
 			add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
 			add_action( 'save_post', array( $this, 'save_meta_boxes' ) );
@@ -49,6 +65,8 @@ if ( ! class_exists( 'Shapla_Meta_Boxes' ) ):
 		 * Save the meta when the post is saved.
 		 *
 		 * @param int $post_id The ID of the post being saved.
+		 *
+		 * @return int
 		 */
 		public function save_meta_boxes( $post_id ) {
 			// Check if nonce is set.
@@ -81,9 +99,10 @@ if ( ! class_exists( 'Shapla_Meta_Boxes' ) ):
 
 			// Update the meta field.
 			update_post_meta( $post_id, '_shapla_hide_page_title', $hide_page_title );
+
+			return $post_id;
 		}
 	}
+}
 
-	new Shapla_Meta_Boxes();
-
-endif;
+Shapla_Meta_Boxes::init();

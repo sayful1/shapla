@@ -10,7 +10,22 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 		private $admin_path;
 		private $admin_uri;
+		private static $instance;
 
+		/**
+		 * @return Shapla_Admin
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
+		/**
+		 * Shapla_Admin constructor.
+		 */
 		public function __construct() {
 			add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
 			add_action( 'admin_menu', array( $this, 'shapla_admin_menu_page' ) );
@@ -19,6 +34,11 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			$this->admin_path = get_template_directory() . '/inc/admin/';
 		}
 
+		/**
+		 * Load theme page scripts
+		 *
+		 * @param $hook_suffix
+		 */
 		public function admin_scripts( $hook_suffix ) {
 			if ( $hook_suffix != 'appearance_page_shapla-welcome' ) {
 				return;
@@ -48,6 +68,9 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			return $text;
 		}
 
+		/**
+		 * Add theme page
+		 */
 		public function shapla_admin_menu_page() {
 			add_theme_page(
 				__( 'Shapla', 'shapla' ),
@@ -58,6 +81,9 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			);
 		}
 
+		/**
+		 * Theme page callback
+		 */
 		public function welcome_page_callback() {
 			?>
             <div class="columns">
@@ -81,6 +107,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		}
 	}
 
-	new Shapla_Admin();
 
 endif;
+
+Shapla_Admin::init();

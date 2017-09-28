@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Add new panel
 $shapla->customizer->add_panel( 'blog_panel', array(
 	'title'    => __( 'Blog', 'shapla' ),
