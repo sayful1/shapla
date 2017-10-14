@@ -122,7 +122,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			// Display content for current tab
 			switch ( $tab ) {
 				case 'recommended_plugins':
-					$template = $template_path . 'recommended_plugins.php';
+					$template = $template_path . '/recommended_plugins.php';
 					break;
 
 				case 'getting_started':
@@ -145,6 +145,163 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			);
 
 			return $this->tabs;
+		}
+
+		/**
+		 * Call plugin api
+		 */
+		public function call_plugin_api( $slug ) {
+			include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+
+			$call_api = get_transient( 'shapla_about_plugin_info_' . $slug );
+
+			if ( false === $call_api ) {
+				$call_api = plugins_api(
+					'plugin_information', array(
+						'slug'   => $slug,
+						'fields' => array(
+							'downloaded'        => false,
+							'rating'            => false,
+							'description'       => false,
+							'short_description' => true,
+							'donate_link'       => false,
+							'tags'              => false,
+							'sections'          => true,
+							'homepage'          => true,
+							'added'             => false,
+							'last_updated'      => false,
+							'compatibility'     => false,
+							'tested'            => false,
+							'requires'          => false,
+							'downloadlink'      => false,
+							'icons'             => true,
+						),
+					)
+				);
+				set_transient( 'shapla_about_plugin_info_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
+			}
+
+			return $call_api;
+		}
+
+		/**
+		 * Get icon of wordpress.org plugin
+		 *
+		 * @param array $arr array of image formats.
+		 *
+		 * @return mixed
+		 */
+		public function get_plugin_icon( $arr ) {
+
+			if ( ! empty( $arr['svg'] ) ) {
+				$plugin_icon_url = $arr['svg'];
+			} elseif ( ! empty( $arr['2x'] ) ) {
+				$plugin_icon_url = $arr['2x'];
+			} elseif ( ! empty( $arr['1x'] ) ) {
+				$plugin_icon_url = $arr['1x'];
+			} else {
+				$plugin_icon_url = get_template_directory_uri() . '/assets/images/placeholder_plugin.png';
+			}
+
+			return $plugin_icon_url;
+		}
+
+		/**
+		 * Check if plugin is active
+		 *
+		 * @param plugin -slug $slug the plugin slug.
+		 *
+		 * @return array
+		 */
+		public function check_if_plugin_active( $slug ) {
+			if ( ( $slug == 'intergeo-maps' ) || ( $slug == 'visualizer' ) ) {
+				$plugin_root_file = 'index';
+			} elseif ( $slug == 'adblock-notify-by-bweb' ) {
+				$plugin_root_file = 'adblock-notify';
+			} else {
+				$plugin_root_file = $slug;
+			}
+
+			$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $plugin_root_file . '.php';
+			if ( ! file_exists( $path ) ) {
+				$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $plugin_root_file . '.php';
+				if ( ! file_exists( $path ) ) {
+					$path = false;
+				}
+			}
+
+			if ( file_exists( $path ) ) {
+
+				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+				$needs = is_plugin_active( $slug . '/' . $plugin_root_file . '.php' ) ? 'deactivate' : 'activate';
+
+				return array(
+					'status' => is_plugin_active( $slug . '/' . $plugin_root_file . '.php' ),
+					'needs'  => $needs,
+				);
+			}
+
+			return array(
+				'status' => false,
+				'needs'  => 'install',
+			);
+		}
+
+		/**
+		 * Function that crates the action link for install/activate/deactivate.
+		 *
+		 * @param Plugin -state $state the plugin state (uninstalled/active/inactive).
+		 * @param Plugin -slug  $slug the plugin slug.
+		 *
+		 * @return string
+		 */
+		public function create_action_link( $state, $slug ) {
+
+			if ( ( $slug == 'intergeo-maps' ) || ( $slug == 'visualizer' ) ) {
+				$plugin_root_file = 'index';
+			} elseif ( $slug == 'adblock-notify-by-bweb' ) {
+				$plugin_root_file = 'adblock-notify';
+			} else {
+				$plugin_root_file = $slug;
+			}
+
+			switch ( $state ) {
+				case 'install':
+					return wp_nonce_url(
+						add_query_arg(
+							array(
+								'action' => 'install-plugin',
+								'plugin' => $slug,
+							),
+							network_admin_url( 'update.php' )
+						),
+						'install-plugin_' . $slug
+					);
+					break;
+				case 'deactivate':
+					return add_query_arg(
+						array(
+							'action'        => 'deactivate',
+							'plugin'        => rawurlencode( $slug . '/' . $plugin_root_file . '.php' ),
+							'plugin_status' => 'all',
+							'paged'         => '1',
+							'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $plugin_root_file . '.php' ),
+						), network_admin_url( 'plugins.php' )
+					);
+					break;
+				case 'activate':
+					return add_query_arg(
+						array(
+							'action'        => 'activate',
+							'plugin'        => rawurlencode( $slug . '/' . $plugin_root_file . '.php' ),
+							'plugin_status' => 'all',
+							'paged'         => '1',
+							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $plugin_root_file . '.php' ),
+						), network_admin_url( 'plugins.php' )
+					);
+					break;
+			}// End switch().
 		}
 	}
 
