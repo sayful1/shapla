@@ -93,7 +93,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			$ThemeURI         = $theme->get( 'ThemeURI' );
 			$template_path    = $this->admin_path . 'views';
 
-			$welcome_title = sprintf( __( 'Welcome to %s! - Version %s', 'shapla' ), $ThemeName, $ThemeVersion );
+			$welcome_title   = sprintf( __( 'Welcome to %s!', 'shapla' ), $ThemeName );
+			$welcome_version = sprintf( __( 'Version %s', 'shapla' ), $ThemeVersion );
 
 			$tab = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
 
@@ -107,7 +108,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 				echo '<div class="about-text">' . wp_kses_post( $ThemeDescription ) . '</div>';
 			}
 
-			echo '<a href="' . $ThemeURI . '" target="_blank" class="wp-badge shapla-welcome-logo"></a>';
+			echo '<div class="wp-badge shapla-welcome-logo">' . $welcome_version . '</div>';
 
 			// Tabs
 			echo '<h2 class="nav-tab-wrapper wp-clearfix">';
@@ -120,49 +121,21 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 			// Display content for current tab
 			switch ( $tab ) {
-				case 'add':
-					$template = $template_path . 'add.php';
-					break;
-
-				case 'edit':
-					$template = $template_path . 'edit.php';
+				case 'recommended_plugins':
+					$template = $template_path . 'recommended_plugins.php';
 					break;
 
 				case 'getting_started':
-					$template = $template_path . '/getting_started.php';
-					break;
 				default:
 					$template = $template_path . '/getting_started.php';
 					break;
 			}
 
 			if ( file_exists( $template ) ) {
-				ob_start();
 				include $template;
-				echo ob_get_clean();
 			}
 
 			echo '</div><!--/.wrap.about-wrap-->';
-			return;
-			?>
-            <div class="columns">
-                <div class="column is-8">
-                    <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">
-								<?php esc_html_e( 'Shapla Features', 'shapla' ); ?>
-                            </p>
-                        </header>
-                        <div class="card-content">
-							<?php require $this->admin_path . '/views/features.php'; ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="column is-4">
-					<?php require $this->admin_path . '/views/supports.php'; ?>
-                </div>
-            </div>
-			<?php
 		}
 
 		private function tabs() {

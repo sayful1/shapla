@@ -49,3 +49,9 @@
 .is-top-paddingless {
     padding-top: 0;
 }
+
+.shapla-welcome-logo {
+    &.wp-badge {
+        background: url(../images/logo-white.svg) center 25px no-repeat #0073aa;
+    }
+}
