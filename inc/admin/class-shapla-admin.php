@@ -8,9 +8,10 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 	class Shapla_Admin {
 
+		private static $instance;
 		private $admin_path;
 		private $admin_uri;
-		private static $instance;
+		private $tabs = array();
 
 		/**
 		 * @return Shapla_Admin
@@ -73,8 +74,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 */
 		public function shapla_admin_menu_page() {
 			add_theme_page(
-				__( 'Shapla', 'shapla' ),
-				__( 'Shapla', 'shapla' ),
+				__( 'About Shapla', 'shapla' ),
+				__( 'About Shapla', 'shapla' ),
 				'manage_options',
 				'shapla-welcome',
 				array( $this, 'welcome_page_callback' )
@@ -85,6 +86,64 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 * Theme page callback
 		 */
 		public function welcome_page_callback() {
+			$theme            = wp_get_theme( 'shapla' );
+			$ThemeName        = $theme->get( 'Name' );
+			$ThemeVersion     = $theme->get( 'Version' );
+			$ThemeDescription = $theme->get( 'Description' );
+			$ThemeURI         = $theme->get( 'ThemeURI' );
+			$template_path    = $this->admin_path . 'views';
+
+			$welcome_title = sprintf( __( 'Welcome to %s! - Version %s', 'shapla' ), $ThemeName, $ThemeVersion );
+
+			$tab = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
+
+			echo '<div class="wrap about-wrap shapla-wrap">';
+
+			if ( ! empty( $welcome_title ) ) {
+				echo '<h1>' . esc_html( $welcome_title ) . '</h1>';
+			}
+
+			if ( ! empty( $ThemeDescription ) ) {
+				echo '<div class="about-text">' . wp_kses_post( $ThemeDescription ) . '</div>';
+			}
+
+			echo '<a href="' . $ThemeURI . '" target="_blank" class="wp-badge shapla-welcome-logo"></a>';
+
+			// Tabs
+			echo '<h2 class="nav-tab-wrapper wp-clearfix">';
+			foreach ( $this->tabs() as $tab_key => $tab_name ) {
+				echo '<a href="' . esc_url( admin_url( 'themes.php?page=shapla-welcome' ) ) . '&tab=' . $tab_key . '" class="nav-tab ' . ( $tab == $tab_key ? 'nav-tab-active' : '' ) . '" role="tab" data-toggle="tab">';
+				echo esc_html( $tab_name );
+				echo '</a>';
+			}
+			echo '</h2>';
+
+			// Display content for current tab
+			switch ( $tab ) {
+				case 'add':
+					$template = $template_path . 'add.php';
+					break;
+
+				case 'edit':
+					$template = $template_path . 'edit.php';
+					break;
+
+				case 'getting_started':
+					$template = $template_path . '/getting_started.php';
+					break;
+				default:
+					$template = $template_path . '/getting_started.php';
+					break;
+			}
+
+			if ( file_exists( $template ) ) {
+				ob_start();
+				include $template;
+				echo ob_get_clean();
+			}
+
+			echo '</div><!--/.wrap.about-wrap-->';
+			return;
 			?>
             <div class="columns">
                 <div class="column is-8">
@@ -104,6 +163,15 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
                 </div>
             </div>
 			<?php
+		}
+
+		private function tabs() {
+			$this->tabs = array(
+				'getting_started'     => __( 'Getting Started', 'shapla' ),
+				'recommended_plugins' => __( 'Useful Plugins', 'shapla' ),
+			);
+
+			return $this->tabs;
 		}
 	}
 
