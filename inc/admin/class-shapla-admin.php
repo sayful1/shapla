@@ -214,10 +214,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 * @return array
 		 */
 		public function check_if_plugin_active( $slug ) {
-			if ( ( $slug == 'intergeo-maps' ) || ( $slug == 'visualizer' ) ) {
-				$plugin_root_file = 'index';
-			} elseif ( $slug == 'adblock-notify-by-bweb' ) {
-				$plugin_root_file = 'adblock-notify';
+			if ( $slug == 'dialog-contact-form' ) {
+				$plugin_root_file = 'init';
 			} else {
 				$plugin_root_file = $slug;
 			}
@@ -258,10 +256,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 */
 		public function create_action_link( $state, $slug ) {
 
-			if ( ( $slug == 'intergeo-maps' ) || ( $slug == 'visualizer' ) ) {
-				$plugin_root_file = 'index';
-			} elseif ( $slug == 'adblock-notify-by-bweb' ) {
-				$plugin_root_file = 'adblock-notify';
+			if ( $slug == 'dialog-contact-form' ) {
+				$plugin_root_file = 'init';
 			} else {
 				$plugin_root_file = $slug;
 			}
