@@ -35,12 +35,6 @@
 <div class="feature-section three-col">
 
     <div class="col">
-        <h3><?php esc_html_e( 'Responsive', 'shapla' ); ?></h3>
-        <p><?php esc_html_e( 'Whether you view a Shapla portfolio, blog or store on a laptop / desktop computer or handheld device, it
-                will adapt and display beautifully.', 'shapla' ); ?></p>
-    </div><!-- .col -->
-
-    <div class="col">
         <h3><?php esc_html_e( 'Zero Shortcodes', 'shapla' ); ?></h3>
         <p>
 			<?php esc_html_e( 'With Shapla, you only get what you need. That means no superfluous shortcodes and other extraneous
@@ -66,9 +60,6 @@
         </p>
     </div><!-- .col -->
 
-</div>
-<div class="feature-section three-col">
-
     <div class="col">
         <h3><?php esc_html_e( 'Zero Page Builders', 'shapla' ); ?></h3>
         <p>
@@ -84,6 +75,16 @@
 			);
 			?>
         </p>
+    </div><!-- .col -->
+
+</div>
+
+<div class="feature-section three-col">
+
+    <div class="col">
+        <h3><?php esc_html_e( 'Responsive', 'shapla' ); ?></h3>
+        <p><?php esc_html_e( 'Whether you view a Shapla portfolio, blog or store on a laptop / desktop computer or handheld device, it
+                will adapt and display beautifully.', 'shapla' ); ?></p>
     </div><!-- .col -->
 
     <div class="col">
@@ -104,6 +105,39 @@
 			<?php
 			printf( esc_html__( 'Shapla supports all features of %sWooCommerce%s.', 'shapla' ),
 				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce' ) . '">',
+				'</a>'
+			);
+			?>
+        </p>
+    </div><!-- .col -->
+
+</div>
+
+<div class="feature-section three-col">
+
+    <div class="col">
+        <h3><?php esc_html_e( 'Schema Markup', 'shapla' ); ?></h3>
+        <p><?php esc_html_e( 'Valid schema markup for improved SEO performance.', 'shapla' ); ?></p>
+    </div><!-- .col -->
+
+    <div class="col">
+        <h3><?php esc_html_e( 'Based on Underscores', 'shapla' ); ?></h3>
+        <p>
+			<?php
+			printf( esc_html__( '%sUnderscores%s is Automattic\'s popular starter theme, used as a starting point for all WordPress themes on WordPress.com. Secure & stable.', 'shapla' ),
+				'<a target="_blank" href="http://underscores.me/">',
+				'</a>'
+			);
+			?>
+        </p>
+    </div><!-- .col -->
+
+    <div class="col">
+        <h3><?php esc_html_e( 'Localized', 'shapla' ); ?></h3>
+        <p>
+			<?php
+			printf( esc_html__( 'Shapla is fully localized and ready for your translations. Download a translation file for your language, or contribute to translating Shapla on %sWordPress.org%s.', 'shapla' ),
+				'<a target="_blank" href="https://translate.wordpress.org/projects/wp-themes/shapla">',
 				'</a>'
 			);
 			?>

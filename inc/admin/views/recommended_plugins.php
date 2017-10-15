@@ -42,7 +42,7 @@ foreach ( $recommended_plugins['content'] as $recommended_plugins_item ) {
 		}
 
 		if ( ! empty( $info->version ) ) {
-			echo '<span class="version">' . esc_html( $info->version ) . '</span>';
+			echo '<span class="version">' . ( ! empty( $recommended_plugins['version_label'] ) ? esc_html( $recommended_plugins['version_label'] ) : '' ) . esc_html( $info->version ) . '</span>';
 		}
 
 		if ( ! empty( $info->author ) ) {

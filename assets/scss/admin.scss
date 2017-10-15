@@ -1,135 +1,114 @@
-@import 'modules/columns';
-@import 'modules/card';
-
-.card {
-    margin-top: 0;
-    padding: 0;
-    border: none;
-    background: #fff;
-    // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    min-width: auto;
-
-    &:hover {
-        // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    }
-    &-header-title {
-        font-size: 16px;
-        color: #323232;
-    }
-
-    .card {
-        height: 100%;
-    }
-}
-
-.columns {
-    margin: 0;
-    box-sizing: border-box;
-
-    &:before,
-    &:after {
-        content: "";
-        display: table;
-    }
-
-    &:after {
-        clear: both;
-    }
-
-    .column {
-        box-sizing: border-box;
-    }
-
-    .columns {
-        margin: -0.75em;
-    }
-}
-
-.is-top-paddingless {
-    padding-top: 0;
-}
-
 // About Shapla
-.shapla-welcome-logo {
-    &.wp-badge {
+
+.shapla-about-wrap {
+
+    // Theme Logo
+    .shapla-welcome-logo {
         background: url(../images/logo-white.svg) center 25px no-repeat #0073aa;
     }
-}
 
-.about-wrap .three-col .plugin_box.col {
-    float: left;
-    box-sizing: border-box;
-    width: 31%;
-}
+    .feature-section {
+        padding: 40px 0 0;
 
-.about-wrap .feature-section .col {
-    margin-top: 0;
-    margin-bottom: 3.5%;
-
-    &:nth-child(3n + 1) {
-        clear: both;
-    }
-
-    &.plugin_box {
-        margin-right: 3.5%;
-
-        &:nth-of-type(3n) {
-            margin-right: 0;
+        .col {
+            margin-top: 0;
+            margin-bottom: 3.5%;
         }
     }
-}
 
-.plugin_box {
-    float: left;
-    position: relative;
-    height: 330px;
-    margin-top: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #fff;
-    text-align: center;
-
-    img {
-        display: block;
-        width: 155px;
-        height: 155px;
-        margin: 0 auto;
-        margin-bottom: 15px;
-        padding-top: 50px;
-        border: none;
-    }
-
-    .action_bar {
-        overflow: hidden;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        max-width: 140px;
-        height: 18px;
-        margin: 0;
-        padding: 15px;
-        padding-right: 105px;
-        background: #fff;
-        background: rgba(255, 255, 255, 0.65);
-        box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
-        font-size: 13px;
-        font-weight: 600;
-        text-align: left;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    .action_button {
-        position: absolute;
-        right: -1px;
-        bottom: -1px;
-        padding: 9px 10px 10px;
+    .plugin_box {
+        float: left;
+        position: relative;
+        height: 330px;
+        margin-top: 15px;
         border: 1px solid rgba(0, 0, 0, 0.1);
-        background: #f6f6f6;
-    }
-}
+        background: #fff;
+        text-align: center;
 
-.about-wrap .feature-section {
-    padding: 40px 0 0;
+        img {
+            display: block;
+            width: 155px;
+            height: 155px;
+            margin: 0 auto 15px;
+            padding-top: 50px;
+            border: none;
+        }
+
+        .action_bar {
+            overflow: hidden;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            max-width: 140px;
+            height: 18px;
+            margin: 0;
+            padding: 15px 105px 15px 15px;
+            background: #fff;
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .action_button {
+            position: absolute;
+            right: -1px;
+            bottom: -1px;
+            padding: 9px 10px 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: #f6f6f6;
+        }
+    }
+
+    .three-col .col {
+
+        &.plugin_box {
+            float: left;
+            box-sizing: border-box;
+            width: 31%;
+            margin-right: 3.5%;
+
+            &:nth-of-type(3n) {
+                margin-right: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 782px) {
+
+        .three-col .col {
+            min-width: 48% !important;
+
+            &.plugin_box {
+                margin-right: 3.5%;
+
+                &:nth-of-type(2n) {
+                    margin-right: 0;
+                }
+
+                &:nth-of-type(3n) {
+                    margin-right: 3.5%;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+
+        .three-col .col {
+            min-width: 100% !important;
+        }
+
+        .nav-tab {
+            margin: 10px 0 0 0;
+            border-bottom: 1px solid #ccc;
+            width: 100%;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+    }
 }

@@ -98,7 +98,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 			$tab = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
 
-			echo '<div class="wrap about-wrap shapla-wrap">';
+			echo '<div class="wrap about-wrap shapla-about-wrap">';
 
 			if ( ! empty( $welcome_title ) ) {
 				echo '<h1>' . esc_html( $welcome_title ) . '</h1>';
