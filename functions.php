@@ -19,41 +19,42 @@ if ( ! defined( 'SHAPLA_VERSION' ) ) {
 
 $shapla = (object) array(
 	'version'    => $shapla_version,
-	'main'       => require get_template_directory() . '/inc/class-shapla.php',
-	'customizer' => require get_template_directory() . '/inc/customizer/class-shapla-customizer.php',
+	'main'       => require 'inc/class-shapla.php',
+	'customizer' => require 'inc/customizer/class-shapla-customizer.php',
 );
 
 /**
  * Load template hooks and functions file.
  */
-require get_template_directory() . '/inc/shapla-functions.php';
-require get_template_directory() . '/inc/shapla-template-hooks.php';
-require get_template_directory() . '/inc/shapla-template-functions.php';
-require get_template_directory() . '/inc/class-shapla-structured-data.php';
-require get_template_directory() . '/inc/customizer/fields/init.php';
+require 'inc/shapla-functions.php';
+require 'inc/shapla-template-hooks.php';
+require 'inc/shapla-template-functions.php';
+
+require 'inc/class-shapla-structured-data.php';
+require 'inc/customizer/fields/init.php';
 
 /**
  * Load Shapla modules
  */
-include get_template_directory() . '/inc/modules/class-shapla-blog.php';
+include 'inc/modules/class-shapla-blog.php';
 
 
 /**
  * Load Jetpack compatibility class.
  */
 if ( class_exists( 'Jetpack' ) ) {
-	$shapla->jetpack = require get_template_directory() . '/inc/class-shapla-jetpack.php';
+	$shapla->jetpack = require 'inc/class-shapla-jetpack.php';
 }
 
 
 if ( shapla_is_woocommerce_activated() ) {
-	$shapla->woocommerce = require get_template_directory() . '/inc/woocommerce/class-shapla-woocommerce.php';
-	require get_template_directory() . '/inc/woocommerce/shapla-woocommerce-template-hooks.php';
-	require get_template_directory() . '/inc/woocommerce/shapla-woocommerce-template-functions.php';
+	$shapla->woocommerce = require 'inc/woocommerce/class-shapla-woocommerce.php';
+	require 'inc/woocommerce/shapla-woocommerce-template-hooks.php';
+	require 'inc/woocommerce/shapla-woocommerce-template-functions.php';
 }
 
 
 if ( is_admin() ) {
-	require get_template_directory() . '/inc/admin/class-shapla-admin.php';
-	require get_template_directory() . '/inc/admin/class-shapla-meta-boxes.php';
+	require 'inc/admin/class-shapla-admin.php';
+	require 'inc/admin/class-shapla-meta-boxes.php';
 }

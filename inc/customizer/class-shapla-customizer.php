@@ -9,20 +9,18 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 	class Shapla_Customizer {
 
 		private static $instance;
-		private $control_dir;
 		private $setting = array();
 		private $fields = array();
 		private $panels = array();
 		private $sections = array();
 		private $allowed_field_types = array(
-			'image',
-			'color',
 			'text',
-			'checkbox',
-			'radio',
-			'select',
-			'dropdown-pages',
+			'color',
+			'image',
 			'textarea',
+			'checkbox',
+			'select',
+			'radio',
 			'radio-image',
 		);
 
@@ -41,10 +39,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * Shapla_Customizer constructor.
 		 */
 		public function __construct() {
-			// Include custom customize controls
-
-			$this->control_dir = get_template_directory() . '/inc/customizer/controls';
-
 			add_action( 'customize_register', array( $this, 'modify_customize_defaults' ) );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
 			add_action( 'wp_head', array( $this, 'customize_css' ) );
@@ -364,7 +358,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function radio_image( $wp_customize, $field ) {
 			if ( ! class_exists( 'Shapla_Radio_Image_Customize_Control' ) ) {
-				require_once $this->control_dir . '/class-shapla-radio-image-customize-control.php';
+				require_once 'controls/class-shapla-radio-image-customize-control.php';
 			}
 
 			return new Shapla_Radio_Image_Customize_Control( $wp_customize, $field['settings'], array(
@@ -515,6 +509,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 		/**
 		 * Sanitize radio
+		 *
+		 * @param $input
 		 *
 		 * @return string
 		 */
