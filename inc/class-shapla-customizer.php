@@ -22,6 +22,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'select',
 			'dropdown-pages',
 			'textarea',
+			'radio-image',
 		);
 
 		/**
@@ -193,13 +194,14 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			// Add field to customizer
 			if ( count( $this->fields ) > 0 ) {
 				foreach ( $this->fields as $field ) {
+					$sanitize_callback = str_replace( '-', '_', $field['type'] );
 					// Add settings and controls
 					$wp_customize->add_setting( $field['settings'], array(
 						'default'           => $field['default'],
 						'type'              => $this->setting['option_type'],
 						'capability'        => $this->setting['capability'],
 						'transport'         => isset( $field['transport'] ) ? $field['transport'] : 'refresh',
-						'sanitize_callback' => array( $this, "sanitize_{$field['type']}" ),
+						'sanitize_callback' => array( $this, "sanitize_{$sanitize_callback}" ),
 					) );
 					$wp_customize->add_control(
 						$this->add_control( $wp_customize, $field )
@@ -282,6 +284,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$type = 'text';
 			}
 
+			$type = str_replace( '-', '_', $type );
+
 			if ( method_exists( $this, $type ) ) {
 				return $this->$type( $wp_customize, $field );
 			} else {
@@ -341,6 +345,21 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
 				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
 				'type'        => $field['type'],
+				'settings'    => $field['settings'],
+			) );
+		}
+
+		public function radio_image( $wp_customize, $field ) {
+			if ( ! class_exists( 'Shapla_Radio_Image_Customize_Control' ) ) {
+				require_once 'customizer/class-shapla-radio-image-customize-control.php';
+			}
+
+			return new Shapla_Radio_Image_Customize_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
 				'settings'    => $field['settings'],
 			) );
 		}
@@ -463,15 +482,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * Sanitize a value from a list of allowed values.
 		 *
 		 * @param  string $input
-		 * @param  mixed $setting
 		 *
 		 * @return string
 		 */
-		public function sanitize_select( $input, $setting ) {
-			global $wp_customize;
-			$field = $wp_customize->get_control( $setting->id );
-
-			return array_key_exists( $input, $field->choices ) ? $input : $setting->default;
+		public function sanitize_select( $input ) {
+			return sanitize_text_field( $input );
 		}
 
 		/**
@@ -482,6 +497,15 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_radio( $input ) {
+			return sanitize_text_field( $input );
+		}
+
+		/**
+		 * Sanitize radio
+		 *
+		 * @return string
+		 */
+		public function sanitize_radio_image( $input ) {
 			return sanitize_text_field( $input );
 		}
 
