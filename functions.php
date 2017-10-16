@@ -20,7 +20,7 @@ if ( ! defined( 'SHAPLA_VERSION' ) ) {
 $shapla = (object) array(
 	'version'    => $shapla_version,
 	'main'       => require get_template_directory() . '/inc/class-shapla.php',
-	'customizer' => require get_template_directory() . '/inc/class-shapla-customizer.php',
+	'customizer' => require get_template_directory() . '/inc/customizer/class-shapla-customizer.php',
 );
 
 /**
@@ -30,7 +30,7 @@ require get_template_directory() . '/inc/shapla-functions.php';
 require get_template_directory() . '/inc/shapla-template-hooks.php';
 require get_template_directory() . '/inc/shapla-template-functions.php';
 require get_template_directory() . '/inc/class-shapla-structured-data.php';
-require get_template_directory() . '/inc/customizer/init.php';
+require get_template_directory() . '/inc/customizer/fields/init.php';
 
 /**
  * Load Shapla modules
