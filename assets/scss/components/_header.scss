@@ -117,3 +117,38 @@
         }
     }
 }
+
+.shapla-header-center {
+    .site-header-inner {
+        .site-branding {
+            flex: 0 0 100%;
+            text-align: center;
+        }
+
+        .site-header-menu {
+            flex: 0 0 100%;
+        }
+        .menu-main-menu-container {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+    }
+}
+
+.shapla-header-widget {
+    .site-header-inner {
+        .site-branding {
+            display: inline-flex;
+            padding-right: 1rem;
+        }
+
+        .site-header-menu {
+            flex: 0 0 100%;
+        }
+
+        .menu-main-menu-container {
+            display: flex;
+        }
+    }
+}

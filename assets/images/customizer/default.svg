@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" height="90" width="120">
+    <path fill="#f5f5f5" d="M0 0h1200v900H0z"/>
+    <path fill="#2196f3" d="M50 75h200v50H50z"/>
+    <g fill="#4caf50">
+        <path d="M1050 75h100v50h-100zM925 75h100v50H925zM800 75h100v50H800zM675 75h100v50H675zM550 75h100v50H550z"/>
+    </g>
+    <g fill-opacity=".392">
+        <path d="M200 450h800v50H200zM300 550h600v50H300zM400 650h400v50H400z"/>
+    </g>
+</svg>

@@ -71,12 +71,14 @@ class Shapla_Radio_Image_Customize_Control extends WP_Customize_Control {
 				checked( $this->value(), $value ); ?>>
                 <label for="<?php echo esc_attr( $this->id ) . esc_attr( $value ); ?>">
                     <img src="<?php echo esc_html( $label ); ?>" alt="<?php echo esc_attr( $value ); ?>">
-                    <span class="image-label"><span class="inner">
+                    <span class="image-label">
+                        <span class="inner">
                             <?php
                             $inner_title = str_replace( array( '-', '_' ), ' ', $value );
                             echo esc_attr( $inner_title );
                             ?>
-                        </span></span>
+                        </span>
+                    </span>
                     <span class="image-clickable"></span>
                 </label>
                 </input>

@@ -16,7 +16,7 @@ $shapla->customizer->add_field( array(
 	'settings'    => 'site_layout',
 	'type'        => 'radio-button',
 	'section'     => 'layout_section',
-	'label'       => __( 'Layout', 'shapla' ),
+	'label'       => __( 'Site Layout', 'shapla' ),
 	'description' => __( 'Controls the site layout.', 'shapla' ),
 	'default'     => 'wide',
 	'priority'    => 10,
@@ -39,5 +39,21 @@ $shapla->customizer->add_field( array(
 		'right-sidebar' => get_template_directory_uri() . '/assets/images/customizer/2cr.svg',
 		'left-sidebar'  => get_template_directory_uri() . '/assets/images/customizer/2cl.svg',
 		'full-width'    => get_template_directory_uri() . '/assets/images/customizer/1c.svg',
+	),
+) );
+
+// Header Layout
+$shapla->customizer->add_field( array(
+	'settings'    => 'header_layout',
+	'type'        => 'radio-image',
+	'section'     => 'layout_section',
+	'label'       => __( 'Header Layout', 'shapla' ),
+	'description' => __( 'Controls the site header layout.', 'shapla' ),
+	'default'     => 'default',
+	'priority'    => 30,
+	'choices'     => array(
+		'default' => get_template_directory_uri() . '/assets/images/customizer/default.svg',
+		'center'  => get_template_directory_uri() . '/assets/images/customizer/center.svg',
+		'widget'  => get_template_directory_uri() . '/assets/images/customizer/widget.svg',
 	),
 ) );

@@ -266,6 +266,15 @@ if ( ! class_exists( 'Shapla' ) ) {
 				$classes[] = 'full-width';
 			}
 
+			$header_layout = get_theme_mod( 'header_layout', 'default' );
+			if ( $header_layout == 'center' ) {
+				$classes[] = 'shapla-header-center';
+			} elseif ( $header_layout == 'widget' ) {
+				$classes[] = 'shapla-header-widget';
+			} else {
+				$classes[] = 'shapla-header-default';
+			}
+
 			$classes[] = 'shapla';
 
 			return $classes;
