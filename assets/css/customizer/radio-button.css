@@ -1,0 +1,2 @@
+#customize-controls .shapla-radio-buttonset{display:flex;flex-wrap:wrap}#customize-controls .shapla-radio-buttonset .switch-label{background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1);color:#555;margin:0;text-align:center;padding:0.5em 1em;flex-grow:1}#customize-controls .shapla-radio-buttonset .switch-input:checked+.switch-label{background-color:#3498DB;color:#fff}
+/*# sourceMappingURL=radio-button.css.map */

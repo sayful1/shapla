@@ -22,6 +22,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'select',
 			'radio',
 			'radio-image',
+			'radio-button',
 		);
 
 		/**
@@ -372,6 +373,29 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
+		 * add radio buttons
+		 *
+		 * @param  WP_Customize_Manager $wp_customize
+		 * @param  array $field
+		 *
+		 * @return Shapla_Radio_Button_Customize_Control
+		 */
+		public function radio_button( $wp_customize, $field ) {
+			if ( ! class_exists( 'Shapla_Radio_Button_Customize_Control' ) ) {
+				require_once 'controls/class-shapla-radio-button-customize-control.php';
+			}
+
+			return new Shapla_Radio_Button_Customize_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
+				'settings'    => $field['settings'],
+			) );
+		}
+
+		/**
 		 * Sanitize image
 		 *
 		 * @param  boolean $input
@@ -515,6 +539,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_radio_image( $input ) {
+			return sanitize_text_field( $input );
+		}
+
+		/**
+		 * Sanitize radio
+		 *
+		 * @param $input
+		 *
+		 * @return string
+		 */
+		public function sanitize_radio_button( $input ) {
 			return sanitize_text_field( $input );
 		}
 

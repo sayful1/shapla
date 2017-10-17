@@ -14,7 +14,7 @@ $shapla->customizer->add_section( 'layout_section', array(
 // Site Layout
 $shapla->customizer->add_field( array(
 	'settings'    => 'site_layout',
-	'type'        => 'radio',
+	'type'        => 'radio-button',
 	'section'     => 'layout_section',
 	'label'       => __( 'Layout', 'shapla' ),
 	'description' => __( 'Controls the site layout.', 'shapla' ),
@@ -36,8 +36,8 @@ $shapla->customizer->add_field( array(
 	'default'     => 'right-sidebar',
 	'priority'    => 20,
 	'choices'     => array(
-		'right-sidebar' => get_template_directory_uri() . '/assets/images/customizer/2cr.png',
-		'left-sidebar'  => get_template_directory_uri() . '/assets/images/customizer/2cl.png',
-		'full-width'    => get_template_directory_uri() . '/assets/images/customizer/1c.png',
+		'right-sidebar' => get_template_directory_uri() . '/assets/images/customizer/2cr.svg',
+		'left-sidebar'  => get_template_directory_uri() . '/assets/images/customizer/2cl.svg',
+		'full-width'    => get_template_directory_uri() . '/assets/images/customizer/1c.svg',
 	),
 ) );
