@@ -121,17 +121,17 @@
 .shapla-header-center {
     .site-header-inner {
         .site-branding {
-            flex: 0 0 100%;
+            width: 100%;
             text-align: center;
         }
-
+        .menu-toggle {
+            margin: 0 auto;
+        }
         .site-header-menu {
-            flex: 0 0 100%;
+            width: 100%;
         }
         .primary-menu-container {
-            justify-content: center;
-            align-items: center;
-            display: flex;
+            display: block;
         }
     }
 }
@@ -144,11 +144,11 @@
         }
 
         .site-header-menu {
-            flex: 0 0 100%;
+            width: 100%;
         }
 
         .primary-menu-container {
-            display: flex;
+            display: block;
         }
 
         .main-navigation {
