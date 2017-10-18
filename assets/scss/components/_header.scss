@@ -128,7 +128,7 @@
         .site-header-menu {
             flex: 0 0 100%;
         }
-        .menu-main-menu-container {
+        .primary-menu-container {
             justify-content: center;
             align-items: center;
             display: flex;
@@ -147,8 +147,18 @@
             flex: 0 0 100%;
         }
 
-        .menu-main-menu-container {
+        .primary-menu-container {
             display: flex;
+        }
+
+        .main-navigation {
+            ul.primary-menu > li {
+                &:first-child {
+                    a {
+                        padding-left: 0;
+                    }
+                }
+            }
         }
     }
 }

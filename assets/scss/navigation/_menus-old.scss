@@ -178,10 +178,8 @@
                 }
 
                 > ul {
-                    //left: auto;
-                    //right: 0;
-                    left: 0;
-                    right: auto;
+                    left: auto;
+                    right: 0;
                 }
             }
         }
@@ -191,7 +189,7 @@
             display: block;
             left: -9999px;
             margin: 0;
-            padding: 0.5rem;
+            padding: 0.5rem 0;
             border-radius: 3px;
             background-color: white;
             position: absolute;
@@ -203,10 +201,9 @@
                 background-color: $color--white;
                 left: auto;
 
-                &:hover > ul,
-                &.focus > ul {
-                    left: 100%;
-                    right: auto;
+                &:hover > ul, &.focus > ul {
+                    left: auto;
+                    right: 100%;
                 }
             }
 
@@ -221,31 +218,31 @@
                 }
             }
 
-            //&:before, &:after {
-            //    border-style: solid;
-            //    content: " ";
-            //    position: absolute;
-            //}
-            //
-            //&:before {
-            //    border-color: rgba(0, 0, 0, 0.06) transparent;
-            //    border-width: 0 10px 10px;
-            //    right: 9px;
-            //    top: -9px;
-            //}
-            //
-            //&:after {
-            //    border-color: $color--white transparent;
-            //    border-width: 0 8px 8px;
-            //    right: 11px;
-            //    top: -7px;
-            //}
+            &:before, &:after {
+                border-style: solid;
+                content: " ";
+                position: absolute;
+            }
+
+            &:before {
+                border-color: rgba(0, 0, 0, 0.06) transparent;
+                border-width: 0 10px 10px;
+                right: 9px;
+                top: -9px;
+            }
+
+            &:after {
+                border-color: $color--white transparent;
+                border-width: 0 8px 8px;
+                right: 11px;
+                top: -7px;
+            }
 
             .menu-item-has-children > a {
                 padding-right: 30px;
 
                 &:after {
-                    content: "\f105";
+                    content: "\f104";
                     right: 8px;
                     top: 10px;
                 }

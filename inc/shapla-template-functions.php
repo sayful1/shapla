@@ -87,9 +87,10 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
         <div id="site-header-menu" class="site-header-menu">
             <nav id="site-navigation" class="main-navigation" role="navigation">
 				<?php wp_nav_menu( array(
-					'theme_location' => 'primary',
-					'menu_class'     => 'primary-menu',
-					'menu_id'        => 'primary-menu'
+					'theme_location'  => 'primary',
+					'menu_class'      => 'primary-menu',
+					'menu_id'         => 'primary-menu',
+					'container_class' => 'primary-menu-container',
 				) ); ?>
             </nav><!-- #site-navigation -->
         </div>
