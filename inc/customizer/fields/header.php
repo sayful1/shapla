@@ -34,7 +34,7 @@ $shapla->customizer->add_field( array(
 // Site Title Color
 $shapla->customizer->add_field( array(
 	'settings' => 'header_background_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Background Color', 'shapla' ),
 	'default'  => '#212a34',

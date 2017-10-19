@@ -23,6 +23,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'radio',
 			'radio-image',
 			'radio-button',
+			'alpha-color',
 		);
 
 		/**
@@ -330,6 +331,28 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
+		 * add a simple, color input.
+		 *
+		 * @param  WP_Customize_Manager $wp_customize
+		 * @param  array $field
+		 *
+		 * @return Customize_Alpha_Color_Control
+		 */
+		public function alpha_color( $wp_customize, $field ) {
+			if ( ! class_exists( 'Customize_Alpha_Color_Control' ) ) {
+				require_once 'controls/alpha-color-picker/alpha-color-picker.php';
+			}
+
+			return new Customize_Alpha_Color_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'settings'    => $field['settings'],
+			) );
+		}
+
+		/**
 		 * add a simple, single-line text input.
 		 *
 		 * @param  WP_Customize_Manager $wp_customize
@@ -415,6 +438,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function sanitize_text( $input ) {
 			return sanitize_text_field( $input );
+		}
+
+		/**
+		 * Sanitizes a Hex, RGB or RGBA color
+		 *
+		 * @param  string $color
+		 *
+		 * @return string
+		 */
+		public function sanitize_alpha_color( $color ) {
+			return $this->sanitize_color( $color );
 		}
 
 		/**
