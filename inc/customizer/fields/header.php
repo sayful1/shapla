@@ -50,7 +50,7 @@ $shapla->customizer->add_field( array(
 // Header text color
 $shapla->customizer->add_field( array(
 	'settings' => 'header_text_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Text Color', 'shapla' ),
 	'default'  => '#f1f1f1',
@@ -80,7 +80,7 @@ $shapla->customizer->add_field( array(
 // Header link color
 $shapla->customizer->add_field( array(
 	'settings' => 'header_link_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Link Color', 'shapla' ),
 	'default'  => '#96588a',

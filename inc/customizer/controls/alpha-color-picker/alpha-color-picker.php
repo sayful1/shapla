@@ -32,12 +32,23 @@ class Customize_Alpha_Color_Control extends WP_Customize_Control {
 	 *
 	 * Supported palette values are true, false, or an array of RGBa and Hex colors.
 	 */
-	public $palette;
+	public $palette = array(
+		'#000000', // black
+		'#FFFFFF', // white
+		'#9E9E9E', // grey
+		'#2196F3', // blue
+		'#4CAF50', // green
+		'#FFC107', // amber
+		'#009688', // teal
+		'#F44336', // red
+		'#E91E63', // pink
+		'#9C27B0', // purple
+	);
 
 	/**
 	 * Add support for showing the opacity value on the slider handle.
 	 */
-	public $show_opacity;
+	public $show_opacity = true;
 
 	/**
 	 * Enqueue scripts and styles.

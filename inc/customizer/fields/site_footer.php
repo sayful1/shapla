@@ -48,7 +48,7 @@ $shapla->customizer->add_field( array(
 // Footer Widget Area
 $shapla->customizer->add_field( array(
 	'settings' => 'footer_widget_background_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Background Color', 'shapla' ),
 	'default'  => '#212a34',
@@ -67,7 +67,7 @@ $shapla->customizer->add_field( array(
 
 $shapla->customizer->add_field( array(
 	'settings' => 'footer_widget_text_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Text Color', 'shapla' ),
 	'default'  => '#f1f1f1',
@@ -93,7 +93,7 @@ $shapla->customizer->add_field( array(
 
 $shapla->customizer->add_field( array(
 	'settings' => 'footer_widget_link_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Link Color', 'shapla' ),
 	'default'  => '#f1f1f1',
@@ -109,7 +109,7 @@ $shapla->customizer->add_field( array(
 // Site Footer Bottom Bar Background Color
 $shapla->customizer->add_field( array(
 	'settings' => 'site_footer_bg_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Background Color', 'shapla' ),
 	'default'  => '#19212a',
@@ -125,7 +125,7 @@ $shapla->customizer->add_field( array(
 // Site Footer Bottom Bar Text Color
 $shapla->customizer->add_field( array(
 	'settings' => 'site_footer_text_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Text Color', 'shapla' ),
 	'default'  => '#9e9e9e',
@@ -141,7 +141,7 @@ $shapla->customizer->add_field( array(
 // Site Footer Bottom Bar Link Color
 $shapla->customizer->add_field( array(
 	'settings' => 'site_footer_link_color',
-	'type'     => 'color',
+	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Link Color', 'shapla' ),
 	'default'  => '#f1f1f1',
