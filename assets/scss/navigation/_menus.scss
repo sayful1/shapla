@@ -8,6 +8,7 @@
     }
 }
 
+// Menu Toggle Button
 .menu-toggle {
     cursor: pointer;
     position: relative;
@@ -59,10 +60,50 @@
                 transform-origin: left bottom;
             }
         }
-
     }
 }
 
+// Drop Toggle button
+.dropdown-toggle {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    color: $color--light_grey;
+    content: "";
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-transform: none;
+    top: 0;
+    height: 3rem;
+    width: 3rem;
+
+    &:after {
+        content: "\02795"; // Unicode character for "plus" sign (+)
+        font-size: 0.875rem;
+        left: 1px;
+        position: relative;
+        width: 3rem;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        box-shadow: none;
+        color: $color--strikemaster;
+    }
+
+    &:focus {
+        outline: thin dotted;
+        outline-offset: -1px;
+    }
+
+    &.toggled-on:after {
+        content: "\2796"; // Unicode character for "minus" sign (-)
+    }
+}
+
+// Main Navigation style for small screen
 .main-navigation {
     font-size: 0.875rem;
     line-height: 1.5;
@@ -114,46 +155,10 @@
     }
 }
 
-.dropdown-toggle {
-    background-color: transparent;
-    border: 0;
-    border-radius: 0;
-    color: $color--light_grey;
-    content: "";
-    padding: 0;
-    position: absolute;
-    right: 0;
-    text-transform: none;
-    top: 0;
-    height: 3rem;
-    width: 3rem;
-
-    &:after {
-        content: "\02795"; // Unicode character for "plus" sign (+)
-        font-size: 0.875rem;
-        left: 1px;
-        position: relative;
-        width: 3rem;
-    }
-
-    &:hover,
-    &:focus {
-        background-color: transparent;
-        box-shadow: none;
-        color: $color--strikemaster;
-    }
-
-    &:focus {
-        outline: thin dotted;
-        outline-offset: -1px;
-    }
-
-    &.toggled-on:after {
-        content: "\2796"; // Unicode character for "minus" sign (-)
-    }
-}
-
-// media screen >= 1025px
+/**!
+ * Main navigation style for large screen
+ * media screen >= 1025px
+ */
 @media screen and (min-width: $nav-toggle-width) {
 
     .main-navigation {
@@ -268,5 +273,68 @@
     .dropdown-toggle,
     .menu-toggle {
         display: none;
+    }
+}
+
+@media screen and (min-width: $nav-toggle-width) {
+    .main-navigation.dropdown-rtl {
+        li {
+            &:hover, &.focus {
+                > ul {
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+
+        ul ul {
+            li {
+                &:hover > ul,
+                &.focus > ul {
+                    left: auto;
+                    right: 100%;
+                }
+            }
+
+            &:before,
+            &:after {
+                border-style: solid;
+                content: " ";
+                position: absolute;
+            }
+
+            &:before {
+                border-color: rgba(0, 0, 0, 0.06) transparent;
+                border-width: 0 10px 10px;
+                right: 6px;
+                top: -9px;
+            }
+
+            &:after {
+                border-color: $color--white transparent;
+                border-width: 0 8px 8px;
+                right: 8px;
+                top: -7px;
+            }
+
+            .menu-item-has-children > a {
+                &:after {
+                    transform: rotate(135deg);
+                }
+            }
+        }
+
+        ul ul ul {
+            &:before,
+            &:after {
+                border: 0;
+            }
+        }
+
+        .menu-item-has-children > a {
+            &:after {
+                transform: rotate(45deg);
+            }
+        }
     }
 }

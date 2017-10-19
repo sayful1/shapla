@@ -77,8 +77,9 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 	 * @return void
 	 */
 	function shapla_primary_navigation() {
-		$nav_class = 'main-navigation';
-		$nav_class .= ' dropdown-ltr';
+		$_direction = get_theme_mod( 'dropdown_direction', 'rtl' );
+		$nav_class  = 'main-navigation';
+		$nav_class  .= $_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
 		?>
         <span id="menu-toggle" class="menu-toggle" aria-controls="primary-menu"
               aria-expanded="false">
