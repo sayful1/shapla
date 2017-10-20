@@ -263,6 +263,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 			if ( $slug == 'dialog-contact-form' ) {
 				$plugin_root_file = 'init';
+			} elseif ( $slug == 'wordpress-seo' ) {
+				$plugin_root_file = 'wp-seo';
 			} else {
 				$plugin_root_file = $slug;
 			}

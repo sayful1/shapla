@@ -1,3 +1,13 @@
+##### 1.2.3-dev
+* Added - Add recommended plugins list in theme page.
+* Added - Add radio image customize controller.
+* Added - Add radio button customize control.
+* Tweak - Add alpha color customize control.
+* Added - Add three header layout.
+* Tweak - Update primary navigation style.
+* Tweak - Update menu style for dropdown direction.
+* Tweak - Add changelog to theme page.
+
 ##### 1.2.2 - September 28, 2017
 * Tweak - Update Shapla_Customizer::sanitize_color() method.
 * Fixed - Jetpack in infinite-scroll style not working properly.

@@ -12,6 +12,9 @@ $recommended_plugins = array(
 		array( 'slug' => 'dialog-contact-form', ),
 		array( 'slug' => 'filterable-portfolio', ),
 		array( 'slug' => 'woocommerce', ),
+		array( 'slug' => 'wordpress-seo', ),
+		array( 'slug' => 'updraftplus', ),
+		array( 'slug' => 'loginizer', ),
 	),
 );
 
