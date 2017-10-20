@@ -1,5 +1,3 @@
-# Changelog
-
 ##### 1.2.2 - September 28, 2017
 * Tweak - Update Shapla_Customizer::sanitize_color() method.
 * Fixed - Jetpack in infinite-scroll style not working properly.

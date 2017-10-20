@@ -121,6 +121,10 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 			// Display content for current tab
 			switch ( $tab ) {
+				case 'changelog':
+					$template = $template_path . '/changelog.php';
+					break;
+
 				case 'recommended_plugins':
 					$template = $template_path . '/recommended_plugins.php';
 					break;
@@ -142,6 +146,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			$this->tabs = array(
 				'getting_started'     => __( 'Getting Started', 'shapla' ),
 				'recommended_plugins' => __( 'Useful Plugins', 'shapla' ),
+				'changelog'           => __( 'Change log', 'shapla' ),
 			);
 
 			return $this->tabs;

@@ -43,7 +43,7 @@ include 'inc/modules/class-shapla-blog.php';
  * Load Jetpack compatibility class.
  */
 if ( class_exists( 'Jetpack' ) ) {
-	$shapla->jetpack = require 'inc/class-shapla-jetpack.php';
+	$shapla->jetpack = require 'inc/jetpack/class-shapla-jetpack.php';
 }
 
 

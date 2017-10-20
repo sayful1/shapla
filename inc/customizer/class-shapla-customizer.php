@@ -336,14 +336,14 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @param  WP_Customize_Manager $wp_customize
 		 * @param  array $field
 		 *
-		 * @return Customize_Alpha_Color_Control
+		 * @return Shapla_Color_Customize_Control
 		 */
 		public function alpha_color( $wp_customize, $field ) {
 			if ( ! class_exists( 'Customize_Alpha_Color_Control' ) ) {
-				require_once 'controls/alpha-color-picker/alpha-color-picker.php';
+				require_once 'controls/alpha-color/alpha-color-picker.php';
 			}
 
-			return new Customize_Alpha_Color_Control( $wp_customize, $field['settings'], array(
+			return new Shapla_Color_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
 				'description' => isset( $field['description'] ) ? $field['description'] : '',
 				'section'     => $field['section'],
@@ -382,7 +382,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function radio_image( $wp_customize, $field ) {
 			if ( ! class_exists( 'Shapla_Radio_Image_Customize_Control' ) ) {
-				require_once 'controls/class-shapla-radio-image-customize-control.php';
+				require_once 'controls/radio-image/class-shapla-radio-image-customize-control.php';
 			}
 
 			return new Shapla_Radio_Image_Customize_Control( $wp_customize, $field['settings'], array(
@@ -405,7 +405,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function radio_button( $wp_customize, $field ) {
 			if ( ! class_exists( 'Shapla_Radio_Button_Customize_Control' ) ) {
-				require_once 'controls/class-shapla-radio-button-customize-control.php';
+				require_once 'controls/radio-button/class-shapla-radio-button-customize-control.php';
 			}
 
 			return new Shapla_Radio_Button_Customize_Control( $wp_customize, $field['settings'], array(
