@@ -16,6 +16,3 @@ add_action( 'woocommerce_after_shop_loop', 'shapla_paging_nav', 10 );
 
 // Remove woocommerce breadcrumb
 // remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
-
-// Change number or products per row
-// add_filter('loop_shop_columns', 'shapla_loop_shop_columns');

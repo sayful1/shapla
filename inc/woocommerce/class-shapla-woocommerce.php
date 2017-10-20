@@ -32,6 +32,7 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_products_args' ) );
 			// Add body classes for shop columns
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
+			// WooCommerce upsell product per columns
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'output_upsells' ), 15 );
 
@@ -91,7 +92,13 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		 * Load scripts for WooCommerce
 		 */
 		public function woocommerce_scripts() {
-			wp_enqueue_style( 'shapla-woocommerce-style', get_template_directory_uri() . '/assets/css/woocommerce.css', array(), null, 'all' );
+			wp_enqueue_style(
+				'shapla-woocommerce-style',
+				get_template_directory_uri() . '/assets/css/woocommerce.css',
+				array(),
+				null,
+				'all'
+			);
 		}
 
 		/**

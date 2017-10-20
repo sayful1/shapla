@@ -53,6 +53,10 @@ if ( shapla_is_woocommerce_activated() ) {
 	require 'inc/woocommerce/shapla-woocommerce-template-functions.php';
 }
 
+if ( shapla_is_carousel_slider_activated() ) {
+	require 'inc/carousel-slider/class-shapla-carousel-slider.php';
+}
+
 
 if ( is_admin() ) {
 	require 'inc/admin/class-shapla-admin.php';

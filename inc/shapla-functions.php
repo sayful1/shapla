@@ -22,6 +22,15 @@ if ( ! function_exists( 'shapla_is_shaplatools_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'shapla_is_carousel_slider_activated' ) ) {
+	/**
+	 * Query Carousel_Slider activation
+	 */
+	function shapla_is_carousel_slider_activated() {
+		return class_exists( 'Carousel_Slider' );
+	}
+}
+
 if ( ! function_exists( 'shapla_header_styles' ) ) {
 	/**
 	 * Apply inline style to the Shapla header.
