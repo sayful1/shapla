@@ -54,3 +54,48 @@ if ( ! function_exists( 'shapla_loop_shop_columns' ) ) {
 		return apply_filters( 'shapla_loop_shop_columns', 4 );
 	}
 }
+
+if ( ! function_exists( 'shapla_wc_product_search' ) ) {
+	/**
+	 * WooCommerce Product Search
+	 */
+	function shapla_wc_product_search() {
+		if ( ! shapla_is_woocommerce_activated() ) {
+			return;
+		}
+		$q_var    = get_query_var( 'product_cat' );
+		$selected = empty( $q_var ) ? '' : $q_var;
+		$args     = array(
+			'show_option_none'  => __( 'All', 'shapla' ),
+			'option_none_value' => '',
+			'orderby'           => 'name',
+			'taxonomy'          => 'product_cat',
+			'name'              => 'product_cat',
+			'class'             => 'shapla-cat-list',
+			'value_field'       => 'slug',
+			'selected'          => $selected,
+			'hide_if_empty'     => 1,
+			'echo'              => 1,
+			'show_count'        => 0,
+			'hierarchical'      => 1,
+		);
+		?>
+        <div class="shapla-product-search">
+            <form role="search" method="get" class="shapla-product-search-form"
+                  action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                <div class="nav-left">
+					<?php wp_dropdown_categories( $args ); ?>
+                </div>
+                <div class="nav-fill">
+                    <input type="hidden" name="post_type" value="product"/>
+                    <input name="s" type="text" value="<?php echo get_search_query(); ?>"
+                           placeholder="<?php esc_attr_e( 'Search for products', 'shapla' ); ?>"/>
+                </div>
+                <div class="nav-right">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+		<?php
+	}
+}

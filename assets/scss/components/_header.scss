@@ -171,5 +171,34 @@
                 padding-left: 0;
             }
         }
+
+        @media screen and (min-width: $nav-toggle-width) {
+            .shapla-product-search {
+                order: 1;
+                padding: 1rem 0 1rem 1rem;
+
+                &-form {
+                    display: flex;
+                }
+
+                .nav-left {
+                    position: relative;
+                    float: left;
+                    width: auto;
+                    .shapla-cat-list {
+                        padding: 0.7rem 0.5rem;
+                    }
+                }
+                .nav-fill {
+                    position: relative;
+                    overflow: hidden;
+                    width: auto;
+                }
+                .nav-right {
+                    position: relative;
+                    float: right;
+                }
+            }
+        }
     }
 }

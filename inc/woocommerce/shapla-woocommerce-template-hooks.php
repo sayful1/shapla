@@ -16,3 +16,5 @@ add_action( 'woocommerce_after_shop_loop', 'shapla_paging_nav', 10 );
 
 // Remove woocommerce breadcrumb
 // remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+
+add_action( 'shapla_header', 'shapla_wc_product_search', 25 );
