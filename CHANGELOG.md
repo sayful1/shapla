@@ -4,6 +4,7 @@
 * Added - Add radio button customize control.
 * Tweak - Add alpha color customize control.
 * Added - Add three header layout.
+* Added - WooCommerce Product search with categories dropdown.
 * Tweak - Update primary navigation style.
 * Tweak - Update menu style for dropdown direction.
 * Tweak - Add changelog to theme page.

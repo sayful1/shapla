@@ -63,6 +63,12 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 		if ( ! shapla_is_woocommerce_activated() ) {
 			return;
 		}
+
+		$header_layout = get_theme_mod( 'header_layout', 'default' );
+		if ( $header_layout != 'widget' ) {
+			return;
+		}
+
 		$q_var    = get_query_var( 'product_cat' );
 		$selected = empty( $q_var ) ? '' : $q_var;
 		$args     = array(
@@ -84,15 +90,21 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
             <form role="search" method="get" class="shapla-product-search-form"
                   action="<?php echo esc_url( home_url( '/' ) ); ?>">
                 <div class="nav-left">
+                    <div class="nav-search-facade" data-value="search-alias=aps">
+                        <span class="nav-search-label" data-default="<?php esc_html_e( 'All', 'shapla' ); ?>">
+                            <?php esc_html_e( 'All', 'shapla' ); ?>
+                        </span>
+                        <i class="fa fa-angle-down"></i>
+                    </div>
 					<?php wp_dropdown_categories( $args ); ?>
+                </div>
+                <div class="nav-right">
+                    <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
                 <div class="nav-fill">
                     <input type="hidden" name="post_type" value="product"/>
                     <input name="s" type="text" value="<?php echo get_search_query(); ?>"
                            placeholder="<?php esc_attr_e( 'Search for products', 'shapla' ); ?>"/>
-                </div>
-                <div class="nav-right">
-                    <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </form>
         </div>

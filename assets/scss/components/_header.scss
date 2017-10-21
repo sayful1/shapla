@@ -171,34 +171,85 @@
                 padding-left: 0;
             }
         }
+    }
+}
 
-        @media screen and (min-width: $nav-toggle-width) {
-            .shapla-product-search {
-                order: 1;
-                padding: 1rem 0 1rem 1rem;
+@media screen and (min-width: $nav-toggle-width) {
+    .shapla-product-search {
+        order: 1;
+        padding: 1rem 0 1rem 1rem;
+        width: 50%;
+        float: left;
+        position: relative;
+        z-index: 1;
 
-                &-form {
-                    display: flex;
-                }
+        &-form {
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
 
-                .nav-left {
-                    position: relative;
-                    float: left;
-                    width: auto;
-                    .shapla-cat-list {
-                        padding: 0.7rem 0.5rem;
-                    }
-                }
-                .nav-fill {
-                    position: relative;
-                    overflow: hidden;
-                    width: auto;
-                }
-                .nav-right {
-                    position: relative;
-                    float: right;
-                }
+        input[type="text"] {
+            padding: 0 10px;
+            background: #ffffff;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            height: 34px;
+            line-height: 34px;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            padding: 0;
+            width: 50px;
+            text-align: center;
+            height: 34px;
+            line-height: 34px;
+            border-radius: 0 3px 3px 0;
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .nav-left {
+            position: relative;
+            float: left;
+            width: auto;
+
+            .shapla-cat-list {
+                padding: 0.7rem 0.5rem;
             }
+        }
+        .nav-fill {
+            position: relative;
+            overflow: hidden;
+            width: auto;
+        }
+        .nav-right {
+            position: relative;
+            float: right;
+        }
+
+        .shapla-cat-list {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            height: 32px;
+            line-height: 32px;
+            border: none;
+            background: #ffffff;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .nav-search-facade {
+            background-color: #ffffff;
+            border-radius: 3px 0 0 3px;
+            border: 1px solid #ddd;
+            height: 34px;
+            line-height: 34px;
+            padding: 0 10px;
+            text-transform: capitalize;
+            color: #666666;
         }
     }
 }
