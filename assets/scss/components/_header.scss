@@ -182,6 +182,7 @@
         float: left;
         position: relative;
         z-index: 1;
+        margin-left: auto;
 
         &-form {
             margin: 0;
@@ -250,6 +251,106 @@
             padding: 0 10px;
             text-transform: capitalize;
             color: #666666;
+        }
+    }
+
+    .site-header-cart {
+        display: block;
+        list-style-type: none;
+        position: relative;
+        order: 1;
+        width: auto; //calc(25% - 2rem);
+        padding: 1rem 0 1rem 0;
+        margin: 0 0 0 2rem;
+
+        .cart-contents {
+            padding: 0.5rem 0;
+            display: block;
+            position: relative;
+            background-color: transparent;
+            height: auto;
+            width: auto;
+            text-indent: 0;
+
+            &:after {
+                @include fa-icon();
+                height: 1em;
+                float: right;
+                content: "\f291";
+                line-height: 1.5;
+                margin-left: 1rem;
+            }
+
+            .amount {
+                margin-right: 0.5rem;
+            }
+
+            .count {
+                font-weight: 300;
+                opacity: .5;
+                font-size: .875rem;
+            }
+
+            span {
+                display: inline;
+
+                &.label-cart {
+                    display: none;
+                }
+            }
+        }
+
+        .widget_shopping_cart {
+            display: none;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            min-width: 260px;
+            z-index: 999999;
+            right: -9999em;
+            background: #fff;
+            box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+            border-radius: 3px;
+            padding: 1rem;
+
+            .woocommerce-mini-cart {
+                max-height: 180px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+
+            .woocommerce-mini-cart__buttons {
+                margin-bottom: -8px;
+            }
+
+            &:before,
+            &:after {
+                border-style: solid;
+                content: " ";
+                position: absolute;
+            }
+
+            &:before {
+                border-color: rgba(0, 0, 0, 0.06) transparent;
+                border-width: 0 10px 10px;
+                right: 18px;
+                top: -9px;
+            }
+
+            &:after {
+                border-color: $color--white transparent;
+                border-width: 0 8px 8px;
+                right: 20px;
+                top: -7px;
+            }
+        }
+
+        &:hover,
+        &.focus {
+            .widget_shopping_cart {
+                right: 0;
+                display: block;
+            }
         }
     }
 }
