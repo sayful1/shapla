@@ -18,12 +18,6 @@ $shapla->customizer->add_section( 'button_primary', array(
 	'panel'       => 'button_panel',
 	'priority'    => 10,
 ) );
-$shapla->customizer->add_section( 'button_alternate', array(
-	'title'       => __( 'Alternate Button', 'shapla' ),
-	'description' => __( 'Customise the look & feel of your web site alternate buttons.', 'shapla' ),
-	'panel'       => 'button_panel',
-	'priority'    => 10,
-) );
 
 // Button Background Color
 $shapla->customizer->add_field( array(
@@ -37,11 +31,11 @@ $shapla->customizer->add_field( array(
 		array(
 			'element'  => array(
 				'button',
+				'.button',
+				'a.button',
 				'input[type="button"]',
 				'input[type="reset"]',
 				'input[type="submit"]',
-				'.button',
-				'a.button',
 			),
 			'property' => 'background-color',
 		),
@@ -60,11 +54,23 @@ $shapla->customizer->add_field( array(
 		array(
 			'element'  => array(
 				'button:hover',
-				'input[type="button"]:hover',
-				'input[type="reset"]:hover',
-				'input[type="submit"]:hover',
+				'button:focus',
+				'button:active',
 				'.button:hover',
+				'.button:focus',
+				'.button:active',
 				'a.button:hover',
+				'a.button:focus',
+				'a.button:active',
+				'input[type="button"]:hover',
+				'input[type="button"]:focus',
+				'input[type="button"]:active',
+				'input[type="reset"]:hover',
+				'input[type="reset"]:focus',
+				'input[type="reset"]:active',
+				'input[type="submit"]:hover',
+				'input[type="submit"]:focus',
+				'input[type="submit"]:active',
 			),
 			'property' => 'background-color',
 		),
@@ -83,11 +89,11 @@ $shapla->customizer->add_field( array(
 		array(
 			'element'  => array(
 				'button',
+				'.button',
+				'a.button',
 				'input[type="button"]',
 				'input[type="reset"]',
 				'input[type="submit"]',
-				'.button',
-				'a.button',
 			),
 			'property' => 'color',
 		),
@@ -106,104 +112,23 @@ $shapla->customizer->add_field( array(
 		array(
 			'element'  => array(
 				'button:hover',
-				'input[type="button"]:hover',
-				'input[type="reset"]:hover',
-				'input[type="submit"]:hover',
+				'button:focus',
+				'button:active',
 				'.button:hover',
+				'.button:focus',
+				'.button:active',
 				'a.button:hover',
-			),
-			'property' => 'color',
-		),
-	),
-) );
-
-
-// Alternate Button Background Color
-$shapla->customizer->add_field( array(
-	'settings' => 'button_alternate_background_color',
-	'type'     => 'alpha-color',
-	'section'  => 'button_alternate',
-	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => '#96588a',
-	'priority' => 10,
-	'output'   => array(
-		array(
-			'element'  => array(
-				'button.alt',
-				'input[type="button"].alt',
-				'input[type="reset"].alt',
-				'input[type="submit"].alt',
-				'.button.alt',
-				'a.button.alt',
-			),
-			'property' => 'background-color',
-		),
-	),
-) );
-
-// Alternate Button Background Hover Color
-$shapla->customizer->add_field( array(
-	'settings' => 'button_alternate_background_hover_color',
-	'type'     => 'alpha-color',
-	'section'  => 'button_alternate',
-	'label'    => __( 'Background Hover Color', 'shapla' ),
-	'default'  => '#7d3f71',
-	'priority' => 20,
-	'output'   => array(
-		array(
-			'element'  => array(
-				'button.alt:hover',
-				'input[type="button"].alt:hover',
-				'input[type="reset"].alt:hover',
-				'input[type="submit"].alt:hover',
-				'.button.alt:hover',
-				'a.button.alt:hover',
-			),
-			'property' => 'background-color',
-		),
-	),
-) );
-
-// Alternate Button Text Color
-$shapla->customizer->add_field( array(
-	'settings' => 'button_alternate_text_color',
-	'type'     => 'alpha-color',
-	'section'  => 'button_alternate',
-	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => '#ffffff',
-	'priority' => 30,
-	'output'   => array(
-		array(
-			'element'  => array(
-				'button.alt',
-				'input[type="button"].alt',
-				'input[type="reset"].alt',
-				'input[type="submit"].alt',
-				'.button.alt',
-				'a.button.alt',
-			),
-			'property' => 'color',
-		),
-	),
-) );
-
-// Alternate Button Text Hover Color
-$shapla->customizer->add_field( array(
-	'settings' => 'button_alternate_text_hover_color',
-	'type'     => 'alpha-color',
-	'section'  => 'button_alternate',
-	'label'    => __( 'Text Hover Color', 'shapla' ),
-	'default'  => '#ffffff',
-	'priority' => 40,
-	'output'   => array(
-		array(
-			'element'  => array(
-				'button.alt:hover',
-				'input[type="button"].alt:hover',
-				'input[type="reset"].alt:hover',
-				'input[type="submit"].alt:hover',
-				'.button.alt:hover',
-				'a.button.alt:hover',
+				'a.button:focus',
+				'a.button:active',
+				'input[type="button"]:hover',
+				'input[type="button"]:focus',
+				'input[type="button"]:active',
+				'input[type="reset"]:hover',
+				'input[type="reset"]:focus',
+				'input[type="reset"]:active',
+				'input[type="submit"]:hover',
+				'input[type="submit"]:focus',
+				'input[type="submit"]:active',
 			),
 			'property' => 'color',
 		),

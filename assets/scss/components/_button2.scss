@@ -1,0 +1,89 @@
+.button,
+a.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid transparent;
+    box-shadow: none;
+    display: inline-flex;
+    height: 2.25em;
+    line-height: 1.5;
+    position: relative;
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: white;
+    cursor: pointer;
+    justify-content: center;
+    padding: calc(0.375em - 1px) 0.75em;
+    text-align: center;
+    white-space: nowrap;
+    // border-color: #dbdbdb;
+    border-radius: 3px; // 2px for Small
+    font-size: 1rem; // 1.25rem for medium, 1.5rem for large
+    color: #363636;
+
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    &:hover {
+        //border-color: #b5b5b5;
+        color: #363636;
+    }
+
+    &:focus {
+        //border-color: #3273dc;
+        color: #363636;
+
+        &:not(:active) {
+            box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+        }
+    }
+
+    &:active {
+        //border-color: #4a4a4a;
+        color: #363636;
+    }
+
+    &[disabled] {
+        box-shadow: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &.loading {
+        cursor: not-allowed;
+        opacity: 0.5;
+        padding-right: 2.618em;
+
+        &::after {
+            @include fa-icon();
+            content: "\f110";
+            -webkit-animation: fa-spin .75s linear infinite;
+            -moz-animation: fa-spin .75s linear infinite;
+            animation: fa-spin .75s linear infinite;
+            vertical-align: top;
+            position: absolute;
+            top: 0.618em;
+            right: 1em;
+        }
+    }
+
+    &.added {
+        &::after {
+            @include fa-icon();
+            content: '\f00c';
+            margin-left: 0.618em;
+            vertical-align: bottom;
+        }
+    }
+}

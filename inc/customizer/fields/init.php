@@ -15,6 +15,7 @@ require 'title_tagline.php';
 require 'header.php';
 require 'site_footer.php';
 require 'buttons.php';
+require 'buttons-alt.php';
 require 'layout.php';
 require 'blog.php';
 
