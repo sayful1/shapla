@@ -32,7 +32,6 @@ input[type="submit"] {
     &:hover,
     &:active,
     &:focus {
-        //border-color: transparent;
         background-color: $btn-hover-background;
         color: $btn-color;
         outline: none;
