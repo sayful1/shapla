@@ -55,3 +55,55 @@ if ( ! function_exists( 'shapla_header_styles' ) ) {
 		}
 	}
 }
+
+if ( ! function_exists( 'shapla_find_color_invert' ) ) {
+	/**
+	 * Find light or dark color for given color
+	 *
+	 * @param $color
+	 *
+	 * @return string
+	 */
+	function shapla_find_color_invert( $color ) {
+		if ( '' === $color ) {
+			return '';
+		}
+
+		// Trim unneeded whitespace
+		$color = str_replace( ' ', '', $color );
+
+		// If this is hex color
+		if ( 1 === preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			$r = hexdec( substr( $color, 0, 2 ) );
+			$g = hexdec( substr( $color, 2, 2 ) );
+			$b = hexdec( substr( $color, 4, 2 ) );
+		}
+		// If this is rgb color
+		if ( 'rgb(' === substr( $color, 0, 4 ) ) {
+			list( $r, $g, $b ) = sscanf( $color, 'rgb(%d,%d,%d)' );
+		}
+
+		// If this is rgba color
+		if ( 'rgba(' === substr( $color, 0, 5 ) ) {
+			list( $r, $g, $b, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
+		}
+
+		if ( ! isset( $r, $g, $b ) ) {
+			return '';
+		}
+
+		$contrast = (
+			$r * $r * .299 +
+			$g * $g * .587 +
+			$b * $b * .114
+		);
+
+		if ( $contrast > pow( 130, 2 ) ) {
+			//bright color, use dark font
+			return '#000';
+		} else {
+			//dark color, use bright font
+			return '#fff';
+		}
+	}
+}

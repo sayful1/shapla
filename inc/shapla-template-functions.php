@@ -126,7 +126,11 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	 */
 	function shapla_search_toggle() {
 		$show_search_icon = get_theme_mod( 'show_search_icon' );
+		$header_layout    = get_theme_mod( 'header_layout', 'default' );
 		if ( ! $show_search_icon ) {
+			return;
+		}
+		if ( $header_layout != 'default' ) {
 			return;
 		}
 		?>
@@ -144,7 +148,11 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 	 */
 	function shapla_search_form() {
 		$show_search_icon = get_theme_mod( 'show_search_icon' );
+		$header_layout    = get_theme_mod( 'header_layout', 'default' );
 		if ( ! $show_search_icon ) {
+			return;
+		}
+		if ( $header_layout != 'default' ) {
 			return;
 		}
 		?>

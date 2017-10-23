@@ -1,0 +1,28 @@
+.shapla-header-center {
+    .site-header-inner {
+        .site-branding {
+            width: 100%;
+            text-align: center;
+        }
+        .menu-toggle {
+            margin: 0 auto;
+        }
+        .site-header-menu {
+            width: 100%;
+            margin: 0;
+        }
+        .primary-menu-container {
+            display: block;
+        }
+        .search-toggle {
+            display: none;
+        }
+        @media screen and (min-width: $nav-toggle-width) {
+            .primary-menu-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

@@ -153,22 +153,28 @@ if ( ! function_exists( 'shapla_header_cart' ) ) {
 	 * @return void
 	 */
 	function shapla_header_cart() {
-		if ( shapla_is_woocommerce_activated() ) {
-			if ( is_cart() ) {
-				$class = 'current-menu-item';
-			} else {
-				$class = '';
-			}
-			?>
-            <ul id="site-header-cart" class="site-header-cart menu">
-                <li class="<?php echo esc_attr( $class ); ?>">
-					<?php shapla_cart_link(); ?>
-                </li>
-                <li>
-					<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
-                </li>
-            </ul>
-			<?php
+		if ( ! shapla_is_woocommerce_activated() ) {
+			return;
 		}
+		$header_layout = get_theme_mod( 'header_layout', 'default' );
+		if ( $header_layout != 'widget' ) {
+			return;
+		}
+
+		if ( is_cart() ) {
+			$class = 'current-menu-item';
+		} else {
+			$class = '';
+		}
+		?>
+        <ul id="site-header-cart" class="site-header-cart menu">
+            <li class="<?php echo esc_attr( $class ); ?>">
+				<?php shapla_cart_link(); ?>
+            </li>
+            <li>
+				<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
+            </li>
+        </ul>
+		<?php
 	}
 }

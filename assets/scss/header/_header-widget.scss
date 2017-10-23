@@ -1,0 +1,26 @@
+.shapla-header-widget {
+    .site-header-inner {
+        .site-branding {
+            display: inline-flex;
+            padding-right: 1rem;
+        }
+
+        .site-header-menu {
+            width: 100%;
+            margin: 0;
+        }
+
+        .primary-menu-container {
+            display: block;
+        }
+        .search-toggle {
+            display: none;
+        }
+
+        ul.primary-menu > li {
+            &:first-child > a {
+                padding-left: 0;
+            }
+        }
+    }
+}
