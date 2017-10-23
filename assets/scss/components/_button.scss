@@ -4,79 +4,49 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid transparent;
+    box-shadow: none;
+    display: inline-flex;
+    line-height: 1;
+    position: relative;
+    vertical-align: top;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    justify-content: center;
+    padding: 0.75em 1.5em;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 3px; // 2px for Small
+    font-size: 1rem; // 1.25rem for medium, 1.5rem for large
     background-color: $btn-background;
     color: $btn-color;
-    border: 0;
-    border-radius: 0;
-    cursor: pointer;
-    display: inline-block;
-    overflow: visible;
-    padding: 0.9em 1em;
-    text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    font-size: 100%;
-    font-weight: 400;
-    margin: 0;
-    left: auto;
-    line-height: 1;
-    outline: 0;
-    position: relative;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    text-shadow: none;
+    transition: all 0.3s ease-in-out;
 
     &:hover,
     &:active,
     &:focus {
+        //border-color: transparent;
         background-color: $btn-hover-background;
         color: $btn-color;
-        text-decoration: none;
+        outline: none;
     }
 
-    &.alt {
-        background-color: $btn-alt-background;
-        color: $btn-alt-color;
-        -webkit-font-smoothing: antialiased;
-
-        &:hover {
-            background-color: $btn-alt-hover-background;
-            color: $btn-alt-color;
+    &:focus {
+        &:not(:active) {
+            box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
         }
     }
 
-    &:disabled,
-    &:disabled[disabled],
-    &:disabled:hover,
-    &:disabled[disabled]:hover {
+    &[disabled] {
+        box-shadow: none;
         cursor: not-allowed;
         opacity: 0.5;
-    }
-
-    &.loading {
-        opacity: 0.25;
-        padding-right: 2.618em;
-
-        &::after {
-            @include fa-icon();
-            content: "\f110";
-            -webkit-animation: fa-spin .75s linear infinite;
-            -moz-animation: fa-spin .75s linear infinite;
-            animation: fa-spin .75s linear infinite;
-            vertical-align: top;
-            position: absolute;
-            top: 0.618em;
-            right: 1em;
-        }
-    }
-
-    &.added {
-        &::after {
-            @include fa-icon();
-            content: '\f00c';
-            margin-left: 0.618em;
-            vertical-align: bottom;
-        }
     }
 }

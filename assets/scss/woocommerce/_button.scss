@@ -1,3 +1,48 @@
+.button,
+a.button,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+
+    &.alt {
+        background-color: $btn-alt-background;
+        color: $btn-alt-color;
+
+        &:hover {
+            background-color: $btn-alt-hover-background;
+            color: $btn-alt-color;
+        }
+    }
+
+    &.loading {
+        cursor: not-allowed;
+        opacity: 0.5;
+        padding-right: 2.618em;
+
+        &::after {
+            @include fa-icon();
+            content: "\f110";
+            -webkit-animation: fa-spin .75s linear infinite;
+            -moz-animation: fa-spin .75s linear infinite;
+            animation: fa-spin .75s linear infinite;
+            vertical-align: top;
+            position: absolute;
+            top: 0.618em;
+            right: 1em;
+        }
+    }
+
+    &.added {
+        &::after {
+            @include fa-icon();
+            content: '\f00c';
+            margin-left: 0.618em;
+            vertical-align: bottom;
+        }
+    }
+}
+
 .wc-forward {
     &::after {
         @include fa-icon();

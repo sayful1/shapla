@@ -130,3 +130,51 @@ $shapla->customizer->add_field( array(
 		),
 	),
 ) );
+
+// Button Font Size
+$shapla->customizer->add_field( array(
+	'settings'    => 'button_alternate_font_size',
+	'type'        => 'text',
+	'section'     => 'button_alternate',
+	'label'       => __( 'Font Size', 'shapla' ),
+	'description' => __( 'Enter a px, em, or rem value for button font size. ex: 15px', 'shapla' ),
+	'default'     => '1rem',
+	'priority'    => 50,
+	'output'      => array(
+		array(
+			'element'  => array(
+				'button.alt',
+				'.button.alt',
+				'a.button.alt',
+				'input[type="button"].alt',
+				'input[type="reset"].alt',
+				'input[type="submit"].alt',
+			),
+			'property' => 'font-size',
+		),
+	),
+) );
+
+// Button Border Radius
+$shapla->customizer->add_field( array(
+	'settings'    => 'button_alternate_border_radius',
+	'type'        => 'text',
+	'section'     => 'button_alternate',
+	'label'       => __( 'Border Radius', 'shapla' ),
+	'description' => __( 'Enter a px value for button. ex: 3px', 'shapla' ),
+	'default'     => '3px',
+	'priority'    => 60,
+	'output'      => array(
+		array(
+			'element'  => array(
+				'button.alt',
+				'.button.alt',
+				'a.button.alt',
+				'input[type="button"].alt',
+				'input[type="reset"].alt',
+				'input[type="submit"].alt',
+			),
+			'property' => 'border-radius',
+		),
+	),
+) );
