@@ -21,3 +21,4 @@ add_action( 'shapla_header', 'shapla_wc_product_search', 25 );
 add_action( 'shapla_header', 'shapla_header_cart', 30 );
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'shapla_add_to_cart_fragments' );
+add_filter( 'woocommerce_breadcrumb_defaults', 'shapla_wc_breadcrumb' );

@@ -178,3 +178,18 @@ if ( ! function_exists( 'shapla_header_cart' ) ) {
 		<?php
 	}
 }
+
+if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
+	function shapla_wc_breadcrumb() {
+		$args = apply_filters( 'shapla_wc_breadcrumb', array(
+			'delimiter'   => '',
+			'wrap_before' => '<nav class="breadcrumb has-succeeds-separator"><ul>',
+			'wrap_after'  => '</ul></nav>',
+			'before'      => '<li>',
+			'after'       => '</li>',
+			'home'        => _x( 'Home', 'breadcrumb', 'shapla' ),
+		) );
+
+		return $args;
+	}
+}
