@@ -18,18 +18,15 @@ input[type="submit"] {
     &.loading {
         cursor: not-allowed;
         opacity: 0.5;
-        padding-right: 2.618em;
 
         &::after {
             @include fa-icon();
             content: "\f110";
+            margin-left: 0.75em;
+            vertical-align: bottom;
             -webkit-animation: fa-spin .75s linear infinite;
             -moz-animation: fa-spin .75s linear infinite;
             animation: fa-spin .75s linear infinite;
-            vertical-align: top;
-            position: absolute;
-            top: 0.618em;
-            right: 1em;
         }
     }
 
@@ -37,7 +34,7 @@ input[type="submit"] {
         &::after {
             @include fa-icon();
             content: '\f00c';
-            margin-left: 0.618em;
+            margin-left: 0.75em;
             vertical-align: bottom;
         }
     }
@@ -47,7 +44,7 @@ input[type="submit"] {
     &::after {
         @include fa-icon();
         content: '\f178';
-        margin-left: 0.618em;
+        margin-left: 0.75em;
         vertical-align: middle;
     }
 }

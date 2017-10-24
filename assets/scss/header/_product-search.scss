@@ -39,22 +39,21 @@
         position: relative;
         float: right;
     }
-
-    .shapla-cat-list {
-        padding: 0.6em;
-        position: absolute;
-        top: 1px;
-        left: 1px;
-        border: none;
-        opacity: 0;
-        cursor: pointer;
-    }
     .nav-search-facade {
         border: 1px solid #dbdbdb;
         border-radius: 3px 0 0 3px;
         padding: 0.5em;
         text-transform: capitalize;
+        background-color: white;
         color: #363636;
+    }
+
+    select.shapla-cat-list {
+        padding: 0.6em;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        opacity: 0;
     }
 
     @media screen and (min-width: $nav-toggle-width) {
