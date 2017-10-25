@@ -2,8 +2,8 @@
  * Theme Name: Shapla
  * Description: Used to style the WooCommerce shop
  */
-@import 'woocommerce/mixins';
-@import 'woocommerce/variables';
+@import 'utilities/variables';
+@import 'utilities/mixins';
 @import 'woocommerce/fonts';
 @import 'woocommerce/layout';
 @import 'woocommerce/product-page';

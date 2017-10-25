@@ -105,6 +105,34 @@ $table-cell-padding: 8px;
 //== Widgets
 $widget-footer-background-color: #212a34;
 
+//== WooCommerce
+/*
+Primary color for
+buttons (alt)
+price filter
+store-notice
+default message
+star ratings
+breadcrumb
+ */
+$primary: $color--blue;
+$primarytext: #ffffff; // Text on primary color bg
+
+$secondary: #ebe9eb; // Secondary buttons
+$secondarytext: #515151; // Text on secondary color bg
+
+$highlight: $primary; // On sale, Prices, In stock labels, sales flash
+$highlightext: $color--white; // Text on highlight color bg
+
+$contentbg: #ffffff; // Content BG - Tabs (active state)
+$contenttext: #000000; // Product Title, Price
+$subtext: #777777; // small, breadcrumbs etc
+
+$alert-success: $color--green;
+$alert-info: $color--blue;
+$alert-warning: $color--yellow;
+$alert-danger: $color--red;
+
 //== Grid breakpoints
 $screen-sm: 576px !default;
 $screen-md: 769px !default;

@@ -6,12 +6,12 @@ input[type="reset"],
 input[type="submit"] {
 
     &.alt {
-        background-color: $btn-alt-background;
-        color: $btn-alt-color;
+        background-color: $primary;
+        color: $primarytext;
 
         &:hover {
-            background-color: $btn-alt-hover-background;
-            color: $btn-alt-color;
+            background-color: $primary - #111;
+            color: $primarytext;
         }
     }
 

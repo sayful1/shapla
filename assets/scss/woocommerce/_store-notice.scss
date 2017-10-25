@@ -5,11 +5,11 @@ p.demo_store,
     bottom: 0;
     right: 0;
     margin: 0;
-    padding: 1em 2em;
-    background-color: $alert-info;
-    color: #fff;
+    padding: 1rem 2rem;
     z-index: 999;
     display: none;
+    background-color: $primary;
+    color: #fff;
 
     a {
         background-color: rgba(#000, .2);

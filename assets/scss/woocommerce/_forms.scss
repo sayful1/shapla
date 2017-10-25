@@ -28,7 +28,7 @@
             }
 
             .required {
-                color: $red;
+                color: $alert-danger;
                 font-weight: 700;
                 border: 0;
             }
@@ -75,12 +75,12 @@
 
             &.woocommerce-invalid {
                 label {
-                    color: $red;
+                    color: $alert-danger;
                 }
                 .select2-container,
                 input.input-text,
                 select {
-                    border-color: $red;
+                    border-color: $alert-danger;
                 }
             }
 
@@ -88,7 +88,7 @@
                 .select2-container,
                 input.input-text,
                 select {
-                    border-color: $green - #111;
+                    border-color: $alert-success - #111;
                 }
             }
         }

@@ -1,7 +1,7 @@
-$breadcrumb-item-color: #3273dc !default;
-$breadcrumb-item-hover-color: #363636 !default;
-$breadcrumb-item-active-color: #363636 !default;
-$breadcrumb-item-separator-color: #4a4a4a !default;
+$breadcrumb-item-color: $primary !default;
+$breadcrumb-item-hover-color: $contenttext !default;
+$breadcrumb-item-active-color: $contenttext !default;
+$breadcrumb-item-separator-color: $contenttext !default;
 
 .breadcrumb {
     user-select: none;

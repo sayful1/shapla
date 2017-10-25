@@ -15,12 +15,14 @@
             font-size: 1.25em;
 
             ins {
-                background: inherit;
-                font-weight: 700;
+                background: transparent;
+                color: $highlight;
+                font-weight: 500;
             }
 
             del {
                 opacity: 0.5;
+                color: rgba($contenttext, .85);
             }
         }
 
@@ -34,10 +36,6 @@
 
         .out-of-stock {
             color: red;
-        }
-
-        .woocommerce-product-rating {
-            margin-bottom: 1.618em;
         }
 
         div.images {
@@ -103,7 +101,7 @@
                     position: absolute;
                     top: 19px;
                     left: 22px;
-                    @include transform(rotate(-45deg));
+                    transform: rotate(-45deg);
                     box-sizing: content-box;
                 }
             }

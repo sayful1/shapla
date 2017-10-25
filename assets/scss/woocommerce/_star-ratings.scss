@@ -1,22 +1,26 @@
 .woocommerce {
+    // Loop
     .star-rating {
         overflow: hidden;
         position: relative;
-        height: 1em;
         line-height: 1;
-        font-size: 1em;
+        font-size: 1rem;
         width: 5.3em;
-        // float: right;
+        height: 1em;
         font-family: 'star';
         font-weight: 400;
+        display: block;
+        margin: 0 0 0.5em;
+        float: none;
 
         &::before {
             content: "\53\53\53\53\53";
-            opacity: .25;
             float: left;
             top: 0;
             left: 0;
             position: absolute;
+            opacity: .25;
+            color: #323232;
         }
 
         span {
@@ -33,26 +37,19 @@
             top: 0;
             position: absolute;
             left: 0;
-            color: $woocommerce;
+            color: $primary;
         }
     }
 
+    // Bellow Product title on single page
     .woocommerce-product-rating {
         @include clearfix();
         line-height: 2;
         display: block;
 
         .star-rating {
-            margin: 0.5em 4px 0 0;
+            margin: 0.5em 0.5em 0 0;
             float: left;
-        }
-    }
-
-    .products {
-        .star-rating {
-            display: block;
-            margin: 0 0 0.5em;
-            float: none;
         }
     }
 
@@ -90,7 +87,7 @@
     }
 }
 
-// Star on Single Page
+// Star on Single Page, Add a review
 p.stars {
     display: inline-block;
     margin: 0;
@@ -115,7 +112,7 @@ p.stars {
             line-height: 1;
             font-family: "star";
             content: "\53";
-            color: #43454b;
+            color: #323232;
             text-indent: 0;
             opacity: .25;
         }
@@ -123,7 +120,7 @@ p.stars {
         &:hover {
             ~ a:before {
                 content: "\53";
-                color: #43454b;
+                color: #323232;
                 opacity: .25;
             }
         }
@@ -133,7 +130,7 @@ p.stars {
         a {
             &:before {
                 content: "\53";
-                color: #96588a;
+                color: $primary;
                 opacity: 1;
             }
         }
@@ -143,13 +140,13 @@ p.stars {
         a.active {
             &:before {
                 content: "\53";
-                color: #96588a;
+                color: $primary;
                 opacity: 1;
             }
 
             ~ a:before {
                 content: "\53";
-                color: #43454b;
+                color: #323232;
                 opacity: .25;
             }
         }
@@ -157,7 +154,7 @@ p.stars {
         a:not(.active) {
             &:before {
                 content: "\53";
-                color: #96588a;
+                color: $primary;
                 opacity: 1;
             }
         }

@@ -22,14 +22,14 @@
         text-align: center;
         line-height: 1;
         border-radius: 100%;
-        color: $red !important; // Required for default theme compatibility
+        color: $color--red !important; // Required for default theme compatibility
         text-decoration: none;
         font-weight: 500;
         border: 0;
 
         &:hover {
-            color: $white !important; // Required for default theme compatibility
-            background: $red;
+            color: $color--white !important; // Required for default theme compatibility
+            background: $color--red;
             text-decoration: none;
         }
     }

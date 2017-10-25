@@ -1,19 +1,20 @@
 .woocommerce-message,
 .woocommerce-error,
 .woocommerce-info {
-    border-left: .5em solid rgba(#000, .2);
-    color: #ffffff;
-    padding: 1em;
-    margin: 2em 0;
+    @include clearfix();
+    padding: 1rem;
+    margin: 2rem 0;
     position: relative;
     list-style: none outside;
-    @include clearfix();
     width: auto;
     word-wrap: break-word;
+    border-left: .5em solid rgba(#000, .2);
+    color: #ffffff;
+    background-color: $primary;
 
     a {
         color: #fff;
-        font-weight: 700;
+        font-weight: 500;
 
         &:hover {
             color: #fff;
@@ -28,15 +29,15 @@
     .button {
         float: right;
         background: none;
-        color: #fff;
         box-shadow: none;
-        line-height: 1.618;
+        line-height: 1.5;
         padding: 0 0 0 1em;
         border-width: 0;
         border-left-style: solid;
         border-left-width: 1px !important;
-        border-left-color: rgba(255, 255, 255, 0.25) !important;
         border-radius: 0;
+        border-left-color: rgba(#fff, 0.25) !important;
+        color: #fff;
 
         &:hover {
             background: none;

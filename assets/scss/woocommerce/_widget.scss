@@ -138,7 +138,7 @@
                 &::before {
                     @include fa-icon();
                     content: "\f00d";
-                    color: $red;
+                    color: $color--red;
                     margin-right: .5em;
                 }
             }
@@ -166,7 +166,7 @@
             &::before {
                 @include fa-icon();
                 content: "\f00d";
-                color: $red;
+                color: $color--red;
                 margin-right: .5em;
             }
         }
