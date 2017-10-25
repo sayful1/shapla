@@ -12,7 +12,7 @@ add_action( 'woocommerce_after_main_content', 'shapla_after_content', 10 );
 
 // Replace woocommerce_pagination() with the_posts_pagination() WordPress function
 remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
-add_action( 'woocommerce_after_shop_loop', 'shapla_paging_nav', 10 );
+add_action( 'woocommerce_after_shop_loop', 'shapla_pagination', 10 );
 
 // Remove woocommerce breadcrumb
 // remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );

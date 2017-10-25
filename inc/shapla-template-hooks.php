@@ -70,7 +70,7 @@ add_action( 'shapla_page_after', 'shapla_display_comments', 10 );
  * @see  shapla_post_header()
  * @see  shapla_post_content()
  * @see  shapla_post_meta()
- * @see  shapla_post_nav()
+ * @see  shapla_navigation()
  * @see  shapla_display_comments()
  */
 add_action( 'shapla_single_post', 'shapla_post_thumbnail', 10 );
@@ -78,7 +78,7 @@ add_action( 'shapla_single_post', 'shapla_post_header', 10 );
 add_action( 'shapla_single_post', 'shapla_post_meta', 20 );
 add_action( 'shapla_single_post', 'shapla_post_content', 30 );
 
-add_action( 'shapla_single_post_after', 'shapla_post_nav', 10 );
+add_action( 'shapla_single_post_after', 'shapla_navigation', 10 );
 add_action( 'shapla_single_post_after', 'shapla_display_comments', 20 );
 
 
@@ -88,14 +88,14 @@ add_action( 'shapla_single_post_after', 'shapla_display_comments', 20 );
  * @see  shapla_post_header()
  * @see  shapla_post_meta()
  * @see  shapla_post_content()
- * @see  shapla_paging_nav()
+ * @see  shapla_pagination()
  */
 add_action( 'shapla_loop_post', 'shapla_post_thumbnail', 10 );
 add_action( 'shapla_loop_post', 'shapla_post_header', 10 );
 add_action( 'shapla_loop_post', 'shapla_post_meta', 20 );
 add_action( 'shapla_loop_post', 'shapla_post_content', 30 );
 
-add_action( 'shapla_loop_after', 'shapla_paging_nav', 10 );
+add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
 
 /**
  * Blog

@@ -550,25 +550,25 @@ if ( ! function_exists( 'shapla_post_content' ) ):
 
 endif;
 
-if ( ! function_exists( 'shapla_post_nav' ) ):
+if ( ! function_exists( 'shapla_navigation' ) ):
 	/**
 	 * Display navigation to next/previous post when applicable.
 	 *
 	 * @since  1.0.0
 	 */
-	function shapla_post_nav() {
+	function shapla_navigation() {
 		the_post_navigation();
 	}
 
 endif;
 
-if ( ! function_exists( 'shapla_paging_nav' ) ):
+if ( ! function_exists( 'shapla_pagination' ) ):
 	/**
-	 * Display navigation to next/previous set of posts when applicable.
+	 * Display a set of page numbers with links to the previous and next pages of posts.
 	 *
 	 * @since  1.0.0
 	 */
-	function shapla_paging_nav() {
+	function shapla_pagination() {
 		the_posts_pagination( array(
 			'prev_text' => __( '&laquo;', 'shapla' ),
 			'next_text' => __( '&raquo;', 'shapla' )

@@ -4,11 +4,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Add new section
-$shapla->customizer->add_section( 'woocommerce', array(
+// Add new panel
+$shapla->customizer->add_panel( 'woocommerce_panel', array(
 	'title'       => __( 'WooCommerce', 'shapla' ),
 	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
 	'priority'    => 50,
+) );
+
+// Add new section
+$shapla->customizer->add_section( 'woocommerce', array(
+	'title'       => __( 'General', 'shapla' ),
+	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
+	'panel'       => 'woocommerce_panel',
+	'priority'    => 10,
 ) );
 
 // Change products per page
