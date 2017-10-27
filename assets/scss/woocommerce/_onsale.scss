@@ -6,13 +6,25 @@
         border-radius: 3px;
         font-size: 0.875rem;
         font-weight: 500;
-        left: 2em;
         line-height: 1;
         margin: 0;
         padding: 0.75em;
         position: absolute;
         text-align: center;
-        top: 2em;
         z-index: 9;
+    }
+
+    &.single-product {
+        .onsale {
+            top: 1rem;
+            left: 1rem;
+        }
+    }
+
+    .product-item-inner {
+        .onsale {
+            left: 2rem;
+            top: 2rem;
+        }
     }
 }

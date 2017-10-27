@@ -15,11 +15,11 @@ require 'typography.php';
 require 'header.php';
 require 'site_footer.php';
 require 'buttons.php';
-require 'buttons-alt.php';
 require 'layout.php';
 require 'blog.php';
 
 if ( shapla_is_woocommerce_activated() ) {
 	require 'woocommerce.php';
 	require 'woocommerce-colors.php';
+	require 'woocommerce-buttons.php';
 }

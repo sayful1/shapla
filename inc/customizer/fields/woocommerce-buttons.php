@@ -4,15 +4,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! shapla_is_woocommerce_activated() ) {
-	return;
-}
-
 $shapla->customizer->add_section( 'button_alternate', array(
-	'title'       => __( 'Alternate Button', 'shapla' ),
-	'description' => __( 'Customise the look & feel of your web site alternate buttons.', 'shapla' ),
-	'panel'       => 'button_panel',
-	'priority'    => 10,
+	'title'    => __( 'Button', 'shapla' ),
+	'panel'    => 'woocommerce_panel',
+	'priority' => 10,
 ) );
 
 // Alternate Button Background Color
