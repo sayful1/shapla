@@ -25,7 +25,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => '#2c2d33',
+	'default'  => shapla_default_options()->primary_button->background,
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -48,7 +48,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Background Hover Color', 'shapla' ),
-	'default'  => '#13141a',
+	'default'  => shapla_default_options()->primary_button->background_hover,
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -83,7 +83,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => '#ffffff',
+	'default'  => shapla_default_options()->primary_button->text,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -106,7 +106,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Text Hover Color', 'shapla' ),
-	'default'  => '#ffffff',
+	'default'  => shapla_default_options()->primary_button->text_hover,
 	'priority' => 40,
 	'output'   => array(
 		array(
@@ -142,7 +142,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'button_primary',
 	'label'       => __( 'Font Size', 'shapla' ),
 	'description' => __( 'Enter a px, em, or rem value for button font size. ex: 15px', 'shapla' ),
-	'default'     => '1rem',
+	'default'     => shapla_default_options()->primary_button->font_size,
 	'priority'    => 50,
 	'output'      => array(
 		array(
@@ -166,7 +166,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'button_primary',
 	'label'       => __( 'Border Radius', 'shapla' ),
 	'description' => __( 'Enter a px value for button. ex: 3px', 'shapla' ),
-	'default'     => '3px',
+	'default'     => shapla_default_options()->primary_button->border_radius,
 	'priority'    => 60,
 	'output'      => array(
 		array(

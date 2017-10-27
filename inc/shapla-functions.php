@@ -150,3 +150,54 @@ if ( ! function_exists( 'shapla_adjust_color_brightness' ) ) {
 		return '#' . $r_hex . $g_hex . $b_hex;
 	}
 }
+
+
+if ( ! function_exists( 'shapla_default_options' ) ) {
+	/**
+	 * Get theme default options
+	 *
+	 * @return object
+	 */
+	function shapla_default_options() {
+		$primary_color     = '#2196f3';
+		$primary_hover     = shapla_adjust_color_brightness( $primary_color, - 20 );
+		$primary_inverse   = shapla_find_color_invert( $primary_color );
+		$secondary_color   = '#009688';
+		$secondary_hover   = shapla_adjust_color_brightness( $secondary_color, - 20 );
+		$secondary_inverse = shapla_find_color_invert( $secondary_color );
+
+		$options = array(
+			'primary_color'    => $primary_color,
+			'blog'             => array(
+				'layout'             => 'grid',
+				'date_format'        => 'human',
+				'excerpt_length'     => 20,
+				'show_page_title'    => true,
+				'show_avatar'        => true,
+				'show_author_name'   => true,
+				'show_date'          => true,
+				'show_category'      => true,
+				'show_tag'           => true,
+				'show_comments_link' => true,
+			),
+			'primary_button'   => array(
+				'background'       => $primary_color,
+				'background_hover' => $primary_hover,
+				'text'             => $primary_inverse,
+				'text_hover'       => $primary_inverse,
+				'font_size'        => '1rem',
+				'border_radius'    => '3px',
+			),
+			'secondary_button' => array(
+				'background'       => $secondary_color,
+				'background_hover' => $secondary_hover,
+				'text'             => $secondary_inverse,
+				'text_hover'       => $secondary_inverse,
+			),
+		);
+
+		$default_options = json_decode( json_encode( $options ), false );
+
+		return apply_filters( 'shapla_default_options', $default_options );
+	}
+}

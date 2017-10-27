@@ -31,7 +31,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_section',
 	'label'    => __( 'Show author avatar', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_avatar,
 	'priority' => 10,
 ) );
 $shapla->customizer->add_field( array(
@@ -39,7 +39,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_section',
 	'label'    => __( 'Show author name', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_author_name,
 	'priority' => 20,
 ) );
 $shapla->customizer->add_field( array(
@@ -47,7 +47,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_section',
 	'label'    => __( 'Show date', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_date,
 	'priority' => 30,
 ) );
 $shapla->customizer->add_field( array(
@@ -55,7 +55,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_section',
 	'label'    => __( 'Show category list', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_category,
 	'priority' => 40,
 ) );
 $shapla->customizer->add_field( array(
@@ -63,7 +63,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_section',
 	'label'    => __( 'Show tag list', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_tag,
 	'priority' => 50,
 ) );
 $shapla->customizer->add_field( array(
@@ -71,7 +71,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_section',
 	'label'    => __( 'Show comments link', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_comments_link,
 	'priority' => 60,
 ) );
 $shapla->customizer->add_field( array(
@@ -79,7 +79,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'select',
 	'section'  => 'blog_layout_section',
 	'label'    => __( 'Blog layout', 'shapla' ),
-	'default'  => 'grid',
+	'default'  => shapla_default_options()->blog->layout,
 	'priority' => 10,
 	'choices'  => array(
 		'default' => esc_html__( 'Default', 'shapla' ),
@@ -92,7 +92,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'blog_layout_section',
 	'label'       => __( 'Blog date format', 'shapla' ),
 	'description' => __( 'Default date format is format you set from Settings --> General --> Date Format', 'shapla' ),
-	'default'     => 'human',
+	'default'     => shapla_default_options()->blog->date_format,
 	'priority'    => 10,
 	'choices'     => array(
 		'default' => esc_html__( 'Default', 'shapla' ),
@@ -104,7 +104,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'number',
 	'section'  => 'blog_layout_section',
 	'label'    => __( 'Excerpt length', 'shapla' ),
-	'default'  => 20,
+	'default'  => shapla_default_options()->blog->excerpt_length,
 	'priority' => 20,
 ) );
 $shapla->customizer->add_field( array(
@@ -112,6 +112,6 @@ $shapla->customizer->add_field( array(
 	'type'     => 'checkbox',
 	'section'  => 'blog_layout_section',
 	'label'    => __( 'Show page title on Blog page', 'shapla' ),
-	'default'  => true,
+	'default'  => shapla_default_options()->blog->show_page_title,
 	'priority' => 30,
 ) );

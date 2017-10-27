@@ -135,7 +135,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * @since  0.1.0
 		 */
 		public function content_width() {
-			$GLOBALS['content_width'] = apply_filters( 'shapla_content_width', 910 );
+			$GLOBALS['content_width'] = apply_filters( 'shapla_content_width', 1140 );
 		}
 
 		/**
