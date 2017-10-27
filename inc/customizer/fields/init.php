@@ -12,7 +12,6 @@ $shapla->customizer->add_config( array(
 
 
 require 'typography.php';
-require 'title_tagline.php';
 require 'header.php';
 require 'site_footer.php';
 require 'buttons.php';

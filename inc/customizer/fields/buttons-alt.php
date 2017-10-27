@@ -21,7 +21,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_alternate',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => '#96588a',
+	'default'  => shapla_default_options()->secondary_button->background,
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -44,7 +44,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_alternate',
 	'label'    => __( 'Background Hover Color', 'shapla' ),
-	'default'  => '#7d3f71',
+	'default'  => shapla_default_options()->secondary_button->background_hover,
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -79,7 +79,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_alternate',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => '#ffffff',
+	'default'  => shapla_default_options()->secondary_button->text,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -102,7 +102,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_alternate',
 	'label'    => __( 'Text Hover Color', 'shapla' ),
-	'default'  => '#ffffff',
+	'default'  => shapla_default_options()->secondary_button->text_hover,
 	'priority' => 40,
 	'output'   => array(
 		array(

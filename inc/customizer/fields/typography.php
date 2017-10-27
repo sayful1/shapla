@@ -41,6 +41,8 @@ $shapla->customizer->add_field( array(
 				'.navigation .nav-previous a',
 				'.navigation .nav-next',
 				'.navigation .nav-next a',
+				// Breadcrumbs
+				'.breadcrumb a',
 			),
 			'property' => 'color',
 		),
@@ -57,6 +59,53 @@ $shapla->customizer->add_field( array(
 				'.navigation .page-numbers.current',
 			),
 			'property' => 'border-color',
+		),
+	),
+) );
+
+// Heading color
+$shapla->customizer->add_field( array(
+	'settings'    => 'typography_heading_color',
+	'section'     => 'typography_colors_section',
+	'type'        => 'alpha-color',
+	'label'       => __( 'Heading color', 'shapla' ),
+	'description' => __( 'Heading color will be used for heading tags (h1, h2, h3, h4, h5, h6)', 'shapla' ),
+	'default'     => shapla_default_options()->heading_color,
+	'priority'    => 20,
+	'output'      => array(
+		array(
+			'element'  => array(
+				'.entry-title a',
+				'h1',
+				'h2',
+				'h3',
+				'h4',
+				'h5',
+				'h6',
+			),
+			'property' => 'color',
+		),
+	),
+) );
+
+// Text color
+$shapla->customizer->add_field( array(
+	'settings'    => 'typography_text_color',
+	'section'     => 'typography_colors_section',
+	'type'        => 'alpha-color',
+	'label'       => __( 'Text color', 'shapla' ),
+	'description' => __( 'Text color will be used for body', 'shapla' ),
+	'default'     => shapla_default_options()->heading_color,
+	'priority'    => 20,
+	'output'      => array(
+		array(
+			'element'  => array(
+				'body',
+				'.hentry .entry-meta a',
+				'.byline a',
+				'.posted-on a',
+			),
+			'property' => 'color',
 		),
 	),
 ) );

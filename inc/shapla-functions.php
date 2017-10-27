@@ -159,14 +159,18 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	 * @return object
 	 */
 	function shapla_default_options() {
+		$heading_color     = '#323232';
+		$text_color        = '#323232';
 		$primary_color     = '#2196f3';
+		$secondary_color   = '#009688';
 		$primary_hover     = shapla_adjust_color_brightness( $primary_color, - 20 );
 		$primary_inverse   = shapla_find_color_invert( $primary_color );
-		$secondary_color   = '#009688';
 		$secondary_hover   = shapla_adjust_color_brightness( $secondary_color, - 20 );
 		$secondary_inverse = shapla_find_color_invert( $secondary_color );
 
 		$options = array(
+			'heading_color'    => $heading_color,
+			'text_color'       => $text_color,
 			'primary_color'    => $primary_color,
 			'blog'             => array(
 				'layout'             => 'grid',
@@ -193,6 +197,39 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'background_hover' => $secondary_hover,
 				'text'             => $secondary_inverse,
 				'text_hover'       => $secondary_inverse,
+			),
+			'header'           => array(
+				'logo_font_size'   => '30px',
+				'background_color' => '#ffffff',
+				'text_color'       => $text_color,
+				'link_color'       => $primary_color,
+				'show_search_icon' => false,
+				'sticky_header'    => false,
+			),
+			'layout'           => array(
+				'site_layout'    => 'wide',
+				'sidebar_layout' => 'right-sidebar',
+				'header_layout'  => 'default',
+			),
+			'footer'           => array(
+				'widget_rows'             => 1,
+				'widget_columns'          => 4,
+				'widget_background_color' => '#212a34',
+				'widget_text_color'       => '#f1f1f1',
+				'widget_link_color'       => '#f1f1f1',
+				'background_color'        => '#19212a',
+				'text_color'              => '#9e9e9e',
+				'link_color'              => '#f1f1f1',
+				'copyright_text'          => sprintf(
+					'<a href="https://wordpress.org/">%1$s</a><span class="sep"> | </span>%2$s %3$s.',
+					__( 'Proudly powered by WordPress', 'shapla' ),
+					__( 'Theme: Shapla by' ),
+					'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>'
+				),
+			),
+			'woocommerce'      => array(
+				'products_per_page' => 16,
+				'products_per_row'  => 4,
 			),
 		);
 

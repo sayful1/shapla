@@ -9,6 +9,7 @@ a {
     &:focus,
     &:active {
         color: $color--strikemaster;
+        text-decoration: underline;
     }
     &:focus {
         outline: 0;

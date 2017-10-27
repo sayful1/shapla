@@ -10,7 +10,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'text',
 	'section'  => 'header_image',
 	'label'    => __( 'Site Title Font Size', 'shapla' ),
-	'default'  => '30px',
+	'default'  => shapla_default_options()->header->logo_font_size,
 	'priority' => 40,
 	'output'   => array(
 		array(
@@ -20,24 +20,13 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Toggle search icon
-$shapla->customizer->add_field( array(
-	'settings'    => 'show_search_icon',
-	'type'        => 'checkbox',
-	'section'     => 'header_image',
-	'label'       => __( 'Show Search Icon', 'shapla' ),
-	'description' => __( 'Check to show search icon on navigation bar in header area.', 'shapla' ),
-	'default'     => 0,
-	'priority'    => 50,
-) );
-
 // Site Title Color
 $shapla->customizer->add_field( array(
 	'settings' => 'header_background_color',
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Background Color', 'shapla' ),
-	'default'  => '#212a34',
+	'default'  => shapla_default_options()->header->background_color,
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -53,7 +42,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Text Color', 'shapla' ),
-	'default'  => '#f1f1f1',
+	'default'  => shapla_default_options()->header->text_color,
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -83,7 +72,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Link Color', 'shapla' ),
-	'default'  => '#96588a',
+	'default'  => shapla_default_options()->header->link_color,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -115,6 +104,17 @@ $shapla->customizer->add_field( array(
 	'section'     => 'header_image',
 	'label'       => __( 'Sticky Header', 'shapla' ),
 	'description' => __( 'Check to to enable a sticky header.', 'shapla' ),
-	'default'     => false,
+	'default'     => shapla_default_options()->header->sticky_header,
 	'priority'    => 40,
+) );
+
+// Toggle search icon
+$shapla->customizer->add_field( array(
+	'settings'    => 'show_search_icon',
+	'type'        => 'checkbox',
+	'section'     => 'header_image',
+	'label'       => __( 'Show Search Icon', 'shapla' ),
+	'description' => __( 'Check to show search icon on navigation bar in header area.', 'shapla' ),
+	'default'     => shapla_default_options()->header->show_search_icon,
+	'priority'    => 50,
 ) );

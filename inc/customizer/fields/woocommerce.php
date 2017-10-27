@@ -26,7 +26,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'woocommerce',
 	'label'       => __( 'Products per page', 'shapla' ),
 	'description' => __( 'Change number of products displayed per page', 'shapla' ),
-	'default'     => 16,
+	'default'     => shapla_default_options()->woocommerce->products_per_page,
 	'priority'    => 10,
 ) );
 
@@ -37,7 +37,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'woocommerce',
 	'label'       => __( 'Products per row', 'shapla' ),
 	'description' => __( 'Change number of products displayed per row', 'shapla' ),
-	'default'     => 4,
+	'default'     => shapla_default_options()->woocommerce->products_per_row,
 	'priority'    => 20,
 	'choices'     => array(
 		3 => __( '3 Products', 'shapla' ),

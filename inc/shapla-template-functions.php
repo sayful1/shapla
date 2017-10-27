@@ -36,7 +36,6 @@ if ( ! function_exists( 'shapla_site_title_or_logo' ) ) {
 	 */
 	function shapla_site_title_or_logo( $echo = true ) {
 
-		$logo_image     = get_theme_mod( 'site_logo_image' );
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
 		$html           = '';
 
@@ -44,10 +43,6 @@ if ( ! function_exists( 'shapla_site_title_or_logo' ) ) {
 			ob_start();
 			the_custom_logo();
 			$html .= ob_get_clean();
-
-		} elseif ( filter_var( $logo_image, FILTER_VALIDATE_URL ) ) {
-
-			$html .= sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url"><img src="%2$s" class="custom-logo" itemprop="logo"></a>', esc_url( home_url( '/' ) ), esc_url( $logo_image ) );
 
 		} else {
 			$tag = is_home() ? 'h1' : 'p';

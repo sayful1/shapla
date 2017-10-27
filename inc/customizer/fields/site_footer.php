@@ -31,7 +31,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'site_footer_widgets',
 	'label'       => __( 'Footer Widget Rows', 'shapla' ),
 	'description' => __( 'Select the number of widgets rows you want in the footer. After changing value, save and refresh the page.', 'shapla' ),
-	'default'     => 1,
+	'default'     => shapla_default_options()->footer->widget_rows,
 	'priority'    => 10,
 ) );
 // Footer Widget Columns
@@ -41,7 +41,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'site_footer_widgets',
 	'label'       => __( 'Footer Widget Columns', 'shapla' ),
 	'description' => __( 'Select the number of columns you want in each widgets rows in the footer.  After changing value, save and refresh the page.', 'shapla' ),
-	'default'     => 4,
+	'default'     => shapla_default_options()->footer->widget_columns,
 	'priority'    => 20,
 ) );
 
@@ -51,7 +51,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => '#212a34',
+	'default'  => shapla_default_options()->footer->widget_background_color,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -70,7 +70,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => '#f1f1f1',
+	'default'  => shapla_default_options()->footer->widget_text_color,
 	'priority' => 40,
 	'output'   => array(
 		array(
@@ -96,7 +96,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Link Color', 'shapla' ),
-	'default'  => '#f1f1f1',
+	'default'  => shapla_default_options()->footer->widget_link_color,
 	'priority' => 50,
 	'output'   => array(
 		array(
@@ -112,7 +112,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => '#19212a',
+	'default'  => shapla_default_options()->footer->background_color,
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -128,7 +128,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => '#9e9e9e',
+	'default'  => shapla_default_options()->footer->text_color,
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -144,7 +144,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Link Color', 'shapla' ),
-	'default'  => '#f1f1f1',
+	'default'  => shapla_default_options()->footer->link_color,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -160,12 +160,6 @@ $shapla->customizer->add_field( array(
 	'type'     => 'textarea',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Copyright Text', 'shapla' ),
-	'default'  => sprintf(
-		'<a href="%1$s">%2$s WordPress</a><span class="sep"> | </span>Theme: %3$s by %4$s.',
-		esc_url( __( 'https://wordpress.org/', 'shapla' ) ),
-		'Proudly powered by',
-		'Shapla',
-		'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>'
-	),
+	'default'  => shapla_default_options()->footer->copyright_text,
 	'priority' => 40,
 ) );
