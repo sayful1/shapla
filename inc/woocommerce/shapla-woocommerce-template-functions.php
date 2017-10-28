@@ -119,7 +119,7 @@ if ( ! function_exists( 'shapla_add_to_cart_fragments' ) ) {
 	function shapla_add_to_cart_fragments( $fragments ) {
 		ob_start();
 		shapla_cart_link();
-		$fragments['a.cart-contents'] = ob_get_clean();
+		$fragments['a.shapla-cart-contents'] = ob_get_clean();
 
 		return $fragments;
 	}
@@ -136,10 +136,9 @@ if ( ! function_exists( 'shapla_cart_link' ) ) {
 	 */
 	function shapla_cart_link() {
 		?>
-        <a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>"
+        <a class="shapla-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>"
            title="<?php esc_attr_e( 'View your shopping cart', 'shapla' ); ?>">
-            <span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span
-                    class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'shapla' ), WC()->cart->get_cart_contents_count() ) ); ?></span>
+            <span class="count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
         </a>
 		<?php
 	}
@@ -180,6 +179,12 @@ if ( ! function_exists( 'shapla_header_cart' ) ) {
 }
 
 if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
+	/**
+	 * Display breadcrumb
+	 *
+	 * @since  2.2.3
+	 * @return array
+	 */
 	function shapla_wc_breadcrumb() {
 		$args = apply_filters( 'shapla_wc_breadcrumb', array(
 			'delimiter'   => '',
