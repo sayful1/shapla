@@ -50,6 +50,7 @@ $shapla->customizer->add_field( array(
 			'element'  => array(
 				// Pagination
 				'.navigation .page-numbers.current',
+				'.shapla-cart-contents .count',
 			),
 			'property' => 'background-color',
 		),

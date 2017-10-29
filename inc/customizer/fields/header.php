@@ -63,6 +63,12 @@ $shapla->customizer->add_field( array(
 			),
 			'property' => 'background-color',
 		),
+		array(
+			'element'  => array(
+				'a.shapla-cart-contents',
+			),
+			'property' => 'color',
+		),
 	),
 ) );
 
