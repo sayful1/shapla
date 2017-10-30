@@ -1,4 +1,4 @@
-.shapla-product-search {
+.shapla-search {
     order: 4;
     padding: 1rem 0;
     width: 100%;
@@ -14,9 +14,14 @@
     }
 
     input[type="text"] {
-        border-radius: 0;
-        border-left: none;
         border-right: none;
+    }
+
+    &.has-cat-list {
+        input[type="text"] {
+            border-radius: 0;
+            border-left: none;
+        }
     }
 
     button[type="submit"] {

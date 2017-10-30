@@ -4,19 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Add new panel
-$shapla->customizer->add_panel( 'button_panel', array(
+// Add new section
+$shapla->customizer->add_section( 'button_primary', array(
 	'title'       => __( 'Buttons', 'shapla' ),
 	'description' => __( 'Customise the look & feel of your web site buttons.', 'shapla' ),
 	'priority'    => 40,
-) );
-
-// Add new section
-$shapla->customizer->add_section( 'button_primary', array(
-	'title'       => __( 'Primary Button', 'shapla' ),
-	'description' => __( 'Customise the look & feel of your web site primary buttons.', 'shapla' ),
-	'panel'       => 'button_panel',
-	'priority'    => 10,
 ) );
 
 // Button Background Color

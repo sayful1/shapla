@@ -62,9 +62,9 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 			return;
 		}
 
-		$q_var    = get_query_var( 'product_cat' );
-		$selected = empty( $q_var ) ? '' : $q_var;
-		$args     = array(
+		$q_var            = get_query_var( 'product_cat' );
+		$selected         = empty( $q_var ) ? '' : $q_var;
+		$args             = array(
 			'show_option_none'  => __( 'All', 'shapla' ),
 			'option_none_value' => '',
 			'orderby'           => 'name',
@@ -78,19 +78,22 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 			'show_count'        => 0,
 			'hierarchical'      => 1,
 		);
+		$show_product_cat = apply_filters( 'shapla_product_search_categories', true );
 		?>
-        <div class="shapla-product-search">
+        <div class="shapla-search <?php echo $show_product_cat ? 'has-cat-list' : ''; ?>">
             <form role="search" method="get" class="shapla-product-search-form"
                   action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                <div class="nav-left">
-                    <div class="nav-search-facade" data-value="search-alias=aps">
+				<?php if ( $show_product_cat === true ): ?>
+                    <div class="nav-left">
+                        <div class="nav-search-facade" data-value="search-alias=aps">
                         <span class="nav-search-label" data-default="<?php esc_html_e( 'All', 'shapla' ); ?>">
                             <?php esc_html_e( 'All', 'shapla' ); ?>
                         </span>
-                        <i class="fa fa-angle-down"></i>
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+						<?php wp_dropdown_categories( $args ); ?>
                     </div>
-					<?php wp_dropdown_categories( $args ); ?>
-                </div>
+				<?php endif; ?>
                 <div class="nav-right">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>

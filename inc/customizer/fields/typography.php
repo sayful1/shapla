@@ -123,8 +123,8 @@ $shapla->customizer->add_field( array(
 	'settings'    => 'google_font_family',
 	'section'     => 'typography_fonts_section',
 	'type'        => 'google-font',
-	'label'       => __( 'Text color', 'shapla' ),
-	'description' => __( 'Text color will be used for body', 'shapla' ),
+	'label'       => __( 'Body font family', 'shapla' ),
+	'description' => __( 'Font family will be used for body', 'shapla' ),
 	'default'     => shapla_default_options()->font_family,
 	'priority'    => 20,
 	'output'      => array(

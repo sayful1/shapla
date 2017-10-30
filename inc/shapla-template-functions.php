@@ -571,3 +571,37 @@ if ( ! function_exists( 'shapla_pagination' ) ):
 	}
 
 endif;
+
+if ( ! function_exists( 'shapla_default_search' ) ) {
+	/**
+	 * WooCommerce Product Search
+	 *
+	 * @since   1.2.3
+	 * @return  void
+	 */
+	function shapla_default_search() {
+		if ( shapla_is_woocommerce_activated() ) {
+			return;
+		}
+
+		$header_layout = get_theme_mod( 'header_layout', 'default' );
+		if ( $header_layout != 'widget' ) {
+			return;
+		}
+
+		?>
+        <div class="shapla-search">
+            <form role="search" method="get" class="shapla-product-search-form"
+                  action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                <div class="nav-right">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="nav-fill">
+                    <input name="s" type="text" value="<?php echo get_search_query(); ?>"
+                           placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
+                </div>
+            </form>
+        </div>
+		<?php
+	}
+}
