@@ -14,6 +14,13 @@ $shapla->customizer->add_panel( 'typography_panel', array(
 $shapla->customizer->add_section( 'typography_colors_section', array(
 	'title'    => __( 'Colors', 'shapla' ),
 	'panel'    => 'typography_panel',
+	'priority' => 20,
+) );
+
+// Add new section
+$shapla->customizer->add_section( 'typography_fonts_section', array(
+	'title'    => __( 'Fonts', 'shapla' ),
+	'panel'    => 'typography_panel',
 	'priority' => 10,
 ) );
 
@@ -107,6 +114,29 @@ $shapla->customizer->add_field( array(
 				'.posted-on a',
 			),
 			'property' => 'color',
+		),
+	),
+) );
+
+// Text color
+$shapla->customizer->add_field( array(
+	'settings'    => 'google_font_family',
+	'section'     => 'typography_fonts_section',
+	'type'        => 'google-font',
+	'label'       => __( 'Text color', 'shapla' ),
+	'description' => __( 'Text color will be used for body', 'shapla' ),
+	'default'     => shapla_default_options()->font_family,
+	'priority'    => 20,
+	'output'      => array(
+		array(
+			'element'  => array(
+				'body',
+				'button',
+				'input',
+				'select',
+				'textarea',
+			),
+			'property' => 'font-family',
 		),
 	),
 ) );

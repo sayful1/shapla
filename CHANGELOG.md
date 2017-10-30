@@ -3,6 +3,7 @@
 * Added - Add radio image customize controller.
 * Added - Add radio button customize control.
 * Tweak - Add alpha color customize control.
+* Tweak - Add option to change google font from popular 30 fonts.
 * Added - Add three header layout.
 * Added - WooCommerce Product search with categories dropdown.
 * Tweak - Update primary navigation style.

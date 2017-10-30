@@ -172,6 +172,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			'heading_color'    => $heading_color,
 			'text_color'       => $text_color,
 			'primary_color'    => $primary_color,
+			'font_family'      => 'Roboto',
 			'blog'             => array(
 				'layout'             => 'grid',
 				'date_format'        => 'human',
@@ -223,7 +224,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'copyright_text'          => sprintf(
 					'<a href="https://wordpress.org/">%1$s</a><span class="sep"> | </span>%2$s %3$s.',
 					__( 'Proudly powered by WordPress', 'shapla' ),
-					__( 'Theme: Shapla by' ),
+					__( 'Theme: Shapla by', 'shapla' ),
 					'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>'
 				),
 			),
@@ -238,5 +239,22 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 		$default_options = json_decode( json_encode( $options ), false );
 
 		return apply_filters( 'shapla_default_options', $default_options );
+	}
+}
+
+if ( ! function_exists( 'shapla_standard_fonts' ) ) {
+	/**
+	 * Get standard fonts
+	 *
+	 * @return object
+	 */
+	function shapla_standard_fonts() {
+		$standard_fonts = array(
+			'serif'      => 'Georgia,Times,"Times New Roman",serif',
+			'sans-serif' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+			'monospace'  => 'Monaco,"Lucida Sans Typewriter","Lucida Typewriter","Courier New",Courier,monospace',
+		);
+
+		return apply_filters( 'shapla_standard_fonts', $standard_fonts );
 	}
 }

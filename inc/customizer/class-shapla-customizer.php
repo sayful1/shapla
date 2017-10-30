@@ -24,6 +24,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'radio-image',
 			'radio-button',
 			'alpha-color',
+			'google-font',
 		);
 
 		/**
@@ -102,6 +103,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				if ( ! isset( $field['output'] ) || empty( $field['output'] ) || ! is_array( $field['output'] ) ) {
 					continue;
 				}
+
+				$type = isset( $field['type'] ) && in_array( $field['type'], $this->allowed_field_types ) ? $field['type'] : 'text';
+
 				// Get the default value of this field
 				$value = get_theme_mod( $field['settings'], $field['default'] );
 				// start parsing the output arguments of the field
@@ -148,6 +152,12 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						if ( 'background-image' == $property ) {
 							if ( false === strrpos( $value, 'url(' ) ) {
 								$value = 'url("' . esc_url_raw( $value ) . '")';
+							}
+						} elseif ( 'font-family' == $property ) {
+							if ( $value == 'sans-serif' ) {
+								continue;
+							} else {
+								$value = '"' . esc_attr( $value ) . '"';
 							}
 						} else {
 							$value = esc_textarea( $value );
@@ -352,6 +362,20 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			) );
 		}
 
+		public function google_font( $wp_customize, $field ) {
+			if ( ! class_exists( 'Shapla_Google_Font_Customize_Control' ) ) {
+				require_once 'controls/google-webfonts/class-shapla-google-font-custom-control.php';
+			}
+
+			return new Shapla_Google_Font_Customize_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'settings'    => $field['settings'],
+			) );
+		}
+
 		/**
 		 * add a simple, single-line text input.
 		 *
@@ -437,6 +461,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_text( $input ) {
+			return sanitize_text_field( $input );
+		}
+
+		/**
+		 * Sanitize google fonts
+		 *
+		 * @param  boolean $input
+		 *
+		 * @return string
+		 */
+		public function sanitize_google_font( $input ) {
 			return sanitize_text_field( $input );
 		}
 

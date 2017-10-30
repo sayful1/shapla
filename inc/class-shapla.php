@@ -286,8 +286,10 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * @since  0.1.0
 		 */
 		public function shapla_scripts() {
-			// Add custom fonts, used in the main stylesheet.
-			wp_enqueue_style( 'shapla-fonts', $this->google_fonts_url(), array(), null );
+			$google_fonts_url = $this->google_fonts_url();
+			if ( strlen( $google_fonts_url ) !== 0 ) {
+				wp_enqueue_style( 'shapla-fonts', $google_fonts_url, array(), null );
+			}
 			wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/font-awesome/css/font-awesome.min.css', array(), '4.7.0', 'all' );
 			wp_enqueue_style( 'shapla-style', get_template_directory_uri() . '/style.css', array(), SHAPLA_VERSION, 'all' );
 			wp_enqueue_script( 'shapla-script', get_template_directory_uri() . '/assets/js/script.min.js', array(), SHAPLA_VERSION, true );
@@ -341,11 +343,13 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * @since  0.1.0
 		 */
 		private function google_fonts_url() {
-
-			$google_fonts = apply_filters( 'shapla_google_font_families', array(
-				'roboto'      => 'Roboto:300,400,500,400italic,500italic',
-				'inconsolata' => 'Inconsolata:400',
-			) );
+			$google_fonts = get_theme_mod( 'google_font_family', 'Roboto' );
+			if ( 'sans-serif' == $google_fonts ) {
+				return '';
+			}
+			$fonts        = array();
+			$fonts[]      = $google_fonts . ':300,400,500,400italic,500italic';
+			$google_fonts = apply_filters( 'shapla_google_font_families', $fonts );
 
 			$query_args = array(
 				'family' => urlencode( implode( '|', $google_fonts ) ),
