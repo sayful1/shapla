@@ -605,3 +605,37 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 		<?php
 	}
 }
+
+
+if ( ! function_exists( 'shapla_search_icon' ) ) {
+	/**
+	 * Filters the HTML list content for navigation menus.
+	 *
+	 * @since 1.2.3
+	 *
+	 * @param string $items The HTML list content for the menu items.
+	 * @param stdClass $args An object containing wp_nav_menu() arguments.
+	 *
+	 * @return string
+	 */
+	function shapla_search_icon( $items, $args ) {
+
+		$show_search_icon = get_theme_mod( 'show_search_icon' );
+		$header_layout    = get_theme_mod( 'header_layout', 'default' );
+
+		if ( ! $show_search_icon ) {
+			return $items;
+		}
+
+		if ( $header_layout == 'widget' ) {
+			return $items;
+		}
+
+		$items .= '<li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">';
+		$items .= '<a href="#" id="shapla-search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>';
+		$items .= '<div class="shapla-custom-menu-item-contents"></div>';
+		$items .= '</li>';
+
+		return $items;
+	}
+}

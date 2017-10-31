@@ -71,6 +71,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 				'height'      => 250,
 				'width'       => 250,
 				'flex-height' => true,
+				'flex-width'  => true,
 			) );
 
 			/*

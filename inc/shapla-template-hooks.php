@@ -104,3 +104,8 @@ add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
  * @see shapla_blog_header()
  */
 add_action( 'shapla_blog_loop_before', 'shapla_blog_header', 10 );
+
+/**
+ * Add search icon on menu
+ */
+add_filter( 'wp_nav_menu_items', 'shapla_search_icon', 10, 2 );
