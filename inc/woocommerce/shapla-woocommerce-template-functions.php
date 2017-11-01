@@ -80,7 +80,7 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 		);
 		$show_product_cat = apply_filters( 'shapla_product_search_categories', true );
 		?>
-        <div class="shapla-search <?php echo $show_product_cat ? 'has-cat-list' : ''; ?>">
+        <div class="shapla-search shapla-product-search <?php echo $show_product_cat ? 'has-cat-list' : ''; ?>">
             <form role="search" method="get" class="shapla-product-search-form"
                   action="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<?php if ( $show_product_cat === true ): ?>

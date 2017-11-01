@@ -1,25 +1,31 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
-const livereload = require('gulp-livereload');
+const sassOptions = {
+    errLogToConsole: true,
+    outputStyle: 'compressed'
+};
+const autoprefixerOptions = {
+    browsers: ['last 5 versions', '> 5%', 'Firefox ESR']
+};
 
 gulp.task('sass', function () {
     gulp.src('./assets/scss/*.scss')
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(gulp.dest('./assets/css'))
-        .pipe(livereload());
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        // .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(gulp.dest('./assets/css'));
 });
 
 gulp.task('sass-main', function () {
     gulp.src('./assets/scss/style.scss')
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(gulp.dest('.'))
-        .pipe(livereload());
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        // .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(gulp.dest('.'));
 });
 
 gulp.task('js', function () {
@@ -28,14 +34,12 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./assets/js'))
         .pipe(concat('script.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(livereload());
+        .pipe(gulp.dest('./assets/js'));
 });
 
 gulp.task('watch', function () {
-    livereload.listen();
     gulp.watch('./assets/scss/*.scss', ['sass']);
-    gulp.watch('./assets/scss/*.scss', ['sass-main']);
+    gulp.watch('./assets/scss/style.scss', ['sass-main']);
     gulp.watch('./assets/js/src/*.js', ['js']);
 });
 
