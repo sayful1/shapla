@@ -16,7 +16,7 @@ gulp.task('sass', function () {
     gulp.src('./assets/scss/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
-        // .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(autoprefixer(autoprefixerOptions))
         .pipe(gulp.dest('./assets/css'));
 });
 
@@ -24,7 +24,7 @@ gulp.task('sass-main', function () {
     gulp.src('./assets/scss/style.scss')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
-        // .pipe(autoprefixer(autoprefixerOptions))
+        .pipe(autoprefixer(autoprefixerOptions))
         .pipe(gulp.dest('.'));
 });
 
