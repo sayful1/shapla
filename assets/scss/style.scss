@@ -88,10 +88,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 --------------------------------------------------------------*/
 @import "header/default";
 /*--------------------------------------------------------------
-# Sidenav
---------------------------------------------------------------*/
-@import "components/sidenav";
-/*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
 @import "components/widgets";
@@ -120,5 +116,5 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /*--------------------------------------------------------------
 # Modules
 --------------------------------------------------------------*/
-@import "modules/columns";
 @import "modules/blog-grid";
+//@import "modules/columns";

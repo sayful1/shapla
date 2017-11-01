@@ -122,6 +122,8 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	 * @return void
 	 */
 	function shapla_search_toggle() {
+		_deprecated_function( 'shapla_search_toggle', '1.2.3' );
+
 		$show_search_icon = get_theme_mod( 'show_search_icon' );
 		$header_layout    = get_theme_mod( 'header_layout', 'default' );
 		if ( ! $show_search_icon ) {
@@ -130,6 +132,8 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 		if ( $header_layout != 'default' ) {
 			return;
 		}
+
+		return;
 		?>
         <span id="search-toggle" class="search-toggle"><i class="fa fa-search"></i></span>
 		<?php
@@ -144,6 +148,8 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 	 * @return void
 	 */
 	function shapla_search_form() {
+		_deprecated_function( 'shapla_search_form', '1.2.3' );
+
 		$show_search_icon = get_theme_mod( 'show_search_icon' );
 		$header_layout    = get_theme_mod( 'header_layout', 'default' );
 		if ( ! $show_search_icon ) {
@@ -631,10 +637,26 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 			return $items;
 		}
 
-		$items .= '<li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">';
-		$items .= '<a href="#" id="shapla-search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>';
-		$items .= '<div class="shapla-custom-menu-item-contents"></div>';
-		$items .= '</li>';
+		ob_start(); ?>
+        <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
+            <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
+            <div class="shapla-custom-menu-item-contents">
+                <div class="shapla-search">
+                    <form role="search" method="get" class="shapla-search-form"
+                          action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                        <div class="nav-right">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                        <div class="nav-fill">
+                            <input name="s" type="text" value="<?php echo get_search_query(); ?>"
+                                   placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </li>
+		<?php
+		$items .= ob_get_clean();
 
 		return $items;
 	}

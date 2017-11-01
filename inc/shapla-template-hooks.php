@@ -25,7 +25,6 @@ add_action( 'shapla_before_header', 'shapla_skip_links', 0 );
  * @see  shapla_site_branding()
  * @see  shapla_primary_navigation()
  */
-add_action( 'shapla_header', 'shapla_search_toggle', 10 );
 add_action( 'shapla_header', 'shapla_site_branding', 20 );
 add_action( 'shapla_header', 'shapla_default_search', 25 );
 add_action( 'shapla_header', 'shapla_primary_navigation', 30 );
@@ -45,13 +44,6 @@ add_action( 'shapla_footer_widget', 'shapla_footer_widget', 10 );
  */
 add_action( 'shapla_footer', 'shapla_site_info', 20 );
 add_action( 'shapla_footer', 'shapla_social_navigation', 30 );
-
-/**
- * After Footer
- *
- * @see  shapla_search_form()
- */
-add_action( 'shapla_after_footer', 'shapla_search_form', 10 );
 
 /**
  * Pages
