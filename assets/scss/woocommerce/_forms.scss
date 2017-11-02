@@ -7,8 +7,6 @@
             margin: 0 0 1em;
 
             [placeholder]:focus::-webkit-input-placeholder {
-                -webkit-transition: opacity 0.5s 0.5s ease;
-                -moz-transition: opacity 0.5s 0.5s ease;
                 transition: opacity 0.5s 0.5s ease;
                 opacity: 0;
             }
@@ -44,8 +42,6 @@
                 height: 4em;
                 line-height: 1.5;
                 display: block;
-                -moz-box-shadow: none;
-                -webkit-box-shadow: none;
                 box-shadow: none;
             }
 
@@ -115,10 +111,11 @@
     form.login,
     form.checkout_coupon,
     form.register {
-        padding: 1em 0;
-        margin: 1em 0;
+        padding: 2rem 1rem 1rem;
+        margin: 0 0 1rem;
         text-align: left;
-        border-radius: 5px;
+        border-radius: 3px;
+        background: rgba(#000, 0.016);
     }
 
     ul#shipping_method {
@@ -131,6 +128,7 @@
             padding: 0.25em 0 0.25em 22px;
             text-indent: -22px;
             list-style: none outside;
+
             input {
                 margin: 3px 0.5ex;
             }

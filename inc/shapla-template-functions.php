@@ -633,6 +633,10 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 			return $items;
 		}
 
+		if ( 'primary' !== $args->theme_location ) {
+			return $items;
+		}
+
 		if ( $header_layout == 'widget' ) {
 			return $items;
 		}

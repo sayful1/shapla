@@ -25,7 +25,7 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 			add_filter( 'carousel_slider_post', array( $this, 'carousel_slider_post' ) );
 
 			// Load Carousel Slider related scripts
-			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 60 );
 		}
 
 		/**

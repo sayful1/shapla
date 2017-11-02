@@ -4,30 +4,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Add new panel
-$shapla->customizer->add_panel( 'typography_panel', array(
+// Add new section
+$shapla->customizer->add_section( 'typography_section', array(
 	'title'    => __( 'Typography', 'shapla' ),
 	'priority' => 40,
-) );
-
-// Add new section
-$shapla->customizer->add_section( 'typography_colors_section', array(
-	'title'    => __( 'Colors', 'shapla' ),
-	'panel'    => 'typography_panel',
-	'priority' => 20,
-) );
-
-// Add new section
-$shapla->customizer->add_section( 'typography_fonts_section', array(
-	'title'    => __( 'Fonts', 'shapla' ),
-	'panel'    => 'typography_panel',
-	'priority' => 10,
 ) );
 
 // Primary color
 $shapla->customizer->add_field( array(
 	'settings'    => 'typography_primary_color',
-	'section'     => 'typography_colors_section',
+	'section'     => 'typography_section',
 	'type'        => 'alpha-color',
 	'label'       => __( 'Primary color', 'shapla' ),
 	'description' => __( 'Set site primary color. Primary color will be used for link color, pagination', 'shapla' ),
@@ -74,7 +60,7 @@ $shapla->customizer->add_field( array(
 // Heading color
 $shapla->customizer->add_field( array(
 	'settings'    => 'typography_heading_color',
-	'section'     => 'typography_colors_section',
+	'section'     => 'typography_section',
 	'type'        => 'alpha-color',
 	'label'       => __( 'Heading color', 'shapla' ),
 	'description' => __( 'Heading color will be used for heading tags (h1, h2, h3, h4, h5, h6)', 'shapla' ),
@@ -99,7 +85,7 @@ $shapla->customizer->add_field( array(
 // Text color
 $shapla->customizer->add_field( array(
 	'settings'    => 'typography_text_color',
-	'section'     => 'typography_colors_section',
+	'section'     => 'typography_section',
 	'type'        => 'alpha-color',
 	'label'       => __( 'Text color', 'shapla' ),
 	'description' => __( 'Text color will be used for body', 'shapla' ),
@@ -121,7 +107,7 @@ $shapla->customizer->add_field( array(
 // Text color
 $shapla->customizer->add_field( array(
 	'settings'    => 'google_font_family',
-	'section'     => 'typography_fonts_section',
+	'section'     => 'typography_section',
 	'type'        => 'google-font',
 	'label'       => __( 'Body font family', 'shapla' ),
 	'description' => __( 'Font family will be used for body', 'shapla' ),
