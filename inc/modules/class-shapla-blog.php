@@ -86,7 +86,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 *
 		 * @return string
 		 */
-		private function post_thumbnail( $echo = true ) {
+		public function post_thumbnail( $echo = true ) {
 			$post_thumbnail = get_the_post_thumbnail(
 				null,
 				'post-thumbnail',
@@ -105,7 +105,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			echo $_thumbnail;
 		}
 
-		private function post_category( $echo = true ) {
+		public function post_category( $echo = true ) {
 			$show_category_list = get_theme_mod( 'show_blog_category_list', true );
 			if ( $show_category_list ) {
 				$categories_list = get_the_category_list( esc_html__( ', ', 'shapla' ) );
@@ -115,7 +115,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			}
 		}
 
-		private function post_tag( $echo = true ) {
+		public function post_tag( $echo = true ) {
 			$show_tag_list = get_theme_mod( 'show_blog_tag_list', false );
 			$tags_list     = get_the_tag_list( '', esc_html__( ', ', 'shapla' ) );
 			$html          = '';
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 *
 		 * @return string
 		 */
-		private function post_title( $echo = true ) {
+		public function post_title( $echo = true ) {
 			$title = sprintf(
 				'<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
 				esc_url( get_permalink() ),
@@ -159,7 +159,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 *
 		 * @return string
 		 */
-		private function post_author( $echo = true ) {
+		public function post_author( $echo = true ) {
 			$_author_avatar = get_theme_mod( 'show_blog_author_avatar', false );
 			$_author_name   = get_theme_mod( 'show_blog_author_name', true );
 			$html           = '';
@@ -199,7 +199,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 *
 		 * @return string
 		 */
-		private function post_date( $echo = true ) {
+		public function post_date( $echo = true ) {
 			$show_date        = get_theme_mod( 'show_blog_date', true );
 			$blog_date_format = get_theme_mod( 'blog_date_format', 'human' );
 
