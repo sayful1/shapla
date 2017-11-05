@@ -118,3 +118,62 @@
         color: #ffffff;
     }
 }
+
+.shapla-main-menu-cart {
+    .shapla-cart-contents {
+        &:after {
+            font-size: 1em;
+            line-height: 1.2;
+            margin-right: 4px;
+        }
+
+        .count {
+            position: static;
+            float: right;
+            height: auto;
+            width: auto;
+            font-size: 1em;
+            line-height: 1.2;
+            padding: 0;
+            background-color: transparent;
+            color: #323232;
+
+            &:before {
+                content: '\28';
+            }
+            &:after {
+                content: '\29';
+            }
+        }
+    }
+
+    .shapla-custom-menu-item-contents {
+        position: absolute;
+        padding: 1.5rem;
+        text-align: right;
+        left: auto;
+        right: 0;
+        visibility: hidden;
+        opacity: 0;
+        z-index: -1;
+        width: 320px;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        transition: opacity .2s ease-in;
+
+        ul {
+            position: static;
+            box-shadow: none;
+            padding: 0;
+        }
+    }
+
+    &:hover {
+        .shapla-custom-menu-item-contents {
+            opacity: 1;
+            visibility: visible;
+            z-index: 9999;
+        }
+    }
+}

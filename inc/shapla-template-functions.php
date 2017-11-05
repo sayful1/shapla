@@ -641,6 +641,17 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 			return $items;
 		}
 
+		if ( shapla_is_woocommerce_activated() ) {
+			ob_start();
+			echo '<li class="shapla-custom-menu-item shapla-main-menu-cart">';
+			shapla_cart_link();
+			echo '<div class="shapla-custom-menu-item-contents">';
+			the_widget( 'WC_Widget_Cart', 'title=' );
+			echo '</div>';
+			echo '</li>';
+			$items .= ob_get_clean();
+		}
+
 		ob_start(); ?>
         <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
             <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>

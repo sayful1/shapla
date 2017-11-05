@@ -86,11 +86,24 @@
         transition: opacity .2s ease-in;
     }
 
+    .shapla-search-toggle {
+        .fa-search {
+            width: 1em;
+            height: 1em;
+        }
+    }
+
     &.shapla-main-menu-search-open {
         .shapla-custom-menu-item-contents {
             visibility: visible;
             opacity: 1;
             z-index: 99999;
+        }
+
+        .shapla-search-toggle {
+            .fa-search::before {
+                content: "\f00d";
+            }
         }
     }
 

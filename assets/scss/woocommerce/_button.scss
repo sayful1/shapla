@@ -5,6 +5,12 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 
+    &.disabled {
+        box-shadow: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
     &.alt {
         background-color: $primary;
         color: $primarytext;
