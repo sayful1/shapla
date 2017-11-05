@@ -229,10 +229,12 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				),
 			),
 			'woocommerce'      => array(
-				'products_per_page'    => 16,
-				'products_per_row'     => 4,
-				'highlight_color'      => $primary_color,
-				'highlight_text_color' => $primary_inverse,
+				'products_per_page'      => 16,
+				'products_per_row'       => 4,
+				'show_cart_icon'         => true,
+				'show_search_categories' => true,
+				'highlight_color'        => $primary_color,
+				'highlight_text_color'   => $primary_inverse,
 			),
 		);
 

@@ -57,8 +57,8 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 			return;
 		}
 
-		$header_layout = get_theme_mod( 'header_layout', 'default' );
-		if ( $header_layout != 'widget' ) {
+		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+		if ( $header_layout != 'layout-3' ) {
 			return;
 		}
 
@@ -78,7 +78,7 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 			'show_count'        => 0,
 			'hierarchical'      => 1,
 		);
-		$show_product_cat = apply_filters( 'shapla_product_search_categories', true );
+		$show_product_cat = get_theme_mod( 'show_product_search_categories', true );
 		?>
         <div class="shapla-search shapla-product-search <?php echo $show_product_cat ? 'has-cat-list' : ''; ?>">
             <form role="search" method="get" class="shapla-product-search-form"
@@ -155,11 +155,18 @@ if ( ! function_exists( 'shapla_header_cart' ) ) {
 	 * @return void
 	 */
 	function shapla_header_cart() {
+
 		if ( ! shapla_is_woocommerce_activated() ) {
 			return;
 		}
-		$header_layout = get_theme_mod( 'header_layout', 'default' );
-		if ( $header_layout != 'widget' ) {
+
+		$show_cart_icon = get_theme_mod( 'show_cart_icon', true );
+		if ( ! $show_cart_icon ) {
+			return;
+		}
+
+		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+		if ( $header_layout != 'layout-3' ) {
 			return;
 		}
 

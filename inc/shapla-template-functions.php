@@ -72,8 +72,8 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 	 * @return void
 	 */
 	function shapla_primary_navigation() {
-		$header_layout = get_theme_mod( 'header_layout', 'default' );
-		$_direction    = $header_layout == 'default' ? 'rtl' : 'ltr';
+		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+		$_direction    = $header_layout == 'layout-1' ? 'rtl' : 'ltr';
 
 		$nav_class = 'main-navigation';
 		$nav_class .= $_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
@@ -590,8 +590,8 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 			return;
 		}
 
-		$header_layout = get_theme_mod( 'header_layout', 'default' );
-		if ( $header_layout != 'widget' ) {
+		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+		if ( $header_layout != 'layout-3' ) {
 			return;
 		}
 
@@ -626,52 +626,49 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 	 */
 	function shapla_search_icon( $items, $args ) {
 
-		$show_search_icon = get_theme_mod( 'show_search_icon' );
-		$header_layout    = get_theme_mod( 'header_layout', 'default' );
-
-		if ( ! $show_search_icon ) {
-			return $items;
-		}
+		$show_search_icon = get_theme_mod( 'show_search_icon', false );
+		$show_cart_icon   = get_theme_mod( 'show_cart_icon', true );
+		$header_layout    = get_theme_mod( 'header_layout', 'layout-1' );
 
 		if ( 'primary' !== $args->theme_location ) {
 			return $items;
 		}
 
-		if ( $header_layout == 'widget' ) {
+		if ( $header_layout == 'layout-3' ) {
 			return $items;
 		}
 
-		if ( shapla_is_woocommerce_activated() ) {
+		if ( shapla_is_woocommerce_activated() && $show_cart_icon ) {
 			ob_start();
 			echo '<li class="shapla-custom-menu-item shapla-main-menu-cart">';
 			shapla_cart_link();
-			echo '<div class="shapla-custom-menu-item-contents">';
-			the_widget( 'WC_Widget_Cart', 'title=' );
-			echo '</div>';
 			echo '</li>';
 			$items .= ob_get_clean();
 		}
 
-		ob_start(); ?>
-        <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
-            <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
-            <div class="shapla-custom-menu-item-contents">
-                <div class="shapla-search">
-                    <form role="search" method="get" class="shapla-search-form"
-                          action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                        <div class="nav-right">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </div>
-                        <div class="nav-fill">
-                            <input name="s" type="text" value="<?php echo get_search_query(); ?>"
-                                   placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
-                        </div>
-                    </form>
+
+		if ( $show_search_icon ) {
+			ob_start(); ?>
+            <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
+                <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
+                <div class="shapla-custom-menu-item-contents">
+                    <div class="shapla-search">
+                        <form role="search" method="get" class="shapla-search-form"
+                              action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                            <div class="nav-right">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                            <div class="nav-fill">
+                                <input name="s" type="text" value="<?php echo get_search_query(); ?>"
+                                       placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </li>
-		<?php
-		$items .= ob_get_clean();
+            </li>
+			<?php
+			$items .= ob_get_clean();
+		}
 
 		return $items;
 	}

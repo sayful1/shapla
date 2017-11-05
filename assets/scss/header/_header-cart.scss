@@ -4,7 +4,7 @@
     position: relative;
     order: 1;
     width: auto; //calc(25% - 2rem);
-    padding: 0 0 0.5rem;
+    padding: 1rem 0;
     margin: 0 0 0 auto;
 
     .widget_shopping_cart {
@@ -146,34 +146,10 @@
             }
         }
     }
+}
 
-    .shapla-custom-menu-item-contents {
-        position: absolute;
-        padding: 1.5rem;
-        text-align: right;
-        left: auto;
-        right: 0;
-        visibility: hidden;
-        opacity: 0;
-        z-index: -1;
-        width: 320px;
-        border-radius: 3px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-        transition: opacity .2s ease-in;
-
-        ul {
-            position: static;
-            box-shadow: none;
-            padding: 0;
-        }
-    }
-
-    &:hover {
-        .shapla-custom-menu-item-contents {
-            opacity: 1;
-            visibility: visible;
-            z-index: 9999;
-        }
+@media screen and (max-width: $nav-toggle-width - 1px) {
+    .shapla-main-menu-cart {
+        display: none;
     }
 }

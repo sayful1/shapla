@@ -46,3 +46,25 @@ $shapla->customizer->add_field( array(
 		6 => __( '6 Products', 'shapla' ),
 	),
 ) );
+
+// Toggle cart icon
+$shapla->customizer->add_field( array(
+	'settings'    => 'show_cart_icon',
+	'type'        => 'checkbox',
+	'section'     => 'woocommerce',
+	'label'       => __( 'Show Cart Icon', 'shapla' ),
+	'description' => __( 'Check to show cart icon on navigation bar in header area.', 'shapla' ),
+	'default'     => shapla_default_options()->woocommerce->show_cart_icon,
+	'priority'    => 30,
+) );
+
+// Toggle cart icon
+$shapla->customizer->add_field( array(
+	'settings'    => 'show_product_search_categories',
+	'type'        => 'checkbox',
+	'section'     => 'woocommerce',
+	'label'       => __( 'Show Categories Dropdown', 'shapla' ),
+	'description' => __( 'Check to show product categories dropdown on search field in header area.', 'shapla' ),
+	'default'     => shapla_default_options()->woocommerce->show_search_categories,
+	'priority'    => 30,
+) );
