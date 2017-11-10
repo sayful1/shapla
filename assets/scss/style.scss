@@ -86,7 +86,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-@import "header/default";
+@import "header/header-default";
+@import "header/header-center";
+@import "header/header-widget";
+@import "header/header-search";
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
@@ -117,4 +120,3 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Modules
 --------------------------------------------------------------*/
 @import "modules/blog-grid";
-//@import "modules/columns";
