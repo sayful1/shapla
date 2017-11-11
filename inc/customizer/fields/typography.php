@@ -98,6 +98,7 @@ $shapla->customizer->add_field( array(
 				'.hentry .entry-meta a',
 				'.byline a',
 				'.posted-on a',
+				'.widget a',
 			),
 			'property' => 'color',
 		),

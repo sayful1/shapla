@@ -1,19 +1,30 @@
 .woocommerce {
+
+    table.shop_table {
+        margin-bottom: 1.25rem;
+
+        td, th {
+            vertical-align: middle;
+        }
+
+        td {
+            small {
+                font-weight: normal;
+            }
+        }
+    }
+
     // Single Product: Shop attributes
     table.shop_attributes {
 
         th {
             width: 150px;
-            font-weight: 500;
         }
 
         td {
-            padding: 0;
-            margin: 0;
-
             p {
                 margin: 0;
-                padding: 8px 0;
+                padding: 0;
             }
         }
 
@@ -23,58 +34,9 @@
         }
     }
 
-    table.shop_table {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        margin: 0 -1px 1.5rem 0;
-        text-align: left;
-        width: 100%;
-        border-collapse: separate;
-        // border-radius: 5px;
-
-        th {
-            font-weight: 500;
-            // padding: 10px 12px;
-        }
-
-        td {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            vertical-align: middle;
-            // padding: 6px 12px;
-
-            small {
-                font-weight: normal;
-            }
-        }
-
-        tbody:first-child {
-            tr:first-child {
-                th,
-                td {
-                    border-top: 0;
-                }
-            }
-        }
-
-        tfoot td,
-        tfoot th,
-        tbody th {
-            font-weight: 500;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-    }
-
     table.my_account_orders {
-        font-size: 0.85em;
 
-        th,
-        td {
-            // padding: 4px 8px;
-            vertical-align: middle;
-        }
-
-        .button {
-            white-space: nowrap;
-        }
+        font-size: 0.875rem;
 
         .order-actions {
             text-align: right;
@@ -109,8 +71,6 @@
     table.variations {
         tbody {
             tr {
-                border-bottom: 0;
-
                 &:nth-child(odd),
                 &:nth-child(even) {
                     background-color: #fff;
@@ -123,10 +83,11 @@
         }
     }
 
+    // MyAccount Order detail page
     td.product-name {
         dl.variation,
         .wc-item-meta {
-            list-style: none outside;
+            list-style-type: none;
 
             dt,
             .wc-item-meta-label {
@@ -135,6 +96,7 @@
                 margin-right: .25em;
                 display: inline-block;
                 list-style: none outside;
+                text-transform: capitalize;
             }
 
             dd {
@@ -148,7 +110,7 @@
         }
 
         p.backorder_notification {
-            font-size: 0.83em;
+            font-size: 0.875rem;
         }
     }
 

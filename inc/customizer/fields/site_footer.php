@@ -77,6 +77,7 @@ $shapla->customizer->add_field( array(
 			'element'  => array(
 				'.footer-widget-area',
 				'.footer-widget-area li:before',
+				'.footer-widget-area .widget-title',
 			),
 			'property' => 'color',
 		),
