@@ -22,24 +22,22 @@ input[type="submit"] {
     }
 
     &.loading {
-        cursor: not-allowed;
-        opacity: 0.5;
+        color: transparent !important;
+        pointer-events: none;
 
         &::after {
-            @include fa-icon();
-            content: "\f110";
-            margin-left: 0.75em;
-            vertical-align: bottom;
-            animation: fa-spin .75s linear infinite;
-        }
-    }
-
-    &.added {
-        &::after {
-            @include fa-icon();
-            content: '\f00c';
-            margin-left: 0.75em;
-            vertical-align: bottom;
+            animation: fa-spin .500s linear infinite;
+            border: 2px solid #dbdbdb;
+            border-radius: 100px;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            content: "";
+            display: block;
+            height: 1em;
+            width: 1em;
+            left: calc(50% - (1em / 2));
+            top: calc(50% - (1em / 2));
+            position: absolute !important;
         }
     }
 }
