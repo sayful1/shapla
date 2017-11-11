@@ -32,7 +32,33 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			add_action( 'admin_menu', array( $this, 'shapla_admin_menu_page' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
+			/* activation notice */
+			add_action( 'load-themes.php', array( $this, 'activation_admin_notice' ) );
+
 			$this->admin_path = get_template_directory() . '/inc/admin/';
+		}
+
+		/**
+		 * Adds an admin notice upon successful activation.
+		 */
+		public function activation_admin_notice() {
+
+			global $pagenow;
+			if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
+				add_action( 'admin_notices', array( $this, 'about_page_welcome_admin_notice' ), 99 );
+			}
+		}
+
+		public function about_page_welcome_admin_notice() {
+			$welcome_url   = admin_url( 'themes.php?page=shapla-welcome' );
+			$customize_url = admin_url( 'customize.php' );
+			echo '<div class="updated notice is-dismissible">';
+			echo '<p>' . esc_html__( 'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ', 'shapla' ) . '</p>';
+			echo '<p>';
+			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__( 'About Shapla', 'shapla' ) . '</a>';
+			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__( 'Start Customize', 'shapla' ) . '</a>';
+			echo '</p>';
+			echo '</div>';
 		}
 
 		/**
