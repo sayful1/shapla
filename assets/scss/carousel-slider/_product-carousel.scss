@@ -43,20 +43,20 @@
 
     // Buttons
     a.add_to_cart_button {
-        &.loading:after,
-        &.added:after {
-            @include fa-icon();
-            margin-left: 0.75em;
-            vertical-align: bottom;
+        &.loading {
+            color: transparent !important;
+            pointer-events: none;
+            padding-right: 1.5em;
+            opacity: 1;
 
-        }
-        &.loading:after {
-            content: "\f110";
-            animation: fa-spin .75s linear infinite;
+            &:after {
+                content: "";
+                animation: fa-spin .75s linear infinite;
+            }
         }
 
         &.added:after {
-            content: '\f00c';
+            content: '';
         }
     }
 

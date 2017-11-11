@@ -659,6 +659,9 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </div>
                             <div class="nav-fill">
+								<?php if ( shapla_is_woocommerce_activated() ): ?>
+                                    <input type="hidden" name="post_type" value="product"/>
+								<?php endif; ?>
                                 <input name="s" type="text" value="<?php echo get_search_query(); ?>"
                                        placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
                             </div>

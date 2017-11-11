@@ -127,30 +127,6 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Button Font Size
-$shapla->customizer->add_field( array(
-	'settings'    => 'button_primary_font_size',
-	'type'        => 'text',
-	'section'     => 'button_primary',
-	'label'       => __( 'Font Size', 'shapla' ),
-	'description' => __( 'Enter a px, em, or rem value for button font size. ex: 15px', 'shapla' ),
-	'default'     => shapla_default_options()->primary_button->font_size,
-	'priority'    => 50,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'button',
-				'.button',
-				'a.button',
-				'input[type="button"]',
-				'input[type="reset"]',
-				'input[type="submit"]',
-			),
-			'property' => 'font-size',
-		),
-	),
-) );
-
 // Button Border Radius
 $shapla->customizer->add_field( array(
 	'settings'    => 'button_primary_border_radius',

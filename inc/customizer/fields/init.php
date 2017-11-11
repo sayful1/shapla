@@ -21,5 +21,4 @@ require 'blog.php';
 if ( shapla_is_woocommerce_activated() ) {
 	require 'woocommerce.php';
 	require 'woocommerce-colors.php';
-	require 'woocommerce-buttons.php';
 }

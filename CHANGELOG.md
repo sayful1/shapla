@@ -1,8 +1,18 @@
-##### 1.2.3-dev
+##### 1.3.0 - November 12, 2017
+* Added - Add option to change google fonts from popular 30 fonts.
+* Added - Add custom style for carousel slider plugin.
 * Added - Add recommended plugins list in theme page.
 * Added - Add radio image customize controller.
 * Added - Add radio button customize control.
 * Tweak - Add alpha color customize control.
+* Tweak - Add new screenshot.png file.
+* Tweak - Added new search icon replacing old search icon.
+* Tweak - Update button related style.
+* Tweak - Update pagination style with primary color.
+* Tweak - Update content width up to 1140px.
+* Added - Add border radius option on customizer.
+* Added - Add WooCommerce related highlight colors.
+* Tweak - Update input, select and textarea related style.
 * Tweak - Add option to change google font from popular 30 fonts.
 * Added - Add three header layout.
 * Added - WooCommerce Product search with categories dropdown.

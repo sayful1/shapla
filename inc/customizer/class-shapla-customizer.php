@@ -118,6 +118,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						'units'         => '',
 						'suffix'        => '',
 						'value_pattern' => '$',
+						'brightness'    => 0,
+						'invert'        => false,
 					);
 					$output   = wp_parse_args( $output, $defaults );
 					// If element is an array, convert it to a string

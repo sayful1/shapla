@@ -11,16 +11,6 @@ input[type="submit"] {
         opacity: 0.5;
     }
 
-    &.alt {
-        background-color: $primary;
-        color: $primarytext;
-
-        &:hover {
-            background-color: $primary - #111;
-            color: $primarytext;
-        }
-    }
-
     &.loading {
         color: transparent !important;
         pointer-events: none;
