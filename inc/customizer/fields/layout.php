@@ -52,8 +52,8 @@ $shapla->customizer->add_field( array(
 	'default'     => shapla_default_options()->layout->header_layout,
 	'priority'    => 30,
 	'choices'     => array(
-		'layout-1' => get_template_directory_uri() . '/assets/images/customizer/default.svg',
-		'layout-2' => get_template_directory_uri() . '/assets/images/customizer/center.svg',
-		'layout-3' => get_template_directory_uri() . '/assets/images/customizer/widget.svg',
+		'layout-1' => get_template_directory_uri() . '/assets/images/customizer/layout-1.svg',
+		'layout-2' => get_template_directory_uri() . '/assets/images/customizer/layout-2.svg',
+		'layout-3' => get_template_directory_uri() . '/assets/images/customizer/layout-3.svg',
 	),
 ) );

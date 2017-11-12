@@ -100,8 +100,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 */
 		public function shapla_admin_menu_page() {
 			add_theme_page(
-				__( 'About Shapla', 'shapla' ),
-				__( 'About Shapla', 'shapla' ),
+				__( 'Shapla', 'shapla' ),
+				__( 'Shapla', 'shapla' ),
 				'manage_options',
 				'shapla-welcome',
 				array( $this, 'welcome_page_callback' )
@@ -209,7 +209,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 						),
 					)
 				);
-				set_transient( 'shapla_about_plugin_info_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
+				set_transient( 'shapla_about_plugin_info_' . $slug, $call_api, HOUR_IN_SECONDS );
 			}
 
 			return $call_api;

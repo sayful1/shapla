@@ -16,6 +16,7 @@
 * Tweak - Add option to change google font from popular 30 fonts.
 * Added - Add three header layout.
 * Added - WooCommerce Product search with categories dropdown.
+* Added - Added primary menu dropdown direction (LTR or RTL).
 * Tweak - Update primary navigation style.
 * Tweak - Update menu style for dropdown direction.
 * Tweak - Add changelog to theme page.

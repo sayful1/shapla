@@ -124,3 +124,16 @@ $shapla->customizer->add_field( array(
 	'default'     => shapla_default_options()->header->show_search_icon,
 	'priority'    => 50,
 ) );
+
+$shapla->customizer->add_field( array(
+	'settings' => 'dropdown_direction',
+	'type'     => 'select',
+	'section'  => 'header_image',
+	'label'    => __( 'Dropdown direction', 'shapla' ),
+	'default'  => shapla_default_options()->primary_nav->direction,
+	'priority' => 60,
+	'choices'  => array(
+		'ltr' => esc_html__( 'left to right', 'shapla' ),
+		'rtl' => esc_html__( 'right to left', 'shapla' ),
+	)
+) );

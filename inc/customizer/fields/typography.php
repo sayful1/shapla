@@ -36,6 +36,10 @@ $shapla->customizer->add_field( array(
 				'.navigation .nav-next a',
 				// Breadcrumbs
 				'.breadcrumb a',
+				// Blog Meta
+				'.hentry .entry-meta a:hover',
+				// Widget Link
+				'.widget a:hover',
 			),
 			'property' => 'color',
 		),
@@ -105,7 +109,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Text color
+// Font Family
 $shapla->customizer->add_field( array(
 	'settings'    => 'google_font_family',
 	'section'     => 'typography_section',

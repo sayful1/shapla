@@ -185,6 +185,9 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'show_tag'           => true,
 				'show_comments_link' => true,
 			),
+			'primary_nav'      => array(
+				'direction' => 'ltr',
+			),
 			'primary_button'   => array(
 				'background'       => $primary_color,
 				'background_hover' => $primary_hover,

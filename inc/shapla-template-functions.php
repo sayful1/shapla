@@ -72,11 +72,10 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 	 * @return void
 	 */
 	function shapla_primary_navigation() {
-		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
-		$_direction    = $header_layout == 'layout-1' ? 'rtl' : 'ltr';
+		$dropdown_direction = get_theme_mod( 'dropdown_direction', 'rtl' );
 
 		$nav_class = 'main-navigation';
-		$nav_class .= $_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
+		$nav_class .= $dropdown_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
 		?>
         <span id="menu-toggle" class="menu-toggle" aria-controls="primary-menu"
               aria-expanded="false">
@@ -360,11 +359,21 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 				}
 
+				$blog_date_format = get_theme_mod( 'blog_date_format', 'human' );
+
+				if ( $blog_date_format == 'human' ) {
+					$_created_time  = sprintf( '%s ago', human_time_diff( get_the_date( 'U' ) ) );
+					$_modified_time = sprintf( '%s ago', human_time_diff( get_the_modified_date( 'U' ) ) );
+				} else {
+					$_created_time  = get_the_date();
+					$_modified_time = get_the_modified_date();
+				}
+
 				$time_string = sprintf( $time_string,
 					esc_attr( get_the_date( 'c' ) ),
-					esc_html( get_the_date() ),
+					esc_html( $_created_time ),
 					esc_attr( get_the_modified_date( 'c' ) ),
-					esc_html( get_the_modified_date() )
+					esc_html( $_modified_time )
 				);
 
 				echo '<div class="posted-on"><div class="label">' . esc_html__( 'Posted on ', 'shapla' ) . '</div><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a></div>';

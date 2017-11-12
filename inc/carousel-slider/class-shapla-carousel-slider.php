@@ -37,7 +37,7 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 				'shapla-carousel-slider',
 				get_template_directory_uri() . '/assets/css/carousel-slider.css',
 				array(),
-				null,
+				SHAPLA_VERSION,
 				'all'
 			);
 		}

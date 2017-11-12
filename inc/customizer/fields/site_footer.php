@@ -101,7 +101,7 @@ $shapla->customizer->add_field( array(
 	'priority' => 50,
 	'output'   => array(
 		array(
-			'element'  => '.footer-widget-area a',
+			'element'  => '.footer-widget-area .widget a',
 			'property' => 'color',
 		),
 	),
