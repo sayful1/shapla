@@ -63,7 +63,7 @@ if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 	 * @param $color
 	 *
 	 * @return string
-	 * @since  1.2.3
+	 * @since  1.3.0
 	 */
 	function shapla_find_color_invert( $color ) {
 		if ( '' === $color ) {
@@ -118,7 +118,7 @@ if ( ! function_exists( 'shapla_adjust_color_brightness' ) ) {
 	 * @param  integer $steps factor by which to brighten/darken ranging from -255 (darken) to 255 (brighten).
 	 *
 	 * @return string        brightened/darkened hex color
-	 * @since  1.2.3
+	 * @since  1.3.0
 	 */
 	function shapla_adjust_color_brightness( $hex, $steps ) {
 		// Steps should be between -255 and 255. Negative = darker, positive = lighter.
@@ -157,6 +157,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	 * Get theme default options
 	 *
 	 * @return object
+	 * @since  1.3.0
 	 */
 	function shapla_default_options() {
 		$heading_color     = '#323232';
@@ -252,6 +253,7 @@ if ( ! function_exists( 'shapla_standard_fonts' ) ) {
 	 * Get standard fonts
 	 *
 	 * @return object
+	 * @since  1.3.0
 	 */
 	function shapla_standard_fonts() {
 		$standard_fonts = array(

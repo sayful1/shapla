@@ -591,7 +591,7 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 	/**
 	 * WooCommerce Product Search
 	 *
-	 * @since   1.2.3
+	 * @since   1.3.0
 	 * @return  void
 	 */
 	function shapla_default_search() {
@@ -626,7 +626,7 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 	/**
 	 * Filters the HTML list content for navigation menus.
 	 *
-	 * @since 1.2.3
+	 * @since 1.3.0
 	 *
 	 * @param string $items The HTML list content for the menu items.
 	 * @param stdClass $args An object containing wp_nav_menu() arguments.

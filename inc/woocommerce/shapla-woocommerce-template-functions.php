@@ -49,7 +49,7 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 	/**
 	 * WooCommerce Product Search
 	 *
-	 * @since   1.2.3
+	 * @since   1.3.0
 	 * @return  void
 	 */
 	function shapla_wc_product_search() {
@@ -116,7 +116,7 @@ if ( ! function_exists( 'shapla_add_to_cart_fragments' ) ) {
 	 *
 	 * @param  array $fragments Fragments to refresh via AJAX.
 	 *
-	 * @since   1.2.3
+	 * @since   1.3.0
 	 * @return array            Fragments to refresh via AJAX
 	 */
 	function shapla_add_to_cart_fragments( $fragments ) {
@@ -134,7 +134,7 @@ if ( ! function_exists( 'shapla_cart_link' ) ) {
 	 * Cart Link
 	 * Displayed a link to the cart including the number of items present and the cart total
 	 *
-	 * @since  1.2.3
+	 * @since  1.3.0
 	 * @return void
 	 */
 	function shapla_cart_link() {
@@ -151,7 +151,7 @@ if ( ! function_exists( 'shapla_header_cart' ) ) {
 	/**
 	 * Display Header Cart
 	 *
-	 * @since  1.2.3
+	 * @since  1.3.0
 	 * @return void
 	 */
 	function shapla_header_cart() {
@@ -192,7 +192,7 @@ if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
 	/**
 	 * Display breadcrumb
 	 *
-	 * @since  2.2.3
+	 * @since  1.3.0
 	 * @return array
 	 */
 	function shapla_wc_breadcrumb() {
