@@ -1,0 +1,10 @@
+.hero-carousel__cell {
+    width: 100%; /* full width */
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .hero-carousel__cell {
+        width: 100%;
+    }
+}

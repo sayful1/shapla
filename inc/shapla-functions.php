@@ -31,6 +31,15 @@ if ( ! function_exists( 'shapla_is_carousel_slider_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'shapla_is_elementor_activated' ) ) {
+	/**
+	 * Query Elementor page builder activation
+	 */
+	function shapla_is_elementor_activated() {
+		return defined( 'ELEMENTOR_VERSION' );
+	}
+}
+
 if ( ! function_exists( 'shapla_header_styles' ) ) {
 	/**
 	 * Apply inline style to the Shapla header.
