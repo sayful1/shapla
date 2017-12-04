@@ -7,41 +7,66 @@ $recommended_plugins = array(
 	'activate_label'            => esc_html__( 'Activate', 'shapla' ),
 	'deactivate_label'          => esc_html__( 'Deactivate', 'shapla' ),
 	'content'                   => array(
-		array( 'slug' => 'elementor', ),
-		array( 'slug' => 'carousel-slider', ),
-		array( 'slug' => 'dialog-contact-form', ),
-		array( 'slug' => 'filterable-portfolio', ),
-		array( 'slug' => 'woocommerce', ),
-		array( 'slug' => 'wordpress-seo', ),
-		array( 'slug' => 'updraftplus', ),
-		array( 'slug' => 'loginizer', ),
+		array(
+			'directory' => 'elementor',
+			'file'      => 'elementor.php',
+		),
+		array(
+			'directory' => 'carousel-slider',
+			'file'      => 'carousel-slider.php',
+		),
+		array(
+			'directory' => 'dialog-contact-form',
+			'file'      => 'dialog-contact-form.php',
+		),
+		array(
+			'directory' => 'filterable-portfolio',
+			'file'      => 'filterable-portfolio.php',
+		),
+		array(
+			'directory' => 'woocommerce',
+			'file'      => 'woocommerce.php',
+		),
+		array(
+			'directory' => 'wordpress-seo',
+			'file'      => 'wp-seo.php',
+		),
+		array(
+			'directory' => 'updraftplus',
+			'file'      => 'updraftplus.php',
+		),
+		array(
+			'directory' => 'loginizer',
+			'file'      => 'loginizer.php',
+		),
 	),
 );
-
-$plugin_slug = 'carousel-slider';
 
 echo '<div class="feature-section recommended-plugins three-col demo-import-boxed" id="plugin-filter">';
 
 foreach ( $recommended_plugins['content'] as $recommended_plugins_item ) {
 
-	if ( ! empty( $recommended_plugins_item['slug'] ) ) {
+	if ( ! empty( $recommended_plugins_item['directory'] ) ) {
 
-		$info = $this->call_plugin_api( $recommended_plugins_item['slug'] );
+		$info = $this->call_plugin_api( $recommended_plugins_item['directory'] );
 
 		if ( ! empty( $info->icons ) ) {
 			$icon = $this->get_plugin_icon( $info->icons );
 		}
 
-		$active = $this->check_if_plugin_active( $recommended_plugins_item['slug'] );
+		$active = $this->check_if_plugin_active( $recommended_plugins_item );
 
 		if ( ! empty( $active['needs'] ) ) {
-			$url = $this->create_action_link( $active['needs'], $recommended_plugins_item['slug'] );
+			$url = $this->create_action_link( $active['needs'], $recommended_plugins_item );
 		}
 
 		echo '<div class="col plugin_box">';
 
 		if ( ! empty( $icon ) ) {
+			$plugin_information_url = $this->plugin_thickbox_url( $recommended_plugins_item['directory'] );
+			echo '<a class="thickbox" href="' . $plugin_information_url . '">';
 			echo '<img src="' . esc_url( $icon ) . '" alt="plugin box image">';
+			echo '</a>';
 		}
 
 		if ( ! empty( $info->version ) ) {
@@ -80,8 +105,8 @@ foreach ( $recommended_plugins['content'] as $recommended_plugins_item ) {
 					break;
 			}
 
-			echo '<span class="plugin-card-' . esc_attr( $recommended_plugins_item['slug'] ) . ' action_button ' . ( ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ) . '">';
-			echo '<a data-slug="' . esc_attr( $recommended_plugins_item['slug'] ) . '" class="' . esc_attr( $class ) . '" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+			echo '<span class="plugin-card-' . esc_attr( $recommended_plugins_item['directory'] ) . ' action_button ' . ( ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ) . '">';
+			echo '<a data-slug="' . esc_attr( $recommended_plugins_item['directory'] ) . '" class="' . esc_attr( $class ) . '" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
 			echo '</span>';
 		}
 		echo '</div><!-- .col.plugin_box -->';

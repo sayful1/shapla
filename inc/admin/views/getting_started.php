@@ -49,9 +49,9 @@
 			printf(
 				esc_html__( 'Shapla lets you choose the appropriate plugin for your slider needs. You may choose free slider like %2$sNivo Image Slider%1$s, %3$sImage Slider%1$s, %4$sCarousel Slider%1$s or even premium slider like %5$sSlider Revolution%1$s, %6$sMaster Slider%1$s, %7$sLayerSlider%1$s and more.', 'shapla' ),
 				'</a>',
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=nivo-image-slider' ) . '">',
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=image-slider-responsive' ) . '">',
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=carousel-slider' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'nivo-image-slider' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'image-slider-responsive' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'carousel-slider' ) . '">',
 				'<a target="_blank" href="https://codecanyon.net/item/slider-revolution-responsive-wordpress-plugin/2751380">',
 				'<a target="_blank" href="https://codecanyon.net/item/master-slider-wordpress-responsive-touch-slider/7467925">',
 				'<a target="_blank" href="https://codecanyon.net/item/layerslider-responsive-wordpress-slider-plugin/1362246">'
@@ -67,9 +67,9 @@
 			printf(
 				esc_html__( 'Page builders are great, if you need one. If you don\'t, they\'re bloat. Shapla is compatible with all most popular free page builder like %2$sPage Builder by SiteOrigin%1$s, %3$sElementor%1$s, %4$sBeaver Builder%1$s, or even premium page builder like %5$sDivi%1$s &amp; %6$sVisual Composer%1$s', 'shapla' ),
 				'</a>',
-				'<a class="thickbox" href=" ' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=siteorigin-panels' ) . '">',
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=elementor' ) . '">',
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=beaver-builder-lite-version' ) . '">',
+				'<a class="thickbox" href=" ' . $this->plugin_thickbox_url( 'siteorigin-panels' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'elementor' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'beaver-builder-lite-version' ) . '">',
 				'<a target="_blank" href="https://www.elegantthemes.com/plugins/divi-builder/">',
 				'<a target="_blank" href="https://vc.wpbakery.com/">'
 			);
@@ -92,7 +92,7 @@
         <p>
 			<?php
 			printf( esc_html__( 'Shapla has tight integration with full features of %sFilterable Portfolio%s plugin.', 'shapla' ),
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=filterable-portfolio' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'filterable-portfolio' ) . '">',
 				'</a>'
 			);
 			?>
@@ -104,7 +104,7 @@
         <p>
 			<?php
 			printf( esc_html__( 'Shapla supports all features of %sWooCommerce%s.', 'shapla' ),
-				'<a class="thickbox" href="' . admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce' ) . '">',
+				'<a class="thickbox" href="' . $this->plugin_thickbox_url( 'woocommerce' ) . '">',
 				'</a>'
 			);
 			?>

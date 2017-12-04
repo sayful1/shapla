@@ -179,7 +179,11 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		}
 
 		/**
-		 * Call plugin api
+		 * Retrieves plugin installer pages from the WordPress.org Plugins API.
+		 *
+		 * @param $slug
+		 *
+		 * @return array|mixed|object|WP_Error
 		 */
 		public function call_plugin_api( $slug ) {
 			include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
@@ -187,8 +191,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			$call_api = get_transient( 'shapla_about_plugin_info_' . $slug );
 
 			if ( false === $call_api ) {
-				$call_api = plugins_api(
-					'plugin_information', array(
+				$call_api = plugins_api( 'plugin_information', array(
 						'slug'   => $slug,
 						'fields' => array(
 							'downloaded'        => false,
@@ -240,20 +243,17 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		/**
 		 * Check if plugin is active
 		 *
-		 * @param plugin -slug $slug the plugin slug.
+		 * @param array $slug the plugin slug.
 		 *
 		 * @return array
 		 */
 		public function check_if_plugin_active( $slug ) {
-			if ( $slug == 'dialog-contact-form' ) {
-				$plugin_root_file = 'init';
-			} else {
-				$plugin_root_file = $slug;
-			}
 
-			$path = WPMU_PLUGIN_DIR . '/' . $slug . '/' . $plugin_root_file . '.php';
+			$plugin = $slug['directory'] . DIRECTORY_SEPARATOR . $slug['file'];
+
+			$path = WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin;
 			if ( ! file_exists( $path ) ) {
-				$path = WP_PLUGIN_DIR . '/' . $slug . '/' . $plugin_root_file . '.php';
+				$path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin;
 				if ( ! file_exists( $path ) ) {
 					$path = false;
 				}
@@ -263,10 +263,10 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-				$needs = is_plugin_active( $slug . '/' . $plugin_root_file . '.php' ) ? 'deactivate' : 'activate';
+				$needs = is_plugin_active( $plugin ) ? 'deactivate' : 'activate';
 
 				return array(
-					'status' => is_plugin_active( $slug . '/' . $plugin_root_file . '.php' ),
+					'status' => is_plugin_active( $plugin ),
 					'needs'  => $needs,
 				);
 			}
@@ -280,20 +280,17 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		/**
 		 * Function that crates the action link for install/activate/deactivate.
 		 *
-		 * @param Plugin -state $state the plugin state (uninstalled/active/inactive).
-		 * @param Plugin -slug  $slug the plugin slug.
+		 * @param string $state the plugin state (uninstalled/active/inactive).
+		 * @param array $plugin_info
 		 *
 		 * @return string
+		 *
 		 */
-		public function create_action_link( $state, $slug ) {
+		public function create_action_link( $state, $plugin_info ) {
 
-			if ( $slug == 'dialog-contact-form' ) {
-				$plugin_root_file = 'init';
-			} elseif ( $slug == 'wordpress-seo' ) {
-				$plugin_root_file = 'wp-seo';
-			} else {
-				$plugin_root_file = $slug;
-			}
+			$slug             = $plugin_info['directory'];
+			$plugin_root_file = $plugin_info['file'];
+			$plugin           = $slug . DIRECTORY_SEPARATOR . $plugin_root_file;
 
 			switch ( $state ) {
 				case 'install':
@@ -312,10 +309,10 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 					return add_query_arg(
 						array(
 							'action'        => 'deactivate',
-							'plugin'        => rawurlencode( $slug . '/' . $plugin_root_file . '.php' ),
+							'plugin'        => rawurlencode( $plugin ),
 							'plugin_status' => 'all',
 							'paged'         => '1',
-							'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $slug . '/' . $plugin_root_file . '.php' ),
+							'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $plugin ),
 						), network_admin_url( 'plugins.php' )
 					);
 					break;
@@ -323,14 +320,31 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 					return add_query_arg(
 						array(
 							'action'        => 'activate',
-							'plugin'        => rawurlencode( $slug . '/' . $plugin_root_file . '.php' ),
+							'plugin'        => rawurlencode( $plugin ),
 							'plugin_status' => 'all',
 							'paged'         => '1',
-							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $slug . '/' . $plugin_root_file . '.php' ),
+							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
 						), network_admin_url( 'plugins.php' )
 					);
 					break;
 			}// End switch().
+		}
+
+		/**
+		 * Get ThikBox URL for a plugin
+		 *
+		 * @param string $plugin_directory
+		 *
+		 * @return string
+		 */
+		public function plugin_thickbox_url( $plugin_directory ) {
+			return add_query_arg( array(
+				'tab'       => 'plugin-information',
+				'plugin'    => $plugin_directory,
+				'TB_iframe' => 'true',
+				'width'     => 772,
+				'height'    => 546,
+			), admin_url( 'plugin-install.php' ) );
 		}
 	}
 
