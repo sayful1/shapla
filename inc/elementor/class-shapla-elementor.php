@@ -27,10 +27,10 @@ class Shapla_Elementor {
 	public function init_widgets() {
 		\Elementor\Plugin::instance()->elements_manager->add_category(
 			'shapla-elements',
-			[
+			array(
 				'title' => 'Shapla Elements',
 				'icon'  => 'fa fa-plug'
-			],
+			),
 			1
 		);
 
@@ -43,7 +43,7 @@ class Shapla_Elementor {
 
 		wp_register_script(
 			'flickity',
-			$assets_dir . '/js/vendors/flickity/flickity' . $suffix . '.js',
+			$assets_dir . '/libs/flickity/flickity' . $suffix . '.js',
 			array(),
 			'2.0.10',
 			true

@@ -31,6 +31,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
 			add_action( 'admin_menu', array( $this, 'shapla_admin_menu_page' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+			add_action( 'admin_print_footer_scripts', array( $this, 'admin_inline_scripts' ), 90 );
 
 			/* activation notice */
 			add_action( 'load-themes.php', array( $this, 'activation_admin_notice' ) );
@@ -62,6 +63,25 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		}
 
 		/**
+		 * Inline scripts for admin page
+		 */
+		public function admin_inline_scripts() {
+			?>
+            <script type="text/javascript">
+                (function ($) {
+                    'use strict';
+                    // Initializing TipTip
+                    $(".help_tip").each(function () {
+                        $(this).tipTip({
+                            attribute: "data-tip"
+                        });
+                    });
+                })(jQuery);
+            </script>
+			<?php
+		}
+
+		/**
 		 * Load theme page scripts
 		 *
 		 * @param $hook_suffix
@@ -71,8 +91,17 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 				return;
 			}
 
+			$assets_url = get_template_directory_uri() . '/assets';
+
 			wp_enqueue_style( 'thickbox' );
 			wp_enqueue_script( 'thickbox' );
+			wp_enqueue_script(
+				'jquery-tiptip',
+				$assets_url . '/libs/jquery-tiptip/jquery.tipTip.js',
+				array( 'jquery' ),
+				'1.3',
+				false
+			);
 			wp_enqueue_style( 'shapla-admin-style', get_template_directory_uri() . '/assets/css/admin.css' );
 		}
 
@@ -151,6 +180,10 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 					$template = $template_path . '/changelog.php';
 					break;
 
+				case 'system_status':
+					$template = $template_path . '/system_status.php';
+					break;
+
 				case 'recommended_plugins':
 					$template = $template_path . '/recommended_plugins.php';
 					break;
@@ -173,6 +206,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 				'getting_started'     => __( 'Getting Started', 'shapla' ),
 				'recommended_plugins' => __( 'Useful Plugins', 'shapla' ),
 				'changelog'           => __( 'Change log', 'shapla' ),
+				'system_status'       => __( 'System Status', 'shapla' ),
 			);
 
 			return $this->tabs;
