@@ -1,4 +1,4 @@
-##### 1.3.0 - November 12, 2017
+#### 1.3.0 - November 12, 2017
 * Added - Add option to change google fonts from popular 30 fonts.
 * Added - Add custom style for carousel slider plugin.
 * Added - Add recommended plugins list in theme page.
@@ -21,7 +21,7 @@
 * Tweak - Update menu style for dropdown direction.
 * Tweak - Add changelog to theme page.
 
-##### 1.2.2 - September 28, 2017
+#### 1.2.2 - September 28, 2017
 * Tweak - Update Shapla_Customizer::sanitize_color() method.
 * Fixed - Jetpack in infinite-scroll style not working properly.
 * Added - Added compatibility with PHP 5.3 
