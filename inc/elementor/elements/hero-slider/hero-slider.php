@@ -38,7 +38,7 @@ class Shapla_Hero_Slider extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'shapla-elements' ];
+		return array( 'shapla-elements' );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Shapla_Hero_Slider extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'flickity', 'shapla-elementor' ];
+		return array( 'flickity', 'shapla-elementor' );
 	}
 
 	/**
@@ -83,13 +83,13 @@ class Shapla_Hero_Slider extends Widget_Base {
 			return;
 		}
 
-		$this->add_render_attribute( 'button', 'class', [ 'elementor-button', 'elementor-slide-button' ] );
+		$this->add_render_attribute( 'button', 'class', array( 'elementor-button', 'elementor-slide-button' ) );
 
 		if ( ! empty( $settings['button_size'] ) ) {
 			$this->add_render_attribute( 'button', 'class', 'elementor-size-' . $settings['button_size'] );
 		}
 
-		$slides      = [];
+		$slides      = array();
 		$slide_count = 0;
 		foreach ( $settings['slides'] as $slide ) {
 			$slide_html  = $slide_attributes = $btn_attributes = '';
@@ -144,10 +144,10 @@ class Shapla_Hero_Slider extends Widget_Base {
 
 		$is_rtl      = is_rtl();
 		$direction   = $is_rtl ? 'rtl' : 'ltr';
-		$show_dots   = ( in_array( $settings['navigation'], [ 'dots', 'both' ] ) );
-		$show_arrows = ( in_array( $settings['navigation'], [ 'arrows', 'both' ] ) );
+		$show_dots   = ( in_array( $settings['navigation'], array( 'dots', 'both' ) ) );
+		$show_arrows = ( in_array( $settings['navigation'], array( 'arrows', 'both' ) ) );
 
-		$options = [
+		$options = array(
 			'wrapAround'      => ( 'yes' === $settings['infinite'] ),
 			// Wrap-around to the other end for infinite scrolling.
 			'prevNextButtons' => $show_arrows,
@@ -159,7 +159,7 @@ class Shapla_Hero_Slider extends Widget_Base {
 			// Remove It
 			//'speed'           => absint( $settings['transition_speed'] ),
 			//'slidesToShow'    => absint( 1 ),
-		];
+		);
 
 		if ( 'yes' === $settings['autoplay'] ) {
 			$auto_play_speed = absint( $settings['autoplay_speed'] );
@@ -171,7 +171,7 @@ class Shapla_Hero_Slider extends Widget_Base {
 			$options['pauseAutoPlayOnHover'] = ( 'yes' === $settings['pause_on_hover'] );
 		}
 
-		$carousel_classes = [ 'hero-carousel' ];
+		$carousel_classes = array( 'hero-carousel' );
 
 		if ( $show_arrows ) {
 			$carousel_classes[] = 'hero-carousel__arrows-' . $settings['arrows_position'];
@@ -181,11 +181,11 @@ class Shapla_Hero_Slider extends Widget_Base {
 			$carousel_classes[] = 'hero-carousel__dots-' . $settings['dots_position'];
 		}
 
-		$this->add_render_attribute( 'slides', [
+		$this->add_render_attribute( 'slides', array(
 			'class'          => $carousel_classes,
 			'data-flickity'  => wp_json_encode( $options ),
 			'data-animation' => $settings['content_animation'],
-		] );
+		) );
 
 		?>
         <div class="hero-carousel-wrapper elementor-flickity-slider" dir="<?php echo $direction; ?>">
