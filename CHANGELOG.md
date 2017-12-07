@@ -1,3 +1,8 @@
+#### 1.3.1
+* Added - Add system status tab in theme page.
+* Tweak - Update changelog style in theme page.
+* Added - Add hero slider element for Elementor Page Builder.
+
 #### 1.3.0 - November 12, 2017
 * Added - Add option to change google fonts from popular 30 fonts.
 * Added - Add custom style for carousel slider plugin.
