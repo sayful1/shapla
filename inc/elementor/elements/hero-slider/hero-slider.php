@@ -189,7 +189,9 @@ class Shapla_Hero_Slider extends Widget_Base {
 
 		?>
         <div class="hero-carousel-wrapper elementor-flickity-slider" dir="<?php echo $direction; ?>">
-            <div <?php echo $this->get_render_attribute_string( 'slides' ); ?>>
+            <div class="<?php echo implode( ' ', $carousel_classes ); ?>"
+                 data-settings='<?php echo wp_json_encode( $options ); ?>'
+                 data-animation='<?php echo $settings['content_animation']; ?>'>
 				<?php echo implode( '', $slides ); ?>
             </div>
         </div>

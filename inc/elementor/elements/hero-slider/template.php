@@ -13,7 +13,8 @@
         #>
 
     <div class="hero-carousel-wrapper elementor-flickity-slider" dir="<?php echo is_rtl() ? 'rtl' : 'ltr'; ?>">
-        <div class="hero-carousel {{ dotsClass }} {{ arrowsClass }}" data-flickity=""
+        <div class="hero-carousel {{ dotsClass }} {{ arrowsClass }}"
+             data-flickity='{ "cellAlign": "left", "contain": true }'
              data-animation="{{ settings.content_animation }}">
             <# _.each( settings.slides, function( slide ) { #>
                 <div class="elementor-repeater-item-{{ slide._id }} hero-carousel__cell">
