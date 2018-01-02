@@ -54,10 +54,13 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			$welcome_url   = admin_url( 'themes.php?page=shapla-welcome' );
 			$customize_url = admin_url( 'customize.php' );
 			echo '<div class="updated notice is-dismissible">';
-			echo '<p>' . esc_html__( 'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ', 'shapla' ) . '</p>';
+			echo '<p>' . esc_html__( 'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ',
+					'shapla' ) . '</p>';
 			echo '<p>';
-			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__( 'About Shapla', 'shapla' ) . '</a>';
-			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__( 'Start Customize', 'shapla' ) . '</a>';
+			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__( 'About Shapla',
+					'shapla' ) . '</a>';
+			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__( 'Start Customize',
+					'shapla' ) . '</a>';
 			echo '</p>';
 			echo '</div>';
 		}
@@ -66,6 +69,10 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		 * Inline scripts for admin page
 		 */
 		public function admin_inline_scripts() {
+			global $hook_suffix;
+			if ( $hook_suffix != 'appearance_page_shapla-welcome' ) {
+				return;
+			}
 			?>
             <script type="text/javascript">
                 (function ($) {
@@ -115,7 +122,9 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 		public function admin_footer_text( $text ) {
 			global $hook_suffix;
 
-			$footer_text = sprintf( esc_html__( 'If you like %1$s Shapla %2$s please leave us a %3$s rating. A huge thanks in advance!', 'shapla' ), '<strong>', '</strong>', '<a href="https://wordpress.org/support/theme/shapla/reviews/?filter=5" target="_blank" data-rated="Thanks :)">&starf;&starf;&starf;&starf;&starf;</a>' );
+			$footer_text = sprintf( esc_html__( 'If you like %1$s Shapla %2$s please leave us a %3$s rating. A huge thanks in advance!',
+				'shapla' ), '<strong>', '</strong>',
+				'<a href="https://wordpress.org/support/theme/shapla/reviews/?filter=5" target="_blank" data-rated="Thanks :)">&starf;&starf;&starf;&starf;&starf;</a>' );
 
 			if ( $hook_suffix == 'appearance_page_shapla-welcome' ) {
 				return $footer_text;
@@ -376,8 +385,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 				'tab'       => 'plugin-information',
 				'plugin'    => $plugin_directory,
 				'TB_iframe' => 'true',
-				'width'     => 772,
-				'height'    => 546,
 			), admin_url( 'plugin-install.php' ) );
 		}
 	}

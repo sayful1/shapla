@@ -99,6 +99,20 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 				SHAPLA_VERSION,
 				'all'
 			);
+
+			$font_path   = WC()->plugin_url() . '/assets/fonts/';
+			$inline_font = '@font-face {
+				font-family: "star";
+				src: url("' . $font_path . 'star.eot");
+				src: url("' . $font_path . 'star.eot?#iefix") format("embedded-opentype"),
+					url("' . $font_path . 'star.woff") format("woff"),
+					url("' . $font_path . 'star.ttf") format("truetype"),
+					url("' . $font_path . 'star.svg#star") format("svg");
+				font-weight: normal;
+				font-style: normal;
+			}';
+
+			wp_add_inline_style( 'shapla-woocommerce-style', $inline_font );
 		}
 
 		/**

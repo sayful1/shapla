@@ -3,7 +3,7 @@
 **Contributors:** sayful  
 **Requires at least:** 4.4  
 **Tested up to:** 4.9  
-**Stable tag:** 1.3.0  
+**Stable tag:** 1.3.1  
 **License:** GPLv3  
 **License URI:** http://www.gnu.org/licenses/gpl-3.0.txt  
 **Tags:** one-column, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-menu, editor-style, featured-images, post-formats, sticky-post, threaded-comments, translation-ready, blog

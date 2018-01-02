@@ -3,6 +3,11 @@
         .site-branding {
             display: inline-flex;
             padding-right: 1rem;
+            align-items: center;
+        }
+
+        .site-description {
+            margin-left: 0.5rem;
         }
 
         .site-header-menu {

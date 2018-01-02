@@ -90,7 +90,7 @@
     &:focus {
         background-color: transparent;
         box-shadow: none;
-        color: $color--strikemaster;
+        color: $primary;
     }
 
     &:focus {
@@ -139,7 +139,7 @@
         cursor: pointer;
 
         &:hover, &:focus {
-            color: $color--strikemaster;
+            color: $primary;
         }
     }
 
@@ -151,7 +151,7 @@
     .current-menu-ancestor > a,
     .current_page_item > a,
     .current_page_ancestor > a {
-        color: $color--strikemaster;
+        color: $primary;
     }
 }
 
@@ -178,7 +178,7 @@
         li {
             &:hover, &.focus {
                 > a {
-                    color: $color--strikemaster;
+                    color: $primary;
                 }
 
                 > ul {

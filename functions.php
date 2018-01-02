@@ -57,11 +57,6 @@ if ( shapla_is_carousel_slider_activated() ) {
 	require 'inc/carousel-slider/class-shapla-carousel-slider.php';
 }
 
-if ( shapla_is_elementor_activated() ) {
-	require 'inc/elementor/class-shapla-elementor.php';
-}
-
-
 if ( is_admin() ) {
 	require 'inc/admin/class-shapla-system-status.php';
 	require 'inc/admin/class-shapla-admin.php';
