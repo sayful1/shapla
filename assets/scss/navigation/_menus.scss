@@ -1,6 +1,7 @@
 .site-header-menu {
     display: none;
     margin: 1rem 0;
+    transition: height 86ms ease-out;
 
     &.toggled-on {
         display: block;
@@ -15,6 +16,14 @@
     display: block;
     height: 3rem;
     width: 3rem;
+    background-color: transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+        box-shadow: none !important;
+    }
 
     span {
         background-color: $color--black;
@@ -176,7 +185,8 @@
         }
 
         li {
-            &:hover, &.focus {
+            &:hover,
+            &.focus {
                 > a {
                     color: $primary;
                 }
@@ -279,7 +289,8 @@
 @media screen and (min-width: $nav-toggle-width) {
     .main-navigation.dropdown-rtl {
         li {
-            &:hover, &.focus {
+            &:hover,
+            &.focus {
                 > ul {
                     left: auto;
                     right: 0;

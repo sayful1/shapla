@@ -9,8 +9,13 @@
 (function () {
     "use strict";
 
-    var menuToggle, siteHeaderMenu, container, links, i, len;
-    var screenReaderText = Shapla.screenReaderText;
+    var menuToggle,
+        siteHeaderMenu,
+        container,
+        links,
+        i,
+        len,
+        screenReaderText = Shapla.screenReaderText;
 
     menuToggle = document.querySelector('#menu-toggle');
     siteHeaderMenu = document.querySelector('#site-header-menu');
@@ -20,48 +25,37 @@
     }
 
     /**
-     * Check if DOM is ready
-     */
-    function ready(fn) {
-        if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-            fn();
-        } else {
-            document.addEventListener('DOMContentLoaded', fn);
-        }
-    }
-
-    /**
      * Init main navigation
      */
     function initMainNavigation() {
-        var dropdownToggle = '<button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">' + screenReaderText.expand + '</span></button>';
+        var dropdownToggleHTML = '<button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">' + screenReaderText.expand + '</span></button>';
 
         // Insert toggle button before children items
-        var hasChild = container.querySelectorAll('.menu-item-has-children > a');
-        Array.prototype.forEach.call(hasChild, function (el, i) {
-            el.insertAdjacentHTML('afterend', dropdownToggle);
+        var hasChildLink = container.querySelectorAll('.menu-item-has-children > a');
+        Array.prototype.forEach.call(hasChildLink, function (el) {
+            el.insertAdjacentHTML('afterend', dropdownToggleHTML);
         });
 
         // Toggle buttons items with active children menu items.
         var ancestorBtn = container.querySelectorAll('.current-menu-ancestor > button');
-        Array.prototype.forEach.call(ancestorBtn, function (el, i) {
+        Array.prototype.forEach.call(ancestorBtn, function (el) {
             el.classList.add('toggled-on');
         });
 
         // Toggle submenu items with active children menu items.
         var ancestorSubMenu = container.querySelectorAll('.current-menu-ancestor > .sub-menu');
-        Array.prototype.forEach.call(ancestorSubMenu, function (el, i) {
+        Array.prototype.forEach.call(ancestorSubMenu, function (el) {
             el.classList.add('toggled-on');
         });
 
         // Add menu items with submenus to aria-haspopup="true".
         var hasChild = container.querySelectorAll('.menu-item-has-children');
-        Array.prototype.forEach.call(hasChild, function (el, i) {
+        Array.prototype.forEach.call(hasChild, function (el) {
             el.setAttribute('aria-haspopup', 'true');
         });
 
         var dropdownToggle = container.querySelectorAll('.dropdown-toggle');
-        Array.prototype.forEach.call(dropdownToggle, function (el, i) {
+        Array.prototype.forEach.call(dropdownToggle, function (el) {
             el.addEventListener('click', function (event) {
                 event.preventDefault();
 
@@ -77,8 +71,11 @@
 
                 // Change screen reader text
                 var screenReaderSpan = el.querySelector('.screen-reader-text');
-                var screenReaderSpanText = screenReaderSpan.textContent === screenReaderText.expand ? screenReaderText.collapse : screenReaderText.expand;
-                screenReaderSpan.textContent = screenReaderSpanText;
+                if (screenReaderSpan.textContent === screenReaderText.expand) {
+                    screenReaderSpan.textContent = screenReaderText.collapse;
+                } else {
+                    screenReaderSpan.textContent = screenReaderText.expand;
+                }
             });
         });
     }
@@ -86,15 +83,21 @@
     /**
      * Enable menuToggle.
      */
-    function initMenuToggle() {
+    function initHamburgerIcon() {
         // Add an initial values for the attribute.
         menuToggle.setAttribute('aria-expanded', 'false');
         container.setAttribute('aria-expanded', 'false');
 
         menuToggle.addEventListener('click', function (event) {
             event.preventDefault();
-            siteHeaderMenu.classList.toggle('toggled-on');
+
+            // Get the target from the "data-target" attribute
+            var target = menuToggle.dataset.target;
+            var $target = document.querySelector(target);
+
+            // Toggle the class on both the "#menu-toggle" and the "#site-header-menu"
             menuToggle.classList.toggle('toggled-on');
+            $target.classList.toggle('toggled-on');
 
             // Change area-expanded attribute value
             var ariaExpanded = container.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
@@ -137,7 +140,7 @@
     /**
      * Toggles `focus` class to allow submenu access on tablets.
      */
-    ( function (container) {
+    (function (container) {
         var touchStartFn, i,
             parentLink = container.querySelectorAll('.menu-item-has-children > a, .page_item_has_children > a');
 
@@ -163,11 +166,9 @@
                 parentLink[i].addEventListener('touchstart', touchStartFn, false);
             }
         }
-    }(container) );
+    }(container));
 
-    ready(function () {
-        initMainNavigation();
-        initMenuToggle();
-    });
+    initMainNavigation();
+    initHamburgerIcon();
 
 })();

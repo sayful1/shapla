@@ -17,7 +17,7 @@
         searchLabel.textContent = defaultVal;
     }
 
-    catList.addEventListener('change', function (e) {
+    catList.addEventListener('change', function () {
         var selectText = this.value;
         if (selectText === '') {
             searchLabel.textContent = defaultLabel;
