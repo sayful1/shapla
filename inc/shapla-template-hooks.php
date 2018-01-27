@@ -52,8 +52,8 @@ add_action( 'shapla_footer', 'shapla_social_navigation', 30 );
  * @see  shapla_page_content()
  * @see  shapla_display_comments()
  */
+add_action( 'shapla_before_content', 'shapla_page_header', 10 );
 add_action( 'shapla_page', 'shapla_post_thumbnail', 10 );
-add_action( 'shapla_page', 'shapla_page_header', 10 );
 add_action( 'shapla_page', 'shapla_page_content', 20 );
 add_action( 'shapla_page_after', 'shapla_display_comments', 10 );
 
@@ -66,8 +66,8 @@ add_action( 'shapla_page_after', 'shapla_display_comments', 10 );
  * @see  shapla_navigation()
  * @see  shapla_display_comments()
  */
+//add_action( 'shapla_single_post', 'shapla_post_header', 10 );
 add_action( 'shapla_single_post', 'shapla_post_thumbnail', 10 );
-add_action( 'shapla_single_post', 'shapla_post_header', 10 );
 add_action( 'shapla_single_post', 'shapla_post_meta', 20 );
 add_action( 'shapla_single_post', 'shapla_post_content', 30 );
 
@@ -95,7 +95,7 @@ add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
  *
  * @see shapla_blog_header()
  */
-add_action( 'shapla_blog_loop_before', 'shapla_blog_header', 10 );
+//add_action( 'shapla_blog_loop_before', 'shapla_blog_header', 10 );
 
 /**
  * Add search icon on menu

@@ -258,9 +258,12 @@ if ( ! function_exists( 'shapla_site_info' ) ) {
 				echo $copyright_text;
 			else:
 				?>
-                <a href="<?php echo esc_url( __( 'https://wordpress.org/', 'shapla' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'shapla' ), 'WordPress' ); ?></a>
+                <a href="<?php echo esc_url( __( 'https://wordpress.org/',
+					'shapla' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'shapla' ),
+						'WordPress' ); ?></a>
                 <span class="sep"> | </span>
-				<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'shapla' ), 'shapla', '<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>' ); ?>
+				<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'shapla' ), 'shapla',
+				'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>' ); ?>
 			<?php endif; ?>
         </div><!-- .site-info -->
 		<?php
@@ -375,14 +378,17 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 					esc_html( $_modified_time )
 				);
 
-				echo '<div class="posted-on"><div class="label">' . esc_html__( 'Posted on ', 'shapla' ) . '</div><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a></div>';
+				echo '<div class="posted-on"><div class="label">' . esc_html__( 'Posted on ',
+						'shapla' ) . '</div><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a></div>';
 			}
 
 			if ( $show_category_list ) {
 				/* translators: used between list items, there is a space after the comma */
 				$categories_list = get_the_category_list( esc_html__( ' ', 'shapla' ) );
 				if ( $categories_list ) {
-					printf( '<div class="cat-links"><div class="label">' . esc_html__( 'Posted in ', 'shapla' ) . '</div>' . esc_html__( '%1$s', 'shapla' ) . '</div>', $categories_list ); // WPCS: XSS OK.
+					printf( '<div class="cat-links"><div class="label">' . esc_html__( 'Posted in ',
+							'shapla' ) . '</div>' . esc_html__( '%1$s', 'shapla' ) . '</div>',
+						$categories_list ); // WPCS: XSS OK.
 				}
 			}
 
@@ -390,7 +396,9 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 				/* translators: used between list items, there is a space after the comma */
 				$tags_list = get_the_tag_list( '', esc_html__( ', ', 'shapla' ) );
 				if ( $tags_list ) {
-					printf( '<div class="tags-links"><div class="label">' . esc_html__( 'Tagged ', 'shapla' ) . '</div>' . esc_html__( '%1$s', 'shapla' ) . '</div>', $tags_list ); // WPCS: XSS OK.
+					printf( '<div class="tags-links"><div class="label">' . esc_html__( 'Tagged ',
+							'shapla' ) . '</div>' . esc_html__( '%1$s', 'shapla' ) . '</div>',
+						$tags_list ); // WPCS: XSS OK.
 				}
 			}
 
@@ -401,7 +409,8 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 				echo '<div class="comments-link">';
 				echo '<div class="label">' . esc_attr( __( 'Comments ', 'shapla' ) ) . '</div>';
 				/* translators: %s: post title */
-				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'shapla' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>',
+					'shapla' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
 				echo '</div>';
 			}
 		}
@@ -428,14 +437,63 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 	 */
 	function shapla_page_header() {
 		global $post;
-		$hide_title = get_post_meta( $post->ID, '_shapla_hide_page_title', true );
-		if ( $hide_title == 'on' ) {
-			return;
+
+		$title = get_the_title();
+
+		if ( is_search() ) {
+			$title = sprintf(
+				esc_html__( 'Search Results for: %s', 'shapla' ),
+				'<span>' . get_search_query() . '</span>'
+			);
 		}
+		if ( is_archive() ) {
+			$title = get_the_archive_title();
+		}
+
+		if ( is_404() ) {
+			$title = esc_html__( 'Page not found.', 'shapla' );
+		}
+
+		if ( is_page() ) {
+			if ( $post instanceof \WP_Post && 'on' == get_post_meta( $post->ID, '_shapla_hide_page_title', true ) ) {
+				return;
+			}
+		}
+
+		if ( is_home() && ! is_front_page() ) {
+			if ( ! get_theme_mod( 'show_blog_page_title', true ) ) {
+				return;
+			}
+			$title = get_the_title( get_option( 'page_for_posts' ) );
+		}
+
+		if ( shapla_is_woocommerce_activated() ) {
+			if ( is_search() || is_tax() || is_shop() ) {
+				$title = woocommerce_page_title( false );
+			}
+
+			if ( is_page() && is_wc_endpoint_url() ) {
+				$endpoint = WC()->query->get_current_endpoint();
+				if ( $endpoint_title = WC()->query->get_endpoint_title( $endpoint ) ) {
+					$title = $endpoint_title;
+				}
+			}
+		}
+
 		?>
-        <header class="entry-header">
-			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-        </header><!-- .entry-header -->
+        <div class="page-title-bar clear">
+            <div class="shapla-container">
+				<?php do_action( 'shapla_before_page_title' ); ?>
+                <div class="entry-title-container">
+                    <div class="entry-header">
+                        <h1 class="entry-title">
+							<?php echo $title; ?>
+                        </h1>
+                    </div>
+                </div>
+				<?php do_action( 'shapla_after_page_title' ); ?>
+            </div>
+        </div><!-- .page-title-bar -->
 		<?php
 	}
 
@@ -448,6 +506,9 @@ if ( ! function_exists( 'shapla_blog_header' ) ):
 	 * @since 1.1.6
 	 */
 	function shapla_blog_header() {
+
+		_deprecated_function( __FUNCTION__, '1.3.2', 'shapla_page_header' );
+
 		$show_blog_page_title = get_theme_mod( 'show_blog_page_title', true );
 		if ( ! $show_blog_page_title ) {
 			return '';
@@ -511,12 +572,8 @@ if ( ! function_exists( 'shapla_post_header' ) ):
 	function shapla_post_header() {
 		?>
         <header class="entry-header">
-			<?php
-			if ( is_single() ) :
-				the_title( '<h1 class="entry-title">', '</h1>' );
-			else :
-				the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-			endif; ?>
+			<?php the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
+				'</a></h2>' ); ?>
         </header><!-- .entry-header -->
 		<?php
 	}
@@ -542,7 +599,8 @@ if ( ! function_exists( 'shapla_post_content' ) ):
 
 			the_content( sprintf(
 			/* translators: %s: Name of current post. */
-				wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'shapla' ), array( 'span' => array( 'class' => array() ) ) ),
+				wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'shapla' ),
+					array( 'span' => array( 'class' => array() ) ) ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
 
