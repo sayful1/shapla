@@ -197,10 +197,20 @@ if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
 	 */
 	function shapla_wc_breadcrumb() {
 		$breadcrumbs_separator = get_theme_mod( 'breadcrumbs_separator', 'slash' );
+		$is_hidden_mobile      = get_theme_mod( 'breadcrumbs_visible_on_mobile', 'off' );
+		$content_display       = get_theme_mod( 'breadcrumbs_content_display', 'breadcrumb' );
 
 		$class = 'breadcrumb';
 		if ( ! empty( $breadcrumbs_separator ) ) {
 			$class .= ' has-' . $breadcrumbs_separator . '-separator';
+		}
+
+		if ( 'off' == $is_hidden_mobile ) {
+			$class .= ' is-hidden-mobile';
+		}
+
+		if ( 'none' == $content_display ) {
+			$class .= ' is-hidden';
 		}
 
 		$args = apply_filters( 'shapla_wc_breadcrumb', array(
