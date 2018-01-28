@@ -8,10 +8,12 @@ $breadcrumb-item-separator-color: $contenttext !default;
     align-items: stretch;
     display: flex;
     font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 2;
     overflow: hidden;
     overflow-x: auto;
     white-space: nowrap;
-    margin: 1rem 0 0;
+    margin: 0;
 
     &:not(:last-child) {
         margin-bottom: 1rem;
@@ -26,12 +28,13 @@ $breadcrumb-item-separator-color: $contenttext !default;
         flex-grow: 1;
         flex-shrink: 0;
         justify-content: flex-start;
+        flex-wrap: wrap;
     }
 
     li {
         align-items: center;
         display: flex;
-        color: $breadcrumb-item-active-color;
+        color: $contenttext;
 
         &:first-child a {
             padding-left: 0;
@@ -43,7 +46,7 @@ $breadcrumb-item-separator-color: $contenttext !default;
     }
 
     li + li::before {
-        color: $breadcrumb-item-separator-color;
+        color: $contenttext;
         content: "\0002f";
     }
 
@@ -70,13 +73,17 @@ $breadcrumb-item-separator-color: $contenttext !default;
 
     a {
         align-items: center;
-        color: $breadcrumb-item-color;
+        color: $contenttext;
         display: flex;
         justify-content: center;
         padding: 0 0.75em;
 
         &:hover {
-            color: $breadcrumb-item-hover-color;
+            color: $contenttext;
         }
+    }
+
+    @media screen and (max-width: $screen-md - 1px) {
+        display: none;
     }
 }

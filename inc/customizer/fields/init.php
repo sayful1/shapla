@@ -13,6 +13,7 @@ $shapla->customizer->add_config( array(
 
 require 'typography.php';
 require 'header.php';
+require 'page-title-bar.php';
 require 'site_footer.php';
 require 'buttons.php';
 require 'layout.php';

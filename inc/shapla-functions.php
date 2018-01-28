@@ -211,6 +211,22 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'show_search_icon' => false,
 				'sticky_header'    => false,
 			),
+			'title_bar'        => array(
+				'background_color' => '#f5f5f5',
+				'border_color'     => '#cccccc',
+				'padding'          => '2rem',
+				'font_size'        => '2rem',
+				'line_height'      => '1.4',
+				'title_font_color' => $heading_color,
+				'text_alignment'   => 'left',
+			),
+			'breadcrumbs'      => array(
+				'content_display'   => 'breadcrumb',
+				'visible_on_mobile' => 'off',
+				'separator'         => 'slash',
+				'font_size'         => '0.875rem',
+				'font_color'        => $text_color,
+			),
 			'layout'           => array(
 				'site_layout'    => 'wide',
 				'sidebar_layout' => 'right-sidebar',

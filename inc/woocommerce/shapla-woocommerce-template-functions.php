@@ -196,9 +196,16 @@ if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
 	 * @return array
 	 */
 	function shapla_wc_breadcrumb() {
+		$breadcrumbs_separator = get_theme_mod( 'breadcrumbs_separator', 'slash' );
+
+		$class = 'breadcrumb';
+		if ( ! empty( $breadcrumbs_separator ) ) {
+			$class .= ' has-' . $breadcrumbs_separator . '-separator';
+		}
+
 		$args = apply_filters( 'shapla_wc_breadcrumb', array(
 			'delimiter'   => '',
-			'wrap_before' => '<nav class="breadcrumb has-succeeds-separator"><ul>',
+			'wrap_before' => '<nav class="' . $class . '"><ul>',
 			'wrap_after'  => '</ul></nav>',
 			'before'      => '<li>',
 			'after'       => '</li>',

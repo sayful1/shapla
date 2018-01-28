@@ -237,7 +237,7 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
                     </div>
                 </div>
             </div>
-		<?php
+			<?php
 		endif;
 	}
 }
@@ -480,18 +480,25 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 			}
 		}
 
+		$class = 'page-title-bar clear';
+
+		$alignment = get_theme_mod( 'page_title_bar_text_alignment', 'left' );
+		if ( ! empty( $alignment ) ) {
+			$class .= ' page-title-bar-' . $alignment;
+		}
+
 		?>
-        <div class="page-title-bar clear">
+        <div class="<?php echo $class; ?>">
             <div class="shapla-container">
-				<?php do_action( 'shapla_before_page_title' ); ?>
                 <div class="entry-title-container">
+					<?php do_action( 'shapla_before_page_title' ); ?>
                     <div class="entry-header">
                         <h1 class="entry-title">
 							<?php echo $title; ?>
                         </h1>
                     </div>
+					<?php do_action( 'shapla_after_page_title' ); ?>
                 </div>
-				<?php do_action( 'shapla_after_page_title' ); ?>
             </div>
         </div><!-- .page-title-bar -->
 		<?php
