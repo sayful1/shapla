@@ -73,10 +73,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$styles = $this->get_styles();
 
 			if ( $styles ) {
-				printf(
-					'<style type="text/css" id="shapla-inline-style">%s</style>',
-					wp_strip_all_tags( $styles )
-				);
+				echo '<style type="text/css" id="shapla-inline-style">';
+				echo wp_strip_all_tags( $styles );
+				echo '</style>' . PHP_EOL;
 			}
 		}
 
@@ -104,7 +103,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 					continue;
 				}
 
-				$type = isset( $field['type'] ) && in_array( $field['type'], $this->allowed_field_types ) ? $field['type'] : 'text';
+				$type = isset( $field['type'] ) && in_array( $field['type'],
+					$this->allowed_field_types ) ? $field['type'] : 'text';
 
 				// Get the default value of this field
 				$value = get_theme_mod( $field['settings'], $field['default'] );

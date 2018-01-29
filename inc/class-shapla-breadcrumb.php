@@ -66,44 +66,17 @@ class Shapla_Breadcrumb {
 			'is_tax',
 		);
 
-		if ( shapla_is_woocommerce_activated() ) {
-			$conditionals = array_merge( $conditionals, array(
-				'is_product_category',
-				'is_product_tag',
-				'is_shop',
-			) );
-		}
-
-		if ( ( ! is_front_page() && ! ( is_post_type_archive() && intval( get_option( 'page_on_front' ) ) === wc_get_page_id( 'shop' ) ) ) || is_paged() ) {
-			foreach ( $conditionals as $conditional ) {
-				if ( call_user_func( $conditional ) ) {
-					call_user_func( array( $this, 'add_crumbs_' . substr( $conditional, 3 ) ) );
-					break;
-				}
+		foreach ( $conditionals as $conditional ) {
+			if ( call_user_func( $conditional ) ) {
+				call_user_func( array( $this, 'add_crumbs_' . substr( $conditional, 3 ) ) );
+				break;
 			}
-
-			$this->search_trail();
-			$this->paged_trail();
-
-			return $this->get_breadcrumb();
 		}
 
-		return array();
-	}
+		$this->search_trail();
+		$this->paged_trail();
 
-	/**
-	 * Prepend the shop page to shop breadcrumbs.
-	 */
-	private function prepend_shop_page() {
-		$permalinks   = wc_get_permalink_structure();
-		$shop_page_id = wc_get_page_id( 'shop' );
-		$shop_page    = get_post( $shop_page_id );
-
-		// If permalinks contain the shop page in the URI prepend the breadcrumb with shop
-		if ( $shop_page_id && $shop_page && isset( $permalinks['product_base'] ) && strstr( $permalinks['product_base'],
-				'/' . $shop_page->post_name ) && get_option( 'page_on_front' ) != $shop_page_id ) {
-			$this->add_crumb( get_the_title( $shop_page ), get_permalink( $shop_page ) );
-		}
+		return $this->get_breadcrumb();
 	}
 
 	/**
@@ -143,15 +116,7 @@ class Shapla_Breadcrumb {
 			$post = get_post( $post_id );
 		}
 
-		if ( 'product' === get_post_type( $post ) && function_exists( 'wc_get_product_terms' ) ) {
-			$this->prepend_shop_page();
-			if ( $terms = wc_get_product_terms( $post->ID, 'product_cat',
-				array( 'orderby' => 'parent', 'order' => 'DESC' ) ) ) {
-				$main_term = apply_filters( 'woocommerce_breadcrumb_main_term', $terms[0], $terms );
-				$this->term_ancestors( $main_term->term_id, 'product_cat' );
-				$this->add_crumb( $main_term->name, get_term_link( $main_term ) );
-			}
-		} elseif ( 'post' != get_post_type( $post ) ) {
+		if ( 'post' != get_post_type( $post ) ) {
 			$post_type = get_post_type_object( get_post_type( $post ) );
 			$this->add_crumb( $post_type->labels->singular_name, get_post_type_archive_link( get_post_type( $post ) ) );
 		} else {
@@ -189,46 +154,6 @@ class Shapla_Breadcrumb {
 		}
 
 		$this->add_crumb( get_the_title(), get_permalink() );
-		$this->endpoint_trail();
-	}
-
-	/**
-	 * Product category trail.
-	 */
-	private function add_crumbs_product_category() {
-		$current_term = $GLOBALS['wp_query']->get_queried_object();
-
-		$this->prepend_shop_page();
-		$this->term_ancestors( $current_term->term_id, 'product_cat' );
-		$this->add_crumb( $current_term->name );
-	}
-
-	/**
-	 * Product tag trail.
-	 */
-	private function add_crumbs_product_tag() {
-		$current_term = $GLOBALS['wp_query']->get_queried_object();
-
-		$this->prepend_shop_page();
-		$this->add_crumb( sprintf( __( 'Products tagged &ldquo;%s&rdquo;', 'shapla' ), $current_term->name ) );
-	}
-
-	/**
-	 * Shop breadcrumb.
-	 */
-	private function add_crumbs_shop() {
-		if ( get_option( 'page_on_front' ) == wc_get_page_id( 'shop' ) ) {
-			return;
-		}
-
-		$_name = wc_get_page_id( 'shop' ) ? get_the_title( wc_get_page_id( 'shop' ) ) : '';
-
-		if ( ! $_name ) {
-			$product_post_type = get_post_type_object( 'product' );
-			$_name             = $product_post_type->labels->singular_name;
-		}
-
-		$this->add_crumb( $_name, get_post_type_archive_link( 'product' ) );
 	}
 
 	/**
@@ -321,19 +246,6 @@ class Shapla_Breadcrumb {
 			if ( ! is_wp_error( $ancestor ) && $ancestor ) {
 				$this->add_crumb( $ancestor->name, get_term_link( $ancestor ) );
 			}
-		}
-	}
-
-	/**
-	 * Endpoints.
-	 */
-	private function endpoint_trail() {
-		if ( ! function_exists( 'is_wc_endpoint_url' ) ) {
-			return;
-		}
-		// Is an endpoint showing?
-		if ( is_wc_endpoint_url() && ( $endpoint = WC()->query->get_current_endpoint() ) && ( $endpoint_title = WC()->query->get_endpoint_title( $endpoint ) ) ) {
-			$this->add_crumb( $endpoint_title );
 		}
 	}
 
