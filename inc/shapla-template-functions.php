@@ -750,7 +750,7 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 	}
 }
 
-if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
+if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 	/**
 	 * Display breadcrumb
 	 *
@@ -812,7 +812,7 @@ if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
 		/**
 		 * Shapla Breadcrumb hook
 		 *
-		 * @hooked Shapla_Structured_Data::generate_breadcrumblist_data() - 10
+		 * @hooked Shapla_Structured_Data::generate_breadcrumb_data() - 10
 		 */
 		do_action( 'shapla_breadcrumb', $breadcrumbs, $args );
 
