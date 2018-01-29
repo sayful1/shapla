@@ -91,6 +91,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "header/header-widget";
 @import "header/header-search";
 /*--------------------------------------------------------------
+# Breadcrumb
+--------------------------------------------------------------*/
+@import 'components/breadcrumb';
+/*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
 @import "components/widgets";

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Shapla_Structured_Data' ) ):
+if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 
 	/**
 	 * Structured data's handler and generator using JSON-LD format.
@@ -13,17 +13,33 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ):
 	 * @since   1.0.1
 	 * @author  Sayful Islam <sayful.islam001@gmail.com>
 	 */
-
 	class Shapla_Structured_Data {
 
 		private $structured_data;
+
+		private $breadcrumb_data;
+
+		private static $instance;
+
+		/**
+		 * @return Shapla_Structured_Data
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
 
 		public function __construct() {
 			add_action( 'shapla_loop_post', array( $this, 'init_structured_data' ), 40 );
 			add_action( 'shapla_single_post', array( $this, 'init_structured_data' ), 40 );
 			add_action( 'shapla_page', array( $this, 'init_structured_data' ), 40 );
+			add_action( 'shapla_breadcrumb', array( $this, 'generate_breadcrumb_data' ), 10 );
 
-			add_action( 'wp_footer', array( $this, 'get_structured_data' ) );
+			add_action( 'wp_footer', array( $this, 'get_structured_data' ), 10 );
+			add_action( 'wp_footer', array( $this, 'get_breadcrumb_structured_data' ), 10 );
 		}
 
 		/**
@@ -98,6 +114,42 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ):
 		}
 
 		/**
+		 * Generates BreadcrumbList structured data.
+		 *
+		 * Hooked into `shapla_breadcrumb` action hook.
+		 *
+		 * @param Shapla_Breadcrumb $breadcrumbs
+		 */
+		public function generate_breadcrumb_data( $breadcrumbs ) {
+			$crumbs = $breadcrumbs->get_breadcrumb();
+
+			if ( empty( $crumbs ) || ! is_array( $crumbs ) ) {
+				return;
+			}
+
+			$markup                    = array();
+			$markup['@type']           = 'BreadcrumbList';
+			$markup['itemListElement'] = array();
+
+			foreach ( $crumbs as $key => $crumb ) {
+				$markup['itemListElement'][ $key ] = array(
+					'@type'    => 'ListItem',
+					'position' => $key + 1,
+					'item'     => array(
+						'name' => $crumb[0],
+					),
+				);
+
+				if ( ! empty( $crumb[1] ) && sizeof( $crumbs ) !== $key + 1 ) {
+					$markup['itemListElement'][ $key ]['item'] += array( '@id' => $crumb[1] );
+				}
+			}
+
+			$this->set_breadcrumb_structured_data( apply_filters( 'shapla_structured_data_breadcrumb', $markup,
+				$breadcrumbs ) );
+		}
+
+		/**
 		 * Sets `$this->structured_data`.
 		 *
 		 * @param array $json
@@ -128,7 +180,9 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ):
 				$structured_data = $structured_data + $this->structured_data[0];
 			}
 
-			echo '<script type="application/ld+json">' . wp_json_encode( $this->sanitize_structured_data( $structured_data ) ) . '</script>';
+			echo '<script type="application/ld+json">' . PHP_EOL;
+			echo wp_json_encode( $this->sanitize_structured_data( $structured_data ) ) . PHP_EOL;
+			echo '</script>' . PHP_EOL;
 		}
 
 		/**
@@ -154,8 +208,40 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ):
 			return $sanitized;
 		}
 
+		/**
+		 * Sets `$this->breadcrumb_data`.
+		 *
+		 * @param array $data
+		 */
+		private function set_breadcrumb_structured_data( $data ) {
+
+			if ( ! is_array( $data ) ) {
+				return;
+			}
+
+			$this->breadcrumb_data = $data;
+		}
+
+		/**
+		 * Outputs breadcrumb structured data.
+		 *
+		 * Hooked into `wp_footer` action hook.
+		 */
+		public function get_breadcrumb_structured_data() {
+
+			if ( ! $this->breadcrumb_data ) {
+				return;
+			}
+
+			$structured_data['@context'] = 'http://schema.org/';
+			$structured_data             = $structured_data + $this->breadcrumb_data;
+
+			echo '<script type="application/ld+json">' . PHP_EOL;
+			echo wp_json_encode( $this->sanitize_structured_data( $structured_data ) ) . PHP_EOL;
+			echo '</script>' . PHP_EOL;
+		}
+
 	}
+}
 
-	new Shapla_Structured_Data();
-
-endif;
+Shapla_Structured_Data::init();

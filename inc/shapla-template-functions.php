@@ -237,7 +237,7 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
                     </div>
                 </div>
             </div>
-			<?php
+		<?php
 		endif;
 	}
 }
@@ -747,5 +747,87 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 		}
 
 		return $items;
+	}
+}
+
+if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
+	/**
+	 * Display breadcrumb
+	 *
+	 * @since  1.3.0
+	 */
+	function shapla_breadcrumb() {
+
+		// If WooCommerce Breadcrumb available, do nothing
+		if ( function_exists( 'woocommerce_breadcrumb' ) ) {
+			return;
+		}
+
+		$breadcrumbs_separator = get_theme_mod( 'breadcrumbs_separator', 'slash' );
+		$is_hidden_mobile      = get_theme_mod( 'breadcrumbs_visible_on_mobile', 'off' );
+		$content_display       = get_theme_mod( 'breadcrumbs_content_display', 'breadcrumb' );
+
+		$class = 'breadcrumb';
+		if ( ! empty( $breadcrumbs_separator ) ) {
+			$class .= ' has-' . $breadcrumbs_separator . '-separator';
+		}
+
+		if ( 'off' == $is_hidden_mobile ) {
+			$class .= ' is-hidden-mobile';
+		}
+
+		if ( 'none' == $content_display ) {
+			$class .= ' is-hidden';
+		}
+
+		$args = apply_filters( 'shapla_wc_breadcrumb', array(
+			'delimiter'   => '',
+			'wrap_before' => '<nav class="' . $class . '"><ul>',
+			'wrap_after'  => '</ul></nav>',
+			'before'      => '<li>',
+			'after'       => '</li>',
+			'home'        => _x( 'Home', 'breadcrumb', 'shapla' ),
+		) );
+
+		$breadcrumbs = new Shapla_Breadcrumb();
+
+		if ( ! empty( $args['home'] ) ) {
+			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'shapla_breadcrumb_home_url', home_url() ) );
+		}
+
+		$args['breadcrumb'] = $breadcrumbs->generate();
+
+
+		/**
+		 * Shapla Breadcrumb hook
+		 *
+		 * @hooked Shapla_Structured_Data::generate_breadcrumblist_data() - 10
+		 */
+		do_action( 'shapla_breadcrumb', $breadcrumbs, $args );
+
+		if ( ! empty( $args['breadcrumb'] ) ) {
+
+			echo $args['wrap_before'];
+
+			foreach ( $args['breadcrumb'] as $key => $crumb ) {
+
+				echo $args['before'];
+
+				if ( ! empty( $crumb[1] ) && sizeof( $args['breadcrumb'] ) !== $key + 1 ) {
+					echo '<a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
+				} else {
+					echo esc_html( $crumb[0] );
+				}
+
+				echo $args['after'];
+
+				if ( sizeof( $args['breadcrumb'] ) !== $key + 1 ) {
+					echo $args['delimiter'];
+				}
+			}
+
+			echo $args['wrap_after'];
+
+		}
 	}
 }

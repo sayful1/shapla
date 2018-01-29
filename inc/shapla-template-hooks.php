@@ -101,3 +101,6 @@ add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
  * Add search icon on menu
  */
 add_filter( 'wp_nav_menu_items', 'shapla_search_icon', 10, 2 );
+
+// Add theme custom Breadcrumbs
+add_action( 'shapla_after_page_title', 'shapla_breadcrumb', 10 );
