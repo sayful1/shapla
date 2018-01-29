@@ -251,8 +251,9 @@ $shapla->customizer->add_field( array(
 			'element'  => array(
 				'.breadcrumb li',
 				'.breadcrumb li + li::before',
-				'.breadcrumb li a',
-				'.breadcrumb li a:hover',
+				'.breadcrumb span',
+				'.breadcrumb a',
+				'.breadcrumb a:hover',
 			),
 			'property' => 'color',
 		),

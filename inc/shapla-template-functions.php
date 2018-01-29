@@ -757,12 +757,6 @@ if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_breadcrumb() {
-
-		// If WooCommerce Breadcrumb available, do nothing
-		if ( function_exists( 'woocommerce_breadcrumb' ) ) {
-			return;
-		}
-
 		$breadcrumbs_separator = get_theme_mod( 'breadcrumbs_separator', 'slash' );
 		$is_hidden_mobile      = get_theme_mod( 'breadcrumbs_visible_on_mobile', 'off' );
 		$content_display       = get_theme_mod( 'breadcrumbs_content_display', 'breadcrumb' );
@@ -788,6 +782,23 @@ if ( ! function_exists( 'shapla_wc_breadcrumb' ) ) {
 			'after'       => '</li>',
 			'home'        => _x( 'Home', 'breadcrumb', 'shapla' ),
 		) );
+
+		// Implement Yoast SEO breadcrumbs if available
+		if ( function_exists( 'yoast_breadcrumb' ) ) {
+			$options = get_option( 'wpseo_internallinks' );
+			if ( $options['breadcrumbs-enable'] === true ) {
+				yoast_breadcrumb( '<nav class="' . $class . '">', '</nav>', true );
+
+				return;
+			}
+		}
+
+		// Implement WooCommerce breadcrumbs if available
+		if ( function_exists( 'woocommerce_breadcrumb' ) ) {
+			woocommerce_breadcrumb( $args );
+
+			return;
+		}
 
 		$breadcrumbs = new Shapla_Breadcrumb();
 

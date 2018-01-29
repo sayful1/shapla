@@ -92,4 +92,17 @@ $breadcrumb-item-separator-color: $contenttext !default;
     &.is-hidden {
         display: none;
     }
+
+    // Yoast
+    span {
+        display: inline-flex;
+        align-content: center;
+        justify-content: center;
+        align-self: center;
+        justify-self: center;
+
+        .breadcrumb_last {
+            padding-left: 0.75em;
+        }
+    }
 }

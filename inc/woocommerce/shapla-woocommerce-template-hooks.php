@@ -20,8 +20,5 @@ add_action( 'shapla_header', 'shapla_header_cart', 30 );
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'shapla_add_to_cart_fragments' );
 
-add_filter( 'woocommerce_breadcrumb_defaults', 'shapla_wc_breadcrumb' );
 // Remove WooCommerce default breadcrumb
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
-// Add WooCommerce custom Breadcrumbs
-add_action( 'shapla_after_page_title', 'woocommerce_breadcrumb', 10 );
