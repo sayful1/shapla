@@ -219,6 +219,8 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'line_height'      => '1.4',
 				'title_font_color' => $heading_color,
 				'text_alignment'   => 'left',
+				'text_transform'   => 'none',
+				'font_weight'      => '300',
 			),
 			'breadcrumbs'      => array(
 				'content_display'   => 'breadcrumb',
@@ -226,6 +228,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'separator'         => 'slash',
 				'font_size'         => '0.875rem',
 				'font_color'        => $text_color,
+				'text_transform'    => 'none',
 			),
 			'layout'           => array(
 				'site_layout'    => 'wide',

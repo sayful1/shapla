@@ -758,7 +758,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 	 */
 	function shapla_breadcrumb() {
 		$breadcrumbs_separator = get_theme_mod( 'breadcrumbs_separator', 'slash' );
-		$is_hidden_mobile      = get_theme_mod( 'breadcrumbs_visible_on_mobile', 'off' );
+		$is_hidden_mobile      = get_theme_mod( 'breadcrumbs_on_mobile_devices', 'off' );
 		$content_display       = get_theme_mod( 'breadcrumbs_content_display', 'breadcrumb' );
 
 		$class = 'breadcrumb';

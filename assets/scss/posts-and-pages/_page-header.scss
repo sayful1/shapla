@@ -28,6 +28,18 @@
             flex-direction: row-reverse;
         }
     }
+    &.page-title-bar-all_left {
+        .entry-title-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    &.page-title-bar-all_right {
+        .entry-title-container {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    }
 
     .entry-title {
         margin: 0;
