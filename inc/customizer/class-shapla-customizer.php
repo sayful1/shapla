@@ -45,6 +45,109 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			add_action( 'customize_register', array( $this, 'modify_customize_defaults' ) );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
 			add_action( 'wp_head', array( $this, 'customize_css' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
+			add_action( 'customize_save_after', array( $this, 'generate_css_file' ) );
+		}
+
+		/**
+		 * Generate custom css file for live customize values
+		 */
+		public function generate_css_file() {
+			if ( 'direct' !== get_filesystem_method() ) {
+				return;
+			}
+
+			/* you can safely run request_filesystem_credentials() without any issues and don't need to worry about passing in a URL */
+			$credentials = request_filesystem_credentials( admin_url( 'customize.php' ), '', false, false, array() );
+
+			/* initialize the API */
+			if ( ! WP_Filesystem( $credentials ) ) {
+				/* any problems and we exit */
+				return;
+			}
+
+			$suffix           = uniqid();
+			$created          = time();
+			$upload_dir       = wp_get_upload_dir();
+			$basedir          = $upload_dir['basedir'];
+			$baseurl          = $upload_dir['baseurl'];
+			$theme_upload_dir = $basedir . '/shapla';
+			$theme_css_dir    = $theme_upload_dir . '/css';
+			$css_file_name    = 'customize-style-' . $suffix . '.css';
+			$theme_css_file   = $theme_css_dir . DIRECTORY_SEPARATOR . $css_file_name;
+
+			/** @var \WP_Filesystem_Base $wp_filesystem */
+			global $wp_filesystem;
+
+			// Create Theme base directory
+			if ( ! $wp_filesystem->is_dir( $theme_upload_dir ) ) {
+				$wp_filesystem->mkdir( $theme_upload_dir, 0777 );
+			}
+
+			// Create Theme css directory
+			if ( ! $wp_filesystem->is_dir( $theme_css_dir ) ) {
+				$wp_filesystem->mkdir( $theme_css_dir, 0777 );
+			}
+
+			// Remove old files
+			array_map( 'unlink', glob( $theme_css_dir . '/customize-style-*.css' ) );
+
+			// Create Theme css file
+			if ( ! $wp_filesystem->exists( $theme_css_file ) ) {
+				$wp_filesystem->touch( $theme_css_file, $created );
+			}
+
+			$styles      = $this->get_styles();
+			$has_written = $wp_filesystem->put_contents( $theme_css_file, $styles );
+			if ( $has_written ) {
+				$data = array(
+					'name'    => $css_file_name,
+					'path'    => $theme_css_file,
+					'url'     => join( DIRECTORY_SEPARATOR, array( $baseurl, 'shapla', 'css', $css_file_name ) ),
+					'created' => $created,
+				);
+				update_option( '_shapla_customize_file', $data, true );
+			} else {
+				delete_option( '_shapla_customize_file' );
+			}
+		}
+
+		/**
+		 * Load customize css file if available
+		 */
+		public function customize_scripts() {
+			$customize_file       = get_option( '_shapla_customize_file' );
+			$is_customize_preview = is_customize_preview();
+
+			if ( isset( $customize_file['url'] ) && ! $is_customize_preview ) {
+				wp_enqueue_style(
+					'shapla-customize',
+					$customize_file['url'],
+					array(),
+					$customize_file['created'],
+					'all'
+				);
+			}
+		}
+
+		/**
+		 * Generate inline style for theme customizer
+		 */
+		public function customize_css() {
+			$has_customize_file   = ( false !== get_option( '_shapla_customize_file' ) );
+			$is_customize_preview = is_customize_preview();
+
+			if ( $has_customize_file && ! is_customize_preview() ) {
+				return;
+			}
+
+			$styles = $this->get_styles();
+
+			if ( ! empty( $styles ) ) {
+				echo '<style type="text/css" id="shapla-inline-style">';
+				echo wp_strip_all_tags( $styles );
+				echo '</style>' . PHP_EOL;
+			}
 		}
 
 		/**
@@ -64,19 +167,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			// Change header image section title & priority.
 			$wp_customize->get_section( 'header_image' )->title    = __( 'Header', 'shapla' );
 			$wp_customize->get_section( 'header_image' )->priority = 25;
-		}
-
-		/**
-		 * Generate inline style for theme customizer
-		 */
-		public function customize_css() {
-			$styles = $this->get_styles();
-
-			if ( $styles ) {
-				echo '<style type="text/css" id="shapla-inline-style">';
-				echo wp_strip_all_tags( $styles );
-				echo '</style>' . PHP_EOL;
-			}
 		}
 
 
@@ -102,9 +192,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				if ( ! isset( $field['output'] ) || empty( $field['output'] ) || ! is_array( $field['output'] ) ) {
 					continue;
 				}
-
-				$type = isset( $field['type'] ) && in_array( $field['type'],
-					$this->allowed_field_types ) ? $field['type'] : 'text';
 
 				// Get the default value of this field
 				$value = get_theme_mod( $field['settings'], $field['default'] );
