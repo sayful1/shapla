@@ -43,6 +43,25 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
+// Background Image
+$shapla->customizer->add_field( array(
+	'settings'    => 'page_title_bar_background_image',
+	'type'        => 'image',
+	'section'     => 'page_title_bar',
+	'label'       => __( 'Page Title Bar Background Image', 'shapla' ),
+	'description' => __( 'Controls the background image of the page title bar.', 'shapla' ),
+	'default'     => '',
+	'priority'    => 10,
+	'output'      => array(
+		array(
+			'element'  => array(
+				'.page-title-bar',
+			),
+			'property' => 'background-image',
+		),
+	),
+) );
+
 // Border Color
 $shapla->customizer->add_field( array(
 	'settings'    => 'page_title_bar_border_color',
