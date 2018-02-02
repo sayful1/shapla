@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The radio image class.
  */
-class Shapla_Radio_Image_Customize_Control extends WP_Customize_Control {
+class Shapla_Radio_Image_Customize_Control extends Shapla_Customize_Control {
 
 	/**
 	 * Declare the control type.
@@ -26,24 +26,6 @@ class Shapla_Radio_Image_Customize_Control extends WP_Customize_Control {
 	 * @var string
 	 */
 	public $type = 'radio-image';
-
-	/**
-	 * Enqueue scripts and styles for the custom control.
-	 *
-	 * Scripts are hooked at {@see 'customize_controls_enqueue_scripts'}.
-	 *
-	 * Note, you can also enqueue stylesheets here as well. Stylesheets are hooked
-	 * at 'customize_controls_print_styles'.
-	 *
-	 * @access public
-	 */
-	public function enqueue() {
-		wp_enqueue_script( 'jquery-ui-button' );
-		wp_enqueue_style(
-			'shapla-radio-image-control',
-			get_template_directory_uri() . '/inc/customizer/controls/radio-image/radio-image.css'
-		);
-	}
 
 	/**
 	 * Render the control to be displayed in the Customizer.

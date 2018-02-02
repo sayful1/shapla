@@ -21,6 +21,20 @@ class Shapla_Customize_Control extends WP_Customize_Control {
 	 * at 'customize_controls_print_styles'.
 	 */
 	public function enqueue() {
+		wp_enqueue_script( 'jquery-ui-button' );
+		wp_enqueue_script(
+			'alpha-color-picker',
+			get_template_directory_uri() . '/assets/libs/alpha-color-picker/alpha-color-picker.js',
+			array( 'jquery', 'wp-color-picker' ),
+			'1.0.0',
+			true
+		);
+		wp_enqueue_style(
+			'alpha-color-picker',
+			get_template_directory_uri() . '/assets/css/customizer.css',
+			array( 'wp-color-picker' ),
+			'1.0.0'
+		);
 	}
 
 	/**

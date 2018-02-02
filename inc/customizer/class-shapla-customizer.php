@@ -438,10 +438,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return Shapla_Color_Customize_Control
 		 */
 		public function alpha_color( $wp_customize, $field ) {
-			if ( ! class_exists( 'Customize_Alpha_Color_Control' ) ) {
-				require_once 'controls/alpha-color/alpha-color-picker.php';
-			}
-
 			return new Shapla_Color_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
 				'description' => isset( $field['description'] ) ? $field['description'] : '',
@@ -452,10 +448,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		public function google_font( $wp_customize, $field ) {
-			if ( ! class_exists( 'Shapla_Google_Font_Customize_Control' ) ) {
-				require_once 'controls/google-webfonts/class-shapla-google-font-custom-control.php';
-			}
-
 			return new Shapla_Google_Font_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
 				'description' => isset( $field['description'] ) ? $field['description'] : '',
@@ -494,10 +486,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return Shapla_Radio_Image_Customize_Control
 		 */
 		public function radio_image( $wp_customize, $field ) {
-			if ( ! class_exists( 'Shapla_Radio_Image_Customize_Control' ) ) {
-				require_once 'controls/radio-image/class-shapla-radio-image-customize-control.php';
-			}
-
 			return new Shapla_Radio_Image_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
 				'description' => isset( $field['description'] ) ? $field['description'] : '',
@@ -517,10 +505,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return Shapla_Radio_Button_Customize_Control
 		 */
 		public function radio_button( $wp_customize, $field ) {
-			if ( ! class_exists( 'Shapla_Radio_Button_Customize_Control' ) ) {
-				require_once 'controls/radio-button/class-shapla-radio-button-customize-control.php';
-			}
-
 			return new Shapla_Radio_Button_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
 				'description' => isset( $field['description'] ) ? $field['description'] : '',

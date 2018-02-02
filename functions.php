@@ -32,7 +32,11 @@ require 'inc/shapla-template-hooks.php';
 require 'inc/shapla-template-functions.php';
 
 require 'inc/class-shapla-structured-data.php';
-require 'inc/customizer/fields/init.php';
+
+/**
+ * Customizer
+ */
+require 'inc/customizer/init.php';
 
 /**
  * Load Shapla modules

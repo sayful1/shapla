@@ -35,19 +35,12 @@ $breadcrumb-item-separator-color: $contenttext !default;
         align-items: center;
         display: flex;
         color: $contenttext;
-
-        &:first-child a {
-            padding-left: 0;
-        }
-
-        &:last-child::before {
-            margin-right: 0.75em;
-        }
     }
 
     li + li::before {
         color: $contenttext;
         content: "\0002f";
+        padding: 0 0.75em;
     }
 
     &.has-arrow-separator {
@@ -76,7 +69,6 @@ $breadcrumb-item-separator-color: $contenttext !default;
         color: $contenttext;
         display: flex;
         justify-content: center;
-        padding: 0 0.75em;
 
         &:hover {
             color: $contenttext;
@@ -101,8 +93,16 @@ $breadcrumb-item-separator-color: $contenttext !default;
         align-self: center;
         justify-self: center;
 
+        a {
+            padding: 0 0.75em;
+        }
+
         .breadcrumb_last {
             padding-left: 0.75em;
         }
+    }
+    // Remove first link padding for Yoast breadcrumb
+    > span > span > a {
+        padding-left: 0;
     }
 }

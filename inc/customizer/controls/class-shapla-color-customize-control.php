@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this Alpha Color Picker. If not, see <http://www.gnu.org/licenses/>.
  */
-class Shapla_Color_Customize_Control extends WP_Customize_Control {
+class Shapla_Color_Customize_Control extends Shapla_Customize_Control {
 
 	/**
 	 * Official control name.
@@ -49,29 +49,6 @@ class Shapla_Color_Customize_Control extends WP_Customize_Control {
 	 * Add support for showing the opacity value on the slider handle.
 	 */
 	public $show_opacity = true;
-
-	/**
-	 * Enqueue scripts and styles.
-	 *
-	 * Ideally these would get registered and given proper paths before this control object
-	 * gets initialized, then we could simply enqueue them here, but for completeness as a
-	 * stand alone class we'll register and enqueue them here.
-	 */
-	public function enqueue() {
-		wp_enqueue_script(
-			'alpha-color-picker',
-			get_template_directory_uri() . '/inc/customizer/controls/alpha-color/alpha-color-picker.js',
-			array( 'jquery', 'wp-color-picker' ),
-			'1.0.0',
-			true
-		);
-		wp_enqueue_style(
-			'alpha-color-picker',
-			get_template_directory_uri() . '/inc/customizer/controls/alpha-color/alpha-color-picker.css',
-			array( 'wp-color-picker' ),
-			'1.0.0'
-		);
-	}
 
 	/**
 	 * Render the control.
