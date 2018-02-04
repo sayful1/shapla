@@ -106,7 +106,7 @@ $shapla->customizer->add_field( array(
 // Sticky Header
 $shapla->customizer->add_field( array(
 	'settings'    => 'sticky_header',
-	'type'        => 'checkbox',
+	'type'        => 'toggle',
 	'section'     => 'header_image',
 	'label'       => __( 'Sticky Header', 'shapla' ),
 	'description' => __( 'Check to to enable a sticky header.', 'shapla' ),
@@ -117,7 +117,7 @@ $shapla->customizer->add_field( array(
 // Toggle search icon
 $shapla->customizer->add_field( array(
 	'settings'    => 'show_search_icon',
-	'type'        => 'checkbox',
+	'type'        => 'toggle',
 	'section'     => 'header_image',
 	'label'       => __( 'Show Search Icon', 'shapla' ),
 	'description' => __( 'Check to show search icon on navigation bar in header area.', 'shapla' ),
@@ -127,7 +127,7 @@ $shapla->customizer->add_field( array(
 
 $shapla->customizer->add_field( array(
 	'settings' => 'dropdown_direction',
-	'type'     => 'select',
+	'type'     => 'radio-button',
 	'section'  => 'header_image',
 	'label'    => __( 'Dropdown direction', 'shapla' ),
 	'default'  => shapla_default_options()->primary_nav->direction,

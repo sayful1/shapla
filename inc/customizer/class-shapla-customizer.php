@@ -26,6 +26,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'alpha-color',
 			'google-font',
 			'background',
+			'toggle',
 		);
 
 		/**
@@ -45,9 +46,62 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		public function __construct() {
 			add_action( 'customize_register', array( $this, 'modify_customize_defaults' ) );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
+			add_action( 'customize_save_after', array( $this, 'generate_css_file' ) );
+
+			add_filter( 'wp_get_custom_css', array( $this, 'wp_get_custom_css' ) );
 			add_action( 'wp_head', array( $this, 'customize_css' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
-			add_action( 'customize_save_after', array( $this, 'generate_css_file' ) );
+		}
+
+		/**
+		 * @param $css
+		 *
+		 * @return string
+		 */
+		public function wp_get_custom_css( $css ) {
+			if ( ( false !== get_option( '_shapla_customize_file' ) ) && ! is_customize_preview() ) {
+				return;
+			}
+
+			return $css;
+		}
+
+		/**
+		 * Generate inline style for theme customizer
+		 */
+		public function customize_css() {
+			if ( ( false !== get_option( '_shapla_customize_file' ) ) && ! is_customize_preview() ) {
+				return;
+			}
+
+			$styles = $this->get_styles();
+			if ( empty( $styles ) ) {
+				return;
+			}
+
+			?>
+            <style type="text/css" id="shapla-custom-css">
+                <?php echo wp_strip_all_tags( $styles ); ?>
+            </style>
+			<?php
+		}
+
+		/**
+		 * Load customize css file if available
+		 */
+		public function customize_scripts() {
+			$customize_file       = get_option( '_shapla_customize_file' );
+			$is_customize_preview = is_customize_preview();
+
+			if ( isset( $customize_file['url'] ) && ! $is_customize_preview ) {
+				wp_enqueue_style(
+					'shapla-customize',
+					$customize_file['url'],
+					array(),
+					$customize_file['created'],
+					'all'
+				);
+			}
 		}
 
 		/**
@@ -98,7 +152,19 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$wp_filesystem->touch( $theme_css_file, $created );
 			}
 
-			$styles      = $this->get_styles();
+			$styles = wp_strip_all_tags( $this->get_styles() );
+
+			// Fetch the saved Custom CSS content for rendering.
+			$post = wp_get_custom_css_post();
+			$css  = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
+			$css  = $this->minify_css( $css );
+
+
+			$styles = $styles . $css;
+			if ( empty( $styles ) ) {
+				return;
+			}
+
 			$has_written = $wp_filesystem->put_contents( $theme_css_file, $styles );
 			if ( $has_written ) {
 				$data = array(
@@ -110,41 +176,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				update_option( '_shapla_customize_file', $data, true );
 			} else {
 				delete_option( '_shapla_customize_file' );
-			}
-		}
-
-		/**
-		 * Load customize css file if available
-		 */
-		public function customize_scripts() {
-			$customize_file       = get_option( '_shapla_customize_file' );
-			$is_customize_preview = is_customize_preview();
-
-			if ( isset( $customize_file['url'] ) && ! $is_customize_preview ) {
-				wp_enqueue_style(
-					'shapla-customize',
-					$customize_file['url'],
-					array(),
-					$customize_file['created'],
-					'all'
-				);
-			}
-		}
-
-		/**
-		 * Generate inline style for theme customizer
-		 */
-		public function customize_css() {
-			if ( ( false !== get_option( '_shapla_customize_file' ) ) && ! is_customize_preview() ) {
-				return;
-			}
-
-			$styles = $this->get_styles();
-
-			if ( ! empty( $styles ) ) {
-				echo '<style type="text/css" id="shapla-inline-style">';
-				echo wp_strip_all_tags( $styles );
-				echo '</style>' . PHP_EOL;
 			}
 		}
 
@@ -291,9 +322,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			require 'controls/class-shapla-radio-button-customize-control.php';
 			require 'controls/class-shapla-google-font-custom-control.php';
 			require 'controls/class-shapla-background-customize-control.php';
+			require 'controls/class-shapla-toggle-customize-control.php';
 
 			// Registered Control Types
 			$wp_customize->register_control_type( 'Shapla_Background_Customize_Control' );
+			$wp_customize->register_control_type( 'Shapla_Toggle_Customize_Control' );
 
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {
@@ -445,8 +478,34 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			) );
 		}
 
+		/**
+		 * Add a complete background control
+		 *
+		 * @param $wp_customize
+		 * @param $field
+		 *
+		 * @return Shapla_Background_Customize_Control
+		 */
 		public function background( $wp_customize, $field ) {
 			return new Shapla_Background_Customize_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'settings'    => $field['settings'],
+			) );
+		}
+
+		/**
+		 * Add a simple toggle input replacing checkbox
+		 *
+		 * @param $wp_customize
+		 * @param $field
+		 *
+		 * @return Shapla_Toggle_Customize_Control
+		 */
+		public function toggle( $wp_customize, $field ) {
+			return new Shapla_Toggle_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
 				'description' => isset( $field['description'] ) ? $field['description'] : '',
 				'section'     => $field['section'],
@@ -770,6 +829,44 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function sanitize_number( $input ) {
 			return intval( $input );
+		}
+
+		/**
+		 * Minify CSS
+		 *
+		 * @param $content
+		 *
+		 * @return string
+		 */
+		private function minify_css( $content = '' ) {
+			// Strip comments
+			$content = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content );
+			// remove leading & trailing whitespace
+			$content = preg_replace( '/^\s*/m', '', $content );
+			$content = preg_replace( '/\s*$/m', '', $content );
+
+			// replace newlines with a single space
+			$content = preg_replace( '/\s+/', ' ', $content );
+
+			// remove whitespace around meta characters
+			// inspired by stackoverflow.com/questions/15195750/minify-compress-css-with-regex
+			$content = preg_replace( '/\s*([\*$~^|]?+=|[{};,>~]|!important\b)\s*/', '$1', $content );
+			$content = preg_replace( '/([\[(:])\s+/', '$1', $content );
+			$content = preg_replace( '/\s+([\]\)])/', '$1', $content );
+			$content = preg_replace( '/\s+(:)(?![^\}]*\{)/', '$1', $content );
+
+			// whitespace around + and - can only be stripped inside some pseudo-
+			// classes, like `:nth-child(3+2n)`
+			// not in things like `calc(3px + 2px)`, shorthands like `3px -2px`, or
+			// selectors like `div.weird- p`
+			$pseudos = array( 'nth-child', 'nth-last-child', 'nth-last-of-type', 'nth-of-type' );
+			$content = preg_replace( '/:(' . implode( '|', $pseudos ) . ')\(\s*([+-]?)\s*(.+?)\s*([+-]?)\s*(.*?)\s*\)/',
+				':$1($2$3$4$5)', $content );
+
+			// remove semicolon/whitespace followed by closing bracket
+			$content = str_replace( ';}', '}', $content );
+
+			return trim( $content );
 		}
 	}
 }

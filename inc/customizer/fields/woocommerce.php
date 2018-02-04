@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Add new panel
 $shapla->customizer->add_panel( 'woocommerce_panel', array(
-	'title'       => __( 'WooCommerce', 'shapla' ),
+	'title'       => __( 'WooCommerce Style', 'shapla' ),
 	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
 	'priority'    => 50,
 ) );
@@ -50,7 +50,7 @@ $shapla->customizer->add_field( array(
 // Toggle cart icon
 $shapla->customizer->add_field( array(
 	'settings'    => 'show_cart_icon',
-	'type'        => 'checkbox',
+	'type'        => 'toggle',
 	'section'     => 'woocommerce',
 	'label'       => __( 'Show Cart Icon', 'shapla' ),
 	'description' => __( 'Check to show cart icon on navigation bar in header area.', 'shapla' ),
@@ -61,7 +61,7 @@ $shapla->customizer->add_field( array(
 // Toggle cart icon
 $shapla->customizer->add_field( array(
 	'settings'    => 'show_product_search_categories',
-	'type'        => 'checkbox',
+	'type'        => 'toggle',
 	'section'     => 'woocommerce',
 	'label'       => __( 'Show Categories Dropdown', 'shapla' ),
 	'description' => __( 'Check to show product categories dropdown on search field in header area.', 'shapla' ),
