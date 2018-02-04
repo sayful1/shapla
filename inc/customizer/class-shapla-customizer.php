@@ -203,6 +203,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						'units'         => '',
 						'suffix'        => '',
 						'value_pattern' => '$',
+						'choice'        => '',
 						'brightness'    => 0,
 						'invert'        => false,
 					);
@@ -213,11 +214,27 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						sort( $output['element'] );
 						$output['element'] = implode( ',', $output['element'] );
 					}
+
 					// Simple fields
 					if ( ! is_array( $value ) ) {
 						$value = str_replace( '$', $value, $output['value_pattern'] );
 						if ( ! empty( $output['element'] ) && ! empty( $output['property'] ) ) {
 							$css[ $output['media_query'] ][ $output['element'] ][ $output['property'] ] = $output['prefix'] . $value . $output['units'] . $output['suffix'];
+						}
+					} else {
+						foreach ( $value as $key => $subvalue ) {
+							$property = $key;
+							if ( false !== strpos( $output['property'], '%%' ) ) {
+								$property = str_replace( '%%', $key, $output['property'] );
+							} elseif ( ! empty( $output['property'] ) ) {
+								$output['property'] = $output['property'] . '-' . $key;
+							}
+							if ( 'background-image' === $output['property'] && false === strpos( $subvalue, 'url(' ) ) {
+								$subvalue = 'url("' . set_url_scheme( $subvalue ) . '")';
+							}
+							if ( $subvalue ) {
+								$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $subvalue;
+							}
 						}
 					}
 				}
@@ -274,6 +291,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			require 'controls/class-shapla-radio-button-customize-control.php';
 			require 'controls/class-shapla-google-font-custom-control.php';
 			require 'controls/class-shapla-background-customize-control.php';
+
+			// Registered Control Types
+			$wp_customize->register_control_type( 'Shapla_Background_Customize_Control' );
 
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {
@@ -537,6 +557,28 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
 				'settings'    => $field['settings'],
 			) );
+		}
+
+		/**
+		 * Sanitize image
+		 *
+		 * @param  mixed $value
+		 *
+		 * @return array
+		 */
+		public function sanitize_background( $value ) {
+			if ( ! is_array( $value ) ) {
+				return array();
+			}
+
+			return array(
+				'background-color'      => ( isset( $value['background-color'] ) ) ? esc_attr( $value['background-color'] ) : '',
+				'background-image'      => ( isset( $value['background-image'] ) ) ? esc_url_raw( $value['background-image'] ) : '',
+				'background-repeat'     => ( isset( $value['background-repeat'] ) ) ? esc_attr( $value['background-repeat'] ) : '',
+				'background-position'   => ( isset( $value['background-position'] ) ) ? esc_attr( $value['background-position'] ) : '',
+				'background-size'       => ( isset( $value['background-size'] ) ) ? esc_attr( $value['background-size'] ) : '',
+				'background-attachment' => ( isset( $value['background-attachment'] ) ) ? esc_attr( $value['background-attachment'] ) : '',
+			);
 		}
 
 		/**

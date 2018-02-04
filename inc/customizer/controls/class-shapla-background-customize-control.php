@@ -11,135 +11,115 @@ class Shapla_Background_Customize_Control extends Shapla_Customize_Control {
 	public $type = 'shapla-background';
 
 	/**
-	 * Render the control's content.
+	 * An Underscore (JS) template for this control's content (but not its container).
 	 *
-	 * Allows the content to be overridden without having to rewrite the wrapper in `$this::render()`.
+	 * Class variables for this control class are available in the `data` JS object;
+	 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
 	 *
-	 * Supports basic input types `text`, `checkbox`, `textarea`, `radio`, `select` and `dropdown-pages`.
-	 * Additional input types such as `email`, `url`, `number`, `hidden` and `date` are supported implicitly.
+	 * @see WP_Customize_Control::print_template()
 	 *
-	 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
+	 * @access protected
 	 */
-	protected function render_content() {
-		$name = '_customize-background-' . $this->id;
-
-		$value   = $this->value();
-		$default = $this->setting->default;
-		if ( ! empty( $this->default ) ) {
-			$default = $this->default;
-		}
-
-		// Input attributes.
-		$inputAttrs = '';
-		foreach ( $this->input_attrs as $attr => $value ) {
-			$inputAttrs .= $attr . '="' . esc_attr( $value ) . '" ';
-		}
-
-		$default_background_color = isset( $default['background-color'] ) ? esc_attr( $default['background-color'] ) : '';
-
-		$value_background_color      = isset( $value['background-color'] ) ? esc_attr( $value['background-color'] ) : '';
-		$value_background_repeat     = isset( $value['background-repeat'] ) ? esc_attr( $value['background-repeat'] ) : 'no-repeat';
-		$value_background_position   = isset( $value['background-position'] ) ? esc_attr( $value['background-position'] ) : 'center center';
-		$value_background_size       = isset( $value['background-size'] ) ? esc_attr( $value['background-size'] ) : 'cover';
-		$value_background_attachment = isset( $value['background-attachment'] ) ? esc_attr( $value['background-attachment'] ) : 'fixed';
+	protected function content_template() {
 		?>
+		<label>
+			<span class="customize-control-title">{{{ data.label }}}</span>
+			<# if ( data.description ) { #><span class="description customize-control-description">{{{ data.description }}}</span><# } #>
+		</label>
+		<div class="background-wrapper">
 
-        <span class="customize-control-title">
-			<?php echo esc_attr( $this->label ); ?>
-		</span>
+			<!-- background-color -->
+			<div class="background-color">
+				<h4><?php esc_attr_e( 'Background Color', 'shapla' ); ?></h4>
+				<input type="text" data-default-color="{{ data.default['background-color'] }}" data-alpha="true" value="{{ data.value['background-color'] }}" class="kirki-color-control"/>
+			</div>
 
-		<?php if ( ! empty( $this->description ) ) : ?>
-            <span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-		<?php endif; ?>
+			<!-- background-image -->
+			<div class="background-image">
+				<h4><?php esc_attr_e( 'Background Image', 'shapla' ); ?></h4>
+				<div class="attachment-media-view background-image-upload">
+					<# if ( data.value['background-image'] ) { #>
+						<div class="thumbnail thumbnail-image"><img src="{{ data.value['background-image'] }}" alt="" /></div>
+					<# } else { #>
+						<div class="placeholder"><?php esc_attr_e( 'No File Selected', 'shapla' ); ?></div>
+					<# } #>
+					<div class="actions">
+						<button class="button background-image-upload-remove-button<# if ( ! data.value['background-image'] ) { #> hidden <# } #>"><?php esc_attr_e( 'Remove', 'shapla' ); ?></button>
+						<button type="button" class="button background-image-upload-button"><?php esc_attr_e( 'Select File', 'shapla' ); ?></button>
+					</div>
+				</div>
+			</div>
 
-        <div class="background-wrapper">
-            <!-- background-color -->
-            <div class="background-color">
-                <h4><?php esc_attr_e( 'Background Color', 'shapla' ); ?></h4>
-                <input type="text"
-                       data-default-color="<?php echo $default_background_color; ?>"
-                       value="<?php echo $value_background_color; ?>"
-                       data-alpha="true"
-                       class="shapla-color-control"/>
-            </div>
+			<!-- background-repeat -->
+			<div class="background-repeat">
+				<h4><?php esc_attr_e( 'Background Repeat', 'shapla' ); ?></h4>
+				<select {{{ data.inputAttrs }}}>
+					<?php foreach ( $this->background_repeat() as $repeat_key => $repeat_label ): ?>
+                        <option value="<?php echo $repeat_key; ?>"
+                        <# if ( '<?php echo $repeat_key; ?>' === data.value['background-repeat'] ) { #> selected <# } #>
+                        ><?php echo esc_attr($repeat_label); ?></option>
+					<?php endforeach;?>
+				</select>
+			</div>
 
-            <!-- background-image -->
-            <div class="background-image">
-                <h4><?php esc_attr_e( 'Background Image', 'shapla' ); ?></h4>
-                <div class="attachment-media-view background-image-upload">
-					<?php if ( ! empty( $value['background-image'] ) ): ?>
-                        <div class="thumbnail thumbnail-image">
-                            <img src="<?php echo $value['background-image']; ?>" alt=""/>
-                        </div>
-					<?php else: ?>
-                        <div class="placeholder"><?php esc_attr_e( 'No File Selected', 'shapla' ); ?></div>
-					<?php endif; ?>
-                    <div class="actions">
-                        <button class="button background-image-upload-remove-button<?php echo empty( $value['background-image'] ) ? 'hidden' : null; ?>">
-							<?php esc_attr_e( 'Remove', 'shapla' ); ?>
-                        </button>
-                        <button type="button" class="button background-image-upload-button">
-							<?php esc_attr_e( 'Select File', 'shapla' ); ?>
-                        </button>
-                    </div>
-                </div>
-            </div>
+			<!-- background-position -->
+			<div class="background-position">
+				<h4><?php esc_attr_e( 'Background Position', 'shapla' ); ?></h4>
+				<select {{{ data.inputAttrs }}}>
+                    <?php foreach ( $this->background_position() as $position_key => $position_label ): ?>
+					<option value="<?php echo $position_key; ?>"
+                        <# if ( '<?php echo $position_key; ?>' === data.value['background-position'] ) { #> selected <# } #>
+                        ><?php echo esc_attr($position_label); ?></option>
+                    <?php endforeach;?>
+				</select>
+			</div>
 
-            <!-- background-repeat -->
-            <div class="background-repeat">
-                <h4><?php esc_attr_e( 'Background Repeat', 'shapla' ); ?></h4>
-                <select <?php echo $inputAttrs; ?>>
-					<?php
-					foreach ( $this->background_repeat() as $repeat_key => $repeat_value ) {
-						$repeat_selected = ( $repeat_key === $value_background_repeat ) ? ' selected' : '';
-						echo '<option value="' . $repeat_key . '" ' . $repeat_selected . '>' . $repeat_value . '</option>';
-					}
-					?>
-                </select>
-            </div>
+			<!-- background-size -->
+			<div class="background-size">
+				<h4><?php esc_attr_e( 'Background Size', 'shapla' ); ?></h4>
+				<div class="buttonset">
+					<?php foreach ( $this->background_size() as $size_key => $size_label ): ?>
+                        <input {{{ data.inputAttrs }}}
+                               class="switch-input screen-reader-text"
+                               type="radio"
+                               value="<?php echo $size_key; ?>"
+                               name="_customize-bg-{{{ data.id }}}-size"
+                               id="{{ data.id }}<?php echo $size_key; ?>"
+                               <# if ( '<?php echo $size_key; ?>' === data.value['background-size'] ) { #> checked="checked" <# } #>
+                        >
+                            <label
+                                    class="switch-label switch-label-<# if ( '<?php echo $size_key; ?>' === data.value['background-size'] ) { #>on <# } else { #>off<# } #>"
+                                    for="{{ data.id }}<?php echo $size_key; ?>">
+                                <?php echo esc_attr($size_label); ?>
+                            </label>
+                        </input>
+					<?php endforeach;?>
+				</div>
+			</div>
 
-            <!-- background-position -->
-            <div class="background-position">
-                <h4><?php esc_attr_e( 'Background Position', 'shapla' ); ?></h4>
-                <select <?php echo $inputAttrs; ?>>
-					<?php
-					foreach ( $this->background_position() as $position_key => $position_value ) {
-						$position_selected = ( $position_key === $value_background_position ) ? ' selected' : '';
-						echo '<option value="' . $position_key . '" ' . $position_selected . '>' . $position_value . '</option>';
-					}
-					?>
-                </select>
-            </div>
-
-            <!-- background-size -->
-            <div class="background-size">
-                <h4><?php esc_attr_e( 'Background Size', 'shapla' ); ?></h4>
-                <select <?php echo $inputAttrs; ?>>
-					<?php
-					foreach ( $this->background_size() as $size_key => $size_value ) {
-						$size_selected = ( $size_key === $value_background_size ) ? ' selected' : '';
-						echo '<option value="' . $size_key . '" ' . $size_selected . '>' . $size_value . '</option>';
-					}
-					?>
-                </select>
-            </div>
-
-            <!-- background-attachment -->
-            <div class="background-attachment">
-                <h4><?php esc_attr_e( 'Background Attachment', 'shapla' ); ?></h4>
-                <select name="<?php echo esc_attr( $name . '[background-attachment]' ); ?>">
-					<?php
-					foreach ( $this->background_attachment() as $attachment_key => $attachment_value ) {
-						$attachment_selected = ( $attachment_key === $value_background_attachment ) ? ' selected' : '';
-						echo '<option value="' . $attachment_key . '" ' . $attachment_selected . '>' . $attachment_value . '</option>';
-					}
-					?>
-                </select>
-            </div>
-
-        </div>
-
-        <input class="background-hidden-value" type="hidden" <?php $this->link(); ?>>
+			<!-- background-attachment -->
+			<div class="background-attachment">
+				<h4><?php esc_attr_e( 'Background Attachment', 'shapla' ); ?></h4>
+				<div class="buttonset">
+                    <?php foreach ( $this->background_attachment() as $attachment_key => $attachment ): ?>
+                        <input {{{ data.inputAttrs }}}
+                               class="switch-input screen-reader-text"
+                               type="radio"
+                               value="<?php echo $attachment_key; ?>"
+                               name="_customize-bg-{{{ data.id }}}-attachment"
+                               id="{{ data.id }}<?php echo $attachment_key; ?>"
+                               <# if ( '<?php echo $attachment_key; ?>' === data.value['background-attachment'] ) { #> checked="checked" <# } #>
+                        >
+                            <label
+                                class="switch-label switch-label-<# if ( '<?php echo $attachment_key; ?>' === data.value['background-attachment'] ) { #>on <# } else { #>off<# } #>"
+                                for="{{ data.id }}<?php echo $attachment_key; ?>">
+                                <?php echo $attachment; ?>
+                            </label>
+                        </input>
+                    <?php endforeach;?>
+				</div>
+			</div>
+			<input class="background-hidden-value" type="hidden" {{{ data.link }}}>
 		<?php
 	}
 

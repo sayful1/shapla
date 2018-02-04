@@ -62,6 +62,13 @@ class Shapla_Customize_Control extends WP_Customize_Control {
 			'1.0.0',
 			true
 		);
+		wp_enqueue_script(
+			'shapla-customize',
+			get_template_directory_uri() . '/assets/js/customize.js',
+			array( 'jquery' ),
+			'1.0.0',
+			true
+		);
 		wp_enqueue_style(
 			'alpha-color-picker',
 			get_template_directory_uri() . '/assets/css/customizer.css',

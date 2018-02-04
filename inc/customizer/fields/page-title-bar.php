@@ -24,40 +24,28 @@ $shapla->customizer->add_section( 'page_title_bar', array(
 	'panel'    => 'page_title_bar_panel',
 ) );
 
-// Background Color
+// Top and Bottom Padding
 $shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_background_color',
-	'type'        => 'alpha-color',
+	'settings'    => 'page_title_bar_padding',
+	'type'        => 'text',
 	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Bar Background Color', 'shapla' ),
-	'description' => __( 'Controls the background color of the page title bar.', 'shapla' ),
-	'default'     => shapla_default_options()->title_bar->background_color,
+	'label'       => __( 'Page Title Bar Top &amp; Bottom Padding', 'shapla' ),
+	'description' => __( 'Controls the top and bottom padding of the page title bar. Enter value including any valid CSS unit(px,em,rem)',
+		'shapla' ),
+	'default'     => shapla_default_options()->title_bar->padding,
 	'priority'    => 10,
 	'output'      => array(
 		array(
 			'element'  => array(
 				'.page-title-bar',
 			),
-			'property' => 'background-color',
+			'property' => 'padding-top',
 		),
-	),
-) );
-
-// Background Image
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_background_image',
-	'type'        => 'image',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Bar Background Image', 'shapla' ),
-	'description' => __( 'Controls the background image of the page title bar.', 'shapla' ),
-	'default'     => '',
-	'priority'    => 10,
-	'output'      => array(
 		array(
 			'element'  => array(
 				'.page-title-bar',
 			),
-			'property' => 'background-image',
+			'property' => 'padding-bottom',
 		),
 	),
 ) );
@@ -87,32 +75,6 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Top and Bottom Padding
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_padding',
-	'type'        => 'text',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Bar Top &amp; Bottom Padding', 'shapla' ),
-	'description' => __( 'Controls the top and bottom padding of the page title bar. Enter value including any valid CSS unit(px,em,rem)',
-		'shapla' ),
-	'default'     => shapla_default_options()->title_bar->padding,
-	'priority'    => 30,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar',
-			),
-			'property' => 'padding-top',
-		),
-		array(
-			'element'  => array(
-				'.page-title-bar',
-			),
-			'property' => 'padding-bottom',
-		),
-	),
-) );
-
 // Page Title Font Size
 $shapla->customizer->add_field( array(
 	'settings'    => 'page_title_font_size',
@@ -122,7 +84,7 @@ $shapla->customizer->add_field( array(
 	'description' => __( 'Controls the font size for the page title heading. Enter value including CSS unit (px, em, rem), ex: 18px',
 		'shapla' ),
 	'default'     => shapla_default_options()->title_bar->font_size,
-	'priority'    => 40,
+	'priority'    => 30,
 	'output'      => array(
 		array(
 			'element'  => array(
@@ -142,7 +104,7 @@ $shapla->customizer->add_field( array(
 	'description' => __( 'Controls the line height for the page title heading. Enter value including any valid CSS unit, ex: 1.4.',
 		'shapla' ),
 	'default'     => shapla_default_options()->title_bar->line_height,
-	'priority'    => 50,
+	'priority'    => 40,
 	'output'      => array(
 		array(
 			'element'  => array(
@@ -161,7 +123,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Page Title Font Color', 'shapla' ),
 	'description' => __( 'Controls the text color of the page title fonts.', 'shapla' ),
 	'default'     => shapla_default_options()->title_bar->title_font_color,
-	'priority'    => 60,
+	'priority'    => 50,
 	'output'      => array(
 		array(
 			'element'  => array(
@@ -180,7 +142,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Page Title Text Transform', 'shapla' ),
 	'description' => __( 'Controls the page title text transform.', 'shapla' ),
 	'default'     => shapla_default_options()->title_bar->text_transform,
-	'priority'    => 70,
+	'priority'    => 60,
 	'choices'     => array(
 		'none'       => __( 'Default', 'shapla' ),
 		'capitalize' => __( 'Capitalize', 'shapla' ),
@@ -230,7 +192,7 @@ $shapla->customizer->add_field( array(
 // Page Title Bar Text Alignment
 $shapla->customizer->add_field( array(
 	'settings'    => 'page_title_bar_text_alignment',
-	'type'        => 'radio-button',
+	'type'        => 'select',
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Bar Text Alignment', 'shapla' ),
 	'description' => __( 'Controls the page title bar text alignment.', 'shapla' ),
@@ -242,6 +204,30 @@ $shapla->customizer->add_field( array(
 		'all_right' => __( 'Right', 'shapla' ),
 		'left'      => __( 'Left Title &amp; Right Breadcrumbs', 'shapla' ),
 		'right'     => __( 'Left Breadcrumbs &amp; Right Title', 'shapla' ),
+	),
+) );
+
+$shapla->customizer->add_field( array(
+	'type'        => 'background',
+	'settings'    => 'page_title_bar_background',
+	'label'       => esc_attr__( 'Page Title Bar Background', 'shapla' ),
+	'description' => esc_attr__( 'Controls the background of the page title bar.', 'shapla' ),
+	'section'     => 'page_title_bar',
+	'priority'    => 90,
+	'default'     => array(
+		'background-color'      => '#f5f5f5',
+		'background-image'      => '',
+		'background-repeat'     => 'no-repeat',
+		'background-position'   => 'center center',
+		'background-size'       => 'cover',
+		'background-attachment' => 'fixed',
+	),
+	'output'      => array(
+		array(
+			'element' => array(
+				'.page-title-bar',
+			),
+		),
 	),
 ) );
 
