@@ -460,11 +460,21 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 			}
 		}
 
+		// Blog page (with the latest posts)
 		if ( is_home() && ! is_front_page() ) {
 			if ( ! get_theme_mod( 'show_blog_page_title', true ) ) {
 				return;
 			}
 			$title = get_the_title( get_option( 'page_for_posts' ) );
+		}
+
+		// Default homepage (with the latest posts)
+		if ( is_front_page() && is_home() ) {
+			if ( ! get_theme_mod( 'show_blog_page_title', true ) ) {
+				return;
+			}
+
+			$title = get_theme_mod( 'blog_page_title', esc_html__( 'Blog', 'shapla' ) );
 		}
 
 		if ( shapla_is_woocommerce_activated() ) {

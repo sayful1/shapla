@@ -4,6 +4,7 @@
 * Tweak - Move page and post title to title bar area
 * Added - Add Page title bar background color, background image, border color, padding, font size, line height, text color, text transform, font weight, text align
 * Added - Add Breadcrumb separator, font size, text color, text transform
+* Added - Page title for default homepage (with the latest posts)
 
 #### 1.3.1 - January 3, 2018
 * Added - Add system status tab in theme page.

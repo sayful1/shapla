@@ -175,15 +175,16 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			'primary_color'    => $primary_color,
 			'font_family'      => 'Roboto',
 			'blog'             => array(
+				'show_page_title'    => true,
+				'page_title'         => __( 'Blog', 'shapla' ),
 				'layout'             => 'grid',
 				'date_format'        => 'human',
 				'excerpt_length'     => 20,
-				'show_page_title'    => true,
 				'show_avatar'        => true,
 				'show_author_name'   => true,
 				'show_date'          => true,
 				'show_category'      => true,
-				'show_tag'           => true,
+				'show_tag'           => false,
 				'show_comments_link' => true,
 			),
 			'primary_nav'      => array(
