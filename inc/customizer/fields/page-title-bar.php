@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Add new panel
 $shapla->customizer->add_panel( 'page_title_bar_panel', array(
 	'title'    => __( 'Page Title Bar', 'shapla' ),
-	'priority' => 25,
+	'priority' => 30,
 ) );
 
 // Add new section

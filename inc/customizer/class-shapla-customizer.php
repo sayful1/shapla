@@ -187,15 +187,15 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @since  1.0.1
 		 */
 		public function modify_customize_defaults( $wp_customize ) {
-			// Move background color setting alongside background image.
-			$wp_customize->get_control( 'background_color' )->section  = 'background_image';
-			$wp_customize->get_control( 'background_color' )->priority = 20;
-			// Change background image section title & priority.
-			$wp_customize->get_section( 'background_image' )->title    = __( 'Background', 'shapla' );
-			$wp_customize->get_section( 'background_image' )->priority = 30;
 			// Change header image section title & priority.
 			$wp_customize->get_section( 'header_image' )->title    = __( 'Header', 'shapla' );
 			$wp_customize->get_section( 'header_image' )->priority = 25;
+			// Change background image section title & priority.
+			$wp_customize->get_section( 'background_image' )->title    = __( 'Background', 'shapla' );
+			$wp_customize->get_section( 'background_image' )->priority = 30;
+			// Move background color setting alongside background image.
+			$wp_customize->get_control( 'background_color' )->section  = 'background_image';
+			$wp_customize->get_control( 'background_color' )->priority = 20;
 		}
 
 

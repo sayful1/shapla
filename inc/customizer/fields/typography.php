@@ -34,8 +34,6 @@ $shapla->customizer->add_field( array(
 				'.navigation .nav-previous a',
 				'.navigation .nav-next',
 				'.navigation .nav-next a',
-				// Breadcrumbs
-				'.breadcrumb a',
 				// Blog Meta
 				'.hentry .entry-meta a:hover',
 				// Widget Link

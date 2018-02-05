@@ -10,16 +10,27 @@ $shapla->customizer->add_config( array(
 	'capability'  => 'edit_theme_options',
 ) );
 
-
-require 'typography.php';
-require 'header.php';
-require 'page-title-bar.php';
-require 'site_footer.php';
-require 'buttons.php';
-require 'layout.php';
-require 'blog.php';
+/**
+ * priorities of the core customize sections
+ *
+ * Site Title & Tagline ---> 20
+ * Colors ---> 40
+ * Header Image ---> 60 ===> 25
+ * Background Image ---> 80 ===> 30
+ * Menus (Panel) ---> 100
+ * Widgets (Panel) ---> 110
+ * Static Front Page ---> 120
+ * Additional CSS ---> 200
+ */
+require 'layout.php'; // priority - 10
+require 'header.php'; // priority - 25 (Under Header Image)
+require 'page-title-bar.php'; // priority - 30
+require 'site_footer.php'; // priority - 30
+require 'typography.php'; // priority - 40
+require 'buttons.php'; // priority - 40
+require 'blog.php'; // priority - 50
 
 if ( shapla_is_woocommerce_activated() ) {
-	require 'woocommerce.php';
-	require 'woocommerce-colors.php';
+	require 'woocommerce.php'; // priority - 50
+	require 'woocommerce-colors.php'; // priority - 50
 }
