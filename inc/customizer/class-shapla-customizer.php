@@ -8,11 +8,47 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 	class Shapla_Customizer {
 
+		/**
+		 * @var Shapla_Customizer
+		 */
 		private static $instance;
-		private $setting = array();
+
+		/**
+		 * Customize settings configuration
+		 *
+		 * @var array
+		 */
+		private $setting = array(
+			'option_type' => 'theme_mod',
+			'capability'  => 'edit_theme_options',
+		);
+
+		/**
+		 * Customize fields
+		 *
+		 * @var array
+		 */
 		private $fields = array();
+
+		/**
+		 * Customize panels
+		 *
+		 * @var array
+		 */
 		private $panels = array();
+
+		/**
+		 * Customize sections
+		 *
+		 * @var array
+		 */
 		private $sections = array();
+
+		/**
+		 * Customize available field types
+		 *
+		 * @var array
+		 */
 		private $allowed_field_types = array(
 			'text',
 			'color',
@@ -54,6 +90,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
+		 * Filters the Custom CSS Output into the <head>.
+		 *
 		 * @param $css
 		 *
 		 * @return string
@@ -90,10 +128,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * Load customize css file if available
 		 */
 		public function customize_scripts() {
-			$customize_file       = get_option( '_shapla_customize_file' );
-			$is_customize_preview = is_customize_preview();
+			$customize_file = get_option( '_shapla_customize_file' );
 
-			if ( isset( $customize_file['url'] ) && ! $is_customize_preview ) {
+			if ( isset( $customize_file['url'] ) && ! is_customize_preview() ) {
 				wp_enqueue_style(
 					'shapla-customize',
 					$customize_file['url'],
@@ -152,21 +189,27 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$wp_filesystem->touch( $theme_css_file, $created );
 			}
 
-			$styles = wp_strip_all_tags( $this->get_styles() );
+			$styles = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
+			$styles .= wp_strip_all_tags( $this->get_styles() ) . PHP_EOL;
 
 			// Fetch the saved Custom CSS content for rendering.
-			$post = wp_get_custom_css_post();
-			$css  = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
-			$css  = $this->minify_css( $css );
+			$additional_css = '';
+			$post           = wp_get_custom_css_post();
+			$css            = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
+			if ( ! empty( $css ) ) {
+				$additional_css = "\n/* Additional CSS */\n";
+				$additional_css .= $this->minify_css( $css );
+			}
 
 
-			$styles = $styles . $css;
+			$styles = $styles . $additional_css;
 			if ( empty( $styles ) ) {
+				delete_option( '_shapla_customize_file' );
+
 				return;
 			}
 
-			$has_written = $wp_filesystem->put_contents( $theme_css_file, $styles );
-			if ( $has_written ) {
+			if ( $wp_filesystem->put_contents( $theme_css_file, $styles ) ) {
 				$data = array(
 					'name'    => $css_file_name,
 					'path'    => $theme_css_file,
@@ -278,7 +321,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			// Parse the generated CSS array and create the CSS string for the output.
 			foreach ( $css as $media_query => $styles ) {
 				// Handle the media queries
-				$final_css .= ( 'global' != $media_query ) ? $media_query . '{' : '';
+				$final_css .= ( 'global' != $media_query ) ? $media_query . '{' . PHP_EOL : '';
 				foreach ( $styles as $style => $style_array ) {
 					$final_css .= $style . '{';
 					foreach ( $style_array as $property => $value ) {
@@ -299,7 +342,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						}
 						$final_css .= $property . ':' . $value . ';';
 					}
-					$final_css .= '}';
+					$final_css .= '}' . PHP_EOL;
 				}
 				$final_css .= ( 'global' != $media_query ) ? '}' : '';
 			}
@@ -641,17 +684,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
-		 * Sanitize image
-		 *
-		 * @param  boolean $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_image( $input ) {
-			return esc_url_raw( $input );
-		}
-
-		/**
 		 * Sanitize text
 		 *
 		 * @param  boolean $input
@@ -659,18 +691,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_text( $input ) {
-			return sanitize_text_field( $input );
-		}
-
-		/**
-		 * Sanitize google fonts
-		 *
-		 * @param  boolean $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_google_font( $input ) {
-			return sanitize_text_field( $input );
+			return Shapla_Sanitize_Values::text( $input );
 		}
 
 		/**
@@ -692,44 +713,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_color( $color ) {
-			if ( '' === $color ) {
-				return '';
-			}
-
-			// Trim unneeded whitespace
-			$color = str_replace( ' ', '', $color );
-
-			// If this is hex color, validate and return it
-			if ( 1 === preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
-				return $color;
-			}
-
-			// If this is rgb, validate and return it
-			if ( 'rgb(' === substr( $color, 0, 4 ) ) {
-				list( $red, $green, $blue ) = sscanf( $color, 'rgb(%d,%d,%d)' );
-
-				if ( ( $red >= 0 && $red <= 255 ) &&
-				     ( $green >= 0 && $green <= 255 ) &&
-				     ( $blue >= 0 && $blue <= 255 )
-				) {
-					return "rgb({$red},{$green},{$blue})";
-				}
-			}
-
-			// If this is rgba, validate and return it
-			if ( 'rgba(' === substr( $color, 0, 5 ) ) {
-				list( $red, $green, $blue, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
-
-				if ( ( $red >= 0 && $red <= 255 ) &&
-				     ( $green >= 0 && $green <= 255 ) &&
-				     ( $blue >= 0 && $blue <= 255 ) &&
-				     $alpha >= 0 && $alpha <= 1
-				) {
-					return "rgba({$red},{$green},{$blue},{$alpha})";
-				}
-			}
-
-			return '';
+			return Shapla_Sanitize_Values::color( $color );
 		}
 
 		/**
@@ -740,7 +724,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_textarea( $input ) {
-			return wp_filter_post_kses( $input );
+			return Shapla_Sanitize_Values::html( $input );
 		}
 
 		/**
@@ -751,7 +735,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return boolean
 		 */
 		public function sanitize_checkbox( $input ) {
-			return ( $input == true ) ? true : false;
+			return Shapla_Sanitize_Values::checked( $input );
 		}
 
 		/**
@@ -762,7 +746,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_email( $input ) {
-			return sanitize_email( $input );
+			return Shapla_Sanitize_Values::email( $input );
 		}
 
 		/**
@@ -773,51 +757,18 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_url( $input ) {
-			return esc_url_raw( $input );
+			return Shapla_Sanitize_Values::url( $input );
 		}
 
 		/**
-		 * Sanitize a value from a list of allowed values.
-		 *
-		 * @param  string $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_select( $input ) {
-			return sanitize_text_field( $input );
-		}
-
-		/**
-		 * Sanitize radio
+		 * Sanitize image
 		 *
 		 * @param  boolean $input
 		 *
 		 * @return string
 		 */
-		public function sanitize_radio( $input ) {
-			return sanitize_text_field( $input );
-		}
-
-		/**
-		 * Sanitize radio
-		 *
-		 * @param $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_radio_image( $input ) {
-			return sanitize_text_field( $input );
-		}
-
-		/**
-		 * Sanitize radio
-		 *
-		 * @param $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_radio_button( $input ) {
-			return sanitize_text_field( $input );
+		public function sanitize_image( $input ) {
+			return Shapla_Sanitize_Values::url( $input );
 		}
 
 		/**
@@ -828,17 +779,18 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_number( $input ) {
-			return intval( $input );
+			return Shapla_Sanitize_Values::number( $input );
 		}
 
 		/**
 		 * Minify CSS
 		 *
-		 * @param $content
+		 * @param string $content
+		 * @param bool $newline
 		 *
 		 * @return string
 		 */
-		private function minify_css( $content = '' ) {
+		private function minify_css( $content = '', $newline = true ) {
 			// Strip comments
 			$content = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content );
 			// remove leading & trailing whitespace
@@ -865,6 +817,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 			// remove semicolon/whitespace followed by closing bracket
 			$content = str_replace( ';}', '}', $content );
+
+			// Add new line after closing bracket
+			if ( $newline ) {
+				$content = str_replace( '}', '}' . PHP_EOL, $content );
+			}
 
 			return trim( $content );
 		}

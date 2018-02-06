@@ -36,16 +36,18 @@ $shapla->customizer->add_field( array(
 	'priority'    => 10,
 	'output'      => array(
 		array(
-			'element'  => array(
+			'element'     => array(
 				'.page-title-bar',
 			),
-			'property' => 'padding-top',
+			'property'    => 'padding-top',
+			'media_query' => '@media screen and (min-width: 769px)',
 		),
 		array(
-			'element'  => array(
+			'element'     => array(
 				'.page-title-bar',
 			),
-			'property' => 'padding-bottom',
+			'property'    => 'padding-bottom',
+			'media_query' => '@media screen and (min-width: 769px)',
 		),
 	),
 ) );
