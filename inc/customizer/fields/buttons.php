@@ -130,12 +130,18 @@ $shapla->customizer->add_field( array(
 // Button Border Radius
 $shapla->customizer->add_field( array(
 	'settings'    => 'button_primary_border_radius',
-	'type'        => 'text',
+	'type'        => 'range-slider',
 	'section'     => 'button_primary',
 	'label'       => __( 'Border Radius', 'shapla' ),
 	'description' => __( 'Enter a px value for button. ex: 3px', 'shapla' ),
 	'default'     => shapla_default_options()->primary_button->border_radius,
 	'priority'    => 60,
+	'input_attrs' => array(
+		'min'    => 1,
+		'max'    => 100,
+		'step'   => 1,
+		'suffix' => 'px',
+	),
 	'output'      => array(
 		array(
 			'element'  => array(
@@ -147,6 +153,7 @@ $shapla->customizer->add_field( array(
 				'input[type="submit"]',
 			),
 			'property' => 'border-radius',
+			'suffix'   => 'px',
 		),
 	),
 ) );

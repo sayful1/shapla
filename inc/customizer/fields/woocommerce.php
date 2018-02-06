@@ -22,28 +22,32 @@ $shapla->customizer->add_section( 'woocommerce', array(
 // Change products per page
 $shapla->customizer->add_field( array(
 	'settings'    => 'wc_products_per_page',
-	'type'        => 'number',
+	'type'        => 'range-slider',
 	'section'     => 'woocommerce',
 	'label'       => __( 'Products per page', 'shapla' ),
 	'description' => __( 'Change number of products displayed per page', 'shapla' ),
-	'default'     => shapla_default_options()->woocommerce->products_per_page,
+	'default'     => shapla_default_options()->wc_products_per_page,
 	'priority'    => 10,
+	'input_attrs' => array(
+		'min'    => 1,
+		'max'    => 120,
+		'step'   => 1,
+	),
 ) );
 
 // Change site title font size
 $shapla->customizer->add_field( array(
 	'settings'    => 'wc_products_per_row',
-	'type'        => 'select',
+	'type'        => 'range-slider',
 	'section'     => 'woocommerce',
 	'label'       => __( 'Products per row', 'shapla' ),
 	'description' => __( 'Change number of products displayed per row', 'shapla' ),
-	'default'     => shapla_default_options()->woocommerce->products_per_row,
+	'default'     => shapla_default_options()->wc_products_per_row,
 	'priority'    => 20,
-	'choices'     => array(
-		3 => __( '3 Products', 'shapla' ),
-		4 => __( '4 Products', 'shapla' ),
-		5 => __( '5 Products', 'shapla' ),
-		6 => __( '6 Products', 'shapla' ),
+	'input_attrs' => array(
+		'min'    => 3,
+		'max'    => 6,
+		'step'   => 1,
 	),
 ) );
 
@@ -54,7 +58,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'woocommerce',
 	'label'       => __( 'Show Cart Icon', 'shapla' ),
 	'description' => __( 'Check to show cart icon on navigation bar in header area.', 'shapla' ),
-	'default'     => shapla_default_options()->woocommerce->show_cart_icon,
+	'default'     => shapla_default_options()->show_cart_icon,
 	'priority'    => 30,
 ) );
 
@@ -65,6 +69,6 @@ $shapla->customizer->add_field( array(
 	'section'     => 'woocommerce',
 	'label'       => __( 'Show Categories Dropdown', 'shapla' ),
 	'description' => __( 'Check to show product categories dropdown on search field in header area.', 'shapla' ),
-	'default'     => shapla_default_options()->woocommerce->show_search_categories,
+	'default'     => shapla_default_options()->show_product_search_categories,
 	'priority'    => 30,
 ) );

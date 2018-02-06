@@ -27,22 +27,32 @@ $shapla->customizer->add_section( 'site_footer_bottom_bar', array(
 // Footer Widget Rows
 $shapla->customizer->add_field( array(
 	'settings'    => 'footer_widget_rows',
-	'type'        => 'number',
+	'type'        => 'range-slider',
 	'section'     => 'site_footer_widgets',
 	'label'       => __( 'Footer Widget Rows', 'shapla' ),
 	'description' => __( 'Select the number of widgets rows you want in the footer. After changing value, save and refresh the page.', 'shapla' ),
-	'default'     => shapla_default_options()->footer->widget_rows,
+	'default'     => shapla_default_options()->footer_widget_rows,
 	'priority'    => 10,
+	'input_attrs' => array(
+		'min'  => 1,
+		'max'  => 10,
+		'step' => 1,
+	),
 ) );
 // Footer Widget Columns
 $shapla->customizer->add_field( array(
 	'settings'    => 'footer_widget_columns',
-	'type'        => 'number',
+	'type'        => 'range-slider',
 	'section'     => 'site_footer_widgets',
 	'label'       => __( 'Footer Widget Columns', 'shapla' ),
 	'description' => __( 'Select the number of columns you want in each widgets rows in the footer.  After changing value, save and refresh the page.', 'shapla' ),
-	'default'     => shapla_default_options()->footer->widget_columns,
+	'default'     => shapla_default_options()->footer_widget_columns,
 	'priority'    => 20,
+	'input_attrs' => array(
+		'min'  => 1,
+		'max'  => 10,
+		'step' => 1,
+	),
 ) );
 
 // Footer Widget Area
@@ -51,7 +61,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer->widget_background_color,
+	'default'  => shapla_default_options()->footer_widget_background_color,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -70,7 +80,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer->widget_text_color,
+	'default'  => shapla_default_options()->footer_widget_text_color,
 	'priority' => 40,
 	'output'   => array(
 		array(
@@ -97,7 +107,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Link Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer->widget_link_color,
+	'default'  => shapla_default_options()->footer_widget_link_color,
 	'priority' => 50,
 	'output'   => array(
 		array(
@@ -113,7 +123,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer->background_color,
+	'default'  => shapla_default_options()->site_footer_bg_color,
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -129,7 +139,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer->text_color,
+	'default'  => shapla_default_options()->site_footer_text_color,
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -145,7 +155,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Link Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer->link_color,
+	'default'  => shapla_default_options()->site_footer_link_color,
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -161,6 +171,6 @@ $shapla->customizer->add_field( array(
 	'type'     => 'textarea',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Copyright Text', 'shapla' ),
-	'default'  => shapla_default_options()->footer->copyright_text,
+	'default'  => shapla_default_options()->site_copyright_text,
 	'priority' => 40,
 ) );

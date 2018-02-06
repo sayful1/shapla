@@ -200,7 +200,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'text'             => $primary_inverse,
 				'text_hover'       => $primary_inverse,
 				'font_size'        => '1rem',
-				'border_radius'    => '3px',
+				'border_radius'    => '3',
 			),
 			'secondary_button'                     => array(
 				'background'       => $secondary_color,
@@ -243,25 +243,22 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			'general_layout'                       => 'right-sidebar',
 			'header_layout'                        => 'default',
 			// Footer
-			'footer'                               => array(
-				'widget_rows'             => 1,
-				'widget_columns'          => 4,
-				'widget_background_color' => '#212a34',
-				'widget_text_color'       => '#f1f1f1',
-				'widget_link_color'       => '#f1f1f1',
-				'background_color'        => '#19212a',
-				'text_color'              => '#9e9e9e',
-				'link_color'              => '#f1f1f1',
-				'copyright_text'          => shapla_footer_credits(),
-			),
-			'woocommerce'                          => array(
-				'products_per_page'      => 16,
-				'products_per_row'       => 4,
-				'show_cart_icon'         => true,
-				'show_search_categories' => true,
-				'highlight_color'        => $primary_color,
-				'highlight_text_color'   => $primary_inverse,
-			),
+			'footer_widget_rows'                   => 1,
+			'footer_widget_columns'                => 4,
+			'footer_widget_background_color'       => '#212a34',
+			'footer_widget_text_color'             => '#f1f1f1',
+			'footer_widget_link_color'             => '#f1f1f1',
+			'site_footer_bg_color'                 => '#19212a',
+			'site_footer_text_color'               => '#9e9e9e',
+			'site_footer_link_color'               => '#f1f1f1',
+			'site_copyright_text'                  => shapla_footer_credits(),
+			// WooCommerce
+			'wc_products_per_page'                 => 16,
+			'wc_products_per_row'                  => 4,
+			'show_cart_icon'                       => true,
+			'show_product_search_categories'       => true,
+			'wc_highlight_color'                   => $primary_color,
+			'wc_highlight_text_color'              => $primary_inverse,
 		);
 
 		$default_options = json_decode( json_encode( $options ), false );

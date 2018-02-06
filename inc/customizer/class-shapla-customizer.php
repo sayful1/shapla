@@ -63,6 +63,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'google-font',
 			'background',
 			'toggle',
+			'range-slider',
 		);
 
 		/**
@@ -361,6 +362,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			 */
 			require 'controls/class-shapla-customize-control.php';
 			require 'controls/class-shapla-color-customize-control.php';
+			require 'controls/class-shapla-range-customize-control.php';
 			require 'controls/class-shapla-radio-image-customize-control.php';
 			require 'controls/class-shapla-radio-button-customize-control.php';
 			require 'controls/class-shapla-google-font-custom-control.php';
@@ -599,6 +601,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				'description' => isset( $field['description'] ) ? $field['description'] : '',
 				'section'     => $field['section'],
 				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'settings'    => $field['settings'],
+			) );
+		}
+
+		public function range_slider( $wp_customize, $field ) {
+			return new Shapla_Range_Customize_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'input_attrs' => isset( $field['input_attrs'] ) ? $field['input_attrs'] : array(),
 				'settings'    => $field['settings'],
 			) );
 		}

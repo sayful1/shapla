@@ -71,12 +71,17 @@ $shapla->customizer->add_field( array(
 ) );
 $shapla->customizer->add_field( array(
 	'settings'    => 'blog_excerpt_length',
-	'type'        => 'number',
+	'type'        => 'range-slider',
 	'section'     => 'general_blog_section',
 	'label'       => __( 'Excerpt length', 'shapla' ),
 	'description' => __( 'Controls the number of words in the post excerpts for the assigned blog page in "settings > reading" or blog archive pages.', 'shapla' ),
 	'default'     => shapla_default_options()->blog_excerpt_length,
 	'priority'    => 40,
+	'input_attrs' => array(
+		'min'  => 5,
+		'max'  => 200,
+		'step' => 1,
+	),
 ) );
 
 $shapla->customizer->add_field( array(
