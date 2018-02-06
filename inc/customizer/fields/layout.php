@@ -18,7 +18,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'layout_section',
 	'label'       => __( 'Site Layout', 'shapla' ),
 	'description' => __( 'Controls the site layout.', 'shapla' ),
-	'default'     => shapla_default_options()->layout->site_layout,
+	'default'     => shapla_default_options()->site_layout,
 	'priority'    => 10,
 	'choices'     => array(
 		'wide'  => __( 'Wide', 'shapla' ),
@@ -33,7 +33,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'layout_section',
 	'label'       => __( 'Sidebar Layout', 'shapla' ),
 	'description' => __( 'Controls the site sidebar layout.', 'shapla' ),
-	'default'     => shapla_default_options()->layout->sidebar_layout,
+	'default'     => shapla_default_options()->general_layout,
 	'priority'    => 20,
 	'choices'     => array(
 		'right-sidebar' => get_template_directory_uri() . '/assets/images/customizer/2cr.svg',
@@ -49,7 +49,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'layout_section',
 	'label'       => __( 'Header Layout', 'shapla' ),
 	'description' => __( 'Controls the site header layout.', 'shapla' ),
-	'default'     => shapla_default_options()->layout->header_layout,
+	'default'     => shapla_default_options()->header_layout,
 	'priority'    => 30,
 	'choices'     => array(
 		'layout-1' => get_template_directory_uri() . '/assets/images/customizer/layout-1.svg',

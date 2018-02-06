@@ -170,27 +170,31 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 		$secondary_inverse = shapla_find_color_invert( $secondary_color );
 
 		$options = array(
-			'heading_color'    => $heading_color,
-			'text_color'       => $text_color,
-			'primary_color'    => $primary_color,
-			'font_family'      => 'Roboto',
-			'blog'             => array(
-				'show_page_title'    => true,
-				'page_title'         => __( 'Blog', 'shapla' ),
-				'layout'             => 'grid',
-				'date_format'        => 'human',
-				'excerpt_length'     => 20,
-				'show_avatar'        => true,
-				'show_author_name'   => true,
-				'show_date'          => true,
-				'show_category'      => true,
-				'show_tag'           => false,
-				'show_comments_link' => true,
-			),
-			'primary_nav'      => array(
+			'heading_color'                        => $heading_color,
+			'text_color'                           => $text_color,
+			'primary_color'                        => $primary_color,
+			'font_family'                          => 'Roboto',
+			// Form
+			'form_background_color'                => '#ffffff',
+			'form_text_color'                      => $text_color,
+			'form_border_color'                    => '#dbdbdb',
+			// Blog
+			'show_blog_page_title'                 => true,
+			'blog_page_title'                      => __( 'Blog', 'shapla' ),
+			'blog_layout'                          => 'grid',
+			'blog_excerpt_length'                  => 20,
+			'blog_date_format'                     => 'human',
+			'show_blog_author_avatar'              => true,
+			'show_blog_author_name'                => true,
+			'show_blog_date'                       => true,
+			'show_blog_category_list'              => true,
+			'show_blog_tag_list'                   => false,
+			'show_blog_comments_link'              => true,
+			// Primary Nav
+			'primary_nav'                          => array(
 				'direction' => 'ltr',
 			),
-			'primary_button'   => array(
+			'primary_button'                       => array(
 				'background'       => $primary_color,
 				'background_hover' => $primary_hover,
 				'text'             => $primary_inverse,
@@ -198,13 +202,13 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'font_size'        => '1rem',
 				'border_radius'    => '3px',
 			),
-			'secondary_button' => array(
+			'secondary_button'                     => array(
 				'background'       => $secondary_color,
 				'background_hover' => $secondary_hover,
 				'text'             => $secondary_inverse,
 				'text_hover'       => $secondary_inverse,
 			),
-			'header'           => array(
+			'header'                               => array(
 				'logo_font_size'   => '30px',
 				'background_color' => '#ffffff',
 				'text_color'       => $text_color,
@@ -212,31 +216,34 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'show_search_icon' => false,
 				'sticky_header'    => false,
 			),
-			'title_bar'        => array(
-				'background_color' => '#f5f5f5',
-				'border_color'     => '#cccccc',
-				'padding'          => '2rem',
-				'font_size'        => '2rem',
-				'line_height'      => '1.4',
-				'title_font_color' => $heading_color,
-				'text_alignment'   => 'left',
-				'text_transform'   => 'none',
-				'font_weight'      => '300',
-			),
-			'breadcrumbs'      => array(
-				'content_display'   => 'breadcrumb',
-				'visible_on_mobile' => 'off',
-				'separator'         => 'slash',
-				'font_size'         => '0.875rem',
-				'font_color'        => $text_color,
-				'text_transform'    => 'none',
-			),
-			'layout'           => array(
-				'site_layout'    => 'wide',
-				'sidebar_layout' => 'right-sidebar',
-				'header_layout'  => 'default',
-			),
-			'footer'           => array(
+			// Page Title Bar
+			'page_title_bar_padding'               => '2rem',
+			'page_title_bar_border_color'          => '#cccccc',
+			'page_title_font_size'                 => '2rem',
+			'page_title_line_height'               => '1.4',
+			'page_title_font_color'                => $heading_color,
+			'page_title_text_transform'            => 'none',
+			'page_title_font_weight'               => '300',
+			'page_title_bar_text_alignment'        => 'left',
+			'page_title_bar_background_color'      => '#f5f5f5',
+			'page_title_bar_background_repeat'     => 'no-repeat',
+			'page_title_bar_background_size'       => 'cover',
+			'page_title_bar_background_attachment' => 'fixed',
+			'page_title_bar_background_position'   => 'center center',
+			'page_title_bar_background_image'      => '',
+			// Breadcrumbs
+			'breadcrumbs_content_display'          => 'breadcrumb',
+			'breadcrumbs_on_mobile_devices'        => 'off',
+			'breadcrumbs_separator'                => 'slash',
+			'breadcrumbs_font_size'                => '0.875rem',
+			'breadcrumbs_text_color'               => $text_color,
+			'breadcrumbs_text_transform'           => 'none',
+			// Layout
+			'site_layout'                          => 'wide',
+			'general_layout'                       => 'right-sidebar',
+			'header_layout'                        => 'default',
+			// Footer
+			'footer'                               => array(
 				'widget_rows'             => 1,
 				'widget_columns'          => 4,
 				'widget_background_color' => '#212a34',
@@ -245,14 +252,9 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 				'background_color'        => '#19212a',
 				'text_color'              => '#9e9e9e',
 				'link_color'              => '#f1f1f1',
-				'copyright_text'          => sprintf(
-					'<a href="https://wordpress.org/">%1$s</a><span class="sep"> | </span>%2$s %3$s.',
-					__( 'Proudly powered by WordPress', 'shapla' ),
-					__( 'Theme: Shapla by', 'shapla' ),
-					'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>'
-				),
+				'copyright_text'          => shapla_footer_credits(),
 			),
-			'woocommerce'      => array(
+			'woocommerce'                          => array(
 				'products_per_page'      => 16,
 				'products_per_row'       => 4,
 				'show_cart_icon'         => true,
@@ -283,5 +285,22 @@ if ( ! function_exists( 'shapla_standard_fonts' ) ) {
 		);
 
 		return apply_filters( 'shapla_standard_fonts', $standard_fonts );
+	}
+}
+
+if ( ! function_exists( 'shapla_footer_credits' ) ) {
+	/**
+	 * Shapla theme footer credit
+	 *
+	 * @since  1.3.4
+	 * @return string
+	 */
+	function shapla_footer_credits() {
+		return sprintf(
+			'<a href="https://wordpress.org/">%1$s</a><span class="sep"> | </span>%2$s %3$s.',
+			__( 'Proudly powered by WordPress', 'shapla' ),
+			__( 'Theme: Shapla by', 'shapla' ),
+			'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>'
+		);
 	}
 }

@@ -32,7 +32,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Page Title Bar Top &amp; Bottom Padding', 'shapla' ),
 	'description' => __( 'Controls the top and bottom padding of the page title bar. Enter value including any valid CSS unit(px,em,rem)',
 		'shapla' ),
-	'default'     => shapla_default_options()->title_bar->padding,
+	'default'     => shapla_default_options()->page_title_bar_padding,
 	'priority'    => 10,
 	'output'      => array(
 		array(
@@ -59,7 +59,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Bar Borders Color', 'shapla' ),
 	'description' => __( 'Controls the border colors of the page title bar.', 'shapla' ),
-	'default'     => shapla_default_options()->title_bar->border_color,
+	'default'     => shapla_default_options()->page_title_bar_border_color,
 	'priority'    => 20,
 	'output'      => array(
 		array(
@@ -85,7 +85,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Page Title Font Size', 'shapla' ),
 	'description' => __( 'Controls the font size for the page title heading. Enter value including CSS unit (px, em, rem), ex: 18px',
 		'shapla' ),
-	'default'     => shapla_default_options()->title_bar->font_size,
+	'default'     => shapla_default_options()->page_title_font_size,
 	'priority'    => 30,
 	'output'      => array(
 		array(
@@ -105,7 +105,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Page Title Line Height', 'shapla' ),
 	'description' => __( 'Controls the line height for the page title heading. Enter value including any valid CSS unit, ex: 1.4.',
 		'shapla' ),
-	'default'     => shapla_default_options()->title_bar->line_height,
+	'default'     => shapla_default_options()->page_title_line_height,
 	'priority'    => 40,
 	'output'      => array(
 		array(
@@ -124,7 +124,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Font Color', 'shapla' ),
 	'description' => __( 'Controls the text color of the page title fonts.', 'shapla' ),
-	'default'     => shapla_default_options()->title_bar->title_font_color,
+	'default'     => shapla_default_options()->page_title_font_color,
 	'priority'    => 50,
 	'output'      => array(
 		array(
@@ -143,7 +143,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Text Transform', 'shapla' ),
 	'description' => __( 'Controls the page title text transform.', 'shapla' ),
-	'default'     => shapla_default_options()->title_bar->text_transform,
+	'default'     => shapla_default_options()->page_title_text_transform,
 	'priority'    => 60,
 	'choices'     => array(
 		'none'       => __( 'Default', 'shapla' ),
@@ -168,7 +168,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Font Weight', 'shapla' ),
 	'description' => __( 'Controls the page title font weight.', 'shapla' ),
-	'default'     => shapla_default_options()->title_bar->font_weight,
+	'default'     => shapla_default_options()->page_title_font_weight,
 	'priority'    => 70,
 	'choices'     => array(
 		'100' => __( '100 - thin', 'shapla' ),
@@ -198,7 +198,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Bar Text Alignment', 'shapla' ),
 	'description' => __( 'Controls the page title bar text alignment.', 'shapla' ),
-	'default'     => shapla_default_options()->title_bar->text_alignment,
+	'default'     => shapla_default_options()->page_title_bar_text_alignment,
 	'priority'    => 80,
 	'choices'     => array(
 		'all_left'  => __( 'Left', 'shapla' ),
@@ -210,19 +210,19 @@ $shapla->customizer->add_field( array(
 ) );
 
 $shapla->customizer->add_field( array(
-	'type'        => 'background',
 	'settings'    => 'page_title_bar_background',
+	'type'        => 'background',
 	'label'       => esc_attr__( 'Page Title Bar Background', 'shapla' ),
 	'description' => esc_attr__( 'Controls the background of the page title bar.', 'shapla' ),
 	'section'     => 'page_title_bar',
 	'priority'    => 90,
 	'default'     => array(
-		'background-color'      => '#f5f5f5',
-		'background-image'      => '',
-		'background-repeat'     => 'no-repeat',
-		'background-position'   => 'center center',
-		'background-size'       => 'cover',
-		'background-attachment' => 'fixed',
+		'background-color'      => shapla_default_options()->page_title_bar_background_color,
+		'background-image'      => shapla_default_options()->page_title_bar_background_image,
+		'background-repeat'     => shapla_default_options()->page_title_bar_background_repeat,
+		'background-position'   => shapla_default_options()->page_title_bar_background_position,
+		'background-size'       => shapla_default_options()->page_title_bar_background_size,
+		'background-attachment' => shapla_default_options()->page_title_bar_background_attachment,
 	),
 	'output'      => array(
 		array(
@@ -240,7 +240,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs Content Display', 'shapla' ),
 	'description' => __( 'Controls what displays in the breadcrumbs area.', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs->content_display,
+	'default'     => shapla_default_options()->breadcrumbs_content_display,
 	'priority'    => 10,
 	'choices'     => array(
 		'none'       => __( 'None', 'shapla' ),
@@ -255,7 +255,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs on Mobile Devices', 'shapla' ),
 	'description' => __( 'Turn on to display breadcrumbs on mobile devices.', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs->visible_on_mobile,
+	'default'     => shapla_default_options()->breadcrumbs_on_mobile_devices,
 	'priority'    => 20,
 	'choices'     => array(
 		'off' => __( 'Off', 'shapla' ),
@@ -270,7 +270,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs Separator', 'shapla' ),
 	'description' => __( 'Controls the type of separator between each breadcrumb. ', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs->separator,
+	'default'     => shapla_default_options()->breadcrumbs_separator,
 	'priority'    => 30,
 	'choices'     => array(
 		'slash'    => __( 'Slash', 'shapla' ),
@@ -289,7 +289,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Breadcrumbs Font Size', 'shapla' ),
 	'description' => __( 'Controls the font size for the breadcrumbs text. Enter value including CSS unit (px, em, rem), ex: 10px.',
 		'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs->font_size,
+	'default'     => shapla_default_options()->breadcrumbs_font_size,
 	'priority'    => 40,
 	'output'      => array(
 		array(
@@ -308,7 +308,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs Text Color', 'shapla' ),
 	'description' => __( 'Controls the text color of the breadcrumbs font.', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs->font_color,
+	'default'     => shapla_default_options()->breadcrumbs_text_color,
 	'priority'    => 60,
 	'output'      => array(
 		array(
@@ -331,7 +331,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs Text Transform', 'shapla' ),
 	'description' => __( 'Controls the breadcrumbs text transform.', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs->text_transform,
+	'default'     => shapla_default_options()->breadcrumbs_text_transform,
 	'priority'    => 70,
 	'choices'     => array(
 		'none'       => __( 'Default', 'shapla' ),
