@@ -160,105 +160,91 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_default_options() {
-		$heading_color     = '#323232';
-		$text_color        = '#323232';
-		$primary_color     = '#2196f3';
-		$secondary_color   = '#009688';
-		$primary_hover     = shapla_adjust_color_brightness( $primary_color, - 20 );
-		$primary_inverse   = shapla_find_color_invert( $primary_color );
-		$secondary_hover   = shapla_adjust_color_brightness( $secondary_color, - 20 );
-		$secondary_inverse = shapla_find_color_invert( $secondary_color );
+		$heading_color   = '#323232';
+		$text_color      = '#323232';
+		$primary_color   = '#2196f3';
+		$primary_hover   = shapla_adjust_color_brightness( $primary_color, - 20 );
+		$primary_inverse = shapla_find_color_invert( $primary_color );
 
 		$options = array(
-			'heading_color'                        => $heading_color,
-			'text_color'                           => $text_color,
-			'primary_color'                        => $primary_color,
-			'font_family'                          => 'Roboto',
+			'heading_color'                         => $heading_color,
+			'text_color'                            => $text_color,
+			'primary_color'                         => $primary_color,
+			'font_family'                           => 'Roboto',
 			// Form
-			'form_background_color'                => '#ffffff',
-			'form_text_color'                      => $text_color,
-			'form_border_color'                    => '#dbdbdb',
+			'form_background_color'                 => '#ffffff',
+			'form_text_color'                       => $text_color,
+			'form_border_color'                     => '#dbdbdb',
 			// Blog
-			'show_blog_page_title'                 => true,
-			'blog_page_title'                      => __( 'Blog', 'shapla' ),
-			'blog_layout'                          => 'grid',
-			'blog_excerpt_length'                  => 20,
-			'blog_date_format'                     => 'human',
-			'show_blog_author_avatar'              => true,
-			'show_blog_author_name'                => true,
-			'show_blog_date'                       => true,
-			'show_blog_category_list'              => true,
-			'show_blog_tag_list'                   => false,
-			'show_blog_comments_link'              => true,
+			'show_blog_page_title'                  => true,
+			'blog_page_title'                       => __( 'Blog', 'shapla' ),
+			'blog_layout'                           => 'grid',
+			'blog_excerpt_length'                   => 20,
+			'blog_date_format'                      => 'human',
+			'show_blog_author_avatar'               => true,
+			'show_blog_author_name'                 => true,
+			'show_blog_date'                        => true,
+			'show_blog_category_list'               => true,
+			'show_blog_tag_list'                    => false,
+			'show_blog_comments_link'               => true,
 			// Primary Nav
-			'primary_nav'                          => array(
-				'direction' => 'ltr',
-			),
-			'primary_button'                       => array(
-				'background'       => $primary_color,
-				'background_hover' => $primary_hover,
-				'text'             => $primary_inverse,
-				'text_hover'       => $primary_inverse,
-				'font_size'        => '1rem',
-				'border_radius'    => '3',
-			),
-			'secondary_button'                     => array(
-				'background'       => $secondary_color,
-				'background_hover' => $secondary_hover,
-				'text'             => $secondary_inverse,
-				'text_hover'       => $secondary_inverse,
-			),
-			'header'                               => array(
-				'logo_font_size'   => '30px',
-				'background_color' => '#ffffff',
-				'text_color'       => $text_color,
-				'link_color'       => $primary_color,
-				'show_search_icon' => false,
-				'sticky_header'    => false,
-			),
+			'dropdown_direction'                    => 'ltr',
+			// Primary Button
+			'button_primary_background_color'       => $primary_color,
+			'button_primary_background_hover_color' => $primary_hover,
+			'button_primary_text_color'             => $primary_inverse,
+			'button_primary_text_hover_color'       => $primary_inverse,
+			'button_primary_border_radius'          => 3,
+			// Header
+			'site_logo_text_font_size'              => '30px',
+			'header_background_color'               => '#ffffff',
+			'header_text_color'                     => $text_color,
+			'header_link_color'                     => $primary_color,
+			'show_search_icon'                      => false,
+			'sticky_header'                         => false,
 			// Page Title Bar
-			'page_title_bar_padding'               => '2rem',
-			'page_title_bar_border_color'          => '#cccccc',
-			'page_title_font_size'                 => '2rem',
-			'page_title_line_height'               => '1.4',
-			'page_title_font_color'                => $heading_color,
-			'page_title_text_transform'            => 'none',
-			'page_title_font_weight'               => '300',
-			'page_title_bar_text_alignment'        => 'left',
-			'page_title_bar_background_color'      => '#f5f5f5',
-			'page_title_bar_background_repeat'     => 'no-repeat',
-			'page_title_bar_background_size'       => 'cover',
-			'page_title_bar_background_attachment' => 'fixed',
-			'page_title_bar_background_position'   => 'center center',
-			'page_title_bar_background_image'      => '',
+			'page_title_bar_padding'                => '2rem',
+			'page_title_bar_border_color'           => '#cccccc',
+			'page_title_font_size'                  => '2rem',
+			'page_title_line_height'                => '1.4',
+			'page_title_font_color'                 => $heading_color,
+			'page_title_text_transform'             => 'none',
+			'page_title_font_weight'                => '300',
+			'page_title_bar_text_alignment'         => 'left',
+			'page_title_bar_background_color'       => '#f5f5f5',
+			'page_title_bar_background_repeat'      => 'no-repeat',
+			'page_title_bar_background_size'        => 'cover',
+			'page_title_bar_background_attachment'  => 'fixed',
+			'page_title_bar_background_position'    => 'center center',
+			'page_title_bar_background_image'       => '',
 			// Breadcrumbs
-			'breadcrumbs_content_display'          => 'breadcrumb',
-			'breadcrumbs_on_mobile_devices'        => 'off',
-			'breadcrumbs_separator'                => 'slash',
-			'breadcrumbs_font_size'                => '0.875rem',
-			'breadcrumbs_text_color'               => $text_color,
-			'breadcrumbs_text_transform'           => 'none',
+			'breadcrumbs_content_display'           => 'breadcrumb',
+			'breadcrumbs_on_mobile_devices'         => 'off',
+			'breadcrumbs_separator'                 => 'slash',
+			'breadcrumbs_font_size'                 => '0.875rem',
+			'breadcrumbs_text_color'                => $text_color,
+			'breadcrumbs_text_transform'            => 'none',
 			// Layout
-			'site_layout'                          => 'wide',
-			'general_layout'                       => 'right-sidebar',
-			'header_layout'                        => 'default',
+			'site_layout'                           => 'wide',
+			'general_layout'                        => 'right-sidebar',
+			'header_layout'                         => 'default',
 			// Footer
-			'footer_widget_rows'                   => 1,
-			'footer_widget_columns'                => 4,
-			'footer_widget_background_color'       => '#212a34',
-			'footer_widget_text_color'             => '#f1f1f1',
-			'footer_widget_link_color'             => '#f1f1f1',
-			'site_footer_bg_color'                 => '#19212a',
-			'site_footer_text_color'               => '#9e9e9e',
-			'site_footer_link_color'               => '#f1f1f1',
-			'site_copyright_text'                  => shapla_footer_credits(),
+			'footer_widget_rows'                    => 1,
+			'footer_widget_columns'                 => 4,
+			'footer_widget_background_color'        => '#212a34',
+			'footer_widget_text_color'              => '#f1f1f1',
+			'footer_widget_link_color'              => '#f1f1f1',
+			'site_footer_bg_color'                  => '#19212a',
+			'site_footer_text_color'                => '#9e9e9e',
+			'site_footer_link_color'                => '#f1f1f1',
+			'site_copyright_text'                   => shapla_footer_credits(),
 			// WooCommerce
-			'wc_products_per_page'                 => 16,
-			'wc_products_per_row'                  => 4,
-			'show_cart_icon'                       => true,
-			'show_product_search_categories'       => true,
-			'wc_highlight_color'                   => $primary_color,
-			'wc_highlight_text_color'              => $primary_inverse,
+			'wc_products_per_page'                  => 16,
+			'wc_products_per_row'                   => 4,
+			'show_cart_icon'                        => true,
+			'show_product_search_categories'        => true,
+			'wc_highlight_color'                    => $primary_color,
+			'wc_highlight_text_color'               => $primary_inverse,
 		);
 
 		$default_options = json_decode( json_encode( $options ), false );
