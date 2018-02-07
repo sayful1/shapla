@@ -704,7 +704,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_text( $input ) {
-			return Shapla_Sanitize_Values::text( $input );
+			return Shapla_Sanitize::text( $input );
 		}
 
 		/**
@@ -726,7 +726,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_color( $color ) {
-			return Shapla_Sanitize_Values::color( $color );
+			return Shapla_Sanitize::color( $color );
 		}
 
 		/**
@@ -737,7 +737,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_textarea( $input ) {
-			return Shapla_Sanitize_Values::html( $input );
+			return Shapla_Sanitize::html( $input );
 		}
 
 		/**
@@ -748,7 +748,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return boolean
 		 */
 		public function sanitize_checkbox( $input ) {
-			return Shapla_Sanitize_Values::checked( $input );
+			return Shapla_Sanitize::checked( $input );
 		}
 
 		/**
@@ -759,7 +759,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_email( $input ) {
-			return Shapla_Sanitize_Values::email( $input );
+			return Shapla_Sanitize::email( $input );
 		}
 
 		/**
@@ -770,7 +770,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_url( $input ) {
-			return Shapla_Sanitize_Values::url( $input );
+			return Shapla_Sanitize::url( $input );
 		}
 
 		/**
@@ -781,7 +781,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_image( $input ) {
-			return Shapla_Sanitize_Values::url( $input );
+			return Shapla_Sanitize::url( $input );
 		}
 
 		/**
@@ -792,7 +792,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return string
 		 */
 		public function sanitize_number( $input ) {
-			return Shapla_Sanitize_Values::number( $input );
+			return Shapla_Sanitize::number( $input );
 		}
 
 		/**

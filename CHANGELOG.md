@@ -1,10 +1,16 @@
 #### 1.3.2 - February 3, 2018
-* Added - Add theme custom breadcrumb support
+* Added - Add theme custom breadcrumb class for breadcrumb support.
 * Added - Add support Yoast SEO breadcrumb feature
-* Tweak - Move page and post title to title bar area
 * Added - Add Page title bar background color, background image, border color, padding, font size, line height, text color, text transform, font weight, text align
 * Added - Add Breadcrumb separator, font size, text color, text transform
 * Added - Page title for default homepage (with the latest posts)
+* Tweak - Move page and post title to title bar area
+* Tweak - Update JavaScript for primary navigation.
+* Dev - Add range-slider custom customize control.
+* Dev - Add toggle custom customize control.
+* Dev - Add background custom customize control.
+* Dev - Add option to save customize css value in a css file.
+* Dev - Add sanitize class for sanitizing values.
 
 #### 1.3.1 - January 3, 2018
 * Added - Add system status tab in theme page.

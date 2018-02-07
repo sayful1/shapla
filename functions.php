@@ -26,7 +26,7 @@ $shapla = (object) array(
 /**
  * Load template hooks and functions file.
  */
-require 'inc/class-shapla-sanitize-values.php';
+require 'inc/class-shapla-sanitize.php';
 require 'inc/class-shapla-breadcrumb.php';
 require 'inc/shapla-functions.php';
 require 'inc/shapla-template-hooks.php';

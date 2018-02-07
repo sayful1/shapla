@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * A simple wrapper class for static methods.
  */
-class Shapla_Sanitize_Values {
+class Shapla_Sanitize {
 
 	/**
 	 * Sanitize number options.
