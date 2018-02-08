@@ -362,16 +362,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			 */
 			require 'controls/class-shapla-customize-control.php';
 			require 'controls/class-shapla-color-customize-control.php';
+			require 'controls/class-shapla-background-customize-control.php';
+			require 'controls/class-shapla-toggle-customize-control.php';
 			require 'controls/class-shapla-range-customize-control.php';
 			require 'controls/class-shapla-radio-image-customize-control.php';
 			require 'controls/class-shapla-radio-button-customize-control.php';
 			require 'controls/class-shapla-google-font-custom-control.php';
-			require 'controls/class-shapla-background-customize-control.php';
-			require 'controls/class-shapla-toggle-customize-control.php';
 
 			// Registered Control Types
 			$wp_customize->register_control_type( 'Shapla_Background_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Toggle_Customize_Control' );
+			$wp_customize->register_control_type( 'Shapla_Color_Customize_Control' );
 
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {

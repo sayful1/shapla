@@ -55,7 +55,7 @@ if ( _.isUndefined( window.kirkiSetSettingValue ) ) {
 
                 case 'checkbox':
                 case 'kirki-switch':
-                case 'shapla-toggle':
+                case 'kirki-toggle':
                     value = ( 1 === value || '1' === value || true === value ) ? true : false;
                     jQuery( $this.findElement( setting, 'input' ) ).prop( 'checked', value );
                     wp.customize.instance( setting ).set( value );
@@ -3175,7 +3175,7 @@ wp.customize.controlConstructor['kirki-switch'] = wp.customize.kirkiDynamicContr
         });
     }
 });
-wp.customize.controlConstructor['shapla-toggle'] = wp.customize.kirkiDynamicControl.extend({
+wp.customize.controlConstructor['kirki-toggle'] = wp.customize.kirkiDynamicControl.extend({
 
     initKirkiControl: function() {
 

@@ -55,23 +55,28 @@ class Shapla_Customize_Control extends WP_Customize_Control {
 	 */
 	public function enqueue() {
 		wp_enqueue_script( 'jquery-ui-button' );
+
+		$asset_url = get_template_directory_uri() . '/assets';
+
 		wp_enqueue_script(
-			'alpha-color-picker',
-			get_template_directory_uri() . '/assets/libs/alpha-color-picker/alpha-color-picker.js',
+			'wp-color-picker-alpha',
+			$asset_url . '/libs/wp-color-picker-alpha/wp-color-picker-alpha.js',
 			array( 'jquery', 'wp-color-picker' ),
 			'1.0.0',
 			true
 		);
+
 		wp_enqueue_script(
 			'shapla-customize',
-			get_template_directory_uri() . '/assets/js/customize.js',
-			array( 'jquery' ),
+			$asset_url . '/js/customize.js',
+			array( 'wp-color-picker-alpha' ),
 			'1.0.0',
 			true
 		);
+
 		wp_enqueue_style(
-			'alpha-color-picker',
-			get_template_directory_uri() . '/assets/css/customizer.css',
+			'shapla-customize',
+			$asset_url . '/css/customizer.css',
 			array( 'wp-color-picker' ),
 			'1.0.0'
 		);
