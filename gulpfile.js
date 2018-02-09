@@ -37,10 +37,20 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./assets/js'));
 });
 
+gulp.task('customize-js', function () {
+    gulp.src('./assets/js/customize/*.js')
+        .pipe(concat('customize.js'))
+        .pipe(gulp.dest('./assets/js'))
+        .pipe(concat('customize.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./assets/js'));
+});
+
 gulp.task('watch', function () {
     gulp.watch('./assets/scss/*.scss', ['sass']);
     gulp.watch('./assets/scss/style.scss', ['sass-main']);
     gulp.watch('./assets/js/src/*.js', ['js']);
+    gulp.watch('./assets/js/customize/*.js', ['customize-js']);
 });
 
-gulp.task('default', ['sass', 'js', 'sass-main', 'watch']);
+gulp.task('default', ['sass', 'js', 'customize-js', 'sass-main', 'watch']);

@@ -3,10 +3,9 @@
  * Theme Name: Shapla
  * Description: Used to style the custom customizer control.
  */
-@import "customizer/radio-image";
-@import "customizer/radio-button";
-@import "customizer/alpha-color-picker";
 @import "customizer/background";
+@import "customizer/color";
+@import "customizer/radio-buttonset";
+@import "customizer/radio-image";
+@import "customizer/slider";
 @import "customizer/toggle";
-@import "customizer/range";
-@import "customizer/kirki";

@@ -15,7 +15,7 @@ wp.customize.controlConstructor['shapla-background'] = wp.customize.Control.exte
 
         var control = this,
             value = control.setting._value,
-            picker = control.container.find('.kirki-color-control');
+            picker = control.container.find('.shapla-color-control');
 
         // Hide unnecessary controls if the value doesn't have an image.
         if (_.isUndefined(value['background-image']) || '' === value['background-image']) {

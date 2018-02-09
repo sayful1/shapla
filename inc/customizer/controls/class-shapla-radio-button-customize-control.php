@@ -1,6 +1,6 @@
 <?php
 /**
- * Create a Radio-Button control
+ * Customizer Control: radio-buttonset.
  *
  * This class incorporates code from the Kirki Customizer Framework
  *
@@ -14,59 +14,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * The radio image class.
- */
-class Shapla_Radio_Button_Customize_Control extends Shapla_Customize_Control {
-
+if ( ! class_exists( 'Shapla_Radio_Button_Customize_Control' ) ) {
 	/**
-	 * Declare the control type.
-	 *
-	 * @access public
-	 * @var string
+	 * The radio image class.
 	 */
-	public $type = 'radio-button';
+	class Shapla_Radio_Button_Customize_Control extends Shapla_Customize_Control {
 
-	/**
-	 * Render the control to be displayed in the Customizer.
-	 */
-	public function render_content() {
-		if ( empty( $this->choices ) ) {
-			return;
-		}
+		/**
+		 * Declare the control type.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'shapla-radio-buttonset';
 
-		$name = '_customize-radio-button-' . $this->id; ?>
-
-        <span class="customize-control-title">
-			<?php echo esc_attr( $this->label ); ?>
-		</span>
-
-		<?php if ( ! empty( $this->description ) ) : ?>
-            <span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
-		<?php endif; ?>
-
-        <div id="input_<?php echo esc_attr( $this->id ); ?>" class="shapla-radio-buttonset buttonset">
-			<?php foreach ( $this->choices as $value => $label ) : ?>
-                <input
-                        class="switch-input screen-reader-text"
-                        type="radio"
-                        value="<?php echo esc_attr( $value ); ?>"
-                        name="<?php echo esc_attr( $name ); ?>"
-                        id="<?php echo esc_attr( $this->id . $value ); ?>"
-					<?php $this->link();
-					checked( $this->value(), $value ); ?>
-                >
-                <label
-                        class="switch-label switch-label-<?php echo ( $value == $this->value() ) ? 'on' : 'off'; ?>"
-                        for="<?php echo esc_attr( $this->id ) . esc_attr( $value ); ?>"
-                ><?php echo esc_attr( $label ); ?></label>
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see Kirki_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 */
+		protected function content_template() {
+			?>
+            <# if ( data.label ) { #>
+            <span class="customize-control-title">{{{ data.label }}}</span>
+            <# } #>
+            <# if ( data.description ) { #>
+            <span class="description customize-control-description">{{{ data.description }}}</span>
+            <# } #>
+            <div id="input_{{ data.id }}" class="buttonset">
+                <# for ( key in data.choices ) { #>
+                <input {{{ data.inputAttrs }}}
+                       class="switch-input"
+                       type="radio"
+                       value="{{ key }}"
+                       name="_customize-radio-button-{{{ data.id }}}"
+                       id="{{ data.id }}{{ key }}" {{{ data.link }}}
+                <# if ( key === data.value ) { #> checked="checked" <# } #>>
+                <label class="switch-label switch-label-<# if ( key === data.value ) { #>on <# } else { #>off<# } #>"
+                       for="{{ data.id }}{{ key }}">
+                    {{ data.choices[ key ] }}
+                </label>
                 </input>
-			<?php endforeach; ?>
-        </div>
-
-        <script>jQuery(document).ready(function ($) {
-                $('[id="input_<?php echo esc_attr( $this->id ); ?>"]').buttonset();
-            });</script>
-		<?php
+                <# } #>
+            </div>
+			<?php
+		}
 	}
 }

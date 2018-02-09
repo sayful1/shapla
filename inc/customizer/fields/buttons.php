@@ -137,7 +137,7 @@ $shapla->customizer->add_field( array(
 	'default'     => shapla_default_options()->button_primary_border_radius,
 	'priority'    => 60,
 	'input_attrs' => array(
-		'min'    => 1,
+		'min'    => 0,
 		'max'    => 100,
 		'step'   => 1,
 		'suffix' => 'px',

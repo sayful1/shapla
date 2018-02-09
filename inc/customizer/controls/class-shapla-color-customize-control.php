@@ -1,6 +1,13 @@
 <?php
 /**
  * Customizer Control: color.
+ *
+ * This class incorporates code from the Kirki Customizer Framework
+ *
+ * The Kirki Customizer Framework, Copyright Aristeides Stathopoulos (@aristath),
+ * is licensed under the terms of the GNU GPL, Version 2 (or later).
+ *
+ * @link https://wordpress.org/plugins/kirki/
  */
 
 // Exit if accessed directly.
@@ -29,34 +36,17 @@ if ( ! class_exists( 'Shapla_Color_Customize_Control' ) ) {
 		 * @var bool
 		 */
 		public $palette = array(
-			'#000000', // black
-			'#FFFFFF', // white
-			'#9E9E9E', // grey
-			'#2196F3', // blue
-			'#4CAF50', // green
-			'#FFC107', // amber
-			'#009688', // teal
-			'#F44336', // red
-			'#E91E63', // pink
-			'#9C27B0', // purple
+			"#000000", // black
+			"#FFFFFF", // white
+			"#9E9E9E", // grey
+			"#2196F3", // blue
+			"#4CAF50", // green
+			"#FFC107", // amber
+			"#009688", // teal
+			"#F44336", // red
+			"#E91E63", // pink
+			"#9C27B0", // purple
 		);
-
-		/**
-		 * Enqueue control related scripts/styles.
-		 *
-		 * @access public
-		 */
-		public function enqueue() {
-			parent::enqueue();
-			wp_enqueue_script(
-				'alpha-color-picker',
-				get_template_directory_uri() . '/assets/js/customize/color.js',
-				array( 'jquery', 'wp-color-picker' ),
-				'1.0.0',
-				true
-			);
-		}
-
 
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
@@ -65,8 +55,8 @@ if ( ! class_exists( 'Shapla_Color_Customize_Control' ) ) {
 		 */
 		public function to_json() {
 			parent::to_json();
-			$this->json['palette']     = $this->palette;
-			$this->json['alpha']    = 'true';
+			$this->json['palette'] = $this->palette;
+			$this->json['alpha']   = 'true';
 		}
 
 		/**
