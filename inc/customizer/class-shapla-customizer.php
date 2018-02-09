@@ -62,6 +62,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'alpha-color',
 			'google-font',
 			'background',
+			'typography',
 			'toggle',
 			'range-slider',
 		);
@@ -367,6 +368,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			require 'controls/class-shapla-color-customize-control.php';
 			require 'controls/class-shapla-radio-image-customize-control.php';
 			require 'controls/class-shapla-radio-button-customize-control.php';
+			require 'controls/class-shapla-typography-customize-control.php';
 
 			require 'controls/class-shapla-google-font-custom-control.php';
 
@@ -377,6 +379,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$wp_customize->register_control_type( 'Shapla_Color_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Radio_Image_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Radio_Button_Customize_Control' );
+			$wp_customize->register_control_type( 'Shapla_Typography_Customize_Control' );
 
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {
@@ -406,10 +409,15 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			if ( count( $this->fields ) > 0 ) {
 				foreach ( $this->fields as $field ) {
 
-					$sanitize_callback = str_replace( '-', '_', $field['type'] );
-					$sanitize_method   = 'sanitize_text';
-					if ( method_exists( $this, "sanitize_{$sanitize_callback}" ) ) {
-						$sanitize_method = "sanitize_{$sanitize_callback}";
+					if ( isset( $field['sanitize_callback'] ) && is_callable( $field['sanitize_callback'] ) ) {
+						$sanitize_callback = $field['sanitize_callback'];
+					} else {
+						$sanitize_method = str_replace( '-', '_', $field['type'] );
+						if ( method_exists( $this, "sanitize_{$sanitize_method}" ) ) {
+							$sanitize_callback = array( $this, "sanitize_{$sanitize_method}" );
+						} else {
+							$sanitize_callback = array( $this, 'sanitize_text' );
+						}
 					}
 
 					// Add settings and controls
@@ -418,7 +426,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						'type'              => $this->setting['option_type'],
 						'capability'        => $this->setting['capability'],
 						'transport'         => isset( $field['transport'] ) ? $field['transport'] : 'refresh',
-						'sanitize_callback' => array( $this, $sanitize_method ),
+						'sanitize_callback' => $sanitize_callback,
 					) );
 					$wp_customize->add_control(
 						$this->add_control( $wp_customize, $field )
@@ -525,6 +533,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				'section'     => $field['section'],
 				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
 				'settings'    => $field['settings'],
+			) );
+		}
+
+		public function typography( $wp_customize, $field ) {
+			return new Shapla_Typography_Customize_Control( $wp_customize, $field['settings'], array(
+				'label'       => $field['label'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'section'     => $field['section'],
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'settings'    => $field['settings'],
+				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
 			) );
 		}
 

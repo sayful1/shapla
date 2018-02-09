@@ -212,7 +212,7 @@ class Shapla_Sanitize {
 	 * @return boolean
 	 */
 	public static function checked( $value ) {
-		return in_array( $value, [ 'yes', 'on', '1', 1, true, 'true' ], true );
+		return in_array( $value, array( 'yes', 'on', '1', 1, true, 'true' ), true );
 	}
 
 	/**
@@ -223,45 +223,105 @@ class Shapla_Sanitize {
 	 * @return string
 	 */
 	public static function html( $value ) {
-		$allowed_html = array(
-			'div'    => array(
-				'class' => array(),
-				'id'    => array(),
-			),
-			'span'   => array(
-				'class' => array(),
-				'id'    => array(),
-			),
-			'ol'     => array(
-				'class' => array(),
-				'id'    => array(),
-			),
-			'ul'     => array(
-				'class' => array(),
-				'id'    => array(),
-			),
-			'li'     => array(
-				'class' => array(),
-				'id'    => array(),
-			),
-			'p'      => array(
-				'class' => array(),
-				'id'    => array(),
-			),
-			'a'      => array(
-				'href'   => array(),
-				'class'  => array(),
-				'id'     => array(),
-				'rel'    => array(),
-				'title'  => array(),
-				'target' => array(),
-			),
-			'br'     => array(),
-			'em'     => array(),
-			'strong' => array(),
-		);
+		return wp_kses_post( $value );
+	}
 
-		return wp_kses( $value, $allowed_html );
+	/**
+	 * Sanitize a value from a list of allowed values.
+	 *
+	 * @param mixed $input
+	 * @param object $setting
+	 *
+	 * @return mixed
+	 */
+	public static function customize_choices( $input, $setting ) {
+		//get the list of possible select options
+		$choices = $setting->manager->get_control( $setting->id )->choices;
+
+		//return input if valid or return default option
+		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
+	}
+
+	/**
+	 * Sanitizes typography controls
+	 *
+	 * @param array $value The value.
+	 *
+	 * @return array
+	 */
+	public static function typography( $value ) {
+
+		if ( ! is_array( $value ) ) {
+			return array();
+		}
+
+		foreach ( $value as $key => $val ) {
+			switch ( $key ) {
+				case 'font-family':
+					$value['font-family'] = esc_attr( $val );
+					break;
+				case 'font-weight':
+					if ( isset( $value['variant'] ) ) {
+						break;
+					}
+					$value['variant'] = $val;
+					if ( isset( $value['font-style'] ) && 'italic' === $value['font-style'] ) {
+						$value['variant'] = ( '400' !== $val || 400 !== $val ) ? $value['variant'] . 'italic' : 'italic';
+					}
+					break;
+				case 'variant':
+					// Use 'regular' instead of 400 for font-variant.
+					$value['variant'] = ( 400 === $val || '400' === $val ) ? 'regular' : $val;
+					// Get font-weight from variant.
+					$value['font-weight'] = filter_var( $value['variant'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+					$value['font-weight'] = ( 'regular' === $value['variant'] || 'italic' === $value['variant'] ) ? 400 : absint( $value['font-weight'] );
+					// Get font-style from variant.
+					if ( ! isset( $value['font-style'] ) ) {
+						$value['font-style'] = ( false === strpos( $value['variant'], 'italic' ) ) ? 'normal' : 'italic';
+					}
+					break;
+				case 'font-size':
+				case 'letter-spacing':
+				case 'word-spacing':
+				case 'line-height':
+					$value[ $key ] = self::css_dimension( $val );
+					break;
+				case 'text-align':
+					if ( ! in_array( $val, array( 'inherit', 'left', 'center', 'right', 'justify' ), true ) ) {
+						$value['text-align'] = 'inherit';
+					}
+					break;
+				case 'text-transform':
+					if ( ! in_array( $val, array(
+						'none',
+						'capitalize',
+						'uppercase',
+						'lowercase',
+						'initial',
+						'inherit'
+					), true ) ) {
+						$value['text-transform'] = 'none';
+					}
+					break;
+				case 'text-decoration':
+					if ( ! in_array( $val, array(
+						'none',
+						'underline',
+						'overline',
+						'line-through',
+						'initial',
+						'inherit'
+					), true ) ) {
+						$value['text-transform'] = 'none';
+					}
+					break;
+				case 'color':
+					$value['color'] = self::color( $val );
+					break;
+			} // End switch().
+		} // End foreach().
+
+		return $value;
 	}
 
 	/**

@@ -75,16 +75,20 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 				'2.1.3',
 				true
 			);
-			wp_enqueue_script(
-				'shapla-customize',
-				$asset_url . '/js/customize' . $suffix . '.js',
+
+			// Enqueue selectWoo.
+			wp_enqueue_script( 'selectWoo', $asset_url . 'assets/libs/selectWoo/js/selectWoo.full.js', array( 'jquery' ), '1.0.1', true );
+			wp_enqueue_style( 'selectWoo', $asset_url . 'assets/libs/selectWoo/css/selectWoo.css', array(), '1.0.1' );
+			wp_enqueue_style( 'kirki-selectWoo', $asset_url . 'assets/libs/selectWoo/kirki.css', null );
+
+			wp_enqueue_script( 'shapla-customize', $asset_url . '/js/customize' . $suffix . '.js',
 				array(
 					'jquery',
+					'customize-base',
 					'jquery-ui-button',
-					'wp-color-picker-alpha'
-				),
-				'1.0.0',
-				true
+					'wp-color-picker-alpha',
+					'selectWoo'
+				), '1.0.0', true
 			);
 		}
 
