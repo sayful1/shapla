@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Typography control.
  */
-class Shapla_Typography_Customize_Control extends WP_Customize_Control {
+class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
 
 	/**
 	 * The control type.
@@ -27,84 +27,11 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
 	 */
 	public $type = 'kirki-typography';
 
-	/**
-	 * Used to automatically generate all CSS output.
-	 *
-	 * @access public
-	 * @var array
-	 */
-	public $output = array();
-
-	/**
-	 * Data type
-	 *
-	 * @access public
-	 * @var string
-	 */
-	public $option_type = 'theme_mod';
-
-	/**
-	 * The kirki_config we're using for this control
-	 *
-	 * @access public
-	 * @var string
-	 */
-	public $kirki_config = 'global';
-
-	/**
-	 * Constructor.
-	 *
-	 * Supplied `$args` override class property defaults.
-	 *
-	 * If `$args['settings']` is not defined, use the $id as the setting ID.
-	 *
-	 * @since 3.0.0
-	 *
-	 * @param WP_Customize_Manager $manager Customizer bootstrap instance.
-	 * @param string $id Control ID.
-	 * @param array $args {
-	 *     Optional. Arguments to override class property defaults.
-	 *
-	 * @type int $instance_number Order in which this instance was created in relation
-	 *                                                 to other instances.
-	 * @type WP_Customize_Manager $manager Customizer bootstrap instance.
-	 * @type string $id Control ID.
-	 * @type array $settings All settings tied to the control. If undefined, `$id` will
-	 *                                                 be used.
-	 * @type string $setting The primary setting for the control (if there is one).
-	 *                                                 Default 'default'.
-	 * @type int $priority Order priority to load the control. Default 10.
-	 * @type string $section Section the control belongs to. Default empty.
-	 * @type string $label Label for the control. Default empty.
-	 * @type string $description Description for the control. Default empty.
-	 * @type array $choices List of choices for 'radio' or 'select' type controls, where
-	 *                                                 values are the keys, and labels are the values.
-	 *                                                 Default empty array.
-	 * @type array $input_attrs List of custom input attributes for control output, where
-	 *                                                 attribute names are the keys and values are the values. Not
-	 *                                                 used for 'checkbox', 'radio', 'select', 'textarea', or
-	 *                                                 'dropdown-pages' control types. Default empty array.
-	 * @type array $json Deprecated. Use WP_Customize_Control::json() instead.
-	 * @type string $type Control type. Core controls include 'text', 'checkbox',
-	 *                                                 'textarea', 'radio', 'select', and 'dropdown-pages'. Additional
-	 *                                                 input types such as 'email', 'url', 'number', 'hidden', and
-	 *                                                 'date' are supported implicitly. Default 'text'.
-	 * }
-	 */
-	public function __construct( $manager, $id, $args = array() ) {
-		parent::__construct( $manager, $id, $args );
-	}
-
-	/**
-	 * Enqueue control related scripts/styles.
-	 *
-	 * @access public
-	 */
 	public function enqueue() {
 		parent::enqueue();
 		$custom_fonts_array  = ( isset( $this->choices['fonts'] ) && ( isset( $this->choices['fonts']['google'] ) || isset( $this->choices['fonts']['standard'] ) ) && ( ! empty( $this->choices['fonts']['google'] ) || ! empty( $this->choices['fonts']['standard'] ) ) );
 		$localize_script_var = ( $custom_fonts_array ) ? 'kirkiFonts' . $this->id : 'kirkiAllFonts';
-		wp_localize_script( 'kirki-typography', $localize_script_var, array(
+		wp_localize_script( 'shapla-customize', 'kirkiAllFonts', array(
 			'standard' => $this->get_standard_fonts(),
 			'google'   => $this->get_google_fonts(),
 		) );
@@ -118,43 +45,27 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
 	public function to_json() {
 		parent::to_json();
 
-		$this->json['default'] = $this->setting->default;
-		if ( isset( $this->default ) ) {
-			$this->json['default'] = $this->default;
-		}
-		$this->json['output']  = $this->output;
-		$this->json['value']   = wp_parse_args(
-			Shapla_Sanitize::typography( $this->value() ),
-			$this->json['default']
-		);
-		$this->json['choices'] = $this->choices;
-		$this->json['link']    = $this->get_link();
-		$this->json['id']      = $this->id;
-
-		$this->json['inputAttrs'] = '';
-		foreach ( $this->input_attrs as $attr => $value ) {
-			$this->json['inputAttrs'] .= $attr . '="' . esc_attr( $value ) . '" ';
-		}
-
-		foreach ( array_keys( $this->json['value'] ) as $key ) {
-			if ( ! in_array( $key, array(
-					'variant',
-					'font-weight',
-					'font-style'
-				) ) && ! isset( $this->json['default'][ $key ] ) ) {
-				unset( $this->json['value'][ $key ] );
+		if ( is_array( $this->json['value'] ) ) {
+			foreach ( array_keys( $this->json['value'] ) as $key ) {
+				if ( ! in_array( $key, array(
+						'variant',
+						'font-weight',
+						'font-style'
+					), true ) && ! isset( $this->json['default'][ $key ] ) ) {
+					unset( $this->json['value'][ $key ] );
+				}
+				// Fix for https://wordpress.org/support/topic/white-font-after-updateing-to-3-0-16.
+				if ( ! isset( $this->json['default'][ $key ] ) ) {
+					unset( $this->json['value'][ $key ] );
+				}
+				// Fix for https://github.com/aristath/kirki/issues/1405.
+				if ( isset( $this->json['default'][ $key ] ) && false === $this->json['default'][ $key ] ) {
+					unset( $this->json['value'][ $key ] );
+				}
 			}
 		}
 
-		// Fix for https://github.com/aristath/kirki/issues/1405.
-		foreach ( array_keys( $this->json['value'] ) as $key ) {
-			if ( isset( $this->json['default'][ $key ] ) && false === $this->json['default'][ $key ] ) {
-				unset( $this->json['value'][ $key ] );
-			}
-		}
-		$this->json['show_variants'] = true;
-		$this->json['show_subsets']  = true;
-		$this->json['languages']     = Shapla_Fonts::get_google_font_subsets();
+		$this->json['show_variants'] = ( true === Shapla_Fonts::$force_load_all_variants ) ? false : true;
 	}
 
 	/**
@@ -198,18 +109,6 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
                 <select {{{ data.inputAttrs }}} class="variant" id="kirki-typography-variant-{{{ data.id }}}"></select>
             </div>
             <# } #>
-            <# if ( true === data.show_subsets ) { #>
-            <div class="subsets hide-on-standard-fonts kirki-subsets-wrapper">
-                <h5><?php esc_attr_e( 'Subset(s)', 'kirki' ); ?></h5>
-                <select {{{ data.inputAttrs }}} class="subset" id="kirki-typography-subsets-{{{ data.id }}}"<# if (
-                _.isUndefined( data.choices['disable-multiple-variants'] ) || false ===
-                data.choices['disable-multiple-variants'] ) { #> multiple<# } #>>
-                <# _.each( data.value.subsets, function( subset ) { #>
-                <option value="{{ subset }}" selected="selected">{{ data.languages[ subset ] }}</option>
-                <# } ); #>
-                </select>
-            </div>
-            <# } #>
             <# } #>
 
             <# if ( data.default['font-size'] ) { #>
@@ -248,46 +147,53 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
             <# data.value['text-align'] = data.value['text-align'] || data['default']['text-align']; #>
             <div class="text-align">
                 <h5><?php esc_attr_e( 'Text Align', 'kirki' ); ?></h5>
-                <input {{{ data.inputAttrs }}} type="radio" value="inherit"
-                       name="_customize-typography-text-align-radio-{{ data.id }}" id="{{ data.id }}-text-align-inherit"
-                <# if ( data.value['text-align'] === 'inherit' ) { #> checked="checked"<# } #>>
-                <label for="{{ data.id }}-text-align-inherit">
-                    <span class="dashicons dashicons-editor-removeformatting"></span>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Inherit', 'kirki' ); ?></span>
-                </label>
-                </input>
-                <input {{{ data.inputAttrs }}} type="radio" value="left"
-                       name="_customize-typography-text-align-radio-{{ data.id }}" id="{{ data.id }}-text-align-left" <#
-                if ( data.value['text-align'] === 'left' ) { #> checked="checked"<# } #>>
-                <label for="{{ data.id }}-text-align-left">
-                    <span class="dashicons dashicons-editor-alignleft"></span>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Left', 'kirki' ); ?></span>
-                </label>
-                </input>
-                <input {{{ data.inputAttrs }}} type="radio" value="center"
-                       name="_customize-typography-text-align-radio-{{ data.id }}" id="{{ data.id }}-text-align-center"
-                <# if ( data.value['text-align'] === 'center' ) { #> checked="checked"<# } #>>
-                <label for="{{ data.id }}-text-align-center">
-                    <span class="dashicons dashicons-editor-aligncenter"></span>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Center', 'kirki' ); ?></span>
-                </label>
-                </input>
-                <input {{{ data.inputAttrs }}} type="radio" value="right"
-                       name="_customize-typography-text-align-radio-{{ data.id }}" id="{{ data.id }}-text-align-right"
-                <# if ( data.value['text-align'] === 'right' ) { #> checked="checked"<# } #>>
-                <label for="{{ data.id }}-text-align-right">
-                    <span class="dashicons dashicons-editor-alignright"></span>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Right', 'kirki' ); ?></span>
-                </label>
-                </input>
-                <input {{{ data.inputAttrs }}} type="radio" value="justify"
-                       name="_customize-typography-text-align-radio-{{ data.id }}" id="{{ data.id }}-text-align-justify"
-                <# if ( data.value['text-align'] === 'justify' ) { #> checked="checked"<# } #>>
-                <label for="{{ data.id }}-text-align-justify">
-                    <span class="dashicons dashicons-editor-justify"></span>
-                    <span class="screen-reader-text"><?php esc_attr_e( 'Justify', 'kirki' ); ?></span>
-                </label>
-                </input>
+                <div class="text-align-choices">
+                    <input {{{ data.inputAttrs }}} type="radio" value="inherit"
+                           name="_customize-typography-text-align-radio-{{ data.id }}"
+                           id="{{ data.id }}-text-align-inherit" <# if ( data.value['text-align'] === 'inherit' ) { #>
+                    checked="checked"<# } #>>
+                    <label for="{{ data.id }}-text-align-inherit">
+                        <span class="dashicons dashicons-editor-removeformatting"></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Inherit', 'kirki' ); ?></span>
+                    </label>
+                    </input>
+                    <input {{{ data.inputAttrs }}} type="radio" value="left"
+                           name="_customize-typography-text-align-radio-{{ data.id }}"
+                           id="{{ data.id }}-text-align-left" <# if ( data.value['text-align'] === 'left' ) { #>
+                    checked="checked"<# } #>>
+                    <label for="{{ data.id }}-text-align-left">
+                        <span class="dashicons dashicons-editor-alignleft"></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Left', 'kirki' ); ?></span>
+                    </label>
+                    </input>
+                    <input {{{ data.inputAttrs }}} type="radio" value="center"
+                           name="_customize-typography-text-align-radio-{{ data.id }}"
+                           id="{{ data.id }}-text-align-center" <# if ( data.value['text-align'] === 'center' ) { #>
+                    checked="checked"<# } #>>
+                    <label for="{{ data.id }}-text-align-center">
+                        <span class="dashicons dashicons-editor-aligncenter"></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Center', 'kirki' ); ?></span>
+                    </label>
+                    </input>
+                    <input {{{ data.inputAttrs }}} type="radio" value="right"
+                           name="_customize-typography-text-align-radio-{{ data.id }}"
+                           id="{{ data.id }}-text-align-right" <# if ( data.value['text-align'] === 'right' ) { #>
+                    checked="checked"<# } #>>
+                    <label for="{{ data.id }}-text-align-right">
+                        <span class="dashicons dashicons-editor-alignright"></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Right', 'kirki' ); ?></span>
+                    </label>
+                    </input>
+                    <input {{{ data.inputAttrs }}} type="radio" value="justify"
+                           name="_customize-typography-text-align-radio-{{ data.id }}"
+                           id="{{ data.id }}-text-align-justify" <# if ( data.value['text-align'] === 'justify' ) { #>
+                    checked="checked"<# } #>>
+                    <label for="{{ data.id }}-text-align-justify">
+                        <span class="dashicons dashicons-editor-justify"></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Justify', 'kirki' ); ?></span>
+                    </label>
+                    </input>
+                </div>
             </div>
             <# } #>
 
@@ -318,13 +224,30 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
             </div>
             <# } #>
 
-            <# if ( false !== data.default['color'] && data.default['color'] ) { #>
-            <# data.value['color'] = data.value['color'] || data['default']['color']; #>
-            <div class="color">
-                <h5><?php esc_attr_e( 'Color', 'kirki' ); ?></h5>
-                <input {{{ data.inputAttrs }}} type="text" data-palette="{{ data.palette }}"
-                       data-default-color="{{ data.default['color'] }}" value="{{ data.value['color'] }}"
-                       class="kirki-color-control"/>
+            <# if ( data.default['text-decoration'] ) { #>
+            <# data.value['text-decoration'] = data.value['text-decoration'] || data['default']['text-decoration']; #>
+            <div class="text-decoration">
+                <h5><?php esc_attr_e( 'Text Decoration', 'kirki' ); ?></h5>
+                <select {{{ data.inputAttrs }}} id="kirki-typography-text-decoration-{{{ data.id }}}">
+                    <option value="none"
+                    <# if ( 'none' === data.value['text-decoration'] ) { #>selected<# }
+                    #>><?php esc_attr_e( 'None', 'kirki' ); ?></option>
+                    <option value="underline"
+                    <# if ( 'underline' === data.value['text-decoration'] ) { #>selected<# }
+                    #>><?php esc_attr_e( 'Underline', 'kirki' ); ?></option>
+                    <option value="overline"
+                    <# if ( 'overline' === data.value['text-decoration'] ) { #>selected<# }
+                    #>><?php esc_attr_e( 'Overline', 'kirki' ); ?></option>
+                    <option value="line-through"
+                    <# if ( 'line-through' === data.value['text-decoration'] ) { #>selected<# }
+                    #>><?php esc_attr_e( 'Line-Through', 'kirki' ); ?></option>
+                    <option value="initial"
+                    <# if ( 'initial' === data.value['text-decoration'] ) { #>selected<# }
+                    #>><?php esc_attr_e( 'Initial', 'kirki' ); ?></option>
+                    <option value="inherit"
+                    <# if ( 'inherit' === data.value['text-decoration'] ) { #>selected<# }
+                    #>><?php esc_attr_e( 'Inherit', 'kirki' ); ?></option>
+                </select>
             </div>
             <# } #>
 
@@ -343,14 +266,19 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['margin-bottom'] }}"/>
             </div>
             <# } #>
+
+            <# if ( false !== data.default['color'] && data.default['color'] ) { #>
+            <# data.value['color'] = data.value['color'] || data['default']['color']; #>
+            <div class="color">
+                <h5><?php esc_attr_e( 'Color', 'kirki' ); ?></h5>
+                <input {{{ data.inputAttrs }}} type="text" data-palette="{{ data.palette }}"
+                       data-default-color="{{ data.default['color'] }}" value="{{ data.value['color'] }}"
+                       class="kirki-color-control"/>
+            </div>
+            <# } #>
+
         </div>
-        <#
-        if ( ! _.isUndefined( data.value['font-family'] ) ) {
-        data.value['font-family'] = data.value['font-family'].replace( /&quot;/g, '&#39' );
-        }
-        valueJSON = JSON.stringify( data.value ).replace( /'/g, '&#39' );
-        #>
-        <input class="typography-hidden-value" type="hidden" value='{{{ valueJSON }}}' {{{ data.link }}}>
+        <input class="typography-hidden-value" type="hidden" {{{ data.link }}}>
 		<?php
 	}
 
@@ -482,13 +410,5 @@ class Shapla_Typography_Customize_Control extends WP_Customize_Control {
 		} // End foreach().
 
 		return $google_fonts_final;
-	}
-
-	/**
-	 * Render the control's content.
-	 *
-	 * @see WP_Customize_Control::render_content()
-	 */
-	protected function render_content() {
 	}
 }

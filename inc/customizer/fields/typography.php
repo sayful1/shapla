@@ -10,6 +10,44 @@ $shapla->customizer->add_section( 'typography_section', array(
 	'priority' => 40,
 ) );
 
+$shapla->customizer->add_field( array(
+	'type'        => 'typography',
+	'settings'    => 'body_typography',
+	'section'     => 'typography_section',
+	'label'       => esc_attr__( 'Body Typography', 'textdomain' ),
+	'description' => esc_attr__( 'These settings control the typography for all body text.', 'textdomain' ),
+	'default'     => array(
+		'font-family'    => 'Roboto',
+		'variant'        => '300',
+		'font-size'      => '16px',
+		'line-height'    => '1.5',
+		'letter-spacing' => '0',
+		'color'          => '#444444',
+		'text-transform' => 'none',
+		'text-align'     => 'left'
+	),
+	'priority'    => 10,
+	'choices'     => array(
+		'fonts' => array(
+			'standard' => array(
+				'serif',
+				'sans-serif',
+			),
+		),
+	),
+	'output'      => array(
+		array(
+			'element' => array(
+				'body',
+				'button',
+				'input',
+				'select',
+				'textarea',
+			),
+		),
+	),
+) );
+
 // Primary color
 $shapla->customizer->add_field( array(
 	'settings'    => 'typography_primary_color',

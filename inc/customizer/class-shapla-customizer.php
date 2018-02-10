@@ -89,6 +89,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			add_filter( 'wp_get_custom_css', array( $this, 'wp_get_custom_css' ) );
 			add_action( 'wp_head', array( $this, 'customize_css' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_fonts' ) );
 		}
 
 		/**
@@ -298,18 +299,43 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 							$css[ $output['media_query'] ][ $output['element'] ][ $output['property'] ] = $output['prefix'] . $value . $output['units'] . $output['suffix'];
 						}
 					} else {
-						foreach ( $value as $key => $subvalue ) {
-							$property = $key;
-							if ( false !== strpos( $output['property'], '%%' ) ) {
-								$property = str_replace( '%%', $key, $output['property'] );
-							} elseif ( ! empty( $output['property'] ) ) {
-								$output['property'] = $output['property'] . '-' . $key;
+						if ( 'typography' === $field['type'] ) {
+							foreach ( $value as $key => $subvalue ) {
+								// Add double quotes if needed to font-families.
+								if ( 'font-family' == $key && false !== strpos( $subvalue, ' ' ) && false === strpos( $subvalue, '"' ) ) {
+									$css[ $output['media_query'] ][ $output['element'] ]['font-family'] = '"' . $subvalue . '"';
+								}
+								// Variants contain both font-weight & italics.
+								if ( 'variant' === $key ) {
+									$font_weight = str_replace( 'italic', '', $subvalue );
+									$font_weight = ( in_array( $font_weight, array(
+										'',
+										'regular'
+									) ) ) ? '400' : $font_weight;
+
+									$css[ $output['media_query'] ][ $output['element'] ]['font-weight'] = $font_weight;
+									// Is this italic?
+									if ( false !== strpos( $subvalue, 'italic' ) ) {
+										$css[ $output['media_query'] ][ $output['element'] ]['font-style'] = 'italic';
+									}
+								} else {
+									$css[ $output['media_query'] ][ $output['element'] ][ $key ] = $subvalue;
+								}
 							}
-							if ( 'background-image' === $output['property'] && false === strpos( $subvalue, 'url(' ) ) {
-								$subvalue = 'url("' . set_url_scheme( $subvalue ) . '")';
-							}
-							if ( $subvalue ) {
-								$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $subvalue;
+						} else {
+							foreach ( $value as $key => $subvalue ) {
+								$property = $key;
+								if ( false !== strpos( $output['property'], '%%' ) ) {
+									$property = str_replace( '%%', $key, $output['property'] );
+								} elseif ( ! empty( $output['property'] ) ) {
+									$output['property'] = $output['property'] . '-' . $key;
+								}
+								if ( 'background-image' === $output['property'] && false === strpos( $subvalue, 'url(' ) ) {
+									$subvalue = 'url("' . set_url_scheme( $subvalue ) . '")';
+								}
+								if ( $subvalue ) {
+									$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $subvalue;
+								}
 							}
 						}
 					}
@@ -350,6 +376,60 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			return $final_css;
+		}
+
+		/**
+		 * Enqueue google fonts.
+		 *
+		 * @access public
+		 * @return null
+		 */
+		public function enqueue_fonts() {
+			// Check if we need to exit early.
+			if ( empty( $this->fields ) || ! is_array( $this->fields ) ) {
+				return;
+			}
+			foreach ( $this->fields as $field ) {
+				// Process typography fields.
+				if ( isset( $field['type'] ) && 'typography' == $field['type'] ) {
+					// Check if we've got everything we need.
+					if ( ! isset( $field['kirki_config'] ) || ! isset( $field['settings'] ) ) {
+						continue;
+					}
+					$value = (array) get_theme_mod( $field['settings'], $field['default'] );
+
+					if ( isset( $value['font-family'] ) ) {
+						$url              = '//fonts.googleapis.com/css?family=' . str_replace( ' ', '+', $value['font-family'] );
+						$value['variant'] = ( isset( $value['variant'] ) ) ? $value['variant'] : '';
+						$url              .= ( empty( $value['variant'] ) ) ? '' : ':' . $value['variant'];
+						$key              = md5( $value['font-family'] . $value['variant'] );
+						// Check that the URL is valid. we're going to use transients to make this faster.
+						$url_is_valid = get_transient( $key );
+						// If transient does not exist.
+						if ( false === $url_is_valid ) {
+							$response = wp_remote_get( 'https:' . $url );
+							if ( ! is_array( $response ) ) {
+								// The url was not properly formatted,
+								// cache for 12 hours and continue to the next field.
+								set_transient( $key, null, DAY_IN_SECONDS );
+								continue;
+							}
+							// Check the response headers.
+							if ( isset( $response['response'] ) && isset( $response['response']['code'] ) ) {
+								if ( 200 == $response['response']['code'] ) {
+									// URL was ok. Set transient to true and cache for a week.
+									set_transient( $key, true, WEEK_IN_SECONDS );
+									$url_is_valid = true;
+								}
+							}
+						}
+						// If the font-link is valid, enqueue it.
+						if ( $url_is_valid ) {
+							wp_enqueue_style( $key, $url, null, null );
+						}
+					}
+				}
+			}
 		}
 
 		/**
@@ -817,6 +897,10 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function sanitize_number( $input ) {
 			return Shapla_Sanitize::number( $input );
+		}
+
+		public function sanitize_typography( $input ) {
+			return Shapla_Sanitize::typography( $input );
 		}
 
 		/**
