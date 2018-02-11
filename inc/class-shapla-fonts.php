@@ -104,7 +104,7 @@ class Shapla_Fonts {
 			}
 		}
 
-		// Apply the 'kirki_fonts_google_fonts' filter.
+		// Apply the 'shapla_fonts_google_fonts' filter.
 		self::$google_fonts = apply_filters( 'shapla_fonts_google_fonts', $google_fonts );
 
 		// Save the array in cache.

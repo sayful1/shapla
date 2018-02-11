@@ -144,26 +144,3 @@ $shapla->customizer->add_field( array(
 		),
 	),
 ) );
-
-// Font Family
-$shapla->customizer->add_field( array(
-	'settings'    => 'google_font_family',
-	'section'     => 'typography_section',
-	'type'        => 'google-font',
-	'label'       => __( 'Body font family', 'shapla' ),
-	'description' => __( 'Font family will be used for body', 'shapla' ),
-	'default'     => shapla_default_options()->font_family,
-	'priority'    => 20,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'body',
-				'button',
-				'input',
-				'select',
-				'textarea',
-			),
-			'property' => 'font-family',
-		),
-	),
-) );
