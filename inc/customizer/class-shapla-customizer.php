@@ -320,7 +320,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 							if ( 'font-family' == $property ) {
 								if ( false !== strpos( $property_value, ' ' ) && false === strpos( $property_value, '"' ) ) {
-									$property_value = '"' . $property_value . '"';
+									if ( false !== strpos( $property_value, ',' ) ) {
+										$property_value = htmlspecialchars_decode( $property_value );
+									} else {
+										$property_value = '"' . $property_value . '"';
+									}
 								}
 							}
 
@@ -393,13 +397,10 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			if ( empty( $this->fields ) || ! is_array( $this->fields ) ) {
 				return;
 			}
+
+			$fonts = array();
 			foreach ( $this->fields as $field ) {
 				if ( ! isset( $field['settings'], $field['type'] ) ) {
-					continue;
-				}
-
-				// Process typography fields.
-				if ( 'typography' !== $field['type'] ) {
 					continue;
 				}
 
@@ -407,41 +408,39 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$default = isset( $field['default'] ) ? $field['default'] : array();
 				$value   = (array) get_theme_mod( $field['settings'], $default );
 
+				// Process typography fields.
+				if ( 'typography' !== $field['type'] ) {
+					continue;
+				}
+
 				if ( empty( $value['font-family'] ) ) {
 					continue;
 				}
 
-				$font_family = str_replace( ' ', '+', $value['font-family'] );
-
-				$url              = 'https://fonts.googleapis.com/css?family=' . $font_family;
-				$value['variant'] = ( isset( $value['variant'] ) ) ? $value['variant'] : '';
-				$url              .= ( empty( $value['variant'] ) ) ? '' : ':' . $value['variant'];
-				$key              = md5( $value['font-family'] . $value['variant'] );
-				// Check that the URL is valid. we're going to use transients to make this faster.
-				$url_is_valid = get_transient( $key );
-				// If transient does not exist.
-				if ( false === $url_is_valid ) {
-					$response = wp_remote_get( $url );
-					if ( ! is_array( $response ) ) {
-						// The url was not properly formatted,
-						// cache for 12 hours and continue to the next field.
-						set_transient( $key, null, DAY_IN_SECONDS );
-						continue;
-					}
-					// Check the response headers.
-					if ( isset( $response['response'] ) && isset( $response['response']['code'] ) ) {
-						if ( 200 == $response['response']['code'] ) {
-							// URL was ok. Set transient to true and cache for a week.
-							set_transient( $key, true, WEEK_IN_SECONDS );
-							$url_is_valid = true;
-						}
-					}
+				if ( ! Shapla_Fonts::is_google_font( $value['font-family'] ) ) {
+					continue;
 				}
-				// If the font-link is valid, enqueue it.
-				if ( $url_is_valid ) {
-					wp_enqueue_style( $key, $url, null, null );
+
+				$fonts[ $value['font-family'] ][] = isset( $value['variant'] ) ? $value['variant'] : '';
+			}
+
+			$google_fonts = array();
+			foreach ( $fonts as $font_name => $font_variant ) {
+				$variant = is_array( $font_variant ) ? implode( ",", array_unique( $font_variant ) ) : '';
+				if ( ! empty( $variant ) ) {
+					$google_fonts[] = $font_name . ":" . $variant;
+				} else {
+					$google_fonts[] = $font_name;
 				}
 			}
+
+			$query_args = array(
+				'family' => urlencode( implode( '|', $google_fonts ) ),
+				'subset' => urlencode( 'latin,latin-ext' ),
+			);
+			$fonts_url  = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+			wp_enqueue_style( 'shapla-google-fonts', $fonts_url, array(), null );
+
 		}
 
 		/**

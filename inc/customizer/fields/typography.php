@@ -14,8 +14,8 @@ $shapla->customizer->add_field( array(
 	'type'        => 'typography',
 	'settings'    => 'body_typography',
 	'section'     => 'typography_section',
-	'label'       => esc_attr__( 'Body Typography', 'textdomain' ),
-	'description' => esc_attr__( 'These settings control the typography for all body text.', 'textdomain' ),
+	'label'       => esc_attr__( 'Body Typography', 'shapla' ),
+	'description' => esc_attr__( 'These settings control the typography for all body text.', 'shapla' ),
 	'default'     => array(
 		'font-family'    => 'Roboto',
 		'variant'        => '300',
@@ -28,12 +28,13 @@ $shapla->customizer->add_field( array(
 	),
 	'priority'    => 10,
 	'choices'     => array(
-		'fonts' => array(
+		'fonts'       => array(
 			'standard' => array(
 				'serif',
 				'sans-serif',
 			),
 		),
+		'font-backup' => true
 	),
 	'output'      => array(
 		array(
@@ -43,6 +44,42 @@ $shapla->customizer->add_field( array(
 				'input',
 				'select',
 				'textarea',
+			),
+		),
+	),
+) );
+
+$shapla->customizer->add_field( array(
+	'type'        => 'typography',
+	'settings'    => 'h1_headers_typography',
+	'section'     => 'typography_section',
+	'label'       => esc_attr__( 'H1 Headers Typography', 'shapla' ),
+	'description' => esc_attr__( 'These settings control the typography for all H1 Headers.', 'shapla' ),
+	'default'     => array(
+		'font-family'    => 'Roboto',
+		'variant'        => '400',
+		'font-size'      => '2.5rem',
+		'line-height'    => '1.5',
+		'letter-spacing' => '0',
+		'color'          => '#444444',
+		'text-transform' => 'none',
+		'text-align'     => 'left'
+	),
+	'priority'    => 10,
+	'choices'     => array(
+		'fonts'       => array(
+			'standard' => array(
+				'serif',
+				'sans-serif',
+			),
+		),
+		'font-backup' => true
+	),
+	'output'      => array(
+		array(
+			'element' => array(
+				'h1',
+				'h1 a',
 			),
 		),
 	),

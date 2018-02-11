@@ -188,6 +188,10 @@ class Shapla_Fonts {
 	 * @return bool
 	 */
 	public static function is_google_font( $fontname ) {
+		if ( ! is_array( self::$google_fonts ) ) {
+			self::$google_fonts = self::get_google_fonts();
+		}
+
 		return ( array_key_exists( $fontname, self::$google_fonts ) );
 	}
 
