@@ -151,29 +151,29 @@ class Shapla_Fonts {
 	 */
 	public static function get_all_variants() {
 		return array(
-			'100'       => esc_attr__( 'Ultra-Light 100', 'kirki' ),
-			'100light'  => esc_attr__( 'Ultra-Light 100', 'kirki' ),
-			'100italic' => esc_attr__( 'Ultra-Light 100 Italic', 'kirki' ),
-			'200'       => esc_attr__( 'Light 200', 'kirki' ),
-			'200italic' => esc_attr__( 'Light 200 Italic', 'kirki' ),
-			'300'       => esc_attr__( 'Book 300', 'kirki' ),
-			'300italic' => esc_attr__( 'Book 300 Italic', 'kirki' ),
-			'400'       => esc_attr__( 'Normal 400', 'kirki' ),
-			'regular'   => esc_attr__( 'Normal 400', 'kirki' ),
-			'italic'    => esc_attr__( 'Normal 400 Italic', 'kirki' ),
-			'500'       => esc_attr__( 'Medium 500', 'kirki' ),
-			'500italic' => esc_attr__( 'Medium 500 Italic', 'kirki' ),
-			'600'       => esc_attr__( 'Semi-Bold 600', 'kirki' ),
-			'600bold'   => esc_attr__( 'Semi-Bold 600', 'kirki' ),
-			'600italic' => esc_attr__( 'Semi-Bold 600 Italic', 'kirki' ),
-			'700'       => esc_attr__( 'Bold 700', 'kirki' ),
-			'700italic' => esc_attr__( 'Bold 700 Italic', 'kirki' ),
-			'800'       => esc_attr__( 'Extra-Bold 800', 'kirki' ),
-			'800bold'   => esc_attr__( 'Extra-Bold 800', 'kirki' ),
-			'800italic' => esc_attr__( 'Extra-Bold 800 Italic', 'kirki' ),
-			'900'       => esc_attr__( 'Ultra-Bold 900', 'kirki' ),
-			'900bold'   => esc_attr__( 'Ultra-Bold 900', 'kirki' ),
-			'900italic' => esc_attr__( 'Ultra-Bold 900 Italic', 'kirki' ),
+			'100'       => esc_attr__( 'Ultra-Light 100', 'shapla' ),
+			'100light'  => esc_attr__( 'Ultra-Light 100', 'shapla' ),
+			'100italic' => esc_attr__( 'Ultra-Light 100 Italic', 'shapla' ),
+			'200'       => esc_attr__( 'Light 200', 'shapla' ),
+			'200italic' => esc_attr__( 'Light 200 Italic', 'shapla' ),
+			'300'       => esc_attr__( 'Book 300', 'shapla' ),
+			'300italic' => esc_attr__( 'Book 300 Italic', 'shapla' ),
+			'400'       => esc_attr__( 'Normal 400', 'shapla' ),
+			'regular'   => esc_attr__( 'Normal 400', 'shapla' ),
+			'italic'    => esc_attr__( 'Normal 400 Italic', 'shapla' ),
+			'500'       => esc_attr__( 'Medium 500', 'shapla' ),
+			'500italic' => esc_attr__( 'Medium 500 Italic', 'shapla' ),
+			'600'       => esc_attr__( 'Semi-Bold 600', 'shapla' ),
+			'600bold'   => esc_attr__( 'Semi-Bold 600', 'shapla' ),
+			'600italic' => esc_attr__( 'Semi-Bold 600 Italic', 'shapla' ),
+			'700'       => esc_attr__( 'Bold 700', 'shapla' ),
+			'700italic' => esc_attr__( 'Bold 700 Italic', 'shapla' ),
+			'800'       => esc_attr__( 'Extra-Bold 800', 'shapla' ),
+			'800bold'   => esc_attr__( 'Extra-Bold 800', 'shapla' ),
+			'800italic' => esc_attr__( 'Extra-Bold 800 Italic', 'shapla' ),
+			'900'       => esc_attr__( 'Ultra-Bold 900', 'shapla' ),
+			'900bold'   => esc_attr__( 'Ultra-Bold 900', 'shapla' ),
+			'900italic' => esc_attr__( 'Ultra-Bold 900 Italic', 'shapla' ),
 		);
 	}
 
@@ -210,5 +210,17 @@ class Shapla_Fonts {
 		}
 
 		return $fonts_array;
+	}
+
+	public static function get_google_font_category( $fontname ) {
+		if ( ! is_array( self::$google_fonts ) ) {
+			self::$google_fonts = self::get_google_fonts();
+		}
+
+		if ( isset( self::$google_fonts[ $fontname ]['category'] ) ) {
+			return ',' . self::$google_fonts[ $fontname ]['category'];
+		}
+
+		return null;
 	}
 }

@@ -29,7 +29,7 @@
                 padding: 0.5rem 0;
                 margin: 0;
                 font-size: 1.1rem;
-                font-weight: 400;
+                font-weight: $headings-font-weight;
                 color: rgba($contenttext, .85);
             }
 
@@ -44,7 +44,7 @@
             .price {
                 color: rgba($contenttext, .85);
                 display: block;
-                font-weight: normal;
+                font-weight: $text-font-weight;
                 margin-bottom: 0.5rem;
                 font-size: 0.875rem;
 
@@ -57,7 +57,7 @@
                 ins {
                     color: inherit;
                     background: none;
-                    font-weight: 400;
+                    font-weight: $text-font-weight;
                 }
 
                 .from {

@@ -106,7 +106,7 @@
         .create-account small {
             color: $subtext;
             font-size: 0.75rem;
-            font-weight: normal;
+            font-weight: $text-font-weight;
         }
 
         div.shipping-address {
@@ -136,7 +136,7 @@
                 line-height: 2;
                 text-align: left;
                 margin: 0;
-                font-weight: normal;
+                font-weight: $text-font-weight;
 
                 input {
                     margin: 0 1em 0 0;
@@ -259,7 +259,7 @@
             span.help {
                 font-size: 0.857em;
                 color: $subtext;
-                font-weight: normal;
+                font-weight: $text-font-weight;
             }
 
             .form-row {

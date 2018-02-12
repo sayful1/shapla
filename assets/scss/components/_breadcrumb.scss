@@ -8,7 +8,7 @@ $breadcrumb-item-separator-color: $contenttext !default;
     align-items: stretch;
     display: flex;
     font-size: 0.875rem;
-    font-weight: 300;
+    font-weight: $font-weight-light;
     line-height: 2;
     overflow: hidden;
     overflow-x: auto;

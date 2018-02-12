@@ -11,7 +11,7 @@
 .comment-reply-title {
     border-top: 4px solid $color--dark_grey;
     font-size: $font-size-h3;
-    font-weight: 500;
+    font-weight: $headings-font-weight;
     padding-top: 15px;
     display: block;
     margin: 10px 0;
@@ -159,7 +159,7 @@
 
 .no-comments {
     border-top: 1px solid $color--grey;
-    font-weight: 500;
+    font-weight: $headings-font-weight;
     margin: 0;
     padding-top: 30px;
 }
@@ -185,7 +185,7 @@
             &:before {
                 content: "\f00d";
                 font-family: 'FontAwesome';
-                font-weight: 300;
+                font-weight: $font-weight-normal;
                 font-size: 32px;
                 position: relative;
                 top: -5px;

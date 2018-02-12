@@ -9,7 +9,7 @@
 
         td {
             small {
-                font-weight: normal;
+                font-weight: $text-font-weight;
             }
         }
     }
@@ -141,7 +141,7 @@
 
                 &::before {
                     content: attr(data-title) ': ';
-                    font-weight: 700;
+                    font-weight: $headings-font-weight;
                     float: left;
                 }
 

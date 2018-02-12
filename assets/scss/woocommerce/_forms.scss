@@ -27,7 +27,7 @@
 
             .required {
                 color: $alert-danger;
-                font-weight: 700;
+                font-weight: $font-weight-bold;
                 border: 0;
             }
 
@@ -131,7 +131,7 @@
         }
 
         .amount {
-            font-weight: 700;
+            font-weight: $font-weight-bold;
         }
     }
 

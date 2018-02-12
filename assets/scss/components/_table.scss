@@ -35,7 +35,7 @@ table {
     }
 
     th {
-        font-weight: 500;
+        font-weight: $font-weight-bold;
     }
 
     td,
@@ -79,7 +79,7 @@ table {
 
                     &::before {
                         content: attr(data-title) ': ';
-                        font-weight: 500;
+                        font-weight: $font-weight-bold;
                         float: left;
                     }
                 }

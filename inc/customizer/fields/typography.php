@@ -19,9 +19,8 @@ $shapla->customizer->add_field( array(
 	'default'     => array(
 		'font-family'    => 'Roboto',
 		'variant'        => '300',
-		'font-size'      => '16px',
+		'font-size'      => '1rem',
 		'line-height'    => '1.5',
-		'letter-spacing' => '0',
 		'color'          => '#444444',
 		'text-transform' => 'none',
 		'text-align'     => 'left'
@@ -60,7 +59,6 @@ $shapla->customizer->add_field( array(
 		'variant'        => '400',
 		'font-size'      => '2.5rem',
 		'line-height'    => '1.5',
-		'letter-spacing' => '0',
 		'color'          => '#444444',
 		'text-transform' => 'none',
 		'text-align'     => 'left'

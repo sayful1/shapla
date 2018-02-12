@@ -30,9 +30,8 @@
 }
 
 .entry-title {
-    font-family: inherit;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: $headings-font-weight;
     line-height: 1.25;
     margin-bottom: 2rem;
 

@@ -11,7 +11,7 @@
 
         a {
             display: block;
-            font-weight: 400;
+            font-weight: $text-font-weight;
         }
 
         img {
@@ -25,7 +25,7 @@
         ins {
             background: none;
             color: #333;
-            font-weight: 500;
+            font-weight: $headings-font-weight;
         }
 
         dl {
@@ -41,7 +41,7 @@
             }
 
             dt {
-                font-weight: 500;
+                font-weight: $headings-font-weight;
             }
 
             dd {

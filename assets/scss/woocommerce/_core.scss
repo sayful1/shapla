@@ -24,7 +24,7 @@
         border-radius: 100%;
         color: $color--red !important; // Required for default theme compatibility
         text-decoration: none;
-        font-weight: 500;
+        font-weight: $text-font-weight;
         border: 0;
 
         &:hover {

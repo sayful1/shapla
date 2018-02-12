@@ -1,11 +1,11 @@
 #reviews {
     .woocommerce-Reviews-title {
         font-size: 1.618em;
-        font-weight: 300;
+        font-weight: $font-weight-light;
         margin-bottom: 1em;
 
         span {
-            font-weight: 500;
+            font-weight: $font-weight-bold;
         }
     }
 

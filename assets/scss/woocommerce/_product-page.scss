@@ -17,7 +17,7 @@
             ins {
                 background: transparent;
                 color: $highlight;
-                font-weight: 500;
+                font-weight: $font-weight-bold;
                 text-decoration: none;
             }
 
@@ -184,7 +184,7 @@
                     a {
                         display: inline-block;
                         padding: 0.5em 0;
-                        font-weight: 500;
+                        font-weight: $font-weight-bold;
                         color: $secondarytext;
                         text-decoration: none;
 
@@ -300,7 +300,7 @@
                 }
 
                 label {
-                    font-weight: 700;
+                    font-weight: $font-weight-bold;
                 }
 
                 select {

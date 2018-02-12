@@ -71,11 +71,11 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-    font-weight: inherit
+    font-weight: $headings-font-weight
 }
 
 strong {
-    font-weight: 500;
+    font-weight: $font-weight-bold;
 }
 
 hr {
@@ -186,7 +186,7 @@ li > ol {
 }
 
 dt {
-    font-weight: 500;
+    font-weight: $font-weight-normal;
 }
 
 dd {

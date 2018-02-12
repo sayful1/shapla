@@ -1,13 +1,13 @@
 .widget {
     margin: 0 auto 2em;
-    font-weight: 300;
+    font-weight: $font-weight-light;
 
     .widget-title,
     .widgettitle {
         margin-top: 0;
         margin-bottom: 15px;
         padding-bottom: 15px;
-        font-weight: 400;
+        font-weight: $font-weight-normal;
         font-size: $font-size-large;
         border-bottom: 1px solid $color--light_grey;
     }
@@ -82,7 +82,7 @@
     }
     .rsswidget {
         border: 0;
-        font-weight: 400;
+        font-weight: $font-weight-normal;
 
         img {
             margin-top: -4px;

@@ -8,7 +8,7 @@
         width: 5.3em;
         height: 1em;
         font-family: 'star';
-        font-weight: 400;
+        font-weight: $text-font-weight;
         display: block;
         margin: 0 0 0.5em;
         float: none;
@@ -100,7 +100,7 @@ p.stars {
         display: inline-block;
         text-decoration: none;
         margin-right: 1px;
-        font-weight: 400;
+        font-weight: $text-font-weight;
 
         &:before {
             display: block;
