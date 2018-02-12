@@ -243,6 +243,28 @@ class Shapla_Sanitize {
 	}
 
 	/**
+	 * Sanitize background control
+	 *
+	 * @param $value
+	 *
+	 * @return array
+	 */
+	public static function background( $value ) {
+		if ( ! is_array( $value ) ) {
+			return array();
+		}
+
+		return array(
+			'background-color'      => ( isset( $value['background-color'] ) ) ? esc_attr( $value['background-color'] ) : '',
+			'background-image'      => ( isset( $value['background-image'] ) ) ? esc_url_raw( $value['background-image'] ) : '',
+			'background-repeat'     => ( isset( $value['background-repeat'] ) ) ? esc_attr( $value['background-repeat'] ) : '',
+			'background-position'   => ( isset( $value['background-position'] ) ) ? esc_attr( $value['background-position'] ) : '',
+			'background-size'       => ( isset( $value['background-size'] ) ) ? esc_attr( $value['background-size'] ) : '',
+			'background-attachment' => ( isset( $value['background-attachment'] ) ) ? esc_attr( $value['background-attachment'] ) : '',
+		);
+	}
+
+	/**
 	 * Sanitizes typography controls
 	 *
 	 * @param array $value The value.

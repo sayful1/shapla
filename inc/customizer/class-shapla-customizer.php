@@ -60,7 +60,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'radio-image',
 			'radio-button',
 			'alpha-color',
-			'google-font',
 			'background',
 			'typography',
 			'toggle',
@@ -313,8 +312,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 					// If field type typography and value is array
 					if ( is_array( $value ) && 'typography' == $type ) {
-						$value           = Shapla_Sanitize::typography( $value );
-						$typography_list = [];
+						$typography_list = array();
 						foreach ( $value as $property => $property_value ) {
 							// Early exit if the value is not saved in the values.
 							if ( ! in_array( $property, $this->get_valid_typography_properties() ) ) {
@@ -480,8 +478,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			require 'controls/class-shapla-radio-button-customize-control.php';
 			require 'controls/class-shapla-typography-customize-control.php';
 
-			require 'controls/class-shapla-google-font-custom-control.php';
-
 			// Registered Control Types
 			$wp_customize->register_control_type( 'Shapla_Slider_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Background_Customize_Control' );
@@ -646,6 +642,14 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			) );
 		}
 
+		/**
+		 * Add typography field
+		 *
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
+		 *
+		 * @return Shapla_Typography_Customize_Control
+		 */
 		public function typography( $wp_customize, $field ) {
 			return new Shapla_Typography_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
@@ -729,16 +733,14 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			) );
 		}
 
-		public function google_font( $wp_customize, $field ) {
-			return new Shapla_Google_Font_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-			) );
-		}
-
+		/**
+		 * Add slider field
+		 *
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
+		 *
+		 * @return Shapla_Slider_Customize_Control
+		 */
 		public function range_slider( $wp_customize, $field ) {
 			return new Shapla_Slider_Customize_Control( $wp_customize, $field['settings'], array(
 				'label'       => $field['label'],
@@ -816,18 +818,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return array
 		 */
 		public function sanitize_background( $value ) {
-			if ( ! is_array( $value ) ) {
-				return array();
-			}
-
-			return array(
-				'background-color'      => ( isset( $value['background-color'] ) ) ? esc_attr( $value['background-color'] ) : '',
-				'background-image'      => ( isset( $value['background-image'] ) ) ? esc_url_raw( $value['background-image'] ) : '',
-				'background-repeat'     => ( isset( $value['background-repeat'] ) ) ? esc_attr( $value['background-repeat'] ) : '',
-				'background-position'   => ( isset( $value['background-position'] ) ) ? esc_attr( $value['background-position'] ) : '',
-				'background-size'       => ( isset( $value['background-size'] ) ) ? esc_attr( $value['background-size'] ) : '',
-				'background-attachment' => ( isset( $value['background-attachment'] ) ) ? esc_attr( $value['background-attachment'] ) : '',
-			);
+			return Shapla_Sanitize::background( $value );
 		}
 
 		/**
@@ -929,6 +920,13 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			return Shapla_Sanitize::number( $input );
 		}
 
+		/**
+		 * Sanitize typography field
+		 *
+		 * @param $input
+		 *
+		 * @return array
+		 */
 		public function sanitize_typography( $input ) {
 			return Shapla_Sanitize::typography( $input );
 		}

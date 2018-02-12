@@ -259,7 +259,7 @@ wp.customize.controlConstructor['shapla-toggle'] = wp.customize.Control.extend({
     }
 });
 
-wp.customize.controlConstructor['kirki-typography'] = wp.customize.Control.extend({
+wp.customize.controlConstructor['shapla-typography'] = wp.customize.Control.extend({
 
     ready: function () {
 
@@ -334,7 +334,7 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.Control.exten
 
         // Color.
         if (control.params['default'].color) {
-            picker = this.container.find('.kirki-color-control');
+            picker = this.container.find('.shapla-color-control');
             picker.wpColorPicker({
                 change: function () {
                     setTimeout(function () {
@@ -582,11 +582,11 @@ wp.customize.controlConstructor['kirki-typography'] = wp.customize.Control.exten
     getFonts: function () {
         var control = this;
 
-        if (!_.isUndefined(window['kirkiFonts' + control.id])) {
-            return window['kirkiFonts' + control.id];
+        if (!_.isUndefined(window['shaplaFonts' + control.id])) {
+            return window['shaplaFonts' + control.id];
         }
-        if (!_.isUndefined(kirkiAllFonts)) {
-            return kirkiAllFonts;
+        if (!_.isUndefined(shaplaAllFonts)) {
+            return shaplaAllFonts;
         }
         return {
             google: [],

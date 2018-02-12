@@ -2,11 +2,12 @@
 /**
  * Customizer Control: typography.
  *
- * @package     Kirki
- * @subpackage  Controls
- * @copyright   Copyright (c) 2017, Aristeides Stathopoulos
- * @license     http://opensource.org/licenses/https://opensource.org/licenses/MIT
- * @since       2.0
+ * This class incorporates code from the Kirki Customizer Framework
+ *
+ * The Kirki Customizer Framework, Copyright Aristeides Stathopoulos (@aristath),
+ * is licensed under the terms of the GNU GPL, Version 2 (or later).
+ *
+ * @link https://wordpress.org/plugins/kirki/
  */
 
 // Exit if accessed directly.
@@ -25,13 +26,16 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
 	 * @access public
 	 * @var string
 	 */
-	public $type = 'kirki-typography';
+	public $type = 'shapla-typography';
 
+	/**
+	 * Enqueue scripts and styles for the custom control.
+	 */
 	public function enqueue() {
 		parent::enqueue();
 		$custom_fonts_array  = ( isset( $this->choices['fonts'] ) && ( isset( $this->choices['fonts']['google'] ) || isset( $this->choices['fonts']['standard'] ) ) && ( ! empty( $this->choices['fonts']['google'] ) || ! empty( $this->choices['fonts']['standard'] ) ) );
-		$localize_script_var = ( $custom_fonts_array ) ? 'kirkiFonts' . $this->id : 'kirkiAllFonts';
-		wp_localize_script( 'shapla-customize', 'kirkiAllFonts', array(
+		$localize_script_var = ( $custom_fonts_array ) ? 'shaplaFonts' . $this->id : 'shaplaAllFonts';
+		wp_localize_script( 'shapla-customize', $localize_script_var, array(
 			'standard' => $this->get_standard_fonts(),
 			'google'   => $this->get_google_fonts(),
 		) );
@@ -92,21 +96,21 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# data.value['font-family'] = data.value['font-family'] || data['default']['font-family']; #>
             <# if ( data.choices['fonts'] ) { data.fonts = data.choices['fonts']; } #>
             <div class="font-family">
-                <h5><?php esc_attr_e( 'Font Family', 'kirki' ); ?></h5>
-                <select {{{ data.inputAttrs }}} id="kirki-typography-font-family-{{{ data.id }}}"
-                        placeholder="<?php esc_attr_e( 'Select Font Family', 'kirki' ); ?>"></select>
+                <h5><?php esc_attr_e( 'Font Family', 'shapla' ); ?></h5>
+                <select {{{ data.inputAttrs }}} id="shapla-typography-font-family-{{{ data.id }}}"
+                        placeholder="<?php esc_attr_e( 'Select Font Family', 'shapla' ); ?>"></select>
             </div>
             <# if ( ! _.isUndefined( data.choices['font-backup'] ) && true === data.choices['font-backup'] ) { #>
-            <div class="font-backup hide-on-standard-fonts kirki-font-backup-wrapper">
-                <h5><?php esc_attr_e( 'Backup Font', 'kirki' ); ?></h5>
-                <select {{{ data.inputAttrs }}} id="kirki-typography-font-backup-{{{ data.id }}}"
-                        placeholder="<?php esc_attr_e( 'Select Font Family', 'kirki' ); ?>"></select>
+            <div class="font-backup hide-on-standard-fonts shapla-font-backup-wrapper">
+                <h5><?php esc_attr_e( 'Backup Font', 'shapla' ); ?></h5>
+                <select {{{ data.inputAttrs }}} id="shapla-typography-font-backup-{{{ data.id }}}"
+                        placeholder="<?php esc_attr_e( 'Select Font Family', 'shapla' ); ?>"></select>
             </div>
             <# } #>
             <# if ( true === data.show_variants || false !== data.default.variant ) { #>
-            <div class="variant kirki-variant-wrapper">
-                <h5><?php esc_attr_e( 'Variant', 'kirki' ); ?></h5>
-                <select {{{ data.inputAttrs }}} class="variant" id="kirki-typography-variant-{{{ data.id }}}"></select>
+            <div class="variant shapla-variant-wrapper">
+                <h5><?php esc_attr_e( 'Variant', 'shapla' ); ?></h5>
+                <select {{{ data.inputAttrs }}} class="variant" id="shapla-typography-variant-{{{ data.id }}}"></select>
             </div>
             <# } #>
             <# } #>
@@ -114,7 +118,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['font-size'] ) { #>
             <# data.value['font-size'] = data.value['font-size'] || data['default']['font-size']; #>
             <div class="font-size">
-                <h5><?php esc_attr_e( 'Font Size', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Font Size', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['font-size'] }}"/>
             </div>
             <# } #>
@@ -122,7 +126,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['line-height'] ) { #>
             <# data.value['line-height'] = data.value['line-height'] || data['default']['line-height']; #>
             <div class="line-height">
-                <h5><?php esc_attr_e( 'Line Height', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Line Height', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['line-height'] }}"/>
             </div>
             <# } #>
@@ -130,7 +134,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['letter-spacing'] ) { #>
             <# data.value['letter-spacing'] = data.value['letter-spacing'] || data['default']['letter-spacing']; #>
             <div class="letter-spacing">
-                <h5><?php esc_attr_e( 'Letter Spacing', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Letter Spacing', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['letter-spacing'] }}"/>
             </div>
             <# } #>
@@ -138,7 +142,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['word-spacing'] ) { #>
             <# data.value['word-spacing'] = data.value['word-spacing'] || data['default']['word-spacing']; #>
             <div class="word-spacing">
-                <h5><?php esc_attr_e( 'Word Spacing', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Word Spacing', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['word-spacing'] }}"/>
             </div>
             <# } #>
@@ -146,7 +150,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['text-align'] ) { #>
             <# data.value['text-align'] = data.value['text-align'] || data['default']['text-align']; #>
             <div class="text-align">
-                <h5><?php esc_attr_e( 'Text Align', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Text Align', 'shapla' ); ?></h5>
                 <div class="text-align-choices">
                     <input {{{ data.inputAttrs }}} type="radio" value="inherit"
                            name="_customize-typography-text-align-radio-{{ data.id }}"
@@ -154,7 +158,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
                     checked="checked"<# } #>>
                     <label for="{{ data.id }}-text-align-inherit">
                         <span class="dashicons dashicons-editor-removeformatting"></span>
-                        <span class="screen-reader-text"><?php esc_attr_e( 'Inherit', 'kirki' ); ?></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Inherit', 'shapla' ); ?></span>
                     </label>
                     </input>
                     <input {{{ data.inputAttrs }}} type="radio" value="left"
@@ -163,7 +167,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
                     checked="checked"<# } #>>
                     <label for="{{ data.id }}-text-align-left">
                         <span class="dashicons dashicons-editor-alignleft"></span>
-                        <span class="screen-reader-text"><?php esc_attr_e( 'Left', 'kirki' ); ?></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Left', 'shapla' ); ?></span>
                     </label>
                     </input>
                     <input {{{ data.inputAttrs }}} type="radio" value="center"
@@ -172,7 +176,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
                     checked="checked"<# } #>>
                     <label for="{{ data.id }}-text-align-center">
                         <span class="dashicons dashicons-editor-aligncenter"></span>
-                        <span class="screen-reader-text"><?php esc_attr_e( 'Center', 'kirki' ); ?></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Center', 'shapla' ); ?></span>
                     </label>
                     </input>
                     <input {{{ data.inputAttrs }}} type="radio" value="right"
@@ -181,7 +185,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
                     checked="checked"<# } #>>
                     <label for="{{ data.id }}-text-align-right">
                         <span class="dashicons dashicons-editor-alignright"></span>
-                        <span class="screen-reader-text"><?php esc_attr_e( 'Right', 'kirki' ); ?></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Right', 'shapla' ); ?></span>
                     </label>
                     </input>
                     <input {{{ data.inputAttrs }}} type="radio" value="justify"
@@ -190,7 +194,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
                     checked="checked"<# } #>>
                     <label for="{{ data.id }}-text-align-justify">
                         <span class="dashicons dashicons-editor-justify"></span>
-                        <span class="screen-reader-text"><?php esc_attr_e( 'Justify', 'kirki' ); ?></span>
+                        <span class="screen-reader-text"><?php esc_attr_e( 'Justify', 'shapla' ); ?></span>
                     </label>
                     </input>
                 </div>
@@ -200,26 +204,26 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['text-transform'] ) { #>
             <# data.value['text-transform'] = data.value['text-transform'] || data['default']['text-transform']; #>
             <div class="text-transform">
-                <h5><?php esc_attr_e( 'Text Transform', 'kirki' ); ?></h5>
-                <select {{{ data.inputAttrs }}} id="kirki-typography-text-transform-{{{ data.id }}}">
+                <h5><?php esc_attr_e( 'Text Transform', 'shapla' ); ?></h5>
+                <select {{{ data.inputAttrs }}} id="shapla-typography-text-transform-{{{ data.id }}}">
                     <option value="none"
                     <# if ( 'none' === data.value['text-transform'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'None', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'None', 'shapla' ); ?></option>
                     <option value="capitalize"
                     <# if ( 'capitalize' === data.value['text-transform'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Capitalize', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Capitalize', 'shapla' ); ?></option>
                     <option value="uppercase"
                     <# if ( 'uppercase' === data.value['text-transform'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Uppercase', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Uppercase', 'shapla' ); ?></option>
                     <option value="lowercase"
                     <# if ( 'lowercase' === data.value['text-transform'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Lowercase', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Lowercase', 'shapla' ); ?></option>
                     <option value="initial"
                     <# if ( 'initial' === data.value['text-transform'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Initial', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Initial', 'shapla' ); ?></option>
                     <option value="inherit"
                     <# if ( 'inherit' === data.value['text-transform'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Inherit', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Inherit', 'shapla' ); ?></option>
                 </select>
             </div>
             <# } #>
@@ -227,26 +231,26 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['text-decoration'] ) { #>
             <# data.value['text-decoration'] = data.value['text-decoration'] || data['default']['text-decoration']; #>
             <div class="text-decoration">
-                <h5><?php esc_attr_e( 'Text Decoration', 'kirki' ); ?></h5>
-                <select {{{ data.inputAttrs }}} id="kirki-typography-text-decoration-{{{ data.id }}}">
+                <h5><?php esc_attr_e( 'Text Decoration', 'shapla' ); ?></h5>
+                <select {{{ data.inputAttrs }}} id="shapla-typography-text-decoration-{{{ data.id }}}">
                     <option value="none"
                     <# if ( 'none' === data.value['text-decoration'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'None', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'None', 'shapla' ); ?></option>
                     <option value="underline"
                     <# if ( 'underline' === data.value['text-decoration'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Underline', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Underline', 'shapla' ); ?></option>
                     <option value="overline"
                     <# if ( 'overline' === data.value['text-decoration'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Overline', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Overline', 'shapla' ); ?></option>
                     <option value="line-through"
                     <# if ( 'line-through' === data.value['text-decoration'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Line-Through', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Line-Through', 'shapla' ); ?></option>
                     <option value="initial"
                     <# if ( 'initial' === data.value['text-decoration'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Initial', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Initial', 'shapla' ); ?></option>
                     <option value="inherit"
                     <# if ( 'inherit' === data.value['text-decoration'] ) { #>selected<# }
-                    #>><?php esc_attr_e( 'Inherit', 'kirki' ); ?></option>
+                    #>><?php esc_attr_e( 'Inherit', 'shapla' ); ?></option>
                 </select>
             </div>
             <# } #>
@@ -254,7 +258,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['margin-top'] ) { #>
             <# data.value['margin-top'] = data.value['margin-top'] || data['default']['margin-top']; #>
             <div class="margin-top">
-                <h5><?php esc_attr_e( 'Margin Top', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Margin Top', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['margin-top'] }}"/>
             </div>
             <# } #>
@@ -262,7 +266,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( data.default['margin-bottom'] ) { #>
             <# data.value['margin-bottom'] = data.value['margin-bottom'] || data['default']['margin-bottom']; #>
             <div class="margin-bottom">
-                <h5><?php esc_attr_e( 'Margin Bottom', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Margin Bottom', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" value="{{ data.value['margin-bottom'] }}"/>
             </div>
             <# } #>
@@ -270,10 +274,10 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
             <# if ( false !== data.default['color'] && data.default['color'] ) { #>
             <# data.value['color'] = data.value['color'] || data['default']['color']; #>
             <div class="color">
-                <h5><?php esc_attr_e( 'Color', 'kirki' ); ?></h5>
+                <h5><?php esc_attr_e( 'Color', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" data-palette="{{ data.palette }}"
                        data-default-color="{{ data.default['color'] }}" value="{{ data.value['color'] }}"
-                       class="kirki-color-control"/>
+                       class="shapla-color-control"/>
             </div>
             <# } #>
 
