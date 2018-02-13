@@ -277,7 +277,7 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
                 <h5><?php esc_attr_e( 'Color', 'shapla' ); ?></h5>
                 <input {{{ data.inputAttrs }}} type="text" data-palette="{{ data.palette }}"
                        data-default-color="{{ data.default['color'] }}" value="{{ data.value['color'] }}"
-                       class="shapla-color-control"/>
+                       class="shapla-color-control" data-alpha="true"/>
             </div>
             <# } #>
 

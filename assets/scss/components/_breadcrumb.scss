@@ -4,105 +4,106 @@ $breadcrumb-item-active-color: $contenttext !default;
 $breadcrumb-item-separator-color: $contenttext !default;
 
 .breadcrumb {
-    user-select: none;
-    align-items: stretch;
-    display: flex;
-    font-size: 0.875rem;
-    font-weight: $font-weight-light;
-    line-height: 2;
-    overflow: hidden;
-    overflow-x: auto;
-    white-space: nowrap;
-    margin: 0;
+	user-select: none;
+	align-items: stretch;
+	display: flex;
+	line-height: 2;
+	overflow: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+	margin: 0;
 
-    &:not(:last-child) {
-        margin-bottom: 1rem;
-    }
+	color: $contenttext;
+	font-size: 0.875rem;
+	font-weight: $font-weight-light;
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        align-items: center;
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 0;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
 
-    li {
-        align-items: center;
-        display: flex;
-        color: $contenttext;
-    }
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		align-items: center;
+		display: flex;
+		flex-grow: 1;
+		flex-shrink: 0;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
 
-    li + li::before {
-        color: $contenttext;
-        content: "\0002f";
-        padding: 0 0.75em;
-    }
+	li {
+		align-items: center;
+		display: flex;
+	}
 
-    &.has-arrow-separator {
-        li + li::before {
-            content: "\02192";
-        }
-    }
-    &.has-bullet-separator {
-        li + li::before {
-            content: "\02022";
-        }
-    }
-    &.has-dot-separator {
-        li + li::before {
-            content: "\000b7";
-        }
-    }
-    &.has-succeeds-separator {
-        li + li::before {
-            content: "\0227B";
-        }
-    }
+	li + li::before {
+		color: inherit;
+		content: "\0002f";
+		padding: 0 0.75em;
+	}
 
-    a {
-        align-items: center;
-        color: $contenttext;
-        display: flex;
-        justify-content: center;
+	&.has-arrow-separator {
+		li + li::before {
+			content: "\02192";
+		}
+	}
+	&.has-bullet-separator {
+		li + li::before {
+			content: "\02022";
+		}
+	}
+	&.has-dot-separator {
+		li + li::before {
+			content: "\000b7";
+		}
+	}
+	&.has-succeeds-separator {
+		li + li::before {
+			content: "\0227B";
+		}
+	}
 
-        &:hover {
-            color: $contenttext;
-        }
-    }
+	a {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		color: $contenttext;
 
-    @media screen and (max-width: $screen-md - 1px) {
-        &.is-hidden-mobile {
-            display: none;
-        }
-    }
+		&:hover {
+			color: inherit;
+		}
+	}
 
-    &.is-hidden {
-        display: none;
-    }
+	@media screen and (max-width: $screen-md - 1px) {
+		&.is-hidden-mobile {
+			display: none;
+		}
+	}
 
-    // Yoast
-    span {
-        display: inline-flex;
-        align-content: center;
-        justify-content: center;
-        align-self: center;
-        justify-self: center;
+	&.is-hidden {
+		display: none;
+	}
 
-        a {
-            padding: 0 0.75em;
-        }
+	// Yoast
+	span {
+		display: inline-flex;
+		align-content: center;
+		justify-content: center;
+		align-self: center;
+		justify-self: center;
 
-        .breadcrumb_last {
-            padding-left: 0.75em;
-        }
-    }
-    // Remove first link padding for Yoast breadcrumb
-    > span > span > a {
-        padding-left: 0;
-    }
+		a {
+			padding: 0 0.75em;
+		}
+
+		.breadcrumb_last {
+			padding-left: 0.75em;
+		}
+	}
+	// Remove first link padding for Yoast breadcrumb
+	> span > span > a {
+		padding-left: 0;
+	}
 }

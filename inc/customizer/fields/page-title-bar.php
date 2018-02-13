@@ -77,120 +77,6 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Page Title Font Size
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_font_size',
-	'type'        => 'text',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Font Size', 'shapla' ),
-	'description' => __( 'Controls the font size for the page title heading. Enter value including CSS unit (px, em, rem), ex: 18px',
-		'shapla' ),
-	'default'     => shapla_default_options()->page_title_font_size,
-	'priority'    => 30,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar .entry-title',
-			),
-			'property' => 'font-size',
-		),
-	),
-) );
-
-// Page Title Line Height
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_line_height',
-	'type'        => 'text',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Line Height', 'shapla' ),
-	'description' => __( 'Controls the line height for the page title heading. Enter value including any valid CSS unit, ex: 1.4.',
-		'shapla' ),
-	'default'     => shapla_default_options()->page_title_line_height,
-	'priority'    => 40,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar .entry-title',
-			),
-			'property' => 'line-height',
-		),
-	),
-) );
-
-// Page Title Font Color
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_font_color',
-	'type'        => 'alpha-color',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Font Color', 'shapla' ),
-	'description' => __( 'Controls the text color of the page title fonts.', 'shapla' ),
-	'default'     => shapla_default_options()->page_title_font_color,
-	'priority'    => 50,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar .entry-title',
-			),
-			'property' => 'color',
-		),
-	),
-) );
-
-// Page Title Bar Text Transform
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_text_transform',
-	'type'        => 'select',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Text Transform', 'shapla' ),
-	'description' => __( 'Controls the page title text transform.', 'shapla' ),
-	'default'     => shapla_default_options()->page_title_text_transform,
-	'priority'    => 60,
-	'choices'     => array(
-		'none'       => __( 'Default', 'shapla' ),
-		'capitalize' => __( 'Capitalize', 'shapla' ),
-		'uppercase'  => __( 'Uppercase', 'shapla' ),
-		'lowercase'  => __( 'Lowercase', 'shapla' ),
-	),
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar .entry-title',
-			),
-			'property' => 'text-transform',
-		),
-	),
-) );
-
-// Page Title Font Weight
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_font_weight',
-	'type'        => 'select',
-	'section'     => 'page_title_bar',
-	'label'       => __( 'Page Title Font Weight', 'shapla' ),
-	'description' => __( 'Controls the page title font weight.', 'shapla' ),
-	'default'     => shapla_default_options()->page_title_font_weight,
-	'priority'    => 70,
-	'choices'     => array(
-		'100' => __( '100 - thin', 'shapla' ),
-		'200' => __( '200 - extra-light', 'shapla' ),
-		'300' => __( '300 - light', 'shapla' ),
-		'400' => __( '400 - normal', 'shapla' ),
-		'500' => __( '500 - medium', 'shapla' ),
-		'600' => __( '600 - semi-bold', 'shapla' ),
-		'700' => __( '700 - bold', 'shapla' ),
-		'800' => __( '800', 'shapla' ),
-		'900' => __( '900 - bolder', 'shapla' ),
-	),
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar .entry-title',
-			),
-			'property' => 'font-weight',
-		),
-	),
-) );
-
 // Page Title Bar Text Alignment
 $shapla->customizer->add_field( array(
 	'settings'    => 'page_title_bar_text_alignment',
@@ -199,7 +85,7 @@ $shapla->customizer->add_field( array(
 	'label'       => __( 'Page Title Bar Text Alignment', 'shapla' ),
 	'description' => __( 'Controls the page title bar text alignment.', 'shapla' ),
 	'default'     => shapla_default_options()->page_title_bar_text_alignment,
-	'priority'    => 80,
+	'priority'    => 30,
 	'choices'     => array(
 		'all_left'  => __( 'Left', 'shapla' ),
 		'centered'  => __( 'Centered', 'shapla' ),
@@ -215,7 +101,7 @@ $shapla->customizer->add_field( array(
 	'label'       => esc_attr__( 'Page Title Bar Background', 'shapla' ),
 	'description' => esc_attr__( 'Controls the background of the page title bar.', 'shapla' ),
 	'section'     => 'page_title_bar',
-	'priority'    => 90,
+	'priority'    => 40,
 	'default'     => array(
 		'background-color'      => shapla_default_options()->page_title_bar_background_color,
 		'background-image'      => shapla_default_options()->page_title_bar_background_image,
@@ -229,6 +115,38 @@ $shapla->customizer->add_field( array(
 			'element' => array(
 				'.page-title-bar',
 			),
+		),
+	),
+) );
+
+// Page Title Typography
+$shapla->customizer->add_field( array(
+	'type'        => 'typography',
+	'settings'    => 'page_title_typography',
+	'section'     => 'page_title_bar',
+	'label'       => esc_attr__( 'Page Title Typography', 'shapla' ),
+	'description' => esc_attr__( 'Control the typography for page title.', 'shapla' ),
+	'default'     => array(
+		'font-family'    => shapla_default_options()->page_title_font_family,
+		'variant'        => shapla_default_options()->page_title_font_weight,
+		'font-size'      => shapla_default_options()->page_title_font_size,
+		'line-height'    => shapla_default_options()->page_title_line_height,
+		'color'          => shapla_default_options()->page_title_font_color,
+		'text-transform' => shapla_default_options()->page_title_text_transform,
+	),
+	'priority'    => 50,
+	'choices'     => array(
+		'fonts'       => array(
+			'standard' => array(
+				'serif',
+				'sans-serif',
+			),
+		),
+		'font-backup' => true
+	),
+	'output'      => array(
+		array(
+			'element' => '.page-title-bar .entry-title',
 		),
 	),
 ) );
@@ -281,72 +199,21 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Breadcrumbs Font Size
 $shapla->customizer->add_field( array(
-	'settings'    => 'breadcrumbs_font_size',
-	'type'        => 'text',
+	'type'        => 'typography',
+	'settings'    => 'breadcrumbs_typography',
 	'section'     => 'breadcrumbs',
-	'label'       => __( 'Breadcrumbs Font Size', 'shapla' ),
-	'description' => __( 'Controls the font size for the breadcrumbs text. Enter value including CSS unit (px, em, rem), ex: 10px.',
-		'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs_font_size,
-	'priority'    => 40,
+	'label'       => esc_attr__( 'Breadcrumbs Typography', 'shapla' ),
+	'description' => esc_attr__( 'Control the typography for breadcrumbs.', 'shapla' ),
+	'default'     => array(
+		'font-size'      => shapla_default_options()->breadcrumbs_font_size,
+		'color'          => shapla_default_options()->breadcrumbs_text_color,
+		'text-transform' => shapla_default_options()->breadcrumbs_text_transform,
+	),
+	'priority'    => 50,
 	'output'      => array(
 		array(
-			'element'  => array(
-				'.breadcrumb',
-			),
-			'property' => 'font-size',
-		),
-	),
-) );
-
-// Breadcrumbs Text Color
-$shapla->customizer->add_field( array(
-	'settings'    => 'breadcrumbs_text_color',
-	'type'        => 'alpha-color',
-	'section'     => 'breadcrumbs',
-	'label'       => __( 'Breadcrumbs Text Color', 'shapla' ),
-	'description' => __( 'Controls the text color of the breadcrumbs font.', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs_text_color,
-	'priority'    => 60,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.breadcrumb li',
-				'.breadcrumb li + li::before',
-				'.breadcrumb span',
-				'.breadcrumb a',
-				'.breadcrumb a:hover',
-			),
-			'property' => 'color',
-		),
-	),
-) );
-
-// Page Title Bar Text Transform
-$shapla->customizer->add_field( array(
-	'settings'    => 'breadcrumbs_text_transform',
-	'type'        => 'select',
-	'section'     => 'breadcrumbs',
-	'label'       => __( 'Breadcrumbs Text Transform', 'shapla' ),
-	'description' => __( 'Controls the breadcrumbs text transform.', 'shapla' ),
-	'default'     => shapla_default_options()->breadcrumbs_text_transform,
-	'priority'    => 70,
-	'choices'     => array(
-		'none'       => __( 'Default', 'shapla' ),
-		'capitalize' => __( 'Capitalize', 'shapla' ),
-		'uppercase'  => __( 'Uppercase', 'shapla' ),
-		'lowercase'  => __( 'Lowercase', 'shapla' ),
-	),
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.breadcrumb li',
-				'.breadcrumb span',
-				'.breadcrumb a',
-			),
-			'property' => 'text-transform',
+			'element' => array( '.breadcrumb', '.breadcrumb a' ),
 		),
 	),
 ) );

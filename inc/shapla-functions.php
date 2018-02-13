@@ -165,6 +165,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 		$primary_color   = '#2196f3';
 		$primary_hover   = shapla_adjust_color_brightness( $primary_color, - 20 );
 		$primary_inverse = shapla_find_color_invert( $primary_color );
+		$font_family     = 'Roboto';
 
 		$options = array(
 			'heading_color'                         => $heading_color,
@@ -205,11 +206,12 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			// Page Title Bar
 			'page_title_bar_padding'                => '2rem',
 			'page_title_bar_border_color'           => '#cccccc',
+			'page_title_font_family'                => $font_family,
+			'page_title_font_weight'                => '300',
 			'page_title_font_size'                  => '2rem',
 			'page_title_line_height'                => '1.4',
 			'page_title_font_color'                 => $heading_color,
 			'page_title_text_transform'             => 'none',
-			'page_title_font_weight'                => '300',
 			'page_title_bar_text_alignment'         => 'left',
 			'page_title_bar_background_color'       => '#f5f5f5',
 			'page_title_bar_background_repeat'      => 'no-repeat',

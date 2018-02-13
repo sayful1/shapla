@@ -55,22 +55,26 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-// Footer Widget Area
 $shapla->customizer->add_field( array(
-	'settings' => 'footer_widget_background_color',
-	'type'     => 'alpha-color',
-	'section'  => 'site_footer_widgets',
-	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => shapla_default_options()->footer_widget_background_color,
-	'priority' => 30,
-	'output'   => array(
+	'settings'    => 'footer_widget_background',
+	'type'        => 'background',
+	'label'       => esc_attr__( 'Footer Widget Area Background', 'shapla' ),
+	'description' => esc_attr__( 'Controls the background of the footer widget area.', 'shapla' ),
+	'section'     => 'site_footer_widgets',
+	'priority'    => 50,
+	'default'     => array(
+		'background-color'      => shapla_default_options()->footer_widget_background_color,
+		'background-image'      => '',
+		'background-repeat'     => 'no-repeat',
+		'background-position'   => 'center center',
+		'background-size'       => 'cover',
+		'background-attachment' => 'fixed',
+	),
+	'output'      => array(
 		array(
-			'element'  => array(
+			'element' => array(
 				'.footer-widget-area',
-				'.footer-widget-area table tr:nth-child(odd)',
-				'.footer-widget-area table tr:nth-child(even)',
 			),
-			'property' => 'background-color',
 		),
 	),
 ) );
@@ -81,7 +85,7 @@ $shapla->customizer->add_field( array(
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Text Color', 'shapla' ),
 	'default'  => shapla_default_options()->footer_widget_text_color,
-	'priority' => 40,
+	'priority' => 30,
 	'output'   => array(
 		array(
 			'element'  => array(
@@ -108,7 +112,7 @@ $shapla->customizer->add_field( array(
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Link Color', 'shapla' ),
 	'default'  => shapla_default_options()->footer_widget_link_color,
-	'priority' => 50,
+	'priority' => 40,
 	'output'   => array(
 		array(
 			'element'  => '.footer-widget-area .widget a',
@@ -167,10 +171,11 @@ $shapla->customizer->add_field( array(
 
 // Footer credit text
 $shapla->customizer->add_field( array(
-	'settings' => 'site_copyright_text',
-	'type'     => 'textarea',
-	'section'  => 'site_footer_bottom_bar',
-	'label'    => __( 'Copyright Text', 'shapla' ),
-	'default'  => shapla_default_options()->site_copyright_text,
-	'priority' => 40,
+	'settings'    => 'site_copyright_text',
+	'type'        => 'textarea',
+	'section'     => 'site_footer_bottom_bar',
+	'label'       => __( 'Copyright Text', 'shapla' ),
+	'description' => __( 'Enter the text that displays in the copyright bar. HTML markup can be used.', 'shapla' ),
+	'default'     => shapla_default_options()->site_copyright_text,
+	'priority'    => 40,
 ) );
