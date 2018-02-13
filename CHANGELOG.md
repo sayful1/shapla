@@ -17,8 +17,8 @@
 * Dev - Add toggle custom customize control.
 * Dev - Add background custom customize control.
 * Dev - Add typography custom customize control.
-* Dev - Add **Shapla_Sanitize** class for sanitizing values.
-* Dev - Add **Shapla_Fonts** class for theme fonts functionality.
+* Dev - Add Shapla_Sanitize class for sanitizing values.
+* Dev - Add Shapla_Fonts class for theme fonts functionality.
 * Remove - Removed old google fonts custom customize control.
 
 #### 1.3.1 - January 3, 2018
