@@ -47,6 +47,7 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		/**
 		 * Hide WooCommerce default page title
 		 *
+		 * @version 1.4.0
 		 * @return bool
 		 */
 		public function hide_default_page_title() {

@@ -61,11 +61,7 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 			$asset_url = get_template_directory_uri() . '/assets';
 			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_style(
-				'shapla-customize',
-				$asset_url . '/css/customizer.css',
-				array( 'wp-color-picker' ), '1.0.0'
-			);
+			wp_enqueue_style( 'shapla-customize', $asset_url . '/css/customizer.css', array( 'wp-color-picker' ), SHAPLA_VERSION );
 
 			wp_enqueue_script(
 				'wp-color-picker-alpha',
@@ -84,7 +80,7 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 					'jquery-ui-button',
 					'wp-color-picker-alpha',
 					'selectWoo'
-				), '1.0.0', true
+				), SHAPLA_VERSION, true
 			);
 		}
 

@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * Shapla_Fonts class.
+ *
+ * @class        Shapla_Fonts
+ * @version        1.4.0
+ */
 class Shapla_Fonts {
 
+	/**
+	 * List of Google fonts
+	 *
+	 * @var array
+	 */
 	protected static $google_fonts;
 
 	/**

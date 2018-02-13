@@ -338,10 +338,10 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * @return string Google fonts URL for the theme.
 		 *
 		 * @since  0.1.0
-		 * @deprecated   1.3.2
+		 * @deprecated   1.4.0
 		 */
 		private function google_fonts_url() {
-			_deprecated_function( __FUNCTION__, '1.3.2' );
+			_deprecated_function( __FUNCTION__, '1.4.0' );
 
 			$google_fonts = get_theme_mod( 'google_font_family', 'Roboto' );
 			if ( 'sans-serif' == $google_fonts ) {

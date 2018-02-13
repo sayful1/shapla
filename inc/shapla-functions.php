@@ -275,7 +275,7 @@ if ( ! function_exists( 'shapla_footer_credits' ) ) {
 	/**
 	 * Shapla theme footer credit
 	 *
-	 * @since  1.3.4
+	 * @since  1.4.0
 	 * @return string
 	 */
 	function shapla_footer_credits() {

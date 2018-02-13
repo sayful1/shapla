@@ -5,7 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * A simple wrapper class for static methods.
+ * A simple wrapper class of static methods sanitizing value.
+ *
+ * @class        Shapla_Sanitize
+ * @version        1.4.0
  */
 class Shapla_Sanitize {
 

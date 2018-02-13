@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Shapla_Breadcrumb class.
  *
  * @class        Shapla_Breadcrumb
- * @version        1.3.1
+ * @version        1.4.0
  */
 class Shapla_Breadcrumb {
 	/**

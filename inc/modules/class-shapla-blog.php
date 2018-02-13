@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! class_exists( 'Shapla_Blog' ) ):
 
 	class Shapla_Blog {
@@ -238,6 +242,11 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			}
 		}
 
+		/**
+		 * Check if it is a blog page
+		 *
+		 * @return bool
+		 */
 		private function is_blog() {
 			return (
 				       is_archive() ||
