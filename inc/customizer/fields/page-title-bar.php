@@ -127,8 +127,6 @@ $shapla->customizer->add_field( array(
 	'label'       => esc_attr__( 'Page Title Typography', 'shapla' ),
 	'description' => esc_attr__( 'Control the typography for page title.', 'shapla' ),
 	'default'     => array(
-		'font-family'    => shapla_default_options()->page_title_font_family,
-		'variant'        => shapla_default_options()->page_title_font_weight,
 		'font-size'      => shapla_default_options()->page_title_font_size,
 		'line-height'    => shapla_default_options()->page_title_line_height,
 		'color'          => shapla_default_options()->page_title_font_color,

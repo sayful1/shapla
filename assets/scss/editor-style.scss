@@ -1,16 +1,17 @@
+@charset "UTF-8";
 /*!
  * Theme Name: Shapla
  * Description: Used to style the TinyMCE editor.
  */
 @import "utilities/variables";
 @import "utilities/mixins";
-@import "components/normalize";
-@import "components/typography";
-@import "components/table";
-@import "components/alignments";
-@import "components/media";
-@import "components/captions";
-@import "components/galleries";
+@import "core/components/normalize";
+@import "core/components/typography";
+@import "core/components/table";
+@import "core/components/alignments";
+@import "core/components/media";
+@import "core/components/captions";
+@import "core/components/galleries";
 
 body {
     margin: 1em;

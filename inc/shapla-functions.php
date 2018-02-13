@@ -206,8 +206,6 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			// Page Title Bar
 			'page_title_bar_padding'                => '2rem',
 			'page_title_bar_border_color'           => '#cccccc',
-			'page_title_font_family'                => $font_family,
-			'page_title_font_weight'                => '300',
 			'page_title_font_size'                  => '2rem',
 			'page_title_line_height'                => '1.4',
 			'page_title_font_color'                 => $heading_color,

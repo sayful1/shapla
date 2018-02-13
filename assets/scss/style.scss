@@ -1,9 +1,10 @@
+@charset "UTF-8";
 /*!
 Theme Name: 	Shapla
 Author: 		Sayful Islam
 Author URI: 	https://sayfulislam.com
 Description: 	Shapla is a simple, easy-to-use and highly customizable WordPress theme. It features two page template full-width and full-screen as well as two widget regions, navigation and social menus, custom logo, multiple header layout, custom colors for header, widgets and footer, and more. The theme is fully responsive and is built on customizer that enable you to configure the website with live preview. The theme is SEO friendly, Cross browser compatible, fully translation ready and is compatible with WooCommerce and all other major plugins. Developers will love it's lean and extensible codebase making it a joy to customise and extend.
-Version: 		1.3.1
+Version: 		1.4.0
 License: 		GPLv3
 License URI: 	https://www.gnu.org/licenses/gpl-3.0.txt
 Text Domain: 	shapla
@@ -19,8 +20,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Normalize
+# Layout
 # Typography
-# Elements
+# Table
+# Button
 # Forms
 # Navigation
 	## Links
@@ -29,6 +32,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Alignments
 # Clearings
 # Header
+# Breadcrumb
 # Widgets
 # Content
 	## Posts and pages
@@ -37,90 +41,90 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Media
 	## Captions
 	## Galleries
-# Colors
+# Modules
 --------------------------------------------------------------*/
 @import "utilities/variables";
 @import "utilities/mixins";
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
-@import "components/normalize";
+@import "core/components/normalize";
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
-@import "components/layout";
-@import "components/layout-widget";
-@import "components/boxed-layout";
+@import "core/components/layout";
+@import "core/components/layout-widget";
+@import "core/components/boxed-layout";
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
-@import "components/typography";
+@import "core/components/typography";
 /*--------------------------------------------------------------
 # Table
 --------------------------------------------------------------*/
-@import "components/table";
+@import "core/components/table";
 /*--------------------------------------------------------------
 # Button
 --------------------------------------------------------------*/
-@import "components/button";
+@import "core/components/button";
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
-@import "components/forms";
+@import "core/components/forms";
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
-@import "navigation/navigation";
+@import "core/navigation/navigation";
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
-@import "components/accessibility";
+@import "core/components/accessibility";
 /*--------------------------------------------------------------
 # Alignments
 --------------------------------------------------------------*/
-@import "components/alignments";
+@import "core/components/alignments";
 /*--------------------------------------------------------------
 # Clearings
 --------------------------------------------------------------*/
-@import "components/clearings";
+@import "core/components/clearings";
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-@import "header/header-default";
-@import "header/header-center";
-@import "header/header-widget";
-@import "header/header-search";
+@import "core/header/header-default";
+@import "core/header/header-center";
+@import "core/header/header-widget";
+@import "core/header/header-search";
 /*--------------------------------------------------------------
 # Breadcrumb
 --------------------------------------------------------------*/
-@import 'components/breadcrumb';
+@import 'core/components/breadcrumb';
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
-@import "components/widgets";
+@import "core/components/widgets";
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
-@import "posts-and-pages/posts-pages";
+@import "core/posts-and-pages/posts-pages";
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
-@import "components/comments";
+@import "core/components/comments";
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-@import "components/footer";
+@import "core/components/footer";
 /*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
-@import "components/infinite-scroll";
+@import "core/components/infinite-scroll";
 /*--------------------------------------------------------------
 # Media, Captions and Galleries
 --------------------------------------------------------------*/
-@import "components/media";
-@import "components/captions";
-@import "components/galleries";
+@import "core/components/media";
+@import "core/components/captions";
+@import "core/components/galleries";
 /*--------------------------------------------------------------
 # Modules
 --------------------------------------------------------------*/
-@import "modules/blog-grid";
+@import "core/modules/blog-grid";

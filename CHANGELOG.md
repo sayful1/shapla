@@ -1,4 +1,4 @@
-#### 1.3.2 - February 3, 2018
+#### 1.4.0 - February 13, 2018
 * Added - Add theme custom breadcrumb class for breadcrumb support.
 * Added - Add support Yoast SEO breadcrumb feature
 * Added - Add Page title bar background color, background image, border color, padding, font size, line height, text color, text transform, font weight, text align

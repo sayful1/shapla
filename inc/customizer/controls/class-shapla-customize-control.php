@@ -64,22 +64,18 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 			wp_enqueue_style(
 				'shapla-customize',
 				$asset_url . '/css/customizer.css',
-				array( 'wp-color-picker' ),
-				'1.0.0'
+				array( 'wp-color-picker' ), '1.0.0'
 			);
 
 			wp_enqueue_script(
 				'wp-color-picker-alpha',
 				$asset_url . '/libs/wp-color-picker-alpha/wp-color-picker-alpha' . $suffix . '.js',
-				array( 'jquery', 'wp-color-picker' ),
-				'2.1.3',
-				true
+				array( 'jquery', 'wp-color-picker' ), '2.1.3', true
 			);
 
 			// Enqueue selectWoo.
 			wp_enqueue_script( 'selectWoo', $asset_url . '/libs/selectWoo/js/selectWoo.full.js', array( 'jquery' ), '1.0.1', true );
 			wp_enqueue_style( 'selectWoo', $asset_url . '/libs/selectWoo/css/selectWoo.css', array(), '1.0.1' );
-			wp_enqueue_style( 'kirki-selectWoo', $asset_url . '/libs/selectWoo/kirki.css', null );
 
 			wp_enqueue_script( 'shapla-customize', $asset_url . '/js/customize' . $suffix . '.js',
 				array(
