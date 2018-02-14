@@ -7,6 +7,11 @@
  * @package Shapla
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Assign the Shapla version to a var
  */

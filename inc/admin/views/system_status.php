@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 $wp_env         = Shapla_System_Status::wp_environment();
 $server_env     = Shapla_System_Status::server_environment();
 $active_plugins = Shapla_System_Status::active_plugins();

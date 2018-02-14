@@ -100,7 +100,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function wp_get_custom_css( $css ) {
 			if ( ( false !== get_option( '_shapla_customize_file' ) ) && ! is_customize_preview() ) {
-				return;
+				return '';
 			}
 
 			return $css;
@@ -397,7 +397,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * Enqueue google fonts.
 		 *
 		 * @access public
-		 * @return null
+		 * @return void
 		 */
 		public function enqueue_fonts() {
 			// Check if we need to exit early.
@@ -436,6 +436,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 				foreach ( $fonts as $font_name => $font_variant ) {
 					$variant = is_array( $font_variant ) ? implode( ",", array_unique( $font_variant ) ) : '';
+					$variant = str_replace( 'regular', '400', $variant );
 					if ( ! empty( $variant ) ) {
 						$google_fonts[] = $font_name . ":" . $variant;
 					} else {
@@ -444,7 +445,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				}
 
 				$google_fonts = apply_filters( 'shapla_google_font_families', $google_fonts );
-				set_transient( 'shapla_google_fonts', $google_fonts );
+				set_transient( 'shapla_google_fonts', $google_fonts, DAY_IN_SECONDS );
 			}
 
 			if ( count( $google_fonts ) < 1 ) {

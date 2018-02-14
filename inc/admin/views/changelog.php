@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 ob_start();
 $file_path = get_template_directory() . '/CHANGELOG.md';

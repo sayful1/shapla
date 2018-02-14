@@ -9,7 +9,7 @@ if ( ! function_exists( 'shapla_is_woocommerce_activated' ) ) {
 	 * Query WooCommerce activation
 	 */
 	function shapla_is_woocommerce_activated() {
-		return class_exists( 'woocommerce' );
+		return class_exists( 'WooCommerce' );
 	}
 }
 

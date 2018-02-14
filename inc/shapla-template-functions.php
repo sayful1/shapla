@@ -45,7 +45,7 @@ if ( ! function_exists( 'shapla_site_title_or_logo' ) ) {
 			$html .= ob_get_clean();
 
 		} else {
-			$tag = is_home() ? 'h1' : 'p';
+			$tag = is_front_page() ? 'h1' : 'p';
 
 			$html .= '<' . esc_attr( $tag ) . ' class="site-title"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a></' . esc_attr( $tag ) . '>';
 
@@ -524,7 +524,7 @@ if ( ! function_exists( 'shapla_blog_header' ) ):
 	 */
 	function shapla_blog_header() {
 
-		_deprecated_function( __FUNCTION__, '1.3.2', 'shapla_page_header' );
+		_deprecated_function( __FUNCTION__, '1.4.0', 'shapla_page_header' );
 
 		$show_blog_page_title = get_theme_mod( 'show_blog_page_title', true );
 		if ( ! $show_blog_page_title ) {
@@ -764,7 +764,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 	/**
 	 * Display breadcrumb
 	 *
-	 * @since  1.3.0
+	 * @since  1.4.0
 	 */
 	function shapla_breadcrumb() {
 		$breadcrumbs_separator = get_theme_mod( 'breadcrumbs_separator', 'slash' );

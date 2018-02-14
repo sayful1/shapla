@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 $recommended_plugins = array(
 	'already_activated_message' => esc_html__( 'Already activated', 'shapla' ),

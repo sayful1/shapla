@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 // Add new section
 $shapla->customizer->add_section( 'woocommerce_colors', array(
