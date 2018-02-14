@@ -25,8 +25,8 @@ input[type="submit"] {
             display: block;
             height: 1em;
             width: 1em;
-            left: calc(50% - (1em / 2));
-            top: calc(50% - (1em / 2));
+            left: calc(50% - 0.5em);
+            top: calc(50% - 0.5em);
             position: absolute !important;
         }
     }

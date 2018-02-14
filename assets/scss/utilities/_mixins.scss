@@ -11,9 +11,8 @@
 
 @mixin fa-icon() {
     display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
+    font: normal normal normal 1em/1 FontAwesome;
     font-size: inherit;
-    line-height: 1;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -32,15 +31,9 @@
     border-color: $color;
 }
 
-
-
 @mixin loader() {
     &::before {
-        display: inline-block;
-        font: normal normal normal 1em/1 FontAwesome;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        @include fa-icon();
         content: "\f110";
         -webkit-animation: fa-spin .75s linear infinite;
         -moz-animation: fa-spin .75s linear infinite;
