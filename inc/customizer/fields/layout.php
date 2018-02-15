@@ -57,3 +57,22 @@ $shapla->customizer->add_field( array(
 		'layout-3' => get_template_directory_uri() . '/assets/images/customizer/layout-3.svg',
 	),
 ) );
+
+$shapla->customizer->add_field( array(
+	'type'        => 'dimensions',
+	'settings'    => 'page_content_padding',
+	'section'     => 'layout_section',
+	'label'       => __( 'Page Content Padding', 'shapla' ),
+	'description' => __( 'Controls the top/bottom padding for page content. Enter values including any valid CSS unit, ex: 55px, 40px.', 'shapla' ),
+	'priority'    => 40,
+	'default'     => array(
+		'top'    => '3rem',
+		'bottom' => '3rem',
+	),
+	'output'      => array(
+		array(
+			'element'  => array( '.site-content .content-area', '.site-content .widget-area' ),
+			'property' => 'padding',
+		),
+	),
+) );

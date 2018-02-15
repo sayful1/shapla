@@ -64,6 +64,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			'typography',
 			'toggle',
 			'range-slider',
+			'dimensions',
 		);
 
 		/**
@@ -342,6 +343,24 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						$value = $typography_list;
 					}
 
+					if (is_array($value) && 'dimensions' == $type){
+						foreach ( $value as $key => $sub_value ) {
+
+							$property = ( empty( $output['property'] ) ) ? $key : $output['property'] . '-' . $key;
+							if ( isset( $output['choice'] ) && $output['property'] ) {
+								if ( $key === $output['choice'] ) {
+									$property = $output['property'];
+								} else {
+									continue;
+								}
+							}
+							if ( false !== strpos( $output['property'], '%%' ) ) {
+								$property = str_replace( '%%', $key, $output['property'] );
+							}
+							$this->$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $output['prefix'] . $sub_value . $output['suffix'];
+						}
+                    }
+
 
 					// If value is array and field is not typography
 					if ( is_array( $value ) ) {
@@ -478,6 +497,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			require 'controls/class-shapla-radio-image-customize-control.php';
 			require 'controls/class-shapla-radio-button-customize-control.php';
 			require 'controls/class-shapla-typography-customize-control.php';
+			require 'controls/class-shapla-dimensions-customize-control.php';
 
 			// Registered Control Types
 			$wp_customize->register_control_type( 'Shapla_Slider_Customize_Control' );
@@ -487,6 +507,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$wp_customize->register_control_type( 'Shapla_Radio_Image_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Radio_Button_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Typography_Customize_Control' );
+			$wp_customize->register_control_type( 'Shapla_Dimensions_Customize_Control' );
 
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {
@@ -640,6 +661,17 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				'section'     => $field['section'],
 				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
 				'settings'    => $field['settings'],
+			) );
+		}
+
+		public function dimensions( $wp_customize, $field ) {
+			return new Shapla_Dimensions_Customize_Control( $wp_customize, $field['settings'], array(
+				'settings'    => $field['settings'],
+				'label'       => $field['label'],
+				'section'     => $field['section'],
+				'description' => isset( $field['description'] ) ? $field['description'] : '',
+				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
+				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
 			) );
 		}
 
@@ -930,6 +962,26 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function sanitize_typography( $input ) {
 			return Shapla_Sanitize::typography( $input );
+		}
+
+		/**
+		 * Sanitizes the value.
+		 *
+		 * @access public
+		 *
+		 * @param array $value The value.
+		 *
+		 * @return array
+		 */
+		public function sanitize_dimensions( $value ) {
+
+			// Sanitize each sub-value separately.
+			foreach ( $value as $key => $sub_value ) {
+				$value[ $key ] = Shapla_Sanitize::css_dimension( $sub_value );
+			}
+
+			return $value;
+
 		}
 
 		/**
