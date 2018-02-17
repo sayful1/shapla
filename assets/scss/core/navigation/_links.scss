@@ -1,14 +1,12 @@
 a {
-    color: $color--strikemaster;
+    color: $primary;
     text-decoration: none;
 
-    &:visited {
-        color: $color--strikemaster;
-    }
     &:hover,
     &:focus,
+    &:visited,
     &:active {
-        color: $color--strikemaster;
+        color: $primary;
         //text-decoration: underline;
     }
     &:focus {
