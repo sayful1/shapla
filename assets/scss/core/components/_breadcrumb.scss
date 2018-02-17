@@ -15,7 +15,7 @@ $breadcrumb-item-separator-color: $contenttext !default;
 
 	color: $contenttext;
 	font-size: 0.875rem;
-	font-weight: $font-weight-light;
+	font-weight: $subtext-font-weight;
 
 	&:not(:last-child) {
 		margin-bottom: 1rem;

@@ -76,7 +76,7 @@ h6 a {
 }
 
 strong {
-	font-weight: $font-weight-bold;
+	font-weight: $headings-font-weight;
 }
 
 hr {
@@ -187,7 +187,7 @@ li > ol {
 }
 
 dt {
-	font-weight: $font-weight-normal;
+	font-weight: $text-font-weight;
 }
 
 dd {

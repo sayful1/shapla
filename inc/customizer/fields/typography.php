@@ -37,7 +37,7 @@ $shapla->customizer->add_field( array(
 	'description' => esc_attr__( 'These settings control the typography for all body text.', 'shapla' ),
 	'default'     => array(
 		'font-family'    => shapla_default_options()->font_family,
-		'variant'        => '300',
+		'variant'        => '400',
 		'font-size'      => '1rem',
 		'line-height'    => '1.5',
 		'color'          => shapla_default_options()->text_color,
@@ -150,7 +150,7 @@ $shapla->customizer->add_field( array(
 	'description' => esc_attr__( 'These settings control the typography for all H1, H2, H3, H4, H5, H6 Headers.', 'shapla' ),
 	'default'     => array(
 		'font-family'    => shapla_default_options()->font_family,
-		'variant'        => '400',
+		'variant'        => '500',
 		'color'          => shapla_default_options()->heading_color,
 		'text-transform' => 'none',
 		'text-align'     => 'left'
