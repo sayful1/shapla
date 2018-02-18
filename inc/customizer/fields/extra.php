@@ -15,84 +15,22 @@ $shapla->customizer->add_panel( 'extra_panel', array(
 /**
  * Add Extra Sections
  */
-$shapla->customizer->add_section( 'forms_styling_section', array(
-	'title'    => __( 'Forms Styling', 'shapla' ),
+$shapla->customizer->add_section( 'go_to_top_button_section', array(
+	'title'    => __( 'Go to Top Button', 'shapla' ),
 	'panel'    => 'extra_panel',
 	'priority' => 10,
 ) );
 
 /**
- * Forms Styling Fields
+ * Go to Top Button Section
  */
 $shapla->customizer->add_field( array(
-	'settings'    => 'form_background_color',
-	'type'        => 'alpha-color',
-	'section'     => 'forms_styling_section',
-	'label'       => __( 'Form Background Color', 'shapla' ),
-	'description' => __( 'Controls the background color of form fields.', 'shapla' ),
-	'default'     => shapla_default_options()->form_background_color,
-	'priority'    => 10,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'input[type="text"]',
-				'input[type="email"]',
-				'input[type="url"]',
-				'input[type="password"]',
-				'input[type="search"]',
-				'input[type="number"]',
-				'input[type="tel"]',
-				'textarea',
-			),
-			'property' => 'background-color',
-		),
-	),
-) );
-$shapla->customizer->add_field( array(
-	'settings'    => 'form_text_color',
-	'type'        => 'alpha-color',
-	'section'     => 'forms_styling_section',
-	'label'       => __( 'Form Text Color', 'shapla' ),
-	'description' => __( 'Controls the text color of form fields.', 'shapla' ),
-	'default'     => shapla_default_options()->form_text_color,
-	'priority'    => 10,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'input[type="text"]',
-				'input[type="email"]',
-				'input[type="url"]',
-				'input[type="password"]',
-				'input[type="search"]',
-				'input[type="number"]',
-				'input[type="tel"]',
-				'textarea',
-			),
-			'property' => 'color',
-		),
-	),
-) );
-$shapla->customizer->add_field( array(
-	'settings'    => 'form_border_color',
-	'type'        => 'alpha-color',
-	'section'     => 'forms_styling_section',
-	'label'       => __( 'Form Border Color', 'shapla' ),
-	'description' => __( 'Controls the border color of form fields.', 'shapla' ),
-	'default'     => shapla_default_options()->form_border_color,
-	'priority'    => 10,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'input[type="text"]',
-				'input[type="email"]',
-				'input[type="url"]',
-				'input[type="password"]',
-				'input[type="search"]',
-				'input[type="number"]',
-				'input[type="tel"]',
-				'textarea',
-			),
-			'property' => 'border-color',
-		),
-	),
+	'settings'          => 'display_go_to_top_button',
+	'type'              => 'toggle',
+	'section'           => 'go_to_top_button_section',
+	'label'             => __( 'Display Go to top button', 'shapla' ),
+	'description'       => __( 'Enable it to display Go to Top button.', 'shapla' ),
+	'default'           => true,
+	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'priority'          => 10,
 ) );

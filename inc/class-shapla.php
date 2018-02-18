@@ -314,6 +314,9 @@ if ( ! class_exists( 'Shapla' ) ) {
 					'isEnabled' => get_theme_mod( 'sticky_header', false ),
 					'minWidth'  => 1025,
 				),
+				'BackToTopButton'  => array(
+					'isEnabled' => get_theme_mod( 'display_go_to_top_button', true ),
+				),
 			);
 
 			return $localize_script;

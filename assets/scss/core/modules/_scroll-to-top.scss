@@ -1,0 +1,31 @@
+.back-to-top {
+    display: none;
+    background-color: rgba(#000, 0.5);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    height: 48px;
+    width: 48px;
+    z-index: 100000;
+    transition: all .2s ease-in-out 0s;
+
+    &::before {
+        @include fa-icon;
+        content: '\f106';
+        font-size: 28px;
+        line-height: 48px;
+    }
+
+    &.is-active {
+        display: block;
+
+        &:hover {
+            background-color: rgba(#000, 0.8);
+        }
+    }
+}

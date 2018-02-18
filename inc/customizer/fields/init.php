@@ -29,7 +29,7 @@ require 'page-title-bar.php'; // priority - 30
 require 'site_footer.php'; // priority - 30
 require 'buttons.php'; // priority - 40
 require 'blog.php'; // priority - 50
-//require 'extra.php'; // priority - 190
+require 'extra.php'; // priority - 190
 
 if ( shapla_is_woocommerce_activated() ) {
 	require 'woocommerce.php'; // priority - 50
