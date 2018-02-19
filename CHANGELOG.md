@@ -1,4 +1,9 @@
-#### 1.4.0 - February 14, 2018
+#### 1.4.1 - February 19, 2018
+* Feature - Add scroll back to top button with option to enable or disable from customize.
+* Fixed - Fix wrong font weight for widget text.
+* Fixed - Fix site title font weight showing differently rather than that of front page.
+
+#### 1.4.0 - February 17, 2018
 * Feature - Add page title bar section.
 * Feature - Page title for default homepage (with the latest posts).
 * Feature - Add theme custom breadcrumb class for breadcrumb support.
