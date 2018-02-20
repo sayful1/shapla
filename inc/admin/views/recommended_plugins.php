@@ -42,6 +42,10 @@ $recommended_plugins = array(
 			'directory' => 'loginizer',
 			'file'      => 'loginizer.php',
 		),
+		array(
+			'directory' => 'display-latest-tweets',
+			'file'      => 'init.php',
+		),
 	),
 );
 

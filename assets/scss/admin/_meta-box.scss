@@ -1,0 +1,54 @@
+.shapla-metabox-table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+        border-top: 1px solid #ececec;
+
+        &:first-child {
+            border-top: none;
+        }
+    }
+
+    th {
+        text-align: left;
+        width: 40%;
+        padding: 10px 0;
+        vertical-align: top;
+
+        label {
+            text-shadow: white 0 1px 0;
+
+            strong {
+                font-weight: 500;
+                color: #444;
+            }
+
+            span {
+                display: block;
+                font-size: 12px;
+                font-weight: normal;
+                color: #999;
+                margin: 8px 0 0 0;
+            }
+        }
+    }
+
+    td {
+        padding: 8px 10px;
+    }
+}
+
+#side-sortables {
+    .shapla-metabox-table {
+        th, td {
+            width: 100%;
+            display: block;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        td {
+            border-bottom: none;
+        }
+    }
+}

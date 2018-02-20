@@ -73,4 +73,5 @@ if ( is_admin() ) {
 	require 'inc/admin/class-shapla-system-status.php';
 	require 'inc/admin/class-shapla-admin.php';
 	require 'inc/admin/class-shapla-meta-boxes.php';
+	require 'inc/admin/class-shapla-metabox.php';
 }
