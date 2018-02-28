@@ -112,15 +112,16 @@
      * Toggles `focus` class to allow submenu access on tablets.
      */
     function toggleFocusClassTouchScreen(e) {
-        var menuItem = this.parentNode, menuItems = menuItem.parentNode.children;
+        var menuItem = this.parentNode, i;
 
         if (!menuItem.classList.contains('focus')) {
             e.preventDefault();
-            menuItems.forEach(function (el) {
-                if (el !== menuItem) {
-                    el.classList.remove('focus');
+            for (i = 0; i < menuItem.parentNode.children.length; ++i) {
+                if (menuItem === menuItem.parentNode.children[i]) {
+                    continue;
                 }
-            });
+                menuItem.parentNode.children[i].classList.remove('focus');
+            }
             menuItem.classList.add('focus');
         } else {
             menuItem.classList.remove('focus');

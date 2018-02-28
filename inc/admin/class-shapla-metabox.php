@@ -49,9 +49,9 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		public static function instance() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
-			}
 
-			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'meta_box_style' ) );
+				add_action( 'admin_enqueue_scripts', array( __CLASS__, 'meta_box_style' ) );
+			}
 
 			return self::$instance;
 		}
