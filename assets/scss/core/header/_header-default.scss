@@ -77,7 +77,7 @@
 
     .site-branding,
     .menu-toggle,
-    .site-header-menu,
+    .main-navigation,
     .search-toggle {
         flex: 0 0 auto;
     }
@@ -92,7 +92,7 @@
     .menu-toggle {
         order: 3;
     }
-    .site-header-menu {
+    .main-navigation {
         order: 4;
         margin-left: auto;
         flex: 0 0 100%;
@@ -106,7 +106,7 @@
         .menu-toggle {
             order: 2;
         }
-        .site-header-menu {
+        .main-navigation {
             display: block;
             order: 3;
             margin-left: auto;

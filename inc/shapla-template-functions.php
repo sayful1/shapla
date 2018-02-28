@@ -77,21 +77,19 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 		$nav_class = 'main-navigation';
 		$nav_class .= $dropdown_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
 		?>
-        <button id="menu-toggle" class="menu-toggle" data-target="#site-header-menu" aria-expanded="false">
+        <button id="menu-toggle" class="menu-toggle" data-target="#site-header-menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        <div id="site-header-menu" class="site-header-menu">
-            <nav id="site-navigation" class="<?php echo esc_attr( $nav_class ); ?>" role="navigation">
-				<?php wp_nav_menu( array(
-					'theme_location'  => 'primary',
-					'menu_class'      => 'primary-menu',
-					'menu_id'         => 'primary-menu',
-					'container_class' => 'primary-menu-container',
-				) ); ?>
-            </nav><!-- #site-navigation -->
-        </div>
+        <nav id="site-navigation" class="<?php echo esc_attr( $nav_class ); ?>" role="navigation">
+			<?php wp_nav_menu( array(
+				'theme_location'  => 'primary',
+				'menu_class'      => 'primary-menu',
+				'menu_id'         => 'primary-menu',
+				'container_class' => 'primary-menu-container',
+			) ); ?>
+        </nav><!-- #site-navigation -->
 		<?php
 	}
 }

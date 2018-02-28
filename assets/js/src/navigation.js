@@ -10,74 +10,17 @@
     "use strict";
 
     var menuToggle,
-        siteHeaderMenu,
         container,
-        links,
-        i,
-        len,
         screenReaderText = Shapla.screenReaderText;
 
-    menuToggle = document.querySelector('#menu-toggle');
-    siteHeaderMenu = document.querySelector('#site-header-menu');
     container = document.querySelector('#site-navigation');
-    if (!menuToggle || !siteHeaderMenu || !container) {
+    if (!container) {
         return;
     }
 
-    /**
-     * Init main navigation
-     */
-    function initMainNavigation() {
-        var dropdownToggleHTML = '<button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">' + screenReaderText.expand + '</span></button>';
-
-        // Insert toggle button before children items
-        var hasChildLink = container.querySelectorAll('.menu-item-has-children > a');
-        Array.prototype.forEach.call(hasChildLink, function (el) {
-            el.insertAdjacentHTML('afterend', dropdownToggleHTML);
-        });
-
-        // Toggle buttons items with active children menu items.
-        var ancestorBtn = container.querySelectorAll('.current-menu-ancestor > button');
-        Array.prototype.forEach.call(ancestorBtn, function (el) {
-            el.classList.add('toggled-on');
-        });
-
-        // Toggle submenu items with active children menu items.
-        var ancestorSubMenu = container.querySelectorAll('.current-menu-ancestor > .sub-menu');
-        Array.prototype.forEach.call(ancestorSubMenu, function (el) {
-            el.classList.add('toggled-on');
-        });
-
-        // Add menu items with submenus to aria-haspopup="true".
-        var hasChild = container.querySelectorAll('.menu-item-has-children');
-        Array.prototype.forEach.call(hasChild, function (el) {
-            el.setAttribute('aria-haspopup', 'true');
-        });
-
-        var dropdownToggle = container.querySelectorAll('.dropdown-toggle');
-        Array.prototype.forEach.call(dropdownToggle, function (el) {
-            el.addEventListener('click', function (event) {
-                event.preventDefault();
-
-                // Toggle class for this element
-                el.classList.toggle('toggled-on');
-
-                // Toggle class for .sub-menu
-                el.nextElementSibling.classList.toggle('toggled-on');
-
-                // Change area-expanded attribute value
-                var ariaExpanded = el.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
-                el.setAttribute('aria-expanded', ariaExpanded);
-
-                // Change screen reader text
-                var screenReaderSpan = el.querySelector('.screen-reader-text');
-                if (screenReaderSpan.textContent === screenReaderText.expand) {
-                    screenReaderSpan.textContent = screenReaderText.collapse;
-                } else {
-                    screenReaderSpan.textContent = screenReaderText.expand;
-                }
-            });
-        });
+    menuToggle = document.querySelector('#menu-toggle');
+    if (!menuToggle) {
+        return;
     }
 
     /**
@@ -88,51 +31,79 @@
         menuToggle.setAttribute('aria-expanded', 'false');
         container.setAttribute('aria-expanded', 'false');
 
-        menuToggle.addEventListener('click', function (event) {
-            event.preventDefault();
-
-            // Get the target from the "data-target" attribute
-            var target = menuToggle.dataset.target;
-            var $target = document.querySelector(target);
-
-            // Toggle the class on both the "#menu-toggle" and the "#site-header-menu"
+        menuToggle.addEventListener('click', function () {
+            // Toggle the class on both the "#menu-toggle" and the "#site-navigation"
             menuToggle.classList.toggle('toggled-on');
-            $target.classList.toggle('toggled-on');
+            container.classList.toggle('toggled-on');
 
             // Change area-expanded attribute value
-            var ariaExpanded = container.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
+            var ariaExpanded = container.classList.contains('toggled-on') ? 'true' : 'false';
             menuToggle.setAttribute('aria-expanded', ariaExpanded);
             container.setAttribute('aria-expanded', ariaExpanded);
         });
     }
 
-    // Get all the link elements within the menu.
-    links = container.getElementsByTagName('a');
+    /**
+     * Init main navigation
+     */
+    function initMainNavigation() {
+        // Insert toggle button before children items
+        var dropdownToggle = '<button class="dropdown-toggle" aria-expanded="false"><span class="screen-reader-text">' +
+            screenReaderText.expand + '</span></button>';
+        container.querySelectorAll('.menu-item-has-children > a, .page_item_has_children > a').forEach(function (el) {
+            el.insertAdjacentHTML('afterend', dropdownToggle);
+        });
 
-    // Each time a menu link is focused or blurred, toggle focus.
-    for (i = 0, len = links.length; i < len; i++) {
-        links[i].addEventListener('focus', toggleFocus, true);
-        links[i].addEventListener('blur', toggleFocus, true);
+        // Set the active submenu dropdown toggle button initial state.
+        container.querySelectorAll('.current-menu-ancestor > button').forEach(function (el) {
+            el.classList.add('toggled-on');
+            el.setAttribute('aria-expanded', 'true');
+            el.querySelector('.screen-reader-text').textContent = screenReaderText.collapse;
+        });
+
+        // Set the active submenu initial state.
+        container.querySelectorAll('.current-menu-ancestor > .sub-menu').forEach(function (el) {
+            el.classList.add('toggled-on');
+        });
+
+        // Add menu items with submenus to aria-haspopup="true".
+        container.querySelectorAll('.menu-item-has-children').forEach(function (el) {
+            el.setAttribute('aria-haspopup', 'true');
+        });
+
+        container.querySelectorAll('.dropdown-toggle').forEach(function (el) {
+            el.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                // Toggle class for this element
+                el.classList.toggle('toggled-on');
+
+                // Toggle class for .sub-menu
+                el.nextElementSibling.classList.toggle('toggled-on');
+
+                // Change area-expanded attribute value
+                el.setAttribute('aria-expanded', el.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+
+                // Change screen reader text
+                var screenReaderSpan = el.querySelector('.screen-reader-text');
+                screenReaderSpan.textContent = (screenReaderSpan.textContent === screenReaderText.expand) ?
+                    screenReaderText.collapse : screenReaderText.expand;
+            });
+        });
     }
+
 
     /**
      * Sets or removes .focus class on an element.
      */
     function toggleFocus() {
         var self = this;
-
         // Move up through the ancestors of the current link until we hit .nav-menu.
         while (-1 === self.className.indexOf('primary-menu')) {
-
             // On li elements toggle the class .focus.
             if ('li' === self.tagName.toLowerCase()) {
-                if (-1 !== self.className.indexOf('focus')) {
-                    self.className = self.className.replace(' focus', '');
-                } else {
-                    self.className += ' focus';
-                }
+                self.classList.toggle('focus');
             }
-
             self = self.parentElement;
         }
     }
@@ -140,35 +111,35 @@
     /**
      * Toggles `focus` class to allow submenu access on tablets.
      */
-    (function (container) {
-        var touchStartFn, i,
-            parentLink = container.querySelectorAll('.menu-item-has-children > a, .page_item_has_children > a');
+    function toggleFocusClassTouchScreen(e) {
+        var menuItem = this.parentNode, menuItems = menuItem.parentNode.children;
 
-        if ('ontouchstart' in window) {
-            touchStartFn = function (e) {
-                var menuItem = this.parentNode, i;
-
-                if (!menuItem.classList.contains('focus')) {
-                    e.preventDefault();
-                    for (i = 0; i < menuItem.parentNode.children.length; ++i) {
-                        if (menuItem === menuItem.parentNode.children[i]) {
-                            continue;
-                        }
-                        menuItem.parentNode.children[i].classList.remove('focus');
-                    }
-                    menuItem.classList.add('focus');
-                } else {
-                    menuItem.classList.remove('focus');
+        if (!menuItem.classList.contains('focus')) {
+            e.preventDefault();
+            menuItems.forEach(function (el) {
+                if (el !== menuItem) {
+                    el.classList.remove('focus');
                 }
-            };
-
-            for (i = 0; i < parentLink.length; ++i) {
-                parentLink[i].addEventListener('touchstart', touchStartFn, false);
-            }
+            });
+            menuItem.classList.add('focus');
+        } else {
+            menuItem.classList.remove('focus');
         }
-    }(container));
+    }
+
+    // Each time a menu link is focused or blurred, toggle focus.
+    container.querySelectorAll('a').forEach(function (anchor) {
+        anchor.addEventListener('focus', toggleFocus, true);
+        anchor.addEventListener('blur', toggleFocus, true);
+    });
+
+    var parentLink = container.querySelectorAll('.menu-item-has-children > a, .page_item_has_children > a');
+    if ('ontouchstart' in window) {
+        parentLink.forEach(function (anchor) {
+            anchor.addEventListener('touchstart', toggleFocusClassTouchScreen, false);
+        });
+    }
 
     initMainNavigation();
     initHamburgerIcon();
-
 })();
