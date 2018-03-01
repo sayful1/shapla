@@ -42,7 +42,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		 *
 		 * @return int
 		 */
-		function int_number( $value ) {
+		public static function int_number( $value ) {
 			return intval( $value );
 		}
 
