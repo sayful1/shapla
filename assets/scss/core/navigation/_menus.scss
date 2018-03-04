@@ -172,6 +172,42 @@
     .main-navigation {
         margin: 0;
 
+        // Left to Right dropdown direction
+        &.dropdown-ltr {
+            ul.primary-menu > li {
+                &.menu-item-has-children,
+                &.page_item_has_children {
+                    &:before, 
+                    &:after {
+                        border-style: solid;
+                        border-width: 0 8px 8px;
+                        content: "";
+                        display: none;
+                        height: 0;
+                        position: absolute;
+                        right: 8px;
+                        width: 0;
+                        z-index: 100000;
+                    }
+                    &:before {
+                        border-color: transparent transparent rgba(0, 0, 0, 0.06);
+                        bottom: 0;
+                    }
+                    &:after {
+                        border-color: transparent transparent #fff;
+                        bottom: -2px;
+                    }
+                    &:hover,
+                    &.focus {
+                        &:before, 
+                        &:after {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
         ul {
             > li {
                 float: left;
@@ -184,6 +220,7 @@
         }
 
         li {
+
             &:hover,
             &.focus {
                 > a {
