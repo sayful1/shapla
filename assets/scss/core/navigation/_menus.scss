@@ -1,166 +1,166 @@
 // Menu Toggle Button
 .menu-toggle {
-    cursor: pointer;
-    position: relative;
-    display: block;
-    height: 3rem;
-    width: 3rem;
-    background-color: transparent;
+	cursor: pointer;
+	position: relative;
+	display: block;
+	height: 3rem;
+	width: 3rem;
+	background-color: transparent;
 
-    &:hover,
-    &:focus,
-    &:active {
-        background-color: transparent;
-        box-shadow: none !important;
-    }
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: transparent;
+		box-shadow: none !important;
+	}
 
-    span {
-        background-color: $color--black;
-        display: block;
-        height: 1px;
-        left: 50%;
-        top: 50%;
-        margin-left: -7px;
-        position: absolute;
-        transition: none 86ms ease-out;
-        transition-property: background, left, opacity, transform;
-        width: 15px;
+	span {
+		background-color: $color--black;
+		display: block;
+		height: 1px;
+		left: 50%;
+		top: 50%;
+		margin-left: -7px;
+		position: absolute;
+		transition: none 86ms ease-out;
+		transition-property: background, left, opacity, transform;
+		width: 15px;
 
-        &:nth-child(1) {
-            margin-top: -6px;
-        }
+		&:nth-child(1) {
+			margin-top: -6px;
+		}
 
-        &:nth-child(2) {
-            margin-top: -1px;
-        }
+		&:nth-child(2) {
+			margin-top: -1px;
+		}
 
-        &:nth-child(3) {
-            margin-top: 4px;
-        }
+		&:nth-child(3) {
+			margin-top: 4px;
+		}
 
-    }
+	}
 
-    &.toggled-on {
-        span {
-            &:nth-child(1) {
-                margin-left: -5px;
-                transform: rotate(45deg);
-                transform-origin: left top;
-            }
+	&.toggled-on {
+		span {
+			&:nth-child(1) {
+				margin-left: -5px;
+				transform: rotate(45deg);
+				transform-origin: left top;
+			}
 
-            &:nth-child(2) {
-                opacity: 0;
-            }
+			&:nth-child(2) {
+				opacity: 0;
+			}
 
-            &:nth-child(3) {
-                margin-left: -5px;
-                transform: rotate(-45deg);
-                transform-origin: left bottom;
-            }
-        }
-    }
+			&:nth-child(3) {
+				margin-left: -5px;
+				transform: rotate(-45deg);
+				transform-origin: left bottom;
+			}
+		}
+	}
 }
 
 // Drop Toggle button
 .dropdown-toggle {
-    background-color: transparent;
-    border: 0;
-    border-radius: 0;
-    color: $color--light_grey;
-    content: "";
-    padding: 0;
-    position: absolute;
-    right: 0;
-    text-transform: none;
-    text-align: center;
-    top: 0;
-    height: 3rem;
-    width: 3rem;
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	color: $color--light_grey;
+	content: "";
+	padding: 0;
+	position: absolute;
+	right: 0;
+	text-transform: none;
+	text-align: center;
+	top: 0;
+	height: 3rem;
+	width: 3rem;
 
-    &:after {
-        content: "\02795"; // Unicode character for "plus" sign (+)
-        font-size: 0.875rem;
-        left: 1px;
-        position: relative;
-        width: 3rem;
-    }
+	&:after {
+		content: "\02795"; // Unicode character for "plus" sign (+)
+		font-size: 0.875rem;
+		left: 1px;
+		position: relative;
+		width: 3rem;
+	}
 
-    &:hover,
-    &:focus {
-        background-color: transparent;
-        box-shadow: none;
-        color: $primary;
-    }
+	&:hover,
+	&:focus {
+		background-color: transparent;
+		box-shadow: none;
+		color: $primary;
+	}
 
-    &:focus {
-        outline: thin dotted;
-        outline-offset: -1px;
-    }
+	&:focus {
+		outline: thin dotted;
+		outline-offset: -1px;
+	}
 
-    &.toggled-on:after {
-        content: "\2796"; // Unicode character for "minus" sign (-)
-    }
+	&.toggled-on:after {
+		content: "\2796"; // Unicode character for "minus" sign (-)
+	}
 }
 
 // Main Navigation style for small screen
 .main-navigation {
-    display: none;
-    margin: 1rem 0;
-    transition: height 86ms ease-out;
-    font-size: 0.875rem;
-    line-height: 1.5;
+	display: none;
+	margin: 1rem 0;
+	transition: height 86ms ease-out;
+	font-size: 0.875rem;
+	line-height: 1.5;
 
-    &.toggled-on {
-        display: block;
-        clear: both;
-    }
+	&.toggled-on {
+		display: block;
+		clear: both;
+	}
 
-    ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 
-        .toggled-on {
-            display: block;
-        }
+		ul {
+			display: none;
+			margin-left: 1rem;
+			padding: 0;
+			box-shadow: none;
 
-        ul {
-            display: none;
-            margin-left: 1rem;
-            padding: 0;
-            box-shadow: none;
-        }
-    }
+			&.toggled-on {
+				display: block;
+			}
+		}
+	}
 
-    li {
-        position: relative;
-    }
+	li {
+		position: relative;
+	}
 
-    a {
-        color: $color--light_grey;
-        display: block;
-        line-height: 1.2;
-        outline-offset: -1px;
-        padding: 1rem 0;
-        text-decoration: none;
-        cursor: pointer;
+	a {
+		color: $color--light_grey;
+		display: block;
+		line-height: 1.2;
+		outline-offset: -1px;
+		padding: 1rem 0;
+		text-decoration: none;
+		cursor: pointer;
 
-        &:hover,
-        &:focus {
-            color: $primary;
-        }
-    }
+		&:hover,
+		&.focus {
+			color: $primary;
+		}
+	}
 
-    .menu-item-has-children > a {
-        margin-right: 3.5rem;
-    }
+	.menu-item-has-children > a {
+		margin-right: 3.5rem;
+	}
 
-    .current-menu-item > a,
-    .current-menu-ancestor > a,
-    .current_page_item > a,
-    .current_page_ancestor > a {
-        color: $primary;
-    }
+	.current-menu-item > a,
+	.current-menu-ancestor > a,
+	.current_page_item > a,
+	.current_page_ancestor > a {
+		color: $primary;
+	}
 }
 
 /**!
@@ -169,218 +169,181 @@
  */
 @media screen and (min-width: $nav-toggle-width) {
 
-    .main-navigation {
-        margin: 0;
+	.main-navigation {
+		margin: 0;
 
-        // Left to Right dropdown direction
-        &.dropdown-ltr {
-            ul.primary-menu > li {
-                &.menu-item-has-children,
-                &.page_item_has_children {
-                    &:before, 
-                    &:after {
-                        border-style: solid;
-                        border-width: 0 8px 8px;
-                        content: "";
-                        display: none;
-                        height: 0;
-                        position: absolute;
-                        right: 8px;
-                        width: 0;
-                        z-index: 100000;
-                    }
-                    &:before {
-                        border-color: transparent transparent rgba(0, 0, 0, 0.06);
-                        bottom: 0;
-                    }
-                    &:after {
-                        border-color: transparent transparent #fff;
-                        bottom: -2px;
-                    }
-                    &:hover,
-                    &.focus {
-                        &:before, 
-                        &:after {
-                            display: block;
-                        }
-                    }
-                }
-            }
-        }
+		// Add Down Angle Icon on menu item that has children
+		.menu-item-has-children > a {
+			margin: 0;
+			padding-right: 2rem;
 
-        ul {
-            > li {
-                float: left;
-            }
-        }
+			&:after {
+				position: absolute;
+				right: 0.75rem;
+				top: 1rem;
+				content: '';
+				border-style: solid;
+				border-width: 0 1px 1px 0;
+				padding: 3px;
+				transform: rotate(45deg);
+			}
+		}
 
-        a {
-            padding: 0.75rem;
-            white-space: nowrap;
-        }
+		// Add Down Angle Icon on top level sub menu
+		ul li {
+			&.menu-item-has-children,
+			&.page_item_has_children {
+				&:before,
+				&:after {
+					border-style: solid;
+					border-width: 0 8px 8px;
+					content: "";
+					display: none;
+					height: 0;
+					position: absolute;
+					right: 0.5rem;
+					width: 0;
+					z-index: 100000;
+				}
+				&:before {
+					border-color: transparent transparent rgba(0, 0, 0, 0.06);
+					bottom: 0;
+				}
+				&:after {
+					border-color: transparent transparent #fff;
+					bottom: -2px;
+				}
+				&:hover,
+				&.focus {
+					&:before,
+					&:after {
+						display: block;
+					}
+				}
+			}
+		}
 
-        li {
+		// Disabled Down Angle Icon on Second level sub menu
+		ul ul li {
+			&.menu-item-has-children,
+			&.page_item_has_children {
+				&:before,
+				&:after {
+					border: none;
+				}
+			}
+		}
 
-            &:hover,
-            &.focus {
-                > a {
-                    color: $primary;
-                }
+		a {
+			padding: 0.75rem;
+			white-space: nowrap;
+		}
 
-                > ul {
-                    left: 0;
-                    right: auto;
-                }
-            }
-        }
+		li {
+			float: left;
 
-        // Second level menu
-        ul ul {
-            display: block;
-            left: -9999px;
-            margin: 0;
-            padding: 0.5rem;
-            border-radius: 3px;
-            background-color: white;
-            position: absolute;
-            z-index: 99999;
-            box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+			&:hover > a,
+			&.focus > a {
+				color: $primary;
+			}
+		}
 
-            li {
-                background-color: $color--white;
-                left: auto;
+		// Second level menu
+		ul ul {
+			display: block;
+			left: -9999px;
+			margin: 0;
+			padding: 0.5rem;
+			border-radius: 3px;
+			background-color: white;
+			position: absolute;
+			z-index: 99999;
+			box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
 
-                &:hover > ul,
-                &.focus > ul {
-                    left: 100%;
-                    right: auto;
-                }
-            }
+			li {
+				background-color: $color--white;
+				left: auto;
+			}
 
-            a {
-                white-space: normal;
-                width: 200px;
-                color: $color--black;
-                border-radius: 3px;
+			a {
+				white-space: normal;
+				width: 200px;
+				color: $color--black;
+				border-radius: 3px;
 
-                &:hover,
-                &:focus {
-                    color: $color--black;
-                    background-color: whitesmoke;
-                }
-            }
+				&:hover,
+				&:focus {
+					color: $color--black;
+					background-color: whitesmoke;
+				}
+			}
 
-            .menu-item-has-children > a {
-                padding-right: 2rem;
+			.current-menu-item > a,
+			.current-menu-ancestor > a,
+			.current_page_item > a,
+			.current_page_ancestor > a {
+				color: $color--black;
+				background-color: whitesmoke;
+			}
+		}
 
-                &:after {
-                    top: 1.1rem;
-                    transform: rotate(-45deg);
-                }
-            }
+		// Third level menu
+		ul ul ul {
+			top: -1px;
+		}
+	}
 
-            .current-menu-item > a,
-            .current-menu-ancestor > a,
-            .current_page_item > a,
-            .current_page_ancestor > a {
-                color: $color--black;
-                background-color: whitesmoke;
-            }
-        }
+	// Left to Right dropdown direction
+	.main-navigation.dropdown-ltr {
+		li {
+			&:hover > ul,
+			&.focus > ul {
+				left: 0;
+				right: auto;
+			}
+		}
 
-        // Third level menu
-        ul ul ul {
-            top: -1px;
+		ul ul {
+			li {
+				&:hover > ul,
+				&.focus > ul {
+					left: 100%;
+				}
+			}
 
-            &:before,
-            &:after {
-                border: 0;
-            }
-        }
+			.menu-item-has-children > a:after {
+				transform: rotate(-45deg);
+			}
+		}
+	}
 
-        .menu-item-has-children > a {
-            margin: 0;
-            padding-right: 2rem;
+	// Right to Left dropdown direction
+	.main-navigation.dropdown-rtl {
+		li {
+			&:hover > ul,
+			&.focus > ul {
+				left: auto;
+				right: 0;
+			}
+		}
 
-            &:after {
-                position: absolute;
-                right: 0.75rem;
-                top: 1rem;
-                content: '';
-                border-style: solid;
-                border-width: 0 1px 1px 0;
-                padding: 3px;
-                transform: rotate(45deg);
-            }
-        }
+		ul ul {
+			li {
+				&:hover > ul,
+				&.focus > ul {
+					right: 100%;
+				}
+			}
 
-        // Right to Left dropdown direction
-        &.dropdown-rtl {
-            li {
-                &:hover,
-                &.focus {
-                    > ul {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
+			.menu-item-has-children > a:after {
+				transform: rotate(135deg);
+			}
+		}
+	}
 
-            ul ul {
-                li {
-                    &:hover > ul,
-                    &.focus > ul {
-                        left: auto;
-                        right: 100%;
-                    }
-                }
-
-                &:before,
-                &:after {
-                    border-style: solid;
-                    content: " ";
-                    position: absolute;
-                }
-
-                &:before {
-                    border-color: rgba(0, 0, 0, 0.06) transparent;
-                    border-width: 0 10px 10px;
-                    right: 6px;
-                    top: -9px;
-                }
-
-                &:after {
-                    border-color: $color--white transparent;
-                    border-width: 0 8px 8px;
-                    right: 8px;
-                    top: -7px;
-                }
-
-                .menu-item-has-children > a {
-                    &:after {
-                        transform: rotate(135deg);
-                    }
-                }
-            }
-
-            ul ul ul {
-                &:before,
-                &:after {
-                    border: 0;
-                }
-            }
-
-            .menu-item-has-children > a {
-                &:after {
-                    transform: rotate(45deg);
-                }
-            }
-        }
-    }
-
-    .main-navigation ul .dropdown-toggle.toggled-on,
-    .dropdown-toggle,
-    .menu-toggle {
-        display: none;
-    }
+	// Hide both dropdown toggle and menu toggle on large screen
+	.dropdown-toggle,
+	.menu-toggle {
+		display: none;
+	}
 }

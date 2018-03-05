@@ -72,7 +72,7 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 	 * @return void
 	 */
 	function shapla_primary_navigation() {
-		$dropdown_direction = get_theme_mod( 'dropdown_direction', 'rtl' );
+		$dropdown_direction = get_theme_mod( 'dropdown_direction', 'ltr' );
 
 		$nav_class = 'main-navigation';
 		$nav_class .= $dropdown_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';

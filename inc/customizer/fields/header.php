@@ -133,7 +133,7 @@ $shapla->customizer->add_field( array(
 	'default'  => shapla_default_options()->dropdown_direction,
 	'priority' => 60,
 	'choices'  => array(
-		'ltr' => esc_html__( 'left to right', 'shapla' ),
-		'rtl' => esc_html__( 'right to left', 'shapla' ),
+		'ltr' => esc_html__( 'Left to Right', 'shapla' ),
+		'rtl' => esc_html__( 'Right to Left', 'shapla' ),
 	)
 ) );
