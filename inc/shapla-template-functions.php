@@ -452,8 +452,17 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 			$title = esc_html__( 'Page not found.', 'shapla' );
 		}
 
-		if ( is_page() ) {
-			if ( $post instanceof \WP_Post && 'on' == get_post_meta( $post->ID, '_shapla_hide_page_title', true ) ) {
+		if ( is_page() && $post instanceof \WP_Post ) {
+			$options         = get_post_meta( $post->ID, '_shapla_page_options', true );
+			$hide_page_title = isset( $options['hide_page_title'] ) ? esc_attr( $options['hide_page_title'] ) : '';
+			if ( 'on' == $hide_page_title ) {
+				return;
+			}
+
+			/**
+			 * @deprecated 1.4.2
+			 */
+			if ( empty( $hide_page_title ) && 'on' == get_post_meta( $post->ID, '_shapla_hide_page_title', true ) ) {
 				return;
 			}
 		}

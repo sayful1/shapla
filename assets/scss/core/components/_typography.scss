@@ -13,6 +13,7 @@ html {
 	font-size: 16px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%; // Prevent adjustments of font size after orientation changes in iOS.
 	min-width: 320px;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -75,7 +76,7 @@ h6 a {
 	font-size: inherit;
 }
 
-strong {
+b, strong {
 	font-weight: $headings-font-weight;
 }
 
@@ -89,6 +90,7 @@ img {
 	height: auto;
 	max-width: 100%;
 	vertical-align: middle;
+	border-style: none; // Remove the border on images inside links in IE 10.
 }
 
 p {
@@ -192,4 +194,37 @@ dt {
 
 dd {
 	margin: 0 1rem 1rem;
+}
+
+sub,
+sup {
+	font-size: 0.75rem;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sub {
+	bottom: -0.25em;
+}
+
+sup {
+	top: -0.5em;
+}
+
+progress {
+	vertical-align: baseline;
+}
+
+details {
+	display: block;
+}
+
+summary {
+	display: list-item;
+}
+
+template,
+[hidden] {
+	display: none;
 }

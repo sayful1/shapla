@@ -72,6 +72,6 @@ if ( shapla_is_carousel_slider_activated() ) {
 if ( is_admin() ) {
 	require 'inc/admin/class-shapla-system-status.php';
 	require 'inc/admin/class-shapla-admin.php';
-	require 'inc/admin/class-shapla-meta-boxes.php';
 	require 'inc/admin/class-shapla-metabox.php';
+	require 'inc/admin/class-shapla-page-metabox-fields.php';
 }

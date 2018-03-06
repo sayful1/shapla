@@ -1,29 +1,30 @@
 .shapla-header-center {
-    .site-header-inner {
-        .main-navigation {
-            width: 100%;
-            margin: 0;
-        }
-        .primary-menu-container {
-            display: block;
-        }
-        .search-toggle {
-            display: none;
-        }
+	.site-header-inner {
+		.main-navigation {
+			width: 100%;
+			margin: 0;
+		}
+		.primary-menu-container {
+			display: block;
+		}
+		.search-toggle {
+			display: none;
+		}
 
-        @media screen and (min-width: $nav-toggle-width) {
-            .site-branding {
-                width: 100%;
-                text-align: center;
-            }
-            .menu-toggle {
-                margin: 0 auto;
-            }
-            .primary-menu-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-        }
-    }
+		@media screen and (min-width: $nav-toggle-width) {
+			.site-branding,
+			.site-title {
+				width: 100%;
+				text-align: center;
+			}
+			.menu-toggle {
+				margin: 0 auto;
+			}
+			.primary-menu-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+	}
 }

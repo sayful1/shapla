@@ -12,19 +12,15 @@ Tags: 			one-column, two-columns, left-sidebar, right-sidebar, grid-layout, flex
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
-
-Normalizing styles have been helped along thanks to the fine work of
-Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 */
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-# Normalize
-# Layout
 # Typography
 # Table
 # Button
 # Forms
+# Layout
 # Navigation
 	## Links
 	## Menus
@@ -46,16 +42,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 @import "utilities/variables";
 @import "utilities/mixins";
 /*--------------------------------------------------------------
-# Normalize
---------------------------------------------------------------*/
-@import "core/components/normalize";
-/*--------------------------------------------------------------
-# Layout
---------------------------------------------------------------*/
-@import "core/components/layout";
-@import "core/components/layout-widget";
-@import "core/components/boxed-layout";
-/*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
 @import "core/components/typography";
@@ -71,6 +57,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Forms
 --------------------------------------------------------------*/
 @import "core/components/forms";
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import "core/components/layout";
+@import "core/components/layout-widget";
+@import "core/components/boxed-layout";
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/

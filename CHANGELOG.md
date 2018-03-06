@@ -1,3 +1,11 @@
+#### 1.4.2 - March ##, 2018
+* Tweak - Site title show on left on header center layout.
+* Tweak - Change handle id from font-awesome to shapla-icons to remove conflict between version 4 and version 5.
+* Tweak - Update primary navigation JavaScript code.
+* Tweak - Update primary navigation style.
+* Tweak - Removed normalize.css file.
+* Dev - Add Shapla_Metabox class for adding metaboxs.
+
 #### 1.4.1 - February 19, 2018
 * Feature - Add scroll back to top button with option to enable or disable from customize.
 * Fixed - Fix wrong font weight for widget text.
