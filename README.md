@@ -8,15 +8,17 @@ Shapla is a simple, easy-to-use and highly customizable WordPress theme. It feat
 * **High Quality Code:** Every line of code is refined, reviewed and held to the highest standards.
 * **Fully Responsive:** Whether you view a Shapla site on a laptop / desktop computer or handheld device, it will adapt and display beautifully.
 * **SEO Friendly:** Shapla includes valid schema markup for improved SEO performance.
-* **Lightweight:** Shapla includes only (1.5kB minified and gzip vanilla JavaScript) 
+* **Lightweight:** Shapla includes only 1.5kB minified and gzip vanilla JavaScript and 11kB minified and gzip CSS.
+* **Zero Shortcodes:** With Shapla, you only get what you need. That means no superfluous shortcodes and other extraneous nonsense. 
+* **Zero Sliders:** Shapla lets you choose the appropriate plugin for your slider needs. Shapla is compatible with all most popular free and premium slider plugin. 
+* **Zero Page Builders:** Page builders are great, if you need one. If you don't, they're bloat. Shapla is compatible with all most popular free page builder like [Page Builder by SiteOrigin](https://wordpress.org/plugins/siteorigin-panels/), [Elementor](https://wordpress.org/plugins/elementor/), [Beaver Builder](https://wordpress.org/plugins/beaver-builder-lite-version/), or even premium page builder like [Divi](https://www.elegantthemes.com/plugins/divi-builder/) & [Visual Composer](https://visualcomposer.io/).
 * **WooCommerce Integration:** Shapla has tight integration with full features of [WooCommerce](https://wordpress.org/plugins/woocommerce/) plugin. 
 * **Developer Friendly:** Shapla has designed keeping developer in mind. You can extend or modify everything using filter and action hook. 
+* **Multiple Header Layout:** Shapla comes with multiple header layout.
 
 ## Copyright
 
-Shapla is distributed under the terms of the GNU GPL
-
-Shapla bundles the following third-party resources:
+Shapla is distributed under the terms of the GNU GPL. Shapla bundles the following third-party resources:
 
 * [Underscores](http://underscores.me/), (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 * [Font Awesome 4.7.0](http://fontawesome.io) by @davegandy, License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
