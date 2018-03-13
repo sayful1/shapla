@@ -4,6 +4,7 @@
 * Tweak - Update primary navigation JavaScript code.
 * Tweak - Update primary navigation style.
 * Tweak - Removed normalize.css file.
+* Tweak - Show copyright text on center if footer social menu is not active.
 * Dev - Add Shapla_Metabox class for adding metaboxs.
 
 #### 1.4.1 - February 19, 2018

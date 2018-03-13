@@ -1,124 +1,145 @@
 .shapla-search {
-    order: 4;
-    padding: 1rem 0;
-    width: 100%;
-    float: none;
-    position: relative;
-    z-index: 1;
-    margin-left: auto;
+	order: 4;
+	padding: 1rem 0;
+	width: 100%;
+	float: none;
+	position: relative;
+	z-index: 1;
+	margin-left: auto;
 
-    &-form {
-        margin: 0;
-        padding: 0;
-        position: relative;
-    }
+	&-form {
+		margin: 0;
+		padding: 0;
+		position: relative;
+	}
 
-    input[type="text"] {
-        border-right: none;
-    }
+	input[type="text"] {
+		border-right: none;
+	}
 
-    &.has-cat-list {
-        input[type="text"] {
-            border-radius: 0;
-            border-left: none;
-        }
-    }
+	&.has-cat-list {
+		input[type="text"] {
+			border-radius: 0;
+			border-left: none;
+		}
+	}
 
-    button[type="submit"] {
-        width: 50px;
-        text-align: center;
-        border-radius: 0 3px 3px 0;
-    }
+	button[type="submit"] {
+		width: 50px;
+		text-align: center;
+		border-radius: 0 3px 3px 0;
+	}
 
-    .nav-left {
-        position: relative;
-        float: left;
-        width: auto;
-    }
-    .nav-fill {
-        position: relative;
-        overflow: hidden;
-        width: auto;
-    }
-    .nav-right {
-        position: relative;
-        float: right;
-    }
-    .nav-search-facade {
-        border: 1px solid #dbdbdb;
-        border-radius: 3px 0 0 3px;
-        padding: 0.5em;
-        text-transform: capitalize;
-        background-color: white;
-        color: #363636;
-    }
+	.nav-left {
+		position: relative;
+		float: left;
+		width: auto;
+	}
+	.nav-fill {
+		position: relative;
+		overflow: hidden;
+		width: auto;
+	}
+	.nav-right {
+		position: relative;
+		float: right;
+	}
+	.nav-search-facade {
+		border: 1px solid #dbdbdb;
+		border-radius: 3px 0 0 3px;
+		padding: 0.5em;
+		text-transform: capitalize;
+		background-color: white;
+		color: #363636;
+	}
 
-    select.shapla-cat-list {
-        padding: 0.6em;
-        position: absolute;
-        top: 1px;
-        left: 1px;
-        opacity: 0;
-    }
+	select.shapla-cat-list {
+		padding: 0.6em;
+		position: absolute;
+		top: 1px;
+		left: 1px;
+		opacity: 0;
+	}
 
-    @media screen and (min-width: $nav-toggle-width) {
-        order: 1;
-        padding: 1rem 0 1rem 1rem;
-        width: 50%;
-        float: left;
-    }
+	@media screen and (min-width: $nav-toggle-width) {
+		order: 1;
+		padding: 1rem 0 1rem 1rem;
+		width: 50%;
+		float: left;
+	}
 }
 
 .shapla-main-menu-search {
-    .shapla-custom-menu-item-contents {
-        position: absolute;
-        padding: 1.5rem;
-        text-align: right;
-        left: auto;
-        right: 0;
-        visibility: hidden;
-        opacity: 0;
-        z-index: -1;
-        width: 320px;
-        border-radius: 3px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
-        transition: opacity .2s ease-in;
-    }
+	.shapla-custom-menu-item-contents {
+		position: absolute;
+		padding: 1.5rem;
+		text-align: right;
+		left: auto;
+		right: 0;
+		visibility: hidden;
+		opacity: 0;
+		z-index: -1;
+		width: 320px;
+		border-radius: 3px;
+		background-color: #fff;
+		box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+		transition: opacity .2s ease-in;
+	}
 
-    .shapla-search-toggle {
-        .fa-search {
-            width: 1em;
-            height: 1em;
-        }
-    }
+	.shapla-search-toggle {
+		.fa-search {
+			width: 1em;
+			height: 1em;
+		}
+	}
 
-    &.shapla-main-menu-search-open {
-        .shapla-custom-menu-item-contents {
-            visibility: visible;
-            opacity: 1;
-            z-index: 99999;
-        }
+	&.shapla-main-menu-search-open {
+		.shapla-custom-menu-item-contents {
+			visibility: visible;
+			opacity: 1;
+			z-index: 99999;
+		}
 
-        .shapla-search-toggle {
-            .fa-search::before {
-                content: "\f00d";
-            }
-        }
-    }
+		.shapla-search-toggle {
+			.fa-search::before {
+				content: "\f00d";
+			}
+		}
 
-    &.shapla-last-menu-item a {
-        padding-right: 0;
-    }
+		&:before,
+		&:after {
+			border-style: solid;
+			border-width: 0 8px 8px;
+			content: "";
+			display: block;
+			height: 0;
+			position: absolute;
+			right: 4px;
+			width: 0;
+			z-index: 100000;
+		}
+		&:before {
+			border-color: transparent transparent rgba(0, 0, 0, 0.06);
+			bottom: 0;
+		}
+		&:after {
+			border-color: transparent transparent #fff;
+			bottom: -2px;
+		}
+	}
 
-    .shapla-search {
-        padding: 0;
-        width: 100%;
-    }
+	&.shapla-last-menu-item a {
+		padding-right: 0;
+	}
+
+	.shapla-search {
+		padding: 0;
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: $nav-toggle-width - 1px) {
-    .shapla-main-menu-search {
-        display: none;
-    }
+	.shapla-main-menu-search {
+		display: none;
+	}
 }

@@ -115,10 +115,12 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	 * Shapla Search toggle icon
 	 *
 	 * @since  1.0.0
+	 * @deprecated 1.2.3
+	 *
 	 * @return void
 	 */
 	function shapla_search_toggle() {
-		_deprecated_function( 'shapla_search_toggle', '1.2.3' );
+		_deprecated_function( __FUNCTION__, '1.2.3' );
 
 		$show_search_icon = get_theme_mod( 'show_search_icon' );
 		$header_layout    = get_theme_mod( 'header_layout', 'default' );
@@ -141,10 +143,12 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 	 * Shapla Search form
 	 *
 	 * @since  1.0.0
+	 * @deprecated 1.2.3
+	 *
 	 * @return void
 	 */
 	function shapla_search_form() {
-		_deprecated_function( 'shapla_search_form', '1.2.3' );
+		_deprecated_function( __FUNCTION__, '1.2.3' );
 
 		$show_search_icon = get_theme_mod( 'show_search_icon' );
 		$header_layout    = get_theme_mod( 'header_layout', 'default' );
@@ -248,21 +252,19 @@ if ( ! function_exists( 'shapla_site_info' ) ) {
 	 * @return void
 	 */
 	function shapla_site_info() {
+		$default        = shapla_footer_credits();
 		$copyright_text = get_theme_mod( 'site_copyright_text' );
+		$class          = 'site-info';
+		$class          .= has_nav_menu( 'social-nav' ) ? ' has-social-icons' : ' no-social-icons';
 		?>
-        <div class="site-info">
+        <div class="<?php echo esc_attr( $class ); ?>">
 			<?php
-			if ( $copyright_text ):
-				echo $copyright_text;
-			else:
-				?>
-                <a href="<?php echo esc_url( __( 'https://wordpress.org/',
-					'shapla' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'shapla' ),
-						'WordPress' ); ?></a>
-                <span class="sep"> | </span>
-				<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'shapla' ), 'shapla',
-				'<a href="https://sayfulislam.com/" rel="designer">Sayful Islam</a>' ); ?>
-			<?php endif; ?>
+			if ( ! empty( $copyright_text ) ) {
+				echo wp_kses_post( $copyright_text );
+			} else {
+				echo wp_kses_post( $default );
+			}
+			?>
         </div><!-- .site-info -->
 		<?php
 	}
