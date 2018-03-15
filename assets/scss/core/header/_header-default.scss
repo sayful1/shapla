@@ -1,121 +1,130 @@
 .site-header {
-    box-shadow: 0 1px 0 rgba(#000, 0.1);
-    background-color: $color--white;
-    color: $color--dark_grey;
-    width: 100%;
-    z-index: 100;
-    transition: all 0.5s ease-in-out;
+	box-shadow: 0 1px 0 rgba(#000, 0.1);
+	background-color: $color--white;
+	color: $color--dark_grey;
+	width: 100%;
+	z-index: 100;
+	transition: all 0.5s ease-in-out;
 
-    @media screen and (min-width: $nav-toggle-width) {
-        &.is-sticky {
-            box-shadow: 0 3px 3px rgba(#000, 0.25);
-            position: fixed;
-            top: 0;
+	@media screen and (min-width: $nav-toggle-width) {
+		// The sticky class is added to the header with JS when it reaches its scroll position
+		&.is-sticky {
+			box-shadow: 0 3px 3px rgba(#000, 0.25);
+			position: fixed;
+			top: 0;
 
-            .admin-bar & {
-                top: 32px;
-            }
-        }
-    }
+			.admin-bar & {
+				top: 32px;
+			}
 
-    a {
-        color: $color--dark_grey;
-        text-decoration: none;
+			// Add some top padding to the page content
+			// to prevent sudden quick movement as the header gets a new position at the top of the page
+			// (position:fixed and top:0)
+			+ .page-title-bar,
+			+ .site-content {
+				padding-top: 100px;
+			}
+		}
+	}
 
-        &:hover,
-        &:focus {
-            color: $color--dark_grey;
-        }
-    }
+	a {
+		color: $color--dark_grey;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			color: $color--dark_grey;
+		}
+	}
 }
 
 .site-branding {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 
-    .custom-logo {
-        max-height: 2.5rem;
-        width: auto;
-    }
+	.custom-logo {
+		max-height: 2.5rem;
+		width: auto;
+	}
 }
 
 .site-title {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin: 0;
-    font-weight: normal;
+	font-size: 2rem;
+	line-height: 1.2;
+	margin: 0;
+	font-weight: normal;
 
-    > a {
-        color: $color--dark_grey;
-        text-decoration: none;
-        display: block;
-    }
+	> a {
+		color: $color--dark_grey;
+		text-decoration: none;
+		display: block;
+	}
 }
 
 .site-description {
-    margin: 0.5rem 0 0;
-    font-size: 0.875rem;
-    opacity: 0.8;
-    line-height: 1.2;
+	margin: 0.5rem 0 0;
+	font-size: 0.875rem;
+	opacity: 0.8;
+	line-height: 1.2;
 }
 
 // Search form
 .search-toggle {
-    i.fa-search {
-        cursor: pointer;
-        font-size: 0.875rem;
-        padding: 0.75rem;
-    }
+	i.fa-search {
+		cursor: pointer;
+		font-size: 0.875rem;
+		padding: 0.75rem;
+	}
 }
 
 //== Header layout
 .site-header-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
 
-    .site-branding,
-    .menu-toggle,
-    .main-navigation,
-    .search-toggle {
-        flex: 0 0 auto;
-    }
+	.site-branding,
+	.menu-toggle,
+	.main-navigation,
+	.search-toggle {
+		flex: 0 0 auto;
+	}
 
-    .site-branding {
-        order: 1;
-    }
-    .search-toggle {
-        order: 2;
-        margin: 1rem 0.5rem 1rem auto;
-    }
-    .menu-toggle {
-        order: 3;
-    }
-    .main-navigation {
-        order: 4;
-        margin-left: auto;
-        flex: 0 0 100%;
-    }
+	.site-branding {
+		order: 1;
+	}
+	.search-toggle {
+		order: 2;
+		margin: 1rem 0.5rem 1rem auto;
+	}
+	.menu-toggle {
+		order: 3;
+	}
+	.main-navigation {
+		order: 4;
+		margin-left: auto;
+		flex: 0 0 100%;
+	}
 
-    // media screen >= 1025px
-    @media screen and (min-width: $nav-toggle-width) {
-        .site-branding {
-            order: 1;
-        }
-        .menu-toggle {
-            order: 2;
-        }
-        .main-navigation {
-            display: block;
-            order: 3;
-            margin-left: auto;
-            flex: 0 0 auto;
-        }
-        .search-toggle {
-            order: 4;
-            margin: 1rem 0 1rem 0.5rem;
-        }
-    }
+	// media screen >= 1025px
+	@media screen and (min-width: $nav-toggle-width) {
+		.site-branding {
+			order: 1;
+		}
+		.menu-toggle {
+			order: 2;
+		}
+		.main-navigation {
+			display: block;
+			order: 3;
+			margin-left: auto;
+			flex: 0 0 auto;
+		}
+		.search-toggle {
+			order: 4;
+			margin: 1rem 0 1rem 0.5rem;
+		}
+	}
 }
 

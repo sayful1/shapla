@@ -79,8 +79,8 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 		 * @return mixed
 		 */
 		public function default_settings( $options ) {
-			$btn_bg_default   = shapla_default_options()->primary_button->background;
-			$btn_text_default = shapla_default_options()->primary_button->text;
+			$btn_bg_default   = shapla_default_options()->button_primary_background_color;
+			$btn_text_default = shapla_default_options()->button_primary_text_color;
 			$heading_color    = get_theme_mod( 'typography_heading_color', shapla_default_options()->heading_color );
 			$btn_bg           = get_theme_mod( 'button_primary_background_color', $btn_bg_default );
 			$btn_text         = get_theme_mod( 'button_primary_text_color', $btn_text_default );
