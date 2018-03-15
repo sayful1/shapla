@@ -1,3 +1,6 @@
+#### 1.4.3 - March ##, 2018
+* Fixed - Fixed some typography issue.
+
 #### 1.4.2 - March 13, 2018
 * Fixed - Site title show on left on header center layout.
 * Tweak - Change handle id from font-awesome to shapla-icons to remove conflict between version 4 and version 5.
