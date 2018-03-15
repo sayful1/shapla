@@ -1,6 +1,5 @@
 #### 1.4.3 - March 15, 2018
 * Fixed - Fixed some typography issue.
-* Fixed - Fixed sudden quick movement for sticky header.
 * Fixed - Fixed Carousel Slider default value PHP warning.
 
 #### 1.4.2 - March 13, 2018
