@@ -1,89 +1,84 @@
 .hentry {
-    .entry-meta {
-        a {
-            color: $color__text-main;
+	.entry-meta {
+		a {
+			color: $color__text-main;
 
-            &:hover {
-                text-decoration: underline;
-            }
-        }
+			&:hover {
+				text-decoration: underline;
+			}
+		}
 
-        .posted-on,
-        .byline,
-        .cat-links,
-        .tags-links,
-        .comments-link,
-        .edit-link {
-            display: block;
-            margin-bottom: 15px;
-            .label:before {
-                padding-right: 5px;
-                font-family: FontAwesome;
-                font-style: normal;
-                font-weight: $text-font-weight;
-                font-size: 14px;
-                line-height: 1;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-            }
-        }
+		.posted-on,
+		.byline,
+		.cat-links,
+		.tags-links,
+		.comments-link,
+		.edit-link {
+			display: block;
+			margin-bottom: 15px;
 
-        .published:not(.updated) {
-            display: none;
-        }
+			.label:before {
+				@include fa-icon;
+				padding-right: 5px;
+			}
+		}
 
-        .byline {
-            .vcard {
-                margin-bottom: 15px;
-            }
-        }
+		.published:not(.updated) {
+			display: none;
+		}
 
-        .cat-links a {
-            display: block;
-        }
+		.byline {
+			.vcard {
+				margin-bottom: 15px;
+			}
+		}
 
-        .posted-on .label:before {
-            content: "\f133";
-        }
-        .byline .label:before {
-            content: "\f2c0";
-        }
-        .cat-links .label:before {
-            content: "\f114";
-        }
-        .tags-links .label:before {
-            content: "\f02c";
-        }
-        .comments-link .label:before {
-            content: "\f0e5";
-        }
-        .edit-link .label:before {
-            content: "\f044";
-        }
-    }
+		.cat-links a {
+			display: block;
+		}
+
+		.posted-on .label:before {
+			content: "\f133"; // fa-calendar-o
+		}
+		.byline .label:before {
+			content: "\f2c0"; // fa-user-o
+		}
+		.cat-links .label:before {
+			content: "\f114"; // fa-folder-o
+		}
+		.tags-links .label:before {
+			content: "\f02c"; // fa-tags
+		}
+		.comments-link .label:before {
+			content: "\f0e5"; // fa-comment-o
+		}
+		.edit-link .label:before {
+			content: "\f040"; // fa-pencil
+		}
+	}
 }
 
 @media only screen and (max-width: $screen-md - 1px) {
-    .hentry {
-        .entry-meta {
-            .byline {
-                .vcard {
-                    display: none;
-                }
-            }
-            .posted-on,
-            .byline,
-            .cat-links,
-            .tags-links,
-            .comments-link,
-            .edit-link {
-                .label {
-                    display: inline;
-                }
-            }
-            .cat-links a {
-                display: inline;
-            }
-        }
-    }
+	.hentry {
+		.entry-meta {
+			.byline {
+				.vcard {
+					display: none;
+				}
+			}
+			.posted-on,
+			.byline,
+			.cat-links,
+			.tags-links,
+			.comments-link,
+			.edit-link {
+				.label {
+					display: inline;
+				}
+			}
+			.cat-links a {
+				display: inline;
+			}
+		}
+	}
 }

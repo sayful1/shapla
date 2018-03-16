@@ -1,167 +1,167 @@
 .site-header,
 .footer-widget-area,
 .site-footer {
-    .shapla-container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+	.shapla-container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
 }
 
 .shapla-container {
-    margin-right: auto;
-    margin-left: auto;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .site-content {
-    margin-right: auto;
-    margin-left: auto;
+	margin-right: auto;
+	margin-left: auto;
 
-    .content-area,
-    .widget-area {
-        width: 100%;
-        padding: 2rem 1rem;
-    }
+	.content-area,
+	.widget-area {
+		width: 100%;
+		padding: 2rem 1rem;
+	}
 }
 
 .hentry.type-post {
-    .entry-meta,
-    .entry-content {
-        width: 100%;
-    }
+	.entry-meta,
+	.entry-content {
+		width: 100%;
+	}
 }
 
 .full-width {
-    .site-content {
-        .content-area {
-            width: 100%;
-            margin-right: 0;
-        }
-        .widget-area {
-            display: none;
-        }
-    }
+	.site-content {
+		.content-area {
+			width: 100%;
+			margin-right: 0;
+		}
+		.widget-area {
+			display: none;
+		}
+	}
 }
 
 .full-screen {
-    .site-content {
-        .site-content-inner,
-        .shapla-container,
-        .content-area {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
+	.site-content {
+		.site-content-inner,
+		.shapla-container,
+		.content-area {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+		}
 
-        .widget-area {
-            display: none;
-        }
-    }
+		.widget-area {
+			display: none;
+		}
+	}
 }
 
 @media screen and (min-width: $screen-sm) {
-    .shapla-container {
-        width: 540px;
-        max-width: 100%;
-    }
+	.shapla-container {
+		width: 540px;
+		max-width: 100%;
+	}
 
-    .site-header,
-    .footer-widget-area,
-    .site-footer {
-        .shapla-container {
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
+	.site-header,
+	.footer-widget-area,
+	.site-footer {
+		.shapla-container {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
 
-    .site-content {
-        .content-area,
-        .widget-area {
-            padding: 2rem 0;
-        }
-    }
+	.site-content {
+		.content-area,
+		.widget-area {
+			padding: 2rem 0 1.125rem;
+		}
+	}
 }
 
 @media screen and (min-width: $screen-md) {
-    .shapla-container {
-        width: 720px;
-        max-width: 100%;
-    }
+	.shapla-container {
+		width: 720px;
+		max-width: 100%;
+	}
 
-    .site-content {
-        .content-area {
-            width: 100%;
-            float: none;
-        }
-        .widget-area {
-            width: 100%;
-            float: none;
-        }
-    }
+	.site-content {
+		.content-area {
+			width: 100%;
+			float: none;
+		}
+		.widget-area {
+			width: 100%;
+			float: none;
+		}
+	}
 
-    .left-sidebar {
-        .site-content {
-            .content-area {
-                width: 100%;
-            }
-            .widget-area {
-                width: 100%;
-            }
-        }
-    }
+	.left-sidebar {
+		.site-content {
+			.content-area {
+				width: 100%;
+			}
+			.widget-area {
+				width: 100%;
+			}
+		}
+	}
 
-    .hentry.type-post {
-        .entry-meta {
-            width: 25%;
-            margin-right: 2rem;
-            float: left;
-        }
-        .entry-content {
-            width: calc(75% - 2rem);
-            float: right;
-        }
-    }
+	.hentry.type-post {
+		.entry-meta {
+			width: 25%;
+			margin-right: 2rem;
+			float: left;
+		}
+		.entry-content {
+			width: calc(75% - 2rem);
+			float: right;
+		}
+	}
 }
 
 @media screen and (min-width: $screen-lg) {
-    .shapla-container {
-        width: 960px;
-        max-width: 100%;
-    }
+	.shapla-container {
+		width: 960px;
+		max-width: 100%;
+	}
 
-    .site-content {
-        .site-content-inner {
-            margin-left: -1rem;
-            margin-right: -1rem;
-        }
-        .content-area {
-            width: 75%;
-            float: left;
-            padding: 2rem 1rem;
-        }
-        .widget-area {
-            width: 25%;
-            float: right;
-            padding: 2rem 1rem;
-        }
-    }
+	.site-content {
+		.site-content-inner {
+			margin-left: -1rem;
+			margin-right: -1rem;
+		}
+		.content-area {
+			width: 75%;
+			float: left;
+			padding: 2rem 1rem;
+		}
+		.widget-area {
+			width: 25%;
+			float: right;
+			padding: 2rem 1rem 1.125rem;
+		}
+	}
 
-    .left-sidebar {
-        .site-content {
-            .content-area {
-                width: 75%;
-                float: right;
-            }
-            .widget-area {
-                width: 25%;
-                float: left;
-            }
-        }
-    }
+	.left-sidebar {
+		.site-content {
+			.content-area {
+				width: 75%;
+				float: right;
+			}
+			.widget-area {
+				width: 25%;
+				float: left;
+			}
+		}
+	}
 }
 
 @media screen and (min-width: $screen-xl) {
-    .shapla-container {
-        width: 1140px;
-        max-width: 100%;
-    }
+	.shapla-container {
+		width: 1140px;
+		max-width: 100%;
+	}
 }

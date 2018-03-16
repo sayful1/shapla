@@ -1,6 +1,7 @@
 #### 1.4.3 - March 15, 2018
 * Fixed - Fixed some typography issue.
 * Fixed - Fixed Carousel Slider default value PHP warning.
+* Tweak - Update style for comments, reviews, star rating and some others.
 
 #### 1.4.2 - March 13, 2018
 * Fixed - Site title show on left on header center layout.

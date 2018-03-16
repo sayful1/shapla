@@ -1,89 +1,90 @@
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    display: table;
-    background-color: $table-background-color;
-    border: 1px solid $table-border-color;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	display: table;
+	background-color: $table-background-color;
+	border: 1px solid $table-border-color;
+	margin-bottom: 1.25rem;
 
-    tr {
-        border-bottom: 1px solid $table-border-color;
-    }
+	tr {
+		border-bottom: 1px solid $table-border-color;
+	}
 
-    thead {
-        tr {
-            background-color: $table-background-color-thead;
-        }
-    }
+	thead {
+		tr {
+			background-color: $table-background-color-thead;
+		}
+	}
 
-    tbody {
-        // Zebra-striping
-        tr {
-            &:nth-child(odd) {
-                background-color: $table-background-color-odd;
-            }
-            &:nth-child(even) {
-                background-color: $table-background-color-even;
-            }
-        }
-    }
+	tbody {
+		// Zebra-striping
+		tr {
+			&:nth-child(odd) {
+				background-color: $table-background-color-odd;
+			}
+			&:nth-child(even) {
+				background-color: $table-background-color-even;
+			}
+		}
+	}
 
-    tfoot {
-        tr {
-            background-color: $table-background-color-tfoot;
-        }
-    }
+	tfoot {
+		tr {
+			background-color: $table-background-color-tfoot;
+		}
+	}
 
-    th {
-        font-weight: $headings-font-weight;
-    }
+	th {
+		font-weight: $headings-font-weight;
+	}
 
-    td,
-    th {
-        padding: $table-cell-padding;
-        display: table-cell;
-        text-align: left;
-        vertical-align: top;
-    }
+	td,
+	th {
+		padding: $table-cell-padding;
+		display: table-cell;
+		text-align: left;
+		vertical-align: middle;
+	}
 }
 
 .table-responsive {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
+	display: block;
+	width: 100%;
+	overflow-x: auto;
 }
 
 @media only screen and (max-width: $screen-md - 1px) {
-    .table-responsive-small {
-        overflow-x: hidden;
+	.table-responsive-small {
+		overflow-x: hidden;
 
-        table {
-            thead,
-            tbody th {
-                display: none;
-            }
+		table {
+			thead,
+			tbody th {
+				display: none;
+			}
 
-            tbody {
-                tr {
-                    &:first-child,
-                    &:last-child {
-                        border-bottom: 0;
-                    }
-                }
-            }
+			tbody {
+				tr {
+					&:first-child,
+					&:last-child {
+						border-bottom: 0;
+					}
+				}
+			}
 
-            tr {
-                td {
-                    display: block;
-                    text-align: right;
+			tr {
+				td {
+					display: block;
+					text-align: right;
 
-                    &::before {
-                        content: attr(data-title) ': ';
-                        font-weight: $headings-font-weight;
-                        float: left;
-                    }
-                }
-            }
-        }
-    }
+					&::before {
+						content: attr(data-title) ': ';
+						font-weight: $headings-font-weight;
+						float: left;
+					}
+				}
+			}
+		}
+	}
 }
