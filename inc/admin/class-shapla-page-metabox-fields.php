@@ -40,13 +40,31 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 				'priority' => 'high',
 				'fields'   => array(
 					array(
-						'type'        => 'checkbox',
+						'type'        => 'buttonset',
 						'id'          => 'hide_page_title',
-						'label'       => __( 'Hide Page Title', 'shapla' ),
-						'description' => __( 'Check to hide title for current page.', 'shapla' ),
-						'default'     => 'off',
+						'label'       => __( 'Page Title Bar', 'shapla' ),
+						'description' => __( 'Controls title for current page.', 'shapla' ),
 						'priority'    => 10,
 						'section'     => 'page_title_bar',
+						'default'     => 'off',
+						'choices'     => array(
+							'off' => __( 'Show', 'shapla' ),
+							'on'  => __( 'Hide', 'shapla' ),
+						)
+					),
+					array(
+						'type'        => 'buttonset',
+						'id'          => 'show_breadcrumbs',
+						'label'       => __( 'Breadcrumbs', 'shapla' ),
+						'description' => __( 'Controls breadcrumbs for current page.', 'shapla' ),
+						'priority'    => 20,
+						'section'     => 'page_title_bar',
+						'default'     => 'default',
+						'choices'     => array(
+							'default' => __( 'Default', 'shapla' ),
+							'on'      => __( 'Show', 'shapla' ),
+							'off'     => __( 'Hide', 'shapla' ),
+						)
 					),
 				)
 			);

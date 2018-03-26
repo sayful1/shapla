@@ -155,6 +155,9 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 					case 'checkbox':
 						$this->checkbox( $field, $name, $value );
 						break;
+					case 'buttonset':
+						$this->buttonset( $field, $name, $value );
+						break;
 					case 'text':
 					case 'email':
 					case 'number':
@@ -315,7 +318,10 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			return array(
 				'text',
 				'number',
+				'email',
+				'url',
 				'checkbox',
+				'buttonset',
 			);
 		}
 
@@ -352,7 +358,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 * @param $value
 		 */
 		private function text( $field, $name, $value ) {
-			$valid_type = array( 'text', 'email', 'number', 'url', 'search', 'time' );
+			$valid_type = array( 'text', 'email', 'number', 'url' );
 			$type       = in_array( $value['type'], $valid_type ) ? esc_attr( $value['type'] ) : 'text';
 			echo '<input type="' . $type . '" id="' . $field['id'] . '" class="' . $field['field_class'] . '" name="' . $name . '" value="' . $value . '" />';
 		}
@@ -367,6 +373,25 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			echo '<input type="hidden" name="' . $name . '" value="off">';
 			echo '<label for="' . $field['id'] . '">';
 			echo '<input type="checkbox" value="on" id="' . $field['id'] . '" name="' . $name . '" ' . $checked . '><span>' . $field['label'] . '</span></label>';
+		}
+
+		/**
+		 * @param $field
+		 * @param $name
+		 * @param $value
+		 */
+		private function buttonset( $field, $name, $value ) {
+			?>
+            <div id="<?php echo $field['id']; ?>" class="buttonset">
+				<?php foreach ( $field['choices'] as $key => $title ) { ?>
+                    <input class="switch-input screen-reader-text" type="radio" value="<?php echo esc_attr( $key ); ?>"
+                           name="<?php echo $name; ?>"
+                           id="<?php echo $field['id'] . '-' . $key ?>" <?php checked( $key, $value ); ?> />
+                    <label class="switch-label switch-label-<?php echo ( $key == $value ) ? 'on' : 'off' ?>"
+                           for="<?php echo $field['id'] . '-' . $key ?>"><?php echo $title; ?></label>
+				<?php } ?>
+            </div>
+			<?php
 		}
 	}
 }

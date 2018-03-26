@@ -793,6 +793,16 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 			$class .= ' is-hidden';
 		}
 
+		if ( is_page() || is_single() ) {
+			global $post;
+			$page_options = get_post_meta( $post->ID, '_shapla_page_options', true );
+			if ( ! empty( $page_options['show_breadcrumbs'] ) && 'default' != $page_options['show_breadcrumbs'] ) {
+				if ( ! Shapla_Sanitize::checked( $page_options['show_breadcrumbs'] ) ) {
+					$class .= ' is-hidden';
+				}
+			}
+		}
+
 		$args = apply_filters( 'shapla_wc_breadcrumb', array(
 			'delimiter'   => '',
 			'wrap_before' => '<nav class="' . $class . '"><ul>',
