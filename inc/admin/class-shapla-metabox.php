@@ -51,6 +51,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				self::$instance = new self();
 
 				add_action( 'admin_enqueue_scripts', array( __CLASS__, 'meta_box_style' ) );
+				add_action( 'admin_print_footer_scripts', array( __CLASS__, 'meta_box_script' ), 90 );
 			}
 
 			return self::$instance;
@@ -71,6 +72,20 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				'shapla-metabox',
 				get_template_directory_uri() . '/assets/css/admin.css'
 			);
+
+			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'jquery-ui-tabs' );
+		}
+
+		public static function meta_box_script() {
+			?>
+            <script>
+                (function ($) {
+                    $("#shapla-metabox-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+                    $("#shapla-metabox-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+                })(jQuery);
+            </script>
+			<?php
 		}
 
 		/**
@@ -95,7 +110,9 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				'priority' => isset( $options['priority'] ) ? esc_attr( $options['priority'] ) : 'low',
 			) );
 
-			$this->fields = $options['fields'];
+			$this->panels   = isset( $options['panels'] ) ? $options['panels'] : array();
+			$this->sections = isset( $options['sections'] ) ? $options['sections'] : array();
+			$this->fields   = isset( $options['fields'] ) ? $options['fields'] : array();
 
 			$config = $this->getConfig();
 
@@ -124,53 +141,78 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			wp_nonce_field( basename( __FILE__ ), '_shapla_nonce' );
 
 			$values = (array) get_post_meta( $post->ID, $this->option_name, true );
+			$panels = $this->getPanels();
 
-			echo '<table class="form-table shapla-metabox-table">';
-			foreach ( $this->getFields() as $_field ) {
+			?>
+            <div class="shapla-tabs-wrapper">
+                <div id="shapla-metabox-tabs" class="shapla-tabs">
+                    <ul class="shapla-tabs-list">
+						<?php
+						foreach ( $panels as $panel ) {
+							echo '<li><a href="#tab-' . $panel['id'] . '"><span>' . $panel['title'] . '</span></a></li>';
+						}
+						?>
+                    </ul>
+					<?php foreach ( $panels as $panel ) { ?>
+                        <div id="tab-<?php echo esc_attr( $panel['id'] ); ?>" class="shapla_options_panel">
+                            <!--<h2 class="title"><?php echo $panel['title']; ?></h2>-->
+							<?php
+							$sections = $this->getSections( $panel['id'] );
+							foreach ( $sections as $section ) {
+								$fields = $this->getFields( $section['id'] );
+								echo '<table class="form-table shapla-metabox-table">';
+								foreach ( $fields as $_field ) {
 
-				$field = self::sanitizeField( $_field );
-				$name  = $this->option_name . '[' . $field['id'] . ']';
+									$field = self::sanitizeField( $_field );
+									$name  = $this->option_name . '[' . $field['id'] . ']';
 
-				$value = empty( $values[ $field['id'] ] ) ? $field['default'] : $values[ $field['id'] ];
+									$value = empty( $values[ $field['id'] ] ) ? $field['default'] : $values[ $field['id'] ];
 
-				if ( ! isset( $values[ $field['id'] ] ) ) {
-					$meta  = get_post_meta( $post->ID, $field['id'], true );
-					$value = empty( $meta ) ? $field['default'] : $meta;
-				}
+									if ( ! isset( $values[ $field['id'] ] ) ) {
+										$meta  = get_post_meta( $post->ID, $field['id'], true );
+										$value = empty( $meta ) ? $field['default'] : $meta;
+									}
 
-				echo '<tr>';
+									echo '<tr>';
 
-				echo '<th>';
+									echo '<th>';
 
-				echo '<label for="' . $field['id'] . '">';
-				echo '<strong>' . $field['label'] . '</strong>';
-				if ( ! empty( $field['description'] ) ) {
-					echo '<span>' . $field['description'] . '</span>';
-				}
-				echo '</label>';
-				echo '</th>';
+									echo '<label for="' . $field['id'] . '">';
+									echo '<strong>' . $field['label'] . '</strong>';
+									if ( ! empty( $field['description'] ) ) {
+										echo '<span>' . $field['description'] . '</span>';
+									}
+									echo '</label>';
+									echo '</th>';
 
-				echo '<td>';
-				switch ( $field['type'] ) {
-					case 'checkbox':
-						$this->checkbox( $field, $name, $value );
-						break;
-					case 'buttonset':
-						$this->buttonset( $field, $name, $value );
-						break;
-					case 'text':
-					case 'email':
-					case 'number':
-					case 'url':
-						$this->text( $field, $name, $value );
-						break;
-				}
-				echo '</td>';
+									echo '<td>';
+									switch ( $field['type'] ) {
+										case 'checkbox':
+											$this->checkbox( $field, $name, $value );
+											break;
+										case 'buttonset':
+											$this->buttonset( $field, $name, $value );
+											break;
+										case 'text':
+										case 'email':
+										case 'number':
+										case 'url':
+											$this->text( $field, $name, $value );
+											break;
+									}
+									echo '</td>';
 
-				echo '</tr>';
-			}
+									echo '</tr>';
+								}
 
-			echo '</table>';
+								echo '</table>';
+							}
+							?>
+                        </div>
+					<?php } ?>
+                </div>
+            </div>
+			<?php
 		}
 
 		/**
@@ -218,7 +260,23 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 * @return array
 		 */
 		public function getPanels() {
-			return $this->panels;
+			$panels = [];
+
+			foreach ( $this->panels as $panel ) {
+				$panels[] = wp_parse_args( $panel, [
+					'id'          => '',
+					'title'       => '',
+					'description' => '',
+					'priority'    => 200,
+				] );
+			}
+
+			// Sort by priority
+			usort( $panels, function ( $a, $b ) {
+				return $a['priority'] - $b['priority'];
+			} );
+
+			return $panels;
 		}
 
 		/**
@@ -233,10 +291,42 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
+		 * Get sections for current panel
+		 *
+		 * @param string $panel
+		 *
 		 * @return array
 		 */
-		public function getSections() {
-			return $this->sections;
+		public function getSections( $panel = '' ) {
+			$sections = [];
+
+			foreach ( $this->sections as $section ) {
+				$sections[] = wp_parse_args( $section, [
+					'id'          => '',
+					'title'       => '',
+					'description' => '',
+					'panel'       => '',
+					'priority'    => 200,
+				] );
+			}
+
+			// Sort by priority
+			usort( $sections, function ( $a, $b ) {
+				return $a['priority'] - $b['priority'];
+			} );
+
+			if ( empty( $panel ) ) {
+				return $sections;
+			}
+
+			$current_panel = [];
+			foreach ( $sections as $section ) {
+				if ( $section['panel'] == $panel ) {
+					$current_panel[] = $section;
+				}
+			}
+
+			return $current_panel;
 		}
 
 		/**
@@ -251,10 +341,37 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
+		 * @param string $section
+		 *
 		 * @return array
 		 */
-		public function getFields() {
-			return $this->fields;
+		public function getFields( $section = '' ) {
+			$fields = [];
+
+			foreach ( $this->fields as $field ) {
+				if ( ! isset( $field['priority'] ) ) {
+					$field['priority'] = 200;
+				}
+				$fields[] = $field;
+			}
+
+			// Sort by priority
+			usort( $fields, function ( $a, $b ) {
+				return $a['priority'] - $b['priority'];
+			} );
+
+			if ( empty( $section ) ) {
+				return $fields;
+			}
+
+			$current_field = [];
+			foreach ( $fields as $field ) {
+				if ( $field['section'] == $section ) {
+					$current_field[] = $field;
+				}
+			}
+
+			return $current_field;
 		}
 
 		/**

@@ -34,7 +34,7 @@
 		}
 	}
 
-	td {
+	th, td {
 		padding: 8px 10px;
 	}
 }
@@ -78,6 +78,141 @@
 			+ .switch-label {
 				background-color: #3498DB;
 				color: #fff;
+			}
+		}
+	}
+}
+
+// Tabs
+.shapla-tabs-wrapper {
+	display: block;
+	overflow: hidden;
+	background: #fff;
+	margin: -6px -12px -12px;
+	padding: 0;
+	@include clearfix;
+}
+
+.shapla-tabs {
+	ul.shapla-tabs-list {
+		margin: 0;
+		width: 20%;
+		float: left;
+		line-height: 1em;
+		padding: 0 0 10px;
+		position: relative;
+		background-color: #fafafa;
+		border-right: 1px solid #eee;
+		box-sizing: border-box;
+
+		&::after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 9999em;
+			position: absolute;
+			bottom: -9999em;
+			left: 0;
+			background-color: #fafafa;
+			border-right: 1px solid #eee;
+		}
+
+		li {
+			margin: 0;
+			padding: 0;
+			display: block;
+			position: relative;
+
+			a {
+				margin: 0;
+				padding: 10px;
+				display: block;
+				box-shadow: none;
+				text-decoration: none;
+				line-height: 20px !important;
+				border-bottom: 1px solid #eee;
+
+				span {
+					margin-left: 0.618em;
+					margin-right: 0.618em;
+				}
+
+				&::before {
+					@include iconbeforedashicons('\f107');
+				}
+			}
+
+			&.ui-tabs-active {
+				a {
+					color: #555;
+					position: relative;
+					background-color: #eee;
+				}
+			}
+
+			&.general_options a::before {
+				content: '\f107';
+			}
+
+			&.inventory_options a::before {
+				content: '\f481';
+			}
+
+			&.linked_product_options a::before {
+				content: '\f103';
+			}
+
+			&.attribute_options a::before {
+				content: '\f175';
+			}
+
+			&.advanced_options a::before {
+				font-family: 'Dashicons';
+				content: '\f111';
+			}
+
+			&.variations_options a::before {
+				content: '\f509';
+			}
+
+			&.active a {
+				color: #555;
+				position: relative;
+				background-color: #eee;
+			}
+		}
+	}
+
+	.shapla_options_panel {
+		float: left;
+		width: 80%;
+		min-height: 175px;
+		box-sizing: border-box;
+		padding: 0;
+		color: #555;
+	}
+
+	@media only screen and (max-width: 900px) {
+		ul.shapla-tabs-list {
+			width: 10%;
+
+			li a {
+				position: relative;
+				text-indent: -999px;
+				padding: 10px;
+
+				&::before {
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					text-indent: 0;
+					text-align: center;
+					line-height: 40px;
+					width: 100%;
+					height: 40px;
+				}
 			}
 		}
 	}

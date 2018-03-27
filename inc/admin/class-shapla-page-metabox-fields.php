@@ -32,12 +32,28 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 		 * Adds the meta box container.
 		 */
 		public function add_meta_boxes() {
+			$metabox = Shapla_Metabox::instance();
 			$options = array(
 				'id'       => 'shapla-page-options',
 				'title'    => __( 'Page Options', 'shapla' ),
 				'screen'   => 'page',
 				'context'  => 'normal',
 				'priority' => 'high',
+				'panels'   => array(
+					array(
+						'id'       => 'page_title_bar_panel',
+						'title'    => __( 'Page Title Bar', 'shapla' ),
+						'priority' => 10,
+					),
+				),
+				'sections' => array(
+					array(
+						'id'       => 'page_title_bar_section',
+						'title'    => __( 'Page Title Bar', 'shapla' ),
+						'panel'    => 'page_title_bar_panel',
+						'priority' => 10,
+					),
+				),
 				'fields'   => array(
 					array(
 						'type'        => 'buttonset',
@@ -45,7 +61,7 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'label'       => __( 'Page Title Bar', 'shapla' ),
 						'description' => __( 'Controls title for current page.', 'shapla' ),
 						'priority'    => 10,
-						'section'     => 'page_title_bar',
+						'section'     => 'page_title_bar_section',
 						'default'     => 'off',
 						'choices'     => array(
 							'off' => __( 'Show', 'shapla' ),
@@ -58,7 +74,7 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'label'       => __( 'Breadcrumbs', 'shapla' ),
 						'description' => __( 'Controls breadcrumbs for current page.', 'shapla' ),
 						'priority'    => 20,
-						'section'     => 'page_title_bar',
+						'section'     => 'page_title_bar_section',
 						'default'     => 'default',
 						'choices'     => array(
 							'default' => __( 'Default', 'shapla' ),
@@ -69,7 +85,7 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 				)
 			);
 
-			Shapla_Metabox::instance()->add( $options );
+			$metabox->add( $options );
 		}
 	}
 }

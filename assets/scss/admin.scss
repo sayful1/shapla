@@ -3,6 +3,9 @@
  * Theme Name: Shapla
  * Description: Used to style shapla theme page
  */
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "utilities/functions";
 @import "admin/about";
 @import "admin/meta-box";
 @import "admin/tiptip";
