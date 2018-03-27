@@ -149,7 +149,10 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
                     <ul class="shapla-tabs-list">
 						<?php
 						foreach ( $panels as $panel ) {
-							echo '<li><a href="#tab-' . $panel['id'] . '"><span>' . $panel['title'] . '</span></a></li>';
+							$class = ! empty( $panel['class'] ) ? $panel['class'] : $panel['id'];
+							echo '<li class="' . esc_attr( $class ) . '">';
+							echo '<a href="#tab-' . esc_attr( $panel['id'] ) . '"><span>' . esc_html( $panel['title'] ) . '</span></a>';
+							echo '</li>';
 						}
 						?>
                     </ul>
@@ -267,6 +270,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 					'id'          => '',
 					'title'       => '',
 					'description' => '',
+					'class'       => '',
 					'priority'    => 200,
 				] );
 			}

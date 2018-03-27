@@ -150,29 +150,53 @@
 				}
 			}
 
-			&.general_options a::before {
-				content: '\f107';
+			&.sliders_panel,
+			&.page_panel,
+			&.header_panel,
+			&.footer_panel,
+			&.sidebar_panel,
+			&.background_panel,
+			&.import_export_panel,
+			&.page_title_bar_panel {
+				a::before {
+					content: ' ';
+					display: inline-block;
+					height: 1em;
+					width: 1em;
+					vertical-align: middle;
+				}
 			}
 
-			&.inventory_options a::before {
-				content: '\f481';
+			&.sliders_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M4 8v20h28v-20h-28zM30 24.667l-4-6.667-4.533 3.778-3.467-5.778-12 10v-16h24v14.667zM8 15c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM28 4h-28v20h2v-18h26z"></path></svg>');
 			}
 
-			&.linked_product_options a::before {
-				content: '\f103';
+			&.page_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M28.232 6.232l-4.465-4.464c-0.972-0.972-2.893-1.768-4.268-1.768h-15c-1.375 0-2.5 1.125-2.5 2.5v27c0 1.375 1.125 2.5 2.5 2.5h23c1.375 0 2.5-1.125 2.5-2.5v-19c0-1.375-0.796-3.296-1.768-4.268zM26.818 7.646c0.098 0.098 0.195 0.218 0.29 0.354h-5.108v-5.108c0.136 0.095 0.256 0.192 0.354 0.29l4.465 4.464zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5h15c0.151 0 0.32 0.019 0.5 0.053v7.947h7.947c0.034 0.18 0.053 0.349 0.053 0.5v19z"></path></svg>');
 			}
 
-			&.attribute_options a::before {
-				content: '\f175';
+			&.header_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M3 4v25h25v-25h-25zM27 28h-23v-17h23v17zM27 10h-23v-5h23v5z"></path></svg>');
 			}
 
-			&.advanced_options a::before {
-				font-family: 'Dashicons';
-				content: '\f111';
+			&.footer_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M3 28v-25h25v25h-25zM27 4h-23v17h23v-17zM27 22h-23v5h23v-5z"></path></svg>');
 			}
 
-			&.variations_options a::before {
-				content: '\f509';
+			&.sidebar_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M3 4v25h25v-25h-25zM19 28h-15v-23h15v23zM27 28h-7v-23h7v23z"></path></svg>');
+			}
+
+			&.background_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M0 4v26h32v-26h-32zM30 28h-28v-22h28v22zM22 11c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM28 26h-24l6-16 8 10 4-3z"></path></svg>');
+			}
+
+			&.import_export_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27.313 4.687c-2.895-2.896-6.895-4.687-11.313-4.687-6.859 0-12.709 4.316-14.984 10.381l3.746 1.405c1.706-4.548 6.094-7.786 11.238-7.786 3.314 0 6.313 1.344 8.485 3.515l-4.485 4.485h12v-12l-4.687 4.687zM16 28c-3.314 0-6.313-1.343-8.485-3.515l4.485-4.485h-12v12l4.687-4.687c2.895 2.896 6.894 4.687 11.313 4.687 6.859 0 12.709-4.316 14.984-10.381l-3.746-1.405c-1.706 4.548-6.094 7.786-11.238 7.786z"></path></svg>');
+			}
+
+			&.page_title_bar_panel a::before {
+				background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.64 1.36v29.281h-29.281v-29.281h29.281zM31.974 0.026h-31.948v31.948h31.948v-31.948zM0.326 7.289h31.23v6.267h-31.23v-6.267z"></path></svg>');
 			}
 
 			&.active a {
@@ -196,22 +220,38 @@
 		ul.shapla-tabs-list {
 			width: 10%;
 
-			li a {
-				position: relative;
-				text-indent: -999px;
-				padding: 10px;
+			li {
+				a {
+					position: relative;
+					text-indent: -999px;
+					padding: 10px;
 
-				&::before {
-					position: absolute;
-					top: 0;
-					right: 0;
-					bottom: 0;
-					left: 0;
-					text-indent: 0;
-					text-align: center;
-					line-height: 40px;
-					width: 100%;
-					height: 40px;
+					&::before {
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						text-indent: 0;
+						text-align: center;
+						line-height: 40px;
+						width: 100%;
+						height: 40px;
+					}
+				}
+
+				&.sliders_panel,
+				&.page_panel,
+				&.header_panel,
+				&.footer_panel,
+				&.sidebar_panel,
+				&.background_panel,
+				&.import_export_panel,
+				&.page_title_bar_panel {
+					a::before {
+						margin: auto;
+						display: block;
+					}
 				}
 			}
 		}
