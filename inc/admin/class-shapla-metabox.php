@@ -82,13 +82,9 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			?>
             <script>
                 (function ($) {
-                    $("#shapla-metabox-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
-                    $("#shapla-metabox-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
-
+                    $("#shapla-metabox-tabs").tabs();
                     $('select.shapla-select2').each(function () {
-                        $(this).selectWoo({
-                            minimumResultsForSearch: -1
-                        });
+                        $(this).selectWoo();
                     });
                 })(jQuery);
             </script>

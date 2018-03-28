@@ -37,6 +37,62 @@
 	th, td {
 		padding: 8px 10px;
 	}
+
+	// Select2
+	.select2-container .select2-selection,
+	.select2-container .select2-choice,
+	.select2-container .select2-selection {
+		padding-left: 0.75em;
+		line-height: 32px;
+		box-sizing: border-box !important;
+		background-image: none !important;
+		height: 34px;
+		border-radius: 0 !important;
+		background-color: #f4f2f2;
+		border-color: rgba(0, 0, 0, 0.05) !important;
+		box-shadow: none !important;
+		-webkit-box-shadow: none !important;
+	}
+
+	.select2-container .select2-selection > .select2-selection__rendered {
+		height: 32px;
+		line-height: 32px;
+		margin-right: 35px;
+		background-color: #f4f2f2 !important;
+	}
+
+	.select2-container .select2-choice .select2-arrow,
+	.select2-container .select2-selection .select2-selection__arrow {
+		width: 31px !important;
+		height: 32px !important;
+		background-image: none !important;
+		background: #f4f2f2 !important;
+		box-shadow: none !important;
+		-webkit-box-shadow: none !important;
+		transition: all 200ms ease-in-out;
+		border-left: 1px solid rgba(0, 0, 0, 0.05) !important;
+
+		b {
+			border: none;
+			position: relative;
+			margin: 0;
+			top: auto;
+			left: auto;
+			display: block;
+			width: 100%;
+			text-align: center;
+			background: none !important;
+
+			&:after {
+				content: "\f347" !important;
+				font-family: dashicons !important;
+				font-size: 12px !important;
+				color: #777 !important;
+				border: none !important;
+				margin: 0 !important;
+			}
+		}
+	}
 }
 
 #side-sortables {
@@ -143,10 +199,17 @@
 	background: #fff;
 	margin: -6px -12px -12px;
 	padding: 0;
-	@include clearfix;
 }
 
 .shapla-tabs {
+	border: none !important;
+	border-radius: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	font-size: 1em !important;
+	@include clearfix;
+
 	ul.shapla-tabs-list {
 		margin: 0;
 		width: 20%;
@@ -154,9 +217,11 @@
 		line-height: 1em;
 		padding: 0 0 10px;
 		position: relative;
-		background-color: #fafafa;
-		border-right: 1px solid #eee;
 		box-sizing: border-box;
+		border: none;
+		border-right: 1px solid #eee;
+		border-radius: 0;
+		background: #fafafa;
 
 		&::after {
 			content: '';
@@ -175,15 +240,21 @@
 			padding: 0;
 			display: block;
 			position: relative;
+			width: 100%;
+			background: none;
+			border-radius: 0;
+			border: none;
 
 			a {
 				margin: 0;
-				padding: 10px;
+				padding: 10px !important;
 				display: block;
 				box-shadow: none;
 				text-decoration: none;
 				line-height: 20px !important;
 				border-bottom: 1px solid #eee;
+				width: 100%;
+				box-sizing: border-box;
 
 				span {
 					margin-left: 0.618em;
@@ -196,6 +267,11 @@
 			}
 
 			&.ui-tabs-active {
+				border-radius: 0;
+				border: none;
+				margin: 0;
+				padding: 0;
+
 				a {
 					color: #555;
 					position: relative;

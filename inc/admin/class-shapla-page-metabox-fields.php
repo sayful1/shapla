@@ -36,9 +36,9 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 			$options = array(
 				'id'       => 'shapla-page-options',
 				'title'    => __( 'Page Options', 'shapla' ),
-				'screen'   => 'page',
-				'context'  => 'normal',
-				'priority' => 'high',
+				'screen'   => array( 'page', 'post', 'product' ),
+				'context'  => 'advanced',
+				'priority' => 'low',
 				'panels'   => array(
 					array(
 						'id'       => 'page_panel',
