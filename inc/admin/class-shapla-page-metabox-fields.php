@@ -43,12 +43,17 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 					array(
 						'id'       => 'page_panel',
 						'title'    => __( 'Page', 'shapla' ),
-						'priority' => 10,
+						'priority' => 20,
+					),
+					array(
+						'id'       => 'sidebar_panel',
+						'title'    => __( 'Sidebar', 'shapla' ),
+						'priority' => 50,
 					),
 					array(
 						'id'       => 'page_title_bar_panel',
 						'title'    => __( 'Page Title Bar', 'shapla' ),
-						'priority' => 20,
+						'priority' => 70,
 					),
 				),
 				'sections' => array(
@@ -56,6 +61,12 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'id'       => 'page_section',
 						'title'    => __( 'Page', 'shapla' ),
 						'panel'    => 'page_panel',
+						'priority' => 10,
+					),
+					array(
+						'id'       => 'sidebar_section',
+						'title'    => __( 'Sidebar', 'shapla' ),
+						'panel'    => 'sidebar_panel',
 						'priority' => 10,
 					),
 					array(
@@ -70,12 +81,42 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'type'        => 'dimensions',
 						'id'          => 'page_content_padding',
 						'label'       => __( 'Page Content Padding', 'shapla' ),
-						'description' => __( 'Leave empty for default value.', 'shapla' ),
+						'description' => __( 'Leave empty to use value from theme options.', 'shapla' ),
 						'priority'    => 10,
 						'section'     => 'page_section',
 						'default'     => array(
 							'top'    => '',
 							'bottom' => '',
+						)
+					),
+					array(
+						'type'        => 'buttonset',
+						'id'          => 'sidebar_position',
+						'label'       => __( 'Sidebar Position', 'shapla' ),
+						'description' => __( 'Controls sidebar position for current page.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'sidebar_section',
+						'default'     => 'default',
+						'choices'     => array(
+							'default'  => __( 'Default', 'shapla' ),
+							'left'     => __( 'Left', 'shapla' ),
+							'right'    => __( 'Right', 'shapla' ),
+							'disabled' => __( 'Disabled', 'shapla' ),
+						)
+					),
+					array(
+						'type'        => 'sidebars',
+						'id'          => 'sidebar_widget_area',
+						'label'       => __( 'Sidebar widget area', 'shapla' ),
+						'description' => __( 'Controls sidebar widget area for current page.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'sidebar_section',
+						'default'     => 'default',
+						'choices'     => array(
+							'default'  => __( 'Default', 'shapla' ),
+							'left'     => __( 'Left', 'shapla' ),
+							'right'    => __( 'Right', 'shapla' ),
+							'disabled' => __( 'Disabled', 'shapla' ),
 						)
 					),
 					array(

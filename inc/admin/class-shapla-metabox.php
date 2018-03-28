@@ -68,13 +68,14 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 * Meta box style
 		 */
 		public static function meta_box_style() {
-			wp_enqueue_style(
-				'shapla-metabox',
-				get_template_directory_uri() . '/assets/css/admin.css'
-			);
+			$asset_url = get_template_directory_uri() . '/assets';
+			wp_enqueue_style( 'shapla-metabox', $asset_url . '/css/admin.css' );
 
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jquery-ui-tabs' );
+			// Enqueue selectWoo.
+			wp_enqueue_script( 'selectWoo', $asset_url . '/libs/selectWoo/js/selectWoo.full.js', array( 'jquery' ), '1.0.1', true );
+			wp_enqueue_style( 'selectWoo', $asset_url . '/libs/selectWoo/css/selectWoo.css', array(), '1.0.1' );
 		}
 
 		public static function meta_box_script() {
@@ -83,6 +84,12 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
                 (function ($) {
                     $("#shapla-metabox-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
                     $("#shapla-metabox-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+
+                    $('select.shapla-select2').each(function () {
+                        $(this).selectWoo({
+                            minimumResultsForSearch: -1
+                        });
+                    });
                 })(jQuery);
             </script>
 			<?php
@@ -195,8 +202,12 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 											break;
 										case 'buttonset':
 											$this->buttonset( $field, $name, $value );
+											break;
 										case 'dimensions':
 											$this->dimensions( $field, $name, $value );
+											break;
+										case 'sidebars':
+											$this->sidebars( $field, $name, $value );
 											break;
 										case 'text':
 										case 'email':
@@ -255,7 +266,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			do_action( 'shapla_before_save_post_meta', $post_id, $post, $update );
 
 			if ( isset( $_POST[ $this->option_name ] ) ) {
-				update_post_meta( $post_id, $this->option_name, $this->sanitize_value( $_POST[ $this->option_name ] ) );
+				update_post_meta( $post_id, $this->option_name, self::sanitize_value( $_POST[ $this->option_name ] ) );
 			}
 
 			do_action( 'shapla_after_save_post_meta', $post_id, $post, $update );
@@ -446,6 +457,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				'checkbox',
 				'buttonset',
 				'dimensions',
+				'sidebars',
 			);
 		}
 
@@ -456,7 +468,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 *
 		 * @return array|string
 		 */
-		private function sanitize_value( $input ) {
+		private static function sanitize_value( $input ) {
 			// Initialize the new array that will hold the sanitize values
 			$new_input = array();
 
@@ -464,7 +476,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				// Loop through the input and sanitize each of the values
 				foreach ( $input as $key => $value ) {
 					if ( is_array( $value ) ) {
-						$new_input[ $key ] = $this->sanitize_value( $value );
+						$new_input[ $key ] = self::sanitize_value( $value );
 					} else {
 						$new_input[ $key ] = sanitize_text_field( $value );
 					}
@@ -477,8 +489,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
-         * Text field type
-         *
+		 * Text field type
+		 *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -490,8 +502,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
-         * Checkbox field type
-         *
+		 * Checkbox field type
+		 *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -504,8 +516,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
-         * Buttonset field type
-         *
+		 * Buttonset field type
+		 *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -525,8 +537,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
-         * Dimension field type
-         *
+		 * Dimension field type
+		 *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -579,6 +591,18 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
                 </div>
 				<?php
 			}
+		}
+
+		public function sidebars( $field, $name, $value ) {
+			global $wp_registered_sidebars;
+
+			echo '<select name="' . $name . '" id="" class="regular-text shapla-select2">';
+			echo '<option value="">' . esc_attr__( 'Default', 'shapla' ) . '</option>';
+			foreach ( $wp_registered_sidebars as $key => $option ) {
+				$selected = ( $value == $key ) ? ' selected="selected"' : '';
+				echo '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . esc_attr( $option['name'] ) . '</option>';
+			}
+			echo '</select>';
 		}
 	}
 }
