@@ -287,10 +287,16 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * @since  0.1.0
 		 */
 		public function shapla_scripts() {
-			$suffix = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
-			wp_enqueue_style( 'shapla-icons', get_template_directory_uri() . '/assets/font-awesome/css/font-awesome.min.css', array(), '4.7.0', 'all' );
-			wp_enqueue_style( 'shapla-style', get_template_directory_uri() . '/style.css', array(), SHAPLA_VERSION, 'all' );
-			wp_enqueue_script( 'shapla-script', get_template_directory_uri() . '/assets/js/script' . $suffix . '.js', array(), SHAPLA_VERSION, true );
+			$theme_url = get_template_directory_uri();
+			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
+
+			// Polyfill for IE
+			wp_enqueue_script( 'shapla-polyfill', $theme_url . '/assets/js/polyfill' . $suffix . '.js', array(), SHAPLA_VERSION, false );
+			wp_script_add_data( 'shapla-polyfill', 'conditional', 'IE 9' );
+
+			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/font-awesome.min.css', array(), '4.7.0', 'all' );
+			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );
+			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/script' . $suffix . '.js', array(), SHAPLA_VERSION, true );
 
 			wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );
 
