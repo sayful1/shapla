@@ -195,6 +195,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 											break;
 										case 'buttonset':
 											$this->buttonset( $field, $name, $value );
+										case 'dimensions':
+											$this->dimensions( $field, $name, $value );
 											break;
 										case 'text':
 										case 'email':
@@ -443,6 +445,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				'url',
 				'checkbox',
 				'buttonset',
+				'dimensions',
 			);
 		}
 
@@ -474,6 +477,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
+         * Text field type
+         *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -485,6 +490,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
+         * Checkbox field type
+         *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -497,6 +504,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		}
 
 		/**
+         * Buttonset field type
+         *
 		 * @param $field
 		 * @param $name
 		 * @param $value
@@ -513,6 +522,63 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				<?php } ?>
             </div>
 			<?php
+		}
+
+		/**
+         * Dimension field type
+         *
+		 * @param $field
+		 * @param $name
+		 * @param $value
+		 */
+		public function dimensions( $field, $name, $value ) {
+			$default = isset( $field['default'] ) ? $field['default'] : array();
+
+			// Top
+			if ( isset( $default['top'] ) ) {
+				$top_name  = $name . "[top]";
+				$top_value = isset( $value['top'] ) ? esc_attr( $value['top'] ) : $default['top'];
+				?>
+                <div class="shapla-dimension">
+                    <span class="add-on"><i class="dashicons dashicons-arrow-up-alt"></i></span>
+                    <input type="text" name="<?php echo $top_name; ?>" value="<?php echo $top_value; ?>">
+                </div>
+				<?php
+			}
+
+			// Right
+			if ( isset( $default['right'] ) ) {
+				$right_name  = $name . "[right]";
+				$right_value = isset( $value['right'] ) ? esc_attr( $value['right'] ) : $default['right'];
+				?>
+                <div class="shapla-dimension">
+                    <span class="add-on"><i class="dashicons dashicons-arrow-right-alt"></i></span>
+                    <input type="text" name="<?php echo $right_name; ?>" value="<?php echo $right_value; ?>">
+                </div>
+				<?php
+			}
+			// Bottom
+			if ( isset( $default['bottom'] ) ) {
+				$bottom_name  = $name . "[bottom]";
+				$bottom_value = isset( $value['bottom'] ) ? esc_attr( $value['bottom'] ) : $default['bottom'];
+				?>
+                <div class="shapla-dimension">
+                    <span class="add-on"><i class="dashicons dashicons-arrow-down-alt"></i></span>
+                    <input type="text" name="<?php echo $bottom_name; ?>" value="<?php echo $bottom_value; ?>">
+                </div>
+				<?php
+			}
+			// Bottom
+			if ( isset( $default['left'] ) ) {
+				$left_name  = $name . "[left]";
+				$left_value = isset( $value['left'] ) ? esc_attr( $value['left'] ) : $default['left'];
+				?>
+                <div class="shapla-dimension">
+                    <span class="add-on"><i class="dashicons dashicons-arrow-left-alt"></i></span>
+                    <input type="text" name="<?php echo $left_name; ?>" value="<?php echo $left_value; ?>">
+                </div>
+				<?php
+			}
 		}
 	}
 }

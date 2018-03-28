@@ -41,20 +41,43 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 				'priority' => 'high',
 				'panels'   => array(
 					array(
+						'id'       => 'page_panel',
+						'title'    => __( 'Page', 'shapla' ),
+						'priority' => 10,
+					),
+					array(
 						'id'       => 'page_title_bar_panel',
 						'title'    => __( 'Page Title Bar', 'shapla' ),
-						'priority' => 10,
+						'priority' => 20,
 					),
 				),
 				'sections' => array(
 					array(
+						'id'       => 'page_section',
+						'title'    => __( 'Page', 'shapla' ),
+						'panel'    => 'page_panel',
+						'priority' => 10,
+					),
+					array(
 						'id'       => 'page_title_bar_section',
 						'title'    => __( 'Page Title Bar', 'shapla' ),
 						'panel'    => 'page_title_bar_panel',
-						'priority' => 10,
+						'priority' => 20,
 					),
 				),
 				'fields'   => array(
+					array(
+						'type'        => 'dimensions',
+						'id'          => 'page_content_padding',
+						'label'       => __( 'Page Content Padding', 'shapla' ),
+						'description' => __( 'Leave empty for default value.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'page_section',
+						'default'     => array(
+							'top'    => '',
+							'bottom' => '',
+						)
+					),
 					array(
 						'type'        => 'buttonset',
 						'id'          => 'hide_page_title',
