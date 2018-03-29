@@ -227,6 +227,9 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
+			/** @var \WP_Post $post */
+			global $post;
+
 			// Adds a class of group-blog to blogs with more than 1 published author.
 			if ( is_multi_author() ) {
 				$classes[] = 'group-blog';
@@ -239,7 +242,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 
 			// Adds a class of shapla-page-## to singular pages.
 			if ( is_singular() ) {
-				$classes[] = 'shapla-page-' . $GLOBALS['post']->ID;
+				$classes[] = 'shapla-page-' . $post->ID;
 			}
 
 			if ( is_page_template( 'templates/full-width.php' ) ) {
@@ -252,6 +255,12 @@ if ( ! class_exists( 'Shapla' ) ) {
 
 			if ( ! is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) ) {
 				$general_layout = get_theme_mod( 'general_layout', 'right-sidebar' );
+				if ( is_singular() ) {
+					$sidebar_position = shapla_page_option( 'sidebar_position', 'default' );
+					if ( ! empty( $sidebar_position ) && 'default' !== $sidebar_position ) {
+						$general_layout = $sidebar_position;
+					}
+				}
 				if ( $general_layout == 'right-sidebar' ) {
 					$classes[] = 'right-sidebar';
 				} elseif ( $general_layout == 'left-sidebar' ) {

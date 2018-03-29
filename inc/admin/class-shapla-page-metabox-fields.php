@@ -107,10 +107,10 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'section'     => 'sidebar_section',
 						'default'     => 'default',
 						'choices'     => array(
-							'default'  => __( 'Default', 'shapla' ),
-							'left'     => __( 'Left', 'shapla' ),
-							'right'    => __( 'Right', 'shapla' ),
-							'disabled' => __( 'Disabled', 'shapla' ),
+							'default'       => __( 'Default', 'shapla' ),
+							'left-sidebar'  => __( 'Left', 'shapla' ),
+							'right-sidebar' => __( 'Right', 'shapla' ),
+							'full-width'    => __( 'Disabled', 'shapla' ),
 						)
 					),
 					array(

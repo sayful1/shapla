@@ -287,3 +287,28 @@ if ( ! function_exists( 'shapla_footer_credits' ) ) {
 		);
 	}
 }
+
+if ( ! function_exists( 'shapla_page_option' ) ) {
+	/**
+	 * Get singular post type meta option
+	 *
+	 * @param string $key
+	 * @param string $default
+	 *
+	 * @return mixed
+	 */
+	function shapla_page_option( $key = '', $default = '' ) {
+		/** \WP_Post $post */
+		global $post;
+		if ( ! is_singular() ) {
+			return '';
+		}
+
+		$page_options = get_post_meta( $post->ID, '_shapla_page_options', true );
+		if ( ! is_array( $page_options ) ) {
+			return '';
+		}
+
+		return isset( $page_options[ $key ] ) ? $page_options[ $key ] : $default;
+	}
+}
