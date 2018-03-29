@@ -237,6 +237,11 @@ if ( ! class_exists( 'Shapla' ) ) {
 				$classes[] = 'hfeed';
 			}
 
+			// Adds a class of shapla-page-## to singular pages.
+			if ( is_singular() ) {
+				$classes[] = 'shapla-page-' . $GLOBALS['post']->ID;
+			}
+
 			if ( is_page_template( 'templates/full-width.php' ) ) {
 				$classes[] = 'full-width';
 			}

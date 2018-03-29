@@ -25,7 +25,7 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 		 * Shapla_Meta_Boxes constructor.
 		 */
 		public function __construct() {
-			add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+			add_action( 'init', array( $this, 'add_meta_boxes' ) );
 		}
 
 		/**
@@ -78,7 +78,7 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 				),
 				'fields'   => array(
 					array(
-						'type'        => 'dimensions',
+						'type'        => 'spacing',
 						'id'          => 'page_content_padding',
 						'label'       => __( 'Page Content Padding', 'shapla' ),
 						'description' => __( 'Leave empty to use value from theme options.', 'shapla' ),
@@ -87,7 +87,16 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'default'     => array(
 							'top'    => '',
 							'bottom' => '',
-						)
+						),
+						'output'      => array(
+							array(
+								'element'  => array(
+									'.site-content .content-area',
+									'.site-content .widget-area',
+								),
+								'property' => 'padding',
+							),
+						),
 					),
 					array(
 						'type'        => 'buttonset',

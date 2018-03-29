@@ -62,6 +62,160 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'save_post', array( $this, 'save_meta_box' ), 10, 3 );
+			add_action( 'wp_head', array( $this, 'metabox_css' ), 30 );
+		}
+
+		/**
+		 * Generate inline style for theme customizer
+		 */
+		public function metabox_css() {
+			if ( ! is_singular() ) {
+				return;
+			}
+
+			$styles = $this->get_styles();
+			if ( empty( $styles ) ) {
+				return;
+			}
+
+			?>
+            <style type="text/css" id="shapla-custom-css">
+                <?php echo wp_strip_all_tags( $styles ); ?>
+            </style>
+			<?php
+		}
+
+		/**
+		 * Gets all our styles for current page and returns them as a string.
+		 *
+		 * @return string
+		 */
+		public function get_styles() {
+			global $post;
+			$fields = $this->getFields();
+
+			// Check if we need to exit early
+			if ( empty( $fields ) || ! is_array( $fields ) ) {
+				return '';
+			}
+
+			// initially we're going to format our styles as an array.
+			// This is going to make processing them a lot easier
+			// and make sure there are no duplicate styles etc.
+			$css    = array();
+			$values = get_post_meta( $post->ID, $this->option_name, true );
+
+			// start parsing our fields
+			foreach ( $fields as $field ) {
+
+				// No need to process fields without an output, or an improperly-formatted output
+				if ( ! isset( $field['output'] ) || empty( $field['output'] ) || ! is_array( $field['output'] ) ) {
+					continue;
+				}
+
+				// If no setting id, then exist
+				if ( ! isset( $field['id'] ) ) {
+					continue;
+				}
+
+				// Field Type
+				$type = isset( $field['type'] ) ? esc_attr( $field['type'] ) : 'text';
+
+				// Get the default value of this field
+				$default = isset( $field['default'] ) ? $field['default'] : '';
+				$value   = isset( $values[ $field['id'] ] ) ? $values[ $field['id'] ] : $default;
+
+				// start parsing the output arguments of the field
+				foreach ( $field['output'] as $output ) {
+					$defaults = array(
+						'element'       => '',
+						'property'      => '',
+						'media_query'   => 'global',
+						'prefix'        => '',
+						'units'         => '',
+						'suffix'        => '',
+						'value_pattern' => '$',
+						'choice'        => '',
+						'brightness'    => 0,
+						'invert'        => false,
+					);
+					$output   = wp_parse_args( $output, $defaults );
+
+					// If element is an array, convert it to a string
+					if ( is_array( $output['element'] ) ) {
+						$output['element'] = array_unique( $output['element'] );
+						sort( $output['element'] );
+						$output['element'] = implode( ',', $output['element'] );
+					}
+
+					// If value is array and field is not typography
+					if ( is_array( $value ) ) {
+						// Spacing Control type
+						if ( is_array( $value ) && 'spacing' == $type ) {
+							$spacing_list = array();
+
+
+							foreach ( $value as $property => $property_value ) {
+								if ( ! empty( $property_value ) ) {
+									if ( ! in_array( $output['property'], array( 'padding', 'margin' ) ) ) {
+										continue;
+									}
+									if ( ! in_array( $property, array( 'top', 'right', 'bottom', 'left' ) ) ) {
+										continue;
+									}
+									$property = $output['property'] . '-' . $property;
+
+									$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $property_value;
+								}
+							}
+						} else {
+							foreach ( $value as $property => $property_value ) {
+								if ( $property_value ) {
+									$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $property_value;
+								}
+							}
+						}
+					}
+
+					// if value is not array
+					if ( ! is_array( $value ) ) {
+						$value = str_replace( '$', $value, $output['value_pattern'] );
+						if ( ! empty( $output['element'] ) && ! empty( $output['property'] ) ) {
+							$css[ $output['media_query'] ][ $output['element'] ][ $output['property'] ] = $output['prefix'] . $value . $output['units'] . $output['suffix'];
+						}
+					}
+
+				}
+			}
+
+			// Process the array of CSS properties and produce the final CSS
+			$final_css = '';
+			if ( ! is_array( $css ) || empty( $css ) ) {
+				return '';
+			}
+			// Parse the generated CSS array and create the CSS string for the output.
+			foreach ( $css as $media_query => $styles ) {
+				// Handle the media queries
+				$final_css .= ( 'global' != $media_query ) ? $media_query . '{' . PHP_EOL : '';
+				foreach ( $styles as $style => $style_array ) {
+					$final_css .= $style . '{';
+					foreach ( $style_array as $property => $value ) {
+						$value = (string) $value;
+						// Make sure background-images are properly formatted
+						if ( 'background-image' == $property ) {
+							if ( false === strrpos( $value, 'url(' ) ) {
+								$value = 'url("' . esc_url_raw( $value ) . '")';
+							}
+						}
+
+						$final_css .= $property . ':' . $value . ';';
+					}
+					$final_css .= '}' . PHP_EOL;
+				}
+				$final_css .= ( 'global' != $media_query ) ? '}' : '';
+			}
+
+			return $final_css;
 		}
 
 		/**
@@ -108,7 +262,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			$this->setConfig( array(
 				'id'       => isset( $options['id'] ) ? sanitize_title_with_dashes( $options['id'] ) : 'shapla_meta_box_options',
 				'title'    => isset( $options['title'] ) ? esc_attr( $options['title'] ) : __( 'Page Options', 'shapla' ),
-				'screen'   => isset( $options['screen'] ) ? $options['screen'] : 'page',
+				'screen'   => isset( $options['screen'] ) ? self::sanitize_value( $options['screen'] ) : 'page',
 				'context'  => isset( $options['context'] ) ? esc_attr( $options['context'] ) : 'advanced',
 				'priority' => isset( $options['priority'] ) ? esc_attr( $options['priority'] ) : 'low',
 			) );
@@ -119,15 +273,17 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 
 			$config = $this->getConfig();
 
-			add_meta_box(
-				$config['id'],
-				$config['title'],
-				array( $this, 'meta_box_callback' ),
-				$config['screen'],
-				$config['context'],
-				$config['priority'],
-				$this->fields
-			);
+			add_action( 'add_meta_boxes', function () use ( $config ) {
+				add_meta_box(
+					$config['id'],
+					$config['title'],
+					array( $this, 'meta_box_callback' ),
+					$config['screen'],
+					$config['context'],
+					$config['priority'],
+					$this->fields
+				);
+			} );
 
 			return true;
 		}
@@ -161,7 +317,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
                     </ul>
 					<?php foreach ( $panels as $panel ) { ?>
                         <div id="tab-<?php echo esc_attr( $panel['id'] ); ?>" class="shapla_options_panel">
-                            <!--<h2 class="title"><?php echo $panel['title']; ?></h2>-->
+                            <!--<h2 class="title"><?php echo esc_html( $panel['title'] ); ?></h2>-->
 							<?php
 							$sections = $this->getSections( $panel['id'] );
 							foreach ( $sections as $section ) {
@@ -199,8 +355,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 										case 'buttonset':
 											$this->buttonset( $field, $name, $value );
 											break;
-										case 'dimensions':
-											$this->dimensions( $field, $name, $value );
+										case 'spacing':
+											$this->spacing( $field, $name, $value );
 											break;
 										case 'sidebars':
 											$this->sidebars( $field, $name, $value );
@@ -452,7 +608,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				'url',
 				'checkbox',
 				'buttonset',
-				'dimensions',
+				'spacing',
 				'sidebars',
 			);
 		}
@@ -539,7 +695,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 * @param $name
 		 * @param $value
 		 */
-		public function dimensions( $field, $name, $value ) {
+		public function spacing( $field, $name, $value ) {
 			$default = isset( $field['default'] ) ? $field['default'] : array();
 
 			// Top
@@ -589,6 +745,11 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			}
 		}
 
+		/**
+		 * @param $field
+		 * @param $name
+		 * @param $value
+		 */
 		public function sidebars( $field, $name, $value ) {
 			global $wp_registered_sidebars;
 
