@@ -454,10 +454,9 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 			$title = esc_html__( 'Page not found.', 'shapla' );
 		}
 
-		if ( is_page() && $post instanceof \WP_Post ) {
-			$options         = get_post_meta( $post->ID, '_shapla_page_options', true );
-			$hide_page_title = isset( $options['hide_page_title'] ) ? esc_attr( $options['hide_page_title'] ) : '';
-			if ( 'on' == $hide_page_title ) {
+		if ( is_singular() && $post instanceof \WP_Post ) {
+			$hide_page_title = shapla_page_option( 'hide_page_title' );
+			if ( Shapla_Sanitize::checked( $hide_page_title ) ) {
 				return;
 			}
 

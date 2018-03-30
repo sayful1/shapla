@@ -35,14 +35,14 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 			$metabox = Shapla_Metabox::instance();
 			$options = array(
 				'id'       => 'shapla-page-options',
-				'title'    => __( 'Page Options', 'shapla' ),
+				'title'    => __( 'Shapla Page Options', 'shapla' ),
 				'screen'   => array( 'page', 'post', 'product' ),
 				'context'  => 'advanced',
 				'priority' => 'low',
 				'panels'   => array(
 					array(
 						'id'       => 'page_panel',
-						'title'    => __( 'Page', 'shapla' ),
+						'title'    => __( 'Content', 'shapla' ),
 						'priority' => 20,
 					),
 					array(
@@ -59,7 +59,7 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 				'sections' => array(
 					array(
 						'id'       => 'page_section',
-						'title'    => __( 'Page', 'shapla' ),
+						'title'    => __( 'Content', 'shapla' ),
 						'panel'    => 'page_panel',
 						'priority' => 10,
 					),
@@ -67,20 +67,20 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 						'id'       => 'sidebar_section',
 						'title'    => __( 'Sidebar', 'shapla' ),
 						'panel'    => 'sidebar_panel',
-						'priority' => 10,
+						'priority' => 20,
 					),
 					array(
 						'id'       => 'page_title_bar_section',
 						'title'    => __( 'Page Title Bar', 'shapla' ),
 						'panel'    => 'page_title_bar_panel',
-						'priority' => 20,
+						'priority' => 30,
 					),
 				),
 				'fields'   => array(
 					array(
 						'type'        => 'spacing',
 						'id'          => 'page_content_padding',
-						'label'       => __( 'Page Content Padding', 'shapla' ),
+						'label'       => __( 'Content Padding', 'shapla' ),
 						'description' => __( 'Leave empty to use value from theme options.', 'shapla' ),
 						'priority'    => 10,
 						'section'     => 'page_section',

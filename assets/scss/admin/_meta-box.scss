@@ -201,13 +201,14 @@
 	padding: 0;
 }
 
-.shapla-tabs {
-	border: none !important;
-	border-radius: 0 !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	background: none !important;
-	font-size: 1em !important;
+.ui-tabs.shapla-tabs {
+	border: none;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	background: none;
+	font-size: 1em;
+	font-family: inherit;
 	@include clearfix;
 
 	ul.shapla-tabs-list {
