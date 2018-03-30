@@ -1,3 +1,13 @@
+#### 1.4.4 - March 30, 2018
+* Add - Add metabox option to hide or show breadcrumbs.
+* Add - Add metabox option for content padding.
+* Add - Add metabox option for sidebar position and sidebar widget area.
+* Add - Add polyfill for classList and closest for IE 11 and below.
+* Dev - Add spacing field type.
+* Dev - Add buttonset field type.
+* Dev - Add tab for metabox.
+* Dev - Add dynamic style generator from metabox values.
+
 #### 1.4.3 - March 15, 2018
 * Fixed - Fixed some typography issue.
 * Fixed - Fixed Carousel Slider default value PHP warning.
