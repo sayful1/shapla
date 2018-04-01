@@ -67,17 +67,21 @@ if ( ! class_exists( 'Shapla_Breadcrumb' ) ) {
 				'is_tax',
 			);
 
-			foreach ( $conditionals as $conditional ) {
-				if ( call_user_func( $conditional ) ) {
-					call_user_func( array( $this, 'add_crumbs_' . substr( $conditional, 3 ) ) );
-					break;
+			if ( ! is_front_page() ) {
+				foreach ( $conditionals as $conditional ) {
+					if ( call_user_func( $conditional ) ) {
+						call_user_func( array( $this, 'add_crumbs_' . substr( $conditional, 3 ) ) );
+						break;
+					}
 				}
+
+				$this->search_trail();
+				$this->paged_trail();
+
+				return $this->get_breadcrumb();
 			}
 
-			$this->search_trail();
-			$this->paged_trail();
-
-			return $this->get_breadcrumb();
+			return array();
 		}
 
 		/**
