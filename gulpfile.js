@@ -46,21 +46,11 @@ gulp.task('customize-js', function () {
         .pipe(gulp.dest('./assets/js'));
 });
 
-gulp.task('polyfill', function () {
-    gulp.src('./assets/js/polyfill/*.js')
-        .pipe(concat('polyfill.js'))
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(concat('polyfill.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./assets/js'));
-});
-
 gulp.task('watch', function () {
     gulp.watch('./assets/scss/*.scss', ['sass']);
     gulp.watch('./assets/scss/style.scss', ['sass-main']);
     gulp.watch('./assets/js/src/*.js', ['js']);
     gulp.watch('./assets/js/customize/*.js', ['customize-js']);
-    gulp.watch('./assets/js/polyfill/*.js', ['polyfill']);
 });
 
-gulp.task('default', ['sass', 'sass-main', 'js', 'customize-js', 'polyfill', 'watch']);
+gulp.task('default', ['sass', 'sass-main', 'js', 'customize-js', 'watch']);

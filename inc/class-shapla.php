@@ -10,6 +10,9 @@ if ( ! class_exists( 'Shapla' ) ) {
 
 	class Shapla {
 
+		/**
+		 * @var object
+		 */
 		private static $instance;
 
 		/**
@@ -316,10 +319,6 @@ if ( ! class_exists( 'Shapla' ) ) {
 		public function shapla_scripts() {
 			$theme_url = get_template_directory_uri();
 			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
-
-			// Polyfill for IE
-			wp_enqueue_script( 'shapla-polyfill', $theme_url . '/assets/js/polyfill' . $suffix . '.js', array(), SHAPLA_VERSION, false );
-			wp_script_add_data( 'shapla-polyfill', 'conditional', 'IE 9' );
 
 			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/font-awesome.min.css', array(), '4.7.0', 'all' );
 			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );
