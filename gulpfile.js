@@ -4,20 +4,28 @@ const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const livereload = require('gulp-livereload');
+const rollup = require('rollup');
+const buble = require('rollup-plugin-buble');
+const file = require('gulp-file');
+
 const sassOptions = {
     errLogToConsole: true,
     outputStyle: 'compressed'
 };
+
 const autoprefixerOptions = {
     browsers: ['last 5 versions', '> 5%', 'Firefox ESR']
 };
 
 gulp.task('sass', function () {
-    gulp.src('./assets/scss/*.scss')
+    gulp.src('./assets/scss/**/**/.scss')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(gulp.dest('./assets/css'));
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('./assets/css'))
+        .pipe(livereload());
 });
 
 gulp.task('sass-main', function () {
@@ -25,7 +33,9 @@ gulp.task('sass-main', function () {
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(gulp.dest('.'));
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('.'))
+        .pipe(livereload());
 });
 
 gulp.task('js', function () {
@@ -34,7 +44,8 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./assets/js'))
         .pipe(concat('script.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./assets/js'));
+        .pipe(gulp.dest('./assets/js'))
+        .pipe(livereload());
 });
 
 gulp.task('customize-js', function () {
@@ -43,14 +54,36 @@ gulp.task('customize-js', function () {
         .pipe(gulp.dest('./assets/js'))
         .pipe(concat('customize.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./assets/js'));
+        .pipe(gulp.dest('./assets/js'))
+        .pipe(livereload());
+});
+
+gulp.task('bundle', function () {
+    return rollup.rollup({
+        input: './assets/js/public/main.js',
+        plugins: [buble()]
+    }).then(function (bundle) {
+        return bundle.generate({
+            format: 'umd'
+        });
+    }).then(function (gen) {
+        return file('temp.js', gen.code, {src: true})
+            .pipe(concat('app.js'))
+            .pipe(gulp.dest('./assets/js/'))
+            .pipe(concat('app.min.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('./assets/js/'))
+            .pipe(livereload());
+    });
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./assets/scss/*.scss', ['sass']);
+    livereload.listen();
+    gulp.watch('./assets/scss/**/**/*.scss', ['sass']);
     gulp.watch('./assets/scss/style.scss', ['sass-main']);
     gulp.watch('./assets/js/src/*.js', ['js']);
     gulp.watch('./assets/js/customize/*.js', ['customize-js']);
+    gulp.watch('./assets/js/public/*.js', ['bundle']);
 });
 
-gulp.task('default', ['sass', 'sass-main', 'js', 'customize-js', 'watch']);
+gulp.task('default', ['sass', 'sass-main', 'js', 'customize-js', 'bundle', 'watch']);

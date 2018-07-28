@@ -1,24 +1,33 @@
 {
-  "name": "shapla",
-  "title": "Shapla",
-  "version": "1.4.0",
-  "description": "Shapla, easy-to-use and highly customizable WordPress theme.",
-  "author": {
-    "name": "Sayful Islam",
-    "email": "sayful.islam001@gmail.com",
-    "url": "https://profiles.wordpress.org/sayful"
-  },
-  "license": "GPL-3.0",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-uglify": "^3.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sayful1/shapla.git"
-  }
+    "name": "shapla",
+    "title": "Shapla",
+    "version": "1.4.0",
+    "description": "Shapla, easy-to-use and highly customizable WordPress theme.",
+    "homepage": "https://wordpress.org/themes/shapla/",
+    "bugs": {
+        "url": "https://github.com/sayful1/shapla/issues",
+        "email": "sayful.islam001@gmail.com"
+    },
+    "license": "GPL-3.0-only",
+    "author": {
+        "name": "Sayful Islam",
+        "email": "sayful.islam001@gmail.com",
+        "url": "https://profiles.wordpress.org/sayful"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^4.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-file": "^0.4.0",
+        "gulp-livereload": "^3.8.1",
+        "gulp-sass": "^3.1.0",
+        "gulp-sourcemaps": "^2.6.1",
+        "gulp-uglify": "^3.0.0",
+        "rollup": "^0.62.0",
+        "rollup-plugin-buble": "^0.19.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sayful1/shapla.git"
+    }
 }
