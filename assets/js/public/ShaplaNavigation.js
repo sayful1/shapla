@@ -1,4 +1,4 @@
-class Navigation {
+class ShaplaNavigation {
 
     constructor(config) {
 
@@ -9,13 +9,13 @@ class Navigation {
 
         // Each time a menu link is focused or blurred, toggle focus.
         container.querySelectorAll('a').forEach(function (anchor) {
-            anchor.addEventListener('focus', Navigation.toggleFocus, true);
-            anchor.addEventListener('blur', Navigation.toggleFocus, true);
+            anchor.addEventListener('focus', ShaplaNavigation.toggleFocus, true);
+            anchor.addEventListener('blur', ShaplaNavigation.toggleFocus, true);
         });
 
-        Navigation.initHamburgerIcon(container);
-        Navigation.initMainNavigation(container, config);
-        Navigation.toggleFocusClassTouchScreen(container);
+        ShaplaNavigation.initHamburgerIcon(container);
+        ShaplaNavigation.initMainNavigation(container, config);
+        ShaplaNavigation.toggleFocusClassTouchScreen(container);
     }
 
     /**
@@ -132,4 +132,4 @@ class Navigation {
     }
 }
 
-export {Navigation}
+export {ShaplaNavigation}
