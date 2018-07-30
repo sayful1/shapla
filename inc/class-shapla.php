@@ -70,12 +70,12 @@ if ( ! class_exists( 'Shapla' ) ) {
 			/*
 			 * Enable support for custom logo.
 			 */
-			add_theme_support( 'custom-logo', array(
+			add_theme_support( 'custom-logo', apply_filters( 'shapla_custom_logo_args', array(
 				'height'      => 250,
 				'width'       => 250,
-				'flex-height' => true,
 				'flex-width'  => true,
-			) );
+				'flex-height' => true,
+			) ) );
 
 			/*
 			 * Enable support for Post Thumbnails on posts and pages.
@@ -85,22 +85,22 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_theme_support( 'post-thumbnails' );
 
 			// This theme uses wp_nav_menu() in one location.
-			register_nav_menus( array(
+			register_nav_menus( apply_filters( 'shapla_register_nav_menus', array(
 				'primary'    => esc_html__( 'Primary', 'shapla' ),
 				'social-nav' => esc_html__( 'Social Link', 'shapla' ),
-			) );
+			) ) );
 
 			/*
 			 * Switch default core markup for search form, comment form, and comments
 			 * to output valid HTML5.
 			 */
-			add_theme_support( 'html5', array(
+			add_theme_support( 'html5', apply_filters( 'shapla_html5_args', array(
 				'search-form',
 				'comment-form',
 				'comment-list',
 				'gallery',
 				'caption',
-			) );
+			) ) );
 
 			// Set up the WordPress core custom background feature.
 			add_theme_support( 'custom-background', apply_filters( 'shapla_custom_background_args', array(
@@ -320,9 +320,9 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$theme_url = get_template_directory_uri();
 			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/font-awesome.min.css', array(), '4.7.0', 'all' );
+			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/font-awesome' . $suffix . '.css', array(), '4.7.0', 'all' );
 			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );
-			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/script' . $suffix . '.js', array(), SHAPLA_VERSION, true );
+			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/app' . $suffix . '.js', array(), SHAPLA_VERSION, true );
 
 			wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );
 
@@ -352,7 +352,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 				),
 			);
 
-			return $localize_script;
+			return apply_filters( 'shapla_localize_script', $localize_script );
 		}
 
 		/**
@@ -368,35 +368,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			}
 		}
 
-		/**
-		 * Register Google fonts for Shapla.
-		 *
-		 * @return string Google fonts URL for the theme.
-		 *
-		 * @since  0.1.0
-		 * @deprecated   1.4.0
-		 */
-		private function google_fonts_url() {
-			_deprecated_function( __FUNCTION__, '1.4.0' );
-
-			$google_fonts = get_theme_mod( 'google_font_family', 'Roboto' );
-			if ( 'sans-serif' == $google_fonts ) {
-				return '';
-			}
-			$fonts        = array();
-			$fonts[]      = $google_fonts . ':300,400,500,400italic,500italic';
-			$google_fonts = apply_filters( 'shapla_google_font_families', $fonts );
-
-			$query_args = array(
-				'family' => urlencode( implode( '|', $google_fonts ) ),
-				'subset' => urlencode( 'latin,latin-ext' ),
-			);
-			$fonts_url  = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-
-			return $fonts_url;
-		}
 	}
-
 }
 
 return Shapla::init();

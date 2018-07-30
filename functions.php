@@ -34,6 +34,7 @@ $shapla = (object) array(
 require 'inc/class-shapla-sanitize.php';
 require 'inc/class-shapla-fonts.php';
 require 'inc/class-shapla-breadcrumb.php';
+
 require 'inc/shapla-functions.php';
 require 'inc/shapla-template-hooks.php';
 require 'inc/shapla-template-functions.php';

@@ -10,7 +10,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'text',
 	'section'  => 'header_image',
 	'label'    => __( 'Site Title Font Size', 'shapla' ),
-	'default'  => shapla_default_options()->site_logo_text_font_size,
+	'default'  => shapla_default_options( 'site_logo_text_font_size' ),
 	'priority' => 40,
 	'output'   => array(
 		array(
@@ -26,7 +26,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Background Color', 'shapla' ),
-	'default'  => shapla_default_options()->header_background_color,
+	'default'  => shapla_default_options( 'header_background_color' ),
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -42,7 +42,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Text Color', 'shapla' ),
-	'default'  => shapla_default_options()->header_text_color,
+	'default'  => shapla_default_options( 'header_text_color' ),
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -78,7 +78,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Link Color', 'shapla' ),
-	'default'  => shapla_default_options()->header_link_color,
+	'default'  => shapla_default_options( 'header_link_color' ),
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -110,7 +110,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'header_image',
 	'label'       => __( 'Sticky Header', 'shapla' ),
 	'description' => __( 'Check to to enable a sticky header.', 'shapla' ),
-	'default'     => shapla_default_options()->sticky_header,
+	'default'     => shapla_default_options( 'sticky_header' ),
 	'priority'    => 40,
 ) );
 
@@ -121,7 +121,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'header_image',
 	'label'       => __( 'Show Search Icon', 'shapla' ),
 	'description' => __( 'Check to show search icon on navigation bar in header area.', 'shapla' ),
-	'default'     => shapla_default_options()->show_search_icon,
+	'default'     => shapla_default_options( 'show_search_icon' ),
 	'priority'    => 50,
 ) );
 
@@ -130,7 +130,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'radio-button',
 	'section'  => 'header_image',
 	'label'    => __( 'Dropdown direction', 'shapla' ),
-	'default'  => shapla_default_options()->dropdown_direction,
+	'default'  => shapla_default_options( 'dropdown_direction' ),
 	'priority' => 60,
 	'choices'  => array(
 		'ltr' => esc_html__( 'Left to Right', 'shapla' ),

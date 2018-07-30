@@ -17,7 +17,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Background Color', 'shapla' ),
-	'default'  => shapla_default_options()->button_primary_background_color,
+	'default'  => shapla_default_options( 'button_primary_background_color' ),
 	'priority' => 10,
 	'output'   => array(
 		array(
@@ -40,7 +40,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Background Hover Color', 'shapla' ),
-	'default'  => shapla_default_options()->button_primary_background_hover_color,
+	'default'  => shapla_default_options( 'button_primary_background_hover_color' ),
 	'priority' => 20,
 	'output'   => array(
 		array(
@@ -75,7 +75,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Text Color', 'shapla' ),
-	'default'  => shapla_default_options()->button_primary_text_color,
+	'default'  => shapla_default_options( 'button_primary_text_color' ),
 	'priority' => 30,
 	'output'   => array(
 		array(
@@ -98,7 +98,7 @@ $shapla->customizer->add_field( array(
 	'type'     => 'alpha-color',
 	'section'  => 'button_primary',
 	'label'    => __( 'Text Hover Color', 'shapla' ),
-	'default'  => shapla_default_options()->button_primary_text_hover_color,
+	'default'  => shapla_default_options( 'button_primary_text_hover_color' ),
 	'priority' => 40,
 	'output'   => array(
 		array(
@@ -134,7 +134,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'button_primary',
 	'label'       => __( 'Border Radius', 'shapla' ),
 	'description' => __( 'Enter a px value for button. ex: 3px', 'shapla' ),
-	'default'     => shapla_default_options()->button_primary_border_radius,
+	'default'     => shapla_default_options( 'button_primary_border_radius' ),
 	'priority'    => 60,
 	'input_attrs' => array(
 		'min'    => 0,

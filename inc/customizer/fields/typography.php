@@ -36,11 +36,11 @@ $shapla->customizer->add_field( array(
 	'label'       => esc_attr__( 'Body Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all body text.', 'shapla' ),
 	'default'     => array(
-		'font-family'    => shapla_default_options()->font_family,
+		'font-family'    => shapla_default_options( 'font_family' ),
 		'variant'        => '400',
 		'font-size'      => '1rem',
 		'line-height'    => '1.5',
-		'color'          => shapla_default_options()->text_color,
+		'color'          => shapla_default_options( 'text_color' ),
 		'text-transform' => 'none',
 		'text-align'     => 'left'
 	),
@@ -74,7 +74,7 @@ $shapla->customizer->add_field( array(
 	'type'        => 'alpha-color',
 	'label'       => __( 'Primary color', 'shapla' ),
 	'description' => __( 'Set site primary color. Primary color will be used for link color, pagination', 'shapla' ),
-	'default'     => shapla_default_options()->primary_color,
+	'default'     => shapla_default_options( 'primary_color' ),
 	'priority'    => 10,
 	'output'      => array(
 		array(
@@ -123,7 +123,7 @@ $shapla->customizer->add_field( array(
 	'type'        => 'alpha-color',
 	'label'       => __( 'Text color', 'shapla' ),
 	'description' => __( 'Text color will be used for body', 'shapla' ),
-	'default'     => shapla_default_options()->heading_color,
+	'default'     => shapla_default_options( 'heading_color' ),
 	'priority'    => 20,
 	'output'      => array(
 		array(
@@ -149,9 +149,9 @@ $shapla->customizer->add_field( array(
 	'label'       => esc_attr__( 'Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H1, H2, H3, H4, H5, H6 Headers.', 'shapla' ),
 	'default'     => array(
-		'font-family'    => shapla_default_options()->font_family,
+		'font-family'    => shapla_default_options( 'font_family' ),
 		'variant'        => '500',
-		'color'          => shapla_default_options()->heading_color,
+		'color'          => shapla_default_options( 'heading_color' ),
 		'text-transform' => 'none',
 		'text-align'     => 'left'
 	),

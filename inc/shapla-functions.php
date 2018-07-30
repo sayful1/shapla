@@ -156,18 +156,20 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	/**
 	 * Get theme default options
 	 *
+	 * @param null $key option key
+	 * $key has been added since 1.4.5
+	 *
 	 * @return object
 	 * @since  1.3.0
 	 */
-	function shapla_default_options() {
+	function shapla_default_options( $key = null ) {
 		$heading_color   = '#323232';
 		$text_color      = '#323232';
 		$primary_color   = '#2196f3';
 		$primary_hover   = shapla_adjust_color_brightness( $primary_color, - 20 );
 		$primary_inverse = shapla_find_color_invert( $primary_color );
-		$font_family     = 'Roboto';
 
-		$options = array(
+		$options = apply_filters( 'shapla_default_options', array(
 			'heading_color'                         => $heading_color,
 			'text_color'                            => $text_color,
 			'primary_color'                         => $primary_color,
@@ -245,11 +247,13 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			'show_product_search_categories'        => true,
 			'wc_highlight_color'                    => $primary_color,
 			'wc_highlight_text_color'               => $primary_inverse,
-		);
+		) );
 
-		$default_options = json_decode( json_encode( $options ), false );
+		if ( ! empty( $key ) && isset( $options[ $key ] ) ) {
+			return $options[ $key ];
+		}
 
-		return apply_filters( 'shapla_default_options', $default_options );
+		return null;
 	}
 }
 

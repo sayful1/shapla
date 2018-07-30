@@ -11,6 +11,9 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 	 */
 	class Shapla_Metabox {
 
+		/**
+		 * @var self
+		 */
 		protected static $instance;
 
 		/**
@@ -50,8 +53,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 
-				add_action( 'admin_enqueue_scripts', array( __CLASS__, 'meta_box_style' ) );
-				add_action( 'admin_print_footer_scripts', array( __CLASS__, 'meta_box_script' ), 90 );
+				add_action( 'admin_enqueue_scripts', array( self::$instance, 'meta_box_style' ) );
+				add_action( 'admin_print_footer_scripts', array( self::$instance, 'meta_box_script' ), 90 );
 			}
 
 			return self::$instance;

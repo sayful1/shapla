@@ -18,7 +18,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'woocommerce_colors',
 	'label'       => __( 'Highlight color', 'shapla' ),
 	'description' => __( 'Color for Prices, In stock labels, sales flash', 'shapla' ),
-	'default'     => shapla_default_options()->wc_highlight_color,
+	'default'     => shapla_default_options( 'wc_highlight_color' ),
 	'priority'    => 50,
 	'output'      => array(
 		array(
@@ -46,7 +46,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'woocommerce_colors',
 	'label'       => __( 'Highlight text color', 'shapla' ),
 	'description' => __( 'Text on highlight color', 'shapla' ),
-	'default'     => shapla_default_options()->wc_highlight_text_color,
+	'default'     => shapla_default_options( 'wc_highlight_text_color' ),
 	'priority'    => 60,
 	'output'      => array(
 		array(

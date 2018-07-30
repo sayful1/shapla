@@ -4,10 +4,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Shapla_Blog' ) ):
+if ( ! class_exists( 'Shapla_Blog' ) ) {
 
 	class Shapla_Blog {
 
+		/**
+		 * @var object
+		 */
+		private static $instance;
+
+		/**
+		 * @return Shapla_Blog
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+			}
+
+			return self::$instance;
+		}
+
+		/**
+		 * Shapla_Blog constructor.
+		 */
 		public function __construct() {
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 			add_action( 'shapla_loop_post', array( $this, 'blog' ), 5 );
@@ -34,12 +53,22 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			return $classes;
 		}
 
+		/**
+		 * Filters the number of words in an excerpt.
+		 *
+		 * @return int
+		 */
 		public function excerpt_length() {
 			$excerpt_length = get_theme_mod( 'blog_excerpt_length', 20 );
 
 			return absint( $excerpt_length );
 		}
 
+		/**
+		 * Filters the string in the "more" link displayed after a trimmed excerpt.
+		 *
+		 * @return string
+		 */
 		public function excerpt_more() {
 			return sprintf( '<a class="read-more" href="%1$s" rel="nofollow"> %2$s</a>',
 				get_permalink( get_the_ID() ),
@@ -47,6 +76,9 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			);
 		}
 
+		/**
+		 * Get grid blog style
+		 */
 		public function blog() {
 
 			$show_author_avatar = get_theme_mod( 'show_blog_author_avatar', true );
@@ -91,15 +123,12 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 * @return string
 		 */
 		public function post_thumbnail( $echo = true ) {
-			$post_thumbnail = get_the_post_thumbnail(
-				null,
-				'post-thumbnail',
-				array( 'alt' => the_title_attribute( 'echo=0' ) )
+			$post_thumbnail = get_the_post_thumbnail( null, 'post-thumbnail',
+				array( 'alt' => the_title_attribute( array( 'echo' => false ) ) )
 			);
 
 			$_thumbnail = sprintf( '<a class="post-thumbnail" href="%s">%s</a>',
-				esc_url( get_permalink() ),
-				$post_thumbnail
+				esc_url( get_permalink() ), $post_thumbnail
 			);
 
 			if ( ! $echo ) {
@@ -109,16 +138,38 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 			echo $_thumbnail;
 		}
 
+		/**
+		 * Get post category
+		 *
+		 * @param bool $echo
+		 *
+		 * @return string
+		 */
 		public function post_category( $echo = true ) {
 			$show_category_list = get_theme_mod( 'show_blog_category_list', true );
+
+			$html = '';
 			if ( $show_category_list ) {
 				$categories_list = get_the_category_list( esc_html__( ', ', 'shapla' ) );
 				if ( $categories_list ) {
-					echo '<div class="cat-links">' . $categories_list . '</div>';
+					$html .= '<div class="cat-links">' . $categories_list . '</div>';
 				}
 			}
+
+			if ( ! $echo ) {
+				return $html;
+			}
+
+			echo $html;
 		}
 
+		/**
+		 * Get post tags
+		 *
+		 * @param bool $echo
+		 *
+		 * @return string
+		 */
 		public function post_tag( $echo = true ) {
 			$show_tag_list = get_theme_mod( 'show_blog_tag_list', false );
 			$tags_list     = get_the_tag_list( '', esc_html__( ', ', 'shapla' ) );
@@ -138,15 +189,15 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		}
 
 		/**
+		 * Get post title
+		 *
 		 * @param bool $echo
 		 *
 		 * @return string
 		 */
 		public function post_title( $echo = true ) {
-			$title = sprintf(
-				'<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
-				esc_url( get_permalink() ),
-				get_the_title()
+			$title = sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
+				esc_url( get_permalink() ), get_the_title()
 			);
 
 			if ( ! $echo ) {
@@ -248,18 +299,9 @@ if ( ! class_exists( 'Shapla_Blog' ) ):
 		 * @return bool
 		 */
 		private function is_blog() {
-			return (
-				       is_archive() ||
-				       is_author() ||
-				       is_category() ||
-				       is_home() ||
-				       is_search() ||
-				       is_tag()
-			       ) &&
-			       'post' == get_post_type();
+			return ( is_archive() || is_category() || is_tag() || is_author() || is_home() || is_search() );
 		}
 	}
+}
 
-endif;
-
-return new Shapla_Blog();
+return Shapla_Blog::init();
