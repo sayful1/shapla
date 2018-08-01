@@ -59,6 +59,11 @@ if ( class_exists( 'Jetpack' ) ) {
 	$shapla->jetpack = require 'inc/jetpack/class-shapla-jetpack.php';
 }
 
+// Elementor Compatibility requires PHP 5.4 for namespaces.
+if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
+	require_once 'inc/elementor/class-shapla-elementor-pro.php';
+}
+
 
 if ( shapla_is_woocommerce_activated() ) {
 	$shapla->woocommerce = require 'inc/woocommerce/class-shapla-woocommerce.php';

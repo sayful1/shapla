@@ -15,8 +15,8 @@ remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
 add_action( 'woocommerce_after_shop_loop', 'shapla_pagination', 10 );
 
 
-add_action( 'shapla_header', 'shapla_wc_product_search', 25 );
-add_action( 'shapla_header', 'shapla_header_cart', 30 );
+add_action( 'shapla_header_inner', 'shapla_wc_product_search', 25 );
+add_action( 'shapla_header_inner', 'shapla_header_cart', 30 );
 
 add_filter( 'woocommerce_add_to_cart_fragments', 'shapla_add_to_cart_fragments' );
 

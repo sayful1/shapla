@@ -27,31 +27,21 @@
 	<?php
 	/**
 	 * Functions hooked in to shapla_before_header
-	 *
-	 * * @hooked shapla_skip_links - 0
 	 */
-	do_action( 'shapla_before_header' ); ?>
+	do_action( 'shapla_before_header' );
 
-    <header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
-        <div class="shapla-container">
-            <div class="site-header-inner">
-				<?php
-				/**
-				 * Functions hooked into shapla_header action
-				 *
-				 * @hooked shapla_site_branding - 20
-				 * @hooked shapla_primary_navigation - 30
-				 */
-				do_action( 'shapla_header' ); ?>
-            </div>
-        </div>
-    </header><!-- #masthead -->
+	/**
+	 * Functions hooked into shapla_header action
+	 *
+	 * @hooked shapla_header_markup - 10
+	 */
+	do_action( 'shapla_header' );
 
-	<?php
 	/**
 	 * Functions hooked in to shapla_before_content
 	 */
-	do_action( 'shapla_before_content' ); ?>
+	do_action( 'shapla_before_content' );
+	?>
 
     <div id="content" class="site-content">
         <div class="shapla-container">

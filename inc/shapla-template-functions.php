@@ -8,6 +8,54 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Shapla template functions.
  */
 
+if ( ! function_exists( 'shapla_header_markup' ) ) {
+	/**
+	 * Site Header
+	 * Function to get site header
+	 *
+	 * @since 1.4.5
+	 */
+	function shapla_header_markup() {
+		?>
+        <header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
+            <div class="shapla-container">
+                <div class="site-header-inner">
+					<?php
+					/**
+					 * Functions hooked into shapla_header_inner action
+					 */
+					do_action( 'shapla_header_inner' ); ?>
+                </div>
+            </div>
+        </header><!-- #masthead -->
+		<?php
+	}
+}
+
+if ( ! function_exists( 'shapla_footer_markup' ) ) {
+	/**
+	 * Site Footer
+	 * Function to get site footer
+	 *
+	 * @since 1.4.5
+	 */
+	function shapla_footer_markup() {
+		?>
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="shapla-container">
+                <div class="site-footer-inner">
+					<?php
+					/**
+					 * Functions hooked into shapla_footer_inner action
+					 */
+					do_action( 'shapla_footer_inner' ); ?>
+                </div>
+            </div>
+        </footer><!-- #colophon -->
+		<?php
+	}
+}
+
 if ( ! function_exists( 'shapla_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display

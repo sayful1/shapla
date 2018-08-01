@@ -11,8 +11,8 @@
 
 ?>
 
-        </div>
-    </div>
+</div>
+</div>
 </div><!-- #content -->
 
 <?php do_action( 'shapla_before_footer_widget' ); ?>
@@ -25,25 +25,21 @@
  */
 do_action( 'shapla_footer_widget' );
 
+/**
+ * Functions hooked into shapla_before_footer action
+ */
+do_action( 'shapla_before_footer' );
 
-do_action( 'shapla_before_footer' ); ?>
+/**
+ * Functions hooked into shapla_footer action
+ */
+do_action( 'shapla_footer' );
 
-<footer id="colophon" class="site-footer" role="contentinfo">
-    <div class="shapla-container">
-        <div class="site-footer-inner">
-			<?php
-			/**
-			 * Functions hooked into shapla_footer action
-			 *
-			 * @hooked shapla_site_info - 20
-			 * @hooked shapla_social_navigation - 30
-			 */
-			do_action( 'shapla_footer' ); ?>
-        </div>
-    </div>
-</footer><!-- #colophon -->
-
-<?php do_action( 'shapla_after_footer' ); ?>
+/**
+ * Functions hooked into shapla_after_footer action
+ */
+do_action( 'shapla_after_footer' );
+?>
 
 </div><!-- #page -->
 
