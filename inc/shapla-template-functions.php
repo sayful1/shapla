@@ -620,6 +620,38 @@ if ( ! function_exists( 'shapla_page_content' ) ):
 
 endif;
 
+if ( ! function_exists( 'shapla_404_page_content' ) ) {
+	/**
+	 * Shapla 404 page content
+	 *
+	 * @since 1.4.5
+	 */
+	function shapla_404_page_content() {
+		?>
+        <section class="error-404 not-found">
+            <div class="page-content">
+                <p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?',
+						'shapla' ); ?></p>
+
+				<?php
+				get_search_form();
+
+				the_widget( 'WP_Widget_Recent_Posts' );
+
+				/* translators: %1$s: smiley */
+				$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s',
+						'shapla' ), convert_smilies( ':)' ) ) . '</p>';
+				the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
+
+				the_widget( 'WP_Widget_Tag_Cloud' );
+				?>
+
+            </div><!-- .page-content -->
+        </section><!-- .error-404 -->
+		<?php
+	}
+}
+
 if ( ! function_exists( 'shapla_display_comments' ) ):
 	/**
 	 * Shapla display comments

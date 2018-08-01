@@ -40,6 +40,7 @@ if ( ! class_exists( 'Shapla_Elementor_Pro' ) ) {
 				// Override theme templates.
 				add_action( 'shapla_header', array( self::$instance, 'do_header' ), 0 );
 				add_action( 'shapla_footer', array( self::$instance, 'do_footer' ), 0 );
+				add_action( 'shapla_404_page_content', array( self::$instance, 'do_template_part_404' ), 0 );
 			}
 
 			return self::$instance;
@@ -77,6 +78,20 @@ if ( ! class_exists( 'Shapla_Elementor_Pro' ) ) {
 			$did_location = Module::instance()->get_locations_manager()->do_location( 'footer' );
 			if ( $did_location ) {
 				remove_action( 'shapla_footer', 'shapla_footer_markup', 10 );
+			}
+		}
+
+		/**
+		 * Override 404 page
+		 *
+		 * @return void
+		 */
+		public function do_template_part_404() {
+			if ( is_404() ) {
+				$did_location = Module::instance()->get_locations_manager()->do_location( 'single' );
+				if ( $did_location ) {
+					remove_action( 'shapla_404_page_content', 'shapla_404_page_content', 10 );
+				}
 			}
 		}
 	}

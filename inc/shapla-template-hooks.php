@@ -94,3 +94,6 @@ add_filter( 'wp_nav_menu_items', 'shapla_search_icon', 10, 2 );
 add_action( 'shapla_after_page_title', 'shapla_breadcrumb', 10 );
 
 add_action( 'wp_footer', 'shapla_scroll_to_top_button', 1 );
+
+// 404 page
+add_action( 'shapla_404_page_content', 'shapla_404_page_content', 10 );
