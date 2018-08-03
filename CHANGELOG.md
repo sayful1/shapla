@@ -1,3 +1,8 @@
+#### 1.4.5 - ### ##, 2018
+* Add - Add support for Elementor Pro Page Builder Custom Header.
+* Add - Add support for Elementor Pro Page Builder Custom Footer.
+* Add - Add support for Elementor Pro Page Builder Custom 404 page.
+
 #### 1.4.4 - May 03, 2018
 * Add - Add metabox option to hide or show breadcrumbs.
 * Add - Add metabox option for content padding.

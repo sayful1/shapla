@@ -316,3 +316,29 @@ if ( ! function_exists( 'shapla_page_option' ) ) {
 		return isset( $page_options[ $key ] ) ? $page_options[ $key ] : $default;
 	}
 }
+
+if ( ! function_exists( 'shapla_get_post_format' ) ) {
+
+	/**
+	 * Get post format
+	 *
+	 * @return string Return post format.
+	 */
+	function shapla_get_post_format() {
+		$post_format = get_post_format();
+
+		if ( is_single() ) {
+			$post_format = 'single';
+		}
+
+		if ( is_singular( 'page' ) ) {
+			$post_format = 'page';
+		}
+
+		if ( is_search() ) {
+			$post_format = 'search';
+		}
+
+		return apply_filters( 'shapla_get_post_format', $post_format );
+	}
+}

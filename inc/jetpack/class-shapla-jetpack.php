@@ -45,9 +45,9 @@ if ( ! class_exists( 'Shapla_Jetpack' ) ) {
 			while ( have_posts() ) {
 				the_post();
 				if ( is_search() ) :
-					get_template_part( 'content', 'search' );
+					get_template_part( 'template-parts/content', 'search' );
 				else :
-					get_template_part( 'content', get_post_format() );
+					get_template_part( 'template-parts/content', get_post_format() );
 				endif;
 			}
 		}

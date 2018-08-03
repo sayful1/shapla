@@ -17,7 +17,7 @@ get_header(); ?>
 
 				do_action( 'shapla_single_post_before' );
 
-				get_template_part( 'content', 'single' );
+				get_template_part( 'template-parts/content', 'single' );
 
 				do_action( 'shapla_single_post_after' );
 

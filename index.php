@@ -19,13 +19,11 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) :
 
-				do_action( 'shapla_blog_loop_before' );
-
 				get_template_part( 'loop' );
 
 			else :
 
-				get_template_part( 'content', 'none' );
+				get_template_part( 'template-parts/content', 'none' );
 
 			endif; ?>
 

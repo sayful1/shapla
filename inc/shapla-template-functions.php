@@ -66,7 +66,7 @@ if ( ! function_exists( 'shapla_site_branding' ) ) {
 	function shapla_site_branding() {
 		?>
         <div class="site-branding">
-			<?php shapla_site_title_or_logo(); ?>
+			<?php echo shapla_site_title_or_logo(); ?>
         </div><!-- .site-branding -->
 		<?php
 	}
@@ -78,37 +78,27 @@ if ( ! function_exists( 'shapla_site_title_or_logo' ) ) {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param bool $echo Echo the string or return it.
-	 *
 	 * @return string
 	 */
-	function shapla_site_title_or_logo( $echo = true ) {
+	function shapla_site_title_or_logo() {
 
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
-		$html           = '';
-
-		if ( function_exists( 'the_custom_logo' ) && $custom_logo_id ) {
-			ob_start();
-			the_custom_logo();
-			$html .= ob_get_clean();
-
-		} else {
-			$tag = is_front_page() ? 'h1' : 'p';
-
-			$html .= '<' . esc_attr( $tag ) . ' class="site-title"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a></' . esc_attr( $tag ) . '>';
-
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) {
-
-				$html .= '<p class="site-description">' . esc_html( $description ) . '</p>';
-			}
+		if ( function_exists( 'get_custom_logo' ) && $custom_logo_id ) {
+			return get_custom_logo();
 		}
 
-		if ( ! $echo ) {
-			return $html;
+		$tag = is_front_page() ? 'h1' : 'p';
+
+		$html = '<' . esc_attr( $tag ) . ' class="site-title">';
+		$html .= '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a>';
+		$html .= '</' . esc_attr( $tag ) . '>';
+
+		$description = get_bloginfo( 'description', 'display' );
+		if ( $description || is_customize_preview() ) {
+			$html .= '<p class="site-description">' . esc_html( $description ) . '</p>';
 		}
 
-		echo $html;
+		return $html;
 	}
 }
 
@@ -489,8 +479,7 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 		$title = get_the_title();
 
 		if ( is_search() ) {
-			$title = sprintf(
-				esc_html__( 'Search Results for: %s', 'shapla' ),
+			$title = sprintf( esc_html__( 'Search Results for: %s', 'shapla' ),
 				'<span>' . get_search_query() . '</span>'
 			);
 		}
@@ -630,10 +619,12 @@ if ( ! function_exists( 'shapla_404_page_content' ) ) {
 		?>
         <section class="error-404 not-found">
             <div class="page-content">
-                <p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?',
-						'shapla' ); ?></p>
-
 				<?php
+				echo '<p>';
+				esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?',
+					'shapla' );
+				echo '</p>';
+
 				get_search_form();
 
 				the_widget( 'WP_Widget_Recent_Posts' );
@@ -641,11 +632,13 @@ if ( ! function_exists( 'shapla_404_page_content' ) ) {
 				/* translators: %1$s: smiley */
 				$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s',
 						'shapla' ), convert_smilies( ':)' ) ) . '</p>';
-				the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
+				the_widget( 'WP_Widget_Archives',
+					array( 'dropdown' => true ),
+					array( "after_title" => '</h2>' . $archive_content )
+				);
 
 				the_widget( 'WP_Widget_Tag_Cloud' );
 				?>
-
             </div><!-- .page-content -->
         </section><!-- .error-404 -->
 		<?php
@@ -677,8 +670,12 @@ if ( ! function_exists( 'shapla_post_header' ) ):
 	function shapla_post_header() {
 		?>
         <header class="entry-header">
-			<?php the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
-				'</a></h2>' ); ?>
+			<?php
+			the_title(
+				'<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
+				'</a></h2>'
+			);
+			?>
         </header><!-- .entry-header -->
 		<?php
 	}

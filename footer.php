@@ -11,13 +11,16 @@
 
 ?>
 
-</div>
-</div>
+</div><!-- .site-content-inner -->
+</div><!-- .shapla-container -->
 </div><!-- #content -->
 
-<?php do_action( 'shapla_before_footer_widget' ); ?>
-
 <?php
+/**
+ * Functions hooked into shapla_before_footer_widget action
+ */
+do_action( 'shapla_before_footer_widget' );
+
 /**
  * Functions hooked into shapla_footer_widget action
  *
