@@ -56,6 +56,42 @@ if ( ! function_exists( 'shapla_footer_markup' ) ) {
 	}
 }
 
+if ( ! function_exists( 'shapla_single_post_content' ) ) {
+	/**
+	 * Single post content
+	 * Function to get site single post content
+	 *
+	 * @since 1.4.5
+	 */
+	function shapla_single_post_content() {
+		while ( have_posts() ) {
+			the_post();
+
+			do_action( 'shapla_single_post_before' );
+
+			get_template_part( 'template-parts/content', 'single' );
+
+			do_action( 'shapla_single_post_after' );
+		}
+	}
+}
+
+if ( ! function_exists( 'shapla_archive_page_content' ) ) {
+	/**
+	 * Category archive page content
+	 * Function to get category archive page content
+	 *
+	 * @since 1.4.5
+	 */
+	function shapla_archive_page_content() {
+		if ( have_posts() ) {
+			get_template_part( 'loop' );
+		} else {
+			get_template_part( 'template-parts/content', 'none' );
+		}
+	}
+}
+
 if ( ! function_exists( 'shapla_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display

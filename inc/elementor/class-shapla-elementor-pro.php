@@ -41,6 +41,8 @@ if ( ! class_exists( 'Shapla_Elementor_Pro' ) ) {
 				add_action( 'shapla_header', array( self::$instance, 'do_header' ), 0 );
 				add_action( 'shapla_footer', array( self::$instance, 'do_footer' ), 0 );
 				add_action( 'shapla_404_page_content', array( self::$instance, 'do_template_part_404' ), 0 );
+				add_action( 'shapla_single_post_content', array( self::$instance, 'do_template_part_single' ), 0 );
+				add_action( 'shapla_archive_page_content', array( self::$instance, 'do_template_part_archive' ), 0 );
 			}
 
 			return self::$instance;
@@ -92,6 +94,32 @@ if ( ! class_exists( 'Shapla_Elementor_Pro' ) ) {
 				if ( $did_location ) {
 					remove_action( 'shapla_404_page_content', 'shapla_404_page_content', 10 );
 				}
+			}
+		}
+
+		/**
+		 * Override single post template
+		 *
+		 * @return void
+		 */
+		public function do_template_part_single() {
+			if ( is_single() ) {
+				$did_location = Module::instance()->get_locations_manager()->do_location( 'single' );
+				if ( $did_location ) {
+					remove_action( 'shapla_single_post_content', 'shapla_single_post_content', 10 );
+				}
+			}
+		}
+
+		/**
+		 * Override archive page template
+		 *
+		 * @return void
+		 */
+		public function do_template_part_archive() {
+			$did_location = Module::instance()->get_locations_manager()->do_location( 'archive' );
+			if ( $did_location ) {
+				remove_action( 'shapla_archive_page_content', 'shapla_archive_page_content', 10 );
 			}
 		}
 	}

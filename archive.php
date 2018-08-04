@@ -11,17 +11,14 @@ get_header(); ?>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
-
-			<?php if ( have_posts() ) :
-
-				get_template_part( 'loop' );
-
-			else :
-
-				get_template_part( 'template-parts/content', 'none' );
-
-			endif; ?>
-
+			<?php
+			/**
+			 * Functions hooked into shapla_archive_page_content action
+			 *
+			 * @hooked shapla_archive_page_content - 10
+			 */
+			do_action( 'shapla_archive_page_content' );
+			?>
         </main><!-- #main -->
     </div><!-- #primary -->
 

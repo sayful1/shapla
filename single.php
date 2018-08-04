@@ -11,19 +11,14 @@ get_header(); ?>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
-
 			<?php
-			while ( have_posts() ) : the_post();
-
-				do_action( 'shapla_single_post_before' );
-
-				get_template_part( 'template-parts/content', 'single' );
-
-				do_action( 'shapla_single_post_after' );
-
-			endwhile; // End of the loop.
+			/**
+			 * Functions hooked into shapla_single_post_content action
+			 *
+			 * @hooked shapla_single_post_content - 10
+			 */
+			do_action( 'shapla_single_post_content' );
 			?>
-
         </main><!-- #main -->
     </div><!-- #primary -->
 

@@ -69,6 +69,8 @@ add_action( 'shapla_single_post', 'shapla_post_content', 30 );
 add_action( 'shapla_single_post_after', 'shapla_navigation', 10 );
 add_action( 'shapla_single_post_after', 'shapla_display_comments', 20 );
 
+add_action( 'shapla_single_post_content', 'shapla_single_post_content', 10 );
+add_action( 'shapla_archive_page_content', 'shapla_archive_page_content', 10 );
 
 /**
  * Posts
