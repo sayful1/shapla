@@ -13,14 +13,20 @@
 		position: relative;
 	}
 
-	input[type="text"] {
+	input[type="search"] {
 		border-right: none;
 	}
 
 	&.has-cat-list {
-		input[type="text"] {
+		input[type="search"] {
 			border-radius: 0;
-			border-left: none;
+			border-left-width: 0;
+
+			.shapla-custom-menu-item-contents & {
+				border-left-width: 1px;
+				border-top-left-radius: 3px;
+				border-bottom-left-radius: 3px;
+			}
 		}
 	}
 
@@ -34,7 +40,12 @@
 		position: relative;
 		float: left;
 		width: auto;
+
+		.shapla-custom-menu-item-contents & {
+			display: none;
+		}
 	}
+
 	.nav-fill {
 		position: relative;
 		overflow: hidden;

@@ -1,9 +1,9 @@
 class ShaplaBackToTop {
 
     constructor(selector, config) {
-        let element;
-        let distance = 500;
-        let button = document.querySelector(selector);
+        let element,
+            distance = 500,
+            button = document.querySelector(selector);
 
         if (!config.isEnabled) return;
 

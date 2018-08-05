@@ -1,8 +1,11 @@
 class ShaplaStickyHeader {
 
     constructor(selector, settings) {
-        let masthead = document.querySelector(selector),
-            content = masthead.nextElementSibling,
+        let masthead = document.querySelector(selector);
+
+        if (!masthead) return;
+
+        let content = masthead.nextElementSibling,
             stickPoint = masthead.offsetTop,
             stuck = false,
             distance,

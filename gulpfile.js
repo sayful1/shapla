@@ -38,16 +38,6 @@ gulp.task('sass-main', function () {
         .pipe(livereload());
 });
 
-gulp.task('js', function () {
-    gulp.src('./assets/js/src/*.js')
-        .pipe(concat('script.js'))
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(concat('script.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./assets/js'))
-        .pipe(livereload());
-});
-
 gulp.task('customize-js', function () {
     gulp.src('./assets/js/customize/*.js')
         .pipe(concat('customize.js'))
@@ -68,9 +58,9 @@ gulp.task('bundle', function () {
         });
     }).then(function (gen) {
         return file('temp.js', gen.code, {src: true})
-            .pipe(concat('app.js'))
+            .pipe(concat('script.js'))
             .pipe(gulp.dest('./assets/js/'))
-            .pipe(concat('app.min.js'))
+            .pipe(concat('script.min.js'))
             .pipe(uglify())
             .pipe(gulp.dest('./assets/js/'))
             .pipe(livereload());
@@ -81,9 +71,8 @@ gulp.task('watch', function () {
     livereload.listen();
     gulp.watch('./assets/scss/**/**/*.scss', ['sass']);
     gulp.watch('./assets/scss/style.scss', ['sass-main']);
-    gulp.watch('./assets/js/src/*.js', ['js']);
     gulp.watch('./assets/js/customize/*.js', ['customize-js']);
     gulp.watch('./assets/js/public/*.js', ['bundle']);
 });
 
-gulp.task('default', ['sass', 'sass-main', 'js', 'customize-js', 'bundle', 'watch']);
+gulp.task('default', ['sass', 'sass-main', 'customize-js', 'bundle', 'watch']);

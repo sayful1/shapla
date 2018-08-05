@@ -62,49 +62,7 @@ if ( ! function_exists( 'shapla_wc_product_search' ) ) {
 			return;
 		}
 
-		$q_var            = get_query_var( 'product_cat' );
-		$selected         = empty( $q_var ) ? '' : $q_var;
-		$args             = array(
-			'show_option_none'  => __( 'All', 'shapla' ),
-			'option_none_value' => '',
-			'orderby'           => 'name',
-			'taxonomy'          => 'product_cat',
-			'name'              => 'product_cat',
-			'class'             => 'shapla-cat-list',
-			'value_field'       => 'slug',
-			'selected'          => $selected,
-			'hide_if_empty'     => 1,
-			'echo'              => 1,
-			'show_count'        => 0,
-			'hierarchical'      => 1,
-		);
-		$show_product_cat = get_theme_mod( 'show_product_search_categories', true );
-		?>
-        <div class="shapla-search shapla-product-search <?php echo $show_product_cat ? 'has-cat-list' : ''; ?>">
-            <form role="search" method="get" class="shapla-product-search-form"
-                  action="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<?php if ( $show_product_cat === true ): ?>
-                    <div class="nav-left">
-                        <div class="nav-search-facade" data-value="search-alias=aps">
-                        <span class="nav-search-label" data-default="<?php esc_html_e( 'All', 'shapla' ); ?>">
-                            <?php esc_html_e( 'All', 'shapla' ); ?>
-                        </span>
-                            <i class="fa fa-angle-down"></i>
-                        </div>
-						<?php wp_dropdown_categories( $args ); ?>
-                    </div>
-				<?php endif; ?>
-                <div class="nav-right">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
-                <div class="nav-fill">
-                    <input type="hidden" name="post_type" value="product"/>
-                    <input name="s" type="text" value="<?php echo get_search_query(); ?>"
-                           placeholder="<?php esc_attr_e( 'Search for products', 'shapla' ); ?>"/>
-                </div>
-            </form>
-        </div>
-		<?php
+		shapla_search_form();
 	}
 }
 

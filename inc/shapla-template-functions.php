@@ -212,48 +212,6 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	}
 }
 
-if ( ! function_exists( 'shapla_search_form' ) ) {
-	/**
-	 * Shapla Search form
-	 *
-	 * @since  1.0.0
-	 * @deprecated 1.2.3
-	 *
-	 * @return void
-	 */
-	function shapla_search_form() {
-		_deprecated_function( __FUNCTION__, '1.2.3' );
-
-		$show_search_icon = get_theme_mod( 'show_search_icon' );
-		$header_layout    = get_theme_mod( 'header_layout', 'default' );
-		if ( ! $show_search_icon ) {
-			return;
-		}
-		if ( $header_layout != 'default' ) {
-			return;
-		}
-		?>
-        <div id="search-sidenav" class="sidenav sidenav-right">
-            <div class="sidenav-header">
-                <h2 class="sidenav-title">Search</h2>
-                <span id="search-closebtn" class="sidenav-closebtn">
-					<i class="fa fa-times-circle" aria-hidden="true"></i>
-				</span>
-            </div>
-            <div class="sidenav-content">
-				<?php
-				if ( shapla_is_woocommerce_activated() ) {
-					the_widget( 'WC_Widget_Product_Search' );
-				} else {
-					the_widget( 'WP_Widget_Search' );
-				}
-				?>
-            </div>
-        </div>
-		<?php
-	}
-}
-
 if ( ! function_exists( 'shapla_footer_widget' ) ) {
 	/**
 	 * Display Footer widget
@@ -782,6 +740,91 @@ if ( ! function_exists( 'shapla_pagination' ) ):
 
 endif;
 
+if ( ! function_exists( 'shapla_search_form' ) ) {
+	/**
+	 * Shapla Search form
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param bool $echo
+	 *
+	 * @return string
+	 */
+	function shapla_search_form( $echo = true ) {
+		$header_layout            = get_theme_mod( 'header_layout', 'layout-1' );
+		$show_product_cat         = get_theme_mod( 'show_product_search_categories', true );
+		$is_woocommerce_activated = shapla_is_woocommerce_activated();
+		$form_class               = 'shapla-search';
+		$placeholder              = esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' );
+
+		if ( $is_woocommerce_activated ) {
+			$form_class  .= ' shapla-product-search';
+			$placeholder = esc_attr_x( 'Search product &hellip;', 'placeholder', 'shapla' );
+
+			if ( $show_product_cat ) {
+				$form_class .= ' has-cat-list';
+			}
+		}
+
+		$html = '<div class="' . $form_class . '">';
+		$html .= '<form role="search" method="get" class="shapla-search-form" action="' . esc_url( home_url( '/' ) ) . '">';
+
+		if ( $is_woocommerce_activated && $show_product_cat ) {
+			$q_var    = get_query_var( 'product_cat' );
+			$selected = empty( $q_var ) ? '' : $q_var;
+			$args     = array(
+				'show_option_none'  => __( 'All', 'shapla' ),
+				'option_none_value' => '',
+				'orderby'           => 'name',
+				'taxonomy'          => 'product_cat',
+				'name'              => 'product_cat',
+				'class'             => 'shapla-cat-list',
+				'value_field'       => 'slug',
+				'selected'          => $selected,
+				'hide_if_empty'     => 1,
+				'echo'              => 0,
+				'show_count'        => 0,
+				'hierarchical'      => 1,
+			);
+
+			$html .= '<div class="nav-left">';
+			$html .= '<div class="nav-search-facade" data-value="search-alias=aps">';
+			$html .= '<span class="nav-search-label" data-default="' . esc_html__( 'All', 'shapla' ) . '">';
+			$html .= esc_html__( 'All', 'shapla' );
+			$html .= '</span>';
+			$html .= '<i class="fa fa-angle-down"></i>';
+			$html .= '</div>';
+			$html .= wp_dropdown_categories( $args );
+			$html .= '</div>';
+		}
+
+		// Submit button
+		$html .= '<div class="nav-right">';
+		$html .= '<button type="submit"><i class="fa fa-search"></i></button>';
+		$html .= '</div>';
+
+		// Search input field
+		$html .= '<div class="nav-fill">';
+		if ( $is_woocommerce_activated ) {
+			$html .= '<input type="hidden" name="post_type" value="product"/>';
+		}
+		$html .= '<label>';
+		$html .= '<span class="screen-reader-text">' . _x( 'Search for:', 'label', 'shapla' ) . '</span>';
+		$html .= '<input type="search" class="search-field" placeholder="' . $placeholder . '" value="' . get_search_query() . '" name="s" />';
+		$html .= '</label>';
+		$html .= '</div>';
+
+		$html .= '</form>';
+		$html .= '</div>';
+
+		if ( ! $echo ) {
+			return $html;
+		}
+
+		echo $html;
+	}
+}
+
 if ( ! function_exists( 'shapla_default_search' ) ) {
 	/**
 	 * WooCommerce Product Search
@@ -799,20 +842,7 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 			return;
 		}
 
-		?>
-        <div class="shapla-search">
-            <form role="search" method="get" class="shapla-product-search-form"
-                  action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                <div class="nav-right">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </div>
-                <div class="nav-fill">
-                    <input name="s" type="text" value="<?php echo get_search_query(); ?>"
-                           placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
-                </div>
-            </form>
-        </div>
-		<?php
+		shapla_search_form();
 	}
 }
 
@@ -856,21 +886,7 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
             <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
                 <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
                 <div class="shapla-custom-menu-item-contents">
-                    <div class="shapla-search">
-                        <form role="search" method="get" class="shapla-search-form"
-                              action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                            <div class="nav-right">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-                            <div class="nav-fill">
-								<?php if ( shapla_is_woocommerce_activated() ): ?>
-                                    <input type="hidden" name="post_type" value="product"/>
-								<?php endif; ?>
-                                <input name="s" type="text" value="<?php echo get_search_query(); ?>"
-                                       placeholder="<?php esc_attr_e( 'Search...', 'shapla' ); ?>"/>
-                            </div>
-                        </form>
-                    </div>
+					<?php shapla_search_form(); ?>
                 </div>
             </li>
 			<?php
