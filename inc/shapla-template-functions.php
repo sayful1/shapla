@@ -720,7 +720,15 @@ if ( ! function_exists( 'shapla_navigation' ) ):
 	 * @since  1.0.0
 	 */
 	function shapla_navigation() {
-		the_post_navigation();
+		$args = apply_filters( 'shapla_post_navigation_args', array(
+			'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'shapla' ) . '</span> ' .
+			               '<span class="screen-reader-text">' . __( 'Next post:', 'shapla' ) . '</span> ' .
+			               '<span class="post-title">%title</span>',
+			'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'shapla' ) . '</span> ' .
+			               '<span class="screen-reader-text">' . __( 'Previous post:', 'shapla' ) . '</span> ' .
+			               '<span class="post-title">%title</span>',
+		) );
+		echo get_the_post_navigation( $args );
 	}
 
 endif;
@@ -733,8 +741,8 @@ if ( ! function_exists( 'shapla_pagination' ) ):
 	 */
 	function shapla_pagination() {
 		the_posts_pagination( array(
-			'prev_text' => __( '&laquo;', 'shapla' ),
-			'next_text' => __( '&raquo;', 'shapla' )
+			'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'shapla' ) . __( '&laquo;', 'shapla' ),
+			'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'shapla' ) . __( '&raquo;', 'shapla' )
 		) );
 	}
 

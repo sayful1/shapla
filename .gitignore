@@ -5,6 +5,16 @@
 node_modules/
 
 # Files
+admin.css
+admin.css.map
+carousel-slider.css
+carousel-slider.css.map
+customizer.css
+customizer.css.map
+editor-style.css
+editor-style.css.map
+woocommerce.css
+woocommerce.css.map
 assets/css/admin.css.map
 assets/css/editor-style.css.map
 assets/css/style.css

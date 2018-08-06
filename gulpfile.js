@@ -29,7 +29,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass-main', function () {
-    gulp.src('./assets/scss/style.scss')
+    gulp.src('./assets/scss/**/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass(sassOptions).on('error', sass.logError))
         .pipe(autoprefixer(autoprefixerOptions))
@@ -70,7 +70,7 @@ gulp.task('bundle', function () {
 gulp.task('watch', function () {
     livereload.listen();
     gulp.watch('./assets/scss/**/**/*.scss', ['sass']);
-    gulp.watch('./assets/scss/style.scss', ['sass-main']);
+    gulp.watch('./assets/scss/**/**/*.scss', ['sass-main']);
     gulp.watch('./assets/js/customize/*.js', ['customize-js']);
     gulp.watch('./assets/js/public/*.js', ['bundle']);
 });
