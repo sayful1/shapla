@@ -242,6 +242,11 @@
     };
 
     var ShaplaSearch = function ShaplaSearch() {
+        ShaplaSearch.defaultSearch();
+        ShaplaSearch.productSearch();
+    };
+
+    ShaplaSearch.defaultSearch = function defaultSearch () {
         var toggle = document.querySelector('#search-toggle'),
             menuSearch = document.querySelector('.shapla-main-menu-search');
 
@@ -260,14 +265,15 @@
         });
     };
 
-    var ShaplaProductSearch = function ShaplaProductSearch() {
+    ShaplaSearch.productSearch = function productSearch () {
         var productSearch = document.querySelector('.shapla-product-search');
-
         if (!productSearch) { return; }
+
+        var catList = productSearch.querySelector('.shapla-cat-list');
+        if (!catList) { return; }
 
         var searchLabel = productSearch.querySelector('.nav-search-label'),
             defaultLabel = searchLabel.getAttribute('data-default'),
-            catList = productSearch.querySelector('.shapla-cat-list'),
             defaultVal = catList.value;
 
         if (defaultVal === '') {
@@ -295,6 +301,5 @@
     new ShaplaBackToTop('#shapla-back-to-top', config.BackToTopButton);
     new ShaplaStickyHeader("#masthead", config.stickyHeader);
     new ShaplaSearch();
-    new ShaplaProductSearch();
 
 })));
