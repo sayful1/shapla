@@ -721,12 +721,16 @@ if ( ! function_exists( 'shapla_navigation' ) ):
 	 */
 	function shapla_navigation() {
 		$args = apply_filters( 'shapla_post_navigation_args', array(
-			'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'shapla' ) . '</span> ' .
+			'next_text' => '<div class="nav-next-text">' .
+			               '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'shapla' ) . '</span> ' .
 			               '<span class="screen-reader-text">' . __( 'Next post:', 'shapla' ) . '</span> ' .
-			               '<span class="post-title">%title</span>',
-			'prev_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'shapla' ) . '</span> ' .
+			               '<span class="post-title">%title</span>' .
+			               '</div>',
+			'prev_text' => '<div class="nav-previous-text">' .
+			               '<span class="meta-nav" aria-hidden="true">' . __( 'Previous', 'shapla' ) . '</span> ' .
 			               '<span class="screen-reader-text">' . __( 'Previous post:', 'shapla' ) . '</span> ' .
-			               '<span class="post-title">%title</span>',
+			               '<span class="post-title">%title</span>' .
+			               '</div>',
 		) );
 		echo get_the_post_navigation( $args );
 	}

@@ -46,12 +46,10 @@ if ( post_password_required() ) {
         </ol><!-- .comment-list -->
 
 		<?php
-		the_comments_pagination(
-			array(
-				'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'shapla' ) . '</span>&laquo;',
-				'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'shapla' ) . '</span>&raquo;',
-			)
-		);
+		the_comments_pagination( array(
+			'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'shapla' ) . '</span>',
+			'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'shapla' ) . '</span>',
+		) );
 
 	endif; // Check for have_comments().
 
