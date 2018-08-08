@@ -1057,7 +1057,7 @@ if ( ! function_exists( 'shapla_comment' ) ) {
         <div class="comment-meta">
             <div class="comment-author vcard">
 				<?php echo get_avatar( $comment, 128 ); ?>
-				<?php printf( wp_kses_post( '<cite class="fn">%s</cite>', 'shapla' ), get_comment_author_link() ); ?>
+				<?php printf( wp_kses_post( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>
             </div>
 			<?php if ( '0' == $comment->comment_approved ) : ?>
                 <em class="comment-awaiting-moderation">
