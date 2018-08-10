@@ -4,6 +4,7 @@
 * Add - Add support for Elementor Pro Page Builder Custom 404 page.
 * Add - Add support for Elementor Pro Page Builder Custom single post.
 * Add - Add support for Elementor Pro Page Builder Custom archive page.
+* Tweak - Update post and comment navigation.
 
 #### 1.4.4 - May 03, 2018
 * Add - Add metabox option to hide or show breadcrumbs.
