@@ -48,7 +48,7 @@ class ShaplaSearch {
                 searchLabel.textContent = selectText;
             }
 
-            productSearch.querySelector('input[type="text"]').focus();
+            productSearch.querySelector('input[type="search"]').focus();
         });
     }
 }
