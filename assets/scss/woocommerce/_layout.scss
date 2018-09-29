@@ -1,231 +1,231 @@
 // My account
 .woocommerce-account {
-    .woocommerce-MyAccount-navigation,
-    .woocommerce-MyAccount-content {
-        float: none;
-        width: 100%;
-        margin: 0;
-    }
+	.woocommerce-MyAccount-navigation,
+	.woocommerce-MyAccount-content {
+		float: none;
+		width: 100%;
+		margin: 0;
+	}
 }
 
 .woocommerce,
 .woocommerce-page {
 
-    .woocommerce-result-count {
-        float: left;
-        margin-top: 0;
-    }
-    .woocommerce-ordering {
-        float: right;
-        margin-top: 0;
-    }
+	.woocommerce-result-count {
+		float: left;
+		margin-top: 0;
+	}
+	.woocommerce-ordering {
+		float: right;
+		margin-top: 0;
+	}
 
-    // Product Details
-    div.product {
-        div.images,
-        div.summary {
-            float: none;
-            width: 100%;
-        }
-    }
+	// Product Details
+	div.product {
+		div.images,
+		div.summary {
+			float: none;
+			width: 100%;
+		}
+	}
 
-    // General layout
-    .col2-set {
-        .col-1,
-        .col-2 {
-            float: none;
-            width: 100%;
-        }
-    }
+	// General layout
+	.col2-set {
+		.col-1,
+		.col-2 {
+			float: none;
+			width: 100%;
+		}
+	}
 }
 
 @media screen and (min-width: $screen-md) {
-    // My account
-    .woocommerce-account {
-        .woocommerce-MyAccount-navigation {
-            width: 25%;
-            margin-right: 2rem;
-            float: left;
-        }
-        .woocommerce-MyAccount-content {
-            width: calc(75% - 2rem);
-            float: right;
-        }
-    }
+	// My account
+	.woocommerce-account {
+		.woocommerce-MyAccount-navigation {
+			width: 25%;
+			margin-right: 2rem;
+			float: left;
+		}
+		.woocommerce-MyAccount-content {
+			width: calc(75% - 2rem);
+			float: right;
+		}
+	}
 
-    .woocommerce,
-    .woocommerce-page {
-        // General layout
-        .col2-set {
-            @include clearfix();
-            width: 100%;
+	.woocommerce,
+	.woocommerce-page {
+		// General layout
+		.col2-set {
+			@include clearfix();
+			width: 100%;
 
-            .col-1 {
-                width: calc(50% - 2rem);
-                margin-right: 2rem;
-                float: left;
-            }
-            .col-2 {
-                width: 50%;
-                float: right;
-            }
-        }
+			.col-1 {
+				width: calc(50% - 2rem);
+				margin-right: 2rem;
+				float: left;
+			}
+			.col-2 {
+				width: 50%;
+				float: right;
+			}
+		}
 
-        .woocommerce-checkout {
-            .col2-set {
-                width: calc(50% - 2rem);
-                margin-right: 2rem;
-                float: left;
+		.woocommerce-checkout {
+			.col2-set {
+				width: calc(50% - 2rem);
+				margin-right: 2rem;
+				float: left;
 
-                .col-1,
-                .col-2 {
-                    width: 100%;
-                    float: none;
-                    margin: 0;
-                }
-            }
-            #order_review_heading,
-            #order_review {
-                width: 50%;
-                float: right;
-            }
-        }
+				.col-1,
+				.col-2 {
+					width: 100%;
+					float: none;
+					margin: 0;
+				}
+			}
+			#order_review_heading,
+			#order_review {
+				width: 50%;
+				float: right;
+			}
+		}
 
-        // Product Details
-        div.product {
-            div.images {
-                width: calc(50% - 2rem);
-                margin-right: 2rem;
-                float: left;
-            }
-            div.summary {
-                width: 50%;
-                float: right;
-            }
-        }
-    }
+		// Product Details
+		div.product {
+			div.images {
+				width: calc(50% - 2rem);
+				margin-right: 2rem;
+				float: left;
+			}
+			div.summary {
+				width: 50%;
+				float: right;
+			}
+		}
+	}
 }
 
 //== Layout: WooCommerce Product Loop
 .woocommerce,
 .woocommerce-page {
 
-    ul.products {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: -1rem;
-        margin-left: -1rem;
+	ul.products {
+		display: flex;
+		flex-wrap: wrap;
+		margin-right: -1rem;
+		margin-left: -1rem;
 
-        @include clearfix();
+		@include clearfix();
 
-        li.product {
-            margin: 0;
-            padding: 1rem;
-            position: relative;
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-    }
+		li.product {
+			margin: 0;
+			padding: 1rem;
+			position: relative;
+			flex: 0 0 100%;
+			max-width: 100%;
+		}
+	}
 
-    @media screen and (min-width: $screen-sm) {
-        ul.products {
-            li.product {
-                flex: 0 0 50%;
-                max-width: 50%;
-            }
-        }
+	@media screen and (min-width: $screen-sm) {
+		ul.products {
+			li.product {
+				flex: 0 0 50%;
+				max-width: 50%;
+			}
+		}
 
-        &.columns-2 {
-            ul.products {
-                li.product {
-                    flex: 0 0 50%;
-                    max-width: 50%;
-                }
-            }
-        }
-    }
+		ul.products {
+			&.columns-2 {
+				li.product {
+					flex: 0 0 50%;
+					max-width: 50%;
+				}
+			}
+		}
+	}
 
-    @media screen and (min-width: $screen-md) {
-        ul.products {
-            li.product {
-                flex: 0 0 calc(100% / 3);
-                max-width: calc(100% / 3);
-            }
-        }
-    }
+	@media screen and (min-width: $screen-md) {
+		ul.products {
+			li.product {
+				flex: 0 0 calc(100% / 3);
+				max-width: calc(100% / 3);
+			}
+		}
+	}
 
-    @media screen and (min-width: $screen-lg) {
-        ul.products {
-            li.product {
-                flex: 0 0 calc(100% / 3);
-                max-width: calc(100% / 3);
-            }
-        }
+	@media screen and (min-width: $screen-lg) {
+		ul.products {
+			li.product {
+				flex: 0 0 calc(100% / 3);
+				max-width: calc(100% / 3);
+			}
+		}
 
-        &.columns-3,
-        &.columns-4 {
-            ul.products {
-                li.product {
-                    flex: 0 0 calc(100% / 3);
-                    max-width: calc(100% / 3);
-                }
-            }
-        }
+		ul.products {
+			&.columns-3,
+			&.columns-4 {
+				li.product {
+					flex: 0 0 calc(100% / 3);
+					max-width: calc(100% / 3);
+				}
+			}
+		}
 
-        &.columns-5,
-        &.columns-6 {
-            ul.products {
-                li.product {
-                    flex: 0 0 25%;
-                    max-width: 25%;
-                }
-            }
-        }
-    }
+		ul.products {
+			&.columns-5,
+			&.columns-6 {
+				li.product {
+					flex: 0 0 25%;
+					max-width: 25%;
+				}
+			}
+		}
+	}
 
-    @media screen and (min-width: $screen-xl) {
+	@media screen and (min-width: $screen-xl) {
 
-        ul.products {
-            li.product {
-                flex: 0 0 25%;
-                max-width: 25%;
-            }
-        }
+		ul.products {
+			li.product {
+				flex: 0 0 25%;
+				max-width: 25%;
+			}
+		}
 
-        &.columns-3 {
-            ul.products {
-                li.product {
-                    flex: 0 0 calc(100% / 3);
-                    max-width: calc(100% / 3);
-                }
-            }
-        }
+		ul.products {
+			&.columns-3 {
+				li.product {
+					flex: 0 0 calc(100% / 3);
+					max-width: calc(100% / 3);
+				}
+			}
+		}
 
-        &.columns-4 {
-            ul.products {
-                li.product {
-                    flex: 0 0 25%;
-                    max-width: 25%;
-                }
-            }
-        }
+		ul.products {
+			&.columns-4 {
+				li.product {
+					flex: 0 0 25%;
+					max-width: 25%;
+				}
+			}
+		}
 
-        &.columns-5 {
-            ul.products {
-                li.product {
-                    flex: 0 0 20%;
-                    max-width: 20%;
-                }
-            }
-        }
+		ul.products {
+			&.columns-5 {
+				li.product {
+					flex: 0 0 20%;
+					max-width: 20%;
+				}
+			}
+		}
 
-        &.columns-6 {
-            ul.products {
-                li.product {
-                    flex: 0 0 calc(100% / 6);
-                    max-width: calc(100% / 6);
-                }
-            }
-        }
-    }
+		ul.products {
+			&.columns-6 {
+				li.product {
+					flex: 0 0 calc(100% / 6);
+					max-width: calc(100% / 6);
+				}
+			}
+		}
+	}
 }
