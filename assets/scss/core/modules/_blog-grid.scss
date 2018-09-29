@@ -1,4 +1,4 @@
-.blog-grid:not(.woocommerce) {
+.blog-grid:not(.woocommerce):not(.elementor-default) {
 	.site-main {
 		display: flex;
 		flex-wrap: wrap;
