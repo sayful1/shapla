@@ -1,10 +1,11 @@
-#### 1.4.5 - ### ##, 2018
+#### 1.4.5 - October 02, 2018
 * Add - Add support for Elementor Pro Page Builder Custom Header.
 * Add - Add support for Elementor Pro Page Builder Custom Footer.
 * Add - Add support for Elementor Pro Page Builder Custom 404 page.
 * Add - Add support for Elementor Pro Page Builder Custom single post.
 * Add - Add support for Elementor Pro Page Builder Custom archive page.
 * Tweak - Update post and comment navigation.
+* Tweak - Update WooCommerce my account page style.
 
 #### 1.4.4 - May 03, 2018
 * Add - Add metabox option to hide or show breadcrumbs.
