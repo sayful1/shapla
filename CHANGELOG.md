@@ -1,4 +1,9 @@
-#### 1.4.5 - October 02, 2018
+#### 1.4.6 - October 02, 2018
+* Add - Add new post class 'shapla-grid-item'.
+* Tweak - Rename body class from 'blog-grid' to 'shapla-blog-grid'.
+* Fixed - Fixed Elementor Pro Page Builder archive page style issue.
+
+#### 1.4.5 - October 01, 2018
 * Add - Add support for Elementor Pro Page Builder Custom Header.
 * Add - Add support for Elementor Pro Page Builder Custom Footer.
 * Add - Add support for Elementor Pro Page Builder Custom 404 page.

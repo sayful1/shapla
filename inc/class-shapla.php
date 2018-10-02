@@ -36,6 +36,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'shapla_scripts' ), 10 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 90 );
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
+			add_filter( 'post_class', array( $this, 'post_classes' ) );
 		}
 
 		/**
@@ -219,6 +220,19 @@ if ( ! class_exists( 'Shapla' ) ) {
 				'before_title'  => '<h2 class="widget-title">',
 				'after_title'   => '</h2>',
 			) );
+		}
+
+		/**
+		 * Add theme custom class to post
+		 *
+		 * @param array $class
+		 *
+		 * @return array
+		 */
+		public function post_classes( $class ) {
+			$class[] = 'shapla-grid-item';
+
+			return $class;
 		}
 
 		/**

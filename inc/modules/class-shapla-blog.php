@@ -47,7 +47,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 
 			// Blog page
 			if ( $this->is_blog() && 'grid' == $blog_layout ) {
-				$classes[] = 'blog-grid';
+				$classes[] = 'shapla-blog-grid';
 			}
 
 			return $classes;
@@ -95,23 +95,23 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 			remove_action( 'shapla_loop_post', 'shapla_post_meta', 20 );
 			remove_action( 'shapla_loop_post', 'shapla_post_content', 30 );
 			?>
-            <div class="blog-grid-inside">
+			<div class="blog-grid-inside">
 				<?php $this->post_thumbnail(); ?>
-                <header class="entry-header">
+				<header class="entry-header">
 					<?php
 					$this->post_category();
 					$this->post_title();
 					?>
-                </header>
-                <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+				</header>
+				<div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
 				<?php $this->post_tag(); ?>
-                <footer class="entry-footer">
+				<footer class="entry-footer">
 					<?php
 					$this->post_author();
 					$this->post_date();
 					?>
-                </footer>
-            </div>
+				</footer>
+			</div>
 			<?php
 		}
 
@@ -299,7 +299,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return bool
 		 */
 		private function is_blog() {
-			return ( is_archive() || is_category() || is_tag() || is_author() || is_home() || is_search() );
+			return ( is_post_type_archive( 'post' ) || is_category() || is_tag() || is_author() || is_home() || is_search() );
 		}
 	}
 }

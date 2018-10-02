@@ -1,4 +1,4 @@
-.blog-grid:not(.woocommerce):not(.elementor-default) {
+.shapla-blog-grid {
 	.site-main {
 		display: flex;
 		flex-wrap: wrap;
@@ -71,7 +71,7 @@
 		padding-left: 1rem;
 	}
 
-	.hentry {
+	.shapla-grid-item:not(.elementor-grid-item) {
 		margin-bottom: 0;
 		padding: 1rem;
 		flex: 0 0 100%;
