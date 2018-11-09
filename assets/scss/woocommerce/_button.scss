@@ -5,43 +5,43 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 
-    &.disabled {
-        box-shadow: none;
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
+	&.disabled {
+		box-shadow: none;
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
 
-    &.loading {
-        color: transparent !important;
-        pointer-events: none;
+	&.loading {
+		color: transparent !important;
+		pointer-events: none;
 
-        &::after {
-            animation: fa-spin .500s linear infinite;
-            border: 2px solid #dbdbdb;
-            border-radius: 100px;
-            border-right-color: transparent;
-            border-top-color: transparent;
-            content: "";
-            display: block;
-            height: 1em;
-            width: 1em;
-            left: calc(50% - 0.5em);
-            top: calc(50% - 0.5em);
-            position: absolute !important;
-        }
-    }
+		&::after {
+			animation: fa-spin .500s linear infinite;
+			border: 2px solid #dbdbdb;
+			border-radius: 100px;
+			border-right-color: transparent;
+			border-top-color: transparent;
+			content: "";
+			display: block;
+			height: 1em;
+			width: 1em;
+			left: calc(50% - 0.5em);
+			top: calc(50% - 0.5em);
+			position: absolute !important;
+		}
+	}
 }
 
 .wc-forward {
-    &::after {
-        @include fa-icon();
-        content: '\f178';
-        margin-left: 0.75em;
-        vertical-align: middle;
-    }
+	&::after {
+		@include fa-solid();
+		content: '\f30b'; // long-arrow-alt-right
+		margin-left: 0.75em;
+		vertical-align: middle;
+	}
 }
 
 a.added_to_cart {
-    white-space: nowrap;
-    display: inline-block;
+	white-space: nowrap;
+	display: inline-block;
 }

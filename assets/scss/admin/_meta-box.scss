@@ -51,7 +51,6 @@
 		background-color: #f4f2f2;
 		border-color: rgba(0, 0, 0, 0.05) !important;
 		box-shadow: none !important;
-		-webkit-box-shadow: none !important;
 	}
 
 	.select2-container .select2-selection > .select2-selection__rendered {
@@ -263,7 +262,15 @@
 				}
 
 				&::before {
-					@include iconbeforedashicons('\f107');
+					font-family: 'Dashicons';
+					speak: none;
+					font-weight: normal;
+					font-variant: normal;
+					text-transform: none;
+					line-height: 1;
+					-webkit-font-smoothing: antialiased;
+					content: '\f107';
+					text-decoration: none;
 				}
 			}
 

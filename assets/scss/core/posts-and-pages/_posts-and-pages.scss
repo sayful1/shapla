@@ -2,15 +2,9 @@
 	display: block;
 
 	.entry-title > a:before {
-		display: inline-block;
-		font-family: 'FontAwesome';
-		content: "\f08d";
-		font-style: normal;
-		font-weight: normal;
-		line-height: 1;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		padding-right: 1rem;
+		@include fa-solid();
+		content: "\f08d"; // thumbtack
+		margin-right: 1rem;
 	}
 }
 

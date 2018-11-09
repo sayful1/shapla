@@ -49,7 +49,7 @@
 
 		&.prev:before,
 		&.next:after {
-			@include fa-icon();
+			@include fa-solid();
 		}
 		&.prev:before {
 			content: "\f104";
@@ -110,7 +110,7 @@
 
 				&:before,
 				&:after {
-					@include fa-icon();
+					@include fa-solid();
 					font-size: 2rem;
 					color: #dddddd;
 				}

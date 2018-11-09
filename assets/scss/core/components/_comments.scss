@@ -64,15 +64,17 @@
 				display: inline-block;
 				margin-right: 1em;
 
+				&.comment-edit-link:before,
 				&.comment-reply-link:before {
-					@include fa-icon;
-					content: "\f112"; // fa-reply
+					@include fa-solid();
+				}
+				&.comment-reply-link:before {
+					content: "\f3e5"; // fa-reply
 					margin-right: 0.25rem;
 				}
 
 				&.comment-edit-link:before {
-					@include fa-icon;
-					content: "\f040"; // fa-pencil
+					content: "\f303"; // fa-pencil
 					margin-right: 0.25rem;
 				}
 
@@ -133,7 +135,7 @@
 		}
 
 		&:before {
-			@include fa-icon;
+			@include fa-solid();
 			content: "\f057";
 			display: block;
 		}

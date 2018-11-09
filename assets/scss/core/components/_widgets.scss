@@ -11,30 +11,29 @@
 	}
 
 	li:before {
-		display: inline-block;
-		font-family: FontAwesome;
-		margin-right: 8px;
+		@include fa-solid();
+		margin-right: 0.5rem;
 		opacity: 0.65;
 		color: $color--grey;
 	}
 
 	&.widget_archive li:before {
-		content: '\f115';
+		content: '\f07c'; // folder-open
 	}
 	&.widget_categories li:before {
-		content: '\f114';
+		content: '\f07b'; // folder
 	}
 	&.widget_pages li:before {
-		content: '\f0f6';
+		content: '\f15c'; // f15c
 	}
 	&.widget_recent_comments li:before {
-		content: '\f0e5';
+		content: '\f086'; // comments
 	}
 	&.widget_recent_entries li:before {
-		content: '\f0f6';
+		content: '\f15c'; // file-alt
 	}
 	&.widget_nav_menu li:before {
-		content: '\f0f6';
+		content: '\f15c';
 	}
 
 	ul {
@@ -114,7 +113,7 @@
 		}
 
 		&:before {
-			@include fa-icon();
+			@include fa-solid();
 			content: "\f002";
 			position: absolute;
 			z-index: 10;

@@ -24,8 +24,8 @@
 			display: block;
 
 			&:before {
-				@include fa-icon();
-				content: "\f0f6";
+				@include fa-solid();
+				content: "\f15c"; // file-alt
 				line-height: 1.1;
 				margin-left: 0.5em;
 				width: 1.5em;
@@ -42,35 +42,31 @@
 		}
 
 		&--dashboard a:before {
-			content: "\f0e4";
+			content: "\f3fd"; // dashboard
 		}
 
 		&--orders a:before {
-			content: "\f291";
+			content: "\f291"; // shopping-basket
 		}
 
 		&--downloads a:before {
-			content: "\f1c6";
+			content: "\f019"; // download
 		}
 
 		&--edit-address a:before {
-			content: "\f015";
+			content: "\f2bb"; // address-card
 		}
 
 		&--payment-methods a:before {
-			content: "\f09d";
+			content: "\f09d"; // credit-card
 		}
 
 		&--edit-account a:before {
-			content: "\f007";
+			content: "\f007"; // user
 		}
 
 		&--customer-logout a:before {
-			content: "\f08b";
-		}
-
-		&--subscriptions a:before {
-			content: "\f021";
+			content: "\f2f5"; // sign-out-alt
 		}
 	}
 }
@@ -99,8 +95,8 @@
 				margin-top: 1em;
 
 				&:before {
-					@include fa-icon();
-					content: "\f044";
+					@include fa-solid();
+					content: "\f303"; // pencil-alt
 					line-height: 1.618;
 					position: absolute;
 					top: 0;
