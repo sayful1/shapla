@@ -1,27 +1,27 @@
 .mfp-content {
 
-    .product {
-        a.add_to_cart_button,
-        a.added_to_cart {
-            padding: 0.75em 1.5em;
-        }
+	.product {
+		a.add_to_cart_button,
+		a.added_to_cart {
+			padding: 0.75em 1.5em;
+		}
 
-        a.add_to_cart_button {
-            &.loading:after,
-            &.added:after {
-                @include fa-icon();
-                margin-left: 0.75em;
-                vertical-align: bottom;
+		a.add_to_cart_button {
+			&.loading:after,
+			&.added:after {
+				@include fa-solid();
+				margin-left: 0.75em;
+				vertical-align: bottom;
 
-            }
-            &.loading:after {
-                content: "\f110";
-                animation: fa-spin .75s linear infinite;
-            }
+			}
+			&.loading:after {
+				content: "\f110";
+				animation: fa-spin .75s linear infinite;
+			}
 
-            &.added:after {
-                content: '\f00c';
-            }
-        }
-    }
+			&.added:after {
+				content: '\f00c';
+			}
+		}
+	}
 }

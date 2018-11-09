@@ -18,7 +18,7 @@
 			margin-bottom: 15px;
 
 			.label:before {
-				@include fa-icon;
+				@include fa-solid();
 				padding-right: 5px;
 			}
 		}
@@ -41,19 +41,19 @@
 			content: "\f133"; // fa-calendar-o
 		}
 		.byline .label:before {
-			content: "\f2c0"; // fa-user-o
+			content: "\f007"; // fa-user-o
 		}
 		.cat-links .label:before {
-			content: "\f114"; // fa-folder-o
+			content: "\f07b"; // fa-folder-o
 		}
 		.tags-links .label:before {
 			content: "\f02c"; // fa-tags
 		}
 		.comments-link .label:before {
-			content: "\f0e5"; // fa-comment-o
+			content: "\f086"; // fa-comment-o
 		}
 		.edit-link .label:before {
-			content: "\f040"; // fa-pencil
+			content: "\f303"; // fa-pencil
 		}
 	}
 }
