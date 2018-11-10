@@ -1,20 +1,22 @@
 a {
-    background-color: transparent;
-    color: $primary;
-    text-decoration: none;
+	background-color: transparent;
+	color: $link;
+	text-decoration: none;
+	transition: color 110ms ease-in-out;
 
-    &:hover,
-    &:focus,
-    &:visited,
-    &:active {
-        color: $primary;
-        //text-decoration: underline;
-    }
-    &:focus {
-        outline: 0;
-    }
-    &:hover,
-    &:active {
-        outline: 0;
-    }
+	&:visited {
+		color: $link-visited;
+		outline: thin dotted;
+	}
+
+	&:hover,
+	&:active {
+		color: $link-hover;
+		outline: 0;
+	}
+
+	&:focus {
+		outline: thin dotted;
+		text-decoration: underline;
+	}
 }
