@@ -1,3 +1,6 @@
+#### 1.5.0 - November ##, 2018
+* Tweak - Upgrade to Font Awesome version 5.5.0 from version 4.7.0.
+
 #### 1.4.6 - October 02, 2018
 * Add - Add new post class 'shapla-grid-item'.
 * Tweak - Rename body class from 'blog-grid' to 'shapla-blog-grid'.

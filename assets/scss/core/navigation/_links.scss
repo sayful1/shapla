@@ -4,8 +4,7 @@ a {
 	text-decoration: none;
 	transition: color 110ms ease-in-out;
 
-	&:visited {
-		color: $link-visited;
+	&:focus {
 		outline: thin dotted;
 	}
 
@@ -13,10 +12,6 @@ a {
 	&:active {
 		color: $link-hover;
 		outline: 0;
-	}
-
-	&:focus {
-		outline: thin dotted;
-		text-decoration: underline;
+		text-decoration: none;
 	}
 }

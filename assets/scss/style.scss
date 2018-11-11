@@ -53,17 +53,17 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Button
 --------------------------------------------------------------*/
-@import "core/components/button";
+@import "core/forms/button";
 /*--------------------------------------------------------------
 # Forms
 --------------------------------------------------------------*/
-@import "core/components/forms";
+@import "core/forms/forms";
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
-@import "core/components/layout";
-@import "core/components/layout-widget";
-@import "core/components/boxed-layout";
+@import "core/site/layout/default";
+@import "core/site/layout/boxed";
+@import "core/site/secondary/layout-widget";
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
@@ -71,22 +71,22 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
-@import "core/components/accessibility";
+@import "core/modules/accessibility";
 /*--------------------------------------------------------------
 # Alignments
 --------------------------------------------------------------*/
-@import "core/components/alignments";
+@import "core/modules/alignments";
 /*--------------------------------------------------------------
 # Clearings
 --------------------------------------------------------------*/
-@import "core/components/clearings";
+@import "core/modules/clearings";
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-@import "core/header/header-default";
-@import "core/header/header-center";
-@import "core/header/header-widget";
-@import "core/header/header-search";
+@import "core/site/header/header-default";
+@import "core/site/header/header-center";
+@import "core/site/header/header-widget";
+@import "core/site/header/header-search";
 /*--------------------------------------------------------------
 # Breadcrumb
 --------------------------------------------------------------*/
@@ -94,7 +94,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
-@import "core/components/widgets";
+@import "core/site/secondary/widgets";
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
@@ -102,11 +102,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
-@import "core/components/comments";
+@import "core/site/primary/comments";
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-@import "core/components/footer";
+@import "core/site/footer/site-footer";
 /*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
@@ -114,11 +114,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Media, Captions and Galleries
 --------------------------------------------------------------*/
-@import "core/components/media";
-@import "core/components/captions";
-@import "core/components/galleries";
+@import "core/media/media";
+@import "core/media/captions";
+@import "core/media/galleries";
 /*--------------------------------------------------------------
 # Modules
 --------------------------------------------------------------*/
-@import "core/modules/blog-grid";
-@import "core/modules/scroll-to-top";
+@import "core/elements/blog-grid";
+@import "core/elements/scroll-to-top";

@@ -7,11 +7,11 @@
 @import "utilities/mixins";
 @import "core/components/typography";
 @import "core/components/table";
-@import "core/components/alignments";
-@import "core/components/media";
-@import "core/components/captions";
-@import "core/components/galleries";
+@import "core/modules/alignments";
+@import "core/media/media";
+@import "core/media/captions";
+@import "core/media/galleries";
 
 body {
-    margin: 1em;
+	margin: 1em;
 }
