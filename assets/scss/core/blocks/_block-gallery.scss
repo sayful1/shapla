@@ -1,5 +1,11 @@
 .wp-block-gallery {
-	.blocks-gallery-image, .blocks-gallery-item {
+	display: flex;
+	flex-wrap: wrap;
+	list-style-type: none;
+	padding: 0;
+
+	.blocks-gallery-image,
+	.blocks-gallery-item {
 		&:last-child {
 			margin-bottom: 16px;
 		}

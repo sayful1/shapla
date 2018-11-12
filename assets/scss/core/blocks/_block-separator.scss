@@ -5,34 +5,27 @@ hr {
 	text-align: left;
 
 	&:not(.is-style-dots) {
-		background-color: $color__text-light;
+		background-color: $grey;
 		border: 0;
 		height: 2px;
 	}
 
 	&:not(.is-style-wide):not(.is-style-dots) {
-		max-width: 2.25em;
-	}
-
-	/* Remove duplicate rule-line when a separator
-	 * is followed by an H1, or H2 */
-	& + h1,
-	& + h2 {
-
-		&:before {
-			display: none;
-		}
+		max-width: 300px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	&.is-style-dots {
-		@include postContentMaxWidth();
 		text-align: center;
 
 		&:before {
-			color: $color__text-light;
-			font-size: $font__size-lg;
-			letter-spacing: $font__size-sm;
-			padding-left: $font__size-sm;
+			content: "\00b7 \00b7 \00b7";
+			color: $grey;
+			font-size: 1.5rem;
+			letter-spacing: 2em;
+			padding-left: 2em;
+			font-family: serif;
 		}
 	}
 }

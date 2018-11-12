@@ -1,7 +1,5 @@
 $size__spacing-unit: 1rem;
 
-/* !Block styles */
-
 .entry-content > * {
 	margin: 2rem 1rem;
 	max-width: calc(100vw - (2 * 1rem));
@@ -90,27 +88,27 @@ $size__spacing-unit: 1rem;
 //! Button
 //@import "block-button";
 //! Paragraphs
-//@import "block-paragraphs";
+@import "block-paragraphs";
 //! Pullquote
 //@import "block-pullquote";
 //! Blockquote
 //@import "block-quote";
 //! Image
-//@import "block-image";
+@import "block-image";
 //! Cover Image
 //@import "block-cover";
 //! Galleries
-//@import "block-gallery";
+@import "block-gallery";
 //! Separator
-//@import "block-separator";
+@import "block-separator";
 //! Table
-//@import "block-table";
+@import "block-table";
 //! File
-//@import "block-file";
+@import "block-file";
 //! Code
-//@import "block-code";
+@import "block-code";
 //! Columns
-//@import "block-columns";
+@import "block-columns";
 //! Latest Comments
 //@import "block-latest-comments";
 //! Others

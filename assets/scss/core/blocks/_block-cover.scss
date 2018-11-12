@@ -4,8 +4,7 @@
 	.wp-block-cover-image-text,
 	.wp-block-cover-text,
 	h2 {
-		font-family: $font__heading;
-		font-size: $font__size-lg;
+		font-size: $size-2;
 		font-weight: bold;
 
 		width: calc(100vw - (2 * #{ $size__spacing-unit }));

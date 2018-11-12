@@ -1,4 +1,10 @@
 .wp-block-columns {
+	display: flex;
+	flex-wrap: wrap;
+
+	@include media(tablet) {
+		flex-wrap: nowrap;
+	}
 
 	.wp-block-column > * {
 

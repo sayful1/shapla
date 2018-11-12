@@ -1,5 +1,3 @@
 .wp-block-table {
-	td, th {
-		border-color: $color__text-light;
-	}
+	min-width: 300px;
 }
