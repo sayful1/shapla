@@ -48,3 +48,22 @@
 		margin-top: -15px;
 	}
 }
+
+@mixin media( $res ) {
+	@if tablet == $res {
+		@media only screen and (min-width: $screen-tablet) {
+			@content;
+		}
+	}
+	@if desktop == $res {
+		@media only screen and (min-width: $screen-desktop) {
+			@content;
+		}
+	}
+
+	@if wide == $res {
+		@media only screen and (min-width: $screen-widescreen) {
+			@content;
+		}
+	}
+}

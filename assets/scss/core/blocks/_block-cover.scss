@@ -1,0 +1,65 @@
+.wp-block-cover-image,
+.wp-block-cover {
+
+	.wp-block-cover-image-text,
+	.wp-block-cover-text,
+	h2 {
+		font-family: $font__heading;
+		font-size: $font__size-lg;
+		font-weight: bold;
+
+		width: calc(100vw - (2 * #{ $size__spacing-unit }));
+		max-width: calc(100vw - (2 * #{ $size__spacing-unit }));
+
+		@include media(tablet) {
+			font-size: $font__size-xl;
+			width: calc(8 * (100vw / 12));
+			max-width: calc(8 * (100vw / 12));
+		}
+
+		@include media(desktop) {
+			width: calc(6 * (100vw / 12));
+			max-width: calc(6 * (100vw / 12));
+		}
+	}
+
+	&.alignleft,
+	&.alignright,
+	&.aligncenter {
+		h2,
+		.wp-block-cover-image-text,
+		.wp-block-cover-text {
+			width: 100%;
+			z-index: 1;
+			left: 50%;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			top: 50%;
+		}
+	}
+
+	&.aligncenter {
+		margin: 32px calc(2 * (100vw / 12));
+		max-width: calc(6 * (100vw / 12));
+	}
+
+	&.has-left-content {
+		justify-content: center;
+
+		h2,
+		.wp-block-cover-image-text,
+		.wp-block-cover-text {
+			padding: $size__spacing-unit;
+		}
+	}
+
+	&.has-right-content {
+		justify-content: center;
+
+		h2,
+		.wp-block-cover-image-text,
+		.wp-block-cover-text {
+			padding: $size__spacing-unit;
+		}
+	}
+}

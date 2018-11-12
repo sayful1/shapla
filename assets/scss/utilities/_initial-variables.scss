@@ -105,13 +105,20 @@ $line-height-heading: 1.2 !default;
 
 //== Grid containers
 $container-sm: 540px !default;
-$container-md: 720px !default;
-$container-lg: 960px !default;
-$container-xl: 1140px !default;
+$container-tablet: 720px !default;
+$container-desktop: 960px !default;
+$container-widescreen: 1140px !default;
+$container-fullhd: 1344px !default;
+
+$mobile_width: 380px;
+$tablet_width: 768px;
+$desktop_width: 1168px;
+$wide_width: 1379px;
 
 //== Grid breakpoints
 $gap: 64px !default; // The container horizontal gap, which acts as the offset for breakpoints
 $screen-sm: 576px !default;
-$screen-md: 769px !default;
-$screen-lg: $container-lg + (2 * $gap) !default; // 960px container + 4rem
-$screen-xl: $container-xl + (2 * $gap) !default; // 1140px container + 4rem
+$screen-tablet: 769px !default;
+$screen-desktop: $container-desktop + (2 * $gap) !default; // 960px container + 4rem
+$screen-widescreen: $container-widescreen + (2 * $gap) !default; // 1140px container + 4rem
+$screen-fullhd: $container-fullhd + (2 * $gap) !default; // 1344px container + 4rem

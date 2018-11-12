@@ -1,0 +1,21 @@
+.wp-block-columns {
+
+	.wp-block-column > * {
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&[class*='has-'] > * {
+		margin-right: $size__spacing-unit;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}

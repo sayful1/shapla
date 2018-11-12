@@ -1,0 +1,18 @@
+.wp-block-audio {
+	audio {
+		max-width: 100%;
+		min-width: 300px;
+	}
+
+	&.alignleft audio,
+	&.alignright audio {
+		max-width: (0.5 * $mobile_width);
+	}
+
+	&.aligncenter audio {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: (0.5 * $container-tablet);
+	}
+}

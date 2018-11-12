@@ -122,6 +122,18 @@ if ( ! class_exists( 'Shapla' ) ) {
 			// Indicate widget sidebars can use selective refresh in the Customizer.
 			add_theme_support( 'customize-selective-refresh-widgets' );
 
+			// Add support for Block Styles
+			add_theme_support( 'wp-block-styles' );
+
+			// Add support for full and wide align images.
+			add_theme_support( 'align-wide' );
+
+			// Add support for editor styles
+			add_theme_support( 'editor-styles' );
+
+			// Add support for responsive embedded content
+			add_theme_support( 'responsive-embeds' );
+
 			/*
 			 * This theme styles the visual editor to resemble the theme style,
 			 * specifically font, colors, icons, and column width.

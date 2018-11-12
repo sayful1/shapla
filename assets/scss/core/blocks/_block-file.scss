@@ -1,0 +1,33 @@
+.wp-block-file {
+	font-family: $font__heading;
+
+	.wp-block-file__button {
+		@include button-transition;
+		border: none;
+		border-radius: 5px;
+		background: $color__background-button;
+		font-size: $font__size-base;
+		font-family: $font__heading;
+		line-height: $font__line-height-heading;
+		font-weight: bold;
+		padding: ($size__spacing-unit * .75) $size__spacing-unit;
+
+		@include media(desktop) {
+			font-size: $font__size-base;
+			padding: ($size__spacing-unit * .875) ($size__spacing-unit * 1.5);
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&:hover, &:focus {
+			background: $color__background-button-hover;
+		}
+
+		&:focus {
+			outline: thin dotted;
+			outline-offset: -4px;
+		}
+	}
+}
