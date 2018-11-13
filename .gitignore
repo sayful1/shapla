@@ -15,10 +15,13 @@ editor-style.css
 editor-style.css.map
 woocommerce.css
 woocommerce.css.map
+blocks.css
+blocks.css.map
 assets/css/admin.css.map
 assets/css/editor-style.css.map
 assets/css/style.css
 assets/css/style.css.map
+assets/css/blocks.css.map
 assets/css/woocommerce.css.map
 assets/css/carousel-slider.css.map
 assets/css/customizer.css.map

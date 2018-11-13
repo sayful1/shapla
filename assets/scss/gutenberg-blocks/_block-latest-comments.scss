@@ -1,11 +1,10 @@
 .wp-block-latest-comments {
 
 	.wp-block-latest-comments__comment-meta {
-		font-family: $font__heading;
-		font-weight: bold;
+		font-weight: $weight-medium;
 
 		.wp-block-latest-comments__comment-date {
-			font-weight: normal;
+			font-weight: $weight-normal;
 		}
 	}
 
@@ -20,9 +19,8 @@
 	}
 
 	&.has-dates {
-
 		.wp-block-latest-comments__comment-date {
-			font-size: $font__size-xs;
+			font-size: $size-small;
 		}
 	}
 

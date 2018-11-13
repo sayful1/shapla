@@ -346,8 +346,16 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$theme_url = get_template_directory_uri();
 			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_style( 'font-awesome-icons', $theme_url . '/assets/font-awesome/v5.5.0/css/all' . $suffix . '.css', array(), '5.5.0', 'all' );
+			// Font Awesome Free icons
+			wp_enqueue_style( 'font-awesome-icons', $theme_url . '/assets/font-awesome/css/all' . $suffix . '.css', array(), '5.5.0', 'all' );
+
+			// Theme stylesheet.
 			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );
+
+			// Theme block stylesheet.
+			wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css', array( 'shapla-style' ), SHAPLA_VERSION );
+
+			// Load theme script.
 			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/script' . $suffix . '.js', array(), SHAPLA_VERSION, true );
 
 			wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );

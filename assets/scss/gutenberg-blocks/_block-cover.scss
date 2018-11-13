@@ -1,24 +1,31 @@
 .wp-block-cover-image,
 .wp-block-cover {
+	position: relative;
+	background-color: #000;
+	background-size: cover;
+	background-position: center center;
+	min-height: 430px;
+	width: 100%;
+	margin: 0 0 1.5em 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	.wp-block-cover-image-text,
 	.wp-block-cover-text,
 	h2 {
-		font-size: $size-2;
-		font-weight: bold;
+		font-size: $size-4;
+		font-weight: $weight-medium;
 
-		width: calc(100vw - (2 * #{ $size__spacing-unit }));
-		max-width: calc(100vw - (2 * #{ $size__spacing-unit }));
+		margin: 2rem 1rem;
+		width: 100%;
 
 		@include media(tablet) {
-			font-size: $font__size-xl;
-			width: calc(8 * (100vw / 12));
-			max-width: calc(8 * (100vw / 12));
+			font-size: $size-3;
 		}
 
 		@include media(desktop) {
-			width: calc(6 * (100vw / 12));
-			max-width: calc(6 * (100vw / 12));
+			font-size: $size-2;
 		}
 	}
 
@@ -38,27 +45,29 @@
 	}
 
 	&.aligncenter {
-		margin: 32px calc(2 * (100vw / 12));
-		max-width: calc(6 * (100vw / 12));
+		margin: 32px auto;
+		max-width: 60%;
 	}
 
 	&.has-left-content {
-		justify-content: center;
+		justify-content: flex-start;
 
 		h2,
 		.wp-block-cover-image-text,
 		.wp-block-cover-text {
+			margin-left: auto;
 			padding: $size__spacing-unit;
 		}
 	}
 
 	&.has-right-content {
-		justify-content: center;
+		justify-content: flex-end;
 
 		h2,
 		.wp-block-cover-image-text,
 		.wp-block-cover-text {
 			padding: $size__spacing-unit;
+			margin-right: auto;
 		}
 	}
 }
