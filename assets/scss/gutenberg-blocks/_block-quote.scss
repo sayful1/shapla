@@ -2,7 +2,7 @@
 
 	&:not(.is-large),
 	&:not(.is-style-large) {
-		border-left: 2px solid $color__link;
+		border-left: 2px solid $text-main;
 		padding-top: 0;
 		padding-bottom: 0;
 	}
@@ -14,7 +14,7 @@
 	}
 
 	cite {
-		font-size: $font__size-xs;
+		font-size: $size-small;
 	}
 
 	&.is-large,
@@ -24,23 +24,20 @@
 		border-left: none;
 
 		p {
-			font-size: $font__size-lg;
+			font-size: $size-medium;
 			line-height: 1.4;
 			font-style: italic;
 		}
 
 		cite,
 		footer {
-			font-size: $font__size-xs;
+			font-size: $size-small;
 		}
 
 		@include media(tablet) {
 
-			margin: $size__spacing-unit calc(2 * (100vw / 12));
-			max-width: calc(6 * (100vw / 12));
-
 			p {
-				font-size: $font__size-lg;
+				font-size: $size-large;
 			}
 		}
 	}

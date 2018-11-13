@@ -8,7 +8,7 @@
 
 $size__spacing-unit: 1rem;
 
-@import "gutenberg-blocks/layout";
+//@import "gutenberg-blocks/layout";
 
 // ==Audio
 @import "gutenberg-blocks/block-audio";
@@ -22,47 +22,47 @@ $size__spacing-unit: 1rem;
 // ==Verse
 @import "gutenberg-blocks/block-verse";
 
-//! Button
-//@import "gutenberg-blocks/block-button";
+// ==Button
+@import "gutenberg-blocks/block-button";
 
-//! Paragraphs
+// ==Paragraphs
 @import "gutenberg-blocks/block-paragraphs";
 
-//! Pullquote
-//@import "gutenberg-blocks/block-pullquote";
+// ==Pullquote
+@import "gutenberg-blocks/block-pullquote";
 
-//! Blockquote
-//@import "gutenberg-blocks/block-quote";
+// ==Blockquote
+@import "gutenberg-blocks/block-quote";
 
-//! Image
+// ==Image
 @import "gutenberg-blocks/block-image";
 
-//! Cover Image
+// ==Cover Image
 @import "gutenberg-blocks/block-cover";
 
-//! Galleries
+// ==Galleries
 @import "gutenberg-blocks/block-gallery";
 
-//! Separator
+// ==Separator
 @import "gutenberg-blocks/block-separator";
 
-//! Table
+// ==Table
 @import "gutenberg-blocks/block-table";
 
-//! File
+// ==File
 @import "gutenberg-blocks/block-file";
 
-//! Code
+// ==Code
 @import "gutenberg-blocks/block-code";
 
-//! Columns
+// ==Columns
 @import "gutenberg-blocks/block-columns";
 
-//! Latest Comments
+// ==Latest Comments
 @import "gutenberg-blocks/block-latest-comments";
 
-//! Widgets
+// ==Widgets
 @import "gutenberg-blocks/block-widgets";
 
-//! Captions
+// ==Captions
 @import "gutenberg-blocks/caption";
