@@ -1,5 +1,5 @@
 .wp-block-button {
-	margin-bottom: 1.5em;
+	margin-bottom: $column-gap;
 
 	.wp-block-button__link {
 		background: $btn-background;
@@ -7,21 +7,10 @@
 		box-sizing: border-box;
 		color: $btn-color;
 		font-weight: bold;
+		line-height: 1;
 		outline: none;
 		padding: 0.75em 1.5em;
 		text-decoration: none;
-
-		&:hover {
-			cursor: pointer;
-		}
-
-		&:hover, &:focus {
-		}
-
-		&:focus {
-			outline: thin dotted;
-			outline-offset: -4px;
-		}
 	}
 
 	&:not(.is-style-squared) .wp-block-button__link {
@@ -34,15 +23,12 @@
 		.wp-block-button__link:active {
 			background: transparent;
 			border: 2px solid currentColor;
-			color: $text-main;
 		}
 
 		.wp-block-button__link:not(.has-text-color) {
-			color: $text-main;
 		}
 
 		.wp-block-button__link:hover {
-			color: $text-main;
 		}
 	}
 }

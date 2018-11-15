@@ -2,7 +2,7 @@
 
 	&:not(.is-large),
 	&:not(.is-style-large) {
-		border-left: 2px solid $text-main;
+		border-left: 5px solid $text-main;
 		padding-top: 0;
 		padding-bottom: 0;
 	}
@@ -20,8 +20,7 @@
 	&.is-large,
 	&.is-style-large {
 		padding: $size__spacing-unit 0 ($size__spacing-unit) ($size__spacing-unit * 2);
-		margin: $size__spacing-unit 0;
-		border-left: none;
+		margin: (2 * $size__spacing-unit) 0;
 
 		p {
 			font-size: $size-medium;
@@ -35,7 +34,6 @@
 		}
 
 		@include media(tablet) {
-
 			p {
 				font-size: $size-large;
 			}

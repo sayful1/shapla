@@ -1,5 +1,6 @@
 //! Verse
 .wp-block-verse {
-	white-space: nowrap;
+	margin-bottom: $column-gap;
 	overflow: auto;
+	white-space: nowrap;
 }

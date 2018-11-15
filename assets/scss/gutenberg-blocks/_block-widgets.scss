@@ -20,6 +20,8 @@
 
 //! Latest posts grid view
 .wp-block-latest-posts {
+	margin: 0;
+
 	&.has-dates {
 		.wp-block-latest-posts__post-date {
 			margin-left: 1.5em;
@@ -29,7 +31,7 @@
 		li {
 			border-top: 2px solid $text-light;
 			padding-top: (1 * $size__spacing-unit);
-			margin-bottom: (2 * $size__spacing-unit);
+			margin-bottom: (1 * $size__spacing-unit);
 			a {
 				&:after {
 					content: '';

@@ -1,7 +1,7 @@
 .wp-block-separator,
 hr {
-	margin-bottom: (2 * $size__spacing-unit);
-	margin-top: (2 * $size__spacing-unit);
+	margin-bottom: $column-gap;
+	margin-top: $column-gap;
 	text-align: left;
 
 	&:not(.is-style-dots) {
@@ -11,7 +11,7 @@ hr {
 	}
 
 	&:not(.is-style-wide):not(.is-style-dots) {
-		max-width: 300px;
+		max-width: 100px;
 		margin-left: auto;
 		margin-right: auto;
 	}
