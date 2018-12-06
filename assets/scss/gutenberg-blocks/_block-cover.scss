@@ -44,9 +44,19 @@
 		}
 	}
 
+	&.alignleft {
+		display: inline;
+		float: left;
+		margin: 0 2rem 2rem 0;
+	}
+
 	&.aligncenter {
-		margin: 32px auto;
+		margin: 2rem auto;
 		max-width: 60%;
+	}
+
+	&.alignright {
+		margin: 0 0 2rem 2rem;
 	}
 
 	&.has-left-content {

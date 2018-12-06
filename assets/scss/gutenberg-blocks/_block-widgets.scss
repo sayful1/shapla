@@ -20,25 +20,29 @@
 
 //! Latest posts grid view
 .wp-block-latest-posts {
-	margin: 0;
+	margin: 0 0 $column-gap;
 
 	&.has-dates {
 		.wp-block-latest-posts__post-date {
 			margin-left: 1.5em;
 		}
 	}
+
 	&.is-grid {
 		li {
 			border-top: 2px solid $text-light;
 			padding-top: (1 * $size__spacing-unit);
 			margin-bottom: (1 * $size__spacing-unit);
+
 			a {
 				&:after {
 					content: '';
 				}
 			}
+
 			&:last-child {
 				margin-bottom: auto;
+
 				a:after {
 					content: '';
 				}

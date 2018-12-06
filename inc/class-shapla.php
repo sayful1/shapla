@@ -122,14 +122,11 @@ if ( ! class_exists( 'Shapla' ) ) {
 			// Indicate widget sidebars can use selective refresh in the Customizer.
 			add_theme_support( 'customize-selective-refresh-widgets' );
 
-			// Add support for Block Styles
+			// Load default block styles.
 			add_theme_support( 'wp-block-styles' );
 
-			// Add support for full and wide align images.
-			add_theme_support( 'align-wide' );
-
-			// Add support for editor styles
-			add_theme_support( 'editor-styles' );
+			// @TODO Add support for full and wide align images.
+			// add_theme_support( 'align-wide' );
 
 			// Add support for responsive embedded content
 			add_theme_support( 'responsive-embeds' );
@@ -140,6 +137,9 @@ if ( ! class_exists( 'Shapla' ) ) {
 			 */
 			$editor_style = get_template_directory_uri() . '/assets/css/editor-style.css';
 			add_editor_style( $editor_style );
+
+			// Load regular editor styles into the new block-based editor.
+			add_theme_support( 'editor-styles' );
 		}
 
 		/**
@@ -347,7 +347,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			// Font Awesome Free icons
-			wp_enqueue_style( 'font-awesome-icons', $theme_url . '/assets/font-awesome/css/all' . $suffix . '.css', array(), '5.5.0', 'all' );
+			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/all' . $suffix . '.css', array(), '5.5.0', 'all' );
 
 			// Theme stylesheet.
 			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );

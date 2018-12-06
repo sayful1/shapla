@@ -1,4 +1,5 @@
-#### 1.5.0 - November ##, 2018
+#### 1.5.0 - December 06, 2018
+* Add - Add gutenberg block style for WordPress version 5.0.
 * Tweak - Upgrade to Font Awesome version 5.5.0 from version 4.7.0.
 
 #### 1.4.6 - October 02, 2018
