@@ -1,3 +1,6 @@
+#### 1.5.1 - December 06, 2018
+* Fix - Fix blocks.css file show 404 not found (as it is not available).
+
 #### 1.5.0 - December 06, 2018
 * Add - Add gutenberg block style for WordPress version 5.0.
 * Tweak - Upgrade to Font Awesome version 5.5.0 from version 4.7.0.
