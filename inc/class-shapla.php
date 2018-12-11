@@ -272,6 +272,10 @@ if ( ! class_exists( 'Shapla' ) ) {
 			// Adds a class of shapla-page-## to singular pages.
 			if ( is_singular() ) {
 				$classes[] = 'shapla-page-' . $post->ID;
+
+				if ( function_exists( 'has_blocks' ) && has_blocks( $post ) ) {
+					$classes[] = 'shapla-has-blocks';
+				}
 			}
 
 			if ( is_page_template( 'templates/full-width.php' ) ) {

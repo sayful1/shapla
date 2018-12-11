@@ -1,80 +1,101 @@
-.entry-content > * {
-	margin: 2rem 1rem;
-	max-width: calc(100vw - (2 * 1rem));
-
-	@include media(tablet) {
-		margin: 2rem calc((100vw - #{$container-tablet}) / 2);
-		max-width: $container-tablet;
-	}
-
-	@include media(desktop) {
-		margin: 2rem calc((100vw - #{$container-desktop}) / 2);
-		max-width: $container-desktop;
-	}
-
-	@include media(wide) {
-		margin: 2rem calc((100vw - #{$container-widescreen}) / 2);
-		max-width: $container-widescreen;
-	}
-
-	> *:first-child {
-		margin-top: 0;
-	}
-
-	> *:last-child {
-		margin-bottom: 0;
-	}
-
-	&.alignwide {
-		max-width: $container-widescreen;
-	}
-
-	&.alignfull {
-		margin: 2rem 0;
+.shapla-has-blocks.full-screen {
+	.entry-content > * {
+		margin: 2rem 1rem;
 		max-width: 100%;
-	}
 
-	&.alignleft {
-		float: left;
-		margin-top: 0;
-		max-width: calc(5 * (100vw / 12));
+		@include media(tablet-small) {
+			margin: 2rem auto;
+			max-width: $container-sm;
+		}
 
 		@include media(tablet) {
-			margin-right: calc(2 * #{$size__spacing-unit});
-			max-width: calc(4 * (100vw / 12));
+			max-width: $container-tablet;
 		}
 
 		@include media(desktop) {
-			max-width: calc(3 * (100vw / 12));
+			max-width: $container-desktop;
 		}
-	}
 
-	&.alignright {
-		float: right;
-		margin-top: 0;
-		margin-left: $size__spacing-unit;
-		margin-right: $size__spacing-unit;
-		max-width: calc(5 * (100vw / 12));
-
-		@include media(tablet) {
-			margin-left: calc(2 * #{$size__spacing-unit});
-			margin-right: calc(2 * (100vw / 12));
-			max-width: calc(4 * (100vw / 12));
+		@include media(wide) {
+			max-width: $container-widescreen;
 		}
-	}
 
-	&.aligncenter {
+		> *:first-child {
+			margin-top: 0;
+		}
 
-		margin-left: auto;
-		margin-right: auto;
+		> *:last-child {
+			margin-bottom: 0;
+		}
 
-		@include media(desktop) {
-			margin-left: calc(2 * (100vw / 12));
-			margin-right: calc(2 * (100vw / 12));
-			max-width: calc(10 * (100vw / 12));
-			position: relative;
-			left: 25%;
-			transform: translate(-50%);
+		&.alignwide {
+			max-width: $container-widescreen;
+		}
+
+		&.alignfull {
+			margin: 2rem 0;
+			max-width: 100%;
+		}
+
+		&.alignleft {
+			float: left;
+			margin-top: 0;
+			max-width: 50%;
+
+			@include media(tablet-small) {
+				margin-right: 2rem;
+				margin-left: calc((100% - #{$container-sm}) / 2);
+			}
+
+			@include media(tablet) {
+				margin-left: calc((100% - #{$container-tablet}) / 2);
+				max-width: 40%;
+			}
+
+			@include media(desktop) {
+				margin-left: calc((100% - #{$container-desktop}) / 2);
+			}
+
+			@include media(wide) {
+				margin-left: calc((100% - #{$container-widescreen}) / 2);
+			}
+		}
+
+		&.alignright {
+			float: right;
+			margin-top: 0;
+			max-width: 50%;
+
+			@include media(tablet) {
+				margin-left: 2rem;
+				margin-right: calc((100% - #{$container-tablet}) / 2);
+				max-width: 40%;
+			}
+
+			@include media(desktop) {
+				margin-right: calc((100% - #{$container-desktop}) / 2);
+			}
+
+			@include media(wide) {
+				margin-right: calc((100% - #{$container-widescreen}) / 2);
+			}
+		}
+
+		&.aligncenter {
+			@include media(tablet) {
+				margin: 2rem calc((100% - #{$container-md}) / 2);
+				max-width: $container-md;
+			}
+
+			@include media(desktop) {
+				margin: 2rem calc((100% - #{$container-lg}) / 2);
+				max-width: $container-lg;
+			}
+
+			@include media(wide) {
+				margin: 2rem calc((100% - #{$container-widescreen}) / 2);
+				max-width: $container-widescreen;
+			}
 		}
 	}
 }
