@@ -125,8 +125,8 @@ if ( ! class_exists( 'Shapla' ) ) {
 			// Load default block styles.
 			add_theme_support( 'wp-block-styles' );
 
-			// @TODO Add support for full and wide align images.
-			// add_theme_support( 'align-wide' );
+			// Add support for full and wide align images.
+			add_theme_support( 'align-wide' );
 
 			// Add support for responsive embedded content
 			add_theme_support( 'responsive-embeds' );

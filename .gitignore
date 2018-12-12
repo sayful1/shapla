@@ -1,30 +1,18 @@
-# Folders
-.git/
-.idea/
-.sass-cache/
-node_modules/
+# Ignore Idea generated files
+/.idea/
 
-# Files
-admin.css
-admin.css.map
-carousel-slider.css
-carousel-slider.css.map
-customizer.css
-customizer.css.map
-editor-style.css
-editor-style.css.map
-woocommerce.css
-woocommerce.css.map
-blocks.css
-blocks.css.map
-assets/css/admin.css.map
-assets/css/editor-style.css.map
-assets/css/style.css
-assets/css/style.css.map
-assets/css/blocks.css.map
-assets/css/woocommerce.css.map
-assets/css/carousel-slider.css.map
-assets/css/customizer.css.map
-style.css.map
+# Ignore all Node modules
+/node_modules/
+
+# Ignore all map files
+*.map
+
+# Ignore all css files from root directory except style.css
+/*.css
+!/style.css
+
+# Ignore style.css from assets/css directory
+/assets/css/style.css
+
 install_nvm.sh
 package-lock.json
