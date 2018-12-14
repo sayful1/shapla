@@ -2,33 +2,45 @@
 	margin-bottom: $column-gap;
 
 	.wp-block-button__link {
-		background: $btn-background;
 		border: none;
 		box-sizing: border-box;
-		color: $btn-color;
 		font-weight: bold;
 		line-height: 1;
 		outline: none;
 		padding: 0.75em 1.5em;
 		text-decoration: none;
+
+		&:not(.has-background) {
+			background: $btn-background;
+		}
+
+		&:not(.has-text-color) {
+			color: $btn-color;
+		}
 	}
 
 	&:not(.is-style-squared) .wp-block-button__link {
-		border-radius: 5px;
+		border-radius: 3px;
 	}
 
 	&.is-style-outline {
 		.wp-block-button__link,
 		.wp-block-button__link:focus,
 		.wp-block-button__link:active {
-			background: transparent;
 			border: 2px solid currentColor;
 		}
 
-		.wp-block-button__link:not(.has-text-color) {
-		}
+		.wp-block-button__link {
+			&:not(.has-background) {
+				background: transparent;
+			}
 
-		.wp-block-button__link:hover {
+			&:not(.has-text-color) {
+				color: $btn-background;
+			}
+
+			&:hover {
+			}
 		}
 	}
 }

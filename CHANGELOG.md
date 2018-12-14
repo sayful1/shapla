@@ -1,6 +1,8 @@
-#### 1.5.2 - December 12, 2018
+#### 1.5.2 - December 16, 2018
 * Add - Add support for full align block on full screen page template.
 * Add - Add body class 'shapla-has-blocks' for single posts when using block editor.
+* Tweak - Update block button styles.
+* Tweak - Set block editor max with as 1140px.
 
 #### 1.5.1 - December 06, 2018
 * Fix - Fix blocks.css file show 404 not found (as it is not available).
