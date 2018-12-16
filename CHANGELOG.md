@@ -3,6 +3,12 @@
 * Add - Add body class 'shapla-has-blocks' for single posts when using block editor.
 * Tweak - Update block button styles.
 * Tweak - Set block editor max with as 1140px.
+* Tweak - Update gutenberg pullquote style.
+* Tweak - Update table style with support form stripes style.
+* Tweak - Add margin bottom form fieldset html tag.
+* Tweak - Update WooCommerce Order received page style.
+* Tweak - Update calendar widget table style.
+* Fix - Breadcrumb show on empty slush on second page if latest posts is displaying on homepage.
 
 #### 1.5.1 - December 06, 2018
 * Fix - Fix blocks.css file show 404 not found (as it is not available).

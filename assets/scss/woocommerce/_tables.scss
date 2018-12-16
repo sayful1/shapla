@@ -59,9 +59,11 @@
 			&:first-child {
 				text-align: left;
 			}
+
 			&:last-child {
 				text-align: left;
 			}
+
 			.woocommerce-MyAccount-downloads-file {
 				&::before {
 					content: '\2193';
@@ -118,10 +120,17 @@
 					border-top: 0;
 				}
 			}
+
+			tr:last-child {
+				td:last-child {
+					border-bottom: 0;
+				}
+			}
 		}
 
 		tr {
 			td {
+				border-top: none;
 				display: block;
 				text-align: right;
 

@@ -1,4 +1,10 @@
 .wp-block-pullquote {
-	border: none;
-	// Need style
+	blockquote {
+		border-left: none;
+		padding: 0 1rem;
+	}
+
+	p {
+		margin-bottom: 1em;
+	}
 }

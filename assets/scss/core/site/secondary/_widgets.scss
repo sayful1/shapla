@@ -20,18 +20,23 @@
 	&.widget_archive li:before {
 		content: '\f07c'; // folder-open
 	}
+
 	&.widget_categories li:before {
 		content: '\f07b'; // folder
 	}
+
 	&.widget_pages li:before {
 		content: '\f15c'; // f15c
 	}
+
 	&.widget_recent_comments li:before {
 		content: '\f086'; // comments
 	}
+
 	&.widget_recent_entries li:before {
 		content: '\f15c'; // file-alt
 	}
+
 	&.widget_nav_menu li:before {
 		content: '\f15c';
 	}
@@ -70,14 +75,17 @@
 	ul {
 		list-style: none;
 		margin: 0;
+
 		li {
 			margin-bottom: 25px;
 		}
 	}
+
 	ul:last-child,
 	li:last-child {
 		margin-bottom: 0;
 	}
+
 	.rsswidget {
 		border: 0;
 		font-weight: $text-font-weight;
@@ -86,6 +94,7 @@
 			margin-top: -4px;
 		}
 	}
+
 	.rss-date, cite {
 		font-style: normal;
 		display: block;
@@ -125,6 +134,28 @@
 	}
 }
 
+.widget_calendar {
+	caption {
+		margin-bottom: 1rem;
+	}
+
+	table {
+		border: none;
+
+		th, td {
+			border: none;
+			font-size: 0.875rem;
+			line-height: 1.8;
+			padding: 5px;
+			text-align: center;
+		}
+
+		thead tr {
+			background-color: #eeeeee;
+		}
+	}
+}
+
 .footer-widget-area {
 	background-color: $widget-footer-background-color;
 	color: $color--light_grey;
@@ -144,15 +175,6 @@
 	}
 
 	table {
-		border: 1px solid $color--light_grey;
-
-		tr {
-			border-bottom: 1px solid $color--light_grey;
-
-			&:nth-child(odd),
-			&:nth-child(even) {
-				background-color: transparent;
-			}
-		}
+		background: transparent;
 	}
 }

@@ -12,11 +12,6 @@
             box-shadow: none;
         }
 
-        th,
-        td {
-            vertical-align: middle;
-        }
-
         td.actions {
             .coupon {
                 .input-text {
@@ -79,11 +74,6 @@
 
             .discount td {
                 color: $highlight;
-            }
-
-            tr td,
-            tr th {
-                border-top: 1px solid $secondary;
             }
         }
     }

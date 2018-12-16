@@ -104,13 +104,12 @@ $headings-line-height: 1.1 !default;
 $headings-color: inherit !default;
 
 //== Table
-$table-background-color: transparent;
-$table-border-color: rgba(#000, .1);
-$table-background-color-even: rgba(#000, .016);
-$table-background-color-odd: rgba(#fff, .016);
-$table-background-color-thead: rgba(#eee, .65);
-$table-background-color-tfoot: rgba(#eee, .65);
-$table-cell-padding: 8px;
+$table-background-color: $color--white;
+$table-header-color: rgba(#000, 0.54) !default;
+$table-divider-color: rgba(#000, 0.12) !default;
+$table-dividers: 1px solid $table-divider-color !default;
+$table-column-spacing: 2.25rem !default;
+$table-column-padding: $table-column-spacing / 2;
 
 //== Widgets
 $widget-footer-background-color: #212a34;

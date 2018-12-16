@@ -17,17 +17,17 @@ if ( ! function_exists( 'shapla_header_markup' ) ) {
 	 */
 	function shapla_header_markup() {
 		?>
-        <header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
-            <div class="shapla-container">
-                <div class="site-header-inner">
+		<header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
+			<div class="shapla-container">
+				<div class="site-header-inner">
 					<?php
 					/**
 					 * Functions hooked into shapla_header_inner action
 					 */
 					do_action( 'shapla_header_inner' ); ?>
-                </div>
-            </div>
-        </header><!-- #masthead -->
+				</div>
+			</div>
+		</header><!-- #masthead -->
 		<?php
 	}
 }
@@ -41,17 +41,17 @@ if ( ! function_exists( 'shapla_footer_markup' ) ) {
 	 */
 	function shapla_footer_markup() {
 		?>
-        <footer id="colophon" class="site-footer" role="contentinfo">
-            <div class="shapla-container">
-                <div class="site-footer-inner">
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="shapla-container">
+				<div class="site-footer-inner">
 					<?php
 					/**
 					 * Functions hooked into shapla_footer_inner action
 					 */
 					do_action( 'shapla_footer_inner' ); ?>
-                </div>
-            </div>
-        </footer><!-- #colophon -->
+				</div>
+			</div>
+		</footer><!-- #colophon -->
 		<?php
 	}
 }
@@ -101,9 +101,9 @@ if ( ! function_exists( 'shapla_site_branding' ) ) {
 	 */
 	function shapla_site_branding() {
 		?>
-        <div class="site-branding">
+		<div class="site-branding">
 			<?php echo shapla_site_title_or_logo(); ?>
-        </div><!-- .site-branding -->
+		</div><!-- .site-branding -->
 		<?php
 	}
 }
@@ -151,19 +151,19 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 		$nav_class = 'main-navigation';
 		$nav_class .= $dropdown_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
 		?>
-        <button id="menu-toggle" class="menu-toggle" data-target="#site-header-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav id="site-navigation" class="<?php echo esc_attr( $nav_class ); ?>" role="navigation">
+		<button id="menu-toggle" class="menu-toggle" data-target="#site-header-menu">
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<nav id="site-navigation" class="<?php echo esc_attr( $nav_class ); ?>" role="navigation">
 			<?php wp_nav_menu( array(
 				'theme_location'  => 'primary',
 				'menu_class'      => 'primary-menu',
 				'menu_id'         => 'primary-menu',
 				'container_class' => 'primary-menu-container',
 			) ); ?>
-        </nav><!-- #site-navigation -->
+		</nav><!-- #site-navigation -->
 		<?php
 	}
 }
@@ -177,9 +177,9 @@ if ( ! function_exists( 'shapla_skip_links' ) ) {
 	 */
 	function shapla_skip_links() {
 		?>
-        <a class="skip-link screen-reader-text"
-           href="#site-navigation"><?php esc_html_e( 'Skip to navigation', 'shapla' ); ?></a>
-        <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'shapla' ); ?></a>
+		<a class="skip-link screen-reader-text"
+		   href="#site-navigation"><?php esc_html_e( 'Skip to navigation', 'shapla' ); ?></a>
+		<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'shapla' ); ?></a>
 		<?php
 	}
 }
@@ -207,7 +207,7 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 
 		return;
 		?>
-        <span id="search-toggle" class="search-toggle"><i class="fa fa-search"></i></span>
+		<span id="search-toggle" class="search-toggle"><i class="fa fa-search"></i></span>
 		<?php
 	}
 }
@@ -233,25 +233,26 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 			}
 
 			if ( isset( $columns ) ) : ?>
-                <div id="footer-widget-area" class="footer-widget-area">
-                    <div class="shapla-container">
-                        <div class=<?php echo '"footer-widgets row-' . strval( $row ) . ' col-' . strval( $columns ) . '"'; ?>><?php
+				<div id="footer-widget-area" class="footer-widget-area">
+					<div class="shapla-container">
+						<div
+							class=<?php echo '"footer-widgets row-' . strval( $row ) . ' col-' . strval( $columns ) . '"'; ?>><?php
 
 							for ( $column = 1; $column <= $columns; $column ++ ) :
 								$footer_n = $column + $regions * ( $row - 1 );
 
 								if ( is_active_sidebar( 'footer-' . strval( $footer_n ) ) ) : ?>
 
-                                <div class="widget-block footer-widget-<?php echo strval( $column ); ?>">
+								<div class="widget-block footer-widget-<?php echo strval( $column ); ?>">
 									<?php dynamic_sidebar( 'footer-' . strval( $footer_n ) ); ?>
-                                    </div><?php
+									</div><?php
 
 								endif;
 							endfor; ?>
 
-                        </div><!-- .footer-widgets.row-<?php echo strval( $row ); ?> -->
-                    </div>
-                </div>
+						</div><!-- .footer-widgets.row-<?php echo strval( $row ); ?> -->
+					</div>
+				</div>
 				<?php
 
 				unset( $columns );
@@ -264,13 +265,13 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 		 */
 		if ( is_active_sidebar( 'sidebar-2' ) ):
 			?>
-            <div id="footer-widget-area" class="footer-widget-area">
-                <div class="shapla-container">
-                    <div class="footer-widget">
+			<div id="footer-widget-area" class="footer-widget-area">
+				<div class="shapla-container">
+					<div class="footer-widget">
 						<?php dynamic_sidebar( 'sidebar-2' ); ?>
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
 		<?php
 		endif;
 	}
@@ -289,7 +290,7 @@ if ( ! function_exists( 'shapla_site_info' ) ) {
 		$class          = 'site-info';
 		$class          .= has_nav_menu( 'social-nav' ) ? ' has-social-icons' : ' no-social-icons';
 		?>
-        <div class="<?php echo esc_attr( $class ); ?>">
+		<div class="<?php echo esc_attr( $class ); ?>">
 			<?php
 			if ( ! empty( $copyright_text ) ) {
 				echo wp_kses_post( $copyright_text );
@@ -297,7 +298,7 @@ if ( ! function_exists( 'shapla_site_info' ) ) {
 				echo wp_kses_post( $default );
 			}
 			?>
-        </div><!-- .site-info -->
+		</div><!-- .site-info -->
 		<?php
 	}
 }
@@ -311,7 +312,7 @@ if ( ! function_exists( 'shapla_social_navigation' ) ) {
 	 */
 	function shapla_social_navigation() {
 		if ( has_nav_menu( 'social-nav' ) ) : ?>
-            <nav id="social-navigation" class="social-navigation" role="navigation">
+			<nav id="social-navigation" class="social-navigation" role="navigation">
 				<?php
 				// Social links navigation menu.
 				wp_nav_menu( array(
@@ -321,7 +322,7 @@ if ( ! function_exists( 'shapla_social_navigation' ) ) {
 					'link_after'     => '</span>',
 				) );
 				?>
-            </nav><!-- .social-navigation -->
+			</nav><!-- .social-navigation -->
 		<?php endif;
 	}
 }
@@ -339,15 +340,15 @@ if ( ! function_exists( 'shapla_post_thumbnail' ) ) {
 		if ( is_singular() ) :
 			?>
 
-            <div class="post-thumbnail">
+			<div class="post-thumbnail">
 				<?php the_post_thumbnail(); ?>
-            </div><!-- .post-thumbnail -->
+			</div><!-- .post-thumbnail -->
 
 		<?php else : ?>
 
-            <a class="post-thumbnail" href="<?php the_permalink(); ?>">
+			<a class="post-thumbnail" href="<?php the_permalink(); ?>">
 				<?php the_post_thumbnail( 'post-thumbnail', array( 'alt' => the_title_attribute( 'echo=0' ) ) ); ?>
-            </a>
+			</a>
 
 		<?php endif; // End is_singular()
 	}
@@ -537,19 +538,19 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 		}
 
 		?>
-        <div class="<?php echo $class; ?>">
-            <div class="shapla-container">
-                <div class="entry-title-container">
+		<div class="<?php echo $class; ?>">
+			<div class="shapla-container">
+				<div class="entry-title-container">
 					<?php do_action( 'shapla_before_page_title' ); ?>
-                    <div class="entry-header">
-                        <h1 class="entry-title">
+					<div class="entry-header">
+						<h1 class="entry-title">
 							<?php echo $title; ?>
-                        </h1>
-                    </div>
+						</h1>
+					</div>
 					<?php do_action( 'shapla_after_page_title' ); ?>
-                </div>
-            </div>
-        </div><!-- .page-title-bar -->
+				</div>
+			</div>
+		</div><!-- .page-title-bar -->
 		<?php
 	}
 
@@ -570,11 +571,11 @@ if ( ! function_exists( 'shapla_blog_header' ) ):
 			return '';
 		}
 		if ( is_home() && ! is_front_page() ): ?>
-            <header class="page-header">
-                <h1 class="page-title">
+			<header class="page-header">
+				<h1 class="page-title">
 					<?php echo get_the_title( get_option( 'page_for_posts' ) ); ?>
-                </h1>
-            </header>
+				</h1>
+			</header>
 		<?php endif;
 	}
 
@@ -588,7 +589,7 @@ if ( ! function_exists( 'shapla_page_content' ) ):
 	 */
 	function shapla_page_content() {
 		?>
-        <div class="entry-content">
+		<div class="entry-content">
 			<?php
 			the_content();
 
@@ -597,7 +598,7 @@ if ( ! function_exists( 'shapla_page_content' ) ):
 				'after'  => '</div>',
 			) );
 			?>
-        </div><!-- .entry-content -->
+		</div><!-- .entry-content -->
 		<?php
 	}
 
@@ -611,8 +612,8 @@ if ( ! function_exists( 'shapla_404_page_content' ) ) {
 	 */
 	function shapla_404_page_content() {
 		?>
-        <section class="error-404 not-found">
-            <div class="page-content">
+		<section class="error-404 not-found">
+			<div class="page-content">
 				<?php
 				echo '<p>';
 				esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?',
@@ -633,8 +634,8 @@ if ( ! function_exists( 'shapla_404_page_content' ) ) {
 
 				the_widget( 'WP_Widget_Tag_Cloud' );
 				?>
-            </div><!-- .page-content -->
-        </section><!-- .error-404 -->
+			</div><!-- .page-content -->
+		</section><!-- .error-404 -->
 		<?php
 	}
 }
@@ -663,14 +664,14 @@ if ( ! function_exists( 'shapla_post_header' ) ):
 	 */
 	function shapla_post_header() {
 		?>
-        <header class="entry-header">
+		<header class="entry-header">
 			<?php
 			the_title(
 				'<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">',
 				'</a></h2>'
 			);
 			?>
-        </header><!-- .entry-header -->
+		</header><!-- .entry-header -->
 		<?php
 	}
 
@@ -684,7 +685,7 @@ if ( ! function_exists( 'shapla_post_content' ) ):
 	 */
 	function shapla_post_content() {
 		?>
-        <div class="entry-content">
+		<div class="entry-content">
 			<?php
 			/**
 			 * Functions hooked in to shapla_post_content_before action.
@@ -707,7 +708,7 @@ if ( ! function_exists( 'shapla_post_content' ) ):
 				'after'  => '</div>',
 			) );
 			?>
-        </div><!-- .entry-content -->
+		</div><!-- .entry-content -->
 		<?php
 	}
 
@@ -895,12 +896,12 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 
 		if ( $show_search_icon ) {
 			ob_start(); ?>
-            <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
-                <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
-                <div class="shapla-custom-menu-item-contents">
+			<li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
+				<a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
+				<div class="shapla-custom-menu-item-contents">
 					<?php shapla_search_form(); ?>
-                </div>
-            </li>
+				</div>
+			</li>
 			<?php
 			$items .= ob_get_clean();
 		}
@@ -991,6 +992,10 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 
 			foreach ( $args['breadcrumb'] as $key => $crumb ) {
 
+				if ( empty( $crumb[0] ) ) {
+					continue;
+				}
+
 				echo $args['before'];
 
 				if ( ! empty( $crumb[1] ) && sizeof( $args['breadcrumb'] ) !== $key + 1 ) {
@@ -1023,7 +1028,7 @@ if ( ! function_exists( 'shapla_scroll_to_top_button' ) ) {
 			return;
 		}
 		?>
-        <span id="shapla-back-to-top" class="back-to-top" data-distance="500">
+		<span id="shapla-back-to-top" class="back-to-top" data-distance="500">
             <span class="screen-reader-text"><?php esc_html_e( 'Scroll to Top', 'shapla' ) ?></span>
         </span>
 		<?php
@@ -1051,46 +1056,46 @@ if ( ! function_exists( 'shapla_comment' ) ) {
 		$class         = empty( $args['has_children'] ) ? '' : 'parent';
 		$comment_class = join( ' ', get_comment_class( $class, $comment ) );
 		?>
-        <<?php echo esc_attr( $tag ); ?> class="<?php echo $comment_class; ?>" id="comment-<?php comment_ID() ?>">
+		<<?php echo esc_attr( $tag ); ?> class="<?php echo $comment_class; ?>" id="comment-<?php comment_ID() ?>">
 
-        <div class="comment-body">
-        <div class="comment-meta">
-            <div class="comment-author vcard">
+		<div class="comment-body">
+		<div class="comment-meta">
+			<div class="comment-author vcard">
 				<?php echo get_avatar( $comment, 128 ); ?>
 				<?php printf( wp_kses_post( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>
-            </div>
+			</div>
 			<?php if ( '0' == $comment->comment_approved ) : ?>
-                <em class="comment-awaiting-moderation">
+				<em class="comment-awaiting-moderation">
 					<?php esc_attr_e( 'Your comment is awaiting moderation.', 'shapla' ); ?>
-                </em><br/>
+				</em><br/>
 			<?php endif; ?>
 
-            <a href="<?php echo esc_url( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ); ?>"
-               class="comment-date">
+			<a href="<?php echo esc_url( htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ); ?>"
+			   class="comment-date">
 				<?php echo '<time datetime="' . get_comment_date( 'c' ) . '">' . get_comment_date() . '</time>'; ?>
-            </a>
-        </div>
+			</a>
+		</div>
 
 		<?php if ( 'div' != $args['style'] ) : ?>
-        <div id="div-comment-<?php comment_ID() ?>" class="comment-content">
+		<div id="div-comment-<?php comment_ID() ?>" class="comment-content">
 	<?php endif; ?>
 
-        <div class="comment-text">
+		<div class="comment-text">
 			<?php comment_text(); ?>
-        </div>
+		</div>
 
-        <div class="reply">
+		<div class="reply">
 			<?php comment_reply_link( array_merge( $args, array(
 				'add_below' => $add_below,
 				'depth'     => $depth,
 				'max_depth' => $args['max_depth']
 			) ) ); ?>
 			<?php edit_comment_link( __( 'Edit', 'shapla' ), '  ', '' ); ?>
-        </div>
+		</div>
 
-        </div>
+		</div>
 		<?php if ( 'div' != $args['style'] ) : ?>
-            </div>
+			</div>
 		<?php endif; ?>
 		<?php
 	}

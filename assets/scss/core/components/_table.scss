@@ -1,89 +1,69 @@
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	width: 100%;
-	display: table;
+table,
+.wp-block-table {
 	background-color: $table-background-color;
-	border: 1px solid $table-border-color;
-	margin-bottom: 1.25rem;
+	border-collapse: collapse;
+	border: $table-dividers;
+	border-spacing: 0;
+	display: table;
+	margin-bottom: 1.5rem;
+	position: relative;
+	width: 100%;
 
-	tr {
-		border-bottom: 1px solid $table-border-color;
+	tbody tr {
+		position: relative;
+		transition-duration: 0.28s;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-property: background-color;
 	}
 
-	thead {
-		tr {
-			background-color: $table-background-color-thead;
-		}
-	}
-
-	tbody {
-		// Zebra-striping
-		tr {
-			&:nth-child(odd) {
-				background-color: $table-background-color-odd;
-			}
-			&:nth-child(even) {
-				background-color: $table-background-color-even;
-			}
-		}
-	}
-
-	tfoot {
-		tr {
-			background-color: $table-background-color-tfoot;
-		}
-	}
-
-	th {
-		font-weight: $headings-font-weight;
-	}
-
-	td,
-	th {
-		padding: $table-cell-padding;
+	td, th {
+		border: $table-dividers;
+		border-width: 1px 0;
+		box-sizing: border-box;
 		display: table-cell;
+		padding: 0.75rem $table-column-padding;
+		position: relative;
 		text-align: left;
+
+		&:first-of-type {
+			padding-left: 1.5rem;
+		}
+
+		&:last-of-type {
+			padding-right: 1.5rem;
+		}
+	}
+
+	td {
 		vertical-align: middle;
 	}
-}
 
-.table-responsive {
-	display: block;
-	width: 100%;
-	overflow-x: auto;
-}
+	th {
+		color: $table-header-color;
+		font-size: 0.875rem;
+		font-weight: bold;
+		line-height: 1.8;
+		letter-spacing: 0;
+		text-overflow: ellipsis;
+		vertical-align: bottom;
+	}
 
-@media only screen and (max-width: $screen-md - 1px) {
-	.table-responsive-small {
-		overflow-x: hidden;
+	&.is-style-stripes {
+		border-bottom: $table-dividers;
 
-		table {
-			thead,
-			tbody th {
-				display: none;
+		tbody tr:nth-child(odd) {
+			background-color: #eeeeee;
+		}
+	}
+
+	@media only screen and (max-width: $screen-md - 1px) {
+		th, td {
+			&:first-of-type {
+				padding-left: $table-column-padding;
 			}
 
-			tbody {
-				tr {
-					&:first-child,
-					&:last-child {
-						border-bottom: 0;
-					}
-				}
-			}
-
-			tr {
-				td {
-					display: block;
-					text-align: right;
-
-					&::before {
-						content: attr(data-title) ': ';
-						font-weight: $headings-font-weight;
-						float: left;
-					}
-				}
+			&:last-of-type {
+				padding-right: $table-column-padding;
 			}
 		}
 	}
