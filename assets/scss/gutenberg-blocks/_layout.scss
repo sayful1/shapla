@@ -98,4 +98,26 @@
 			}
 		}
 	}
+
+	#comments.comments-area {
+		margin: 3.125rem 1rem;
+		max-width: 100%;
+
+		@include media(tablet-small) {
+			margin: 3.125rem auto;
+			max-width: $container-sm;
+		}
+
+		@include media(tablet) {
+			max-width: $container-tablet;
+		}
+
+		@include media(desktop) {
+			max-width: $container-desktop;
+		}
+
+		@include media(wide) {
+			max-width: $container-widescreen;
+		}
+	}
 }

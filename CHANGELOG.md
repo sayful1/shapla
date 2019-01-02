@@ -1,3 +1,6 @@
+#### 1.5.3 - January 02, 2019
+* Fix - Comment area is taking full visual width for full-screen template.
+
 #### 1.5.2 - December 16, 2018
 * Add - Add support for full align block on full screen page template.
 * Add - Add body class 'shapla-has-blocks' for single posts when using block editor.

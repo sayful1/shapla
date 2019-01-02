@@ -39,7 +39,7 @@ gulp.task('sass-main', function () {
 });
 
 gulp.task('customize-js', function () {
-    gulp.src('./assets/js/customize/*.js')
+    gulp.src('./assets/src/customize/*.js')
         .pipe(concat('customize.js'))
         .pipe(gulp.dest('./assets/js'))
         .pipe(concat('customize.min.js'))
@@ -50,7 +50,7 @@ gulp.task('customize-js', function () {
 
 gulp.task('bundle', function () {
     return rollup.rollup({
-        input: './assets/js/public/main.js',
+        input: './assets/src/public/main.js',
         plugins: [buble()]
     }).then(function (bundle) {
         return bundle.generate({
