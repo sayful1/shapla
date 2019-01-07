@@ -1,63 +1,62 @@
 .carousel-slider__product {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
 
-    .woocommerce-LoopProduct-link {
-        margin: 0;
-        width: 100%;
-    }
+	.woocommerce-LoopProduct-link {
+		margin: 0;
+		width: 100%;
+	}
 
-    .onsale {
-        border-radius: 3px;
-        font-size: 0.875rem;
-        padding: 0.75em;
-        top: 1rem;
-        left: 1rem;
-    }
+	.onsale {
+		border-radius: 3px;
+		font-size: 0.875rem;
+		padding: 0.75em;
+		top: 1rem;
+		left: 1rem;
+	}
 
-    h3 {
-        padding: 0.5rem 0;
-        font-size: 1.1rem;
-        text-align: center;
-    }
+	h3 {
+		padding: 0.5rem 0;
+		font-size: 1.1rem;
+		text-align: center;
+	}
 
-    .star-rating {
-        margin: 0 0 0.5em;
-        font-size: 0.875rem;
-    }
+	.star-rating {
+		margin: 0 0 0.5em;
+		font-size: 0.875rem;
+	}
 
-    .price {
-        font-size: 0.875rem;
-        margin: 0 0 0.5rem;
-    }
+	.price {
+		font-size: 0.875rem;
+		margin: 0 0 0.5rem;
+	}
 
-    a.add_to_cart_button,
-    a.added_to_cart,
-    a.quick_view {
-        padding: 0.75em 1.5em;
-        margin: 0 0 1rem;
-    }
+	a.add_to_cart_button,
+	a.added_to_cart,
+	a.quick_view {
+		padding: 0.75em 1.5em;
+		margin: 0 0 1rem;
+	}
 
-    // Buttons
-    a.add_to_cart_button {
-        &.loading {
-            color: transparent !important;
-            pointer-events: none;
-            padding-right: 1.5em;
-            opacity: 1;
+	// Buttons
+	a.add_to_cart_button {
+		&.loading {
+			color: transparent !important;
+			pointer-events: none;
+			padding-right: 1.5em;
+			opacity: 1;
 
-            &:after {
-                content: "";
-                animation: fa-spin .75s linear infinite;
-            }
-        }
+			&:after {
+				content: "";
+				animation: fa-spin .75s linear infinite;
+			}
+		}
 
-        &.added:after {
-            content: '';
-        }
-    }
-
+		&.added:after {
+			content: '';
+		}
+	}
 }
