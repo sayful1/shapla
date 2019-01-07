@@ -1,6 +1,7 @@
 #### 1.5.3 - January 08, 2019
 * Fix - Comment area is taking full visual width for full-screen template.
 * Fix - Carousel slider post carousel does not take full item width.
+* Fix - Fixed embed height issue.
 
 #### 1.5.2 - December 16, 2018
 * Add - Add support for full align block on full screen page template.
