@@ -45,7 +45,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
-@import "core/components/typography";
+@import "core/base/typography";
 /*--------------------------------------------------------------
 # Table
 --------------------------------------------------------------*/
@@ -67,7 +67,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
-@import "core/navigation/navigation";
+@import "core/site/navigation/navigation";
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
@@ -87,6 +87,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 @import "core/site/header/header-center";
 @import "core/site/header/header-widget";
 @import "core/site/header/header-search";
+@import "core/site/header/page-title-bar";
 /*--------------------------------------------------------------
 # Breadcrumb
 --------------------------------------------------------------*/
@@ -98,7 +99,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
-@import "core/posts-and-pages/posts-pages";
+@import "core/site/primary/posts-and-pages";
+@import "core/site/primary/404";
+@import "core/site/primary/blog-grid";
+@import "core/site/primary/entry-meta";
+@import "core/site/primary/page-links";
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
@@ -120,5 +125,4 @@ Use it to make something cool, have fun, and share what you've learned with othe
 /*--------------------------------------------------------------
 # Modules
 --------------------------------------------------------------*/
-@import "core/elements/blog-grid";
-@import "core/elements/scroll-to-top";
+@import "core/components/scroll-to-top";

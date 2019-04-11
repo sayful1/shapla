@@ -6,21 +6,3 @@
 	margin-top: 0;
 	padding: 0;
 }
-
-// Make sure embeds and iframes fit their containers.
-embed,
-iframe,
-object,
-audio,
-video {
-	max-width: 100%;
-}
-
-audio {
-	min-height: 3.5rem;
-}
-
-// Iframe
-iframe {
-	border: 0;
-}
