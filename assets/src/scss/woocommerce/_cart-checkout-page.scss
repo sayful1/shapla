@@ -1,3 +1,5 @@
+$icon-credit-cards-path: '../images/credit-cards/';
+
 // Cart/checkout page
 .woocommerce-cart,
 .woocommerce-checkout,
@@ -205,6 +207,7 @@
                 padding: 0;
                 margin: 1em 0 0;
             }
+
             .wc-credit-card-form-card-number,
             .wc-credit-card-form-card-expiry,
             .wc-credit-card-form-card-cvc {
@@ -215,34 +218,34 @@
                 background-size: 32px 20px;
 
                 &.visa {
-                    background-image: url('../images/icons/credit-cards/visa.svg');
+                    background-image: url('#{$icon-credit-cards-path}visa.svg');
                 }
 
                 &.mastercard {
-                    background-image: url('../images/icons/credit-cards/mastercard.svg');
+                    background-image: url('#{$icon-credit-cards-path}mastercard.svg');
                 }
 
                 &.laser {
-                    background-image: url('../images/icons/credit-cards/laser.svg');
+                    background-image: url('#{$icon-credit-cards-path}laser.svg');
                 }
 
                 &.dinersclub {
-                    background-image: url('../images/icons/credit-cards/diners.svg');
+                    background-image: url('#{$icon-credit-cards-path}diners.svg');
                 }
 
                 &.maestro {
-                    background-image: url('../images/icons/credit-cards/maestro.svg');
+                    background-image: url('#{$icon-credit-cards-path}maestro.svg');
                 }
 
                 &.jcb {
-                    background-image: url('../images/icons/credit-cards/jcb.svg');
+                    background-image: url('#{$icon-credit-cards-path}jcb.svg');
                 }
 
                 &.amex {
-                    background-image: url('../images/icons/credit-cards/amex.svg');
+                    background-image: url('#{$icon-credit-cards-path}amex.svg');
                 }
                 &.discover {
-                    background-image: url('../images/icons/credit-cards/discover.svg');
+                    background-image: url('#{$icon-credit-cards-path}discover.svg');
                 }
             }
 

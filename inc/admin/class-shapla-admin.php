@@ -74,17 +74,17 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 				return;
 			}
 			?>
-            <script type="text/javascript">
-                (function ($) {
-                    'use strict';
-                    // Initializing TipTip
-                    $(".help_tip").each(function () {
-                        $(this).tipTip({
-                            attribute: "data-tip"
-                        });
-                    });
-                })(jQuery);
-            </script>
+			<script type="text/javascript">
+				(function ($) {
+					'use strict';
+					// Initializing TipTip
+					$(".help_tip").each(function () {
+						$(this).tipTip({
+							attribute: "data-tip"
+						});
+					});
+				})(jQuery);
+			</script>
 			<?php
 		}
 
@@ -204,7 +204,9 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			}
 
 			if ( file_exists( $template ) ) {
+				echo '<div class="shapla-about-content">';
 				include $template;
+				echo '</div>';
 			}
 
 			echo '</div><!--/.wrap.about-wrap-->';
@@ -277,7 +279,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			} elseif ( ! empty( $arr['1x'] ) ) {
 				$plugin_icon_url = $arr['1x'];
 			} else {
-				$plugin_icon_url = get_template_directory_uri() . '/assets/images/placeholder_plugin.png';
+				$plugin_icon_url = get_template_directory_uri() . '/assets/images/placeholder-plugin.svg';
 			}
 
 			return $plugin_icon_url;

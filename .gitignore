@@ -4,6 +4,10 @@
 # Ignore all Node modules
 /node_modules/
 
+# Ignore all files from css and js directory
+/assets/css/
+/assets/js/
+
 # Ignore all map files
 *.map
 

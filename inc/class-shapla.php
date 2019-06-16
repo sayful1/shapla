@@ -252,8 +252,8 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 *
 		 * @param array $classes Classes for the body element.
 		 *
-		 * @since  0.1.0
 		 * @return array
+		 * @since  0.1.0
 		 */
 		public function body_classes( $classes ) {
 			/** @var \WP_Post $post */
@@ -357,7 +357,9 @@ if ( ! class_exists( 'Shapla' ) ) {
 			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );
 
 			// Theme block stylesheet.
-			wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css', array( 'shapla-style' ), SHAPLA_VERSION );
+			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+				wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css', array( 'shapla-style' ), SHAPLA_VERSION );
+			}
 
 			// Load theme script.
 			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/script' . $suffix . '.js', array(), SHAPLA_VERSION, true );
