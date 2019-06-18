@@ -96,8 +96,8 @@ if ( ! function_exists( 'shapla_site_branding' ) ) {
 	/**
 	 * Site branding wrapper and display
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_site_branding() {
 		?>
@@ -112,9 +112,9 @@ if ( ! function_exists( 'shapla_site_title_or_logo' ) ) {
 	/**
 	 * Display the site title or logo image
 	 *
+	 * @return string
 	 * @since 1.0.0
 	 *
-	 * @return string
 	 */
 	function shapla_site_title_or_logo() {
 
@@ -142,8 +142,8 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 	/**
 	 * Display Primary Navigation
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_primary_navigation() {
 		$dropdown_direction = get_theme_mod( 'dropdown_direction', 'ltr' );
@@ -172,8 +172,8 @@ if ( ! function_exists( 'shapla_skip_links' ) ) {
 	/**
 	 * Skip links
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_skip_links() {
 		?>
@@ -188,10 +188,10 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	/**
 	 * Shapla Search toggle icon
 	 *
-	 * @since  1.0.0
+	 * @return void
 	 * @deprecated 1.2.3
 	 *
-	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_search_toggle() {
 		_deprecated_function( __FUNCTION__, '1.2.3' );
@@ -216,8 +216,8 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 	/**
 	 * Display Footer widget
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_footer_widget() {
 		$rows    = intval( get_theme_mod( 'footer_widget_rows', 1 ) );
@@ -281,8 +281,8 @@ if ( ! function_exists( 'shapla_site_info' ) ) {
 	/**
 	 * Display Primary Navigation
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_site_info() {
 		$default        = shapla_footer_credits();
@@ -307,8 +307,8 @@ if ( ! function_exists( 'shapla_social_navigation' ) ) {
 	/**
 	 * Display Footer widget
 	 *
-	 * @since  1.0.0
 	 * @return void
+	 * @since  1.0.0
 	 */
 	function shapla_social_navigation() {
 		if ( has_nav_menu( 'social-nav' ) ) : ?>
@@ -757,11 +757,10 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 	/**
 	 * Shapla Search form
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param bool $echo
 	 *
 	 * @return string
+	 * @since 1.0.0
 	 */
 	function shapla_search_form( $echo = true ) {
 		$header_layout            = get_theme_mod( 'header_layout', 'layout-1' );
@@ -801,11 +800,11 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 			);
 
 			$html .= '<div class="nav-left">';
-			$html .= '<div class="nav-search-facade" data-value="search-alias=aps">';
+			$html .= '<div class="nav-search-facade">';
 			$html .= '<span class="nav-search-label" data-default="' . esc_html__( 'All', 'shapla' ) . '">';
 			$html .= esc_html__( 'All', 'shapla' );
 			$html .= '</span>';
-			$html .= '<i class="fa fa-angle-down"></i>';
+			$html .= '<span class="shapla-icon"><i class="fa fa-angle-down"></i></span>';
 			$html .= '</div>';
 			$html .= wp_dropdown_categories( $args );
 			$html .= '</div>';
@@ -813,7 +812,7 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 
 		// Submit button
 		$html .= '<div class="nav-right">';
-		$html .= '<button type="submit"><i class="fa fa-search"></i></button>';
+		$html .= '<button type="submit"><span class="shapla-icon is-small"><i class="fa fa-search"></i></span></button>';
 		$html .= '</div>';
 
 		// Search input field
@@ -842,8 +841,8 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 	/**
 	 * WooCommerce Product Search
 	 *
-	 * @since   1.3.0
 	 * @return  void
+	 * @since   1.3.0
 	 */
 	function shapla_default_search() {
 		if ( shapla_is_woocommerce_activated() ) {
@@ -864,12 +863,12 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 	/**
 	 * Filters the HTML list content for navigation menus.
 	 *
-	 * @since 1.3.0
-	 *
 	 * @param string $items The HTML list content for the menu items.
 	 * @param stdClass $args An object containing wp_nav_menu() arguments.
 	 *
 	 * @return string
+	 * @since 1.3.0
+	 *
 	 */
 	function shapla_search_icon( $items, $args ) {
 
@@ -1039,7 +1038,7 @@ if ( ! function_exists( 'shapla_comment' ) ) {
 	/**
 	 * Shapla comment template
 	 *
-	 * @param  \WP_Comment $comment the comment array.
+	 * @param \WP_Comment $comment the comment array.
 	 * @param array $args the comment args.
 	 * @param int $depth the comment depth.
 	 *

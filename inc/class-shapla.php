@@ -351,18 +351,22 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$suffix    = ( defined( "SCRIPT_DEBUG" ) && SCRIPT_DEBUG ) ? '' : '.min';
 
 			// Font Awesome Free icons
-			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/all' . $suffix . '.css', array(), '5.5.0', 'all' );
+			wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/all' . $suffix . '.css',
+				array(), '5.5.0', 'all' );
 
 			// Theme stylesheet.
-			wp_enqueue_style( 'shapla-style', $theme_url . '/style.css', array(), SHAPLA_VERSION, 'all' );
+			wp_enqueue_style( 'shapla-style', $theme_url . '/assets/css/style.css',
+				array(), SHAPLA_VERSION, 'all' );
 
 			// Theme block stylesheet.
 			if ( function_exists( 'has_blocks' ) && has_blocks() ) {
-				wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css', array( 'shapla-style' ), SHAPLA_VERSION );
+				wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css',
+					array( 'shapla-style' ), SHAPLA_VERSION );
 			}
 
 			// Load theme script.
-			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/script' . $suffix . '.js', array(), SHAPLA_VERSION, true );
+			wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/script' . $suffix . '.js',
+				array(), SHAPLA_VERSION, true );
 
 			wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );
 

@@ -12,6 +12,7 @@
 	// Theme Logo
 	.shapla-welcome-logo {
 		background: url(../../images/logo-white.svg) center 25px no-repeat #0073aa;
+		box-sizing: content-box;
 	}
 
 	.shapla-plugin-box {
@@ -75,13 +76,42 @@
 
 		&__plugin_name {
 			overflow: hidden;
-			padding: 1rem;
+			padding: 10px;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
 
 		&__action_button {
-			padding: 1rem;
+			align-items: center;
+			background: #eee;
+			border-left: 1px solid rgba(#000, .2);
+			display: flex;
+			min-width: 103px;
+			padding: 10px;
+			justify-content: center;
+
+			.button {
+				border-color: transparent;
+				box-shadow: none;
+				text-align: center;
+				text-shadow: none;
+				width: 100%;
+
+				&.install-now {
+					background-color: #23d160;
+					color: #fff;
+				}
+
+				&.activate-now {
+					background-color: #00d1b2;
+					color: #fff;
+				}
+
+				&.deactivate-now {
+					background-color: #363636;
+					color: #f5f5f5;
+				}
+			}
 		}
 	}
 
