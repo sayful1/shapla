@@ -35,6 +35,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'shapla_scripts' ), 10 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 90 );
+			add_action( 'wp_head', array( $this, 'inline_style' ), 5 );
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 			add_filter( 'post_class', array( $this, 'post_classes' ) );
 		}
@@ -412,6 +413,33 @@ if ( ! class_exists( 'Shapla' ) ) {
 			}
 		}
 
+		/**
+		 * Inline color style
+		 */
+		public function inline_style() {
+			$primary      = get_theme_mod( 'shapla_primary_color', '#2196f3' );
+			$on_primary   = shapla_find_color_invert( $primary );
+			$secondary    = get_theme_mod( 'shapla_secondary_color', '#6200ee' );
+			$on_secondary = shapla_find_color_invert( $secondary );
+			$surface      = get_theme_mod( 'shapla_surface_color', '#ffffff' );
+			$on_surface   = shapla_find_color_invert( $surface );
+			$error        = get_theme_mod( 'shapla_error_color', '#6200ee' );
+			$on_error     = shapla_find_color_invert( $error );
+			?>
+			<style type="text/css" id="shapla-colors-system">
+				:root {
+					--shapla-primary: <?php echo $primary; ?>;
+					--shapla-on-primary: <?php echo $on_primary; ?>;
+					--shapla-secondary: <?php echo $secondary; ?>;
+					--shapla-on-secondary: <?php echo $on_secondary; ?>;
+					--shapla-surface: <?php echo $surface; ?>;
+					--shapla-on-surface: <?php echo $on_surface; ?>;
+					--shapla-error: <?php echo $error; ?>;
+					--shapla-on-error: <?php echo $on_error; ?>;
+				}
+			</style>
+			<?php
+		}
 	}
 }
 

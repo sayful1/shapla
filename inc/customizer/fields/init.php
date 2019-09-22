@@ -22,8 +22,9 @@ $shapla->customizer->add_config( array(
  * Static Front Page ---> 120
  * Additional CSS ---> 200
  */
-require 'typography.php'; // priority - 40
 require 'layout.php'; // priority - 10
+require 'theme-colors.php'; // priority - 20
+require 'typography.php'; // priority - 40
 require 'header.php'; // priority - 25 (Under Header Image)
 require 'page-title-bar.php'; // priority - 30
 require 'site_footer.php'; // priority - 30
