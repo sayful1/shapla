@@ -30,7 +30,7 @@
                 margin: 0;
                 font-size: 1.1rem;
                 font-weight: $headings-font-weight;
-                color: rgba($contenttext, .85);
+                color: rgba($on-surface, .85);
             }
 
             strong {
@@ -42,7 +42,7 @@
             }
 
             .price {
-                color: rgba($contenttext, .85);
+                color: rgba($on-surface, .85);
                 display: block;
                 font-weight: $text-font-weight;
                 margin-bottom: 0.5rem;
@@ -64,7 +64,7 @@
                     font-size: 0.67em;
                     margin: -2px 0 0 0;
                     text-transform: uppercase;
-                    color: rgba(desaturate($highlight, 75%), 0.5);
+                    // color: rgba(desaturate($primary, 75%), 0.5);
                 }
             }
 

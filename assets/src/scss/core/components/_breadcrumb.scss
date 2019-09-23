@@ -1,7 +1,7 @@
 $breadcrumb-item-color: $primary !default;
-$breadcrumb-item-hover-color: $contenttext !default;
-$breadcrumb-item-active-color: $contenttext !default;
-$breadcrumb-item-separator-color: $contenttext !default;
+$breadcrumb-item-hover-color: $on-surface !default;
+$breadcrumb-item-active-color: $on-surface !default;
+$breadcrumb-item-separator-color: $on-surface !default;
 
 .breadcrumb {
 	user-select: none;
@@ -13,7 +13,7 @@ $breadcrumb-item-separator-color: $contenttext !default;
 	white-space: nowrap;
 	margin: 0;
 
-	color: $contenttext;
+	color: $on-surface;
 	font-size: 0.875rem;
 	font-weight: $subtext-font-weight;
 
@@ -69,7 +69,7 @@ $breadcrumb-item-separator-color: $contenttext !default;
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		color: $contenttext;
+		color: $on-surface;
 
 		&:hover {
 			color: inherit;

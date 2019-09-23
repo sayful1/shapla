@@ -1,4 +1,5 @@
 @import "initial-variables";
+@import "functions";
 
 // == Base Colors
 $color--strikemaster: #96588a !default;
@@ -27,13 +28,20 @@ $color--gray-light: #616161 !default;
 $color--gray-lighter: #e0e0e0 !default;
 $color--gray-lightest: #f5f5f5 !default;
 
-// Reassign color vars to semantic color scheme
-$color--success: $color--green !default;
-$color--info: $color--teal !default;
-$color--warning: $color--orange !default;
-$color--danger: $color--red !default;
-$color--default: $color--light_grey !default;
+$primary: var(--shapla-primary, #{$color--blue}); // buttons (alt), price filter, store-notice, default message, star ratings, breadcrumb
+$primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
+$on-primary: var(--shapla-on-primary, #{$color--white}); // Text on primary color bg
 
+$secondary: var(--shapla-secondary, #ebe9eb); // Secondary buttons, On sale, Prices, In stock labels, sales flash
+$secondary-variant: var(--shapla-primary-variant, #{darken(#ebe9eb,10%)});
+$on-secondary: var(--shapla-on-secondary, #515151); // Text on secondary color bg
+
+$surface: var(--shapla-surface, #ffffff); // Content BG - Tabs (active state)
+$on-surface: var(--shapla-on-surface, #000000); // Product Title, Price
+
+$subtext: #777777; // small, breadcrumbs etc
+
+// Reassign color vars to semantic color scheme
 $color__background-body: $color--white !default;
 $color__background-screen: $color--light_grey !default;
 $color__background-hr: $color--grey !default;
@@ -58,13 +66,13 @@ $nav-color-dropdown-hover-text: $color--white;
 $nav-toggle-width: 1025px; // iPad Pro width
 
 // == Buttons
-$btn-color: $color--white;
-$btn-background: $color--blue;
-$btn-hover-background: darken($color--blue, 5%);
+$btn-background: $primary;
+$btn-color: $on-primary;
+$btn-hover-background: $primary-variant;
 
-$btn-alt-color: $color--white;
 $btn-alt-background: $color--teal;
-$btn-alt-hover-background: darken($color--teal, 5%);
+$btn-alt-color: $color--white;
+$btn-alt-hover-background: $secondary-variant;
 
 // == Form
 $color__border-input: $color--grey;
@@ -115,28 +123,6 @@ $table-column-padding: $table-column-spacing / 2;
 $widget-footer-background-color: #212a34;
 
 //== WooCommerce
-/*
-Primary color for
-buttons (alt)
-price filter
-store-notice
-default message
-star ratings
-breadcrumb
- */
-$primary: $color--blue;
-$primarytext: #ffffff; // Text on primary color bg
-
-$secondary: #ebe9eb; // Secondary buttons
-$secondarytext: #515151; // Text on secondary color bg
-
-$highlight: $primary; // On sale, Prices, In stock labels, sales flash
-$highlightext: $color--white; // Text on highlight color bg
-
-$contentbg: #ffffff; // Content BG - Tabs (active state)
-$contenttext: #000000; // Product Title, Price
-$subtext: #777777; // small, breadcrumbs etc
-
 $alert-success: $color--green;
 $alert-info: $color--blue;
 $alert-warning: $color--yellow;

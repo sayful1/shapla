@@ -73,7 +73,7 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 			wp_enqueue_script( 'selectWoo', $asset_url . '/libs/selectWoo/js/selectWoo.full.js', array( 'jquery' ), '1.0.1', true );
 			wp_enqueue_style( 'selectWoo', $asset_url . '/libs/selectWoo/css/selectWoo.css', array(), '1.0.1' );
 
-			wp_enqueue_script( 'shapla-customize', $asset_url . '/js/customize' . $suffix . '.js',
+			wp_enqueue_script( 'shapla-customize', $asset_url . '/js/customizer.js',
 				array(
 					'jquery',
 					'customize-base',

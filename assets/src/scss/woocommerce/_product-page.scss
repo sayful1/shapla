@@ -17,12 +17,12 @@
 
 			del {
 				opacity: 0.5;
-				color: rgba($contenttext, .85);
+				color: rgba($on-surface, .85);
 			}
 
 			ins {
 				background: transparent;
-				color: $highlight;
+				color: $primary;
 				font-weight: $font-weight-bold;
 				text-decoration: none;
 			}
@@ -38,7 +38,7 @@
 		}
 
 		.stock {
-			color: $highlight;
+			color: $primary;
 		}
 
 		.out-of-stock {
@@ -178,7 +178,7 @@
 				position: relative;
 
 				li {
-					border: 1px solid darken($secondary, 10%);
+					// border: 1px solid darken($secondary, 10%);
 					// background-color: $secondary;
 					display: inline-block;
 					position: relative;
@@ -191,19 +191,19 @@
 						display: inline-block;
 						padding: 0.5em 0;
 						font-weight: $font-weight-bold;
-						color: $secondarytext;
+						color: $on-secondary;
 						text-decoration: none;
 
 						&:hover {
 							text-decoration: none;
-							color: lighten($secondarytext, 10%);
+							color: $on-secondary;
 						}
 					}
 
 					&.active {
-						background: $contentbg;
+						background: #ffffff;
 						z-index: 2;
-						border-bottom-color: $contentbg;
+						border-bottom-color: #ffffff;
 
 						a {
 							color: inherit;
@@ -211,11 +211,11 @@
 						}
 
 						&::before {
-							box-shadow: 2px 2px 0 $contentbg;
+							box-shadow: 2px 2px 0 #ffffff;
 						}
 
 						&::after {
-							box-shadow: -2px 2px 0 $contentbg;
+							box-shadow: -2px 2px 0 #ffffff;
 						}
 					}
 
@@ -250,7 +250,7 @@
 					width: 100%;
 					bottom: 0;
 					left: 0;
-					border-bottom: 1px solid darken($secondary, 10%);
+					border-bottom: 1px solid $secondary;
 					z-index: 1;
 				}
 			}
