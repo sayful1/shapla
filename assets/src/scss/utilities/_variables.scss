@@ -2,7 +2,6 @@
 @import "functions";
 
 // == Base Colors
-$color--strikemaster: #96588a !default;
 $color--dark_grey: #3a3a3a !default;
 $color--dove_grey: #666666 !default;
 $color--grey: #cccccc !default;
@@ -13,12 +12,10 @@ $color--light_grey: #f1f1f1 !default;
 $color--red: #f44336 !default;
 $color--green: #4caf50 !default;
 $color--blue: #2196f3 !default;
-$color--orange: #ff9800 !default;
 $color--yellow: #ffeb3b !default;
 $color--white: #ffffff !default;
 $color--black: #000000 !default;
 $color--teal: #009688 !default;
-$color--pink: #e91e63 !default;
 $color--purple: #9c27b0 !default;
 
 // Create grayscale
@@ -32,9 +29,9 @@ $primary: var(--shapla-primary, #{$color--blue}); // buttons (alt), price filter
 $primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
 $on-primary: var(--shapla-on-primary, #{$color--white}); // Text on primary color bg
 
-$secondary: var(--shapla-secondary, #ebe9eb); // Secondary buttons, On sale, Prices, In stock labels, sales flash
-$secondary-variant: var(--shapla-primary-variant, #{darken(#ebe9eb,10%)});
-$on-secondary: var(--shapla-on-secondary, #515151); // Text on secondary color bg
+$secondary: var(--shapla-secondary, $color--purple); // Secondary buttons, On sale, Prices, In stock labels, sales flash
+$secondary-variant: var(--shapla-primary-variant, #{darken($color--purple,10%)});
+$on-secondary: var(--shapla-on-secondary, #{$color--purple}); // Text on secondary color bg
 
 $surface: var(--shapla-surface, #ffffff); // Content BG - Tabs (active state)
 $on-surface: var(--shapla-on-surface, #000000); // Product Title, Price
@@ -47,20 +44,20 @@ $color__background-screen: $color--light_grey !default;
 $color__background-hr: $color--grey !default;
 
 $color__text-screen: #21759b;
-$color__link: $color--strikemaster;
-$color__link-visited: $color--strikemaster;
-$color__link-hover: $color--strikemaster;
 $color__text-main: #404040;
+$color__link: $secondary;
+$color__link-visited: $secondary;
+$color__link-hover: $secondary;
 
 // == Site Navigation
 $nav-color-bg: $color--white;
 $nav-color-text: $color--dark_grey;
 $nav-color-hover-text: $color--white;
-$nav-color-hover-bg: $color--strikemaster;
+$nav-color-hover-bg: $secondary;
 
 $nav-color-dropdown-bg: $color--white;
 $nav-color-dropdown-text: $color--dark_grey;
-$nav-color-dropdown-hover-bg: $color--strikemaster;
+$nav-color-dropdown-hover-bg: $secondary;
 $nav-color-dropdown-hover-text: $color--white;
 
 $nav-toggle-width: 1025px; // iPad Pro width

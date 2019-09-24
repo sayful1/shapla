@@ -114,14 +114,13 @@ $icon-credit-cards-path: '../images/credit-cards/';
 	}
 
 	#payment {
-		background: $secondary;
-		// border-radius: 5px;
+		border: 1px solid $table-divider-color;
 
 		ul.payment_methods {
 			@include clearfix();
 			text-align: left;
 			padding: 1em;
-			border-bottom: 1px solid $secondary;
+			border-bottom: 1px solid $table-divider-color;
 			margin: 0;
 			list-style: none outside;
 
@@ -164,25 +163,12 @@ $icon-credit-cards-path: '../images/credit-cards/';
 			padding: 1em;
 			margin: 1em 0;
 			font-size: 0.92em;
-			// border-radius: 2px;
 			line-height: 1.5;
-			background-color: $secondary;
-			color: $on-secondary;
+			background-color: #f5f5f5;
+			color: $text-main;
 
 			input.input-text, textarea {
-				border-color: $secondary;
-			}
-
-			::-webkit-input-placeholder {
-				color: $secondary;
-			}
-
-			:-moz-placeholder {
-				color: $secondary;
-			}
-
-			:-ms-input-placeholder {
-				color: $secondary;
+				border-color: #f5f5f5;
 			}
 
 			.woocommerce-SavedPaymentMethods {
@@ -270,10 +256,8 @@ $icon-credit-cards-path: '../images/credit-cards/';
 			&::before {
 				content: '';
 				display: block;
-				border: 1em solid $secondary; /* arrow size / color */
-				border-right-color: transparent;
-				border-left-color: transparent;
-				border-top-color: transparent;
+				border: 1em solid transparent;
+				border-bottom-color: #f5f5f5;
 				position: absolute;
 				top: -0.75em;
 				left: 0;

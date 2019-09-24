@@ -417,20 +417,24 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * Inline color style
 		 */
 		public function inline_style() {
-			$primary      = get_theme_mod( 'shapla_primary_color', '#2196f3' );
-			$on_primary   = shapla_find_color_invert( $primary );
-			$secondary    = get_theme_mod( 'shapla_secondary_color', '#6200ee' );
-			$on_secondary = shapla_find_color_invert( $secondary );
-			$surface      = get_theme_mod( 'shapla_surface_color', '#ffffff' );
-			$on_surface   = shapla_find_color_invert( $surface );
-			$error        = get_theme_mod( 'shapla_error_color', '#6200ee' );
-			$on_error     = shapla_find_color_invert( $error );
+			$primary           = get_theme_mod( 'shapla_primary_color', '#2196f3' );
+			$primary_variant   = shapla_adjust_color_brightness( $primary, - 25 );
+			$on_primary        = shapla_find_color_invert( $primary );
+			$secondary         = get_theme_mod( 'shapla_secondary_color', '#6200ee' );
+			$secondary_variant = shapla_adjust_color_brightness( $secondary, - 25 );
+			$on_secondary      = shapla_find_color_invert( $secondary );
+			$surface           = get_theme_mod( 'shapla_surface_color', '#ffffff' );
+			$on_surface        = shapla_find_color_invert( $surface );
+			$error             = get_theme_mod( 'shapla_error_color', '#6200ee' );
+			$on_error          = shapla_find_color_invert( $error );
 			?>
 			<style type="text/css" id="shapla-colors-system">
 				:root {
 					--shapla-primary: <?php echo $primary; ?>;
+					--shapla-primary-variant: <?php echo $primary_variant; ?>;
 					--shapla-on-primary: <?php echo $on_primary; ?>;
 					--shapla-secondary: <?php echo $secondary; ?>;
+					--shapla-secondary-variant: <?php echo $secondary_variant; ?>;
 					--shapla-on-secondary: <?php echo $on_secondary; ?>;
 					--shapla-surface: <?php echo $surface; ?>;
 					--shapla-on-surface: <?php echo $on_surface; ?>;

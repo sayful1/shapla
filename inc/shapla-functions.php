@@ -56,6 +56,58 @@ if ( ! function_exists( 'shapla_header_styles' ) ) {
 	}
 }
 
+if ( ! function_exists( 'shapla_find_rgb_color' ) ) {
+	/**
+	 * Find RGB color from a color
+	 *
+	 * @param string $color
+	 *
+	 * @return string|array
+	 * @since 1.6.0
+	 */
+	function shapla_find_rgb_color( $color ) {
+		if ( '' === $color ) {
+			return '';
+		}
+
+		// Trim unneeded whitespace
+		$color = str_replace( ' ', '', $color );
+
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			// Format the hex color string.
+			$hex = str_replace( '#', '', $color );
+
+			if ( 3 == strlen( $hex ) ) {
+				$hex = str_repeat( substr( $hex, 0, 1 ), 2 ) .
+				       str_repeat( substr( $hex, 1, 1 ), 2 ) .
+				       str_repeat( substr( $hex, 2, 1 ), 2 );
+			}
+
+			$r = hexdec( substr( $hex, 0, 2 ) );
+			$g = hexdec( substr( $hex, 2, 2 ) );
+			$b = hexdec( substr( $hex, 4, 2 ) );
+
+			return array( $r, $g, $b, 1 );
+		}
+
+		// If this is rgb color
+		if ( 'rgb(' === substr( $color, 0, 4 ) ) {
+			list( $r, $g, $b ) = sscanf( $color, 'rgb(%d,%d,%d)' );
+
+			return array( $r, $g, $b, 1 );
+		}
+
+		// If this is rgba color
+		if ( 'rgba(' === substr( $color, 0, 5 ) ) {
+			list( $r, $g, $b, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
+
+			return array( $r, $g, $b, $alpha );
+		}
+
+		return '';
+	}
+}
 if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 	/**
 	 * Find light or dark color for given color
@@ -66,32 +118,12 @@ if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_find_color_invert( $color ) {
-		if ( '' === $color ) {
+		$rgb_color = shapla_find_rgb_color( $color );
+
+		if ( ! is_array( $rgb_color ) ) {
 			return '';
 		}
-
-		// Trim unneeded whitespace
-		$color = str_replace( ' ', '', $color );
-
-		// If this is hex color
-		if ( 1 === preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
-			$r = hexdec( substr( $color, 0, 2 ) );
-			$g = hexdec( substr( $color, 2, 2 ) );
-			$b = hexdec( substr( $color, 4, 2 ) );
-		}
-		// If this is rgb color
-		if ( 'rgb(' === substr( $color, 0, 4 ) ) {
-			list( $r, $g, $b ) = sscanf( $color, 'rgb(%d,%d,%d)' );
-		}
-
-		// If this is rgba color
-		if ( 'rgba(' === substr( $color, 0, 5 ) ) {
-			list( $r, $g, $b, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
-		}
-
-		if ( ! isset( $r, $g, $b ) ) {
-			return '';
-		}
+		list( $r, $g, $b ) = $rgb_color;
 
 		$contrast = (
 			$r * $r * .299 +
@@ -114,29 +146,22 @@ if ( ! function_exists( 'shapla_adjust_color_brightness' ) ) {
 	 * Adjust a hex color brightness
 	 * Allows us to create hover styles for custom link colors
 	 *
-	 * @param  string $hex hex color e.g. #111111.
-	 * @param  integer $steps factor by which to brighten/darken ranging from -255 (darken) to 255 (brighten).
+	 * @param string $color color e.g. #111111.
+	 * @param integer $steps factor by which to brighten/darken ranging from -255 (darken) to 255 (brighten).
 	 *
 	 * @return string        brightened/darkened hex color
 	 * @since  1.3.0
 	 */
-	function shapla_adjust_color_brightness( $hex, $steps ) {
+	function shapla_adjust_color_brightness( $color, $steps ) {
 		// Steps should be between -255 and 255. Negative = darker, positive = lighter.
 		$steps = max( - 255, min( 255, $steps ) );
 
-		// Format the hex color string.
-		$hex = str_replace( '#', '', $hex );
+		$rgb_color = shapla_find_rgb_color( $color );
 
-		if ( 3 == strlen( $hex ) ) {
-			$hex = str_repeat( substr( $hex, 0, 1 ), 2 ) .
-			       str_repeat( substr( $hex, 1, 1 ), 2 ) .
-			       str_repeat( substr( $hex, 2, 1 ), 2 );
+		if ( ! is_array( $rgb_color ) ) {
+			return '';
 		}
-
-		// Get decimal values.
-		$r = hexdec( substr( $hex, 0, 2 ) );
-		$g = hexdec( substr( $hex, 2, 2 ) );
-		$b = hexdec( substr( $hex, 4, 2 ) );
+		list( $r, $g, $b ) = $rgb_color;
 
 		// Adjust number of steps and keep it inside 0 to 255.
 		$r = max( 0, min( 255, $r + $steps ) );
@@ -279,8 +304,8 @@ if ( ! function_exists( 'shapla_footer_credits' ) ) {
 	/**
 	 * Shapla theme footer credit
 	 *
-	 * @since  1.4.0
 	 * @return string
+	 * @since  1.4.0
 	 */
 	function shapla_footer_credits() {
 		return sprintf(
