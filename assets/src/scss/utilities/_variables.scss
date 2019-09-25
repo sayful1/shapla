@@ -33,8 +33,11 @@ $secondary: var(--shapla-secondary, $color--purple); // Secondary buttons, On sa
 $secondary-variant: var(--shapla-primary-variant, #{darken($color--purple,10%)});
 $on-secondary: var(--shapla-on-secondary, #{$color--purple}); // Text on secondary color bg
 
-$surface: var(--shapla-surface, #ffffff); // Content BG - Tabs (active state)
-$on-surface: var(--shapla-on-surface, #000000); // Product Title, Price
+$surface: var(--shapla-surface, $color--white); // Content BG - Tabs (active state)
+$on-surface: var(--shapla-on-surface, $color--black); // Product Title, Price
+
+$error: var(--shapla-error, $color--red); // Content BG - Tabs (active state)
+$on-error: var(--shapla-on-error, $color--white); // Product Title, Price
 
 $subtext: #777777; // small, breadcrumbs etc
 

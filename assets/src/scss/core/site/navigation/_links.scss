@@ -1,6 +1,6 @@
 a {
 	background-color: transparent;
-	color: $link;
+	color: $secondary;
 	text-decoration: none;
 	transition: color 110ms ease-in-out;
 
@@ -10,7 +10,7 @@ a {
 
 	&:hover,
 	&:active {
-		color: $link-hover;
+		color: $secondary-variant;
 		outline: 0;
 		text-decoration: none;
 	}

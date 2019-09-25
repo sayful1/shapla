@@ -25,7 +25,8 @@
 		display: block;
 
 		&:hover {
-			background-color: rgba(#000, 0.8);
+			background-color: $primary;
+			color: $on-primary;
 		}
 	}
 }

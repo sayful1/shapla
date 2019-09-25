@@ -123,20 +123,30 @@ if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 		if ( ! is_array( $rgb_color ) ) {
 			return '';
 		}
-		list( $r, $g, $b ) = $rgb_color;
 
-		$contrast = (
-			$r * $r * .299 +
-			$g * $g * .587 +
-			$b * $b * .114
-		);
+		$colors = [];
+		list( $colors['red'], $colors['green'], $colors['blue'] ) = $rgb_color;
 
-		if ( $contrast > pow( 130, 2 ) ) {
+		foreach ( $colors as $name => $value ) {
+			$value = $value / 255;
+			if ( $value < 0.03928 ) {
+				$value = $value / 12.92;
+			} else {
+				$value = ( $value + .055 ) / 1.055;
+				$value = pow( $value, 2 );
+			}
+
+			$colors[ $name ] = $value;
+		}
+
+		$contrast = ( $colors['red'] * .2126 + $colors['green'] * .7152 + $colors['blue'] * .0722 );
+
+		if ( $contrast > 0.55 ) {
 			//bright color, use dark font
-			return '#000';
+			return '#000000';
 		} else {
 			//dark color, use bright font
-			return '#fff';
+			return '#ffffff';
 		}
 	}
 }

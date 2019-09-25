@@ -421,6 +421,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$primary_variant   = shapla_adjust_color_brightness( $primary, - 25 );
 			$on_primary        = shapla_find_color_invert( $primary );
 			$secondary         = get_theme_mod( 'shapla_secondary_color', '#6200ee' );
+			$secondary         = ! empty( $secondary ) ? $secondary : $primary;
 			$secondary_variant = shapla_adjust_color_brightness( $secondary, - 25 );
 			$on_secondary      = shapla_find_color_invert( $secondary );
 			$surface           = get_theme_mod( 'shapla_surface_color', '#ffffff' );

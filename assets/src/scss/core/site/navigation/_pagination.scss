@@ -1,3 +1,7 @@
+@import "../../../utilities/variables";
+
+$pagination-current-background-color: $primary;
+
 .navigation {
 	font-size: 1rem;
 	align-items: center;
@@ -33,7 +37,7 @@
 		height: 2.25em;
 		min-width: 2.25em;
 		border: 1px solid #dbdbdb;
-		color: #3273dc;
+		color: $pagination-current-background-color;
 
 		&.dots {
 			pointer-events: none;
@@ -42,18 +46,20 @@
 		}
 
 		&.current {
-			background-color: #3273dc;
-			border-color: #3273dc;
-			color: #fff;
+			background-color: $pagination-current-background-color;
+			border-color: $pagination-current-background-color;
+			color: $on-primary;
 		}
 
 		&.prev:before,
 		&.next:after {
 			@include fa-solid();
 		}
+
 		&.prev:before {
 			content: "\f104";
 		}
+
 		&.next:after {
 			content: "\f105";
 		}
@@ -67,9 +73,11 @@
 			border-color: #b5b5b5;
 			color: #363636;
 		}
+
 		&:focus {
-			border-color: #3273dc;
+			border-color: $pagination-current-background-color;
 		}
+
 		&:active {
 			box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2);
 		}
@@ -130,6 +138,7 @@
 				}
 			}
 		}
+
 		.nav-next {
 			padding-left: 1rem;
 
@@ -147,6 +156,7 @@
 			text-transform: uppercase;
 			color: #7a7a7a;
 		}
+
 		.post-title {
 			white-space: nowrap;
 			overflow: hidden;

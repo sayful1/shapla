@@ -1,43 +1,43 @@
 .woocommerce {
 
-    form.checkout {
-        @include clearfix;
-        position: static !important;
+	form.checkout {
+		@include clearfix;
+		position: static !important;
 
-        > .blockUI {
-            position: fixed !important;
-            @include loader();
-        }
-    }
+		> .blockUI {
+			position: fixed !important;
+			@include loader();
+		}
+	}
 
-    .loader {
-        @include loader();
-    }
+	.loader {
+		@include loader();
+	}
 
-    a.remove {
-        display: block;
-        font-size: 1.5em;
-        height: 1em;
-        width: 1em;
-        text-align: center;
-        line-height: 1;
-        border-radius: 100%;
-        color: $color--red !important; // Required for default theme compatibility
-        text-decoration: none;
-        font-weight: $text-font-weight;
-        border: 0;
+	a.remove {
+		display: block;
+		font-size: 1.5em;
+		height: 1em;
+		width: 1em;
+		text-align: center;
+		line-height: 1;
+		border-radius: 100%;
+		color: $error !important; // Required for default theme compatibility
+		text-decoration: none;
+		font-weight: $text-font-weight;
+		border: 0;
 
-        &:hover {
-            color: $color--white !important; // Required for default theme compatibility
-            background: $color--red;
-            text-decoration: none;
-        }
-    }
+		&:hover {
+			background: $error;
+			color: $on-error !important; // Required for default theme compatibility
+			text-decoration: none;
+		}
+	}
 
-    small.note {
-        display: block;
-        color: $subtext;
-        font-size: 0.857em;
-        margin-top: 10px;
-    }
+	small.note {
+		display: block;
+		color: $subtext;
+		font-size: 0.857em;
+		margin-top: 10px;
+	}
 }

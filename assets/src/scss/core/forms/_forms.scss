@@ -60,8 +60,8 @@ textarea {
 
 	&:focus,
 	&:active {
-		border-color: #3273dc;
-		box-shadow: 0 0 0 0.125em rgba(#3273dc, 0.25);
+		border-color: $primary;
+		// box-shadow: 0 0 0 0.125em rgba(#000, 0.25);
 	}
 
 	&[disabled] {
@@ -161,8 +161,8 @@ select {
 
 	&:focus,
 	&:active {
-		border-color: #3273dc;
-		box-shadow: 0 0 0 0.125em rgba(#3273dc, 0.25);
+		border-color: $primary;
+		// box-shadow: 0 0 0 0.125em rgba(#3273dc, 0.25);
 	}
 
 	&[disabled] {

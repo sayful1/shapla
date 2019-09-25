@@ -9,7 +9,7 @@ p.demo_store,
 	z-index: 999;
 	display: none;
 	background-color: $primary;
-	color: #fff;
+	color: $on-primary;
 
 	a {
 		background-color: rgba(#000, .2);

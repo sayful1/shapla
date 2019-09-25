@@ -69,7 +69,7 @@ $breadcrumb-item-separator-color: $on-surface !default;
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		color: $on-surface;
+		color: $breadcrumb-item-color;
 
 		&:hover {
 			color: inherit;
