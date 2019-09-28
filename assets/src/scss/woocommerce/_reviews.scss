@@ -1,14 +1,4 @@
 #reviews {
-	.woocommerce-Reviews-title {
-		font-size: $font-size-h5;
-		margin-bottom: 1em;
-		font-weight: normal;
-
-		span {
-			font-weight: $headings-font-weight;
-		}
-	}
-
 	.commentlist {
 		@include clearfix();
 		margin: 0;
