@@ -1,37 +1,65 @@
 class ShaplaStickyHeader {
 
-    constructor(selector, settings) {
-        let masthead = document.querySelector(selector);
+	/**
+	 * ShaplaStickyHeader constructor
+	 *
+	 * @param selector
+	 * @param settings
+	 */
+	constructor(selector, settings) {
+		let masthead = document.querySelector(selector);
 
-        if (!masthead) return;
+		if (!masthead || !settings.isEnabled) return;
 
-        let content = masthead.nextElementSibling,
-            stickPoint = masthead.offsetTop,
-            stuck = false,
-            distance,
-            offset;
+		this.settings = settings;
+		this.masthead = masthead;
+		this.content = this.masthead.nextElementSibling;
+		this.stickPoint = this.masthead.offsetTop;
+		this.stuck = false;
 
-        // Check if sticky header is enabled
-        if (!settings.isEnabled) return;
+		this.masthead.classList.add('is-fixed');
+		this.content.style.paddingTop = this.getHeight() + 'px';
 
-        window.addEventListener("scroll", function () {
-            offset = window.pageYOffset;
-            if (window.innerWidth < settings.minWidth) {
-                return;
-            }
-            distance = stickPoint - offset;
-            if ((distance <= 0) && !stuck) {
-                masthead.classList.add('is-sticky');
-                content.style.marginTop = masthead.offsetHeight + 'px';
-                stuck = true;
-            }
-            else if (stuck && (offset <= stickPoint)) {
-                masthead.classList.remove('is-sticky');
-                content.style.marginTop = '';
-                stuck = false;
-            }
-        });
-    }
+		window.addEventListener("scroll", () => {
+			this.init();
+		});
+	}
+
+	/**
+	 * Init scroll
+	 */
+	init() {
+		if (window.innerWidth < this.settings.minWidth) {
+			return;
+		}
+		let offset = window.pageYOffset;
+		let distance = this.stickPoint - offset;
+		if (!this.stuck && (distance <= 0)) {
+			this.masthead.classList.add('is-sticky');
+			this.stuck = true;
+		} else if (this.stuck && (offset <= this.stickPoint)) {
+			this.masthead.classList.remove('is-sticky');
+			this.stuck = false;
+		}
+	}
+
+	/**
+	 * Calculate content position from top
+	 *
+	 * @returns {number}
+	 */
+	getHeight() {
+		let topHeight = this.masthead.offsetHeight;
+
+		let compStyles = window.getComputedStyle(this.content),
+			paddingTop = compStyles.getPropertyValue('padding-top').replace('px', '');
+
+		if (paddingTop) {
+			topHeight += parseInt(paddingTop);
+		}
+
+		return topHeight;
+	}
 }
 
 export {ShaplaStickyHeader}

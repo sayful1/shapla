@@ -1,6 +1,3 @@
-$primary-color: $primary !default;
-$on-primary-color: $on-primary !default;
-
 $tabs-border-bottom-color: #dbdbdb !default;
 $tabs-border-bottom-style: solid !default;
 $tabs-border-bottom-width: 2px !default;
@@ -8,23 +5,6 @@ $tabs-link-color: #4A4A4A !default;
 $tabs-link-hover-border-bottom-color: #363636 !default;
 $tabs-link-hover-color: #363636 !default;
 $tabs-link-padding: 0.5em 1em !default;
-
-$tabs-boxed-link-radius: 4px !default;
-$tabs-boxed-link-hover-background-color: #F5F5F5 !default;
-$tabs-boxed-link-hover-border-bottom-color: #DBDBDB !default;
-
-$tabs-boxed-link-active-background-color: #FFFFFF !default;
-$tabs-boxed-link-active-border-color: #DBDBDB !default;
-$tabs-boxed-link-active-border-bottom-color: transparent !default;
-
-$tabs-toggle-link-border-color: #DBDBDB !default;
-$tabs-toggle-link-border-style: solid !default;
-$tabs-toggle-link-border-width: 1px !default;
-$tabs-toggle-link-hover-background-color: #F5F5F5 !default;
-$tabs-toggle-link-hover-border-color: #B5B5B5 !default;
-$tabs-toggle-link-radius: 4px !default;
-$tabs-toggle-link-active-color: #fff !default;
-$radius-rounded: 290486px !default;
 
 .woocommerce-tabs {
 	padding-top: 30px;
@@ -73,7 +53,7 @@ $radius-rounded: 290486px !default;
 			&.active {
 				a {
 					border-bottom-color: currentColor;
-					color: $primary-color;
+					color: $primary;
 				}
 			}
 		}
