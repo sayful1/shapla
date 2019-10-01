@@ -87,7 +87,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 			add_filter( 'wp_get_custom_css', array( $this, 'wp_get_custom_css' ) );
 			add_action( 'wp_head', array( $this, 'customize_css' ) );
-			// add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
+			add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_fonts' ), 5 );
 		}
 
@@ -120,9 +120,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			?>
-            <style type="text/css" id="shapla-custom-css">
-                <?php echo wp_strip_all_tags( $styles ); ?>
-            </style>
+			<style type="text/css" id="shapla-custom-css">
+				<?php echo wp_strip_all_tags( $styles ); ?>
+			</style>
 			<?php
 		}
 
@@ -230,7 +230,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Modify WordPress default section and control
 		 *
-		 * @param  WP_Customize_Manager $wp_customize Theme Customizer object
+		 * @param WP_Customize_Manager $wp_customize Theme Customizer object
 		 *
 		 * @since  1.0.1
 		 */
@@ -628,8 +628,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * add a simple, image uploader.
 		 *
-		 * @param  WP_Customize_Manager $wp_customize
-		 * @param  array $field
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
 		 *
 		 * @return WP_Customize_Image_Control
 		 */
@@ -701,8 +701,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * add a simple, color input.
 		 *
-		 * @param  WP_Customize_Manager $wp_customize
-		 * @param  array $field
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
 		 *
 		 * @return WP_Customize_Color_Control
 		 */
@@ -719,8 +719,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * add a simple, color input.
 		 *
-		 * @param  WP_Customize_Manager $wp_customize
-		 * @param  array $field
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
 		 *
 		 * @return Shapla_Color_Customize_Control
 		 */
@@ -756,8 +756,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * add a simple, single-line text input.
 		 *
-		 * @param  WP_Customize_Manager $wp_customize
-		 * @param  array $field
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
 		 *
 		 * @return WP_Customize_Control
 		 */
@@ -776,8 +776,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * add radio images
 		 *
-		 * @param  WP_Customize_Manager $wp_customize
-		 * @param  array $field
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
 		 *
 		 * @return Shapla_Radio_Image_Customize_Control
 		 */
@@ -795,8 +795,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * add radio buttons
 		 *
-		 * @param  WP_Customize_Manager $wp_customize
-		 * @param  array $field
+		 * @param WP_Customize_Manager $wp_customize
+		 * @param array $field
 		 *
 		 * @return Shapla_Radio_Button_Customize_Control
 		 */
@@ -814,7 +814,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize image
 		 *
-		 * @param  mixed $value
+		 * @param mixed $value
 		 *
 		 * @return array
 		 */
@@ -825,7 +825,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize text
 		 *
-		 * @param  boolean $input
+		 * @param boolean $input
 		 *
 		 * @return string
 		 */
@@ -836,7 +836,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitizes a Hex, RGB or RGBA color
 		 *
-		 * @param  string $color
+		 * @param string $color
 		 *
 		 * @return string
 		 */
@@ -847,7 +847,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitizes a Hex, RGB or RGBA color
 		 *
-		 * @param  string $color
+		 * @param string $color
 		 *
 		 * @return string
 		 */
@@ -858,7 +858,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize textarea
 		 *
-		 * @param  boolean $input
+		 * @param boolean $input
 		 *
 		 * @return string
 		 */
@@ -869,7 +869,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize checkbox
 		 *
-		 * @param  boolean $input
+		 * @param boolean $input
 		 *
 		 * @return boolean
 		 */
@@ -880,7 +880,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize email
 		 *
-		 * @param  string $input
+		 * @param string $input
 		 *
 		 * @return string
 		 */
@@ -891,7 +891,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize url
 		 *
-		 * @param  string $input
+		 * @param string $input
 		 *
 		 * @return string
 		 */
@@ -902,7 +902,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize image
 		 *
-		 * @param  boolean $input
+		 * @param boolean $input
 		 *
 		 * @return string
 		 */
@@ -913,7 +913,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Sanitize number
 		 *
-		 * @param  boolean $input
+		 * @param boolean $input
 		 *
 		 * @return string
 		 */

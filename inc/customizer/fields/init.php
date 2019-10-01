@@ -34,5 +34,4 @@ require 'extra.php'; // priority - 190
 
 if ( shapla_is_woocommerce_activated() ) {
 	require 'woocommerce.php'; // priority - 50
-	require 'woocommerce-colors.php'; // priority - 50
 }

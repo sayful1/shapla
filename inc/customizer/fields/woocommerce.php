@@ -5,25 +5,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add new panel
-$shapla->customizer->add_panel( 'woocommerce_panel', array(
-	'title'       => __( 'WooCommerce Style', 'shapla' ),
+$shapla->customizer->add_panel( 'woocommerce', array(
+	'title'       => __( 'WooCommerce', 'shapla' ),
 	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
-	'priority'    => 50,
+	'priority'    => 200,
 ) );
 
 // Add new section
-$shapla->customizer->add_section( 'woocommerce', array(
+$shapla->customizer->add_section( 'shapla_woocommerce_section', array(
 	'title'       => __( 'General', 'shapla' ),
 	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
-	'panel'       => 'woocommerce_panel',
-	'priority'    => 10,
+	'panel'       => 'woocommerce',
+	'priority'    => 100,
 ) );
 
 // Change products per page
 $shapla->customizer->add_field( array(
 	'settings'    => 'wc_products_per_page',
 	'type'        => 'range-slider',
-	'section'     => 'woocommerce',
+	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Products per page', 'shapla' ),
 	'description' => __( 'Change number of products displayed per page', 'shapla' ),
 	'default'     => shapla_default_options( 'wc_products_per_page' ),
@@ -39,7 +39,7 @@ $shapla->customizer->add_field( array(
 $shapla->customizer->add_field( array(
 	'settings'    => 'wc_products_per_row',
 	'type'        => 'range-slider',
-	'section'     => 'woocommerce',
+	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Products per row', 'shapla' ),
 	'description' => __( 'Change number of products displayed per row', 'shapla' ),
 	'default'     => shapla_default_options( 'wc_products_per_row' ),
@@ -55,7 +55,7 @@ $shapla->customizer->add_field( array(
 $shapla->customizer->add_field( array(
 	'settings'    => 'show_cart_icon',
 	'type'        => 'toggle',
-	'section'     => 'woocommerce',
+	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Show Cart Icon', 'shapla' ),
 	'description' => __( 'Check to show cart icon on navigation bar in header area.', 'shapla' ),
 	'default'     => shapla_default_options( 'show_cart_icon' ),
@@ -66,7 +66,7 @@ $shapla->customizer->add_field( array(
 $shapla->customizer->add_field( array(
 	'settings'    => 'show_product_search_categories',
 	'type'        => 'toggle',
-	'section'     => 'woocommerce',
+	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Show Categories Dropdown', 'shapla' ),
 	'description' => __( 'Check to show product categories dropdown on search field in header area.', 'shapla' ),
 	'default'     => shapla_default_options( 'show_product_search_categories' ),

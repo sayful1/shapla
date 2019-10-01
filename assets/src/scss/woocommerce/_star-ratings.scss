@@ -1,135 +1,135 @@
 .woocommerce {
-    // Loop
-    .star-rating {
-        overflow: hidden;
-        position: relative;
-        line-height: 1;
-        font-size: 1rem;
-        width: 5.3em;
-        height: 1em;
-        font-family: 'star';
-        font-weight: $text-font-weight;
-        display: block;
-        margin: 0 0 0.5em;
-        float: none;
+	// Loop
+	.star-rating {
+		overflow: hidden;
+		position: relative;
+		line-height: 1;
+		font-size: 1rem;
+		width: 5.3em;
+		height: 1em;
+		font-family: 'star';
+		font-weight: $text-font-weight;
+		display: block;
+		margin: 0 0 0.5em;
+		float: none;
 
-        &::before {
-            content: "\53\53\53\53\53";
-            float: left;
-            top: 0;
-            left: 0;
-            position: absolute;
-            opacity: .25;
-            color: #323232;
-        }
+		&::before {
+			content: "\53\53\53\53\53";
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+			opacity: .25;
+			color: #323232;
+		}
 
-        span {
-            overflow: hidden;
-            float: left;
-            top: 0;
-            left: 0;
-            position: absolute;
-            padding-top: 1.5em;
-        }
+		span {
+			overflow: hidden;
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+			padding-top: 1.5em;
+		}
 
-        span::before {
-            content: '\53\53\53\53\53';
-            top: 0;
-            position: absolute;
-            left: 0;
-            color: $primary;
-        }
-    }
+		span::before {
+			content: '\53\53\53\53\53';
+			top: 0;
+			position: absolute;
+			left: 0;
+			color: $secondary;
+		}
+	}
 
-    // Bellow Product title on single page
-    .woocommerce-product-rating {
-        @include clearfix();
-        line-height: 2;
-        display: block;
+	// Bellow Product title on single page
+	.woocommerce-product-rating {
+		@include clearfix();
+		line-height: 2;
+		display: block;
 
-        .star-rating {
-            margin: 0.5em 0.5em 0 0;
-            float: left;
-        }
-    }
+		.star-rating {
+			margin: 0.5em 0.5em 0 0;
+			float: left;
+		}
+	}
 
-    .hreview-aggregate {
-        .star-rating {
-            margin: 10px 0 0;
-        }
-    }
+	.hreview-aggregate {
+		.star-rating {
+			margin: 10px 0 0;
+		}
+	}
 }
 
 // Star on Single Page, Add a review
 p.stars {
-    display: inline-block;
-    margin: 0;
+	display: inline-block;
+	margin: 0;
 
-    a {
-        position: relative;
-        height: 1em;
-        width: 1em;
-        text-indent: -999em;
-        display: inline-block;
-        text-decoration: none;
-        margin-right: 1px;
-        font-weight: $text-font-weight;
+	a {
+		position: relative;
+		height: 1em;
+		width: 1em;
+		text-indent: -999em;
+		display: inline-block;
+		text-decoration: none;
+		margin-right: 1px;
+		font-weight: $text-font-weight;
 
-        &:before {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 1em;
-            height: 1em;
-            line-height: 1;
-            font-family: "star";
-            content: "\53";
-            color: #323232;
-            text-indent: 0;
-            opacity: .25;
-        }
+		&:before {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 1em;
+			height: 1em;
+			line-height: 1;
+			font-family: "star";
+			content: "\53";
+			color: #323232;
+			text-indent: 0;
+			opacity: .25;
+		}
 
-        &:hover {
-            ~ a:before {
-                content: "\53";
-                color: #323232;
-                opacity: .25;
-            }
-        }
-    }
+		&:hover {
+			~ a:before {
+				content: "\53";
+				color: #323232;
+				opacity: .25;
+			}
+		}
+	}
 
-    &:hover {
-        a {
-            &:before {
-                content: "\53";
-                color: $primary;
-                opacity: 1;
-            }
-        }
-    }
+	&:hover {
+		a {
+			&:before {
+				content: "\53";
+				color: $secondary;
+				opacity: 1;
+			}
+		}
+	}
 
-    &.selected {
-        a.active {
-            &:before {
-                content: "\53";
-                color: $primary;
-                opacity: 1;
-            }
+	&.selected {
+		a.active {
+			&:before {
+				content: "\53";
+				color: $secondary;
+				opacity: 1;
+			}
 
-            ~ a:before {
-                content: "\53";
-                color: #323232;
-                opacity: .25;
-            }
-        }
+			~ a:before {
+				content: "\53";
+				color: #323232;
+				opacity: .25;
+			}
+		}
 
-        a:not(.active) {
-            &:before {
-                content: "\53";
-                color: $primary;
-                opacity: 1;
-            }
-        }
-    }
+		a:not(.active) {
+			&:before {
+				content: "\53";
+				color: $secondary;
+				opacity: 1;
+			}
+		}
+	}
 }
