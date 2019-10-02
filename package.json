@@ -6,17 +6,16 @@
 	"homepage": "https://wordpress.org/themes/shapla/",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/sayful1/shapla.git"
+		"url": "git+https://github.com/sayful1/shapla.git"
 	},
 	"bugs": {
-		"url": "https://github.com/sayful1/shapla/issues",
-		"email": "sayful.islam001@gmail.com"
+		"url": "https://github.com/sayful1/shapla/issues"
 	},
 	"license": "GPL-3.0-only",
 	"author": {
 		"name": "Sayful Islam",
 		"email": "sayful.islam001@gmail.com",
-		"url": "https://profiles.wordpress.org/sayful"
+		"url": "https://sayfulislam.com"
 	},
 	"scripts": {
 		"dev": "webpack --mode=development --progress --colors --watch --hide-modules",
@@ -24,12 +23,11 @@
 		"build": "webpack --mode=production"
 	},
 	"browserslist": [
-		"extends @wordpress/browserslist-config"
+		"defaults"
 	],
 	"devDependencies": {
 		"@babel/core": "^7.4.5",
 		"@babel/preset-env": "^7.4.5",
-		"@wordpress/browserslist-config": "^2.6.0",
 		"autoprefixer": "^9.5.1",
 		"babel-loader": "^8.0.6",
 		"browser-sync": "^2.26.5",
