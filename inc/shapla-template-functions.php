@@ -151,10 +151,10 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 		$nav_class = 'main-navigation';
 		$nav_class .= $dropdown_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
 		?>
-		<button id="menu-toggle" class="menu-toggle" data-target="#site-header-menu">
-			<span></span>
-			<span></span>
-			<span></span>
+		<button id="menu-toggle" class="menu-toggle" data-target="#site-navigation" aria-label="menu">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
 		</button>
 		<nav id="site-navigation" class="<?php echo esc_attr( $nav_class ); ?>" role="navigation">
 			<?php wp_nav_menu( array(

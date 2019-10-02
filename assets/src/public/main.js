@@ -7,7 +7,7 @@ import {ShaplaSearch} from "./ShaplaSearch";
 const config = window.Shapla || {};
 
 new ShaplaSkipLinkFocusFix();
-new ShaplaNavigation(config);
+new ShaplaNavigation('#site-navigation', config);
 new ShaplaBackToTop('#shapla-back-to-top', config.BackToTopButton);
 new ShaplaStickyHeader("#masthead", config.stickyHeader);
 new ShaplaSearch();
