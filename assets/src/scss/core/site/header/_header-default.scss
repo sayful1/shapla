@@ -6,8 +6,19 @@
 	z-index: 100;
 	transition: all 0.5s ease-in-out;
 
-	&.is-fixed {
+	&.is-fixed-top {
 		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+
+		.admin-bar & {
+			top: 32px;
+
+			@media screen and (max-width: 782px) {
+				top: 46px;
+			}
+		}
 	}
 
 	@media screen and (min-width: $nav-toggle-width) {

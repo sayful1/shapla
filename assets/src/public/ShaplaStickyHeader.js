@@ -13,12 +13,14 @@ class ShaplaStickyHeader {
 
 		this.settings = settings;
 		this.masthead = masthead;
-		this.content = this.masthead.nextElementSibling;
 		this.stickPoint = this.masthead.offsetTop;
 		this.stuck = false;
 
-		this.masthead.classList.add('is-fixed');
-		this.content.style.paddingTop = this.getHeight() + 'px';
+		this.updateClass();
+
+		window.addEventListener('resize', () => {
+			this.updateClass();
+		});
 
 		window.addEventListener("scroll", () => {
 			this.init();
@@ -44,21 +46,17 @@ class ShaplaStickyHeader {
 	}
 
 	/**
-	 * Calculate content position from top
-	 *
-	 * @returns {number}
+	 * Update fixed class
 	 */
-	getHeight() {
-		let topHeight = this.masthead.offsetHeight;
-
-		let compStyles = window.getComputedStyle(this.content),
-			paddingTop = compStyles.getPropertyValue('padding-top').replace('px', '');
-
-		if (paddingTop) {
-			topHeight += parseInt(paddingTop);
+	updateClass() {
+		let body = document.querySelector('body');
+		if (window.innerWidth < this.settings.minWidth) {
+			this.masthead.classList.remove('is-fixed-top');
+			body.style.paddingTop = '';
+		} else {
+			this.masthead.classList.add('is-fixed-top');
+			body.style.paddingTop = this.masthead.offsetHeight + 'px';
 		}
-
-		return topHeight;
 	}
 }
 
