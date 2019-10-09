@@ -1,116 +1,152 @@
 .woocommerce,
 .woocommerce-page {
-    // Cart page
-    table.cart {
-        img {
-            height: auto;
-        }
+	// Cart page
+	table.cart {
+		img {
+			height: auto;
+		}
 
-        input.qty {
-            max-width: 80px;
-        }
+		input.qty {
+			max-width: 80px;
+		}
 
-        td.actions {
-            text-align: right;
+		td.actions {
+			text-align: right;
 
-            .input-text {
-                width: 115px;
-            }
+			.input-text {
+				width: 115px;
+			}
 
-            .coupon {
-                float: left;
+			.coupon {
+				float: left;
 
-                label {
-                    display: none;
-                }
-            }
-        }
-    }
+				label {
+					display: none;
+				}
+			}
+		}
+	}
 
-    .cart-collaterals {
-        @include clearfix();
-        width: 100%;
+	// Small screen
+	@media only screen and (max-width: $screen-md) {
+		table.cart {
+			.product-thumbnail {
+				&:before {
+					display: none;
+				}
+			}
 
-        .cross-sells {
-            width: calc(50% - 2rem);
-            margin-right: 2rem;
-            float: left;
+			td.actions {
+				text-align: left;
 
-            ul.products {
-                li {
-                    flex: 0 0 50%;
-                    max-width: 50%;
-                }
-            }
-        }
+				.coupon {
+					@include clearfix();
+					float: none;
+					padding-bottom: 1em;
+					width: 100%;
 
-        .cart_totals {
-            width: 50%;
-            float: right;
-        }
+					input,
+					.button,
+					.input-text {
+						width: 48%;
+						box-sizing: border-box;
+					}
 
-        .shipping_calculator {
-            @include clearfix();
-            width: 48%;
+					.input-text + .button,
+					.button.alt {
+						float: right;
+					}
+				}
 
-            .col2-set {
-                .col-1,
-                .col-2 {
-                    width: 47%;
-                }
-            }
-        }
-    }
+				.button {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+	}
 }
 
-@media only screen and (max-width: $screen-md) {
-    .woocommerce,
-    .woocommerce-page {
+// WooCommerce Cart Collaterals
+.woocommerce {
 
-        table.cart {
-            .product-thumbnail {
-                &:before {
-                    display: none;
-                }
-            }
+	.cart-collaterals {
+		margin-bottom: $column-gap;
 
-            td.actions {
-                text-align: left;
+		.cart_totals {
+			padding: 2rem;
+			align-self: flex-start;
+			box-sizing: border-box;
+			background-color: rgba(#000, .03);
+			border-radius: 1px;
+			width: 100%;
 
-                .coupon {
-                    @include clearfix();
-                    float: none;
-                    padding-bottom: 1em;
-                    width: 100%;
+			h2 {
+				font-size: $font-size-large;
+			}
 
-                    input,
-                    .button,
-                    .input-text {
-                        width: 48%;
-                        box-sizing: border-box;
-                    }
+			table.shop_table {
+				background-color: transparent;
+				border: none;
 
-                    .input-text + .button,
-                    .button.alt {
-                        float: right;
-                    }
-                }
+				tr {
+					display: block;
+					padding: .75rem 0;
+					border-top: 1px solid rgba(#333333, 0.12);
+				}
 
-                .button {
-                    display: block;
-                    width: 100%;
-                }
-            }
-        }
+				th, td {
+					display: block;
+					border: none;
+					padding: 0;
+				}
 
-        .cart-collaterals {
-            .cart_totals,
-            .shipping_calculator,
-            .cross-sells {
-                width: 100%;
-                float: none;
-                text-align: left;
-            }
-        }
-    }
+				th {
+					width: 40%;
+				}
+
+				td {
+					text-align: left;
+				}
+
+				tr:first-of-type {
+					border: none;
+				}
+			}
+
+			p {
+				margin-bottom: .75rem;
+			}
+		}
+
+		.button {
+			width: 100%;
+		}
+
+		a.checkout-button {
+			display: block;
+			font-size: 1.25em;
+			padding: 1em;
+		}
+
+		.shipping-calculator-form {
+			margin-top: .75rem;
+		}
+
+	}
+
+	@media only screen and (min-width: $screen-lg) {
+
+		.woocommerce-cart-form {
+			display: block;
+			float: left;
+			width: calc(100% - 30% - 2rem);
+		}
+
+		.cart-collaterals {
+			float: left;
+			margin-left: 2rem;
+			width: 30%;
+		}
+	}
 }

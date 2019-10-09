@@ -2,13 +2,8 @@
 	margin-bottom: $column-gap;
 
 	.wp-block-button__link {
-		border: none;
-		box-sizing: border-box;
-		font-weight: bold;
 		line-height: 1;
 		outline: none;
-		padding: 0.75em 1.5em;
-		text-decoration: none;
 
 		&:not(.has-background) {
 			background: $btn-background;

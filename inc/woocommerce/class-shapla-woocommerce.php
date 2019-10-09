@@ -29,6 +29,8 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'woocommerce_scripts' ), 15 );
 			// WooCommerce Products per page
 			add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ), 99 );
+			// WooCommerce cross sells columns
+			add_filter( 'woocommerce_cross_sells_columns', array( $this, 'cross_sells_columns' ), 99 );
 			// WooCommerce Products per row
 			add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ), 99 );
 			// WooCommerce Related products per page
@@ -50,8 +52,8 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		/**
 		 * Hide WooCommerce default page title
 		 *
-		 * @version 1.4.0
 		 * @return bool
+		 * @version 1.4.0
 		 */
 		public function hide_default_page_title() {
 			return false;
@@ -62,8 +64,8 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		 *
 		 * @param array $classes Classes for the body element.
 		 *
-		 * @since  1.1.3
 		 * @return array
+		 * @since  1.1.3
 		 */
 		public function body_classes( $classes ) {
 			$cols = get_theme_mod( 'wc_products_per_row', 4 );
@@ -152,6 +154,19 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		 * @return int
 		 */
 		public function loop_shop_columns( $cols ) {
+			$cols = get_theme_mod( 'wc_products_per_row', 4 );
+
+			return apply_filters( 'shapla_wc_products_per_row', intval( $cols ) );
+		}
+
+		/**
+		 * WooCommerce cross sells columns
+		 *
+		 * @param int $cols
+		 *
+		 * @return int
+		 */
+		public function cross_sells_columns( $cols ) {
 			$cols = get_theme_mod( 'wc_products_per_row', 4 );
 
 			return apply_filters( 'shapla_wc_products_per_row', intval( $cols ) );

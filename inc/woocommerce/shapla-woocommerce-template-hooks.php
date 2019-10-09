@@ -22,3 +22,7 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'shapla_add_to_cart_fragments' 
 
 // Remove WooCommerce default breadcrumb
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+
+// Change WooCommerce cross sell display after cart
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );

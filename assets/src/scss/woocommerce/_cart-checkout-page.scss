@@ -24,62 +24,6 @@ $icon-credit-cards-path: '../images/credit-cards/';
 		}
 	}
 
-	.wc-proceed-to-checkout {
-		@include clearfix;
-		padding: 1rem 0;
-
-		a.checkout-button {
-			display: block;
-			text-align: center;
-			font-size: 1.25em;
-			padding: 1em;
-		}
-	}
-
-	.cart-collaterals {
-		.shipping_calculator {
-			.button {
-				width: 100%;
-				float: none;
-				display: block;
-			}
-		}
-
-		.cart_totals {
-			p {
-				small {
-					color: $subtext;
-					font-size: 0.875rem;
-				}
-			}
-
-			table {
-
-				th {
-					width: 40%;
-				}
-
-				td,
-				th {
-					border-left: 0;
-					border-right: 0;
-				}
-
-				small {
-					color: $subtext;
-				}
-
-				select {
-					width: 100%;
-				}
-			}
-
-			.discount td {
-				color: $primary;
-			}
-		}
-	}
-
 	.checkout {
 		.col-2 {
 			h3#ship-to-different-address {

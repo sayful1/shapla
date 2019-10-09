@@ -30,7 +30,7 @@ $primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
 $on-primary: var(--shapla-on-primary, #{$color--white}); // Text on primary color bg
 
 $secondary: var(--shapla-secondary, $color--purple); // Secondary buttons, On sale, Prices, In stock labels, sales flash
-$secondary-variant: var(--shapla-primary-variant, #{darken($color--purple,10%)});
+$secondary-variant: var(--shapla-secondary-variant, #{darken($color--purple,10%)});
 $on-secondary: var(--shapla-on-secondary, #{$color--purple}); // Text on secondary color bg
 
 $surface: var(--shapla-surface, $color--white); // Content BG - Tabs (active state)
