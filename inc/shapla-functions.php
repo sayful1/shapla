@@ -1,8 +1,7 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'shapla_is_woocommerce_activated' ) ) {
 	/**
@@ -108,16 +107,18 @@ if ( ! function_exists( 'shapla_find_rgb_color' ) ) {
 		return '';
 	}
 }
-if ( ! function_exists( 'shapla_find_color_invert' ) ) {
+
+if ( ! function_exists( 'shapla_calculate_color_luminance' ) ) {
 	/**
-	 * Find light or dark color for given color
+	 * Calculate the luminance for a color.
+	 * @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 	 *
-	 * @param $color
+	 * @param string $color
 	 *
-	 * @return string
-	 * @since  1.3.0
+	 * @return float|string
+	 * @since 1.6.0
 	 */
-	function shapla_find_color_invert( $color ) {
+	function shapla_calculate_color_luminance( $color ) {
 		$rgb_color = shapla_find_rgb_color( $color );
 
 		if ( ! is_array( $rgb_color ) ) {
@@ -139,9 +140,23 @@ if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 			$colors[ $name ] = $value;
 		}
 
-		$contrast = ( $colors['red'] * .2126 + $colors['green'] * .7152 + $colors['blue'] * .0722 );
+		return ( $colors['red'] * .2126 + $colors['green'] * .7152 + $colors['blue'] * .0722 );
+	}
+}
 
-		if ( $contrast > 0.55 ) {
+if ( ! function_exists( 'shapla_find_color_invert' ) ) {
+	/**
+	 * Find light or dark color for given color
+	 *
+	 * @param $color
+	 *
+	 * @return string
+	 * @since  1.3.0
+	 */
+	function shapla_find_color_invert( $color ) {
+		$luminance = shapla_calculate_color_luminance( $color );
+
+		if ( $luminance > 0.55 ) {
 			//bright color, use dark font
 			return '#000000';
 		} else {

@@ -36,7 +36,7 @@ class ShaplaStickyHeader {
 		}
 		let offset = window.pageYOffset;
 		let distance = this.stickPoint - offset;
-		if (!this.stuck && (distance <= 0)) {
+		if (!this.stuck && (distance <= -50)) {
 			this.masthead.classList.add('is-sticky');
 			this.stuck = true;
 		} else if (this.stuck && (offset <= this.stickPoint)) {

@@ -427,6 +427,10 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$on_surface        = shapla_find_color_invert( $surface );
 			$error             = get_theme_mod( 'shapla_error_color', '#6200ee' );
 			$on_error          = shapla_find_color_invert( $error );
+
+			list( $r, $g, $b ) = shapla_find_rgb_color( $on_surface );
+			$text_primary   = sprintf( "rgba(%s, %s, %s, 0.87)", $r, $g, $b );
+			$text_secondary = sprintf( "rgba(%s, %s, %s, 0.54)", $r, $g, $b );
 			?>
 			<style type="text/css" id="shapla-colors-system">
 				:root {
@@ -440,6 +444,8 @@ if ( ! class_exists( 'Shapla' ) ) {
 					--shapla-on-surface: <?php echo $on_surface; ?>;
 					--shapla-error: <?php echo $error; ?>;
 					--shapla-on-error: <?php echo $on_error; ?>;
+					--shapla-text-primary: <?php echo $text_primary; ?>;
+					--shapla-text-secondary: <?php echo $text_secondary; ?>;
 				}
 			</style>
 			<?php

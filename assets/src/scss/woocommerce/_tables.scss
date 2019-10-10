@@ -39,7 +39,7 @@
 	// My Account Orders List table
 	table.my_account_orders {
 
-		font-size: 0.875rem;
+		font-size: $size-small;
 
 		.order-actions {
 			text-align: right;
@@ -75,7 +75,10 @@
 
 	// MyAccount Order detail page
 	td.product-name {
-		dl.variation, .wc-item-meta {
+		dl.variation,
+		.wc-item-meta {
+			color: var(--shapla-text-secondary);
+			font-size: $size-small;
 			list-style-type: none;
 
 			dt, .wc-item-meta-label {

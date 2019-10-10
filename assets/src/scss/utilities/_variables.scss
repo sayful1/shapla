@@ -39,7 +39,8 @@ $on-surface: var(--shapla-on-surface, $color--black); // Product Title, Price
 $error: var(--shapla-error, $color--red); // Content BG - Tabs (active state)
 $on-error: var(--shapla-on-error, $color--white); // Product Title, Price
 
-$subtext: #777777; // small, breadcrumbs etc
+$text-primary: var(--shapla-text-primary, rgba($color--black, .87));
+$text-secondary: var(--shapla-text-secondary, rgba($color--black, .54));
 
 // Reassign color vars to semantic color scheme
 $color__background-body: $color--white !default;
@@ -70,8 +71,8 @@ $btn-background: $primary;
 $btn-color: $on-primary;
 $btn-hover-background: $primary-variant;
 
-$btn-alt-background: $color--teal;
-$btn-alt-color: $color--white;
+$btn-alt-background: $secondary;
+$btn-alt-color: $on-secondary;
 $btn-alt-hover-background: $secondary-variant;
 
 // == Form
@@ -87,7 +88,7 @@ $font-weight-bold: 500 !default;
 
 $headings-font-weight: 500 !default;
 $text-font-weight: 400 !default;
-$subtext-font-weight: 300 !default;
+$text-secondary-font-weight: 300 !default;
 
 //== Typography
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;

@@ -15,7 +15,7 @@ $breadcrumb-item-separator-color: $on-surface !default;
 
 	color: $on-surface;
 	font-size: 0.875rem;
-	font-weight: $subtext-font-weight;
+	font-weight: $text-secondary-font-weight;
 
 	&:not(:last-child) {
 		margin-bottom: 1rem;
