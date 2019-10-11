@@ -168,7 +168,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$theme_upload_dir = $basedir . '/shapla';
 			$theme_css_dir    = $theme_upload_dir . '/css';
 			$css_file_name    = 'customize-style-' . $suffix . '.css';
-			$theme_css_file   = $theme_css_dir . DIRECTORY_SEPARATOR . $css_file_name;
+			$theme_css_file   = $theme_css_dir . '/' . $css_file_name;
 
 			/** @var \WP_Filesystem_Base $wp_filesystem */
 			global $wp_filesystem;
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$data = array(
 					'name'    => $css_file_name,
 					'path'    => $theme_css_file,
-					'url'     => join( DIRECTORY_SEPARATOR, array( $baseurl, 'shapla', 'css', $css_file_name ) ),
+					'url'     => join( '/', array( $baseurl, 'shapla', 'css', $css_file_name ) ),
 					'created' => $created,
 				);
 				update_option( '_shapla_customize_file', $data, true );

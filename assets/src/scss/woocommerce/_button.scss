@@ -31,10 +31,10 @@ input[type="submit"] {
 		}
 	}
 
-	//&.alt {
-	//	background-color: $btn-alt-background;
-	//	color: $btn-alt-color;
-	//}
+	&.alt {
+		background-color: $btn-alt-background;
+		color: $btn-alt-color;
+	}
 }
 
 .wc-forward {

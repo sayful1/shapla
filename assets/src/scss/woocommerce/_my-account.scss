@@ -20,8 +20,9 @@
 		}
 
 		a {
-			padding: 1em 0;
+			color: $text-primary;
 			display: block;
+			padding: 1em 0;
 
 			&:before {
 				@include fa-solid();
@@ -82,17 +83,18 @@
 
 			h3 {
 				float: left;
+				font-size: $size-large;
 			}
 
 			.edit {
-				float: right;
 				display: block;
+				color: $text-secondary;
+				float: right;
 				width: 1em;
 				height: 1em;
 				text-indent: -9999px;
 				position: relative;
 				padding: 0.5em;
-				margin-top: 1em;
 
 				&:before {
 					@include fa-solid();
