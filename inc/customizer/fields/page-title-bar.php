@@ -196,22 +196,3 @@ $shapla->customizer->add_field( array(
 		'succeeds' => __( 'Succeeds', 'shapla' ),
 	),
 ) );
-
-$shapla->customizer->add_field( array(
-	'type'        => 'typography',
-	'settings'    => 'breadcrumbs_typography',
-	'section'     => 'breadcrumbs',
-	'label'       => esc_attr__( 'Breadcrumbs Typography', 'shapla' ),
-	'description' => esc_attr__( 'Control the typography for breadcrumbs.', 'shapla' ),
-	'default'     => array(
-		'font-size'      => shapla_default_options( 'breadcrumbs_font_size' ),
-		'color'          => shapla_default_options( 'breadcrumbs_text_color' ),
-		'text-transform' => shapla_default_options( 'breadcrumbs_text_transform' ),
-	),
-	'priority'    => 50,
-	'output'      => array(
-		array(
-			'element' => array( '.breadcrumb', '.breadcrumb a' ),
-		),
-	),
-) );

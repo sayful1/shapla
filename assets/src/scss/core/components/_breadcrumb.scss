@@ -1,7 +1,7 @@
 $breadcrumb-item-color: $primary !default;
-$breadcrumb-item-hover-color: $on-surface !default;
-$breadcrumb-item-active-color: $on-surface !default;
-$breadcrumb-item-separator-color: $on-surface !default;
+$breadcrumb-item-hover-color: $primary-variant !default;
+$breadcrumb-item-active-color: $text-primary !default;
+$breadcrumb-item-separator-color: $text-primary !default;
 
 .breadcrumb {
 	user-select: none;
@@ -35,6 +35,7 @@ $breadcrumb-item-separator-color: $on-surface !default;
 
 	li {
 		align-items: center;
+		color: $breadcrumb-item-active-color;
 		display: flex;
 	}
 
@@ -49,16 +50,19 @@ $breadcrumb-item-separator-color: $on-surface !default;
 			content: "\02192";
 		}
 	}
+
 	&.has-bullet-separator {
 		li + li::before {
 			content: "\02022";
 		}
 	}
+
 	&.has-dot-separator {
 		li + li::before {
 			content: "\000b7";
 		}
 	}
+
 	&.has-succeeds-separator {
 		li + li::before {
 			content: "\0227B";
@@ -72,7 +76,7 @@ $breadcrumb-item-separator-color: $on-surface !default;
 		color: $breadcrumb-item-color;
 
 		&:hover {
-			color: inherit;
+			color: $breadcrumb-item-hover-color;
 		}
 	}
 
@@ -102,6 +106,7 @@ $breadcrumb-item-separator-color: $on-surface !default;
 			padding-left: 0.75em;
 		}
 	}
+
 	// Remove first link padding for Yoast breadcrumb
 	> span > span > a {
 		padding-left: 0;

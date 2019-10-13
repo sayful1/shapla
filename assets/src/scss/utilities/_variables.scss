@@ -41,6 +41,7 @@ $on-error: var(--shapla-on-error, $color--white); // Product Title, Price
 
 $text-primary: var(--shapla-text-primary, rgba($color--black, .87));
 $text-secondary: var(--shapla-text-secondary, rgba($color--black, .54));
+$text-icon: var(--shapla-text-icon, rgba($color--black, .38));
 
 // Reassign color vars to semantic color scheme
 $color__background-body: $color--white !default;

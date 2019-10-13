@@ -431,6 +431,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			list( $r, $g, $b ) = shapla_find_rgb_color( $on_surface );
 			$text_primary   = sprintf( "rgba(%s, %s, %s, 0.87)", $r, $g, $b );
 			$text_secondary = sprintf( "rgba(%s, %s, %s, 0.54)", $r, $g, $b );
+			$text_icon      = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
 			?>
 			<style type="text/css" id="shapla-colors-system">
 				:root {
@@ -446,6 +447,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 					--shapla-on-error: <?php echo $on_error; ?>;
 					--shapla-text-primary: <?php echo $text_primary; ?>;
 					--shapla-text-secondary: <?php echo $text_secondary; ?>;
+					--shapla-text-icon: <?php echo $text_icon; ?>;
 				}
 			</style>
 			<?php
