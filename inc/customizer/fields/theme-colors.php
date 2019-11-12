@@ -27,7 +27,7 @@ $shapla->customizer->add_field( array(
 	'section'     => 'theme_colors',
 	'label'       => __( 'Secondary Color', 'shapla' ),
 	'description' => __( 'Color for Links, Actions buttons, Highlighting text', 'shapla' ),
-	'default'     => '#6200ee',
+	'default'     => '#3273dc',
 	'priority'    => 30,
 ) );
 
@@ -49,6 +49,6 @@ $shapla->customizer->add_field( array(
 	'section'     => 'theme_colors',
 	'label'       => __( 'Error Color', 'shapla' ),
 	'description' => __( 'Color for error in components.', 'shapla' ),
-	'default'     => '#b00020',
+	'default'     => '#f14668',
 	'priority'    => 70,
 ) );

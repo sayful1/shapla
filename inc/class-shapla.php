@@ -416,16 +416,16 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * Inline color style
 		 */
 		public function inline_style() {
-			$primary           = get_theme_mod( 'shapla_primary_color', '#2196f3' );
+			$primary           = get_theme_mod( 'shapla_primary_color', '#00d1b2' );
 			$primary_variant   = shapla_adjust_color_brightness( $primary, - 25 );
 			$on_primary        = shapla_find_color_invert( $primary );
-			$secondary         = get_theme_mod( 'shapla_secondary_color', '#6200ee' );
+			$secondary         = get_theme_mod( 'shapla_secondary_color', '#3273dc' );
 			$secondary         = ! empty( $secondary ) ? $secondary : $primary;
 			$secondary_variant = shapla_adjust_color_brightness( $secondary, - 25 );
 			$on_secondary      = shapla_find_color_invert( $secondary );
 			$surface           = get_theme_mod( 'shapla_surface_color', '#ffffff' );
 			$on_surface        = shapla_find_color_invert( $surface );
-			$error             = get_theme_mod( 'shapla_error_color', '#6200ee' );
+			$error             = get_theme_mod( 'shapla_error_color', '#f14668' );
 			$on_error          = shapla_find_color_invert( $error );
 
 			list( $r, $g, $b ) = shapla_find_rgb_color( $on_surface );
