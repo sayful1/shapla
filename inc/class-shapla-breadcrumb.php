@@ -26,7 +26,7 @@ if ( ! class_exists( 'Shapla_Breadcrumb' ) ) {
 		 */
 		public function add_crumb( $name, $link = '' ) {
 			$this->crumbs[] = array(
-				strip_tags( $name ),
+				wp_strip_all_tags( $name ),
 				$link,
 			);
 		}
@@ -67,7 +67,7 @@ if ( ! class_exists( 'Shapla_Breadcrumb' ) ) {
 				'is_tax',
 			);
 
-			if ( ! is_front_page() ) {
+			if ( ! is_front_page() || is_paged() ) {
 				foreach ( $conditionals as $conditional ) {
 					if ( call_user_func( $conditional ) ) {
 						call_user_func( array( $this, 'add_crumbs_' . substr( $conditional, 3 ) ) );
