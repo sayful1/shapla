@@ -231,8 +231,8 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'jquery-ui-tabs' );
 			// Enqueue selectWoo.
-			wp_enqueue_script( 'selectWoo', $asset_url . '/libs/selectWoo/js/selectWoo.full.js', array( 'jquery' ), '1.0.1', true );
-			wp_enqueue_style( 'selectWoo', $asset_url . '/libs/selectWoo/css/selectWoo.css', array(), '1.0.1' );
+			wp_enqueue_script( 'selectWoo', $asset_url . '/libs/selectWoo/js/selectWoo.full.min.js', array( 'jquery' ), '1.0.5', true );
+			wp_enqueue_style( 'selectWoo', $asset_url . '/libs/selectWoo/css/selectWoo.min.css', array(), '1.0.5' );
 		}
 
 		public static function meta_box_script() {

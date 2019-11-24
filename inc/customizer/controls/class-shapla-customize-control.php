@@ -65,7 +65,7 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 
 			wp_enqueue_script(
 				'wp-color-picker-alpha',
-				$asset_url . '/libs/wp-color-picker-alpha/wp-color-picker-alpha' . $suffix . '.js',
+				$asset_url . '/libs/wp-color-picker-alpha/wp-color-picker-alpha.min.js',
 				array( 'jquery', 'wp-color-picker' ), '2.1.3', true
 			);
 
@@ -152,8 +152,8 @@ if ( ! class_exists( 'Shapla_Customize_Control' ) ) {
 		 * Returns an array of translation strings.
 		 *
 		 * @access protected
-		 * @since 3.0.0
 		 * @return array
+		 * @since 3.0.0
 		 */
 		protected function l10n() {
 			return array();

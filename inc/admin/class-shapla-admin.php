@@ -75,15 +75,15 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			}
 			?>
 			<script type="text/javascript">
-				(function ($) {
-					'use strict';
-					// Initializing TipTip
-					$(".help_tip").each(function () {
-						$(this).tipTip({
-							attribute: "data-tip"
-						});
-					});
-				})(jQuery);
+                (function ($) {
+                    'use strict';
+                    // Initializing TipTip
+                    $(".help_tip").each(function () {
+                        $(this).tipTip({
+                            attribute: "data-tip"
+                        });
+                    });
+                })(jQuery);
 			</script>
 			<?php
 		}
@@ -102,13 +102,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 
 			wp_enqueue_style( 'thickbox' );
 			wp_enqueue_script( 'thickbox' );
-			wp_enqueue_script(
-				'jquery-tiptip',
-				$assets_url . '/libs/jquery-tiptip/jquery.tipTip.js',
-				array( 'jquery' ),
-				'1.3',
-				false
-			);
+			wp_enqueue_script( 'jquery-tiptip', $assets_url . '/libs/jquery-tiptip/jquery.tipTip.min.js',
+				array( 'jquery' ), '1.3', false );
 			wp_enqueue_style( 'shapla-admin-style', get_template_directory_uri() . '/assets/css/admin.css' );
 		}
 
