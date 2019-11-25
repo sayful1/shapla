@@ -253,3 +253,8 @@ template,
 [hidden] {
 	display: none;
 }
+
+::selection {
+	color: $on-primary;
+	background: $primary;
+}
