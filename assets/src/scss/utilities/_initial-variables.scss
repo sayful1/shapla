@@ -41,36 +41,17 @@ $background-ins: $background-body !default;
 $background-hr: $grey-lighter !default;
 $border-hover: $grey-light !default;
 
-// == Text colors
-$text-main: $black-ter !default;
-$text-screen: $secondary !default;
-$text-light: $grey !default;
-$text-strong: $black-bis !default;
-
-// == Link colors
-$link: $primary !default;
-$link-hover: darken($primary, 15%) !default;
-$link-visited: $secondary !default;
-
-$size-1: 3rem !default;
-$size-2: 2.5rem !default;
-$size-3: 2rem !default;
-$size-4: 1.5rem !default;
-$size-5: 1.25rem !default;
-$size-6: 1rem !default;
-$size-7: 0.75rem !default;
-
 $weight-light: 300 !default;
 $weight-normal: 400 !default;
 $weight-medium: 500 !default;
 $weight-semibold: 600 !default;
 $weight-bold: 700 !default;
 
-$size-small: $size-7 !default;
-$size-normal: $size-6 !default;
-$size-medium: $size-5 !default;
-$size-large: $size-4 !default;
-$size-base: $size-5 !default;
+$size-small: 0.75rem !default;
+$size-normal: 1rem !default;
+$size-medium: 1.25rem !default;
+$size-large: 1.5rem !default;
+$size-base: 1.25rem !default;
 
 $line-height-body: 1.8 !default;
 $line-height-pre: 1.6 !default;
@@ -80,7 +61,7 @@ $line-height-heading: 1.2 !default;
 $column-gap: 2rem !default;
 
 //== Grid containers
-$container-sm: 540px !default;
+$container-small-tablet: 540px !default;
 $container-tablet: 720px !default;
 $container-desktop: 960px !default;
 $container-widescreen: 1140px !default;

@@ -1,3 +1,4 @@
+@import "../../utilities/variables";
 // Box sizing
 html {
 	box-sizing: border-box;
@@ -18,7 +19,7 @@ hr, h1, h2, h3, h4, h5, h6 {
 }
 
 html {
-	background-color: $color__background-body;
+	background-color: $background;
 	font-size: 16px;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -32,7 +33,7 @@ html {
 body {
 	font-size: $font-size-base;
 	line-height: $line-height-base;
-	background: $color__background-body;
+	background: $background;
 	margin: 0;
 	padding: 0;
 }
@@ -53,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: $size-1;
+	font-size: $font-size-h1;
 }
 
 h2 {
@@ -92,7 +93,7 @@ b, strong {
 
 hr {
 	border: 0;
-	border-top: 1px solid $color__background-hr;
+	border-top: 1px solid $text-secondary;
 	margin: 1em 0;
 }
 

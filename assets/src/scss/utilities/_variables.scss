@@ -26,33 +26,33 @@ $color--gray-lighter: #e0e0e0 !default;
 $color--gray-lightest: #f5f5f5 !default;
 
 $primary: var(--shapla-primary, #{$color--blue}); // buttons (alt), price filter, store-notice, default message, star ratings, breadcrumb
-$primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
 $on-primary: var(--shapla-on-primary, #{$color--white}); // Text on primary color bg
+$primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
+$primary-alpha: var(--shapla-primary-alpha, rgba($color--blue, .25)) !default;
 
 $secondary: var(--shapla-secondary, $color--purple); // Secondary buttons, On sale, Prices, In stock labels, sales flash
-$secondary-variant: var(--shapla-secondary-variant, #{darken($color--purple,10%)});
 $on-secondary: var(--shapla-on-secondary, #{$color--purple}); // Text on secondary color bg
+$secondary-variant: var(--shapla-secondary-variant, #{darken($color--purple,10%)});
+$secondary-alpha: var(--shapla-secondary-alpha, rgba($color--purple, .25)) !default;
+
+$success: var(--shapla-success, $color--green) !default;
+$on-success: var(--shapla-on-success, $color--white) !default;
+$success-alpha: var(--shapla-success-alpha, rgba($color--green, .25)) !default;
+
+$error: var(--shapla-error, $color--red); // Content BG - Tabs (active state)
+$on-error: var(--shapla-on-error, $color--white); // Product Title, Price
+$error-alpha: var(--shapla-error-alpha, rgba($color--red, .25)) !default;
 
 $surface: var(--shapla-surface, $color--white); // Content BG - Tabs (active state)
 $on-surface: var(--shapla-on-surface, $color--black); // Product Title, Price
 
-$error: var(--shapla-error, $color--red); // Content BG - Tabs (active state)
-$on-error: var(--shapla-on-error, $color--white); // Product Title, Price
+$background: var(--shapla-background, $color--white) !default;
 
 $text-primary: var(--shapla-text-primary, rgba($color--black, .87));
 $text-secondary: var(--shapla-text-secondary, rgba($color--black, .54));
+$text-hint: var(--shapla-text-hint, rgba($color--black, .38)) !default;
+$text-disabled: var(--shapla-text-disabled, rgba($color--black, .38)) !default;
 $text-icon: var(--shapla-text-icon, rgba($color--black, .38));
-
-// Reassign color vars to semantic color scheme
-$color__background-body: $color--white !default;
-$color__background-screen: $color--light_grey !default;
-$color__background-hr: $color--grey !default;
-
-$color__text-screen: #21759b;
-$color__text-main: #404040;
-$color__link: $secondary;
-$color__link-visited: $secondary;
-$color__link-hover: $secondary;
 
 // == Site Navigation
 $nav-color-bg: $color--white;

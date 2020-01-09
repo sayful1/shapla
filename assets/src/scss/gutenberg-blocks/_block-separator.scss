@@ -5,7 +5,7 @@ hr {
 	text-align: left;
 
 	&:not(.is-style-dots) {
-		background-color: $grey;
+		background-color: $text-secondary;
 		border: 0;
 		height: 2px;
 	}
@@ -21,7 +21,7 @@ hr {
 
 		&:before {
 			content: "\00b7 \00b7 \00b7";
-			color: $grey;
+			color: $text-secondary;
 			font-size: 1.5rem;
 			letter-spacing: 2em;
 			padding-left: 2em;

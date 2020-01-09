@@ -44,6 +44,18 @@ $shapla->customizer->add_field( array(
 
 // Error color
 $shapla->customizer->add_field( array(
+	'settings'    => 'shapla_success_color',
+	'type'        => 'alpha-color',
+	'section'     => 'theme_colors',
+	'label'       => __( 'Success Color', 'shapla' ),
+	'description' => __( 'Color for success in components.', 'shapla' ),
+	'default'     => '#48c774',
+	'priority'    => 70,
+) );
+
+
+// Error color
+$shapla->customizer->add_field( array(
 	'settings'    => 'shapla_error_color',
 	'type'        => 'alpha-color',
 	'section'     => 'theme_colors',

@@ -14,18 +14,18 @@
 	.wp-block-cover-image-text,
 	.wp-block-cover-text,
 	h2 {
-		font-size: $size-4;
+		font-size: $font-size-h4;
 		font-weight: $weight-medium;
 
 		margin: 2rem 1rem;
 		width: 100%;
 
 		@include media(tablet) {
-			font-size: $size-3;
+			font-size: $font-size-h3;
 		}
 
 		@include media(desktop) {
-			font-size: $size-2;
+			font-size: $font-size-h2;
 		}
 	}
 
