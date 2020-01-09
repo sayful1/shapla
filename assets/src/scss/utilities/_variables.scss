@@ -106,11 +106,17 @@ $font-size-h4: 1.5rem !default;
 $font-size-h5: 1.25rem !default;
 $font-size-h6: 1rem !default;
 
+$size-small: 0.75rem !default;
+$size-normal: 1rem !default;
+$size-medium: 1.25rem !default;
+$size-large: 1.5rem !default;
+$size-base: 1.25rem !default;
+
 $line-height-base: 1.5 !default;
+$line-height-heading: 1.2 !default;
 
 $headings-font-family: $font-family-sans-serif !default;
 $headings-font-weight: 500 !default;
-$headings-line-height: 1.1 !default;
 $headings-color: inherit !default;
 
 //== Table
@@ -129,6 +135,16 @@ $alert-success: $color--green;
 $alert-info: $color--blue;
 $alert-warning: $color--yellow;
 $alert-danger: $color--red;
+
+//== Columns
+$column-gap: 2rem !default;
+
+//== Grid containers
+$container-small-tablet: 540px !default;
+$container-tablet: 720px !default;
+$container-desktop: 960px !default;
+$container-widescreen: 1140px !default;
+$container-fullhd: 1344px !default;
 
 //== Grid breakpoints
 $screen-sm: 576px !default;
