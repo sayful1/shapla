@@ -9,15 +9,15 @@
 		}
 
 		@include media(tablet) {
-			max-width: $container-tablet;
+			max-width: $container-md;
 		}
 
 		@include media(desktop) {
-			max-width: $container-desktop;
+			max-width: $container-lg;
 		}
 
 		@include media(wide) {
-			max-width: $container-widescreen;
+			max-width: $container-xl;
 		}
 
 		> *:first-child {
@@ -29,7 +29,7 @@
 		}
 
 		&.alignwide {
-			max-width: $container-widescreen;
+			max-width: $container-xl;
 		}
 
 		&.alignfull {
@@ -48,16 +48,16 @@
 			}
 
 			@include media(tablet) {
-				margin-left: calc((100% - #{$container-tablet}) / 2);
+				margin-left: calc((100% - #{$container-md}) / 2);
 				max-width: 40%;
 			}
 
 			@include media(desktop) {
-				margin-left: calc((100% - #{$container-desktop}) / 2);
+				margin-left: calc((100% - #{$container-lg}) / 2);
 			}
 
 			@include media(wide) {
-				margin-left: calc((100% - #{$container-widescreen}) / 2);
+				margin-left: calc((100% - #{$container-xl}) / 2);
 			}
 		}
 
@@ -68,16 +68,16 @@
 
 			@include media(tablet) {
 				margin-left: 2rem;
-				margin-right: calc((100% - #{$container-tablet}) / 2);
+				margin-right: calc((100% - #{$container-md}) / 2);
 				max-width: 40%;
 			}
 
 			@include media(desktop) {
-				margin-right: calc((100% - #{$container-desktop}) / 2);
+				margin-right: calc((100% - #{$container-lg}) / 2);
 			}
 
 			@include media(wide) {
-				margin-right: calc((100% - #{$container-widescreen}) / 2);
+				margin-right: calc((100% - #{$container-xl}) / 2);
 			}
 		}
 
@@ -93,8 +93,8 @@
 			}
 
 			@include media(wide) {
-				margin: 2rem calc((100% - #{$container-widescreen}) / 2);
-				max-width: $container-widescreen;
+				margin: 2rem calc((100% - #{$container-xl}) / 2);
+				max-width: $container-xl;
 			}
 		}
 	}
@@ -109,15 +109,15 @@
 		}
 
 		@include media(tablet) {
-			max-width: $container-tablet;
+			max-width: $container-md;
 		}
 
 		@include media(desktop) {
-			max-width: $container-desktop;
+			max-width: $container-lg;
 		}
 
 		@include media(wide) {
-			max-width: $container-widescreen;
+			max-width: $container-xl;
 		}
 	}
 }
