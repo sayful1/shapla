@@ -18,7 +18,6 @@ $recommended_plugins = array(
 		array( 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ),
 		array( 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ),
 		array( 'directory' => 'loginizer', 'file' => 'loginizer.php', ),
-		array( 'directory' => 'display-latest-tweets', 'file' => 'init.php', ),
 	),
 );
 

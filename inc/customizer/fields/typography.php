@@ -36,13 +36,13 @@ $shapla->customizer->add_field( array(
 	'label'       => esc_attr__( 'Body Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all body text.', 'shapla' ),
 	'default'     => array(
-		'font-family'    => shapla_default_options( 'font_family' ),
-		'variant'        => '400',
-		'font-size'      => '1rem',
-		'line-height'    => '1.5',
-		'color'          => shapla_default_options( 'text_color' ),
-		'text-transform' => 'none',
-		'text-align'     => 'left'
+		'font-family' => shapla_default_options( 'font_family' ),
+		'variant'     => '400',
+		'font-size'   => '1rem',
+		'line-height' => '1.5',
+		// 'color'          => shapla_default_options( 'text_color' ),
+		// 'text-transform' => 'none',
+		// 'text-align'     => 'left'
 	),
 	'priority'    => 10,
 	'choices'     => array(
@@ -79,9 +79,9 @@ $shapla->customizer->add_field( array(
 	'default'     => array(
 		'font-family'    => shapla_default_options( 'font_family' ),
 		'variant'        => '500',
-		'color'          => shapla_default_options( 'heading_color' ),
 		'text-transform' => 'none',
-		'text-align'     => 'left'
+		// 'color'          => shapla_default_options( 'heading_color' ),
+		// 'text-align'     => 'left'
 	),
 	'priority'    => 10,
 	'choices'     => array(
