@@ -124,7 +124,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_theme_support( 'customize-selective-refresh-widgets' );
 
 			// Load default block styles.
-			add_theme_support( 'wp-block-styles' );
+			// add_theme_support( 'wp-block-styles' );
 
 			// Add support for full and wide align images.
 			add_theme_support( 'align-wide' );
@@ -416,66 +416,12 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * Inline color style
 		 */
 		public function inline_style() {
-			$primary         = get_theme_mod( 'shapla_primary_color', '#00d1b2' );
-			$primary_variant = shapla_adjust_color_brightness( $primary, - 25 );
-			$on_primary      = shapla_find_color_invert( $primary );
-			list( $r, $g, $b ) = shapla_find_rgb_color( $primary );
-			$primary_alpha = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
-
-			$secondary         = get_theme_mod( 'shapla_secondary_color', '#3273dc' );
-			$secondary         = ! empty( $secondary ) ? $secondary : $primary;
-			$secondary_variant = shapla_adjust_color_brightness( $secondary, - 25 );
-			$on_secondary      = shapla_find_color_invert( $secondary );
-			list( $r, $g, $b ) = shapla_find_rgb_color( $secondary );
-			$secondary_alpha = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
-
-			$success    = get_theme_mod( 'shapla_success_color', '#48c774' );
-			$on_success = shapla_find_color_invert( $success );
-			list( $r, $g, $b ) = shapla_find_rgb_color( $success );
-			$success_alpha = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
-
-			$error    = get_theme_mod( 'shapla_error_color', '#f14668' );
-			$on_error = shapla_find_color_invert( $error );
-			list( $r, $g, $b ) = shapla_find_rgb_color( $error );
-			$error_alpha = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
-
-			$surface    = get_theme_mod( 'shapla_surface_color', '#ffffff' );
-			$on_surface = shapla_find_color_invert( $surface );
-			list( $r, $g, $b ) = shapla_find_rgb_color( $on_surface );
-
-			$text_primary   = sprintf( "rgba(%s, %s, %s, 0.87)", $r, $g, $b );
-			$text_secondary = sprintf( "rgba(%s, %s, %s, 0.54)", $r, $g, $b );
-			$text_hint      = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
-			$text_disabled  = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
-			$text_icon      = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
-			?>
-			<style type="text/css" id="shapla-colors-system">
-				:root {
-					--shapla-primary: <?php echo $primary; ?>;
-					--shapla-on-primary: <?php echo $on_primary; ?>;
-					--shapla-primary-variant: <?php echo $primary_variant; ?>;
-					--shapla-primary-alpha: <?php echo $primary_alpha; ?>;
-					--shapla-secondary: <?php echo $secondary; ?>;
-					--shapla-on-secondary: <?php echo $on_secondary; ?>;
-					--shapla-secondary-variant: <?php echo $secondary_variant; ?>;
-					--shapla-secondary-alpha: <?php echo $secondary_alpha; ?>;
-					--shapla-success: <?php echo $success; ?>;
-					--shapla-on-success: <?php echo $on_success; ?>;
-					--shapla-success-alpha: <?php echo $success_alpha; ?>;
-					--shapla-error: <?php echo $error; ?>;
-					--shapla-on-error: <?php echo $on_error; ?>;
-					--shapla-error-alpha: <?php echo $error_alpha; ?>;
-					--shapla-surface: <?php echo $surface; ?>;
-					--shapla-on-surface: <?php echo $on_surface; ?>;
-					--shapla-background: <?php echo $surface; ?>;
-					--shapla-text-primary: <?php echo $text_primary; ?>;
-					--shapla-text-secondary: <?php echo $text_secondary; ?>;
-					--shapla-text-hint: <?php echo $text_hint; ?>;
-					--shapla-text-disabled: <?php echo $text_disabled; ?>;
-					--shapla-text-icon: <?php echo $text_icon; ?>;
-				}
-			</style>
-			<?php
+			$colors = ShaplaColors::get_colors();
+			echo '<style type="text/css">:root{';
+			foreach ( $colors as $key => $color ) {
+				echo '--shapla-' . $key . ':' . $color . ';';
+			}
+			echo '}</style>' . PHP_EOL;
 		}
 	}
 }

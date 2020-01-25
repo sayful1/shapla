@@ -213,11 +213,11 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_default_options( $key = null ) {
-		$heading_color   = '#323232';
-		$text_color      = '#323232';
-		$primary_color   = '#2196f3';
-		$primary_hover   = shapla_adjust_color_brightness( $primary_color, - 20 );
-		$primary_inverse = shapla_find_color_invert( $primary_color );
+		$text_color      = ShaplaColors::get_color( 'text-primary' );
+		$heading_color   = ShaplaColors::get_color( 'text-primary' );
+		$primary_color   = ShaplaColors::get_color( 'primary' );
+		$primary_hover   = ShaplaColors::get_color( 'primary-variant' );
+		$primary_inverse = ShaplaColors::get_color( 'on-primary' );
 
 		$options = apply_filters( 'shapla_default_options', array(
 			'heading_color'                         => $heading_color,

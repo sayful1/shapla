@@ -89,6 +89,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			add_action( 'wp_head', array( $this, 'customize_css' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_fonts' ), 5 );
+			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_fonts' ), 1, 1 );
 		}
 
 		/**

@@ -22,6 +22,8 @@ if ( ! defined( 'SHAPLA_VERSION' ) ) {
 	define( 'SHAPLA_VERSION', $shapla_version );
 }
 
+require 'inc/class-shapla-colors.php';
+
 $shapla = (object) array(
 	'version'    => $shapla_version,
 	'main'       => require 'inc/class-shapla.php',
