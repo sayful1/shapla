@@ -245,5 +245,51 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 
 			return null;
 		}
+
+		/**
+		 * Get font family for body
+		 *
+		 * @return string
+		 */
+		public static function get_site_font_family() {
+			$typography = get_theme_mod( 'body_typography' );
+
+			return self::format_font_to_display( $typography );
+		}
+
+		/**
+		 * Get font family for headers
+		 *
+		 * @return string
+		 */
+		public static function get_header_font_family() {
+			$typography = get_theme_mod( 'headers_typography' );
+
+			return self::format_font_to_display( $typography );
+		}
+
+		/**
+		 * Format font to display
+		 *
+		 * @param array $typography
+		 *
+		 * @return string
+		 */
+		public static function format_font_to_display( $typography ) {
+			$default       = shapla_default_options( 'font_family' );
+			$is_valid      = isset( $typography['font-family'] ) && static::is_google_font( $typography['font-family'] );
+			$font_family   = $is_valid ? $typography['font-family'] : $default;
+			$font_category = static::get_google_font_category( $font_family );
+
+			if ( false !== strpos( $font_family, ' ' ) && false === strpos( $font_family, '"' ) ) {
+				if ( false !== strpos( $font_family, ',' ) ) {
+					return htmlspecialchars_decode( $font_family );
+				}
+
+				return '"' . $font_family . '"' . $font_category;
+			}
+
+			return $font_family . $font_category;
+		}
 	}
 }

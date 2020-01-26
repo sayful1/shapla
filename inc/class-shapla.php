@@ -416,11 +416,15 @@ if ( ! class_exists( 'Shapla' ) ) {
 		 * Inline color style
 		 */
 		public function inline_style() {
-			$colors = ShaplaColors::get_colors();
+			$font_family        = Shapla_Fonts::get_site_font_family();
+			$header_font_family = Shapla_Fonts::get_header_font_family();
+			$colors             = ShaplaColors::get_colors();
 			echo '<style type="text/css">:root{';
 			foreach ( $colors as $key => $color ) {
 				echo '--shapla-' . $key . ':' . $color . ';';
 			}
+			echo '--shapla-font-family:' . $font_family . ';';
+			echo '--shapla-headers-font-family:' . $header_font_family . ';';
 			echo '}</style>' . PHP_EOL;
 		}
 	}
