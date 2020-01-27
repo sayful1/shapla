@@ -321,19 +321,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 							}
 
 							if ( 'font-family' == $property ) {
-								$font_category = null;
-								if ( Shapla_Fonts::is_google_font( $property_value ) ) {
-									$font_category = Shapla_Fonts::get_google_font_category( $property_value );
-								}
-								if ( false !== strpos( $property_value, ' ' ) && false === strpos( $property_value, '"' ) ) {
-									if ( false !== strpos( $property_value, ',' ) ) {
-										$property_value = htmlspecialchars_decode( $property_value );
-									} else {
-										$property_value = '"' . $property_value . '"' . $font_category;
-									}
-								} else {
-									$property_value = $property_value . $font_category;
-								}
+								continue;
 							}
 
 							if ( ! empty( $property_value ) ) {

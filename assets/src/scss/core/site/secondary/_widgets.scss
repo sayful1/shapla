@@ -13,8 +13,7 @@
 	li:before {
 		@include fa-solid();
 		margin-right: 0.5rem;
-		opacity: 0.65;
-		color: inherit;
+		color: $text-icon;
 	}
 
 	&.widget_archive li:before {
@@ -127,7 +126,7 @@
 			content: "\f002";
 			position: absolute;
 			z-index: 10;
-			color: $color--dark_grey;
+			color: $text-icon;
 			top: 0.75em;
 			left: 0.75em;
 		}
