@@ -47,7 +47,8 @@
 		}
 	}
 
-	.menu-item-has-children > a {
+	.menu-item-has-children > a,
+	.page_item_has_children > a {
 		margin-right: 3.5rem;
 	}
 
@@ -69,7 +70,8 @@
 		margin: 0;
 
 		// Add Down Angle Icon on menu item that has children
-		.menu-item-has-children > a {
+		.menu-item-has-children > a,
+		.page_item_has_children > a {
 			margin: 0;
 			padding-right: 2rem;
 
@@ -210,7 +212,8 @@
 				}
 			}
 
-			.menu-item-has-children > a:after {
+			.menu-item-has-children > a:after,
+			.page_item_has_children > a:after {
 				transform: rotate(-45deg);
 			}
 		}
@@ -234,7 +237,8 @@
 				}
 			}
 
-			.menu-item-has-children > a:after {
+			.menu-item-has-children > a:after,
+			.page_item_has_children > a:after {
 				transform: rotate(135deg);
 			}
 		}

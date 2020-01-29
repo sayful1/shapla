@@ -7,6 +7,10 @@ const autoprefixer = require('autoprefixer');
 
 const config = require('./config.json');
 const entryPoints = {
+	'main': [
+		'./assets/src/scss/style.scss',
+		'./assets/src/public/main.js',
+	],
 	'admin': [
 		'./assets/src/scss/admin.scss',
 	],
@@ -29,15 +33,9 @@ const entryPoints = {
 	'editor-style': [
 		'./assets/src/scss/editor-style.scss',
 	],
-	'style': [
-		'./assets/src/scss/style.scss',
-	],
 	'woocommerce': [
 		'./assets/src/scss/woocommerce.scss',
-	],
-	'script': [
-		'./assets/src/public/main.js',
-	],
+	]
 };
 
 let plugins = [];
@@ -50,73 +48,86 @@ plugins.push(new BrowserSyncPlugin({
 	proxy: config.proxyURL
 }));
 
-module.exports = (env, argv) => ({
-	"entry": entryPoints,
-	"output": {
-		"path": path.resolve(__dirname, './assets/js'),
-		"filename": '[name].js'
-	},
-	"devtool": argv.mode === 'production' ? false : 'eval-source-map',
-	"module": {
-		"rules": [
-			{
-				"test": /\.js$/,
-				"exclude": /node_modules/,
-				"use": {
-					"loader": "babel-loader",
-					"options": {
-						presets: ['@babel/preset-env']
+module.exports = (env, argv) => {
+	let isDev = argv.mode !== 'production';
+	return {
+		"entry": entryPoints,
+		"output": {
+			"path": path.resolve(__dirname, './assets/js'),
+			"filename": '[name].js'
+		},
+		"devtool": isDev ? 'eval-source-map' : false,
+		"module": {
+			"rules": [
+				{
+					"test": /\.js$/,
+					"exclude": /node_modules/,
+					"use": {
+						"loader": "babel-loader",
+						"options": {
+							presets: ['@babel/preset-env']
+						}
 					}
-				}
-			},
-			{
-				"test": /\.(sass|scss)$/,
-				"use": [
-					"style-loader",
-					MiniCssExtractPlugin.loader,
-					"css-loader",
-					{
-						loader: "postcss-loader",
-						options: {
-							plugins: () => [autoprefixer()],
+				},
+				{
+					"test": /\.(sass|scss|css)$/,
+					"use": [
+						{
+							loader: isDev ? "style-loader" : MiniCssExtractPlugin.loader
 						},
-					},
-					{
-						loader: "sass-loader",
-						options: {},
+						{
+							loader: "css-loader",
+							options: {
+								sourceMap: isDev,
+								importLoaders: 1
+							}
+						},
+						{
+							loader: "postcss-loader",
+							options: {
+								sourceMap: isDev,
+								plugins: () => [autoprefixer()],
+							},
+						},
+						{
+							loader: "sass-loader",
+							options: {
+								sourceMap: isDev,
+							},
+						}
+					]
+				},
+				{
+					test: /\.svg/,
+					use: {
+						loader: 'svg-url-loader',
+						options: {}
 					}
-				]
-			},
-			{
-				test: /\.svg/,
-				use: {
-					loader: 'svg-url-loader',
-					options: {}
-				}
-			},
-			{
-				test: /\.(png|je?pg|gif|eot|ttf|woff|woff2)$/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {},
-					},
-				],
-			},
-		]
-	},
-	optimization: {
-		minimizer: [
-			new TerserPlugin(),
-			new OptimizeCSSAssetsPlugin({})
-		]
-	},
-	resolve: {
-		modules: [
-			path.resolve('./node_modules'),
-			path.resolve(path.join(__dirname, 'assets/src/')),
-		],
-		extensions: ['*', '.js', '.vue', '.json']
-	},
-	"plugins": plugins
-});
+				},
+				{
+					test: /\.(png|je?pg|gif|eot|ttf|woff|woff2)$/,
+					use: [
+						{
+							loader: 'file-loader',
+							options: {},
+						},
+					],
+				},
+			]
+		},
+		optimization: {
+			minimizer: [
+				new TerserPlugin(),
+				new OptimizeCSSAssetsPlugin({})
+			]
+		},
+		resolve: {
+			modules: [
+				path.resolve('./node_modules'),
+				path.resolve(path.join(__dirname, 'assets/src/')),
+			],
+			extensions: ['*', '.js', '.vue', '.json']
+		},
+		"plugins": plugins
+	}
+};

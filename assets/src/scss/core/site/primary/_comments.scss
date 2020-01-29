@@ -1,8 +1,5 @@
-#comments {
-
-	&.comments-area {
-		margin: 3.125rem 0;
-	}
+.comments-area {
+	margin: 3.125rem 0;
 
 	.comments-title {
 		font-size: $font-size-h5;
@@ -40,9 +37,10 @@
 			margin-bottom: 1em;
 
 			.avatar {
+				border-radius: 32px;
+				height: 64px;
 				margin-bottom: 1em;
 				max-width: 64px;
-				height: auto;
 			}
 
 			a.comment-date {
@@ -55,6 +53,7 @@
 				display: block;
 			}
 		}
+
 		.reply {
 			@include clearfix;
 			margin-bottom: 1.5rem;
@@ -68,6 +67,7 @@
 				&.comment-reply-link:before {
 					@include fa-solid();
 				}
+
 				&.comment-reply-link:before {
 					content: "\f3e5"; // fa-reply
 					margin-right: 0.25rem;
@@ -91,7 +91,7 @@
 	}
 }
 
-#respond {
+.comment-respond {
 	@include clearfix();
 	padding: 2.5rem;
 	background-color: rgba(0, 0, 0, 0.02);
@@ -161,13 +161,14 @@
 		}
 
 		.comment-content,
-		#respond {
+		.comment-respond {
 			width: calc(75% - 2rem);
 			float: right;
 		}
 
-		#respond {
+		.comment-respond {
 			float: right;
+
 			.comment-form-author,
 			.comment-form-email,
 			.comment-form-url {
@@ -177,7 +178,7 @@
 		}
 
 		.comment-body {
-			#respond {
+			.comment-respond {
 				box-shadow: 0 6px 2em rgba(#000, .2);
 				margin-bottom: 2.5rem;
 				margin-top: -1.5rem;
