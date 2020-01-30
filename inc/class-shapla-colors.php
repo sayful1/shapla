@@ -2,7 +2,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-class ShaplaColors {
+class Shapla_Colors {
 
 	/**
 	 * List of default colors

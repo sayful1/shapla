@@ -418,7 +418,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 		public function inline_style() {
 			$font_family        = Shapla_Fonts::get_site_font_family();
 			$header_font_family = Shapla_Fonts::get_header_font_family();
-			$colors             = ShaplaColors::get_colors();
+			$colors             = Shapla_Colors::get_colors();
 			echo '<style type="text/css">:root{';
 			foreach ( $colors as $key => $color ) {
 				echo '--shapla-' . $key . ':' . $color . ';';

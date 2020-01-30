@@ -33,12 +33,12 @@
 		height: 2.25em;
 		min-width: 2.25em;
 		border: 1px solid #dbdbdb;
-		color: $primary;
+		color: $text-primary;
 
 		&.dots {
 			pointer-events: none;
 			border-color: transparent;
-			color: #b5b5b5;
+			color: $text-hint;
 		}
 
 		&.current {
@@ -65,9 +65,9 @@
 			outline: none;
 		}
 
-		&:hover {
+		&:not(.current):hover {
 			border-color: #b5b5b5;
-			color: #363636;
+			color: $text-primary;
 		}
 
 		&:focus {
