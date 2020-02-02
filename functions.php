@@ -22,7 +22,13 @@ if ( ! defined( 'SHAPLA_VERSION' ) ) {
 	define( 'SHAPLA_VERSION', $shapla_version );
 }
 
+/**
+ * Include utilities classes and functions
+ */
 require 'inc/class-shapla-colors.php';
+require 'inc/class-shapla-sanitize.php';
+require 'inc/class-shapla-fonts.php';
+require 'inc/class-shapla-breadcrumb.php';
 
 $shapla = (object) array(
 	'version'    => $shapla_version,
@@ -33,10 +39,6 @@ $shapla = (object) array(
 /**
  * Load template hooks and functions file.
  */
-require 'inc/class-shapla-sanitize.php';
-require 'inc/class-shapla-fonts.php';
-require 'inc/class-shapla-breadcrumb.php';
-
 require 'inc/shapla-functions.php';
 require 'inc/shapla-template-hooks.php';
 require 'inc/shapla-template-functions.php';
@@ -68,7 +70,7 @@ if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
 
 
 if ( shapla_is_woocommerce_activated() ) {
-	$shapla->woocommerce = require 'inc/woocommerce/class-shapla-woocommerce.php';
+	require 'inc/woocommerce/class-shapla-woocommerce.php';
 	require 'inc/woocommerce/shapla-woocommerce-template-hooks.php';
 	require 'inc/woocommerce/shapla-woocommerce-template-functions.php';
 }

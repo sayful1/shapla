@@ -32,6 +32,140 @@ class Shapla_Colors {
 	protected static $read = false;
 
 	/**
+	 * Find RGB color from a color
+	 *
+	 * @param string $color
+	 *
+	 * @return string|array
+	 */
+	public static function find_rgb_color( $color ) {
+		if ( '' === $color ) {
+			return '';
+		}
+
+		// Trim unneeded whitespace
+		$color = str_replace( ' ', '', $color );
+
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			// Format the hex color string.
+			$hex = str_replace( '#', '', $color );
+
+			if ( 3 == strlen( $hex ) ) {
+				$hex = str_repeat( substr( $hex, 0, 1 ), 2 ) .
+				       str_repeat( substr( $hex, 1, 1 ), 2 ) .
+				       str_repeat( substr( $hex, 2, 1 ), 2 );
+			}
+
+			$r = hexdec( substr( $hex, 0, 2 ) );
+			$g = hexdec( substr( $hex, 2, 2 ) );
+			$b = hexdec( substr( $hex, 4, 2 ) );
+
+			return array( $r, $g, $b, 1 );
+		}
+
+		// If this is rgb color
+		if ( 'rgb(' === substr( $color, 0, 4 ) ) {
+			list( $r, $g, $b ) = sscanf( $color, 'rgb(%d,%d,%d)' );
+
+			return array( $r, $g, $b, 1 );
+		}
+
+		// If this is rgba color
+		if ( 'rgba(' === substr( $color, 0, 5 ) ) {
+			list( $r, $g, $b, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
+
+			return array( $r, $g, $b, $alpha );
+		}
+
+		return '';
+	}
+
+	/**
+	 * Calculate the luminance for a color.
+	 * @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+	 *
+	 * @param string $color
+	 *
+	 * @return float|string
+	 */
+	public static function calculate_color_luminance( $color ) {
+		$rgb_color = static::find_rgb_color( $color );
+
+		if ( ! is_array( $rgb_color ) ) {
+			return '';
+		}
+
+		$colors = [];
+		list( $colors['red'], $colors['green'], $colors['blue'] ) = $rgb_color;
+
+		foreach ( $colors as $name => $value ) {
+			$value = $value / 255;
+			if ( $value < 0.03928 ) {
+				$value = $value / 12.92;
+			} else {
+				$value = ( $value + .055 ) / 1.055;
+				$value = pow( $value, 2 );
+			}
+
+			$colors[ $name ] = $value;
+		}
+
+		return ( $colors['red'] * .2126 + $colors['green'] * .7152 + $colors['blue'] * .0722 );
+	}
+
+	/**
+	 * Find light or dark color for given color
+	 *
+	 * @param $color
+	 *
+	 * @return string
+	 */
+	public static function find_color_invert( $color ) {
+		$luminance = static::calculate_color_luminance( $color );
+
+		if ( $luminance > 0.55 ) {
+			//bright color, use dark font
+			return '#000000';
+		} else {
+			//dark color, use bright font
+			return '#ffffff';
+		}
+	}
+
+	/**
+	 * Adjust a hex color brightness
+	 * Allows us to create hover styles for custom link colors
+	 *
+	 * @param string $color color e.g. #111111.
+	 * @param integer $steps factor by which to brighten/darken ranging from -255 (darken) to 255 (brighten).
+	 *
+	 * @return string        brightened/darkened hex color
+	 */
+	public static function adjust_color_brightness( $color, $steps ) {
+		// Steps should be between -255 and 255. Negative = darker, positive = lighter.
+		$steps = max( - 255, min( 255, $steps ) );
+
+		$rgb_color = static::find_rgb_color( $color );
+
+		if ( ! is_array( $rgb_color ) ) {
+			return '';
+		}
+		list( $r, $g, $b ) = $rgb_color;
+
+		// Adjust number of steps and keep it inside 0 to 255.
+		$r = max( 0, min( 255, $r + $steps ) );
+		$g = max( 0, min( 255, $g + $steps ) );
+		$b = max( 0, min( 255, $b + $steps ) );
+
+		$r_hex = str_pad( dechex( $r ), 2, '0', STR_PAD_LEFT );
+		$g_hex = str_pad( dechex( $g ), 2, '0', STR_PAD_LEFT );
+		$b_hex = str_pad( dechex( $b ), 2, '0', STR_PAD_LEFT );
+
+		return '#' . $r_hex . $g_hex . $b_hex;
+	}
+
+	/**
 	 * Get default color
 	 *
 	 * @param string $name
@@ -59,36 +193,36 @@ class Shapla_Colors {
 	/**
 	 * Calculate colors for site
 	 */
-	public static function calculate_colors() {
+	protected static function calculate_colors() {
 		if ( static::$read ) {
 			return;
 		}
 		self::$colors['primary']         = static::get_color_option( 'primary' );
-		self::$colors['primary-variant'] = shapla_adjust_color_brightness( self::$colors['primary'], - 25 );
-		self::$colors['on-primary']      = shapla_find_color_invert( self::$colors['primary'] );
-		list( $r, $g, $b ) = shapla_find_rgb_color( self::$colors['primary'] );
+		self::$colors['primary-variant'] = static::adjust_color_brightness( self::$colors['primary'], - 25 );
+		self::$colors['on-primary']      = static::find_color_invert( self::$colors['primary'] );
+		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['primary'] );
 		self::$colors['primary-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
 
 		$secondary                         = static::get_color_option( 'secondary' );
 		self::$colors['secondary']         = ! empty( $secondary ) ? $secondary : self::$colors['primary'];
-		self::$colors['secondary-variant'] = shapla_adjust_color_brightness( self::$colors['secondary'], - 25 );
-		self::$colors['on-secondary']      = shapla_find_color_invert( self::$colors['secondary'] );
-		list( $r, $g, $b ) = shapla_find_rgb_color( self::$colors['secondary'] );
+		self::$colors['secondary-variant'] = static::adjust_color_brightness( self::$colors['secondary'], - 25 );
+		self::$colors['on-secondary']      = static::find_color_invert( self::$colors['secondary'] );
+		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['secondary'] );
 		self::$colors['secondary-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
 
 		self::$colors['success']    = static::get_color_option( 'success' );
-		self::$colors['on-success'] = shapla_find_color_invert( self::$colors['success'] );
-		list( $r, $g, $b ) = shapla_find_rgb_color( self::$colors['success'] );
+		self::$colors['on-success'] = static::find_color_invert( self::$colors['success'] );
+		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['success'] );
 		self::$colors['success-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
 
 		self::$colors['error']    = static::get_color_option( 'error' );
-		self::$colors['on-error'] = shapla_find_color_invert( self::$colors['error'] );
-		list( $r, $g, $b ) = shapla_find_rgb_color( self::$colors['error'] );
+		self::$colors['on-error'] = static::find_color_invert( self::$colors['error'] );
+		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['error'] );
 		self::$colors['error-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
 
 		self::$colors['surface']    = static::get_color_option( 'surface' );
-		self::$colors['on-surface'] = shapla_find_color_invert( self::$colors['surface'] );
-		list( $r, $g, $b ) = shapla_find_rgb_color( self::$colors['on-surface'] );
+		self::$colors['on-surface'] = static::find_color_invert( self::$colors['surface'] );
+		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['on-surface'] );
 
 		self::$colors['background'] = self::$colors['surface'];
 

@@ -55,95 +55,6 @@ if ( ! function_exists( 'shapla_header_styles' ) ) {
 	}
 }
 
-if ( ! function_exists( 'shapla_find_rgb_color' ) ) {
-	/**
-	 * Find RGB color from a color
-	 *
-	 * @param string $color
-	 *
-	 * @return string|array
-	 * @since 1.6.0
-	 */
-	function shapla_find_rgb_color( $color ) {
-		if ( '' === $color ) {
-			return '';
-		}
-
-		// Trim unneeded whitespace
-		$color = str_replace( ' ', '', $color );
-
-		// 3 or 6 hex digits, or the empty string.
-		if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
-			// Format the hex color string.
-			$hex = str_replace( '#', '', $color );
-
-			if ( 3 == strlen( $hex ) ) {
-				$hex = str_repeat( substr( $hex, 0, 1 ), 2 ) .
-				       str_repeat( substr( $hex, 1, 1 ), 2 ) .
-				       str_repeat( substr( $hex, 2, 1 ), 2 );
-			}
-
-			$r = hexdec( substr( $hex, 0, 2 ) );
-			$g = hexdec( substr( $hex, 2, 2 ) );
-			$b = hexdec( substr( $hex, 4, 2 ) );
-
-			return array( $r, $g, $b, 1 );
-		}
-
-		// If this is rgb color
-		if ( 'rgb(' === substr( $color, 0, 4 ) ) {
-			list( $r, $g, $b ) = sscanf( $color, 'rgb(%d,%d,%d)' );
-
-			return array( $r, $g, $b, 1 );
-		}
-
-		// If this is rgba color
-		if ( 'rgba(' === substr( $color, 0, 5 ) ) {
-			list( $r, $g, $b, $alpha ) = sscanf( $color, 'rgba(%d,%d,%d,%f)' );
-
-			return array( $r, $g, $b, $alpha );
-		}
-
-		return '';
-	}
-}
-
-if ( ! function_exists( 'shapla_calculate_color_luminance' ) ) {
-	/**
-	 * Calculate the luminance for a color.
-	 * @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
-	 *
-	 * @param string $color
-	 *
-	 * @return float|string
-	 * @since 1.6.0
-	 */
-	function shapla_calculate_color_luminance( $color ) {
-		$rgb_color = shapla_find_rgb_color( $color );
-
-		if ( ! is_array( $rgb_color ) ) {
-			return '';
-		}
-
-		$colors = [];
-		list( $colors['red'], $colors['green'], $colors['blue'] ) = $rgb_color;
-
-		foreach ( $colors as $name => $value ) {
-			$value = $value / 255;
-			if ( $value < 0.03928 ) {
-				$value = $value / 12.92;
-			} else {
-				$value = ( $value + .055 ) / 1.055;
-				$value = pow( $value, 2 );
-			}
-
-			$colors[ $name ] = $value;
-		}
-
-		return ( $colors['red'] * .2126 + $colors['green'] * .7152 + $colors['blue'] * .0722 );
-	}
-}
-
 if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 	/**
 	 * Find light or dark color for given color
@@ -154,15 +65,7 @@ if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_find_color_invert( $color ) {
-		$luminance = shapla_calculate_color_luminance( $color );
-
-		if ( $luminance > 0.55 ) {
-			//bright color, use dark font
-			return '#000000';
-		} else {
-			//dark color, use bright font
-			return '#ffffff';
-		}
+		return Shapla_Colors::find_color_invert( $color );
 	}
 }
 
@@ -178,26 +81,7 @@ if ( ! function_exists( 'shapla_adjust_color_brightness' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_adjust_color_brightness( $color, $steps ) {
-		// Steps should be between -255 and 255. Negative = darker, positive = lighter.
-		$steps = max( - 255, min( 255, $steps ) );
-
-		$rgb_color = shapla_find_rgb_color( $color );
-
-		if ( ! is_array( $rgb_color ) ) {
-			return '';
-		}
-		list( $r, $g, $b ) = $rgb_color;
-
-		// Adjust number of steps and keep it inside 0 to 255.
-		$r = max( 0, min( 255, $r + $steps ) );
-		$g = max( 0, min( 255, $g + $steps ) );
-		$b = max( 0, min( 255, $b + $steps ) );
-
-		$r_hex = str_pad( dechex( $r ), 2, '0', STR_PAD_LEFT );
-		$g_hex = str_pad( dechex( $g ), 2, '0', STR_PAD_LEFT );
-		$b_hex = str_pad( dechex( $b ), 2, '0', STR_PAD_LEFT );
-
-		return '#' . $r_hex . $g_hex . $b_hex;
+		return Shapla_Colors::adjust_color_brightness( $color, $steps );
 	}
 }
 
