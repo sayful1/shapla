@@ -60,7 +60,7 @@ textarea {
 	&:focus,
 	&:active {
 		border-color: $primary;
-		 box-shadow: 0 0 0 0.125em $primary-alpha;
+		box-shadow: 0 0 0 0.125em $primary-alpha;
 	}
 
 	&[disabled] {

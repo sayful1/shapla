@@ -30,7 +30,9 @@ class ShaplaSearch {
 		let catList = productSearch.querySelector('.shapla-cat-list');
 		if (!catList) return;
 
-		let searchLabel = productSearch.querySelector('.nav-search-label'),
+		let form = productSearch.querySelector('form'),
+			searchInput = productSearch.querySelector('input[type="search"]'),
+			searchLabel = productSearch.querySelector('.nav-search-label'),
 			defaultLabel = searchLabel.getAttribute('data-default'),
 			defaultVal = catList.value;
 
@@ -49,7 +51,15 @@ class ShaplaSearch {
 				searchLabel.textContent = label;
 			}
 
-			productSearch.querySelector('input[type="search"]').focus();
+			searchInput.focus();
+		});
+
+		searchInput.addEventListener('focus', () => {
+			form.classList.add('is-focused');
+		});
+
+		searchInput.addEventListener('blur', () => {
+			form.classList.remove('is-focused');
 		});
 	}
 }
