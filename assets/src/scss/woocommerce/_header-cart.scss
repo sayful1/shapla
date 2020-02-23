@@ -99,6 +99,7 @@
 		line-height: 1.5;
 		margin-left: 0;
 		font-size: 28px;
+		color: $text-primary;
 	}
 
 	.count {
@@ -106,7 +107,8 @@
 		position: absolute;
 		right: 0;
 		top: 0;
-		background: white;
+		background: $primary;
+		color: $on-primary;
 		min-width: 2em;
 		height: 2em;
 		border-radius: 3px;
@@ -115,7 +117,6 @@
 		align-items: center;
 		justify-content: center;
 		padding: 5px;
-		color: #ffffff;
 	}
 }
 
@@ -141,6 +142,7 @@
 			&:before {
 				content: '\28';
 			}
+
 			&:after {
 				content: '\29';
 			}
