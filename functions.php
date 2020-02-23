@@ -22,68 +22,72 @@ if ( ! defined( 'SHAPLA_VERSION' ) ) {
 	define( 'SHAPLA_VERSION', $shapla_version );
 }
 
+if ( ! defined( 'SHAPLA_PATH' ) ) {
+	define( 'SHAPLA_PATH', dirname( __FILE__ ) );
+}
+
 /**
  * Include utilities classes and functions
  */
-require 'inc/class-shapla-colors.php';
-require 'inc/class-shapla-sanitize.php';
-require 'inc/class-shapla-fonts.php';
-require 'inc/class-shapla-breadcrumb.php';
+require SHAPLA_PATH . '/inc/utilities/class-shapla-colors.php';
+require SHAPLA_PATH . '/inc/utilities/class-shapla-sanitize.php';
+require SHAPLA_PATH . '/inc/utilities/class-shapla-fonts.php';
+require SHAPLA_PATH . '/inc/utilities/class-shapla-breadcrumb.php';
 
 $shapla = (object) array(
 	'version'    => $shapla_version,
-	'main'       => require 'inc/class-shapla.php',
-	'customizer' => require 'inc/customizer/class-shapla-customizer.php',
+	'main'       => require SHAPLA_PATH . '/inc/class-shapla.php',
+	'customizer' => require SHAPLA_PATH . '/inc/customizer/class-shapla-customizer.php',
 );
 
 /**
  * Load template hooks and functions file.
  */
-require 'inc/shapla-functions.php';
-require 'inc/shapla-template-hooks.php';
-require 'inc/shapla-template-functions.php';
+require SHAPLA_PATH . '/inc/shapla-functions.php';
+require SHAPLA_PATH . '/inc/shapla-template-hooks.php';
+require SHAPLA_PATH . '/inc/shapla-template-functions.php';
 
-require 'inc/class-shapla-structured-data.php';
+require SHAPLA_PATH . '/inc/class-shapla-structured-data.php';
 
 /**
  * Customizer
  */
-require 'inc/customizer/init.php';
+require SHAPLA_PATH . '/inc/customizer/init.php';
 
 /**
  * Load Shapla modules
  */
-include 'inc/modules/class-shapla-blog.php';
+include SHAPLA_PATH . '/inc/modules/class-shapla-blog.php';
 
 
 /**
  * Load Jetpack compatibility class.
  */
 if ( class_exists( 'Jetpack' ) ) {
-	$shapla->jetpack = require 'inc/jetpack/class-shapla-jetpack.php';
+	$shapla->jetpack = require SHAPLA_PATH . '/inc/jetpack/class-shapla-jetpack.php';
 }
 
 // Elementor Compatibility requires PHP 5.4 for namespaces.
 if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
-	require_once 'inc/elementor/class-shapla-elementor-pro.php';
+	require_once SHAPLA_PATH . '/inc/elementor/class-shapla-elementor-pro.php';
 }
 
 
 if ( shapla_is_woocommerce_activated() ) {
-	require 'inc/woocommerce/class-shapla-woocommerce.php';
-	require 'inc/woocommerce/shapla-woocommerce-template-hooks.php';
-	require 'inc/woocommerce/shapla-woocommerce-template-functions.php';
+	require SHAPLA_PATH . '/inc/woocommerce/class-shapla-woocommerce.php';
+	require SHAPLA_PATH . '/inc/woocommerce/shapla-woocommerce-template-hooks.php';
+	require SHAPLA_PATH . '/inc/woocommerce/shapla-woocommerce-template-functions.php';
 }
 
 if ( shapla_is_carousel_slider_activated() ) {
-	require 'inc/carousel-slider/class-shapla-carousel-slider.php';
+	require SHAPLA_PATH . '/inc/carousel-slider/class-shapla-carousel-slider.php';
 }
 
 if ( is_admin() ) {
-	require 'inc/admin/class-shapla-system-status.php';
-	require 'inc/admin/class-shapla-admin.php';
+	require SHAPLA_PATH . '/inc/admin/class-shapla-system-status.php';
+	require SHAPLA_PATH . '/inc/admin/class-shapla-admin.php';
 }
 
 // Metabox
-require 'inc/admin/class-shapla-metabox.php';
-require 'inc/admin/class-shapla-page-metabox-fields.php';
+require SHAPLA_PATH . '/inc/admin/class-shapla-metabox.php';
+require SHAPLA_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';

@@ -103,7 +103,7 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 
 			// If we got this far, cache was empty so we need to get from JSON.
 			ob_start();
-			include dirname( dirname( __FILE__ ) ) . '/assets/webfonts.json';
+			include SHAPLA_PATH . '/assets/webfonts.json';
 
 			$fonts_json = ob_get_clean();
 			$fonts      = json_decode( $fonts_json, true );

@@ -28,7 +28,6 @@ require 'typography.php'; // priority - 40
 require 'header.php'; // priority - 25 (Under Header Image)
 require 'page-title-bar.php'; // priority - 30
 require 'site_footer.php'; // priority - 30
-require 'buttons.php'; // priority - 40
 require 'blog.php'; // priority - 50
 require 'extra.php'; // priority - 190
 
