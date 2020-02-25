@@ -14,8 +14,26 @@ if ( ! class_exists( 'Shapla_Jetpack' ) ) {
 
 	class Shapla_Jetpack {
 
-		public function __construct() {
-			add_action( 'after_setup_theme', array( $this, 'shapla_jetpack_setup' ) );
+		/**
+		 * The instance of the class
+		 *
+		 * @var self
+		 */
+		protected static $instance = null;
+
+		/**
+		 * Only one instance of the class can be loaded
+		 *
+		 * @return self
+		 */
+		public static function init() {
+			if ( is_null( self::$instance ) ) {
+				self::$instance = new self();
+
+				add_action( 'after_setup_theme', array( self::$instance, 'shapla_jetpack_setup' ) );
+			}
+
+			return self::$instance;
 		}
 
 		/**
@@ -31,7 +49,7 @@ if ( ! class_exists( 'Shapla_Jetpack' ) ) {
 				'footer'         => 'page',
 				'type'           => 'click',
 				'posts_per_page' => '12',
-				'render'         => array( $this, 'shapla_infinite_scroll_render' ),
+				'render'         => array( $this, 'infinite_scroll_render' ),
 			) );
 
 			// Add theme support for Responsive Videos.
@@ -41,7 +59,7 @@ if ( ! class_exists( 'Shapla_Jetpack' ) ) {
 		/**
 		 * Custom render function for Infinite Scroll.
 		 */
-		function shapla_infinite_scroll_render() {
+		function infinite_scroll_render() {
 			while ( have_posts() ) {
 				the_post();
 				if ( is_search() ) :
@@ -53,5 +71,3 @@ if ( ! class_exists( 'Shapla_Jetpack' ) ) {
 		}
 	}
 }
-
-return new Shapla_Jetpack();

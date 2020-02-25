@@ -5,11 +5,6 @@
  * @package Shapla
  */
 
-// If plugin - 'Elementor' not exist then return.
-if ( ! class_exists( '\Elementor\Plugin' ) || ! class_exists( '\ElementorPro\Modules\ThemeBuilder\Module' ) ) {
-	return;
-}
-
 use ElementorPro\Modules\ThemeBuilder\Classes\Locations_Manager;
 use ElementorPro\Modules\ThemeBuilder\Module;
 
@@ -19,16 +14,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Shapla_Elementor_Pro' ) ) {
 	/**
-	 * Astra Elementor Compatibility
+	 * Shapla Elementor Compatibility
 	 *
 	 * @since 1.4.5
 	 */
 	class Shapla_Elementor_Pro {
 
+		/**
+		 * The instance of the class
+		 *
+		 * @var self
+		 */
 		private static $instance;
 
 		/**
-		 * @return Shapla_Elementor_Pro
+		 * @return self
 		 */
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
@@ -124,5 +124,3 @@ if ( ! class_exists( 'Shapla_Elementor_Pro' ) ) {
 		}
 	}
 }
-
-return Shapla_Elementor_Pro::init();

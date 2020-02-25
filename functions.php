@@ -26,13 +26,34 @@ if ( ! defined( 'SHAPLA_PATH' ) ) {
 	define( 'SHAPLA_PATH', dirname( __FILE__ ) );
 }
 
-/**
- * Include utilities classes and functions
- */
-require SHAPLA_PATH . '/inc/utilities/class-shapla-colors.php';
-require SHAPLA_PATH . '/inc/utilities/class-shapla-sanitize.php';
-require SHAPLA_PATH . '/inc/utilities/class-shapla-fonts.php';
-require SHAPLA_PATH . '/inc/utilities/class-shapla-breadcrumb.php';
+spl_autoload_register( function ( $className ) {
+	// If class already exists, no need to include it
+	if ( class_exists( $className ) ) {
+		return;
+	}
+
+	// If class not related to theme, no need to include it
+	if ( false === strpos( $className, 'Shapla' ) ) {
+		return;
+	}
+
+	// Include our classes
+	$file_name = 'class-' . strtolower( str_replace( '_', '-', $className ) ) . '.php';
+
+	$directories = array(
+		SHAPLA_PATH . '/classes/customize/controls/',
+		SHAPLA_PATH . '/classes/integrations/carousel-slider/',
+		SHAPLA_PATH . '/classes/integrations/elementor-pro/',
+		SHAPLA_PATH . '/classes/integrations/jetpack/',
+		SHAPLA_PATH . '/classes/utilities/',
+	);
+
+	foreach ( $directories as $directory ) {
+		if ( file_exists( $directory . $file_name ) ) {
+			require_once $directory . $file_name;
+		}
+	}
+} );
 
 $shapla = (object) array(
 	'version'    => $shapla_version,
@@ -59,19 +80,17 @@ require SHAPLA_PATH . '/inc/customizer/init.php';
  */
 include SHAPLA_PATH . '/inc/modules/class-shapla-blog.php';
 
-
 /**
  * Load Jetpack compatibility class.
  */
 if ( class_exists( 'Jetpack' ) ) {
-	$shapla->jetpack = require SHAPLA_PATH . '/inc/jetpack/class-shapla-jetpack.php';
+	$shapla->jetpack = Shapla_Jetpack::init();
 }
 
 // Elementor Compatibility requires PHP 5.4 for namespaces.
-if ( version_compare( PHP_VERSION, '5.4', '>=' ) ) {
-	require_once SHAPLA_PATH . '/inc/elementor/class-shapla-elementor-pro.php';
+if ( shapla_is_elementor_pro_active() ) {
+	Shapla_Elementor_Pro::init();
 }
-
 
 if ( shapla_is_woocommerce_activated() ) {
 	require SHAPLA_PATH . '/inc/woocommerce/class-shapla-woocommerce.php';
@@ -80,7 +99,7 @@ if ( shapla_is_woocommerce_activated() ) {
 }
 
 if ( shapla_is_carousel_slider_activated() ) {
-	require SHAPLA_PATH . '/inc/carousel-slider/class-shapla-carousel-slider.php';
+	Shapla_Carousel_Slider::init();
 }
 
 if ( is_admin() ) {

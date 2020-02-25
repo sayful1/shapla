@@ -121,9 +121,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			?>
-			<style type="text/css" id="shapla-custom-css">
-				<?php echo wp_strip_all_tags( $styles ); ?>
-			</style>
+            <style type="text/css" id="shapla-custom-css">
+                <?php echo wp_strip_all_tags( $styles ); ?>
+            </style>
 			<?php
 		}
 
@@ -456,18 +456,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @param WP_Customize_Manager $wp_customize
 		 */
 		public function customize_register( $wp_customize ) {
-			/**
-			 * Include theme custom customize controls
-			 */
-			require 'controls/class-shapla-customize-control.php';
-			require 'controls/class-shapla-slider-customize-control.php';
-			require 'controls/class-shapla-background-customize-control.php';
-			require 'controls/class-shapla-toggle-customize-control.php';
-			require 'controls/class-shapla-color-customize-control.php';
-			require 'controls/class-shapla-radio-image-customize-control.php';
-			require 'controls/class-shapla-radio-button-customize-control.php';
-			require 'controls/class-shapla-typography-customize-control.php';
-
 			// Registered Control Types
 			$wp_customize->register_control_type( 'Shapla_Slider_Customize_Control' );
 			$wp_customize->register_control_type( 'Shapla_Background_Customize_Control' );

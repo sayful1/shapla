@@ -50,23 +50,23 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 		public function carousel_slider_post() {
 			$blog = new Shapla_Blog();
 			?>
-			<div class="blog-grid-inside">
+            <div class="blog-grid-inside">
 				<?php $blog->post_thumbnail(); ?>
-				<header class="entry-header">
+                <header class="entry-header">
 					<?php
 					$blog->post_category();
 					$blog->post_title();
 					?>
-				</header>
-				<div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+                </header>
+                <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
 				<?php $blog->post_tag(); ?>
-				<footer class="entry-footer">
+                <footer class="entry-footer">
 					<?php
 					$blog->post_author();
 					$blog->post_date();
 					?>
-				</footer>
-			</div>
+                </footer>
+            </div>
 			<?php
 		}
 
@@ -90,5 +90,3 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 		}
 	}
 }
-
-return Shapla_Carousel_Slider::init();

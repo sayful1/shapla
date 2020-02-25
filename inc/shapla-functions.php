@@ -30,6 +30,19 @@ if ( ! function_exists( 'shapla_is_carousel_slider_activated' ) ) {
 	}
 }
 
+if ( ! function_exists( 'shapla_is_elementor_pro_active' ) ) {
+	/**
+	 * Query Carousel_Slider activation
+	 */
+	function shapla_is_elementor_pro_active() {
+		return (
+			class_exists( '\Elementor\Plugin' ) &&
+			class_exists( '\ElementorPro\Modules\ThemeBuilder\Module' ) &&
+			version_compare( PHP_VERSION, '5.4', '>=' )
+		);
+	}
+}
+
 if ( ! function_exists( 'shapla_header_styles' ) ) {
 	/**
 	 * Apply inline style to the Shapla header.
