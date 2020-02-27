@@ -7,20 +7,38 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 
 	class Shapla_WooCommerce {
 
+		/**
+		 * The instance of the class
+		 *
+		 * @var self
+		 */
 		private static $instance;
 
 		/**
-		 * @return Shapla_WooCommerce
+		 * Only one instance of the class can be loaded
+		 *
+		 * @return self
 		 */
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				self::$instance->init_hooks();
 			}
 
 			return self::$instance;
 		}
 
-		public function __construct() {
+		/**
+		 * Init hooks
+		 */
+		public function init_hooks() {
+			// Declare WooCommerce support
+			remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+			remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+			add_action( 'woocommerce_before_main_content', array( $this, 'before_main_content' ), 10 );
+			add_action( 'woocommerce_after_main_content', array( $this, 'after_main_content' ), 10 );
+
 			// Declare WooCommerce support.
 			add_action( 'after_setup_theme', array( $this, 'woocommerce_setup' ) );
 			// Remove each style one by one
@@ -47,6 +65,50 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 
 			// Hide default page title
 			add_filter( 'woocommerce_show_page_title', array( $this, 'hide_default_page_title' ) );
+
+			// Replace woocommerce_pagination() with the_posts_pagination() WordPress function
+			remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
+			add_action( 'woocommerce_after_shop_loop', 'shapla_pagination', 10 );
+
+			// Remove WooCommerce default breadcrumb
+			remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+
+			// Change WooCommerce cross sell display after cart
+			remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+			add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
+
+			add_action( 'shapla_header_inner', array( $this, 'product_search_form' ), 25 );
+			add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
+
+			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
+		}
+
+		/**
+		 * Before main Content
+		 * Wraps all WooCommerce content in wrappers which match the theme markup
+		 *
+		 * @return  void
+		 * @since   1.6.0
+		 */
+		function before_main_content() {
+			?>
+            <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+			<?php
+		}
+
+		/**
+		 * After main Content
+		 * Closes the wrapping divs
+		 *
+		 * @return  void
+		 * @since   1.6.0
+		 */
+		public function after_main_content() {
+			?>
+            </main><!-- #main -->
+            </div><!-- #primary -->
+			<?php
 		}
 
 		/**
@@ -209,8 +271,87 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		public function wc_after_shop_loop_item() {
 			echo '</div>';
 		}
+
+		/**
+		 * Cart Fragments
+		 * Ensure cart contents update when products are added to the cart via AJAX
+		 *
+		 * @param array $fragments Fragments to refresh via AJAX.
+		 *
+		 * @return array            Fragments to refresh via AJAX
+		 * @since   1.6.0
+		 */
+		public function add_to_cart_fragments( $fragments ) {
+			ob_start();
+			$this->shapla_cart_link();
+			$fragments['a.shapla-cart-contents'] = ob_get_clean();
+
+			return $fragments;
+		}
+
+		/**
+		 * Display Header Cart
+		 *
+		 * @return void
+		 * @since  1.6.0
+		 */
+		public function header_cart() {
+			$show_cart_icon = get_theme_mod( 'show_cart_icon', true );
+			if ( ! $show_cart_icon ) {
+				return;
+			}
+
+			$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+			if ( $header_layout != 'layout-3' ) {
+				return;
+			}
+
+			if ( is_cart() ) {
+				$class = 'current-menu-item';
+			} else {
+				$class = '';
+			}
+			?>
+            <ul id="site-header-cart" class="site-header-cart menu">
+                <li class="<?php echo esc_attr( $class ); ?>">
+					<?php $this->shapla_cart_link(); ?>
+                </li>
+                <li>
+					<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
+                </li>
+            </ul>
+			<?php
+		}
+
+		/**
+		 * Cart Link
+		 * Displayed a link to the cart including the number of items present and the cart total
+		 *
+		 * @return void
+		 * @since  1.6.0
+		 */
+		public function shapla_cart_link() {
+			?>
+            <a class="shapla-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>"
+               title="<?php esc_attr_e( 'View your shopping cart', 'shapla' ); ?>">
+                <span class="count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
+            </a>
+			<?php
+		}
+
+		/**
+		 * WooCommerce Product Search
+		 *
+		 * @return  void
+		 * @since   1.6.0
+		 */
+		function product_search_form() {
+			$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+			if ( $header_layout != 'layout-3' ) {
+				return;
+			}
+
+			shapla_search_form();
+		}
 	}
-
 }
-
-return Shapla_WooCommerce::init();

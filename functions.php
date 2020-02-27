@@ -45,6 +45,7 @@ spl_autoload_register( function ( $className ) {
 		SHAPLA_PATH . '/classes/integrations/carousel-slider/',
 		SHAPLA_PATH . '/classes/integrations/elementor-pro/',
 		SHAPLA_PATH . '/classes/integrations/jetpack/',
+		SHAPLA_PATH . '/classes/integrations/woocommerce/',
 		SHAPLA_PATH . '/classes/utilities/',
 	);
 
@@ -80,28 +81,6 @@ require SHAPLA_PATH . '/inc/customizer/init.php';
  */
 include SHAPLA_PATH . '/inc/modules/class-shapla-blog.php';
 
-/**
- * Load Jetpack compatibility class.
- */
-if ( class_exists( 'Jetpack' ) ) {
-	$shapla->jetpack = Shapla_Jetpack::init();
-}
-
-// Elementor Compatibility requires PHP 5.4 for namespaces.
-if ( shapla_is_elementor_pro_active() ) {
-	Shapla_Elementor_Pro::init();
-}
-
-if ( shapla_is_woocommerce_activated() ) {
-	require SHAPLA_PATH . '/inc/woocommerce/class-shapla-woocommerce.php';
-	require SHAPLA_PATH . '/inc/woocommerce/shapla-woocommerce-template-hooks.php';
-	require SHAPLA_PATH . '/inc/woocommerce/shapla-woocommerce-template-functions.php';
-}
-
-if ( shapla_is_carousel_slider_activated() ) {
-	Shapla_Carousel_Slider::init();
-}
-
 if ( is_admin() ) {
 	require SHAPLA_PATH . '/inc/admin/class-shapla-system-status.php';
 	require SHAPLA_PATH . '/inc/admin/class-shapla-admin.php';
@@ -110,3 +89,8 @@ if ( is_admin() ) {
 // Metabox
 require SHAPLA_PATH . '/inc/admin/class-shapla-metabox.php';
 require SHAPLA_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';
+
+/**
+ * Third party plugin integrations
+ */
+require SHAPLA_PATH . '/classes/integrations/integrations.php';
