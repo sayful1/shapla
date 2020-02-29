@@ -122,7 +122,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		/**
 		 * Sanitizes a Hex, RGB or RGBA color
 		 *
-		 * @param  string $value
+		 * @param string $value
 		 *
 		 * @return string
 		 */
@@ -171,7 +171,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		/**
 		 * Sanitize email
 		 *
-		 * @param  mixed $value
+		 * @param mixed $value
 		 *
 		 * @return string
 		 */
@@ -182,7 +182,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		/**
 		 * Sanitize url
 		 *
-		 * @param  mixed $value
+		 * @param mixed $value
 		 *
 		 * @return string
 		 */
@@ -199,7 +199,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		 * - Removes line breaks, tabs, and extra whitespace
 		 * - Strips octets
 		 *
-		 * @param  mixed $value
+		 * @param mixed $value
 		 *
 		 * @return string
 		 */
@@ -214,7 +214,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		 * new lines (\n) and other whitespace, which are legitimate
 		 * input in textarea elements.
 		 *
-		 * @param  mixed $value
+		 * @param mixed $value
 		 *
 		 * @return string
 		 */
@@ -227,7 +227,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		 * one of the following values: 'yes', 'on', '1', 1, true, or 'true'.
 		 * This can be used for determining if an HTML checkbox has been checked.
 		 *
-		 * @param  mixed $value
+		 * @param mixed $value
 		 *
 		 * @return boolean
 		 */
@@ -364,6 +364,31 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 			} // End foreach().
 
 			return $value;
+		}
+
+		/**
+		 * Get customize sanitize method
+		 *
+		 * @param string $type
+		 *
+		 * @return array|string
+		 */
+		public static function get_customize_sanitize_method( $type = 'text' ) {
+			$methods = [
+				'typography'  => [ __CLASS__, 'typography' ],
+				'background'  => [ __CLASS__, 'background' ],
+				'number'      => [ __CLASS__, 'number' ],
+				'image'       => [ __CLASS__, 'url' ],
+				'url'         => [ __CLASS__, 'url' ],
+				'email'       => [ __CLASS__, 'email' ],
+				'checkbox'    => [ __CLASS__, 'checked' ],
+				'textarea'    => [ __CLASS__, 'html' ],
+				'alpha_color' => [ __CLASS__, 'color' ],
+				'alpha-color' => [ __CLASS__, 'color' ],
+				'color'       => [ __CLASS__, 'color' ],
+			];
+
+			return isset( $methods[ $type ] ) ? $methods[ $type ] : [ __CLASS__, 'text' ];
 		}
 
 		/**

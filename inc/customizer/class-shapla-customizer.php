@@ -121,9 +121,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			?>
-            <style type="text/css" id="shapla-custom-css">
-                <?php echo wp_strip_all_tags( $styles ); ?>
-            </style>
+			<style type="text/css" id="shapla-custom-css">
+				<?php echo wp_strip_all_tags( $styles ); ?>
+			</style>
 			<?php
 		}
 
@@ -201,7 +201,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$css            = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
 			if ( ! empty( $css ) ) {
 				$additional_css = "\n/* Additional CSS */\n";
-				$additional_css .= $this->minify_css( $css );
+				$additional_css .= Shapla_CSS_Generator::minify_css( $css );
 			}
 
 
@@ -255,11 +255,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function get_styles() {
 
-			// Get an array of all our fields
-			$fields = $this->fields;
-
-			// Check if we need to exit early
-			if ( empty( $fields ) || ! is_array( $fields ) ) {
+			if ( count( $this->fields ) < 1 ) {
 				return '';
 			}
 
@@ -269,117 +265,22 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$css = array();
 
 			// start parsing our fields
-			foreach ( $fields as $field ) {
-
-				// No need to process fields without an output, or an improperly-formatted output
-				if ( ! isset( $field['output'] ) || empty( $field['output'] ) || ! is_array( $field['output'] ) ) {
-					continue;
-				}
+			foreach ( $this->fields as $field ) {
 
 				// If no setting id, then exist
 				if ( ! isset( $field['settings'] ) ) {
 					continue;
 				}
 
-				// Field Type
-				$type = isset( $field['type'] ) ? esc_attr( $field['type'] ) : 'text';
-
 				// Get the default value of this field
 				$default = isset( $field['default'] ) ? $field['default'] : '';
 				$value   = get_theme_mod( $field['settings'], $default );
 
-				// start parsing the output arguments of the field
-				foreach ( $field['output'] as $output ) {
-					$defaults = array(
-						'element'       => '',
-						'property'      => '',
-						'media_query'   => 'global',
-						'prefix'        => '',
-						'units'         => '',
-						'suffix'        => '',
-						'value_pattern' => '$',
-						'choice'        => '',
-						'brightness'    => 0,
-						'invert'        => false,
-					);
-					$output   = wp_parse_args( $output, $defaults );
-
-					// If element is an array, convert it to a string
-					if ( is_array( $output['element'] ) ) {
-						$output['element'] = array_unique( $output['element'] );
-						sort( $output['element'] );
-						$output['element'] = implode( ',', $output['element'] );
-					}
-
-					// If field type typography and value is array
-					if ( is_array( $value ) && 'typography' == $type ) {
-						$typography_list = array();
-						foreach ( $value as $property => $property_value ) {
-							// Early exit if the value is not saved in the values.
-							if ( ! in_array( $property, $this->get_valid_typography_properties() ) ) {
-								continue;
-							}
-
-							if ( 'font-family' == $property ) {
-								continue;
-							}
-
-							if ( ! empty( $property_value ) ) {
-								$typography_list[ $property ] = $property_value;
-							}
-						}
-						$value = $typography_list;
-					}
-
-
-					// If value is array and field is not typography
-					if ( is_array( $value ) ) {
-						foreach ( $value as $property => $property_value ) {
-							if ( $property_value ) {
-								$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $property_value;
-							}
-						}
-					}
-
-					// if value is not array
-					if ( ! is_array( $value ) ) {
-						$value = str_replace( '$', $value, $output['value_pattern'] );
-						if ( ! empty( $output['element'] ) && ! empty( $output['property'] ) ) {
-							$css[ $output['media_query'] ][ $output['element'] ][ $output['property'] ] = $output['prefix'] . $value . $output['units'] . $output['suffix'];
-						}
-					}
-
-				}
+				Shapla_CSS_Generator::css( $css, $field, $value );
 			}
 
 			// Process the array of CSS properties and produce the final CSS
-			$final_css = '';
-			if ( ! is_array( $css ) || empty( $css ) ) {
-				return '';
-			}
-			// Parse the generated CSS array and create the CSS string for the output.
-			foreach ( $css as $media_query => $styles ) {
-				// Handle the media queries
-				$final_css .= ( 'global' != $media_query ) ? $media_query . '{' . PHP_EOL : '';
-				foreach ( $styles as $style => $style_array ) {
-					$final_css .= $style . '{';
-					foreach ( $style_array as $property => $value ) {
-						$value = (string) $value;
-						// Make sure background-images are properly formatted
-						if ( 'background-image' == $property ) {
-							if ( false === strrpos( $value, 'url(' ) ) {
-								$value = 'url("' . esc_url_raw( $value ) . '")';
-							}
-						}
-
-						$final_css .= $property . ':' . $value . ';';
-					}
-					$final_css .= '}' . PHP_EOL;
-				}
-				$final_css .= ( 'global' != $media_query ) ? '}' : '';
-			}
-
-			return $final_css;
+			return Shapla_CSS_Generator::styles_parse( $css );
 		}
 
 		/**
@@ -907,69 +808,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public function sanitize_typography( $input ) {
 			return Shapla_Sanitize::typography( $input );
-		}
-
-		/**
-		 * Minify CSS
-		 *
-		 * @param string $content
-		 * @param bool $newline
-		 *
-		 * @return string
-		 */
-		private function minify_css( $content = '', $newline = true ) {
-			// Strip comments
-			$content = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content );
-			// remove leading & trailing whitespace
-			$content = preg_replace( '/^\s*/m', '', $content );
-			$content = preg_replace( '/\s*$/m', '', $content );
-
-			// replace newlines with a single space
-			$content = preg_replace( '/\s+/', ' ', $content );
-
-			// remove whitespace around meta characters
-			// inspired by stackoverflow.com/questions/15195750/minify-compress-css-with-regex
-			$content = preg_replace( '/\s*([\*$~^|]?+=|[{};,>~]|!important\b)\s*/', '$1', $content );
-			$content = preg_replace( '/([\[(:])\s+/', '$1', $content );
-			$content = preg_replace( '/\s+([\]\)])/', '$1', $content );
-			$content = preg_replace( '/\s+(:)(?![^\}]*\{)/', '$1', $content );
-
-			// whitespace around + and - can only be stripped inside some pseudo-
-			// classes, like `:nth-child(3+2n)`
-			// not in things like `calc(3px + 2px)`, shorthands like `3px -2px`, or
-			// selectors like `div.weird- p`
-			$pseudos = array( 'nth-child', 'nth-last-child', 'nth-last-of-type', 'nth-of-type' );
-			$content = preg_replace( '/:(' . implode( '|', $pseudos ) . ')\(\s*([+-]?)\s*(.+?)\s*([+-]?)\s*(.*?)\s*\)/',
-				':$1($2$3$4$5)', $content );
-
-			// remove semicolon/whitespace followed by closing bracket
-			$content = str_replace( ';}', '}', $content );
-
-			// Add new line after closing bracket
-			if ( $newline ) {
-				$content = str_replace( '}', '}' . PHP_EOL, $content );
-			}
-
-			return trim( $content );
-		}
-
-		/**
-		 * @return array
-		 */
-		private function get_valid_typography_properties() {
-			$valid_properties = array(
-				'font-family',
-				'font-weight',
-				'font-size',
-				'line-height',
-				'letter-spacing',
-				'color',
-				'text-transform',
-				'text-align',
-				'font-style',
-			);
-
-			return $valid_properties;
 		}
 	}
 }

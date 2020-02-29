@@ -4,13 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Shapla_Admin' ) ):
+if ( ! class_exists( 'Shapla_Admin' ) ) {
 
 	class Shapla_Admin {
 
 		private static $instance;
 		private $admin_path;
-		private $admin_uri;
 		private $tabs = array();
 
 		/**
@@ -75,15 +74,15 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			}
 			?>
 			<script type="text/javascript">
-                (function ($) {
-                    'use strict';
-                    // Initializing TipTip
-                    $(".help_tip").each(function () {
-                        $(this).tipTip({
-                            attribute: "data-tip"
-                        });
-                    });
-                })(jQuery);
+				(function ($) {
+					'use strict';
+					// Initializing TipTip
+					$(".help_tip").each(function () {
+						$(this).tipTip({
+							attribute: "data-tip"
+						});
+					});
+				})(jQuery);
 			</script>
 			<?php
 		}
@@ -149,7 +148,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			$ThemeName        = $theme->get( 'Name' );
 			$ThemeVersion     = $theme->get( 'Version' );
 			$ThemeDescription = $theme->get( 'Description' );
-			$ThemeURI         = $theme->get( 'ThemeURI' );
 			$template_path    = $this->admin_path . 'views';
 
 			$welcome_title   = sprintf( __( 'Welcome to %s!', 'shapla' ), $ThemeName );
@@ -385,8 +383,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ):
 			), admin_url( 'plugin-install.php' ) );
 		}
 	}
-
-
-endif;
+}
 
 Shapla_Admin::init();
