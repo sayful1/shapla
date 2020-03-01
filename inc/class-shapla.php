@@ -36,6 +36,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'shapla_scripts' ), 10 );
 			add_action( 'wp_enqueue_scripts', array( $this, 'child_scripts' ), 90 );
 			add_action( 'wp_head', array( $this, 'inline_style' ), 5 );
+			add_action( 'wp_head', array( $this, 'page_inline_style' ), 35 );
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
 			add_filter( 'post_class', array( $this, 'post_classes' ) );
 		}
@@ -426,6 +427,24 @@ if ( ! class_exists( 'Shapla' ) ) {
 			echo '--shapla-font-family:' . $font_family . ';';
 			echo '--shapla-headers-font-family:' . $header_font_family . ';';
 			echo '}</style>' . PHP_EOL;
+		}
+
+		/**
+		 * Page inline style from meta box
+		 */
+		public function page_inline_style() {
+			if ( ! is_singular() ) {
+				return;
+			}
+			global $post;
+
+			$css = get_post_meta( $post->ID, '_shapla_page_options_css', true );
+
+			if ( empty( $css ) ) {
+				return;
+			}
+
+			echo '<style type="text/css">' . wp_strip_all_tags( $css ) . '</style>' . PHP_EOL;
 		}
 	}
 }

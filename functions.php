@@ -84,11 +84,11 @@ include SHAPLA_PATH . '/inc/modules/class-shapla-blog.php';
 if ( is_admin() ) {
 	require SHAPLA_PATH . '/inc/admin/class-shapla-system-status.php';
 	require SHAPLA_PATH . '/inc/admin/class-shapla-admin.php';
-}
 
-// Metabox
-require SHAPLA_PATH . '/inc/admin/class-shapla-metabox.php';
-require SHAPLA_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';
+	// Metabox
+	require SHAPLA_PATH . '/inc/admin/class-shapla-metabox.php';
+	require SHAPLA_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';
+}
 
 /**
  * Third party plugin integrations

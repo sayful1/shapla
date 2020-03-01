@@ -16,16 +16,11 @@ if ( ! class_exists( 'Shapla_Page_Metabox_Fields' ) ) {
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				add_action( 'init', array( self::$instance, 'add_meta_boxes' ) );
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * Shapla_Meta_Boxes constructor.
-		 */
-		public function __construct() {
-			add_action( 'init', array( $this, 'add_meta_boxes' ) );
 		}
 
 		/**

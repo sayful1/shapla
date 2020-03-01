@@ -65,27 +65,6 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'save_post', array( $this, 'save_meta_box' ), 10, 3 );
-			add_action( 'wp_head', array( $this, 'metabox_css' ), 30 );
-		}
-
-		/**
-		 * Generate inline style for theme customizer
-		 */
-		public function metabox_css() {
-			if ( ! is_singular() ) {
-				return;
-			}
-
-			$styles = $this->get_styles();
-			if ( empty( $styles ) ) {
-				return;
-			}
-
-			?>
-            <style type="text/css" id="shapla-custom-css">
-                <?php echo wp_strip_all_tags( $styles ); ?>
-            </style>
-			<?php
 		}
 
 		/**
@@ -326,6 +305,11 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 
 			if ( isset( $_POST[ $this->option_name ] ) ) {
 				update_post_meta( $post_id, $this->option_name, self::sanitize_value( $_POST[ $this->option_name ] ) );
+
+				$styles = $this->get_styles();
+				if ( ! empty( $styles ) ) {
+					update_post_meta( $post_id, '_shapla_page_options_css', $styles );
+				}
 			}
 
 			do_action( 'shapla_after_save_post_meta', $post_id, $post, $update );

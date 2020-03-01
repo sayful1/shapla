@@ -64,6 +64,33 @@ class Shapla_CSS_Generator {
 	}
 
 	/**
+	 * Get spacing value
+	 *
+	 * @param array $value
+	 * @param string $output_property
+	 *
+	 * @return array
+	 */
+	private static function get_spacing_value( array $value, $output_property ) {
+		$spacing_list = array();
+
+		foreach ( $value as $property => $property_value ) {
+			if ( ! empty( $property_value ) ) {
+				if ( ! in_array( $output_property, array( 'padding', 'margin' ) ) ) {
+					continue;
+				}
+				if ( ! in_array( $property, array( 'top', 'right', 'bottom', 'left' ) ) ) {
+					continue;
+				}
+
+				$spacing_list[ $output_property . '-' . $property ] = $property_value;
+			}
+		}
+
+		return $spacing_list;
+	}
+
+	/**
 	 * Get the CSS for a field.
 	 *
 	 * @static
@@ -105,6 +132,10 @@ class Shapla_CSS_Generator {
 			// If field type typography and value is array
 			if ( is_array( $value ) && 'typography' == $type ) {
 				$value = static::get_typography_value( $value );
+			}
+
+			if ( is_array( $value ) && 'spacing' == $type ) {
+				$value = static::get_spacing_value( $value, $output['property'] );
 			}
 
 			// If value is array and field is not typography
