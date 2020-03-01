@@ -134,13 +134,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$customize_file = get_option( '_shapla_customize_file' );
 
 			if ( isset( $customize_file['url'] ) && ! is_customize_preview() ) {
-				wp_enqueue_style(
-					'shapla-customize',
-					$customize_file['url'],
-					array(),
-					$customize_file['created'],
-					'all'
-				);
+				wp_enqueue_style( 'shapla-customize', $customize_file['url'], array(), $customize_file['created'],
+					'all' );
 			}
 		}
 
@@ -190,6 +185,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			// Create Theme css file
 			if ( ! $wp_filesystem->exists( $theme_css_file ) ) {
 				$wp_filesystem->touch( $theme_css_file, $created );
+			}
+
+			$google_fonts = $this->get_google_fonts();
+			if ( ! empty( $google_fonts ) ) {
+				update_option( '_shapla_google_fonts', $google_fonts, true );
 			}
 
 			$styles = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
@@ -290,55 +290,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return void
 		 */
 		public function enqueue_fonts() {
-			// Check if we need to exit early.
-			if ( empty( $this->fields ) || ! is_array( $this->fields ) ) {
-				return;
-			}
+			$google_fonts = get_option( '_shapla_google_fonts' );
 
-			if ( false === ( $google_fonts = get_transient( 'shapla_google_fonts' ) ) ) {
-
-				$fonts = array();
-
-				foreach ( $this->fields as $field ) {
-					if ( ! isset( $field['settings'], $field['type'] ) ) {
-						continue;
-					}
-
-					// Check if we've got everything we need.
-					$default = isset( $field['default'] ) ? $field['default'] : array();
-					$value   = (array) get_theme_mod( $field['settings'], $default );
-
-					// Process typography fields.
-					if ( 'typography' !== $field['type'] ) {
-						continue;
-					}
-
-					if ( empty( $value['font-family'] ) ) {
-						continue;
-					}
-
-					if ( ! Shapla_Fonts::is_google_font( $value['font-family'] ) ) {
-						continue;
-					}
-
-					$fonts[ $value['font-family'] ][] = isset( $value['variant'] ) ? $value['variant'] : '';
-				}
-
-				foreach ( $fonts as $font_name => $font_variant ) {
-					$variant = is_array( $font_variant ) ? implode( ",", array_unique( $font_variant ) ) : '';
-					$variant = str_replace( 'regular', '400', $variant );
-					if ( ! empty( $variant ) ) {
-						$google_fonts[] = $font_name . ":" . $variant;
-					} else {
-						$google_fonts[] = $font_name;
-					}
-				}
-
-				$google_fonts = apply_filters( 'shapla_google_font_families', $google_fonts );
-				set_transient( 'shapla_google_fonts', $google_fonts, DAY_IN_SECONDS );
-			}
-
-			if ( count( $google_fonts ) < 1 ) {
+			if ( ! ( is_array( $google_fonts ) && count( $google_fonts ) ) ) {
 				return;
 			}
 
@@ -576,6 +530,53 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			return [ Shapla_Sanitize::class, 'text' ];
+		}
+
+		/**
+		 * Get google fonts from customize settings
+		 *
+		 * @return array
+		 */
+		public function get_google_fonts() {
+			$google_fonts = array();
+			$fonts        = array();
+
+			foreach ( $this->fields as $field ) {
+				if ( ! isset( $field['settings'], $field['type'] ) ) {
+					continue;
+				}
+
+				// Check if we've got everything we need.
+				$default = isset( $field['default'] ) ? $field['default'] : array();
+				$value   = (array) get_theme_mod( $field['settings'], $default );
+
+				// Process typography fields.
+				if ( 'typography' !== $field['type'] ) {
+					continue;
+				}
+
+				if ( empty( $value['font-family'] ) ) {
+					continue;
+				}
+
+				if ( ! Shapla_Fonts::is_google_font( $value['font-family'] ) ) {
+					continue;
+				}
+
+				$fonts[ $value['font-family'] ][] = isset( $value['variant'] ) ? $value['variant'] : '';
+			}
+
+			foreach ( $fonts as $font_name => $font_variant ) {
+				$variant = is_array( $font_variant ) ? implode( ",", array_unique( $font_variant ) ) : '';
+				$variant = str_replace( 'regular', '400', $variant );
+				if ( ! empty( $variant ) ) {
+					$google_fonts[] = $font_name . ":" . $variant;
+				} else {
+					$google_fonts[] = $font_name;
+				}
+			}
+
+			return apply_filters( 'shapla_google_font_families', $google_fonts );
 		}
 	}
 }

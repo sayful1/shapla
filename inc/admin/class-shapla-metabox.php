@@ -110,115 +110,19 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 
 			// start parsing our fields
 			foreach ( $fields as $field ) {
-
-				// No need to process fields without an output, or an improperly-formatted output
-				if ( ! isset( $field['output'] ) || empty( $field['output'] ) || ! is_array( $field['output'] ) ) {
-					continue;
-				}
-
 				// If no setting id, then exist
 				if ( ! isset( $field['id'] ) ) {
 					continue;
 				}
 
-				// Field Type
-				$type = isset( $field['type'] ) ? esc_attr( $field['type'] ) : 'text';
-
 				// Get the default value of this field
 				$default = isset( $field['default'] ) ? $field['default'] : '';
 				$value   = isset( $values[ $field['id'] ] ) ? $values[ $field['id'] ] : $default;
 
-				// start parsing the output arguments of the field
-				foreach ( $field['output'] as $output ) {
-					$defaults = array(
-						'element'       => '',
-						'property'      => '',
-						'media_query'   => 'global',
-						'prefix'        => '',
-						'units'         => '',
-						'suffix'        => '',
-						'value_pattern' => '$',
-						'choice'        => '',
-						'brightness'    => 0,
-						'invert'        => false,
-					);
-					$output   = wp_parse_args( $output, $defaults );
-
-					// If element is an array, convert it to a string
-					if ( is_array( $output['element'] ) ) {
-						$output['element'] = array_unique( $output['element'] );
-						sort( $output['element'] );
-						$output['element'] = implode( ',', $output['element'] );
-					}
-
-					// If value is array and field is not typography
-					if ( is_array( $value ) ) {
-						// Spacing Control type
-						if ( is_array( $value ) && 'spacing' == $type ) {
-							$spacing_list = array();
-
-
-							foreach ( $value as $property => $property_value ) {
-								if ( ! empty( $property_value ) ) {
-									if ( ! in_array( $output['property'], array( 'padding', 'margin' ) ) ) {
-										continue;
-									}
-									if ( ! in_array( $property, array( 'top', 'right', 'bottom', 'left' ) ) ) {
-										continue;
-									}
-									$property = $output['property'] . '-' . $property;
-
-									$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $property_value;
-								}
-							}
-						} else {
-							foreach ( $value as $property => $property_value ) {
-								if ( $property_value ) {
-									$css[ $output['media_query'] ][ $output['element'] ][ $property ] = $property_value;
-								}
-							}
-						}
-					}
-
-					// if value is not array
-					if ( ! is_array( $value ) ) {
-						$value = str_replace( '$', $value, $output['value_pattern'] );
-						if ( ! empty( $output['element'] ) && ! empty( $output['property'] ) ) {
-							$css[ $output['media_query'] ][ $output['element'] ][ $output['property'] ] = $output['prefix'] . $value . $output['units'] . $output['suffix'];
-						}
-					}
-
-				}
+				Shapla_CSS_Generator::css( $css, $field, $value );
 			}
 
-			// Process the array of CSS properties and produce the final CSS
-			$final_css = '';
-			if ( ! is_array( $css ) || empty( $css ) ) {
-				return '';
-			}
-			// Parse the generated CSS array and create the CSS string for the output.
-			foreach ( $css as $media_query => $styles ) {
-				// Handle the media queries
-				$final_css .= ( 'global' != $media_query ) ? $media_query . '{' . PHP_EOL : '';
-				foreach ( $styles as $style => $style_array ) {
-					$final_css .= $style . '{';
-					foreach ( $style_array as $property => $value ) {
-						$value = (string) $value;
-						// Make sure background-images are properly formatted
-						if ( 'background-image' == $property ) {
-							if ( false === strrpos( $value, 'url(' ) ) {
-								$value = 'url("' . esc_url_raw( $value ) . '")';
-							}
-						}
-
-						$final_css .= $property . ':' . $value . ';';
-					}
-					$final_css .= '}' . PHP_EOL;
-				}
-				$final_css .= ( 'global' != $media_query ) ? '}' : '';
-			}
-
-			return $final_css;
+			return Shapla_CSS_Generator::styles_parse( $css );
 		}
 
 		/**
