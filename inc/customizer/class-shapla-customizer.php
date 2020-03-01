@@ -121,9 +121,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			?>
-			<style type="text/css" id="shapla-custom-css">
-				<?php echo wp_strip_all_tags( $styles ); ?>
-			</style>
+            <style type="text/css" id="shapla-custom-css">
+                <?php echo wp_strip_all_tags( $styles ); ?>
+            </style>
 			<?php
 		}
 
@@ -352,19 +352,32 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
+		 * Get custom customize controls
+		 *
+		 * @return array
+		 */
+		public static function get_custom_controls() {
+			return [
+				'radio-button' => Shapla_Radio_Button_Customize_Control::class,
+				'typography'   => Shapla_Typography_Customize_Control::class,
+				'toggle'       => Shapla_Toggle_Customize_Control::class,
+				'range-slider' => Shapla_Slider_Customize_Control::class,
+				'background'   => Shapla_Background_Customize_Control::class,
+				'alpha-color'  => Shapla_Color_Customize_Control::class,
+				'radio-image'  => Shapla_Radio_Image_Customize_Control::class,
+			];
+		}
+
+		/**
 		 * Add panel, section and settings
 		 *
 		 * @param WP_Customize_Manager $wp_customize
 		 */
 		public function customize_register( $wp_customize ) {
 			// Registered Control Types
-			$wp_customize->register_control_type( 'Shapla_Slider_Customize_Control' );
-			$wp_customize->register_control_type( 'Shapla_Background_Customize_Control' );
-			$wp_customize->register_control_type( 'Shapla_Toggle_Customize_Control' );
-			$wp_customize->register_control_type( 'Shapla_Color_Customize_Control' );
-			$wp_customize->register_control_type( 'Shapla_Radio_Image_Customize_Control' );
-			$wp_customize->register_control_type( 'Shapla_Radio_Button_Customize_Control' );
-			$wp_customize->register_control_type( 'Shapla_Typography_Customize_Control' );
+			foreach ( static::get_custom_controls() as $custom_control ) {
+				$wp_customize->register_control_type( $custom_control );
+			}
 
 			// Add panel to customizer
 			if ( count( $this->panels ) > 0 ) {
@@ -394,24 +407,13 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			if ( count( $this->fields ) > 0 ) {
 				foreach ( $this->fields as $field ) {
 
-					if ( isset( $field['sanitize_callback'] ) && is_callable( $field['sanitize_callback'] ) ) {
-						$sanitize_callback = $field['sanitize_callback'];
-					} else {
-						$sanitize_method = str_replace( '-', '_', $field['type'] );
-						if ( method_exists( $this, "sanitize_{$sanitize_method}" ) ) {
-							$sanitize_callback = array( $this, "sanitize_{$sanitize_method}" );
-						} else {
-							$sanitize_callback = array( $this, 'sanitize_text' );
-						}
-					}
-
 					// Add settings and controls
 					$wp_customize->add_setting( $field['settings'], array(
 						'default'           => $field['default'],
 						'type'              => $this->setting['option_type'],
 						'capability'        => $this->setting['capability'],
 						'transport'         => isset( $field['transport'] ) ? $field['transport'] : 'refresh',
-						'sanitize_callback' => $sanitize_callback,
+						'sanitize_callback' => static::get_sanitize_callback( $field ),
 					) );
 					$wp_customize->add_control(
 						$this->add_control( $wp_customize, $field )
@@ -690,124 +692,67 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
-		 * Sanitize image
+		 * Get customize control arguments
 		 *
-		 * @param mixed $value
-		 *
-		 * @return array
-		 */
-		public function sanitize_background( $value ) {
-			return Shapla_Sanitize::background( $value );
-		}
-
-		/**
-		 * Sanitize text
-		 *
-		 * @param boolean $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_text( $input ) {
-			return Shapla_Sanitize::text( $input );
-		}
-
-		/**
-		 * Sanitizes a Hex, RGB or RGBA color
-		 *
-		 * @param string $color
-		 *
-		 * @return string
-		 */
-		public function sanitize_alpha_color( $color ) {
-			return $this->sanitize_color( $color );
-		}
-
-		/**
-		 * Sanitizes a Hex, RGB or RGBA color
-		 *
-		 * @param string $color
-		 *
-		 * @return string
-		 */
-		public function sanitize_color( $color ) {
-			return Shapla_Sanitize::color( $color );
-		}
-
-		/**
-		 * Sanitize textarea
-		 *
-		 * @param boolean $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_textarea( $input ) {
-			return Shapla_Sanitize::html( $input );
-		}
-
-		/**
-		 * Sanitize checkbox
-		 *
-		 * @param boolean $input
-		 *
-		 * @return boolean
-		 */
-		public function sanitize_checkbox( $input ) {
-			return Shapla_Sanitize::checked( $input );
-		}
-
-		/**
-		 * Sanitize email
-		 *
-		 * @param string $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_email( $input ) {
-			return Shapla_Sanitize::email( $input );
-		}
-
-		/**
-		 * Sanitize url
-		 *
-		 * @param string $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_url( $input ) {
-			return Shapla_Sanitize::url( $input );
-		}
-
-		/**
-		 * Sanitize image
-		 *
-		 * @param boolean $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_image( $input ) {
-			return Shapla_Sanitize::url( $input );
-		}
-
-		/**
-		 * Sanitize number
-		 *
-		 * @param boolean $input
-		 *
-		 * @return string
-		 */
-		public function sanitize_number( $input ) {
-			return Shapla_Sanitize::number( $input );
-		}
-
-		/**
-		 * Sanitize typography field
-		 *
-		 * @param $input
+		 * @param array $args
 		 *
 		 * @return array
 		 */
-		public function sanitize_typography( $input ) {
-			return Shapla_Sanitize::typography( $input );
+		public static function get_control_arguments( array $args ) {
+			$valid_args = [
+				'label'       => '',
+				'description' => '',
+				'section'     => '',
+				'priority'    => 10,
+				'settings'    => '',
+				'type'        => 'text',
+				'choices'     => [],
+				'input_attrs' => [],
+			];
+
+			$new_args = [];
+			foreach ( $args as $key => $value ) {
+				if ( array_key_exists( $key, $valid_args ) ) {
+					$new_args[ $key ] = $value;
+				}
+			}
+
+			return $new_args;
+		}
+
+		/**
+		 * Get customize sanitize method
+		 *
+		 * @param array $field
+		 *
+		 * @return array|string
+		 */
+		public static function get_sanitize_callback( array $field ) {
+			if ( isset( $field['sanitize_callback'] ) && is_callable( $field['sanitize_callback'] ) ) {
+				return $field['sanitize_callback'];
+			}
+
+			$type = isset( $field['type'] ) ? $field['type'] : 'text';
+			$type = str_replace( '-', '_', $type );
+
+			$methods = [
+				'typography'  => [ Shapla_Sanitize::class, 'typography' ],
+				'background'  => [ Shapla_Sanitize::class, 'background' ],
+				'number'      => [ Shapla_Sanitize::class, 'number' ],
+				'image'       => [ Shapla_Sanitize::class, 'url' ],
+				'url'         => [ Shapla_Sanitize::class, 'url' ],
+				'email'       => [ Shapla_Sanitize::class, 'email' ],
+				'checkbox'    => [ Shapla_Sanitize::class, 'checked' ],
+				'textarea'    => [ Shapla_Sanitize::class, 'html' ],
+				'alpha_color' => [ Shapla_Sanitize::class, 'color' ],
+				'color'       => [ Shapla_Sanitize::class, 'color' ],
+			];
+
+			if ( isset( $methods[ $type ] ) ) {
+				return $methods[ $type ];
+			}
+
+			return [ Shapla_Sanitize::class, 'text' ];
 		}
 	}
 }

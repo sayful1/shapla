@@ -367,31 +367,6 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		}
 
 		/**
-		 * Get customize sanitize method
-		 *
-		 * @param string $type
-		 *
-		 * @return array|string
-		 */
-		public static function get_customize_sanitize_method( $type = 'text' ) {
-			$methods = [
-				'typography'  => [ __CLASS__, 'typography' ],
-				'background'  => [ __CLASS__, 'background' ],
-				'number'      => [ __CLASS__, 'number' ],
-				'image'       => [ __CLASS__, 'url' ],
-				'url'         => [ __CLASS__, 'url' ],
-				'email'       => [ __CLASS__, 'email' ],
-				'checkbox'    => [ __CLASS__, 'checked' ],
-				'textarea'    => [ __CLASS__, 'html' ],
-				'alpha_color' => [ __CLASS__, 'color' ],
-				'alpha-color' => [ __CLASS__, 'color' ],
-				'color'       => [ __CLASS__, 'color' ],
-			];
-
-			return isset( $methods[ $type ] ) ? $methods[ $type ] : [ __CLASS__, 'text' ];
-		}
-
-		/**
 		 * Filters numeric values.
 		 *
 		 * @param string $value The value to be sanitized.
