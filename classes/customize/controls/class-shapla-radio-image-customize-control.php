@@ -29,6 +29,20 @@ if ( ! class_exists( 'Shapla_Radio_Image_Customize_Control' ) ) {
 		public $type = 'shapla-radio-image';
 
 		/**
+		 * @inheritDoc
+		 */
+		public function __construct( $manager, $id, $args = array() ) {
+			parent::__construct( $manager, $id, array(
+				'settings'    => $id,
+				'label'       => isset( $args['label'] ) ? $args['label'] : '',
+				'description' => isset( $args['description'] ) ? $args['description'] : '',
+				'section'     => isset( $args['section'] ) ? $args['section'] : '',
+				'choices'     => isset( $args['choices'] ) ? $args['choices'] : array(),
+				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
+			) );
+		}
+
+		/**
 		 * An Underscore (JS) template for this control's content (but not its container).
 		 *
 		 * Class variables for this control class are available in the `data` JS object;

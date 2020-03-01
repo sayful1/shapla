@@ -29,6 +29,20 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
 	public $type = 'shapla-typography';
 
 	/**
+	 * @inheritDoc
+	 */
+	public function __construct( $manager, $id, $args = array() ) {
+		parent::__construct( $manager, $id, array(
+			'settings'    => $id,
+			'label'       => isset( $args['label'] ) ? $args['label'] : '',
+			'description' => isset( $args['description'] ) ? $args['description'] : '',
+			'section'     => isset( $args['section'] ) ? $args['section'] : '',
+			'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
+			'choices'     => isset( $args['choices'] ) ? $args['choices'] : array(),
+		) );
+	}
+
+	/**
 	 * Enqueue scripts and styles for the custom control.
 	 */
 	public function enqueue() {
@@ -290,11 +304,12 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
 	 * Formats variants.
 	 *
 	 * @access protected
-	 * @since 3.0.0
 	 *
 	 * @param array $variants The variants.
 	 *
 	 * @return array
+	 * @since 3.0.0
+	 *
 	 */
 	protected function format_variants_array( $variants ) {
 
@@ -318,8 +333,8 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
 	 * Gets standard fonts properly formatted for our control.
 	 *
 	 * @access protected
-	 * @since 3.0.0
 	 * @return array
+	 * @since 3.0.0
 	 */
 	protected function get_standard_fonts() {
 		// Add fonts to our JS objects.
@@ -357,8 +372,8 @@ class Shapla_Typography_Customize_Control extends Shapla_Customize_Control {
 	 * Gets google fonts properly formatted for our control.
 	 *
 	 * @access protected
-	 * @since 3.0.0
 	 * @return array
+	 * @since 3.0.0
 	 */
 	protected function get_google_fonts() {
 		// Add fonts to our JS objects.

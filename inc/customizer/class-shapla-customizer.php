@@ -415,9 +415,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 						'transport'         => isset( $field['transport'] ) ? $field['transport'] : 'refresh',
 						'sanitize_callback' => static::get_sanitize_callback( $field ),
 					) );
-					$wp_customize->add_control(
-						$this->add_control( $wp_customize, $field )
-					);
+					$wp_customize->add_control( $this->add_control( $wp_customize, $field ) );
 				}
 			}
 		}
@@ -496,199 +494,24 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$type = 'text';
 			}
 
-			$type = str_replace( '-', '_', $type );
+			$controls     = static::get_custom_controls();
+			$control_args = static::get_control_arguments( $field );
 
-			if ( method_exists( $this, $type ) ) {
-				return $this->$type( $wp_customize, $field );
-			} else {
-				return $this->text( $wp_customize, $field );
+			if ( isset( $controls[ $type ] ) ) {
+				$className = $controls[ $type ];
+
+				return new $className( $wp_customize, $field['settings'], $control_args );
 			}
-		}
 
-		/**
-		 * add a simple, image uploader.
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return WP_Customize_Image_Control
-		 */
-		public function image( $wp_customize, $field ) {
-			return new WP_Customize_Image_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-			) );
-		}
+			if ( 'image' == $type ) {
+				return new WP_Customize_Image_Control( $wp_customize, $field['settings'], $control_args );
+			}
 
-		/**
-		 * Add typography field
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return Shapla_Typography_Customize_Control
-		 */
-		public function typography( $wp_customize, $field ) {
-			return new Shapla_Typography_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
-			) );
-		}
+			if ( 'color' == $type ) {
+				return new WP_Customize_Color_Control( $wp_customize, $field['settings'], $control_args );
+			}
 
-		/**
-		 * Add a complete background control
-		 *
-		 * @param $wp_customize
-		 * @param $field
-		 *
-		 * @return Shapla_Background_Customize_Control
-		 */
-		public function background( $wp_customize, $field ) {
-			return new Shapla_Background_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * Add a simple toggle input replacing checkbox
-		 *
-		 * @param $wp_customize
-		 * @param $field
-		 *
-		 * @return Shapla_Toggle_Customize_Control
-		 */
-		public function toggle( $wp_customize, $field ) {
-			return new Shapla_Toggle_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * add a simple, color input.
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return WP_Customize_Color_Control
-		 */
-		public function color( $wp_customize, $field ) {
-			return new WP_Customize_Color_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * add a simple, color input.
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return Shapla_Color_Customize_Control
-		 */
-		public function alpha_color( $wp_customize, $field ) {
-			return new Shapla_Color_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * Add slider field
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return Shapla_Slider_Customize_Control
-		 */
-		public function range_slider( $wp_customize, $field ) {
-			return new Shapla_Slider_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'input_attrs' => isset( $field['input_attrs'] ) ? $field['input_attrs'] : array(),
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * add a simple, single-line text input.
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return WP_Customize_Control
-		 */
-		public function text( $wp_customize, $field ) {
-			return new WP_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
-				'type'        => $field['type'],
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * add radio images
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return Shapla_Radio_Image_Customize_Control
-		 */
-		public function radio_image( $wp_customize, $field ) {
-			return new Shapla_Radio_Image_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
-				'settings'    => $field['settings'],
-			) );
-		}
-
-		/**
-		 * add radio buttons
-		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
-		 *
-		 * @return Shapla_Radio_Button_Customize_Control
-		 */
-		public function radio_button( $wp_customize, $field ) {
-			return new Shapla_Radio_Button_Customize_Control( $wp_customize, $field['settings'], array(
-				'label'       => $field['label'],
-				'description' => isset( $field['description'] ) ? $field['description'] : '',
-				'section'     => $field['section'],
-				'priority'    => isset( $field['priority'] ) ? $field['priority'] : 10,
-				'choices'     => isset( $field['choices'] ) ? $field['choices'] : array(),
-				'settings'    => $field['settings'],
-			) );
+			return new WP_Customize_Control( $wp_customize, $field['settings'], $control_args );
 		}
 
 		/**

@@ -25,6 +25,20 @@ if ( ! class_exists( 'Shapla_Slider_Customize_Control' ) ) {
 		public $type = 'shapla-slider';
 
 		/**
+		 * @inheritDoc
+		 */
+		public function __construct( $manager, $id, $args = array() ) {
+			parent::__construct( $manager, $id, array(
+				'settings'    => $id,
+				'label'       => isset( $args['label'] ) ? $args['label'] : '',
+				'description' => isset( $args['description'] ) ? $args['description'] : '',
+				'section'     => isset( $args['section'] ) ? $args['section'] : '',
+				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
+				'input_attrs' => isset( $args['input_attrs'] ) ? $args['input_attrs'] : array(),
+			) );
+		}
+
+		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
 		 *
 		 * @access public

@@ -49,6 +49,19 @@ if ( ! class_exists( 'Shapla_Color_Customize_Control' ) ) {
 		);
 
 		/**
+		 * @inheritDoc
+		 */
+		public function __construct( $manager, $id, $args = array() ) {
+			parent::__construct( $manager, $id, array(
+				'settings'    => $id,
+				'label'       => isset( $args['label'] ) ? $args['label'] : '',
+				'description' => isset( $args['description'] ) ? $args['description'] : '',
+				'section'     => isset( $args['section'] ) ? $args['section'] : '',
+				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
+			) );
+		}
+
+		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
 		 *
 		 * @access public
