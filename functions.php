@@ -70,6 +70,11 @@ require SHAPLA_PATH . '/inc/shapla-template-hooks.php';
 require SHAPLA_PATH . '/inc/shapla-template-functions.php';
 
 /**
+ * Load theme scripts and styles
+ */
+require SHAPLA_PATH . '/inc/class-shapla-assets.php';
+
+/**
  * Customizer
  */
 require SHAPLA_PATH . '/inc/customizer/init.php';

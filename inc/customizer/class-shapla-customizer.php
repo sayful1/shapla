@@ -67,76 +67,20 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		);
 
 		/**
-		 * @return Shapla_Customizer
+		 * Only one instance of the class can be loaded
+		 *
+		 * @return self
 		 */
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				add_action( 'customize_register', array( self::$instance, 'modify_customize_defaults' ) );
+				add_action( 'customize_register', array( self::$instance, 'customize_register' ) );
+				add_action( 'customize_save_after', array( self::$instance, 'generate_css_file' ) );
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * Shapla_Customizer constructor.
-		 */
-		public function __construct() {
-			add_action( 'customize_register', array( $this, 'modify_customize_defaults' ) );
-			add_action( 'customize_register', array( $this, 'customize_register' ) );
-			add_action( 'customize_save_after', array( $this, 'generate_css_file' ) );
-
-			add_filter( 'wp_get_custom_css', array( $this, 'wp_get_custom_css' ) );
-			add_action( 'wp_head', array( $this, 'customize_css' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'customize_scripts' ), 90 );
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_fonts' ), 5 );
-			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_fonts' ), 1, 1 );
-		}
-
-		/**
-		 * Filters the Custom CSS Output into the <head>.
-		 *
-		 * @param $css
-		 *
-		 * @return string
-		 */
-		public function wp_get_custom_css( $css ) {
-			if ( ( false !== get_option( '_shapla_customize_file' ) ) && ! is_customize_preview() ) {
-				return '';
-			}
-
-			return $css;
-		}
-
-		/**
-		 * Generate inline style for theme customizer
-		 */
-		public function customize_css() {
-			if ( ( false !== get_option( '_shapla_customize_file' ) ) && ! is_customize_preview() ) {
-				return;
-			}
-
-			$styles = $this->get_styles();
-			if ( empty( $styles ) ) {
-				return;
-			}
-
-			?>
-            <style type="text/css" id="shapla-custom-css">
-                <?php echo wp_strip_all_tags( $styles ); ?>
-            </style>
-			<?php
-		}
-
-		/**
-		 * Load customize css file if available
-		 */
-		public function customize_scripts() {
-			$customize_file = get_option( '_shapla_customize_file' );
-
-			if ( isset( $customize_file['url'] ) && ! is_customize_preview() ) {
-				wp_enqueue_style( 'shapla-customize', $customize_file['url'], array(), $customize_file['created'],
-					'all' );
-			}
 		}
 
 		/**
@@ -281,28 +225,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 			// Process the array of CSS properties and produce the final CSS
 			return Shapla_CSS_Generator::styles_parse( $css );
-		}
-
-		/**
-		 * Enqueue google fonts.
-		 *
-		 * @access public
-		 * @return void
-		 */
-		public function enqueue_fonts() {
-			$google_fonts = get_option( '_shapla_google_fonts' );
-
-			if ( ! ( is_array( $google_fonts ) && count( $google_fonts ) ) ) {
-				return;
-			}
-
-			$query_args = array(
-				'family' => urlencode( implode( '|', $google_fonts ) ),
-				'subset' => urlencode( apply_filters( 'shapla_google_font_families_subset', 'latin,latin-ext' ) ),
-			);
-
-			$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-			wp_enqueue_style( 'shapla-fonts', $fonts_url, array(), null );
 		}
 
 		/**
