@@ -27,9 +27,60 @@ class Shapla_Assets {
 
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'enqueue_fonts' ), 5 );
 			add_action( 'enqueue_block_editor_assets', array( self::$instance, 'enqueue_fonts' ), 1, 1 );
+
+			add_action( 'wp_enqueue_scripts', array( self::$instance, 'shapla_scripts' ), 10 );
+			add_action( 'wp_enqueue_scripts', array( self::$instance, 'child_scripts' ), 90 );
+			add_action( 'wp_head', array( self::$instance, 'inline_style' ), 5 );
+			add_action( 'wp_head', array( self::$instance, 'page_inline_style' ), 35 );
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Enqueue scripts and styles.
+	 *
+	 * @since  0.1.0
+	 */
+	public function shapla_scripts() {
+		$theme_url = get_template_directory_uri();
+
+		// Font Awesome Free icons
+		wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/all.min.css',
+			array(), '5.5.0', 'all' );
+
+		// Theme stylesheet.
+		wp_enqueue_style( 'shapla-style', $theme_url . '/assets/css/main.css',
+			array(), SHAPLA_VERSION, 'all' );
+
+		// Theme block stylesheet.
+		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
+			wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css',
+				array( 'shapla-style' ), SHAPLA_VERSION );
+		}
+
+		// Load theme script.
+		wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/main.js',
+			array(), SHAPLA_VERSION, true );
+
+		wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );
+
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+	}
+
+	/**
+	 * Enqueue child theme stylesheet.
+	 * A separate function is required as the child theme css needs to be enqueued _after_
+	 * the parent theme primary css.
+	 *
+	 * @since  0.1.0
+	 */
+	public function child_scripts() {
+		if ( is_child_theme() ) {
+			wp_enqueue_style( 'shapla-child-style', get_stylesheet_uri(), array() );
+		}
 	}
 
 	/**
@@ -64,6 +115,40 @@ class Shapla_Assets {
 	}
 
 	/**
+	 * Inline color style
+	 */
+	public function inline_style() {
+		$font_family        = Shapla_Fonts::get_site_font_family();
+		$header_font_family = Shapla_Fonts::get_header_font_family();
+		$colors             = Shapla_Colors::get_colors();
+		echo '<style type="text/css">:root{';
+		foreach ( $colors as $key => $color ) {
+			echo '--shapla-' . $key . ':' . $color . ';';
+		}
+		echo '--shapla-font-family:' . $font_family . ';';
+		echo '--shapla-headers-font-family:' . $header_font_family . ';';
+		echo '}</style>' . PHP_EOL;
+	}
+
+	/**
+	 * Page inline style from meta box
+	 */
+	public function page_inline_style() {
+		if ( ! is_singular() ) {
+			return;
+		}
+		global $post;
+
+		$css = get_post_meta( $post->ID, '_shapla_page_options_css', true );
+
+		if ( empty( $css ) ) {
+			return;
+		}
+
+		echo '<style type="text/css">' . wp_strip_all_tags( $css ) . '</style>' . PHP_EOL;
+	}
+
+	/**
 	 * Enqueue google fonts.
 	 *
 	 * @access public
@@ -83,6 +168,30 @@ class Shapla_Assets {
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 		wp_enqueue_style( 'shapla-fonts', $fonts_url, array(), null );
+	}
+
+	/**
+	 * Shapla localize script
+	 *
+	 * @return array
+	 */
+	private function localize_script() {
+		$localize_script = array(
+			'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+			'screenReaderText' => array(
+				'expand'   => __( 'expand child menu', 'shapla' ),
+				'collapse' => __( 'collapse child menu', 'shapla' ),
+			),
+			'stickyHeader'     => array(
+				'isEnabled' => get_theme_mod( 'sticky_header', false ),
+				'minWidth'  => 1025,
+			),
+			'BackToTopButton'  => array(
+				'isEnabled' => get_theme_mod( 'display_go_to_top_button', true ),
+			),
+		);
+
+		return apply_filters( 'shapla_localize_script', $localize_script );
 	}
 }
 
