@@ -15,31 +15,46 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 	 */
 	class Shapla_Structured_Data {
 
-		private $structured_data;
+		/**
+		 * @var array
+		 */
+		private $structured_data = [];
 
-		private $breadcrumb_data;
+		/**
+		 * @var array
+		 */
+		private $breadcrumb_data = [];
 
+		/**
+		 * The instance of the class
+		 *
+		 * @var self
+		 */
 		private static $instance;
 
 		/**
-		 * @return Shapla_Structured_Data
+		 * Only one instance of the class can be loaded
+		 *
+		 * @return self
 		 */
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				if ( false === get_theme_mod( 'show_structured_data', true ) ) {
+					return self::$instance;
+				}
+
+				add_action( 'shapla_loop_post', array( self::$instance, 'init_structured_data' ), 40 );
+				add_action( 'shapla_single_post', array( self::$instance, 'init_structured_data' ), 40 );
+				add_action( 'shapla_page', array( self::$instance, 'init_structured_data' ), 40 );
+				add_action( 'shapla_breadcrumb', array( self::$instance, 'generate_breadcrumb_data' ), 10 );
+
+				add_action( 'wp_footer', array( self::$instance, 'get_structured_data' ), 10 );
+				add_action( 'wp_footer', array( self::$instance, 'get_breadcrumb_structured_data' ), 10 );
 			}
 
 			return self::$instance;
-		}
-
-		public function __construct() {
-			add_action( 'shapla_loop_post', array( $this, 'init_structured_data' ), 40 );
-			add_action( 'shapla_single_post', array( $this, 'init_structured_data' ), 40 );
-			add_action( 'shapla_page', array( $this, 'init_structured_data' ), 40 );
-			add_action( 'shapla_breadcrumb', array( $this, 'generate_breadcrumb_data' ), 10 );
-
-			add_action( 'wp_footer', array( $this, 'get_structured_data' ), 10 );
-			add_action( 'wp_footer', array( $this, 'get_breadcrumb_structured_data' ), 10 );
 		}
 
 		/**
@@ -188,7 +203,7 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 		/**
 		 * Sanitizes structured data.
 		 *
-		 * @param  array $data
+		 * @param array $data
 		 *
 		 * @return array
 		 */

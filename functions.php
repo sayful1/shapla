@@ -69,8 +69,6 @@ require SHAPLA_PATH . '/inc/shapla-functions.php';
 require SHAPLA_PATH . '/inc/shapla-template-hooks.php';
 require SHAPLA_PATH . '/inc/shapla-template-functions.php';
 
-require SHAPLA_PATH . '/inc/class-shapla-structured-data.php';
-
 /**
  * Customizer
  */
@@ -80,6 +78,11 @@ require SHAPLA_PATH . '/inc/customizer/init.php';
  * Load Shapla modules
  */
 include SHAPLA_PATH . '/inc/modules/class-shapla-blog.php';
+
+/**
+ * Add structured data if enabled
+ */
+require SHAPLA_PATH . '/inc/class-shapla-structured-data.php';
 
 if ( is_admin() ) {
 	require SHAPLA_PATH . '/inc/admin/class-shapla-system-status.php';
