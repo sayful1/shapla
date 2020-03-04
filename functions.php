@@ -57,10 +57,11 @@ spl_autoload_register( function ( $className ) {
 } );
 
 $shapla = (object) array(
-	'version'    => $shapla_version,
-	'main'       => require SHAPLA_PATH . '/inc/class-shapla.php',
-	'customizer' => require SHAPLA_PATH . '/inc/customizer/class-shapla-customizer.php',
+	'version' => $shapla_version,
+	'main'    => require SHAPLA_PATH . '/inc/class-shapla.php',
 );
+
+require SHAPLA_PATH . '/inc/customizer/class-shapla-customizer.php';
 
 /**
  * Load template hooks and functions file.
@@ -73,11 +74,6 @@ require SHAPLA_PATH . '/inc/shapla-template-functions.php';
  * Load theme scripts and styles
  */
 require SHAPLA_PATH . '/inc/class-shapla-assets.php';
-
-/**
- * Customizer
- */
-require SHAPLA_PATH . '/inc/customizer/init.php';
 
 /**
  * Load Shapla modules

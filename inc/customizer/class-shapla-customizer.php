@@ -14,35 +14,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		private static $instance;
 
 		/**
-		 * Customize settings configuration
-		 *
-		 * @var array
-		 */
-		private $setting = array(
-			'option_type' => 'theme_mod',
-			'capability'  => 'edit_theme_options',
-		);
-
-		/**
 		 * Customize fields
 		 *
 		 * @var array
 		 */
 		private $fields = array();
-
-		/**
-		 * Customize panels
-		 *
-		 * @var array
-		 */
-		private $panels = array();
-
-		/**
-		 * Customize sections
-		 *
-		 * @var array
-		 */
-		private $sections = array();
 
 		/**
 		 * Customize available field types
@@ -76,7 +52,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				self::$instance = new self();
 
 				add_action( 'customize_register', array( self::$instance, 'modify_customize_defaults' ) );
-				add_action( 'customize_register', array( self::$instance, 'customize_register' ) );
+				add_action( 'customize_register', array( self::$instance, 'register_control_type' ) );
+				add_action( 'customize_register', array( self::$instance, 'init_field_settings' ) );
 				add_action( 'customize_save_after', array( self::$instance, 'generate_css_file' ) );
 			}
 
@@ -245,114 +222,49 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
-		 * Add panel, section and settings
+		 * Registered Control Types
 		 *
 		 * @param WP_Customize_Manager $wp_customize
 		 */
-		public function customize_register( $wp_customize ) {
-			// Registered Control Types
+		public function register_control_type( $wp_customize ) {
 			foreach ( static::get_custom_controls() as $custom_control ) {
 				$wp_customize->register_control_type( $custom_control );
 			}
-
-			// Add panel to customizer
-			if ( count( $this->panels ) > 0 ) {
-				foreach ( $this->panels as $panel ) {
-					$wp_customize->add_panel( $panel['id'], array(
-						'priority'    => isset( $panel['priority'] ) ? $panel['priority'] : 30,
-						'capability'  => $this->setting['capability'],
-						'title'       => $panel['title'],
-						'description' => isset( $panel['description'] ) ? $panel['description'] : '',
-					) );
-				}
-			}
-
-			// Add section to customizer
-			if ( count( $this->sections ) > 0 ) {
-				foreach ( $this->sections as $section ) {
-					$wp_customize->add_section( $section['id'], array(
-						'title'       => $section['title'],
-						'panel'       => isset( $section['panel'] ) ? $section['panel'] : '',
-						'priority'    => isset( $section['priority'] ) ? $section['priority'] : 30,
-						'description' => isset( $section['description'] ) ? $section['description'] : '',
-					) );
-				}
-			}
-
-			// Add field to customizer
-			if ( count( $this->fields ) > 0 ) {
-				foreach ( $this->fields as $field ) {
-
-					// Add settings and controls
-					$wp_customize->add_setting( $field['settings'], array(
-						'default'           => $field['default'],
-						'type'              => $this->setting['option_type'],
-						'capability'        => $this->setting['capability'],
-						'transport'         => isset( $field['transport'] ) ? $field['transport'] : 'refresh',
-						'sanitize_callback' => static::get_sanitize_callback( $field ),
-					) );
-					$wp_customize->add_control( $this->add_control( $wp_customize, $field ) );
-				}
-			}
 		}
 
 		/**
-		 * Set settings configuration
-		 *
-		 * @param array $params
+		 * @param WP_Customize_Manager $wp_customize
 		 */
-		public function add_config( array $params ) {
-			$this->setting = array(
-				'option_type' => isset( $params['option_type'] ) ? $params['option_type'] : 'theme_mod',
-				'capability'  => isset( $params['capability'] ) ? $params['capability'] : 'edit_theme_options',
-			);
-		}
+		public function init_field_settings( $wp_customize ) {
+			require SHAPLA_PATH . '/inc/customizer/class-shapla-customizer-config.php';
+			require SHAPLA_PATH . '/inc/customizer/fields/init.php';
 
-		/**
-		 * Add settings panel
-		 *
-		 * @param string $id
-		 * @param array $args
-		 *
-		 * @throws Exception
-		 */
-		public function add_panel( $id, array $args ) {
-			if ( ! isset( $id, $args['title'] ) ) {
-				throw new Exception( __( 'Required key is not set properly for adding panel.', 'shapla' ) );
+			$panels   = Shapla_Customizer_Config::get_panels();
+			$sections = Shapla_Customizer_Config::get_sections();
+			$fields   = Shapla_Customizer_Config::get_fields();
+
+			// @todo remove it
+			$this->fields = $fields;
+
+			// Add panels
+			foreach ( $panels as $panel_id => $panel_args ) {
+				$wp_customize->add_panel( $panel_id, $panel_args );
 			}
 
-			$this->panels[] = array_merge( array( 'id' => $id ), $args );
-		}
-
-		/**
-		 * Add settings section
-		 *
-		 * @param string $id
-		 * @param array $args
-		 *
-		 * @throws Exception
-		 */
-		public function add_section( $id, array $args ) {
-			if ( ! isset( $id, $args['title'] ) ) {
-				throw new Exception( __( 'Required key is not set properly for adding section.', 'shapla' ) );
+			// Add sections
+			foreach ( $sections as $section_id => $section_args ) {
+				$wp_customize->add_section( $section_id, $section_args );
 			}
 
-			$this->sections[] = array_merge( array( 'id' => $id ), $args );
-		}
-
-		/**
-		 * Add settings field
-		 *
-		 * @param array $args
-		 *
-		 * @throws Exception
-		 */
-		public function add_field( array $args ) {
-			if ( ! isset( $args['settings'], $args['default'], $args['label'] ) ) {
-				throw new Exception( __( 'Required key is not set properly for adding field.', 'shapla' ) );
+			// Add fields
+			foreach ( $fields as $field_id => $field ) {
+				$wp_customize->add_setting( $field_id, array(
+					'default'           => $field['default'],
+					'transport'         => $field['transport'],
+					'sanitize_callback' => $field['sanitize_callback'],
+				) );
+				$wp_customize->add_control( $this->add_control( $wp_customize, $field ) );
 			}
-
-			$this->fields[] = $args;
 		}
 
 		/**
@@ -417,41 +329,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			return $new_args;
-		}
-
-		/**
-		 * Get customize sanitize method
-		 *
-		 * @param array $field
-		 *
-		 * @return array|string
-		 */
-		public static function get_sanitize_callback( array $field ) {
-			if ( isset( $field['sanitize_callback'] ) && is_callable( $field['sanitize_callback'] ) ) {
-				return $field['sanitize_callback'];
-			}
-
-			$type = isset( $field['type'] ) ? $field['type'] : 'text';
-			$type = str_replace( '-', '_', $type );
-
-			$methods = [
-				'typography'  => [ Shapla_Sanitize::class, 'typography' ],
-				'background'  => [ Shapla_Sanitize::class, 'background' ],
-				'number'      => [ Shapla_Sanitize::class, 'number' ],
-				'image'       => [ Shapla_Sanitize::class, 'url' ],
-				'url'         => [ Shapla_Sanitize::class, 'url' ],
-				'email'       => [ Shapla_Sanitize::class, 'email' ],
-				'checkbox'    => [ Shapla_Sanitize::class, 'checked' ],
-				'textarea'    => [ Shapla_Sanitize::class, 'html' ],
-				'alpha_color' => [ Shapla_Sanitize::class, 'color' ],
-				'color'       => [ Shapla_Sanitize::class, 'color' ],
-			];
-
-			if ( isset( $methods[ $type ] ) ) {
-				return $methods[ $type ];
-			}
-
-			return [ Shapla_Sanitize::class, 'text' ];
 		}
 
 		/**

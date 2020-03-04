@@ -5,19 +5,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add new panel
-$shapla->customizer->add_panel( 'site_footer_panel', array(
+Shapla_Customizer_Config::add_panel( 'site_footer_panel', array(
 	'title'       => __( 'Footer', 'shapla' ),
 	'description' => __( 'Customise the look & feel of your web site footer.', 'shapla' ),
 	'priority'    => 30,
 ) );
 // Add new section
-$shapla->customizer->add_section( 'site_footer_widgets', array(
+Shapla_Customizer_Config::add_section( 'site_footer_widgets', array(
 	'title'       => __( 'Widgets', 'shapla' ),
 	'description' => __( 'Customise the look & feel of your web site footer widget area.', 'shapla' ),
 	'panel'       => 'site_footer_panel',
 	'priority'    => 10,
 ) );
-$shapla->customizer->add_section( 'site_footer_bottom_bar', array(
+Shapla_Customizer_Config::add_section( 'site_footer_bottom_bar', array(
 	'title'       => __( 'Bottom Bar', 'shapla' ),
 	'description' => __( 'Customise the look & feel of your web site footer bottom bar.', 'shapla' ),
 	'panel'       => 'site_footer_panel',
@@ -25,8 +25,7 @@ $shapla->customizer->add_section( 'site_footer_bottom_bar', array(
 ) );
 
 // Footer Widget Rows
-$shapla->customizer->add_field( array(
-	'settings'    => 'footer_widget_rows',
+Shapla_Customizer_Config::add_field( 'footer_widget_rows', array(
 	'type'        => 'range-slider',
 	'section'     => 'site_footer_widgets',
 	'label'       => __( 'Footer Widget Rows', 'shapla' ),
@@ -40,8 +39,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 // Footer Widget Columns
-$shapla->customizer->add_field( array(
-	'settings'    => 'footer_widget_columns',
+Shapla_Customizer_Config::add_field( 'footer_widget_columns', array(
 	'type'        => 'range-slider',
 	'section'     => 'site_footer_widgets',
 	'label'       => __( 'Footer Widget Columns', 'shapla' ),
@@ -55,8 +53,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings'    => 'footer_widget_background',
+Shapla_Customizer_Config::add_field( 'footer_widget_background', array(
 	'type'        => 'background',
 	'label'       => esc_attr__( 'Footer Widget Area Background', 'shapla' ),
 	'description' => esc_attr__( 'Controls the background of the footer widget area.', 'shapla' ),
@@ -79,8 +76,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings' => 'footer_widget_text_color',
+Shapla_Customizer_Config::add_field( 'footer_widget_text_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Text Color', 'shapla' ),
@@ -105,8 +101,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings' => 'footer_widget_link_color',
+Shapla_Customizer_Config::add_field( 'footer_widget_link_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_widgets',
 	'label'    => __( 'Link Color', 'shapla' ),
@@ -121,8 +116,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Site Footer Bottom Bar Background Color
-$shapla->customizer->add_field( array(
-	'settings' => 'site_footer_bg_color',
+Shapla_Customizer_Config::add_field( 'site_footer_bg_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Background Color', 'shapla' ),
@@ -137,8 +131,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Site Footer Bottom Bar Text Color
-$shapla->customizer->add_field( array(
-	'settings' => 'site_footer_text_color',
+Shapla_Customizer_Config::add_field( 'site_footer_text_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Text Color', 'shapla' ),
@@ -153,8 +146,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Site Footer Bottom Bar Link Color
-$shapla->customizer->add_field( array(
-	'settings' => 'site_footer_link_color',
+Shapla_Customizer_Config::add_field( 'site_footer_link_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'site_footer_bottom_bar',
 	'label'    => __( 'Link Color', 'shapla' ),
@@ -169,8 +161,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Footer credit text
-$shapla->customizer->add_field( array(
-	'settings'    => 'site_copyright_text',
+Shapla_Customizer_Config::add_field( 'site_copyright_text', array(
 	'type'        => 'textarea',
 	'section'     => 'site_footer_bottom_bar',
 	'label'       => __( 'Copyright Text', 'shapla' ),

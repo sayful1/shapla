@@ -5,28 +5,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add new panel
-$shapla->customizer->add_panel( 'page_title_bar_panel', array(
+Shapla_Customizer_Config::add_panel( 'page_title_bar_panel', array(
 	'title'    => __( 'Page Title Bar', 'shapla' ),
 	'priority' => 30,
 ) );
 
 // Add new section
-$shapla->customizer->add_section( 'breadcrumbs', array(
+Shapla_Customizer_Config::add_section( 'breadcrumbs', array(
 	'title'    => __( 'Breadcrumbs', 'shapla' ),
 	'priority' => 20,
 	'panel'    => 'page_title_bar_panel',
 ) );
 
 // Add new section
-$shapla->customizer->add_section( 'page_title_bar', array(
+Shapla_Customizer_Config::add_section( 'page_title_bar', array(
 	'title'    => __( 'Page Title Bar', 'shapla' ),
 	'priority' => 10,
 	'panel'    => 'page_title_bar_panel',
 ) );
 
 // Top and Bottom Padding
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_padding',
+Shapla_Customizer_Config::add_field( 'page_title_bar_padding', array(
 	'type'        => 'text',
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Bar Top &amp; Bottom Padding', 'shapla' ),
@@ -53,8 +52,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Border Color
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_border_color',
+Shapla_Customizer_Config::add_field( 'page_title_bar_border_color', array(
 	'type'        => 'alpha-color',
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Bar Borders Color', 'shapla' ),
@@ -78,8 +76,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Page Title Bar Text Alignment
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_text_alignment',
+Shapla_Customizer_Config::add_field( 'page_title_bar_text_alignment', array(
 	'type'        => 'select',
 	'section'     => 'page_title_bar',
 	'label'       => __( 'Page Title Bar Text Alignment', 'shapla' ),
@@ -95,8 +92,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings'    => 'page_title_bar_background',
+Shapla_Customizer_Config::add_field( 'page_title_bar_background', array(
 	'type'        => 'background',
 	'label'       => esc_attr__( 'Page Title Bar Background', 'shapla' ),
 	'description' => esc_attr__( 'Controls the background of the page title bar.', 'shapla' ),
@@ -120,9 +116,8 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Page Title Typography
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'page_title_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'page_title_typography',
 	'section'     => 'page_title_bar',
 	'label'       => esc_attr__( 'Page Title Typography', 'shapla' ),
 	'description' => esc_attr__( 'Control the typography for page title.', 'shapla' ),
@@ -150,8 +145,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Page Title Bar Text Alignment
-$shapla->customizer->add_field( array(
-	'settings'    => 'breadcrumbs_content_display',
+Shapla_Customizer_Config::add_field( 'breadcrumbs_content_display', array(
 	'type'        => 'radio-button',
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs Content Display', 'shapla' ),
@@ -165,8 +159,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Breadcrumbs on Mobile Devices
-$shapla->customizer->add_field( array(
-	'settings'    => 'breadcrumbs_on_mobile_devices',
+Shapla_Customizer_Config::add_field( 'breadcrumbs_on_mobile_devices', array(
 	'type'        => 'radio-button',
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs on Mobile Devices', 'shapla' ),
@@ -180,8 +173,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Breadcrumbs Separator
-$shapla->customizer->add_field( array(
-	'settings'    => 'breadcrumbs_separator',
+Shapla_Customizer_Config::add_field( 'breadcrumbs_separator', array(
 	'type'        => 'select',
 	'section'     => 'breadcrumbs',
 	'label'       => __( 'Breadcrumbs Separator', 'shapla' ),

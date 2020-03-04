@@ -5,15 +5,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add new section
-$shapla->customizer->add_section( 'layout_section', array(
+Shapla_Customizer_Config::add_section( 'layout_section', [
 	'title'       => __( 'Layout', 'shapla' ),
 	'description' => __( 'Customise the look & feel of your web site layout.', 'shapla' ),
 	'priority'    => 10,
-) );
+] );
 
 // Site Layout
-$shapla->customizer->add_field( array(
-	'settings'    => 'site_layout',
+Shapla_Customizer_Config::add_field( 'site_layout', array(
 	'type'        => 'radio-button',
 	'section'     => 'layout_section',
 	'label'       => __( 'Site Layout', 'shapla' ),
@@ -27,8 +26,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // General Layout
-$shapla->customizer->add_field( array(
-	'settings'    => 'general_layout',
+Shapla_Customizer_Config::add_field( 'general_layout', array(
 	'type'        => 'radio-image',
 	'section'     => 'layout_section',
 	'label'       => __( 'Sidebar Layout', 'shapla' ),
@@ -43,8 +41,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Header Layout
-$shapla->customizer->add_field( array(
-	'settings'    => 'header_layout',
+Shapla_Customizer_Config::add_field( 'header_layout', array(
 	'type'        => 'radio-image',
 	'section'     => 'layout_section',
 	'label'       => __( 'Header Layout', 'shapla' ),

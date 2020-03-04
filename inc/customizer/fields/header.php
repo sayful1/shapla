@@ -5,8 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Change site title font size
-$shapla->customizer->add_field( array(
-	'settings' => 'site_logo_text_font_size',
+Shapla_Customizer_Config::add_field( 'site_logo_text_font_size', array(
 	'type'     => 'text',
 	'section'  => 'header_image',
 	'label'    => __( 'Site Title Font Size', 'shapla' ),
@@ -21,8 +20,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Site Title Color
-$shapla->customizer->add_field( array(
-	'settings' => 'header_background_color',
+Shapla_Customizer_Config::add_field( 'header_background_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Background Color', 'shapla' ),
@@ -37,8 +35,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Header text color
-$shapla->customizer->add_field( array(
-	'settings' => 'header_text_color',
+Shapla_Customizer_Config::add_field( 'header_text_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Text Color', 'shapla' ),
@@ -73,8 +70,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Header link color
-$shapla->customizer->add_field( array(
-	'settings' => 'header_link_color',
+Shapla_Customizer_Config::add_field( 'header_link_color', array(
 	'type'     => 'alpha-color',
 	'section'  => 'header_image',
 	'label'    => __( 'Header Link Color', 'shapla' ),
@@ -104,8 +100,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Sticky Header
-$shapla->customizer->add_field( array(
-	'settings'    => 'sticky_header',
+Shapla_Customizer_Config::add_field( 'sticky_header', array(
 	'type'        => 'toggle',
 	'section'     => 'header_image',
 	'label'       => __( 'Sticky Header', 'shapla' ),
@@ -115,8 +110,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Toggle search icon
-$shapla->customizer->add_field( array(
-	'settings'    => 'show_search_icon',
+Shapla_Customizer_Config::add_field( 'show_search_icon', array(
 	'type'        => 'toggle',
 	'section'     => 'header_image',
 	'label'       => __( 'Show Search Icon', 'shapla' ),
@@ -125,8 +119,7 @@ $shapla->customizer->add_field( array(
 	'priority'    => 50,
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings' => 'dropdown_direction',
+Shapla_Customizer_Config::add_field( 'dropdown_direction', array(
 	'type'     => 'radio-button',
 	'section'  => 'header_image',
 	'label'    => __( 'Dropdown direction', 'shapla' ),

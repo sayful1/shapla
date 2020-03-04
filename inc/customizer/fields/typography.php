@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Add Typography Panel
  */
-$shapla->customizer->add_panel( 'typography_panel', array(
+Shapla_Customizer_Config::add_panel( 'typography_panel', array(
 	'title'    => __( 'Typography', 'shapla' ),
 	'priority' => 40,
 ) );
@@ -15,12 +15,12 @@ $shapla->customizer->add_panel( 'typography_panel', array(
 /**
  * Add Typography Sections
  */
-$shapla->customizer->add_section( 'body_typography_section', array(
+Shapla_Customizer_Config::add_section( 'body_typography_section', array(
 	'title'    => __( 'Body Typography', 'shapla' ),
 	'panel'    => 'typography_panel',
 	'priority' => 10,
 ) );
-$shapla->customizer->add_section( 'headers_typography_section', array(
+Shapla_Customizer_Config::add_section( 'headers_typography_section', array(
 	'title'    => __( 'Headers Typography', 'shapla' ),
 	'panel'    => 'typography_panel',
 	'priority' => 20,
@@ -29,9 +29,8 @@ $shapla->customizer->add_section( 'headers_typography_section', array(
 /**
  * Body Typography Section
  */
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'body_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'body_typography',
 	'section'     => 'body_typography_section',
 	'label'       => esc_attr__( 'Body Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all body text.', 'shapla' ),
@@ -40,9 +39,6 @@ $shapla->customizer->add_field( array(
 		'variant'     => '400',
 		'font-size'   => '1rem',
 		'line-height' => '1.5',
-		// 'color'          => shapla_default_options( 'text_color' ),
-		// 'text-transform' => 'none',
-		// 'text-align'     => 'left'
 	),
 	'priority'    => 10,
 	'choices'     => array(
@@ -70,9 +66,8 @@ $shapla->customizer->add_field( array(
 /**
  * Headers Section
  */
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H1, H2, H3, H4, H5, H6 Headers.', 'shapla' ),
@@ -80,8 +75,6 @@ $shapla->customizer->add_field( array(
 		'font-family'    => shapla_default_options( 'font_family' ),
 		'variant'        => '500',
 		'text-transform' => 'none',
-		// 'color'          => shapla_default_options( 'heading_color' ),
-		// 'text-align'     => 'left'
 	),
 	'priority'    => 10,
 	'choices'     => array(
@@ -98,9 +91,8 @@ $shapla->customizer->add_field( array(
 		),
 	),
 ) );
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'h1_headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'h1_headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'H1 Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H1 Headers.', 'shapla' ),
@@ -116,9 +108,8 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'h2_headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'h2_headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'H2 Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H2 Headers.', 'shapla' ),
@@ -134,9 +125,8 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'h3_headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'h3_headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'H3 Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H3 Headers.', 'shapla' ),
@@ -152,9 +142,8 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'h4_headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'h4_headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'H4 Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H4 Headers.', 'shapla' ),
@@ -170,9 +159,8 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'h5_headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'h5_headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'H5 Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H5 Headers.', 'shapla' ),
@@ -188,9 +176,8 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'h6_headers_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'h6_headers_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'H6 Headers Typography', 'shapla' ),
 	'description' => esc_attr__( 'These settings control the typography for all H6 Headers.', 'shapla' ),
@@ -206,9 +193,8 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
+Shapla_Customizer_Config::add_field( 'post_titles_typography', array(
 	'type'        => 'typography',
-	'settings'    => 'post_titles_typography',
 	'section'     => 'headers_typography_section',
 	'label'       => esc_attr__( 'Post Titles Typography', 'shapla' ),
 	'description' => esc_attr__( 'Controls the font size and line height of post titles including archive and single posts. This is a H2 heading. Enter value including CSS unit (px, em, rem), ex: 18px.', 'shapla' ),

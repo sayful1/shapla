@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Add Extra Panel
  */
-$shapla->customizer->add_panel( 'extra_panel', array(
+Shapla_Customizer_Config::add_panel( 'extra_panel', array(
 	'title'    => __( 'Extra', 'shapla' ),
 	'priority' => 190,
 ) );
@@ -15,7 +15,7 @@ $shapla->customizer->add_panel( 'extra_panel', array(
 /**
  * Add Go to Top Button Sections
  */
-$shapla->customizer->add_section( 'go_to_top_button_section', array(
+Shapla_Customizer_Config::add_section( 'go_to_top_button_section', array(
 	'title'    => __( 'Go to Top Button', 'shapla' ),
 	'panel'    => 'extra_panel',
 	'priority' => 10,
@@ -24,7 +24,7 @@ $shapla->customizer->add_section( 'go_to_top_button_section', array(
 /**
  * Add Structured Data Sections
  */
-$shapla->customizer->add_section( 'structured_data_section', array(
+Shapla_Customizer_Config::add_section( 'structured_data_section', array(
 	'title'    => __( 'Structured Data', 'shapla' ),
 	'panel'    => 'extra_panel',
 	'priority' => 20,
@@ -33,8 +33,7 @@ $shapla->customizer->add_section( 'structured_data_section', array(
 /**
  * Display Go to top button field
  */
-$shapla->customizer->add_field( array(
-	'settings'          => 'display_go_to_top_button',
+Shapla_Customizer_Config::add_field( 'display_go_to_top_button', array(
 	'type'              => 'toggle',
 	'section'           => 'go_to_top_button_section',
 	'label'             => __( 'Display Go to top button', 'shapla' ),
@@ -47,8 +46,7 @@ $shapla->customizer->add_field( array(
 /**
  * Go to Top Button Section
  */
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_structured_data',
+Shapla_Customizer_Config::add_field( 'show_structured_data', array(
 	'type'              => 'toggle',
 	'section'           => 'structured_data_section',
 	'label'             => __( 'Enable Structured Data', 'shapla' ),

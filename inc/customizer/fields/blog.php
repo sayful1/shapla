@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Add Blog Panel
  */
-$shapla->customizer->add_panel( 'blog_panel', array(
+Shapla_Customizer_Config::add_panel( 'blog_panel', array(
 	'title'    => __( 'Blog', 'shapla' ),
 	'priority' => 50,
 ) );
@@ -15,19 +15,19 @@ $shapla->customizer->add_panel( 'blog_panel', array(
 /**
  * Add Blog Sections
  */
-$shapla->customizer->add_section( 'general_blog_section', array(
+Shapla_Customizer_Config::add_section( 'general_blog_section', array(
 	'title'       => __( 'General Blog', 'shapla' ),
 	'description' => __( 'Customise your site blog layouts and styles.', 'shapla' ),
 	'panel'       => 'blog_panel',
 	'priority'    => 10,
 ) );
-$shapla->customizer->add_section( 'single_blog_section', array(
+Shapla_Customizer_Config::add_section( 'single_blog_section', array(
 	'title'       => __( 'Blog Single Post', 'shapla' ),
 	'description' => __( 'Customise your site single blog layouts and styles.', 'shapla' ),
 	'panel'       => 'blog_panel',
 	'priority'    => 20,
 ) );
-$shapla->customizer->add_section( 'blog_meta_section', array(
+Shapla_Customizer_Config::add_section( 'blog_meta_section', array(
 	'title'       => __( 'Blog Meta', 'shapla' ),
 	'description' => __( 'Customise your site blog meta data and its styles.', 'shapla' ),
 	'panel'       => 'blog_panel',
@@ -37,8 +37,7 @@ $shapla->customizer->add_section( 'blog_meta_section', array(
 /**
  * General Blog Section
  */
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_page_title',
+Shapla_Customizer_Config::add_field( 'show_blog_page_title', array(
 	'type'              => 'toggle',
 	'section'           => 'general_blog_section',
 	'label'             => __( 'Blog Page Title Bar', 'shapla' ),
@@ -47,8 +46,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
 	'priority'          => 10,
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'blog_page_title',
+Shapla_Customizer_Config::add_field( 'blog_page_title', array(
 	'type'              => 'text',
 	'section'           => 'general_blog_section',
 	'label'             => __( 'Blog Page Title', 'shapla' ),
@@ -58,8 +56,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'text' ),
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings'          => 'blog_layout',
+Shapla_Customizer_Config::add_field( 'blog_layout', array(
 	'type'              => 'select',
 	'section'           => 'general_blog_section',
 	'label'             => __( 'Blog layout', 'shapla' ),
@@ -72,8 +69,7 @@ $shapla->customizer->add_field( array(
 		'grid'    => esc_html__( 'Grid', 'shapla' ),
 	),
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'blog_excerpt_length',
+Shapla_Customizer_Config::add_field( 'blog_excerpt_length', array(
 	'type'              => 'range-slider',
 	'section'           => 'general_blog_section',
 	'label'             => __( 'Excerpt length', 'shapla' ),
@@ -88,8 +84,7 @@ $shapla->customizer->add_field( array(
 	),
 ) );
 
-$shapla->customizer->add_field( array(
-	'settings'          => 'blog_date_format',
+Shapla_Customizer_Config::add_field( 'blog_date_format', array(
 	'type'              => 'radio-button',
 	'section'           => 'general_blog_section',
 	'label'             => __( 'Blog date format', 'shapla' ),
@@ -106,8 +101,7 @@ $shapla->customizer->add_field( array(
 /**
  * Blog Meta Section
  */
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_author_avatar',
+Shapla_Customizer_Config::add_field( 'show_blog_author_avatar', array(
 	'type'              => 'toggle',
 	'section'           => 'blog_meta_section',
 	'label'             => __( 'Post Meta Author Avatar', 'shapla' ),
@@ -116,8 +110,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
 	'priority'          => 10,
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_author_name',
+Shapla_Customizer_Config::add_field( 'show_blog_author_name', array(
 	'type'              => 'toggle',
 	'section'           => 'blog_meta_section',
 	'label'             => __( 'Post Meta Author Name', 'shapla' ),
@@ -126,8 +119,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
 	'priority'          => 20,
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_date',
+Shapla_Customizer_Config::add_field( 'show_blog_date', array(
 	'type'              => 'toggle',
 	'section'           => 'blog_meta_section',
 	'label'             => __( 'Post Meta Date', 'shapla' ),
@@ -136,8 +128,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
 	'priority'          => 30,
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_category_list',
+Shapla_Customizer_Config::add_field( 'show_blog_category_list', array(
 	'type'              => 'toggle',
 	'section'           => 'blog_meta_section',
 	'label'             => __( 'Post Meta Categories', 'shapla' ),
@@ -146,8 +137,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
 	'priority'          => 40,
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_tag_list',
+Shapla_Customizer_Config::add_field( 'show_blog_tag_list', array(
 	'type'              => 'toggle',
 	'section'           => 'blog_meta_section',
 	'label'             => __( 'Post Meta Tags', 'shapla' ),
@@ -156,8 +146,7 @@ $shapla->customizer->add_field( array(
 	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
 	'priority'          => 50,
 ) );
-$shapla->customizer->add_field( array(
-	'settings'          => 'show_blog_comments_link',
+Shapla_Customizer_Config::add_field( 'show_blog_comments_link', array(
 	'type'              => 'toggle',
 	'section'           => 'blog_meta_section',
 	'label'             => __( 'Post Meta Comments', 'shapla' ),

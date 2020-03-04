@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Add new section
-$shapla->customizer->add_section( 'theme_colors', array(
+Shapla_Customizer_Config::add_section( 'theme_colors', array(
 	'title'       => __( 'Colors', 'shapla' ),
 	'description' => __( 'Customise colors of your web site.', 'shapla' ),
 	'priority'    => 20,
@@ -11,5 +11,5 @@ $shapla->customizer->add_section( 'theme_colors', array(
 
 $color_settings = Shapla_Colors::customizer_colors_settings();
 foreach ( $color_settings as $color_setting ) {
-	$shapla->customizer->add_field( $color_setting );
+	Shapla_Customizer_Config::add_field( $color_setting['settings'], $color_setting );
 }

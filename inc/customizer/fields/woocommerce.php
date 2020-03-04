@@ -5,14 +5,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Add new panel
-$shapla->customizer->add_panel( 'woocommerce', array(
+Shapla_Customizer_Config::add_panel( 'woocommerce', array(
 	'title'       => __( 'WooCommerce', 'shapla' ),
 	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
 	'priority'    => 200,
 ) );
 
 // Add new section
-$shapla->customizer->add_section( 'shapla_woocommerce_section', array(
+Shapla_Customizer_Config::add_section( 'shapla_woocommerce_section', array(
 	'title'       => __( 'General', 'shapla' ),
 	'description' => __( 'Customise WooCommerce related look & feel of your web site.', 'shapla' ),
 	'panel'       => 'woocommerce',
@@ -20,8 +20,7 @@ $shapla->customizer->add_section( 'shapla_woocommerce_section', array(
 ) );
 
 // Change products per page
-$shapla->customizer->add_field( array(
-	'settings'    => 'wc_products_per_page',
+Shapla_Customizer_Config::add_field( 'wc_products_per_page', array(
 	'type'        => 'range-slider',
 	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Products per page', 'shapla' ),
@@ -36,8 +35,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Change site title font size
-$shapla->customizer->add_field( array(
-	'settings'    => 'wc_products_per_row',
+Shapla_Customizer_Config::add_field( 'wc_products_per_row', array(
 	'type'        => 'range-slider',
 	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Products per row', 'shapla' ),
@@ -52,8 +50,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Toggle cart icon
-$shapla->customizer->add_field( array(
-	'settings'    => 'show_cart_icon',
+Shapla_Customizer_Config::add_field( 'show_cart_icon', array(
 	'type'        => 'toggle',
 	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Show Cart Icon', 'shapla' ),
@@ -63,8 +60,7 @@ $shapla->customizer->add_field( array(
 ) );
 
 // Toggle cart icon
-$shapla->customizer->add_field( array(
-	'settings'    => 'show_product_search_categories',
+Shapla_Customizer_Config::add_field( 'show_product_search_categories', array(
 	'type'        => 'toggle',
 	'section'     => 'shapla_woocommerce_section',
 	'label'       => __( 'Show Categories Dropdown', 'shapla' ),
