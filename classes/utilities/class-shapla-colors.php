@@ -263,73 +263,69 @@ class Shapla_Colors {
 		return isset( $colors[ $name ] ) ? $colors[ $name ] : '';
 	}
 
+	/**
+	 * Customize colors settings
+	 *
+	 * @return array
+	 */
 	public static function customizer_colors_settings() {
-		$settings = array(
-			array(
-				'settings'    => 'shapla_primary_color',
+		return [
+			'shapla_primary_color'        => [
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Primary Color', 'shapla' ),
 				'description' => __( 'A primary color is the color displayed most frequently across your site.', 'shapla' ),
 				'default'     => static::get_default_color( 'primary' ),
 				'priority'    => 10,
-			),
-			array(
-				'settings'    => 'shapla_secondary_color',
+			],
+			'shapla_secondary_color'      => [
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Secondary Color', 'shapla' ),
 				'description' => __( 'Color for Links, Actions buttons, Highlighting text', 'shapla' ),
 				'default'     => static::get_default_color( 'secondary' ),
 				'priority'    => 20,
-			),
-			array(
-				'settings'    => 'shapla_success_color',
+			],
+			'shapla_success_color'        => [
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Success Color', 'shapla' ),
 				'description' => __( 'Color for success in components.', 'shapla' ),
 				'default'     => static::get_default_color( 'success' ),
 				'priority'    => 30,
-			),
-			array(
-				'settings'    => 'shapla_error_color',
+			],
+			'shapla_error_color'          => [
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Error Color', 'shapla' ),
 				'description' => __( 'Color for error in components.', 'shapla' ),
 				'default'     => static::get_default_color( 'error' ),
 				'priority'    => 40,
-			),
-			array(
-				'settings'    => 'shapla_surface_color',
+			],
+			'shapla_surface_color'        => [
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Surface Color', 'shapla' ),
 				'description' => __( 'Color for surfaces of components such as cards, modal.', 'shapla' ),
 				'default'     => static::get_default_color( 'surface' ),
 				'priority'    => 50,
-			),
-			array(
-				'settings'    => 'shapla_text_primary_color',
+			],
+			'shapla_text_primary_color'   => [
 				'type'        => 'alpha-color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Text Primary Color', 'shapla' ),
 				'description' => __( 'Used for most text.', 'shapla' ),
 				'default'     => static::get_default_color( 'text_primary' ),
 				'priority'    => 60,
-			),
-			array(
-				'settings'    => 'shapla_text_secondary_color',
+			],
+			'shapla_text_secondary_color' => [
 				'type'        => 'alpha-color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Text Secondary Color', 'shapla' ),
 				'description' => __( 'Used for text which is lower in the visual hierarchy.', 'shapla' ),
 				'default'     => static::get_default_color( 'text_secondary' ),
 				'priority'    => 60,
-			),
-		);
-
-		return $settings;
+			],
+		];
 	}
 }

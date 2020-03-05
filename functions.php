@@ -13,18 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Assign the Shapla version to a var
+ * Define theme constants
  */
-$theme          = wp_get_theme( 'shapla' );
-$shapla_version = $theme['Version'];
+define( 'SHAPLA_THEME_VERSION', wp_get_theme( 'shapla' )->get( 'Version' ) );
+define( 'SHAPLA_THEME_PATH', untrailingslashit( dirname( __FILE__ ) ) );
+define( 'SHAPLA_THEME_URI', untrailingslashit( get_template_directory_uri() ) );
 
-if ( ! defined( 'SHAPLA_VERSION' ) ) {
-	define( 'SHAPLA_VERSION', $shapla_version );
-}
-
-if ( ! defined( 'SHAPLA_PATH' ) ) {
-	define( 'SHAPLA_PATH', dirname( __FILE__ ) );
-}
 
 spl_autoload_register( function ( $className ) {
 	// If class already exists, no need to include it
@@ -41,12 +35,12 @@ spl_autoload_register( function ( $className ) {
 	$file_name = 'class-' . strtolower( str_replace( '_', '-', $className ) ) . '.php';
 
 	$directories = array(
-		SHAPLA_PATH . '/classes/customize/controls/',
-		SHAPLA_PATH . '/classes/integrations/carousel-slider/',
-		SHAPLA_PATH . '/classes/integrations/elementor-pro/',
-		SHAPLA_PATH . '/classes/integrations/jetpack/',
-		SHAPLA_PATH . '/classes/integrations/woocommerce/',
-		SHAPLA_PATH . '/classes/utilities/',
+		SHAPLA_THEME_PATH . '/classes/customize/controls/',
+		SHAPLA_THEME_PATH . '/classes/integrations/carousel-slider/',
+		SHAPLA_THEME_PATH . '/classes/integrations/elementor-pro/',
+		SHAPLA_THEME_PATH . '/classes/integrations/jetpack/',
+		SHAPLA_THEME_PATH . '/classes/integrations/woocommerce/',
+		SHAPLA_THEME_PATH . '/classes/utilities/',
 	);
 
 	foreach ( $directories as $directory ) {
@@ -56,45 +50,42 @@ spl_autoload_register( function ( $className ) {
 	}
 } );
 
-$shapla = (object) array(
-	'version' => $shapla_version,
-	'main'    => require SHAPLA_PATH . '/inc/class-shapla.php',
-);
+require SHAPLA_THEME_PATH . '/inc/class-shapla.php';
 
-require SHAPLA_PATH . '/inc/customizer/class-shapla-customizer.php';
+require SHAPLA_THEME_PATH . '/inc/customizer/class-shapla-customizer.php';
 
 /**
  * Load template hooks and functions file.
  */
-require SHAPLA_PATH . '/inc/shapla-functions.php';
-require SHAPLA_PATH . '/inc/shapla-template-hooks.php';
-require SHAPLA_PATH . '/inc/shapla-template-functions.php';
+require SHAPLA_THEME_PATH . '/inc/shapla-functions.php';
+require SHAPLA_THEME_PATH . '/inc/shapla-template-hooks.php';
+require SHAPLA_THEME_PATH . '/inc/shapla-template-functions.php';
 
 /**
  * Load theme scripts and styles
  */
-require SHAPLA_PATH . '/inc/class-shapla-assets.php';
+require SHAPLA_THEME_PATH . '/inc/class-shapla-assets.php';
 
 /**
  * Load Shapla modules
  */
-include SHAPLA_PATH . '/inc/modules/class-shapla-blog.php';
+include SHAPLA_THEME_PATH . '/inc/modules/class-shapla-blog.php';
 
 /**
  * Add structured data if enabled
  */
-require SHAPLA_PATH . '/inc/class-shapla-structured-data.php';
+require SHAPLA_THEME_PATH . '/inc/class-shapla-structured-data.php';
 
 if ( is_admin() ) {
-	require SHAPLA_PATH . '/inc/admin/class-shapla-system-status.php';
-	require SHAPLA_PATH . '/inc/admin/class-shapla-admin.php';
+	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-system-status.php';
+	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-admin.php';
 
 	// Metabox
-	require SHAPLA_PATH . '/inc/admin/class-shapla-metabox.php';
-	require SHAPLA_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';
+	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-metabox.php';
+	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';
 }
 
 /**
  * Third party plugin integrations
  */
-require SHAPLA_PATH . '/classes/integrations/integrations.php';
+require SHAPLA_THEME_PATH . '/classes/integrations/integrations.php';

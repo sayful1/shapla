@@ -41,7 +41,7 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 		public function scripts() {
 			wp_enqueue_style( 'shapla-carousel-slider',
 				get_template_directory_uri() . '/assets/css/carousel-slider.css',
-				array(), SHAPLA_VERSION, 'all' );
+				array(), SHAPLA_THEME_VERSION, 'all' );
 		}
 
 		/**

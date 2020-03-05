@@ -89,7 +89,7 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 		public static function get_google_fonts() {
 			// If we got this far, cache was empty so we need to get from JSON.
 			ob_start();
-			include SHAPLA_PATH . '/assets/webfonts.json';
+			include SHAPLA_THEME_PATH . '/assets/webfonts.json';
 
 			$fonts_json = ob_get_clean();
 			$fonts      = json_decode( $fonts_json, true );
@@ -269,6 +269,20 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 			}
 
 			return $font_family . $font_category;
+		}
+
+		/**
+		 * Get site fonts
+		 *
+		 * @return array
+		 */
+		public static function get_site_fonts() {
+			return [
+				'body-font-family'     => static::get_site_font_family(),
+				'body-font-weight'     => '400',
+				'headings-font-family' => static::get_header_font_family(),
+				'headings-font-weight' => '500',
+			];
 		}
 	}
 }

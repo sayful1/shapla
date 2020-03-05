@@ -23,14 +23,15 @@ class Shapla_Assets {
 			self::$instance = new self();
 
 			add_filter( 'wp_get_custom_css', array( self::$instance, 'wp_get_custom_css' ) );
-			add_action( 'wp_enqueue_scripts', array( self::$instance, 'customize_scripts' ), 90 );
 
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'enqueue_fonts' ), 5 );
 			add_action( 'enqueue_block_editor_assets', array( self::$instance, 'enqueue_fonts' ), 1, 1 );
 
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'shapla_scripts' ), 10 );
+			add_action( 'wp_enqueue_scripts', array( self::$instance, 'customize_scripts' ), 30 );
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'child_scripts' ), 90 );
-			add_action( 'wp_head', array( self::$instance, 'inline_style' ), 5 );
+
+			add_action( 'wp_head', array( self::$instance, 'dynamic_css_variables' ), 5 );
 			add_action( 'wp_head', array( self::$instance, 'page_inline_style' ), 35 );
 		}
 
@@ -43,25 +44,23 @@ class Shapla_Assets {
 	 * @since  0.1.0
 	 */
 	public function shapla_scripts() {
-		$theme_url = get_template_directory_uri();
-
 		// Font Awesome Free icons
-		wp_enqueue_style( 'shapla-icons', $theme_url . '/assets/font-awesome/css/all.min.css',
+		wp_enqueue_style( 'shapla-icons', SHAPLA_THEME_URI . '/assets/font-awesome/css/all.min.css',
 			array(), '5.5.0', 'all' );
 
 		// Theme stylesheet.
-		wp_enqueue_style( 'shapla-style', $theme_url . '/assets/css/main.css',
-			array(), SHAPLA_VERSION, 'all' );
+		wp_enqueue_style( 'shapla-style', SHAPLA_THEME_URI . '/assets/css/main.css',
+			array(), SHAPLA_THEME_VERSION, 'all' );
 
 		// Theme block stylesheet.
 		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
-			wp_enqueue_style( 'shapla-block-style', $theme_url . '/assets/css/blocks.css',
-				array( 'shapla-style' ), SHAPLA_VERSION );
+			wp_enqueue_style( 'shapla-block-style', SHAPLA_THEME_URI . '/assets/css/blocks.css',
+				array( 'shapla-style' ), SHAPLA_THEME_VERSION );
 		}
 
 		// Load theme script.
-		wp_enqueue_script( 'shapla-script', $theme_url . '/assets/js/main.js',
-			array(), SHAPLA_VERSION, true );
+		wp_enqueue_script( 'shapla-script', SHAPLA_THEME_URI . '/assets/js/main.js',
+			array(), SHAPLA_THEME_VERSION, true );
 
 		wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );
 
@@ -117,16 +116,17 @@ class Shapla_Assets {
 	/**
 	 * Inline color style
 	 */
-	public function inline_style() {
-		$font_family        = Shapla_Fonts::get_site_font_family();
-		$header_font_family = Shapla_Fonts::get_header_font_family();
-		$colors             = Shapla_Colors::get_colors();
+	public function dynamic_css_variables() {
+		$colors = Shapla_Colors::get_colors();
+		$fonts  = Shapla_Fonts::get_site_fonts();
+
 		echo '<style type="text/css">:root{';
 		foreach ( $colors as $key => $color ) {
 			echo '--shapla-' . $key . ':' . $color . ';';
 		}
-		echo '--shapla-font-family:' . $font_family . ';';
-		echo '--shapla-headers-font-family:' . $header_font_family . ';';
+		foreach ( $fonts as $key => $font ) {
+			echo '--shapla-' . $key . ':' . $font . ';';
+		}
 		echo '}</style>' . PHP_EOL;
 	}
 

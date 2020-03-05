@@ -176,7 +176,7 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 				'shapla-woocommerce-style',
 				get_template_directory_uri() . '/assets/css/woocommerce.css',
 				array(),
-				SHAPLA_VERSION,
+				SHAPLA_THEME_VERSION,
 				'all'
 			);
 
