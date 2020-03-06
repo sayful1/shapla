@@ -4,6 +4,7 @@
 		flex-wrap: wrap;
 		margin: -1rem;
 	}
+
 	.page-header {
 		width: 100%;
 		padding-right: 1rem;
@@ -26,45 +27,66 @@
 				height: auto;
 			}
 		}
+
 		.entry-header {
 			margin: 1rem;
 			padding: 0;
 			border: none;
 		}
+
 		.cat-links {
 			display: block;
 			margin-top: 0;
 			margin-bottom: .5rem;
 			line-height: 1.25;
 		}
+
 		.entry-title {
 			margin: 0;
 			padding: 0;
 			font-size: 1.25rem;
 		}
+
 		.entry-summary {
 			margin: 0 1rem 1rem;
 		}
+
 		.tags-links {
 			margin: 0 1rem 1rem;
 		}
+
+		.spacer {
+			flex-grow: 1;
+		}
+
 		.entry-footer {
-			margin: 0 1em 1.25rem;
+			margin: 0 1rem 1rem;
 			overflow: hidden;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 		}
-		.byline,
-		.posted-on {
-			float: left;
+
+		.byline {
 			font-size: .875rem;
-			line-height: 1.33;
+
+			.author-avatar {
+				margin-right: 0.5rem;
+			}
 		}
+
 		.posted-on {
 			float: right;
+			font-size: .875rem;
+			margin-left: 1rem;
+			white-space: nowrap;
 		}
+
 		.published:not(.updated) {
 			display: none;
 		}
 	}
+
 	.pagination {
 		width: 100%;
 		padding-right: 1rem;

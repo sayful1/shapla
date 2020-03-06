@@ -48,26 +48,7 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 		 * Carousel Slider Post Carousel
 		 */
 		public function carousel_slider_post() {
-			$blog = new Shapla_Blog();
-			?>
-            <div class="blog-grid-inside">
-				<?php $blog->post_thumbnail(); ?>
-                <header class="entry-header">
-					<?php
-					$blog->post_category();
-					$blog->post_title();
-					?>
-                </header>
-                <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
-				<?php $blog->post_tag(); ?>
-                <footer class="entry-footer">
-					<?php
-					$blog->post_author();
-					$blog->post_date();
-					?>
-                </footer>
-            </div>
-			<?php
+			( new Shapla_Blog() )->get_loop_post();
 		}
 
 		/**

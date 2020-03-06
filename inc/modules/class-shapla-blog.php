@@ -80,11 +80,6 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * Get grid blog style
 		 */
 		public function blog() {
-
-			$show_author_avatar = get_theme_mod( 'show_blog_author_avatar', true );
-			$show_tag_list      = get_theme_mod( 'show_blog_tag_list', true );
-			$show_comments_link = get_theme_mod( 'show_blog_comments_link', true );
-
 			$blog_layout = get_theme_mod( 'blog_layout', 'grid' );
 			if ( 'grid' != $blog_layout ) {
 				return;
@@ -94,24 +89,33 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 			remove_action( 'shapla_loop_post', 'shapla_post_header', 10 );
 			remove_action( 'shapla_loop_post', 'shapla_post_meta', 20 );
 			remove_action( 'shapla_loop_post', 'shapla_post_content', 30 );
+
+			$this->get_loop_post();
+		}
+
+		/**
+		 * Get loop post
+		 */
+		public function get_loop_post() {
 			?>
-			<div class="blog-grid-inside">
+            <div class="blog-grid-inside">
 				<?php $this->post_thumbnail(); ?>
-				<header class="entry-header">
+                <header class="entry-header">
 					<?php
 					$this->post_category();
 					$this->post_title();
 					?>
-				</header>
-				<div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+                </header>
+                <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
 				<?php $this->post_tag(); ?>
-				<footer class="entry-footer">
+                <div class="spacer"></div>
+                <footer class="entry-footer">
 					<?php
-					$this->post_author();
+					echo static::post_author();
 					$this->post_date();
 					?>
-				</footer>
-			</div>
+                </footer>
+            </div>
 			<?php
 		}
 
@@ -210,28 +214,33 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		/**
 		 * Get blog entry author
 		 *
-		 * @param bool $echo
-		 *
 		 * @return string
 		 */
-		public function post_author( $echo = true ) {
-			$_author_avatar = get_theme_mod( 'show_blog_author_avatar', false );
-			$_author_name   = get_theme_mod( 'show_blog_author_name', true );
-			$html           = '';
+		public static function post_author() {
+			$author_avatar = get_theme_mod( 'show_blog_author_avatar', false );
+			$author_name   = get_theme_mod( 'show_blog_author_name', true );
+			$html          = '';
 
-			if ( ! $_author_avatar && ! $_author_name ) {
-				return '';
+			if ( ! $author_avatar && ! $author_name ) {
+				return $html;
+			}
+
+			$size = 32;
+			if ( is_singular() ) {
+				$size = 96;
 			}
 
 			$html .= '<span class="byline">';
 
-			if ( $_author_avatar ) {
-				$html .= '<span class="vcard">' . get_avatar( get_the_author_meta( 'ID' ), 20 ) . '</span> ';
+			if ( $author_avatar ) {
+				$html .= '<span class="author-avatar is-rounded is-' . sprintf( '%sx%s', $size, $size ) . '">';
+				$html .= get_avatar( get_the_author_meta( 'ID' ), $size );
+				$html .= '</span> ';
 			}
 
-			if ( $_author_name ) {
+			if ( $author_name ) {
 				$html .= sprintf(
-					'<span class="author">%s <a class="url fn n" href="%s">%s</a></span>',
+					'<span class="author vcard">%s <a class="url fn n" href="%s">%s</a></span>',
 					esc_html__( 'by', 'shapla' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					esc_html( get_the_author() )
@@ -240,11 +249,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 
 			$html .= '</span>';
 
-			if ( ! $echo ) {
-				return $html;
-			}
-
-			echo $html;
+			return $html;
 		}
 
 		/**

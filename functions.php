@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Define theme constants
  */
 define( 'SHAPLA_THEME_VERSION', wp_get_theme( 'shapla' )->get( 'Version' ) );
-define( 'SHAPLA_THEME_PATH', untrailingslashit( dirname( __FILE__ ) ) );
+define( 'SHAPLA_THEME_PATH', dirname( __FILE__ ) );
 define( 'SHAPLA_THEME_URI', untrailingslashit( get_template_directory_uri() ) );
 
 
@@ -55,6 +55,11 @@ require SHAPLA_THEME_PATH . '/inc/class-shapla.php';
 require SHAPLA_THEME_PATH . '/inc/customizer/class-shapla-customizer.php';
 
 /**
+ * Load Shapla modules
+ */
+include SHAPLA_THEME_PATH . '/inc/modules/class-shapla-blog.php';
+
+/**
  * Load template hooks and functions file.
  */
 require SHAPLA_THEME_PATH . '/inc/shapla-functions.php';
@@ -65,11 +70,6 @@ require SHAPLA_THEME_PATH . '/inc/shapla-template-functions.php';
  * Load theme scripts and styles
  */
 require SHAPLA_THEME_PATH . '/inc/class-shapla-assets.php';
-
-/**
- * Load Shapla modules
- */
-include SHAPLA_THEME_PATH . '/inc/modules/class-shapla-blog.php';
 
 /**
  * Add structured data if enabled
