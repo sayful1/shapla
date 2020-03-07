@@ -75,16 +75,8 @@ add_action( 'shapla_archive_page_content', 'shapla_archive_page_content', 10 );
 /**
  * Posts
  *
- * @see  shapla_post_header()
- * @see  shapla_post_meta()
- * @see  shapla_post_content()
  * @see  shapla_pagination()
  */
-add_action( 'shapla_loop_post', 'shapla_post_thumbnail', 10 );
-add_action( 'shapla_loop_post', 'shapla_post_header', 10 );
-add_action( 'shapla_loop_post', 'shapla_post_content', 20 );
-add_action( 'shapla_loop_post', 'shapla_post_meta', 30 );
-
 add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
 
 /**

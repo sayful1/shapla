@@ -1,75 +1,57 @@
-.hentry {
-	.entry-meta {
-		background: rgba(#000, 0.04);
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		margin-bottom: 2rem;
-		padding: 1rem;
+.entry-meta {
+	background: rgba(#000, 0.04);
+	color: $text-secondary;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 2rem;
+	padding: 1rem;
 
-		> * {
-			display: inline-flex;
-			align-items: center;
+	> * {
+		align-items: center;
+		display: inline-flex;
+		flex-wrap: wrap;
+
+		&:not(:first-child) {
+			&:before {
+				color: inherit;
+				content: "\02022";
+				padding: 0 0.75em;
+			}
+		}
+	}
+
+	.cat-links {
+		a {
+			display: inline-block;
 
 			&:not(:first-child) {
-				&:before {
-					color: inherit;
-					content: "\02022";
-					padding: 0 0.75em;
-				}
+				margin-left: 0.4em;
 			}
 		}
+	}
 
-		.cat-links {
-			//flex-grow: 1;
+	a {
+		color: $text-secondary;
 
-			a {
-				display: inline-block;
-			}
+		&:hover {
+			text-decoration: none;
 		}
+	}
 
-		a {
-			color: $text-secondary;
+	.label {
+		color: $text-secondary;
+		margin-bottom: .5rem;
 
-			&:hover {
-				text-decoration: underline;
-			}
+		&:before {
+			@include fa-solid();
+			color: $text-icon;
+			padding-right: 5px;
 		}
+	}
 
-		.label {
-			color: $text-secondary;
-			margin-bottom: .5rem;
-
-			&:before {
-				@include fa-solid();
-				color: $text-icon;
-				padding-right: 5px;
-			}
-		}
-
-		.published:not(.updated) {
-			display: none;
-		}
-
-		.posted-on .label:before {
-			content: "\f133"; // fa-calendar-o
-		}
-
-		.cat-links .label:before {
-			content: "\f07b"; // fa-folder-o
-		}
-
-		.tags-links .label:before {
-			content: "\f02c"; // fa-tags
-		}
-
-		.comments-link .label:before {
-			content: "\f086"; // fa-comment-o
-		}
-
-		.edit-link .label:before {
-			content: "\f303"; // fa-pencil
-		}
+	.published:not(.updated) {
+		display: none;
 	}
 }
 
@@ -89,6 +71,9 @@
 		&.is-rounded > * {
 			border-radius: 10000px;
 		}
+	}
+
+	.author {
 	}
 }
 
@@ -113,33 +98,6 @@
 		&:hover {
 			color: $primary;
 			text-decoration: none;
-		}
-	}
-}
-
-@media only screen and (max-width: $screen-md - 1px) {
-	.hentry {
-		.entry-meta {
-			.byline {
-				.vcard {
-					display: none;
-				}
-			}
-
-			.posted-on,
-			.byline,
-			.cat-links,
-			.tags-links,
-			.comments-link,
-			.edit-link {
-				.label {
-					display: inline;
-				}
-			}
-
-			.cat-links a {
-				display: inline;
-			}
 		}
 	}
 }

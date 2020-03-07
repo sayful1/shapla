@@ -9,8 +9,8 @@
 }
 
 // Entry Meta & Content
-.hentry.type-post {
-	margin-bottom: 60px;
+.hentry {
+	margin-bottom: $column-gap;
 
 	.post-thumbnail {
 		display: block;

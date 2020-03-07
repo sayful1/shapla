@@ -48,7 +48,7 @@ if ( ! class_exists( 'Shapla_Carousel_Slider' ) ) {
 		 * Carousel Slider Post Carousel
 		 */
 		public function carousel_slider_post() {
-			( new Shapla_Blog() )->get_loop_post();
+			( new Shapla_Blog() )->get_loop_post_for_grid();
 		}
 
 		/**

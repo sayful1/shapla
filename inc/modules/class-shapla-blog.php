@@ -29,7 +29,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 */
 		public function __construct() {
 			add_filter( 'body_class', array( $this, 'body_classes' ) );
-			add_action( 'shapla_loop_post', array( $this, 'blog' ), 5 );
+			add_action( 'shapla_loop_post', array( $this, 'loop_post' ), 5 );
 
 			add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
 			add_filter( 'excerpt_length', array( $this, 'excerpt_length' ) );
@@ -46,7 +46,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 			$blog_layout = get_theme_mod( 'blog_layout', 'grid' );
 
 			// Blog page
-			if ( $this->is_blog() && 'grid' == $blog_layout ) {
+			if ( static::is_blog() && 'grid' == $blog_layout ) {
 				$classes[] = 'shapla-blog-grid';
 			}
 
@@ -79,31 +79,48 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		/**
 		 * Get grid blog style
 		 */
-		public function blog() {
+		public function loop_post() {
 			$blog_layout = get_theme_mod( 'blog_layout', 'grid' );
-			if ( 'grid' != $blog_layout ) {
+			if ( 'grid' == $blog_layout ) {
+				$this->get_loop_post_for_grid();
+
 				return;
 			}
 
-			remove_action( 'shapla_loop_post', 'shapla_post_thumbnail', 10 );
-			remove_action( 'shapla_loop_post', 'shapla_post_header', 10 );
-			remove_action( 'shapla_loop_post', 'shapla_post_content', 20 );
-			remove_action( 'shapla_loop_post', 'shapla_post_meta', 30 );
+			$this->get_default_loop_post();
+		}
 
-			$this->get_loop_post();
+		/**
+		 * Default loop post design
+		 */
+		public function get_default_loop_post() {
+			?>
+            <div class="blog-grid-inside layout-default">
+				<?php if ( has_post_thumbnail() ) { ?>
+                    <div class="blog-loop-media">
+						<?php echo static::post_thumbnail(); ?>
+                    </div>
+				<?php } ?>
+                <div class="blog-loop-content">
+                    <header class="entry-header"><?php echo static::post_title(); ?></header>
+					<?php shapla_post_meta(); ?>
+                    <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+                </div>
+            </div>
+			<?php
 		}
 
 		/**
 		 * Get loop post
 		 */
-		public function get_loop_post() {
+		public function get_loop_post_for_grid() {
 			?>
             <div class="blog-grid-inside">
-				<?php $this->post_thumbnail(); ?>
+				<?php echo static::post_thumbnail(); ?>
                 <header class="entry-header">
 					<?php
 					echo static::post_category();
-					$this->post_title();
+					echo static::post_title();
 					?>
                 </header>
                 <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
@@ -122,24 +139,19 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		/**
 		 * Get post thumbnail
 		 *
-		 * @param bool $echo
-		 *
 		 * @return string
 		 */
-		public function post_thumbnail( $echo = true ) {
+		public static function post_thumbnail() {
+			if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+				return '';
+			}
 			$post_thumbnail = get_the_post_thumbnail( null, 'post-thumbnail',
 				array( 'alt' => the_title_attribute( array( 'echo' => false ) ) )
 			);
 
-			$_thumbnail = sprintf( '<a class="post-thumbnail" href="%s">%s</a>',
+			return sprintf( '<a class="post-thumbnail" href="%s">%s</a>',
 				esc_url( get_permalink() ), $post_thumbnail
 			);
-
-			if ( ! $echo ) {
-				return $_thumbnail;
-			}
-
-			echo $_thumbnail;
 		}
 
 		/**
@@ -196,20 +208,12 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		/**
 		 * Get post title
 		 *
-		 * @param bool $echo
-		 *
 		 * @return string
 		 */
-		public function post_title( $echo = true ) {
-			$title = sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
+		public static function post_title() {
+			return sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
 				esc_url( get_permalink() ), get_the_title()
 			);
-
-			if ( ! $echo ) {
-				return $title;
-			}
-
-			echo $title;
 		}
 
 		/**
@@ -295,7 +299,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 *
 		 * @return bool
 		 */
-		private function is_blog() {
+		public static function is_blog() {
 			return ( is_post_type_archive( 'post' ) || is_category() || is_tag() || is_author() || is_home() || is_search() );
 		}
 	}
