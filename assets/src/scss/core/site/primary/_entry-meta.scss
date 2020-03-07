@@ -1,17 +1,39 @@
 .hentry {
 	.entry-meta {
+		background: rgba(#000, 0.04);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-bottom: 2rem;
+		padding: 1rem;
+
+		> * {
+			display: inline-flex;
+			align-items: center;
+
+			&:not(:first-child) {
+				&:before {
+					color: inherit;
+					content: "\02022";
+					padding: 0 0.75em;
+				}
+			}
+		}
+
+		.cat-links {
+			//flex-grow: 1;
+
+			a {
+				display: inline-block;
+			}
+		}
+
 		a {
-			color: $text-primary;
+			color: $text-secondary;
 
 			&:hover {
 				text-decoration: underline;
 			}
-		}
-
-		> * {
-			display: block;
-			margin-bottom: $column-gap;
-			width: 100%;
 		}
 
 		.label {
@@ -25,19 +47,8 @@
 			}
 		}
 
-		.byline {
-			.author.vcard {
-				display: block;
-				margin-top: 0.5rem;
-			}
-		}
-
 		.published:not(.updated) {
 			display: none;
-		}
-
-		.cat-links a {
-			display: block;
 		}
 
 		.posted-on .label:before {
@@ -68,19 +79,40 @@
 
 	.author-avatar {
 		flex-shrink: 0;
+		margin-right: 0.5rem;
 
 		&.is-32x32 {
 			height: 32px;
 			width: 32px;
 		}
 
-		&.is-96x96 {
-			height: 96px;
-			width: 96px;
-		}
-
 		&.is-rounded > * {
 			border-radius: 10000px;
+		}
+	}
+}
+
+.tags-links {
+	display: block;
+	list-style-type: none;
+	margin: -4px;
+	width: 100%;
+
+	li {
+		display: inline-block;
+		padding: 4px;
+	}
+
+	a {
+		background: rgba(#000, 0.05);
+		border-radius: 4px;
+		color: $text-secondary;
+		display: block;
+		padding: 5px 10px;
+
+		&:hover {
+			color: $primary;
+			text-decoration: none;
 		}
 	}
 }

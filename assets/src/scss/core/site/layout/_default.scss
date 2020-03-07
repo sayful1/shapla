@@ -24,7 +24,6 @@
 }
 
 .hentry.type-post {
-	.entry-meta,
 	.entry-content {
 		width: 100%;
 	}
@@ -36,6 +35,7 @@
 			width: 100%;
 			margin-right: 0;
 		}
+
 		.widget-area {
 			display: none;
 		}
@@ -92,6 +92,7 @@
 			width: 100%;
 			float: none;
 		}
+
 		.widget-area {
 			width: 100%;
 			float: none;
@@ -103,23 +104,24 @@
 			.content-area {
 				width: 100%;
 			}
+
 			.widget-area {
 				width: 100%;
 			}
 		}
 	}
 
-	.hentry.type-post {
-		.entry-meta {
-			width: 25%;
-			margin-right: 2rem;
-			float: left;
-		}
-		.entry-content {
-			width: calc(75% - 2rem);
-			float: right;
-		}
-	}
+	//.hentry.type-post {
+	//	.entry-meta {
+	//		width: 25%;
+	//		margin-right: 2rem;
+	//		float: left;
+	//	}
+	//	.entry-content {
+	//		width: calc(75% - 2rem);
+	//		float: right;
+	//	}
+	//}
 }
 
 @media screen and (min-width: $screen-lg) {
@@ -133,11 +135,13 @@
 			margin-left: -1rem;
 			margin-right: -1rem;
 		}
+
 		.content-area {
 			width: 75%;
 			float: left;
 			padding: 2rem 1rem;
 		}
+
 		.widget-area {
 			width: 25%;
 			float: right;
@@ -151,6 +155,7 @@
 				width: 75%;
 				float: right;
 			}
+
 			.widget-area {
 				width: 25%;
 				float: left;

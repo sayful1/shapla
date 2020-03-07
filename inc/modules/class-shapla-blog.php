@@ -87,8 +87,8 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 
 			remove_action( 'shapla_loop_post', 'shapla_post_thumbnail', 10 );
 			remove_action( 'shapla_loop_post', 'shapla_post_header', 10 );
-			remove_action( 'shapla_loop_post', 'shapla_post_meta', 20 );
-			remove_action( 'shapla_loop_post', 'shapla_post_content', 30 );
+			remove_action( 'shapla_loop_post', 'shapla_post_content', 20 );
+			remove_action( 'shapla_loop_post', 'shapla_post_meta', 30 );
 
 			$this->get_loop_post();
 		}
@@ -102,17 +102,17 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 				<?php $this->post_thumbnail(); ?>
                 <header class="entry-header">
 					<?php
-					$this->post_category();
+					echo static::post_category();
 					$this->post_title();
 					?>
                 </header>
                 <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
-				<?php $this->post_tag(); ?>
+				<?php echo static::post_tag(); ?>
                 <div class="spacer"></div>
                 <footer class="entry-footer">
 					<?php
 					echo static::post_author();
-					$this->post_date();
+					echo static::post_date();
 					?>
                 </footer>
             </div>
@@ -145,51 +145,52 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		/**
 		 * Get post category
 		 *
-		 * @param bool $echo
-		 *
 		 * @return string
 		 */
-		public function post_category( $echo = true ) {
+		public static function post_category() {
 			$show_category_list = get_theme_mod( 'show_blog_category_list', true );
 
 			$html = '';
-			if ( $show_category_list ) {
-				$categories_list = get_the_category_list( esc_html__( ', ', 'shapla' ) );
-				if ( $categories_list ) {
-					$html .= '<div class="cat-links">' . $categories_list . '</div>';
-				}
-			}
-
-			if ( ! $echo ) {
+			if ( ! $show_category_list ) {
 				return $html;
 			}
 
-			echo $html;
+			$categories_list = get_the_category_list( __( ', ', 'shapla' ) );
+			if ( $categories_list ) {
+				$html .= '<div class="cat-links">' . $categories_list . '</div>';
+			}
+
+			return $html;
 		}
 
 		/**
 		 * Get post tags
 		 *
-		 * @param bool $echo
-		 *
 		 * @return string
 		 */
-		public function post_tag( $echo = true ) {
+		public static function post_tag() {
 			$show_tag_list = get_theme_mod( 'show_blog_tag_list', false );
-			$tags_list     = get_the_tag_list( '', esc_html__( ', ', 'shapla' ) );
-			$html          = '';
 
-			if ( $show_tag_list && $tags_list ) {
-				$html .= '<div class="tags-links">';
-				$html .= $tags_list;
-				$html .= '</div>';
+			if ( ( ! is_singular() && $show_tag_list == false ) ) {
+				return '';
 			}
 
-			if ( ! $echo ) {
-				return $html;
+			$terms = get_the_terms( 0, 'post_tag' );
+			if ( empty( $terms ) || is_wp_error( $terms ) ) {
+				return '';
 			}
 
-			echo $html;
+			$links = array();
+
+			foreach ( $terms as $term ) {
+				$link = get_term_link( $term, 'post_tag' );
+				if ( is_wp_error( $link ) ) {
+					return $link;
+				}
+				$links[] = '<li><a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a></li>';
+			}
+
+			return '<ul class="tags-links">' . implode( '', $links ) . '</ul>';
 		}
 
 		/**
@@ -226,9 +227,6 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 			}
 
 			$size = 32;
-			if ( is_singular() ) {
-				$size = 96;
-			}
 
 			$html .= '<span class="byline">';
 
@@ -255,47 +253,41 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		/**
 		 * Get blog entry date
 		 *
-		 * @param bool $echo
-		 *
 		 * @return string
 		 */
-		public function post_date( $echo = true ) {
+		public static function post_date() {
 			$show_date        = get_theme_mod( 'show_blog_date', true );
 			$blog_date_format = get_theme_mod( 'blog_date_format', 'human' );
 
-			if ( $show_date ) {
-				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-				if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-				}
-
-				if ( $blog_date_format == 'human' ) {
-					$_created_time  = sprintf( '%s ago', human_time_diff( get_the_date( 'U' ) ) );
-					$_modified_time = sprintf( '%s ago', human_time_diff( get_the_modified_date( 'U' ) ) );
-				} else {
-					$_created_time  = get_the_date();
-					$_modified_time = get_the_modified_date();
-				}
-
-				$time_string = sprintf( $time_string,
-					esc_attr( get_the_date( 'c' ) ),
-					esc_html( $_created_time ),
-					esc_attr( get_the_modified_date( 'c' ) ),
-					esc_html( $_modified_time )
-				);
-
-				$date_string = sprintf(
-					'<span class="posted-on"><a href="%s" rel="bookmark">%s</a></span>',
-					esc_url( get_permalink() ),
-					$time_string
-				);
-
-				if ( ! $echo ) {
-					return $date_string;
-				}
-
-				echo $date_string;
+			if ( ! $show_date ) {
+				return '';
 			}
+
+			$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+			if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+				$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+			}
+
+			if ( $blog_date_format == 'human' ) {
+				$created_time  = sprintf( '%s ago', human_time_diff( get_the_date( 'U' ) ) );
+				$modified_time = sprintf( '%s ago', human_time_diff( get_the_modified_date( 'U' ) ) );
+			} else {
+				$created_time  = get_the_date();
+				$modified_time = get_the_modified_date();
+			}
+
+			$time_string = sprintf( $time_string,
+				esc_attr( get_the_date( 'c' ) ),
+				esc_html( $created_time ),
+				esc_attr( get_the_modified_date( 'c' ) ),
+				esc_html( $modified_time )
+			);
+
+			return sprintf(
+				'<span class="posted-on"><a href="%s" rel="bookmark">%s</a></span>',
+				esc_url( get_permalink() ),
+				$time_string
+			);
 		}
 
 		/**

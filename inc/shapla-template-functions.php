@@ -360,73 +360,19 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
 	function shapla_post_meta() {
-
-		$show_author_avatar = get_theme_mod( 'show_blog_author_avatar', true );
-		$show_author_name   = get_theme_mod( 'show_blog_author_name', true );
-		$show_date          = get_theme_mod( 'show_blog_date', true );
-		$show_category_list = get_theme_mod( 'show_blog_category_list', true );
-		$show_tag_list      = get_theme_mod( 'show_blog_tag_list', true );
 		$show_comments_link = get_theme_mod( 'show_blog_comments_link', true );
 
 		echo '<div class="entry-meta">';
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
-
 			echo Shapla_Blog::post_author();
-
-			if ( $show_date ) {
-				$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-				if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-					$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-				}
-
-				$blog_date_format = get_theme_mod( 'blog_date_format', 'human' );
-
-				if ( $blog_date_format == 'human' ) {
-					$_created_time  = sprintf( '%s ago', human_time_diff( get_the_date( 'U' ) ) );
-					$_modified_time = sprintf( '%s ago', human_time_diff( get_the_modified_date( 'U' ) ) );
-				} else {
-					$_created_time  = get_the_date();
-					$_modified_time = get_the_modified_date();
-				}
-
-				$time_string = sprintf( $time_string,
-					esc_attr( get_the_date( 'c' ) ),
-					esc_html( $_created_time ),
-					esc_attr( get_the_modified_date( 'c' ) ),
-					esc_html( $_modified_time )
-				);
-
-				echo '<div class="posted-on"><div class="label">' . esc_html__( 'Posted on ',
-						'shapla' ) . '</div><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a></div>';
-			}
-
-			if ( $show_category_list ) {
-				/* translators: used between list items, there is a space after the comma */
-				$categories_list = get_the_category_list( esc_html__( ' ', 'shapla' ) );
-				if ( $categories_list ) {
-					printf( '<div class="cat-links"><div class="label">' . esc_html__( 'Posted in ',
-							'shapla' ) . '</div>' . esc_html__( '%1$s', 'shapla' ) . '</div>',
-						$categories_list ); // WPCS: XSS OK.
-				}
-			}
-
-			if ( $show_tag_list ) {
-				/* translators: used between list items, there is a space after the comma */
-				$tags_list = get_the_tag_list( '', esc_html__( ', ', 'shapla' ) );
-				if ( $tags_list ) {
-					printf( '<div class="tags-links"><div class="label">' . esc_html__( 'Tagged ',
-							'shapla' ) . '</div>' . esc_html__( '%1$s', 'shapla' ) . '</div>',
-						$tags_list ); // WPCS: XSS OK.
-				}
-			}
-
+			echo Shapla_Blog::post_date();
+			echo Shapla_Blog::post_category();
 		}
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			if ( $show_comments_link ) {
 				echo '<div class="comments-link">';
-				echo '<div class="label">' . esc_attr( __( 'Comments ', 'shapla' ) ) . '</div>';
 				/* translators: %s: post title */
 				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>',
 					'shapla' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
@@ -437,14 +383,16 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 		edit_post_link(
 			sprintf(
 			/* translators: %s: Name of current post */
-				esc_html__( 'Edit %s', 'shapla' ),
+				esc_html__( '%s Edit %s', 'shapla' ),
+				'<span class="shapla-icon"><i class="fas fa-pencil-alt"></i></span>',
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			),
-			'<div class="edit-link"><div class="label">',
-			'</div></div>'
+			'<div class="edit-link">',
+			'</div>'
 		);
 
 		echo '</div>';
+		echo Shapla_Blog::post_tag();
 	}
 endif;
 
