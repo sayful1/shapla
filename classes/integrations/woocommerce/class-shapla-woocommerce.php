@@ -81,6 +81,7 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 			add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
 
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
+			add_filter( 'wp_nav_menu_items', [ $this, 'header_cart_icon' ], 10, 2 );
 		}
 
 		/**
@@ -324,6 +325,30 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 		}
 
 		/**
+		 * Filters the HTML list content for navigation menus.
+		 *
+		 * @param string $items The HTML list content for the menu items.
+		 * @param stdClass $args An object containing wp_nav_menu() arguments.
+		 *
+		 * @return string
+		 * @since 1.3.0
+		 */
+		public function header_cart_icon( $items, $args ) {
+			$show_cart_icon = get_theme_mod( 'show_cart_icon', true );
+			$header_layout  = get_theme_mod( 'header_layout', 'layout-1' );
+
+			if ( 'primary' == $args->theme_location || $header_layout !== 'layout-3' || $show_cart_icon ) {
+				ob_start();
+				echo '<li class="shapla-custom-menu-item shapla-main-menu-cart">';
+				$this->shapla_cart_link();
+				echo '</li>';
+				$items .= ob_get_clean();
+			}
+
+			return $items;
+		}
+
+		/**
 		 * Cart Link
 		 * Displayed a link to the cart including the number of items present and the cart total
 		 *
@@ -334,6 +359,7 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 			?>
             <a class="shapla-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>"
                title="<?php esc_attr_e( 'View your shopping cart', 'shapla' ); ?>">
+                <span class="shapla-icon"><i class="fas fa-shopping-basket"></i></span>
                 <span class="count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
             </a>
 			<?php

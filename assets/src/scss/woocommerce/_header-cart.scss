@@ -91,17 +91,6 @@
 	width: auto;
 	text-indent: 0;
 
-	&:after {
-		@include fa-solid();
-		content: "\f291"; // shopping-basket
-		float: none;
-		margin-right: 1rem;
-		line-height: 1.5;
-		margin-left: 0;
-		font-size: 28px;
-		color: $text-primary;
-	}
-
 	.count {
 		font-size: .75rem;
 		position: absolute;
@@ -122,19 +111,12 @@
 
 .shapla-main-menu-cart {
 	.shapla-cart-contents {
-		&:after {
-			font-size: 1em;
-			line-height: 1.2;
-			margin-right: 4px;
-		}
-
 		.count {
 			position: static;
 			float: right;
 			height: auto;
 			width: auto;
-			font-size: 1em;
-			line-height: 1.2;
+			line-height: 1.5;
 			padding: 0;
 			background-color: transparent;
 			color: inherit;

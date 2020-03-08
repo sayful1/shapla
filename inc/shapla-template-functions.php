@@ -802,35 +802,17 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 	 *
 	 * @return string
 	 * @since 1.3.0
-	 *
 	 */
 	function shapla_search_icon( $items, $args ) {
-
 		$show_search_icon = get_theme_mod( 'show_search_icon', false );
-		$show_cart_icon   = get_theme_mod( 'show_cart_icon', true );
 		$header_layout    = get_theme_mod( 'header_layout', 'layout-1' );
 
-		if ( 'primary' !== $args->theme_location ) {
-			return $items;
-		}
-
-		if ( $header_layout == 'layout-3' ) {
-			return $items;
-		}
-
-		if ( shapla_is_woocommerce_activated() && $show_cart_icon ) {
-			ob_start();
-			echo '<li class="shapla-custom-menu-item shapla-main-menu-cart">';
-			shapla_cart_link();
-			echo '</li>';
-			$items .= ob_get_clean();
-		}
-
-
-		if ( $show_search_icon ) {
+		if ( 'primary' == $args->theme_location || $header_layout != 'layout-3' || $show_search_icon ) {
 			ob_start(); ?>
-            <li class="shapla-custom-menu-item shapla-main-menu-search shapla-last-menu-item">
-                <a href="#" id="search-toggle" class="shapla-search-toggle"><i class="fa fa-search"></i></a>
+            <li class="shapla-custom-menu-item shapla-main-menu-search">
+                <a href="#" id="search-toggle" class="shapla-search-toggle">
+                <span class="shapla-icon"><i class="fa fa-search"></i></span>
+                </a>
                 <div class="shapla-custom-menu-item-contents">
 					<?php shapla_search_form(); ?>
                 </div>

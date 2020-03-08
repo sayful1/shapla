@@ -124,13 +124,6 @@
 		transition: opacity .2s ease-in;
 	}
 
-	.shapla-search-toggle {
-		.fa-search {
-			width: 1em;
-			height: 1em;
-		}
-	}
-
 	&.shapla-main-menu-search-open {
 		.shapla-custom-menu-item-contents {
 			visibility: visible;
@@ -152,7 +145,7 @@
 			display: block;
 			height: 0;
 			position: absolute;
-			right: 4px;
+			right: 0.75em;
 			width: 0;
 			z-index: 100000;
 		}
@@ -166,10 +159,6 @@
 			border-color: transparent transparent #fff;
 			bottom: -2px;
 		}
-	}
-
-	&.shapla-last-menu-item a {
-		padding-right: 0;
 	}
 
 	.shapla-search {
