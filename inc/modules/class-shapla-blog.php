@@ -70,9 +70,10 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public function excerpt_more() {
-			return sprintf( '<a class="read-more" href="%1$s" rel="nofollow"> %2$s</a>',
+			return sprintf( '%1$s <a class="read-more" href="%2$s" rel="nofollow"> %3$s</a>',
+				__( '...', 'shapla' ),
 				get_permalink( get_the_ID() ),
-				__( '...', 'shapla' )
+				__( 'Read more', 'shapla' )
 			);
 		}
 
