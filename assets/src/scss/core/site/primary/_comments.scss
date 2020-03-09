@@ -94,7 +94,7 @@
 .comment-respond {
 	@include clearfix();
 	padding: 2.5rem;
-	background-color: rgba(0, 0, 0, 0.02);
+	background-color: rgba(#000, 0.04);
 	position: relative;
 
 	.comment-reply-title {
