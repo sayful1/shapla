@@ -196,7 +196,7 @@ class Shapla_Colors {
 	 * Calculate colors for site
 	 */
 	protected static function calculate_colors() {
-		if ( static::$read ) {
+		if ( static::$read && ! is_customize_preview() ) {
 			return;
 		}
 		self::$colors['primary']         = static::get_color_option( 'primary' );
