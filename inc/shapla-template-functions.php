@@ -693,81 +693,25 @@ if ( ! function_exists( 'shapla_search_form' ) ) {
 	 *
 	 * @param bool $echo
 	 *
-	 * @return string
+	 * @return string|void
 	 * @since 1.0.0
 	 */
 	function shapla_search_form( $echo = true ) {
-		$header_layout            = get_theme_mod( 'header_layout', 'layout-1' );
-		$show_product_cat         = get_theme_mod( 'show_product_search_categories', true );
-		$is_woocommerce_activated = shapla_is_woocommerce_activated();
-		$form_class               = 'shapla-search';
-		$placeholder              = esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' );
-
-		if ( $is_woocommerce_activated ) {
-			$form_class  .= ' shapla-product-search';
-			$placeholder = esc_attr_x( 'Search product &hellip;', 'placeholder', 'shapla' );
-
-			if ( $show_product_cat ) {
-				$form_class .= ' has-cat-list';
-			}
+		$html = '<div class="shapla-search">';
+		if ( shapla_is_woocommerce_activated() ) {
+			$html .= get_product_search_form( false );
+		} else {
+			$html .= get_search_form();
 		}
-
-		$html = '<div class="' . $form_class . '">';
-		$html .= '<form role="search" method="get" class="shapla-search-form" action="' . esc_url( home_url( '/' ) ) . '">';
-
-		if ( $is_woocommerce_activated && $show_product_cat ) {
-			$q_var    = get_query_var( 'product_cat' );
-			$selected = empty( $q_var ) ? '' : $q_var;
-			$args     = array(
-				'show_option_none'  => __( 'All', 'shapla' ),
-				'option_none_value' => '',
-				'orderby'           => 'name',
-				'taxonomy'          => 'product_cat',
-				'name'              => 'product_cat',
-				'class'             => 'shapla-cat-list',
-				'value_field'       => 'slug',
-				'selected'          => $selected,
-				'hide_if_empty'     => 1,
-				'echo'              => 0,
-				'show_count'        => 0,
-				'hierarchical'      => 1,
-			);
-
-			$html .= '<div class="nav-left">';
-			$html .= '<div class="nav-search-facade">';
-			$html .= '<span class="nav-search-label" data-default="' . esc_html__( 'All', 'shapla' ) . '">';
-			$html .= esc_html__( 'All', 'shapla' );
-			$html .= '</span>';
-			$html .= '<span class="shapla-icon"><i class="fa fa-angle-down"></i></span>';
-			$html .= '</div>';
-			$html .= wp_dropdown_categories( $args );
-			$html .= '</div>';
-		}
-
-		// Submit button
-		$html .= '<div class="nav-right">';
-		$html .= '<button type="submit"><span class="shapla-icon is-small"><i class="fa fa-search"></i></span></button>';
 		$html .= '</div>';
 
-		// Search input field
-		$html .= '<div class="nav-fill">';
-		if ( $is_woocommerce_activated ) {
-			$html .= '<input type="hidden" name="post_type" value="product"/>';
-		}
-		$html .= '<label>';
-		$html .= '<span class="screen-reader-text">' . _x( 'Search for:', 'label', 'shapla' ) . '</span>';
-		$html .= '<input type="search" class="search-field" placeholder="' . $placeholder . '" value="' . get_search_query() . '" name="s" />';
-		$html .= '</label>';
-		$html .= '</div>';
-
-		$html .= '</form>';
-		$html .= '</div>';
+		$search_form = apply_filters( 'shapla_search_form', $html );
 
 		if ( ! $echo ) {
-			return $html;
+			return $search_form;
 		}
 
-		echo $html;
+		echo $search_form;
 	}
 }
 
@@ -807,11 +751,11 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 		$show_search_icon = get_theme_mod( 'show_search_icon', false );
 		$header_layout    = get_theme_mod( 'header_layout', 'layout-1' );
 
-		if ( 'primary' == $args->theme_location || $header_layout != 'layout-3' || $show_search_icon ) {
+		if ( 'primary' == $args->theme_location && $header_layout != 'layout-3' && $show_search_icon ) {
 			ob_start(); ?>
             <li class="shapla-custom-menu-item shapla-main-menu-search">
                 <a href="#" id="search-toggle" class="shapla-search-toggle">
-                <span class="shapla-icon"><i class="fa fa-search"></i></span>
+                    <span class="shapla-icon"><i class="fa fa-search"></i></span>
                 </a>
                 <div class="shapla-custom-menu-item-contents">
 					<?php shapla_search_form(); ?>

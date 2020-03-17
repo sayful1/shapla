@@ -337,7 +337,7 @@ if ( ! class_exists( 'Shapla_WooCommerce' ) ) {
 			$show_cart_icon = get_theme_mod( 'show_cart_icon', true );
 			$header_layout  = get_theme_mod( 'header_layout', 'layout-1' );
 
-			if ( 'primary' == $args->theme_location || $header_layout !== 'layout-3' || $show_cart_icon ) {
+			if ( 'primary' == $args->theme_location && $header_layout !== 'layout-3' && $show_cart_icon ) {
 				ob_start();
 				echo '<li class="shapla-custom-menu-item shapla-main-menu-cart">';
 				$this->shapla_cart_link();

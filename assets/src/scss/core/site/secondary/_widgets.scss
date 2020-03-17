@@ -102,37 +102,6 @@
 	}
 }
 
-.widget_search,
-.widget_product_search {
-	form {
-		position: relative;
-
-		input[type=text],
-		input[type=search] {
-			width: 100%;
-			padding-left: 35px;
-		}
-
-		input[type=submit],
-		button[type=submit] {
-			clip: rect(1px, 1px, 1px, 1px);
-			left: 0;
-			position: absolute !important;
-			top: 0;
-		}
-
-		&:before {
-			@include fa-solid();
-			content: "\f002";
-			position: absolute;
-			z-index: 10;
-			color: $text-icon;
-			top: 0.75em;
-			left: 0.75em;
-		}
-	}
-}
-
 .widget_calendar {
 	caption {
 		margin-bottom: 1rem;
