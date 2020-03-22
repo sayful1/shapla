@@ -42,7 +42,7 @@
 		}
 
 		&:before {
-			border-color: rgba(0, 0, 0, 0.06) transparent;
+			border-color: rgba(#000, 0.06) transparent;
 			border-width: 0 10px 10px;
 			right: 22px;
 			top: -9px;
@@ -82,52 +82,24 @@
 	}
 }
 
+
 .shapla-cart-contents {
-	padding: 0;
-	display: block;
-	position: relative;
-	background-color: transparent;
-	height: auto;
-	width: auto;
-	text-indent: 0;
-
 	.count {
-		font-size: .75rem;
-		position: absolute;
-		right: 0;
-		top: 0;
-		background: $primary;
-		color: $on-primary;
-		min-width: 2em;
-		height: 2em;
-		border-radius: 3px;
-		line-height: 1;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 5px;
-	}
-}
+		position: static;
+		float: right;
+		height: auto;
+		width: auto;
+		line-height: 1.5;
+		padding: 0;
+		background-color: transparent;
+		color: inherit;
 
-.shapla-main-menu-cart {
-	.shapla-cart-contents {
-		.count {
-			position: static;
-			float: right;
-			height: auto;
-			width: auto;
-			line-height: 1.5;
-			padding: 0;
-			background-color: transparent;
-			color: inherit;
+		&:before {
+			content: '\28';
+		}
 
-			&:before {
-				content: '\28';
-			}
-
-			&:after {
-				content: '\29';
-			}
+		&:after {
+			content: '\29';
 		}
 	}
 }

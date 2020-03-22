@@ -58,13 +58,3 @@ Shapla_Customizer_Config::add_field( 'show_cart_icon', array(
 	'default'     => shapla_default_options( 'show_cart_icon' ),
 	'priority'    => 30,
 ) );
-
-// Toggle cart icon
-Shapla_Customizer_Config::add_field( 'show_product_search_categories', array(
-	'type'        => 'toggle',
-	'section'     => 'shapla_woocommerce_section',
-	'label'       => __( 'Show Categories Dropdown', 'shapla' ),
-	'description' => __( 'Check to show product categories dropdown on search field in header area.', 'shapla' ),
-	'default'     => shapla_default_options( 'show_product_search_categories' ),
-	'priority'    => 30,
-) );
