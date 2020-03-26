@@ -50,24 +50,29 @@
 }
 
 @mixin media( $res ) {
+	@if mobile == $res {
+		@media screen and (max-width: ($screen-sm - 1px)) {
+			@content;
+		}
+	}
 	@if tablet-small == $res {
-		@media only screen and (min-width: $screen-sm) {
+		@media screen and (min-width: $screen-sm) {
 			@content;
 		}
 	}
 	@if tablet == $res {
-		@media only screen and (min-width: $screen-md) {
+		@media screen and (min-width: $screen-md) {
 			@content;
 		}
 	}
 	@if desktop == $res {
-		@media only screen and (min-width: $screen-lg) {
+		@media screen and (min-width: $screen-lg) {
 			@content;
 		}
 	}
 
 	@if wide == $res {
-		@media only screen and (min-width: $screen-xl) {
+		@media screen and (min-width: $screen-xl) {
 			@content;
 		}
 	}

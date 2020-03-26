@@ -21,28 +21,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		private $fields = array();
 
 		/**
-		 * Customize available field types
-		 *
-		 * @var array
-		 */
-		private $allowed_field_types = array(
-			'text',
-			'color',
-			'image',
-			'textarea',
-			'checkbox',
-			'select',
-			'radio',
-			'radio-image',
-			'radio-button',
-			'alpha-color',
-			'background',
-			'typography',
-			'toggle',
-			'range-slider',
-		);
-
-		/**
 		 * Only one instance of the class can be loaded
 		 *
 		 * @return self
@@ -276,12 +254,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return WP_Customize_Control
 		 */
 		public function add_control( $wp_customize, $field ) {
-			$type = isset( $field['type'] ) ? $field['type'] : 'text';
-
-			if ( ! in_array( $type, $this->allowed_field_types ) ) {
-				$type = 'text';
-			}
-
+			$type         = isset( $field['type'] ) ? $field['type'] : 'text';
 			$controls     = static::get_custom_controls();
 			$control_args = static::get_control_arguments( $field );
 

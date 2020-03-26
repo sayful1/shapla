@@ -1,40 +1,39 @@
 .boxed-layout {
-    .site {
-        margin-left: auto;
-        margin-right: auto;
-        box-shadow: 0 1px 2px rgba(#000, 0.12), 0 2px 5px rgba(#000, 0.19);
-        max-width: 90%;
-        background-color: #fff;
-    }
-    .shapla-container,
-    .site-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    @media screen and (min-width: $screen-sm) {
-        .site,
-        .site-header {
-            max-width: 570px;
-        }
-    }
-    @media screen and (min-width: $screen-md) {
-        .site,
-        .site-header {
-            max-width: 750px;
-        }
+	.site {
+		margin-left: auto;
+		margin-right: auto;
+		box-shadow: 0 1px 2px rgba(#000, 0.12), 0 2px 5px rgba(#000, 0.19);
+		max-width: 90%;
+		background-color: #fff;
+	}
 
-    }
-    @media screen and (min-width: $screen-lg) {
-        .site,
-        .site-header {
-            max-width: 990px;
-        }
+	.site-content,
+	.site-header,
+	.page-title-bar,
+	.footer-widget-area,
+	.site-footer {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
 
-    }
-    @media screen and (min-width: $screen-xl) {
-        .site,
-        .site-header {
-            max-width: 1170px;
-        }
-    }
+	@include media(tablet-small) {
+		.site {
+			max-width: ($container-sm + 30px);
+		}
+	}
+	@include media(tablet) {
+		.site {
+			max-width: ($container-md + 30px);
+		}
+	}
+	@include media(desktop) {
+		.site {
+			max-width: ($container-lg + 30px);
+		}
+	}
+	@include media(wide) {
+		.site {
+			max-width: ($container-xl + 30px);
+		}
+	}
 }

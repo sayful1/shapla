@@ -1,0 +1,40 @@
+.shapla-container {
+	flex-grow: 1;
+	margin-right: auto;
+	margin-left: auto;
+	width: auto;
+
+	@include media(tablet-small) {
+		max-width: $container-sm;
+	}
+
+	@include media(tablet) {
+		max-width: $container-md;
+	}
+
+	@include media(desktop) {
+		max-width: $container-lg;
+	}
+
+	@include media(wide) {
+		max-width: $container-xl;
+	}
+}
+
+.site-content,
+.site-header,
+.page-title-bar,
+.footer-widget-area,
+.site-footer {
+	@include media(mobile) {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
+
+.full-screen .site-content > .shapla-container {
+	margin: 0;
+	max-width: 100%;
+	padding: 0;
+	width: 100%;
+}

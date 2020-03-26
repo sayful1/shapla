@@ -8,9 +8,7 @@
  */
 
 // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Define theme constants
@@ -36,10 +34,6 @@ spl_autoload_register( function ( $className ) {
 
 	$directories = array(
 		SHAPLA_THEME_PATH . '/classes/customize/controls/',
-		SHAPLA_THEME_PATH . '/classes/integrations/carousel-slider/',
-		SHAPLA_THEME_PATH . '/classes/integrations/elementor-pro/',
-		SHAPLA_THEME_PATH . '/classes/integrations/jetpack/',
-		SHAPLA_THEME_PATH . '/classes/integrations/woocommerce/',
 		SHAPLA_THEME_PATH . '/classes/utilities/',
 	);
 

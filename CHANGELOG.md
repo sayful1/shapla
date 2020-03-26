@@ -1,3 +1,32 @@
+#### 2.0.0 - March 31, 2020
+* Feature - Add customize setting for Enable/disable Structured Data.
+* Feature - Update single page entry meta design.
+* Feature - Add color customize option with CSS variable generation.
+* Tweak - Update pagination style.
+* Tweak - Update author avatar design.
+* Tweak - Add icon container css class to user icon.
+* Tweak - Update search form style.
+* Tweak - Update PHP RGB color function.
+* Tweak - Update WooCommerce product tabs style.
+* Tweak - Update sticky header javaScript functionality.
+* Tweak - Update WooCommerce single product style.
+* Tweak - Set secondary color for star rating.
+* Tweak - Removed button color as it will replaced by color system.
+* Tweak - Removed primary and text color from typography section.
+* Tweak - Update ShaplaNavigation and ShaplaBackToTop javaScript class.
+* Tweak - Improved dropdown toggle and menu toggle design.
+* Tweak - Update sticky header functionality.
+* Tweak - Update WooCommerce cart page style.
+* Tweak - Update breadcrumb style by removing customizer typography control.
+* Tweak - Update blog entry meta style.
+* Tweak - Add css variable for changing font family.
+* Tweak - Fixed navigation arrow is now working.
+* Tweak - Update comment css classes.
+* Removed - Remove button customize settings as it no longer required.
+* Dev - Add option to load metabox classes only on admin area.
+* Dev - Update SASS directory structure.
+* Dev - Change module bundler from Gulp to Webpack and update src directory.
+
 #### 1.5.3 - January 08, 2019
 * Fix - Comment area is taking full visual width for full-screen template.
 * Fix - Carousel slider post carousel does not take full item width.

@@ -19,20 +19,15 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				add_filter( 'body_class', array( self::$instance, 'body_classes' ) );
+				add_action( 'shapla_loop_post', array( self::$instance, 'loop_post' ), 5 );
+
+				add_filter( 'excerpt_more', array( self::$instance, 'excerpt_more' ) );
+				add_filter( 'excerpt_length', array( self::$instance, 'excerpt_length' ) );
 			}
 
 			return self::$instance;
-		}
-
-		/**
-		 * Shapla_Blog constructor.
-		 */
-		public function __construct() {
-			add_filter( 'body_class', array( $this, 'body_classes' ) );
-			add_action( 'shapla_loop_post', array( $this, 'loop_post' ), 5 );
-
-			add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
-			add_filter( 'excerpt_length', array( $this, 'excerpt_length' ) );
 		}
 
 		/**
