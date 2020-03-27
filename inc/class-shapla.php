@@ -211,20 +211,6 @@ if ( ! class_exists( 'Shapla' ) ) {
 					register_sidebar( $args + $widget_tags );
 				}
 			}
-
-			/**
-			 * Deprecated on version 1.2.1 and
-			 * will be removed on version 2.0.0
-			 */
-			register_sidebar( array(
-				'name'          => esc_html__( 'Above Footer', 'shapla' ),
-				'id'            => 'sidebar-2',
-				'description'   => esc_html__( 'This region has been deprecated on version 1.2.1 and will be removed on version 2.0.0', 'shapla' ),
-				'before_widget' => '<section id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</section>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			) );
 		}
 
 		/**

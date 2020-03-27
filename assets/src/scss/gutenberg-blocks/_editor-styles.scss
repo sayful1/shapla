@@ -1,3 +1,21 @@
+@import "../utilities/variables";
+
+.editor-post-title__block .editor-post-title__input {
+	font-family: var(--shapla-body-font-family, #{$font-family-sans-serif}) !important;
+}
+
+.editor-styles-wrapper {
+	> * {
+		font-family: var(--shapla-body-font-family, #{$font-family-sans-serif}) !important;
+	}
+
+	.wp-block {
+		h1, h2, h3, h4, h5, h6 {
+			font-family: var(--shapla-headings-font-family, #{$font-family-sans-serif}) !important;
+		}
+	}
+}
+
 // Main column width
 .wp-block {
 	max-width: 1140px;

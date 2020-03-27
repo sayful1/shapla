@@ -31,6 +31,7 @@ class Shapla_Assets {
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'customize_scripts' ), 30 );
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'child_scripts' ), 90 );
 
+			add_action( 'admin_head', array( self::$instance, 'dynamic_css_variables' ), 5 );
 			add_action( 'wp_head', array( self::$instance, 'dynamic_css_variables' ), 5 );
 			add_action( 'wp_head', array( self::$instance, 'page_inline_style' ), 35 );
 		}
