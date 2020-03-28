@@ -80,13 +80,8 @@ $color__text-input-focus: $color--dark_grey;
 
 $color__border-abbr: #666;
 
-$font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 500 !default;
-
-$headings-font-weight: 500 !default;
-$text-font-weight: 400 !default;
-$text-secondary-font-weight: 300 !default;
 
 //== Typography
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
@@ -112,20 +107,23 @@ $size-base: 1.25rem !default;
 $line-height-base: 1.5 !default;
 $line-height-heading: 1.2 !default;
 
-$headings-font-family: $font-family-sans-serif !default;
-$headings-font-weight: 500 !default;
+$text-font-weight: var(--shapla-body-font-weight, #{$font-weight-normal}) !default;
+$body-font-family: var(--shapla-body-font-family, #{$font-family-sans-serif}) !default;
+
+$headings-font-family: var(--shapla-headings-font-family, #{$font-family-sans-serif}) !default;
+$headings-font-weight: var(--shapla-headings-font-weight, #{$font-weight-bold}) !default;
 $headings-color: inherit !default;
 
 //== Table
-$table-background-color: $color--white;
+$table-background-color: $color--white !default;
 $table-header-color: rgba(#000, 0.54) !default;
 $table-divider-color: rgba(#000, 0.12) !default;
 $table-dividers: 1px solid $table-divider-color !default;
 $table-column-spacing: 2.25rem !default;
-$table-column-padding: $table-column-spacing / 2;
+$table-column-padding: $table-column-spacing / 2 !default;
 
 //== Widgets
-$widget-footer-background-color: #212a34;
+$widget-footer-background-color: #212a34 !default;
 
 //== Grid Columns Gap
 $column-gap: 2rem !default;

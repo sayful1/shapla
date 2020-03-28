@@ -237,6 +237,17 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 		}
 
 		/**
+		 * Get site font weight
+		 *
+		 * @return int
+		 */
+		public static function get_site_font_weight() {
+			$typography = get_theme_mod( 'body_typography' );
+
+			return ! empty( $typography['font-weight'] ) ? $typography['font-weight'] : '400';
+		}
+
+		/**
 		 * Get font family for headers
 		 *
 		 * @return string
@@ -248,6 +259,17 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 		}
 
 		/**
+		 * Get header font weight
+		 *
+		 * @return int
+		 */
+		public static function get_header_font_weight() {
+			$typography = get_theme_mod( 'headers_typography' );
+
+			return ! empty( $typography['font-weight'] ) ? $typography['font-weight'] : '500';
+		}
+
+		/**
 		 * Format font to display
 		 *
 		 * @param array $typography
@@ -255,10 +277,16 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 		 * @return string
 		 */
 		public static function format_font_to_display( $typography ) {
-			$default       = shapla_default_options( 'font_family' );
-			$is_valid      = isset( $typography['font-family'] ) && static::is_google_font( $typography['font-family'] );
-			$font_family   = $is_valid ? $typography['font-family'] : $default;
-			$font_category = static::get_google_font_category( $font_family );
+			$default     = shapla_default_options( 'font_family' );
+			$is_valid    = isset( $typography['font-family'] ) && static::is_google_font( $typography['font-family'] );
+			$font_family = $is_valid ? $typography['font-family'] : $default;
+
+			$font_categories = [ "sans-serif", "serif", "monospace" ];
+			if ( isset( $typography['font-category'] ) && in_array( $typography['font-category'], $font_categories ) ) {
+				$font_category = $typography['font-category'];
+			} else {
+				$font_category = static::get_google_font_category( $font_family );
+			}
 
 			if ( false !== strpos( $font_family, ' ' ) && false === strpos( $font_family, '"' ) ) {
 				if ( false !== strpos( $font_family, ',' ) ) {
@@ -279,9 +307,9 @@ if ( ! class_exists( 'Shapla_Fonts' ) ) {
 		public static function get_site_fonts() {
 			return [
 				'body-font-family'     => static::get_site_font_family(),
-				'body-font-weight'     => '400',
+				'body-font-weight'     => static::get_site_font_weight(),
 				'headings-font-family' => static::get_header_font_family(),
-				'headings-font-weight' => '500',
+				'headings-font-weight' => static::get_header_font_weight(),
 			];
 		}
 	}

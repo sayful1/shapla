@@ -300,7 +300,8 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 			foreach ( $value as $key => $val ) {
 				switch ( $key ) {
 					case 'font-family':
-						$value['font-family'] = esc_attr( $val );
+						$value['font-family']   = esc_attr( $val );
+						$value['font-category'] = Shapla_Fonts::get_google_font_category( $value['font-family'] );
 						break;
 					case 'font-weight':
 						if ( isset( $value['variant'] ) ) {
