@@ -46,46 +46,6 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				return;
 			}
 
-			/* you can safely run request_filesystem_credentials() without any issues and don't need to worry about passing in a URL */
-			$credentials = request_filesystem_credentials( admin_url( 'customize.php' ), '', false, false, array() );
-
-			/* initialize the API */
-			if ( ! WP_Filesystem( $credentials ) ) {
-				/* any problems and we exit */
-				return;
-			}
-
-			$suffix           = uniqid();
-			$created          = time();
-			$upload_dir       = wp_get_upload_dir();
-			$basedir          = $upload_dir['basedir'];
-			$baseurl          = $upload_dir['baseurl'];
-			$theme_upload_dir = $basedir . '/shapla';
-			$theme_css_dir    = $theme_upload_dir . '/css';
-			$css_file_name    = 'customize-style-' . $suffix . '.css';
-			$theme_css_file   = $theme_css_dir . '/' . $css_file_name;
-
-			/** @var \WP_Filesystem_Base $wp_filesystem */
-			global $wp_filesystem;
-
-			// Create Theme base directory
-			if ( ! $wp_filesystem->is_dir( $theme_upload_dir ) ) {
-				$wp_filesystem->mkdir( $theme_upload_dir, 0777 );
-			}
-
-			// Create Theme css directory
-			if ( ! $wp_filesystem->is_dir( $theme_css_dir ) ) {
-				$wp_filesystem->mkdir( $theme_css_dir, 0777 );
-			}
-
-			// Remove old files
-			array_map( 'unlink', glob( $theme_css_dir . '/customize-style-*.css' ) );
-
-			// Create Theme css file
-			if ( ! $wp_filesystem->exists( $theme_css_file ) ) {
-				$wp_filesystem->touch( $theme_css_file, $created );
-			}
-
 			$google_fonts = $this->get_google_fonts();
 			if ( ! empty( $google_fonts ) ) {
 				update_option( '_shapla_google_fonts', $google_fonts, true );
@@ -111,14 +71,9 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				return;
 			}
 
-			if ( $wp_filesystem->put_contents( $theme_css_file, $styles ) ) {
-				$data = array(
-					'name'    => $css_file_name,
-					'path'    => $theme_css_file,
-					'url'     => join( '/', array( $baseurl, 'shapla', 'css', $css_file_name ) ),
-					'created' => $created,
-				);
-				update_option( '_shapla_customize_file', $data, true );
+			$file_info = Shapla_Filesystem::update_customize_css( $styles );
+			if ( is_array( $file_info ) ) {
+				update_option( '_shapla_customize_file', $file_info, true );
 			} else {
 				delete_option( '_shapla_customize_file' );
 			}
