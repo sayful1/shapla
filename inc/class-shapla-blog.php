@@ -25,9 +25,25 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 
 				add_filter( 'excerpt_more', array( self::$instance, 'excerpt_more' ) );
 				add_filter( 'excerpt_length', array( self::$instance, 'excerpt_length' ) );
+				add_filter( 'term_links-post_tag', array( self::$instance, 'post_tag_links' ) );
 			}
 
 			return self::$instance;
+		}
+
+		/**
+		 * Modify tags link
+		 *
+		 * @param array $links
+		 *
+		 * @return array
+		 */
+		public function post_tag_links( array $links ) {
+			foreach ( $links as $index => $link ) {
+				$links[ $index ] = '<li>' . $link . '</li>';
+			}
+
+			return $links;
 		}
 
 		/**
@@ -91,18 +107,18 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 */
 		public function get_default_loop_post() {
 			?>
-            <div class="blog-grid-inside layout-default">
+			<div class="blog-grid-inside layout-default">
 				<?php if ( has_post_thumbnail() ) { ?>
-                    <div class="blog-loop-media">
+					<div class="blog-loop-media">
 						<?php echo static::post_thumbnail(); ?>
-                    </div>
+					</div>
 				<?php } ?>
-                <div class="blog-loop-content">
-                    <header class="entry-header"><?php echo static::post_title(); ?></header>
+				<div class="blog-loop-content">
+					<header class="entry-header"><?php echo static::post_title(); ?></header>
 					<?php shapla_post_meta(); ?>
-                    <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
-                </div>
-            </div>
+					<div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+				</div>
+			</div>
 			<?php
 		}
 
@@ -111,24 +127,24 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 */
 		public function get_loop_post_for_grid() {
 			?>
-            <div class="blog-grid-inside">
+			<div class="blog-grid-inside">
 				<?php echo static::post_thumbnail(); ?>
-                <header class="entry-header">
+				<header class="entry-header">
 					<?php
 					echo static::post_category();
 					echo static::post_title();
 					?>
-                </header>
-                <div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
+				</header>
+				<div class="entry-summary"><?php echo get_the_excerpt(); ?></div>
 				<?php echo static::post_tag(); ?>
-                <div class="spacer"></div>
-                <footer class="entry-footer">
+				<div class="spacer"></div>
+				<footer class="entry-footer">
 					<?php
 					echo static::post_author();
 					echo static::post_date();
 					?>
-                </footer>
-            </div>
+				</footer>
+			</div>
 			<?php
 		}
 
@@ -183,22 +199,12 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 				return '';
 			}
 
-			$terms = get_the_terms( 0, 'post_tag' );
-			if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			$list = get_the_tag_list();
+			if ( empty( $list ) || is_wp_error( $list ) || $list == false ) {
 				return '';
 			}
 
-			$links = array();
-
-			foreach ( $terms as $term ) {
-				$link = get_term_link( $term, 'post_tag' );
-				if ( is_wp_error( $link ) ) {
-					return $link;
-				}
-				$links[] = '<li><a href="' . esc_url( $link ) . '" rel="tag">' . $term->name . '</a></li>';
-			}
-
-			return '<ul class="tags-links">' . implode( '', $links ) . '</ul>';
+			return '<ul class="tags-links">' . $list . '</ul>';
 		}
 
 		/**
