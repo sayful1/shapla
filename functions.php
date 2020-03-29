@@ -46,12 +46,15 @@ spl_autoload_register( function ( $className ) {
 
 require SHAPLA_THEME_PATH . '/inc/class-shapla.php';
 
+/**
+ * Load customize functionality
+ */
 require SHAPLA_THEME_PATH . '/inc/customizer/class-shapla-customizer.php';
 
 /**
- * Load Shapla modules
+ * Load Shapla blog
  */
-include SHAPLA_THEME_PATH . '/inc/modules/class-shapla-blog.php';
+include SHAPLA_THEME_PATH . '/inc/class-shapla-blog.php';
 
 /**
  * Load template hooks and functions file.

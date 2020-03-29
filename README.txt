@@ -1,10 +1,10 @@
 === Shapla ===
 Contributors: sayful
 Tags: one-column, two-columns, left-sidebar, right-sidebar, grid-layout, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, portfolio
-Requires at least: 4.7
-Tested up to: 5.0
-Requires PHP: 5.3
-Stable tag: 1.5.3
+Requires at least: 5.1
+Tested up to: 5.4
+Requires PHP: 5.6
+Stable tag: 2.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 

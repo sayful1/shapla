@@ -1,5 +1,9 @@
 ##### A simple, easy-to-use and highly customizable WordPress theme.
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sayful1/shapla/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/sayful1/shapla/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/sayful1/shapla/badges/build.png?b=master)](https://scrutinizer-ci.com/g/sayful1/shapla/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/sayful1/shapla/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
+
 Shapla is a simple, easy-to-use and highly customizable WordPress theme. It features two page template full-width and full-screen as well as two widget regions, navigation and social menus, custom logo, multiple header layout, custom colors for header, widgets and footer, and more. The theme is fully responsive and is built on customizer that enable you to configure the website with live preview. The theme is SEO friendly, Cross browser compatible, fully translation ready and is compatible with WooCommerce and all other major plugins. Developers will love it's lean and extensible codebase making it a joy to customise and extend.
 
 #### Features
@@ -21,4 +25,4 @@ Shapla is a simple, easy-to-use and highly customizable WordPress theme. It feat
 Shapla is distributed under the terms of the GNU GPL. Shapla bundles the following third-party resources:
 
 * [Underscores](http://underscores.me/), (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* [Font Awesome Free 5.5.0](https://fontawesome.com) by @fontawesome, License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+* [Font Awesome 5 Free](https://fontawesome.com) by @fontawesome, License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
