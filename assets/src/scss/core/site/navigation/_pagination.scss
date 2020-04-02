@@ -95,9 +95,9 @@
 
 		.nav-previous,
 		.nav-next {
-			width: 50%;
-			display: flex;
 			align-items: center;
+			display: flex;
+			width: 50%;
 
 			&-text {
 				display: flex;
@@ -137,6 +137,8 @@
 
 		.nav-next {
 			padding-left: 1rem;
+			margin-left: 50%;
+			border-left: 1px solid #dddddd;
 
 			a {
 				text-align: right;
@@ -146,6 +148,11 @@
 					margin-left: 1rem;
 				}
 			}
+		}
+
+		.nav-previous + .nav-next {
+			margin-left: 0;
+			border-left: none;
 		}
 
 		.meta-nav {
