@@ -113,7 +113,7 @@
 	}
 }
 
-@media only screen and (max-width: 767px) {
+@include media(mobile) {
 	.woocommerce,
 	.woocommerce-page {
 		table.my_account_orders {

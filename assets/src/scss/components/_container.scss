@@ -32,9 +32,16 @@
 	}
 }
 
-.full-screen .site-content > .shapla-container {
-	margin: 0;
-	max-width: 100%;
-	padding: 0;
-	width: 100%;
+.full-screen .site-content {
+	> .shapla-container {
+		margin: 0;
+		max-width: 100%;
+		padding: 0;
+		width: 100%;
+	}
+
+	@include media(mobile) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
