@@ -192,6 +192,30 @@
 	}
 }
 
+.full-screen {
+	.comments-area {
+		margin: 3.125rem 1rem;
+		max-width: 100%;
+
+		@include media(tablet-small) {
+			margin: 3.125rem auto;
+			max-width: $container-sm;
+		}
+
+		@include media(tablet) {
+			max-width: $container-md;
+		}
+
+		@include media(desktop) {
+			max-width: $container-lg;
+		}
+
+		@include media(wide) {
+			max-width: $container-xl;
+		}
+	}
+}
+
 // Required by WordPress theme review
 .bypostauthor {
 	clear: both;

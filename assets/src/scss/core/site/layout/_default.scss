@@ -41,6 +41,11 @@
 			display: none;
 		}
 	}
+
+	.hentry,
+	.entry-content {
+		margin-bottom: 0 !important;
+	}
 }
 
 @media screen and (min-width: $screen-sm) {
