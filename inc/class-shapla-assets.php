@@ -194,6 +194,55 @@ class Shapla_Assets {
 
 		return apply_filters( 'shapla_localize_script', $localize_script );
 	}
+
+	/**
+	 * Dynamic CSS variables for footer widget area
+	 *
+	 * @return string
+	 */
+	public static function footer_widget_dynamic_css_variables() {
+		$background_default = array(
+			'background-color'      => shapla_default_options( 'footer_widget_background_color' ),
+			'background-image'      => 'none',
+			'background-repeat'     => 'no-repeat',
+			'background-position'   => 'center center',
+			'background-size'       => 'cover',
+			'background-attachment' => 'fixed',
+		);
+
+		$background = (array) get_theme_mod( 'footer_widget_background', $background_default );
+		$text_color = get_theme_mod( 'footer_widget_text_color', shapla_default_options( 'footer_widget_text_color' ) );
+		$link_color = get_theme_mod( 'footer_widget_link_color', shapla_default_options( 'footer_widget_link_color' ) );
+
+		$styles = [ 'text-primary' => $text_color, 'text-accent' => $link_color, ];
+
+		// Background style
+		foreach ( $background as $property => $value ) {
+			if ( empty( $value ) || empty( $property ) ) {
+				continue;
+			}
+
+			if ( isset( $background_default[ $property ] ) && $value == $background_default[ $property ] ) {
+				continue;
+			}
+
+			if ( 'background-image' == $property ) {
+				if ( filter_var( $value, FILTER_VALIDATE_URL ) ) {
+					$value = 'url(' . $value . ')';
+				} else {
+					$value = 'none';
+				}
+			}
+			$styles[ $property ] = $value;
+		}
+
+		$string = '';
+		foreach ( $styles as $key => $color ) {
+			$string .= '--footer-widget-' . $key . ':' . $color . ';';
+		}
+
+		return $string;
+	}
 }
 
 Shapla_Assets::init();

@@ -67,13 +67,6 @@ Shapla_Customizer_Config::add_field( 'footer_widget_background', array(
 		'background-size'       => 'cover',
 		'background-attachment' => 'fixed',
 	),
-	'output'      => array(
-		array(
-			'element' => array(
-				'.footer-widget-area',
-			),
-		),
-	),
 ) );
 
 Shapla_Customizer_Config::add_field( 'footer_widget_text_color', array(
@@ -82,23 +75,6 @@ Shapla_Customizer_Config::add_field( 'footer_widget_text_color', array(
 	'label'    => __( 'Text Color', 'shapla' ),
 	'default'  => shapla_default_options( 'footer_widget_text_color' ),
 	'priority' => 30,
-	'output'   => array(
-		array(
-			'element'  => array(
-				'.footer-widget-area',
-				'.footer-widget-area .widget-title',
-			),
-			'property' => 'color',
-		),
-		array(
-			'element'  => array(
-				'.footer-widget-area .widget-title',
-				'.footer-widget-area table',
-				'.footer-widget-area table tr',
-			),
-			'property' => 'border-color',
-		),
-	),
 ) );
 
 Shapla_Customizer_Config::add_field( 'footer_widget_link_color', array(
@@ -107,12 +83,6 @@ Shapla_Customizer_Config::add_field( 'footer_widget_link_color', array(
 	'label'    => __( 'Link Color', 'shapla' ),
 	'default'  => shapla_default_options( 'footer_widget_link_color' ),
 	'priority' => 40,
-	'output'   => array(
-		array(
-			'element'  => '.footer-widget-area .widget a',
-			'property' => 'color',
-		),
-	),
 ) );
 
 // Site Footer Bottom Bar Background Color
