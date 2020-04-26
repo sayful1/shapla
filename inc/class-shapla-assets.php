@@ -118,17 +118,35 @@ class Shapla_Assets {
 	 * Inline color style
 	 */
 	public function dynamic_css_variables() {
-		$colors = Shapla_Colors::get_colors();
-		$fonts  = Shapla_Fonts::get_site_fonts();
+		$colors        = Shapla_Colors::get_colors();
+		$fonts         = Shapla_Fonts::get_site_fonts();
+		$widget_styles = static::footer_widget_dynamic_css_variables();
+		$footer_styles = static::footer_dynamic_css_variables();
 
-		echo '<style type="text/css">:root{';
+		$style = '<style type="text/css">';
+		// Root style
+		$style .= ':root{';
 		foreach ( $colors as $key => $color ) {
-			echo '--shapla-' . $key . ':' . $color . ';';
+			$style .= '--shapla-' . $key . ':' . $color . ';';
 		}
 		foreach ( $fonts as $key => $font ) {
-			echo '--shapla-' . $key . ':' . $font . ';';
+			$style .= '--shapla-' . $key . ':' . $font . ';';
 		}
-		echo '}</style>' . PHP_EOL;
+		$style .= '}';
+
+		// Footer Widget Area
+		$style .= '.footer-widget-area{';
+		$style .= $widget_styles;
+		$style .= '}';
+
+		// Footer Area
+		$style .= '.site-footer{';
+		$style .= $footer_styles;
+		$style .= '}';
+
+		$style .= '</style>' . PHP_EOL;
+
+		echo $style;
 	}
 
 	/**
@@ -244,6 +262,11 @@ class Shapla_Assets {
 		return $string;
 	}
 
+	/**
+	 * Footer dynamic CSS variables
+	 *
+	 * @return string
+	 */
 	public static function footer_dynamic_css_variables() {
 		$default_background_color = shapla_default_options( 'site_footer_bg_color' );
 		$default_text_color       = shapla_default_options( 'site_footer_text_color' );

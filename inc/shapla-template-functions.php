@@ -40,9 +40,8 @@ if ( ! function_exists( 'shapla_footer_markup' ) ) {
 	 * @since 1.4.5
 	 */
 	function shapla_footer_markup() {
-		$style = Shapla_Assets::footer_dynamic_css_variables();
 		?>
-        <footer id="colophon" class="site-footer" role="contentinfo" style="<?php echo $style; ?>">
+        <footer id="colophon" class="site-footer" role="contentinfo">
             <div class="shapla-container">
                 <div class="site-footer-inner">
 					<?php
@@ -224,8 +223,6 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 		$rows    = intval( get_theme_mod( 'footer_widget_rows', 1 ) );
 		$regions = intval( get_theme_mod( 'footer_widget_columns', 4 ) );
 
-		$styles = Shapla_Assets::footer_widget_dynamic_css_variables();
-
 		for ( $row = 1; $row <= $rows; $row ++ ) :
 
 			// Defines the number of active columns in this footer row.
@@ -237,7 +234,7 @@ if ( ! function_exists( 'shapla_footer_widget' ) ) {
 			}
 
 			if ( isset( $columns ) ) : ?>
-                <div id="footer-widget-area" class="footer-widget-area" style="<?php echo $styles ?>">
+                <div id="footer-widget-area" class="footer-widget-area">
                     <div class="shapla-container">
                         <div class=<?php echo '"footer-widgets row-' . strval( $row ) . ' col-' . strval( $columns ) . '"'; ?>><?php
 
