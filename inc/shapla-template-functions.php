@@ -40,8 +40,9 @@ if ( ! function_exists( 'shapla_footer_markup' ) ) {
 	 * @since 1.4.5
 	 */
 	function shapla_footer_markup() {
+		$style = Shapla_Assets::footer_dynamic_css_variables();
 		?>
-        <footer id="colophon" class="site-footer" role="contentinfo">
+        <footer id="colophon" class="site-footer" role="contentinfo" style="<?php echo $style; ?>">
             <div class="shapla-container">
                 <div class="site-footer-inner">
 					<?php

@@ -243,6 +243,22 @@ class Shapla_Assets {
 
 		return $string;
 	}
+
+	public static function footer_dynamic_css_variables() {
+		$default_background_color = shapla_default_options( 'site_footer_bg_color' );
+		$default_text_color       = shapla_default_options( 'site_footer_text_color' );
+		$default_link_color       = shapla_default_options( 'site_footer_link_color' );
+
+		$background_color = get_theme_mod( 'site_footer_bg_color', $default_background_color );
+		$text_color       = get_theme_mod( 'site_footer_text_color', $default_text_color );
+		$link_color       = get_theme_mod( 'site_footer_link_color', $default_link_color );
+
+		$string = '--footer-background-color:' . $background_color . ';';
+		$string .= '--footer-text-primary:' . $text_color . ';';
+		$string .= '--footer-text-accent:' . $link_color . ';';
+
+		return $string;
+	}
 }
 
 Shapla_Assets::init();

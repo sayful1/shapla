@@ -92,12 +92,6 @@ Shapla_Customizer_Config::add_field( 'site_footer_bg_color', array(
 	'label'    => __( 'Background Color', 'shapla' ),
 	'default'  => shapla_default_options( 'site_footer_bg_color' ),
 	'priority' => 10,
-	'output'   => array(
-		array(
-			'element'  => '.site-footer',
-			'property' => 'background-color',
-		),
-	),
 ) );
 
 // Site Footer Bottom Bar Text Color
@@ -107,12 +101,6 @@ Shapla_Customizer_Config::add_field( 'site_footer_text_color', array(
 	'label'    => __( 'Text Color', 'shapla' ),
 	'default'  => shapla_default_options( 'site_footer_text_color' ),
 	'priority' => 20,
-	'output'   => array(
-		array(
-			'element'  => '.site-footer',
-			'property' => 'color',
-		),
-	),
 ) );
 
 // Site Footer Bottom Bar Link Color
@@ -122,12 +110,6 @@ Shapla_Customizer_Config::add_field( 'site_footer_link_color', array(
 	'label'    => __( 'Link Color', 'shapla' ),
 	'default'  => shapla_default_options( 'site_footer_link_color' ),
 	'priority' => 30,
-	'output'   => array(
-		array(
-			'element'  => '.site-footer a',
-			'property' => 'color',
-		),
-	),
 ) );
 
 // Footer credit text
