@@ -33,22 +33,6 @@ Shapla_Customizer_Config::add_field( 'page_title_bar_padding', array(
 		'shapla' ),
 	'default'     => shapla_default_options( 'page_title_bar_padding' ),
 	'priority'    => 10,
-	'output'      => array(
-		array(
-			'element'     => array(
-				'.page-title-bar',
-			),
-			'property'    => 'padding-top',
-			'media_query' => '@media screen and (min-width: 769px)',
-		),
-		array(
-			'element'     => array(
-				'.page-title-bar',
-			),
-			'property'    => 'padding-bottom',
-			'media_query' => '@media screen and (min-width: 769px)',
-		),
-	),
 ) );
 
 // Border Color
@@ -59,20 +43,6 @@ Shapla_Customizer_Config::add_field( 'page_title_bar_border_color', array(
 	'description' => __( 'Controls the border colors of the page title bar.', 'shapla' ),
 	'default'     => shapla_default_options( 'page_title_bar_border_color' ),
 	'priority'    => 20,
-	'output'      => array(
-		array(
-			'element'  => array(
-				'.page-title-bar',
-			),
-			'property' => 'border-top-color',
-		),
-		array(
-			'element'  => array(
-				'.page-title-bar',
-			),
-			'property' => 'border-bottom-color',
-		),
-	),
 ) );
 
 // Page Title Bar Text Alignment
@@ -106,13 +76,6 @@ Shapla_Customizer_Config::add_field( 'page_title_bar_background', array(
 		'background-size'       => shapla_default_options( 'page_title_bar_background_size' ),
 		'background-attachment' => shapla_default_options( 'page_title_bar_background_attachment' ),
 	),
-	'output'      => array(
-		array(
-			'element' => array(
-				'.page-title-bar',
-			),
-		),
-	),
 ) );
 
 // Page Title Typography
@@ -136,11 +99,6 @@ Shapla_Customizer_Config::add_field( 'page_title_typography', array(
 			),
 		),
 		'font-backup' => true
-	),
-	'output'      => array(
-		array(
-			'element' => '.page-title-bar .entry-title',
-		),
 	),
 ) );
 

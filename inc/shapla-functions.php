@@ -165,7 +165,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 			'page_title_bar_background_size'        => 'cover',
 			'page_title_bar_background_attachment'  => 'fixed',
 			'page_title_bar_background_position'    => 'center center',
-			'page_title_bar_background_image'       => '',
+			'page_title_bar_background_image'       => 'none',
 			// Breadcrumbs
 			'breadcrumbs_content_display'           => 'breadcrumb',
 			'breadcrumbs_on_mobile_devices'         => 'off',

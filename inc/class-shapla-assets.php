@@ -118,10 +118,11 @@ class Shapla_Assets {
 	 * Inline color style
 	 */
 	public function dynamic_css_variables() {
-		$colors        = Shapla_Colors::get_colors();
-		$fonts         = Shapla_Fonts::get_site_fonts();
-		$widget_styles = static::footer_widget_dynamic_css_variables();
-		$footer_styles = static::footer_dynamic_css_variables();
+		$colors           = Shapla_Colors::get_colors();
+		$fonts            = Shapla_Fonts::get_site_fonts();
+		$widget_styles    = static::footer_widget_dynamic_css_variables();
+		$footer_styles    = static::footer_dynamic_css_variables();
+		$title_bar_styles = static::page_title_bar_dynamic_css_variables();
 
 		$style = '<style type="text/css">';
 		// Root style
@@ -132,6 +133,11 @@ class Shapla_Assets {
 		foreach ( $fonts as $key => $font ) {
 			$style .= '--shapla-' . $key . ':' . $font . ';';
 		}
+		$style .= '}';
+
+		// Page title bar
+		$style .= '.page-title-bar{';
+		$style .= $title_bar_styles;
 		$style .= '}';
 
 		// Footer Widget Area
@@ -279,6 +285,68 @@ class Shapla_Assets {
 		$string = '--footer-background-color:' . $background_color . ';';
 		$string .= '--footer-text-primary:' . $text_color . ';';
 		$string .= '--footer-text-accent:' . $link_color . ';';
+
+		return $string;
+	}
+
+	/**
+	 * Page title bar dynamic CSS variables
+	 *
+	 * @return string
+	 */
+	public static function page_title_bar_dynamic_css_variables() {
+		$background_default = [
+			'background-color'      => shapla_default_options( 'page_title_bar_background_color' ),
+			'background-image'      => shapla_default_options( 'page_title_bar_background_image' ),
+			'background-repeat'     => shapla_default_options( 'page_title_bar_background_repeat' ),
+			'background-position'   => shapla_default_options( 'page_title_bar_background_position' ),
+			'background-size'       => shapla_default_options( 'page_title_bar_background_size' ),
+			'background-attachment' => shapla_default_options( 'page_title_bar_background_attachment' ),
+		];
+
+		$background = get_theme_mod( 'page_title_bar_background', $background_default );
+
+		$typography_default = [
+			'font-size'      => shapla_default_options( 'page_title_font_size' ),
+			'line-height'    => shapla_default_options( 'page_title_line_height' ),
+			'color'          => shapla_default_options( 'page_title_font_color' ),
+			'text-transform' => shapla_default_options( 'page_title_text_transform' ),
+		];
+		$typography         = get_theme_mod( 'page_title_typography', $typography_default );
+
+		$defaults = array_merge( $background_default, $typography_default, [
+			'padding'      => shapla_default_options( 'page_title_bar_padding' ),
+			'border-color' => shapla_default_options( 'page_title_bar_border_color' ),
+		] );
+
+		$values = array_merge( $background, $typography, [
+			'padding'      => get_theme_mod( 'page_title_bar_padding', $defaults['padding'] ),
+			'border-color' => get_theme_mod( 'page_title_bar_border_color', $defaults['border-color'] ),
+		] );
+
+		$string = '';
+		foreach ( $values as $property => $value ) {
+			if ( empty( $value ) || empty( $property ) ) {
+				continue;
+			}
+			if ( isset( $defaults[ $property ] ) && $value == $defaults[ $property ] ) {
+				continue;
+			}
+
+			if ( in_array( $property, [ 'font-backup' ] ) ) {
+				continue;
+			}
+
+			if ( 'background-image' == $property ) {
+				if ( filter_var( $value, FILTER_VALIDATE_URL ) ) {
+					$value = 'url(' . $value . ')';
+				} else {
+					$value = 'none';
+				}
+			}
+
+			$string .= '--title-bar-' . $property . ':' . $value . ';';
+		}
 
 		return $string;
 	}
