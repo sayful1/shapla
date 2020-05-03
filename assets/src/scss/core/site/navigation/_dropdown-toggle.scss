@@ -1,6 +1,6 @@
 // Drop Toggle button
 .dropdown-toggle {
-	color: $text-primary;
+	color: var(--header-text-color, #{$color--dark_grey});
 	cursor: pointer;
 	display: block;
 	height: 3rem;
@@ -43,10 +43,11 @@
 	&:focus {
 		background-color: transparent;
 		box-shadow: none;
-		color: $primary;
+		color: var(--header-accent-color, #{$primary});
 	}
 
 	&:focus {
+		color: var(--header-accent-color, #{$primary});
 		outline: thin dotted;
 		outline-offset: -1px;
 	}

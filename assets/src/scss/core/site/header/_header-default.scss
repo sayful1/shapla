@@ -1,7 +1,8 @@
 .site-header {
 	box-shadow: 0 1px 0 rgba(#000, 0.1);
-	background-color: $color--white;
-	color: $color--dark_grey;
+	background-color: var(--header-background-color, #{$color--white});
+	background-image: var(--header-background-image, none);
+	color: var(--header-text-color, #{$color--dark_grey});
 	width: 100%;
 	z-index: 100;
 	transition: all 0.5s ease-in-out;
@@ -29,12 +30,12 @@
 	}
 
 	a {
-		color: $color--dark_grey;
+		color: var(--header-text-color, #{$color--dark_grey});
 		text-decoration: none;
 
 		&:hover,
 		&:focus {
-			color: $color--dark_grey;
+			color: var(--header-text-color, #{$color--dark_grey});
 		}
 	}
 }
@@ -50,19 +51,20 @@
 }
 
 .site-title {
-	font-size: 2rem;
+	font-size: var(--header-logo-font-size, 2rem);
 	line-height: 1.2;
 	margin: 0;
 	font-weight: normal;
 
 	> a {
-		color: $color--dark_grey;
+		color: var(--header-text-color, #{$color--dark_grey});
 		text-decoration: none;
 		display: block;
 	}
 }
 
 .site-description {
+	color: var(--header-text-color, #{$color--dark_grey});
 	margin: 0.5rem 0 0;
 	font-size: 0.875rem;
 	opacity: 0.8;
@@ -72,6 +74,7 @@
 // Search form
 .search-toggle {
 	i.fa-search {
+		color: var(--header-text-color, #{$text-primary});
 		cursor: pointer;
 		font-size: 0.875rem;
 		padding: 0.75rem;

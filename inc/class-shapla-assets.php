@@ -123,6 +123,7 @@ class Shapla_Assets {
 		$widget_styles    = static::footer_widget_dynamic_css_variables();
 		$footer_styles    = static::footer_dynamic_css_variables();
 		$title_bar_styles = static::page_title_bar_dynamic_css_variables();
+		$header_styles    = static::page_header_dynamic_css_variables();
 
 		$style = '<style type="text/css">';
 		// Root style
@@ -133,6 +134,11 @@ class Shapla_Assets {
 		foreach ( $fonts as $key => $font ) {
 			$style .= '--shapla-' . $key . ':' . $font . ';';
 		}
+		$style .= '}';
+
+		// Page title bar
+		$style .= '.site-header{';
+		$style .= $header_styles;
 		$style .= '}';
 
 		// Page title bar
@@ -347,6 +353,39 @@ class Shapla_Assets {
 
 			$string .= '--title-bar-' . $property . ':' . $value . ';';
 		}
+
+		return $string;
+	}
+
+	/**
+	 * Page title bar dynamic CSS variables
+	 *
+	 * @return string
+	 */
+	public static function page_header_dynamic_css_variables() {
+		$default_logo_font_size = shapla_default_options( 'site_logo_text_font_size' );
+		$default_background     = shapla_default_options( 'header_background_color' );
+		$default_text_color     = shapla_default_options( 'header_text_color' );
+		$default_link_color     = shapla_default_options( 'header_link_color' );
+
+		$logo_font_size   = get_theme_mod( 'site_logo_text_font_size', $default_logo_font_size );
+		$background_color = get_theme_mod( 'header_background_color', $default_background );
+		$text_color       = get_theme_mod( 'header_text_color', $default_text_color );
+		$link_color       = get_theme_mod( 'header_link_color', $default_link_color );
+
+		$get_header_image = get_header_image();
+
+		if ( $get_header_image ) {
+			$background_image = 'url(' . $get_header_image . ')';
+		} else {
+			$background_image = 'none';
+		}
+
+		$string = '--header-logo-font-size:' . $logo_font_size . ';';
+		$string .= '--header-background-image:' . $background_image . ';';
+		$string .= '--header-background-color:' . $background_color . ';';
+		$string .= '--header-text-color:' . $text_color . ';';
+		$string .= '--header-accent-color:' . $link_color . ';';
 
 		return $string;
 	}

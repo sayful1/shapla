@@ -84,6 +84,8 @@
 
 
 .shapla-cart-contents {
+	color: var(--header-text-color, #{$text-primary});
+
 	.count {
 		position: static;
 		float: right;

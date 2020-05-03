@@ -17,7 +17,7 @@ if ( ! function_exists( 'shapla_header_markup' ) ) {
 	 */
 	function shapla_header_markup() {
 		?>
-        <header id="masthead" class="site-header" role="banner" style="<?php shapla_header_styles(); ?>">
+        <header id="masthead" class="site-header" role="banner">
             <div class="shapla-container">
                 <div class="site-header-inner">
 					<?php

@@ -1,6 +1,6 @@
 // Menu Toggle Button
 .menu-toggle {
-	color: $text-primary;
+	color: var(--header-text-color, #{$text-primary});
 	cursor: pointer;
 	display: block;
 	height: 3rem;
