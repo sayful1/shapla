@@ -1,3 +1,17 @@
+#### 2.0.1 - June 21, 2020
+* Fix - Page navigation style break if not previous navigation.
+* Fix - Full screen template also contain padding on mobile screen.
+* Fix - Extra padding on content bottom on full screen page template.
+* Fix - Comment area is taking full screen on full screen page template.
+* Tweak - Remove product search form javaScript
+* Tweak - Add dynamic CSS variables for footer widget area.
+* Tweak - Add dynamic CSS variables for footer area.
+* Tweak - Remove dynamic CSS variables from DOM to Style section for footer widget and footer area.
+* Tweak - Add dynamic CSS variables for page title bar.
+* Tweak - Add dynamic CSS variables for site header.
+* Tweak - Add `wp_body_open` action hook after body open as recommended from WordPress 5.2
+* Tweak - Update coding standard with the latest theme check plugin.
+
 #### 2.0.0 - March 31, 2020
 * Feature - Add customize setting for Enable/disable Structured Data.
 * Feature - Update single page entry meta design.
