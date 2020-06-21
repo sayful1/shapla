@@ -63,56 +63,56 @@ if ( ! class_exists( 'Shapla_Background_Customize_Control' ) ) {
 
             <!-- background-color -->
             <div class="background-color">
-                <h4><?php esc_attr_e( 'Background Color', 'shapla' ); ?></h4>
+                <h4><?php esc_html_e( 'Background Color', 'shapla' ); ?></h4>
                 <input type="text" data-default-color="{{ data.default['background-color'] }}" data-alpha="true"
                        value="{{ data.value['background-color'] }}" class="shapla-color-control"/>
             </div>
 
             <!-- background-image -->
             <div class="background-image">
-                <h4><?php esc_attr_e( 'Background Image', 'shapla' ); ?></h4>
+                <h4><?php esc_html_e( 'Background Image', 'shapla' ); ?></h4>
                 <div class="attachment-media-view background-image-upload">
                     <# if ( data.value['background-image'] ) { #>
                     <div class="thumbnail thumbnail-image"><img src="{{ data.value['background-image'] }}" alt=""/>
                     </div>
                     <# } else { #>
-                    <div class="placeholder"><?php esc_attr_e( 'No File Selected', 'shapla' ); ?></div>
+                    <div class="placeholder"><?php esc_html_e( 'No File Selected', 'shapla' ); ?></div>
                     <# } #>
                     <div class="actions">
-                        <button class="button background-image-upload-remove-button<# if ( ! data.value['background-image'] ) { #> hidden <# } #>"><?php esc_attr_e( 'Remove', 'shapla' ); ?></button>
+                        <button class="button background-image-upload-remove-button<# if ( ! data.value['background-image'] ) { #> hidden <# } #>"><?php esc_html_e( 'Remove', 'shapla' ); ?></button>
                         <button type="button"
-                                class="button background-image-upload-button"><?php esc_attr_e( 'Select File', 'shapla' ); ?></button>
+                                class="button background-image-upload-button"><?php esc_html_e( 'Select File', 'shapla' ); ?></button>
                     </div>
                 </div>
             </div>
 
             <!-- background-repeat -->
             <div class="background-repeat">
-                <h4><?php esc_attr_e( 'Background Repeat', 'shapla' ); ?></h4>
+                <h4><?php esc_html_e( 'Background Repeat', 'shapla' ); ?></h4>
                 <select {{{ data.inputAttrs }}}>
 					<?php foreach ( $this->background_repeat() as $repeat_key => $repeat_label ): ?>
                         <option value="<?php echo $repeat_key; ?>"
                         <# if ( '<?php echo $repeat_key; ?>' === data.value['background-repeat'] ) { #> selected <# } #>
-                        ><?php echo esc_attr( $repeat_label ); ?></option>
+                        ><?php echo esc_html( $repeat_label ); ?></option>
 					<?php endforeach; ?>
                 </select>
             </div>
 
             <!-- background-position -->
             <div class="background-position">
-                <h4><?php esc_attr_e( 'Background Position', 'shapla' ); ?></h4>
+                <h4><?php esc_html_e( 'Background Position', 'shapla' ); ?></h4>
                 <select {{{ data.inputAttrs }}}>
 					<?php foreach ( $this->background_position() as $position_key => $position_label ): ?>
                         <option value="<?php echo $position_key; ?>"
                         <# if ( '<?php echo $position_key; ?>' === data.value['background-position'] ) { #> selected <# } #>
-                        ><?php echo esc_attr( $position_label ); ?></option>
+                        ><?php echo esc_html( $position_label ); ?></option>
 					<?php endforeach; ?>
                 </select>
             </div>
 
             <!-- background-size -->
             <div class="background-size">
-                <h4><?php esc_attr_e( 'Background Size', 'shapla' ); ?></h4>
+                <h4><?php esc_html_e( 'Background Size', 'shapla' ); ?></h4>
                 <div class="buttonset">
 					<?php foreach ( $this->background_size() as $size_key => $size_label ): ?>
                         <input {{{ data.inputAttrs }}}
@@ -135,7 +135,7 @@ if ( ! class_exists( 'Shapla_Background_Customize_Control' ) ) {
 
             <!-- background-attachment -->
             <div class="background-attachment">
-                <h4><?php esc_attr_e( 'Background Attachment', 'shapla' ); ?></h4>
+                <h4><?php esc_html_e( 'Background Attachment', 'shapla' ); ?></h4>
                 <div class="buttonset">
 					<?php foreach ( $this->background_attachment() as $attachment_key => $attachment ): ?>
                         <input {{{ data.inputAttrs }}}

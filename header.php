@@ -12,17 +12,24 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <link rel="profile" href="http://gmpg.org/xfn/11">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
-        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<?php endif; ?>
 
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+<?php
+if ( function_exists( 'wp_body_open' ) ) {
+	wp_body_open();
+} else {
+	do_action( 'wp_body_open' );
+}
+?>
 <div id="page" class="site">
 	<?php
 	/**
@@ -43,6 +50,6 @@
 	do_action( 'shapla_before_content' );
 	?>
 
-    <div id="content" class="site-content">
-        <div class="shapla-container">
-            <div class="site-content-inner">
+	<div id="content" class="site-content">
+		<div class="shapla-container">
+			<div class="site-content-inner">

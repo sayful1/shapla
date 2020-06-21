@@ -11,7 +11,7 @@ $_count_plugins = count( $active_plugins );
 <table class="widefat table-shapla-system-status" cellspacing="0">
     <thead>
     <tr>
-        <th colspan="3"><?php esc_attr_e( 'WordPress Environment', 'shapla' ); ?></th>
+        <th colspan="3"><?php esc_html_e( 'WordPress Environment', 'shapla' ); ?></th>
     </tr>
     </thead>
     <tbody>
@@ -36,7 +36,7 @@ $_count_plugins = count( $active_plugins );
 <table class="widefat table-shapla-system-status" cellspacing="0">
     <thead>
     <tr>
-        <th colspan="3"><?php esc_attr_e( 'Server Environment', 'shapla' ); ?></th>
+        <th colspan="3"><?php esc_html_e( 'Server Environment', 'shapla' ); ?></th>
     </tr>
     </thead>
     <tbody>
@@ -62,7 +62,7 @@ $_count_plugins = count( $active_plugins );
     <table class="widefat table-shapla-system-status" cellspacing="0">
         <thead>
         <tr>
-            <th colspan="3"><?php esc_attr_e( 'Active Plugins', 'shapla' ); ?></th>
+            <th colspan="3"><?php esc_html_e( 'Active Plugins', 'shapla' ); ?></th>
         </tr>
         </thead>
         <tbody>
