@@ -7,6 +7,8 @@
 # Ignore all files from css and js directory
 /assets/css/
 /assets/js/
+/assets/fonts/
+/assets/images/
 
 # Ignore all map files
 *.map

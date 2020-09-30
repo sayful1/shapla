@@ -30,8 +30,8 @@
 	"woocommerce": [
 	  "./assets/src/scss/woocommerce.scss"
 	],
-	"fortawesome": [
-	  "./assets/src/scss/fortawesome.scss"
+	"fontawesome-free": [
+	  "./assets/src/scss/fontawesome-free.scss"
 	]
   },
   "cleanFiles": [
