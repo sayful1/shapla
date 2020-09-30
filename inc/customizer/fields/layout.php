@@ -34,9 +34,9 @@ Shapla_Customizer_Config::add_field( 'general_layout', array(
 	'default'     => shapla_default_options( 'general_layout' ),
 	'priority'    => 20,
 	'choices'     => array(
-		'right-sidebar' => get_template_directory_uri() . '/assets/images/customizer/2cr.svg',
-		'left-sidebar'  => get_template_directory_uri() . '/assets/images/customizer/2cl.svg',
-		'full-width'    => get_template_directory_uri() . '/assets/images/customizer/1c.svg',
+		'right-sidebar' => get_template_directory_uri() . '/assets/static-images/2cr.svg',
+		'left-sidebar'  => get_template_directory_uri() . '/assets/static-images/2cl.svg',
+		'full-width'    => get_template_directory_uri() . '/assets/static-images/1c.svg',
 	),
 ) );
 
@@ -49,8 +49,8 @@ Shapla_Customizer_Config::add_field( 'header_layout', array(
 	'default'     => shapla_default_options( 'header_layout' ),
 	'priority'    => 30,
 	'choices'     => array(
-		'layout-1' => get_template_directory_uri() . '/assets/images/customizer/layout-1.svg',
-		'layout-2' => get_template_directory_uri() . '/assets/images/customizer/layout-2.svg',
-		'layout-3' => get_template_directory_uri() . '/assets/images/customizer/layout-3.svg',
+		'layout-1' => get_template_directory_uri() . '/assets/static-images/layout-1.svg',
+		'layout-2' => get_template_directory_uri() . '/assets/static-images/layout-2.svg',
+		'layout-3' => get_template_directory_uri() . '/assets/static-images/layout-3.svg',
 	),
 ) );

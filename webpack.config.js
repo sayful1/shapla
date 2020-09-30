@@ -4,6 +4,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackCleanPlugin = require('webpack-clean');
+const svgToMiniDataURI = require('mini-svg-data-uri');
 const combineMediaQuery = require('postcss-combine-media-query');
 
 const config = require('./config.json');
@@ -33,7 +34,6 @@ module.exports = (env, argv) => {
 			"rules": [
 				{
 					"test": /\.js$/,
-					"exclude": /node_modules/,
 					"use": {
 						"loader": "babel-loader",
 						"options": {
@@ -75,18 +75,38 @@ module.exports = (env, argv) => {
 					]
 				},
 				{
-					test: /\.svg/,
-					use: {
-						loader: 'svg-url-loader',
-						options: {}
-					}
-				},
-				{
-					test: /\.(png|je?pg|gif|eot|ttf|woff|woff2)$/,
+					test: /\.(eot|ttf|woff|woff2)$/i,
 					use: [
 						{
 							loader: 'file-loader',
-							options: {},
+							options: {
+								outputPath: '../fonts',
+							},
+						},
+					],
+				},
+				{
+					test: /\.(png|je?pg|gif)$/i,
+					use: [
+						{
+							loader: 'url-loader',
+							options: {
+								limit: 8192, // 8KB
+								outputPath: '../images',
+							},
+						},
+					],
+				},
+				{
+					test: /\.svg$/i,
+					use: [
+						{
+							loader: 'url-loader',
+							options: {
+								limit: 20480, // 20KB
+								outputPath: '../images',
+								generator: (content) => svgToMiniDataURI(content.toString()),
+							},
 						},
 					],
 				},

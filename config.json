@@ -29,6 +29,9 @@
 	],
 	"woocommerce": [
 	  "./assets/src/scss/woocommerce.scss"
+	],
+	"fortawesome": [
+	  "./assets/src/scss/fortawesome.scss"
 	]
   },
   "cleanFiles": [
@@ -36,6 +39,7 @@
 	"./assets/js/blocks.js",
 	"./assets/js/carousel-slider.js",
 	"./assets/js/editor-style.js",
+	"./assets/js/fortawesome.js",
 	"./assets/js/woocommerce.js"
   ]
 }

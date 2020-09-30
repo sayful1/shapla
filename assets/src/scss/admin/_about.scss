@@ -1,3 +1,5 @@
+$icon-path: '../images/';
+
 .shapla-about-wrap {
 	box-sizing: border-box;
 
@@ -11,7 +13,7 @@
 
 	// Theme Logo
 	.shapla-welcome-logo {
-		background: url(../../images/logo-white.svg) center 25px no-repeat #0073aa;
+		background: url('#{$icon-path}logo-white.svg') center 25px no-repeat #0073aa;
 		box-sizing: content-box;
 	}
 
