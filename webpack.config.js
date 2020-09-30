@@ -3,40 +3,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const autoprefixer = require('autoprefixer');
+const WebpackCleanPlugin = require('webpack-clean');
+const combineMediaQuery = require('postcss-combine-media-query');
 
 const config = require('./config.json');
-const entryPoints = {
-	'main': [
-		'./assets/src/scss/style.scss',
-		'./assets/src/public/main.js',
-	],
-	'admin': [
-		'./assets/src/scss/admin.scss',
-	],
-	'blocks': [
-		'./assets/src/scss/blocks.scss',
-	],
-	'carousel-slider': [
-		'./assets/src/scss/carousel-slider.scss',
-	],
-	'customizer': [
-		'./assets/src/scss/customizer.scss',
-		'./assets/src/customize/background.js',
-		'./assets/src/customize/color.js',
-		'./assets/src/customize/radio-buttonset.js',
-		'./assets/src/customize/radio-image.js',
-		'./assets/src/customize/slider.js',
-		'./assets/src/customize/toggle.js',
-		'./assets/src/customize/typography.js',
-	],
-	'editor-style': [
-		'./assets/src/scss/editor-style.scss',
-	],
-	'woocommerce': [
-		'./assets/src/scss/woocommerce.scss',
-	]
-};
 
 let plugins = [];
 
@@ -48,10 +18,12 @@ plugins.push(new BrowserSyncPlugin({
 	proxy: config.proxyURL
 }));
 
+plugins.push(new WebpackCleanPlugin(config.cleanFiles))
+
 module.exports = (env, argv) => {
 	let isDev = argv.mode !== 'production';
 	return {
-		"entry": entryPoints,
+		"entry": config.entryPoints,
 		"output": {
 			"path": path.resolve(__dirname, './assets/js'),
 			"filename": '[name].js'
@@ -86,7 +58,12 @@ module.exports = (env, argv) => {
 							loader: "postcss-loader",
 							options: {
 								sourceMap: isDev,
-								plugins: () => [autoprefixer()],
+								postcssOptions: {
+									plugins: [
+										'postcss-preset-env',
+										combineMediaQuery(),
+									],
+								},
 							},
 						},
 						{

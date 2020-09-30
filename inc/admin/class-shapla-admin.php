@@ -272,7 +272,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			} elseif ( ! empty( $arr['1x'] ) ) {
 				$plugin_icon_url = $arr['1x'];
 			} else {
-				$plugin_icon_url = get_template_directory_uri() . '/assets/images/placeholder-plugin.svg';
+				$plugin_icon_url = get_template_directory_uri() . '/assets/images/placeholder.svg';
 			}
 
 			return $plugin_icon_url;

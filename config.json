@@ -1,3 +1,41 @@
 {
-	"proxyURL": "http://shapla.test"
+  "proxyURL": "http://shapla.test",
+  "entryPoints": {
+	"main": [
+	  "./assets/src/scss/style.scss",
+	  "./assets/src/public/main.js"
+	],
+	"admin": [
+	  "./assets/src/scss/admin.scss"
+	],
+	"blocks": [
+	  "./assets/src/scss/blocks.scss"
+	],
+	"carousel-slider": [
+	  "./assets/src/scss/carousel-slider.scss"
+	],
+	"customizer": [
+	  "./assets/src/scss/customizer.scss",
+	  "./assets/src/customize/background.js",
+	  "./assets/src/customize/color.js",
+	  "./assets/src/customize/radio-buttonset.js",
+	  "./assets/src/customize/radio-image.js",
+	  "./assets/src/customize/slider.js",
+	  "./assets/src/customize/toggle.js",
+	  "./assets/src/customize/typography.js"
+	],
+	"editor-style": [
+	  "./assets/src/scss/editor-style.scss"
+	],
+	"woocommerce": [
+	  "./assets/src/scss/woocommerce.scss"
+	]
+  },
+  "cleanFiles": [
+	"./assets/js/admin.js",
+	"./assets/js/blocks.js",
+	"./assets/js/carousel-slider.js",
+	"./assets/js/editor-style.js",
+	"./assets/js/woocommerce.js"
+  ]
 }
