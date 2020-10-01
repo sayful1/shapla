@@ -121,12 +121,6 @@ if ( ! class_exists( 'Shapla_System_Status' ) ) {
 				$permalink = 'Plain';
 			}
 
-			// Default Timezone
-			$timezone = get_option( 'timezone_string' );
-			if ( ! $timezone ) {
-				$timezone = get_option( 'gmt_offset' );
-			}
-
 			$info = array(
 				array(
 					'title' => esc_attr__( 'Site URL:', 'shapla' ),
@@ -166,7 +160,7 @@ if ( ! class_exists( 'Shapla_System_Status' ) ) {
 				array(
 					'title' => esc_attr__( 'Timezone:', 'shapla' ),
 					'desc'  => esc_attr__( 'The current timezone used by WordPress.', 'shapla' ),
-					'value' => esc_attr( $timezone ),
+					'value' => esc_attr( wp_timezone_string() ),
 				),
 				array(
 					'title' => esc_attr__( 'Permalink Structure:', 'shapla' ),
