@@ -30,7 +30,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
 			add_action( 'admin_menu', array( $this, 'shapla_admin_menu_page' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
-			add_action( 'admin_print_footer_scripts', array( $this, 'admin_inline_scripts' ), 90 );
 
 			/* activation notice */
 			add_action( 'load-themes.php', array( $this, 'activation_admin_notice' ) );
@@ -62,29 +61,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 					'shapla' ) . '</a>';
 			echo '</p>';
 			echo '</div>';
-		}
-
-		/**
-		 * Inline scripts for admin page
-		 */
-		public function admin_inline_scripts() {
-			global $hook_suffix;
-			if ( $hook_suffix != 'appearance_page_shapla-welcome' ) {
-				return;
-			}
-			?>
-			<script type="text/javascript">
-				(function ($) {
-					'use strict';
-					// Initializing TipTip
-					$(".help_tip").each(function () {
-						$(this).tipTip({
-							attribute: "data-tip"
-						});
-					});
-				})(jQuery);
-			</script>
-			<?php
 		}
 
 		/**
@@ -319,10 +295,9 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		 * Function that crates the action link for install/activate/deactivate.
 		 *
 		 * @param string $state the plugin state (uninstalled/active/inactive).
-		 * @param array $plugin_info
+		 * @param array  $plugin_info
 		 *
 		 * @return string
-		 *
 		 */
 		public function create_action_link( $state, $plugin_info ) {
 

@@ -21,7 +21,7 @@ $_count_plugins = count( $active_plugins );
 		echo '<td>' . $wp_env_info['title'] . '</td>';
 		if ( ! empty( $wp_env_info['desc'] ) ) {
 			echo '<td class="help">';
-			echo '<a href="#" class="help_tip" data-tip="' . $wp_env_info['desc'] . '">[?]</a>';
+			echo '<a href="#" class="shapla-tooltip" data-tip="' . $wp_env_info['desc'] . '">[?]</a>';
 			echo '</td>';
 		} else {
 			echo '<td class="help"></td>';
@@ -46,7 +46,7 @@ $_count_plugins = count( $active_plugins );
 		echo '<td>' . $server_env_info['title'] . '</td>';
 		if ( ! empty( $server_env_info['desc'] ) ) {
 			echo '<td class="help">';
-			echo '<a href="#" class="help_tip" data-tip="' . $server_env_info['desc'] . '">[?]</a>';
+			echo '<a href="#" class="shapla-tooltip" data-tip="' . $server_env_info['desc'] . '">[?]</a>';
 			echo '</td>';
 		} else {
 			echo '<td class="help"></td>';
