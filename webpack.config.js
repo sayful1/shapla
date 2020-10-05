@@ -104,7 +104,12 @@ module.exports = (env, argv) => {
 							loader: 'url-loader',
 							options: {
 								limit: 20480, // 20KB
-								outputPath: '../images',
+								outputPath: (url, resourcePath) => {
+									if (/@fortawesome\/fontawesome-free/.test(resourcePath)) {
+										return `../fonts/${url}`;
+									}
+									return `../images/${url}`;
+								},
 								generator: (content) => svgToMiniDataURI(content.toString()),
 							},
 						},
