@@ -196,4 +196,76 @@ class Shapla_System_Info {
 
 		return sprintf( '%s%02d:%02d', $sign, $abs_hour, $abs_mins );
 	}
+
+	/**
+	 * Get site url
+	 *
+	 * @return string
+	 */
+	public static function get_site_url() {
+		return site_url();
+	}
+
+	/**
+	 * Get home page url
+	 *
+	 * @return string
+	 */
+	public static function get_home_url() {
+		return home_url();
+	}
+
+	/**
+	 * Check if debug mode enabled
+	 *
+	 * @return bool
+	 */
+	public static function is_debug_mode() {
+		return defined( 'WP_DEBUG' ) && WP_DEBUG;
+	}
+
+	/**
+	 * Get site language
+	 *
+	 * @return string
+	 */
+	public static function get_site_language() {
+		return get_bloginfo( 'language' );
+	}
+
+	/**
+	 * Get WordPress version
+	 *
+	 * @return string
+	 */
+	public static function get_wordpress_version() {
+		return get_bloginfo( 'version' );
+	}
+
+	/**
+	 * Check if is multisite
+	 *
+	 * @return bool
+	 */
+	public static function is_multisite() {
+		return is_multisite();
+	}
+
+	/**
+	 * Check if cron is disabled
+	 *
+	 * @return bool
+	 */
+	public static function is_cron_disabled() {
+		return defined( 'DISABLE_WP_CRON' ) && DISABLE_WP_CRON;
+	}
+
+	/**
+	 * Get wordpress memory limit
+	 *
+	 * @return false|string
+	 */
+	public static function get_wordpress_memory_limit() {
+		return size_format( wp_convert_hr_to_bytes( WP_MEMORY_LIMIT ) );
+	}
 }

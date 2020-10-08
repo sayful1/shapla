@@ -155,11 +155,12 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			// Display content for current tab
 			switch ( $tab ) {
 				case 'changelog':
-					$template = $template_path . '/changelog.php';
+					$file_path = file_get_contents( SHAPLA_THEME_PATH . '/CHANGELOG.md' );
+					echo static::parse_changelog( $file_path );
 					break;
 
 				case 'system_status':
-					$template = $template_path . '/system_status.php';
+					echo Shapla_System_Status::get_html();
 					break;
 
 				case 'recommended_plugins':
@@ -356,6 +357,39 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 				'plugin'    => $plugin_directory,
 				'TB_iframe' => 'true',
 			), admin_url( 'plugin-install.php' ) );
+		}
+
+		/**
+		 * @param $string
+		 *
+		 * @return string
+		 */
+		public static function parse_changelog( $string ) {
+			$html = '';
+			$logs = explode( "####", $string );
+			foreach ( $logs as $_log ) {
+				if ( empty( $_log ) ) {
+					continue;
+				}
+				$log = explode( '*', $_log );
+				if ( count( $log ) < 2 ) {
+					continue;
+				}
+
+				$html .= '<table class="widefat table-shapla-changelog">';
+				$html .= '<thead><tr><th>' . esc_html( $log[0] ) . '</th></tr></thead>';
+				$html .= '<tbody><tr><td><ul>';
+				foreach ( $log as $log_num => $log_info ) {
+					if ( 0 == $log_num ) {
+						continue;
+					}
+					$html .= '<li>' . esc_html( $log_info ) . '</li>';
+				}
+				$html .= '</ul></td></tr></tbody>';
+				$html .= '</table>';
+			}
+
+			return $html;
 		}
 	}
 }
