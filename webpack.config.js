@@ -9,43 +9,53 @@ const combineMediaQuery = require('postcss-combine-media-query');
 
 const config = require('./config.json');
 
-let plugins = [];
-
-plugins.push(new MiniCssExtractPlugin({
-	filename: "../css/[name].css"
-}));
-
-plugins.push(new BrowserSyncPlugin({
-	proxy: config.proxyURL
-}));
-
-plugins.push(new WebpackCleanPlugin(config.cleanFiles))
-
 module.exports = (env, argv) => {
 	let isDev = argv.mode !== 'production';
-	return {
-		"entry": config.entryPoints,
-		"output": {
-			"path": path.resolve(__dirname, './assets/js'),
-			"filename": '[name].js'
+
+	let plugins = [];
+
+	plugins.push(new MiniCssExtractPlugin({
+		filename: "../css/[name].css"
+	}));
+
+	plugins.push(new BrowserSyncPlugin({
+		proxy: config.proxyURL
+	}));
+
+	plugins.push(new WebpackCleanPlugin(config.cleanFiles))
+
+	let webpackConfig = {
+		entry: config.entryPoints,
+		output: {
+			path: path.resolve(__dirname, './assets/js'),
+			filename: '[name].js'
 		},
-		"devtool": isDev ? 'eval-source-map' : false,
-		"module": {
-			"rules": [
+		devtool: isDev ? 'eval-source-map' : false,
+		module: {
+			rules: [
 				{
-					"test": /\.js$/,
-					"use": {
-						"loader": "babel-loader",
-						"options": {
-							presets: ['@babel/preset-env']
+					test: /\.(js|jsx)$/i,
+					use: {
+						loader: "babel-loader",
+						options: {
+							presets: [
+								'@babel/preset-env',
+								'@babel/preset-react'
+							],
+							plugins: [
+								['@babel/plugin-proposal-class-properties', {'loose': true}],
+								['@babel/plugin-proposal-private-methods', {'loose': true}],
+								['@babel/plugin-proposal-object-rest-spread', {'loose': true}],
+							]
 						}
 					}
 				},
 				{
-					"test": /\.(sass|scss|css)$/,
-					"use": [
+					test: /\.(sass|scss|css)$/,
+					use: [
 						{
-							loader: isDev ? "style-loader" : MiniCssExtractPlugin.loader
+							loader: isDev ? "style-loader" : MiniCssExtractPlugin.loader,
+							options: isDev ? {} : {publicPath: ''}
 						},
 						{
 							loader: "css-loader",
@@ -60,7 +70,7 @@ module.exports = (env, argv) => {
 								sourceMap: isDev,
 								postcssOptions: {
 									plugins: [
-										'postcss-preset-env',
+										['postcss-preset-env'],
 										combineMediaQuery(),
 									],
 								},
@@ -128,8 +138,21 @@ module.exports = (env, argv) => {
 				path.resolve('./node_modules'),
 				path.resolve(path.join(__dirname, 'assets/src/')),
 			],
-			extensions: ['*', '.js', '.vue', '.json']
+			extensions: ['*', '.js', '.jsx', '.json']
 		},
-		"plugins": plugins
+		plugins: plugins
 	}
+
+	if (!isDev) {
+		// `jQuery`, `React`, `ReactDOM` will be loaded from WordPress
+		webpackConfig.externals = {
+			jquery: {commonjs: 'jquery', commonjs2: 'jquery', amd: 'jquery', umd: 'jquery', root: 'jQuery'},
+			react: {commonjs: 'react', commonjs2: 'react', amd: 'react', umd: 'react', root: 'React'},
+			'react-dom': {
+				commonjs: 'react-dom', commonjs2: 'react-dom', amd: 'react-dom', umd: 'react-dom', root: 'ReactDOM',
+			},
+		}
+	}
+
+	return webpackConfig;
 };
