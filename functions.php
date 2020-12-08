@@ -2,8 +2,7 @@
 /**
  * Shapla functions and definitions.
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
+ * @link    https://developer.wordpress.org/themes/basics/theme-functions/
  * @package Shapla
  */
 
@@ -16,6 +15,11 @@ defined( 'ABSPATH' ) || exit;
 define( 'SHAPLA_THEME_VERSION', wp_get_theme( 'shapla' )->get( 'Version' ) );
 define( 'SHAPLA_THEME_PATH', dirname( __FILE__ ) );
 define( 'SHAPLA_THEME_URI', untrailingslashit( get_template_directory_uri() ) );
+
+require_once SHAPLA_THEME_PATH . '/classes/Autoloader.php';
+$loader = new Shapla\Autoloader;
+$loader->add_namespace( 'Shapla', SHAPLA_THEME_PATH . '/classes' );
+$loader->register();
 
 
 spl_autoload_register( function ( $className ) {
