@@ -8,7 +8,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 	/**
 	 * A simple wrapper class of static methods sanitizing value.
 	 *
-	 * @class        Shapla_Sanitize
+	 * @class          Shapla_Sanitize
 	 * @version        1.4.0
 	 */
 	class Shapla_Sanitize {
@@ -192,7 +192,6 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 
 		/**
 		 * Sanitizes a string
-		 *
 		 * - Checks for invalid UTF-8,
 		 * - Converts single `<` characters to entities
 		 * - Strips all tags
@@ -209,7 +208,6 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 
 		/**
 		 * Sanitizes a multiline string
-		 *
 		 * The function is like sanitize_text_field(), but preserves
 		 * new lines (\n) and other whitespace, which are legitimate
 		 * input in textarea elements.
@@ -249,7 +247,7 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		/**
 		 * Sanitize a value from a list of allowed values.
 		 *
-		 * @param mixed $input
+		 * @param mixed  $input
 		 * @param object $setting
 		 *
 		 * @return mixed
@@ -335,14 +333,14 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 						}
 						break;
 					case 'text-transform':
-						if ( ! in_array( $val, array(
+						if ( ! in_array( $val, [
 							'none',
 							'capitalize',
 							'uppercase',
 							'lowercase',
 							'initial',
 							'inherit'
-						), true ) ) {
+						], true ) ) {
 							$value['text-transform'] = 'none';
 						}
 						break;
@@ -376,6 +374,35 @@ if ( ! class_exists( 'Shapla_Sanitize' ) ) {
 		 */
 		public static function filter_number( $value ) {
 			return filter_var( $value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+		}
+
+		/**
+		 * Sanitize mixed content
+		 *
+		 * @param mixed $value
+		 *
+		 * @return mixed
+		 */
+		public static function deep( $value ) {
+			if ( is_null( $value ) || empty( $value ) ) {
+				return $value;
+			}
+			if ( is_scalar( $value ) ) {
+				if ( is_numeric( $value ) ) {
+					return is_float( $value ) ? floatval( $value ) : intval( $value );
+				}
+
+				return static::text( $value );
+			}
+
+			$sanitized_value = [];
+			if ( is_array( $value ) ) {
+				foreach ( $value as $index => $item ) {
+					$sanitized_value[ $index ] = static::deep( $item );
+				}
+			}
+
+			return $sanitized_value;
 		}
 	}
 }

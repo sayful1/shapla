@@ -173,7 +173,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 					break;
 			}
 
-			if ( file_exists( $template ) ) {
+			if ( isset( $template ) && file_exists( $template ) ) {
 				echo '<div class="shapla-about-content">';
 				include $template;
 				echo '</div>';

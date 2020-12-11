@@ -38,7 +38,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 		 * Shapla_Metabox constructor.
 		 */
 		public function __construct() {
-			add_action( 'save_post', array( $this, 'save_meta_box' ), 10, 3 );
+			add_action( 'save_post', [ $this, 'save_meta_box' ], 10, 3 );
 		}
 
 		/**
@@ -114,9 +114,17 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 
 			$this->set_config( $options );
 
-			$this->panels   = isset( $options['panels'] ) ? $options['panels'] : array();
-			$this->sections = isset( $options['sections'] ) ? $options['sections'] : array();
-			$this->fields   = isset( $options['fields'] ) ? $options['fields'] : array();
+			if ( isset( $options['panels'] ) ) {
+				$this->set_panels( $options['panels'] );
+			}
+
+			if ( isset( $options['sections'] ) ) {
+				$this->set_sections( $options['sections'] );
+			}
+
+			if ( isset( $options['fields'] ) ) {
+				$this->set_fields( $options['fields'] );
+			}
 
 			add_action( 'add_meta_boxes', function () {
 				$config = $this->get_config();
@@ -237,7 +245,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			do_action( 'shapla_before_save_post_meta', $post_id, $post, $update );
 
 			if ( isset( $_POST[ $this->option_name ] ) ) {
-				update_post_meta( $post_id, $this->option_name, self::sanitize_value( $_POST[ $this->option_name ] ) );
+				update_post_meta( $post_id, $this->option_name, Shapla_Sanitize::deep( $_POST[ $this->option_name ] ) );
 
 				$styles = $this->get_styles();
 				if ( ! empty( $styles ) ) {
@@ -282,33 +290,6 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			}
 
 			return $current_field;
-		}
-
-		/**
-		 * Sanitize meta value
-		 *
-		 * @param $input
-		 *
-		 * @return array|string
-		 */
-		private static function sanitize_value( $input ) {
-			// Initialize the new array that will hold the sanitize values
-			$new_input = array();
-
-			if ( is_array( $input ) ) {
-				// Loop through the input and sanitize each of the values
-				foreach ( $input as $key => $value ) {
-					if ( is_array( $value ) ) {
-						$new_input[ $key ] = self::sanitize_value( $value );
-					} else {
-						$new_input[ $key ] = sanitize_text_field( $value );
-					}
-				}
-			} else {
-				return sanitize_text_field( $input );
-			}
-
-			return $new_input;
 		}
 
 		/**
