@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackCleanPlugin = require('webpack-clean');
@@ -43,9 +43,9 @@ module.exports = (env, argv) => {
 								'@babel/preset-react'
 							],
 							plugins: [
-								['@babel/plugin-proposal-class-properties', {'loose': true}],
-								['@babel/plugin-proposal-private-methods', {'loose': true}],
-								['@babel/plugin-proposal-object-rest-spread', {'loose': true}],
+								['@babel/plugin-proposal-class-properties'],
+								['@babel/plugin-proposal-private-methods'],
+								['@babel/plugin-proposal-object-rest-spread'],
 							]
 						}
 					}
@@ -130,28 +130,23 @@ module.exports = (env, argv) => {
 		optimization: {
 			minimizer: [
 				new TerserPlugin(),
-				new OptimizeCSSAssetsPlugin({})
+				new CssMinimizerPlugin()
 			]
 		},
 		resolve: {
 			modules: [
 				path.resolve('./node_modules'),
-				path.resolve(path.join(__dirname, 'assets/src/')),
 			],
 			extensions: ['*', '.js', '.jsx', '.json']
 		},
 		plugins: plugins
 	}
 
-	if (!isDev) {
-		// `jQuery`, `React`, `ReactDOM` will be loaded from WordPress
-		webpackConfig.externals = {
-			jquery: {commonjs: 'jquery', commonjs2: 'jquery', amd: 'jquery', umd: 'jquery', root: 'jQuery'},
-			react: {commonjs: 'react', commonjs2: 'react', amd: 'react', umd: 'react', root: 'React'},
-			'react-dom': {
-				commonjs: 'react-dom', commonjs2: 'react-dom', amd: 'react-dom', umd: 'react-dom', root: 'ReactDOM',
-			},
-		}
+	// `jQuery`, `React`, `ReactDOM` will be loaded from WordPress
+	webpackConfig.externals = {
+		"jquery": "jQuery",
+		"react": "React",
+		"react-dom": "ReactDOM",
 	}
 
 	return webpackConfig;
