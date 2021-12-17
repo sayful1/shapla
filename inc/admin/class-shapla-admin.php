@@ -73,12 +73,8 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 				return;
 			}
 
-			$assets_url = get_template_directory_uri() . '/assets';
-
 			wp_enqueue_style( 'thickbox' );
 			wp_enqueue_script( 'thickbox' );
-			wp_enqueue_script( 'jquery-tiptip', $assets_url . '/libs/jquery-tiptip/jquery.tipTip.min.js',
-				array( 'jquery' ), '1.3', false );
 			wp_enqueue_style( 'shapla-admin-style', get_template_directory_uri() . '/assets/css/admin.css' );
 		}
 

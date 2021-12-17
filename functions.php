@@ -37,8 +37,7 @@ spl_autoload_register( function ( $className ) {
 	$file_name = 'class-' . strtolower( str_replace( '_', '-', $className ) ) . '.php';
 
 	$directories = array(
-		SHAPLA_THEME_PATH . '/classes/customize/controls/',
-		SHAPLA_THEME_PATH . '/classes/utilities/',
+		SHAPLA_THEME_PATH . '/inc/utilities/',
 	);
 
 	foreach ( $directories as $directory ) {
@@ -89,4 +88,4 @@ if ( is_admin() ) {
 /**
  * Third party plugin integrations
  */
-require SHAPLA_THEME_PATH . '/classes/integrations/integrations.php';
+require SHAPLA_THEME_PATH . '/classes/Integrations/integrations.php';

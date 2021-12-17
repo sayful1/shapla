@@ -12,7 +12,6 @@ $recommended_plugins = array(
 	'content'                   => array(
 		array( 'directory' => 'elementor', 'file' => 'elementor.php', ),
 		array( 'directory' => 'carousel-slider', 'file' => 'carousel-slider.php', ),
-		array( 'directory' => 'dialog-contact-form', 'file' => 'dialog-contact-form.php', ),
 		array( 'directory' => 'filterable-portfolio', 'file' => 'filterable-portfolio.php', ),
 		array( 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ),
 		array( 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ),

@@ -144,20 +144,20 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 */
 		public static function get_custom_controls() {
 			return [
-				'radio-button' => Shapla_Radio_Button_Customize_Control::class,
-				'typography'   => Shapla_Typography_Customize_Control::class,
-				'toggle'       => Shapla_Toggle_Customize_Control::class,
-				'range-slider' => Shapla_Slider_Customize_Control::class,
-				'background'   => Shapla_Background_Customize_Control::class,
-				'alpha-color'  => Shapla_Color_Customize_Control::class,
-				'radio-image'  => Shapla_Radio_Image_Customize_Control::class,
+				'radio-button' => \Shapla\Customize\Controls\RadioButton::class,
+				'typography'   => \Shapla\Customize\Controls\Typography::class,
+				'toggle'       => \Shapla\Customize\Controls\Toggle::class,
+				'range-slider' => \Shapla\Customize\Controls\Slider::class,
+				'background'   => \Shapla\Customize\Controls\Background::class,
+				'alpha-color'  => \Shapla\Customize\Controls\ColorAlpha::class,
+				'radio-image'  => \Shapla\Customize\Controls\RadioImage::class,
 			];
 		}
 
 		/**
 		 * Registered Control Types
 		 *
-		 * @param WP_Customize_Manager $wp_customize
+		 * @param \WP_Customize_Manager $wp_customize
 		 */
 		public function register_control_type( $wp_customize ) {
 			foreach ( static::get_custom_controls() as $custom_control ) {

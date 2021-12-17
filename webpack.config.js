@@ -34,28 +34,21 @@ module.exports = (env, argv) => {
 		module: {
 			rules: [
 				{
+					test: /\.tsx?$/,
+					loader: 'ts-loader',
+					exclude: /node_modules/,
+				},
+				{
 					test: /\.(js|jsx)$/i,
 					use: {
 						loader: "babel-loader",
-						options: {
-							presets: [
-								'@babel/preset-env',
-								'@babel/preset-react'
-							],
-							plugins: [
-								['@babel/plugin-proposal-class-properties'],
-								['@babel/plugin-proposal-private-methods'],
-								['@babel/plugin-proposal-object-rest-spread'],
-							]
-						}
 					}
 				},
 				{
 					test: /\.(sass|scss|css)$/,
 					use: [
 						{
-							loader: isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-							options: isDev ? {} : {publicPath: ''}
+							loader: MiniCssExtractPlugin.loader,
 						},
 						{
 							loader: "css-loader",
@@ -86,45 +79,26 @@ module.exports = (env, argv) => {
 				},
 				{
 					test: /\.(eot|ttf|woff|woff2)$/i,
-					use: [
-						{
-							loader: 'file-loader',
-							options: {
-								outputPath: '../fonts',
-							},
-						},
-					],
+					type: 'asset/resource',
+					generator: {
+						filename: '../fonts/[hash][ext]'
+					}
 				},
 				{
 					test: /\.(png|je?pg|gif)$/i,
-					use: [
-						{
-							loader: 'url-loader',
-							options: {
-								limit: 8192, // 8KB
-								outputPath: '../images',
-							},
-						},
-					],
+					type: 'asset',
+					generator: {
+						filename: '../images/[hash][ext]'
+					}
 				},
 				{
 					test: /\.svg$/i,
-					use: [
-						{
-							loader: 'url-loader',
-							options: {
-								limit: 20480, // 20KB
-								outputPath: (url, resourcePath) => {
-									if (/@fortawesome\/fontawesome-free/.test(resourcePath)) {
-										return `../fonts/${url}`;
-									}
-									return `../images/${url}`;
-								},
-								generator: (content) => svgToMiniDataURI(content.toString()),
-							},
-						},
-					],
-				},
+					type: 'asset',
+					generator: {
+						filename: '../images/[hash][ext]',
+						dataUrl: content => svgToMiniDataURI(content.toString())
+					},
+				}
 			]
 		},
 		optimization: {
