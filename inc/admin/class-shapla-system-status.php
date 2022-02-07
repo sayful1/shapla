@@ -75,57 +75,57 @@ if ( ! class_exists( 'Shapla_System_Status' ) ) {
 				[
 					'title' => 'Operating System:',
 					'desc'  => 'Display server operating system.',
-					'value' => Shapla_System_Info::get_os(),
+					'value' => \Shapla\Helpers\SystemInfo::get_os(),
 				],
 				[
 					'title' => 'Server info:',
 					'desc'  => 'Information about the web server that is currently hosting your site.',
-					'value' => Shapla_System_Info::get_server_software(),
+					'value' => \Shapla\Helpers\SystemInfo::get_server_software(),
 				],
 				[
 					'title' => 'Server IP Address:',
 					'desc'  => 'Information about server IP address for your site.',
-					'value' => Shapla_System_Info::get_server_ip(),
+					'value' => \Shapla\Helpers\SystemInfo::get_server_ip(),
 				],
 				[
 					'title' => 'Host Name:',
 					'desc'  => 'Information about server host name for your site.',
-					'value' => Shapla_System_Info::get_host_name(),
+					'value' => \Shapla\Helpers\SystemInfo::get_host_name(),
 				],
 				[
 					'title' => 'MySQL Version:',
 					'desc'  => 'The version of MySQL installed on your hosting server.',
-					'value' => Shapla_System_Info::get_database_version(),
+					'value' => \Shapla\Helpers\SystemInfo::get_database_version(),
 				],
 				[
 					'title' => 'PHP Version:',
 					'desc'  => 'The version of PHP installed on your hosting server.',
-					'value' => Shapla_System_Info::get_php_version(),
+					'value' => \Shapla\Helpers\SystemInfo::get_php_version(),
 				],
 				[
 					'title' => 'PHP Max Post Size:',
 					'desc'  => 'The largest file size that can be contained in one post.',
-					'value' => Shapla_System_Info::get_php_max_post_size(),
+					'value' => \Shapla\Helpers\SystemInfo::get_php_max_post_size(),
 				],
 				[
 					'title' => 'PHP Time Limit:',
 					'desc'  => 'The amount of time (in seconds) that your site will spend on a single operation before timing out (to avoid server lockups).',
-					'value' => Shapla_System_Info::get_php_time_limit(),
+					'value' => \Shapla\Helpers\SystemInfo::get_php_time_limit(),
 				],
 				[
 					'title' => 'PHP Max Input Vars:',
 					'desc'  => 'The maximum number of variables your server can use for a single function to avoid overloads.',
-					'value' => Shapla_System_Info::get_max_input_vars(),
+					'value' => \Shapla\Helpers\SystemInfo::get_max_input_vars(),
 				],
 				[
 					'title' => 'Max Upload Size:',
 					'desc'  => 'The largest file size that can be uploaded to your WordPress installation.',
-					'value' => Shapla_System_Info::get_max_upload_size(),
+					'value' => \Shapla\Helpers\SystemInfo::get_max_upload_size(),
 				],
 				[
 					'title' => 'GD Library:',
 					'desc'  => 'GD library is used to resize images and speed up your site\'s loading time.',
-					'value' => Shapla_System_Info::get_gd_extension_info()
+					'value' => \Shapla\Helpers\SystemInfo::get_gd_extension_info()
 				],
 			];
 		}
@@ -140,52 +140,52 @@ if ( ! class_exists( 'Shapla_System_Status' ) ) {
 				[
 					'title' => 'Site URL:',
 					'desc'  => 'The root URL of your site.',
-					'value' => esc_url_raw( Shapla_System_Info::get_site_url() ),
+					'value' => esc_url_raw( \Shapla\Helpers\SystemInfo::get_site_url() ),
 				],
 				[
 					'title' => 'Home URL:',
 					'desc'  => 'The URL of your site\'s homepage.',
-					'value' => esc_url_raw( Shapla_System_Info::get_home_url() ),
+					'value' => esc_url_raw( \Shapla\Helpers\SystemInfo::get_home_url() ),
 				],
 				[
 					'title' => 'WP Version:',
 					'desc'  => 'The version of WordPress installed on your site.',
-					'value' => Shapla_System_Info::get_wordpress_version(),
+					'value' => \Shapla\Helpers\SystemInfo::get_wordpress_version(),
 				],
 				[
 					'title' => 'WP Multisite:',
 					'desc'  => 'Whether or not you have WordPress Multisite enabled.',
-					'value' => Shapla_System_Info::is_multisite() ? "&#10004;" : "&ndash;",
+					'value' => \Shapla\Helpers\SystemInfo::is_multisite() ? "&#10004;" : "&ndash;",
 				],
 				[
 					'title' => 'WP cron:',
 					'desc'  => 'Displays whether or not WP Cron Jobs are enabled.',
-					'value' => ! Shapla_System_Info::is_cron_disabled() ? "&#10004;" : "&ndash;",
+					'value' => ! \Shapla\Helpers\SystemInfo::is_cron_disabled() ? "&#10004;" : "&ndash;",
 				],
 				[
 					'title' => 'WP Memory Limit:',
 					'desc'  => 'The maximum amount of memory (RAM) that your site can use at one time.',
-					'value' => Shapla_System_Info::get_wordpress_memory_limit(),
+					'value' => \Shapla\Helpers\SystemInfo::get_wordpress_memory_limit(),
 				],
 				[
 					'title' => 'Language:',
 					'desc'  => 'The current language used by WordPress. Default = English',
-					'value' => Shapla_System_Info::get_site_language(),
+					'value' => \Shapla\Helpers\SystemInfo::get_site_language(),
 				],
 				[
 					'title' => 'Timezone:',
 					'desc'  => 'The current timezone used by WordPress.',
-					'value' => Shapla_System_Info::get_timezone_string(),
+					'value' => \Shapla\Helpers\SystemInfo::get_timezone_string(),
 				],
 				[
 					'title' => 'Permalink Structure:',
 					'desc'  => 'The current URL structure for your permalink.',
-					'value' => Shapla_System_Info::get_permalink_structure(),
+					'value' => \Shapla\Helpers\SystemInfo::get_permalink_structure(),
 				],
 				[
 					'title' => 'WP Debug Mode:',
 					'desc'  => 'Displays whether or not WordPress is in Debug Mode.',
-					'value' => Shapla_System_Info::is_debug_mode() ? '&#10004;' : '&ndash;',
+					'value' => \Shapla\Helpers\SystemInfo::is_debug_mode() ? '&#10004;' : '&ndash;',
 				],
 			];
 		}

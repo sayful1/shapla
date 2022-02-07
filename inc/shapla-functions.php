@@ -78,7 +78,7 @@ if ( ! function_exists( 'shapla_find_color_invert' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_find_color_invert( $color ) {
-		return Shapla_Colors::find_color_invert( $color );
+		return \Shapla\Helpers\Colors::find_color_invert( $color );
 	}
 }
 
@@ -94,7 +94,7 @@ if ( ! function_exists( 'shapla_adjust_color_brightness' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_adjust_color_brightness( $color, $steps ) {
-		return Shapla_Colors::adjust_color_brightness( $color, $steps );
+		return \Shapla\Helpers\Colors::adjust_color_brightness( $color, $steps );
 	}
 }
 
@@ -110,11 +110,11 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	 * @since  1.3.0
 	 */
 	function shapla_default_options( $key = null ) {
-		$text_color      = Shapla_Colors::get_color( 'text-primary' );
-		$heading_color   = Shapla_Colors::get_color( 'text-primary' );
-		$primary_color   = Shapla_Colors::get_color( 'primary' );
-		$primary_hover   = Shapla_Colors::get_color( 'primary-variant' );
-		$primary_inverse = Shapla_Colors::get_color( 'on-primary' );
+		$text_color      = \Shapla\Helpers\Colors::get_color( 'text-primary' );
+		$heading_color   = \Shapla\Helpers\Colors::get_color( 'text-primary' );
+		$primary_color   = \Shapla\Helpers\Colors::get_color( 'primary' );
+		$primary_hover   = \Shapla\Helpers\Colors::get_color( 'primary-variant' );
+		$primary_inverse = \Shapla\Helpers\Colors::get_color( 'on-primary' );
 
 		$options = apply_filters( 'shapla_default_options', array(
 			'heading_color'                         => $heading_color,

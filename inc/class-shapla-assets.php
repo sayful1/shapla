@@ -118,43 +118,46 @@ class Shapla_Assets {
 	 * Inline color style
 	 */
 	public function dynamic_css_variables() {
-		$colors           = Shapla_Colors::get_colors();
+		$colors           = \Shapla\Helpers\Colors::get_colors();
 		$fonts            = Shapla_Fonts::get_site_fonts();
 		$widget_styles    = static::footer_widget_dynamic_css_variables();
 		$footer_styles    = static::footer_dynamic_css_variables();
 		$title_bar_styles = static::page_title_bar_dynamic_css_variables();
 		$header_styles    = static::page_header_dynamic_css_variables();
 
-		$style = '<style type="text/css">';
+		$style = '<style id="shapla-styles-inline-css" type="text/css">' . PHP_EOL;
 		// Root style
-		$style .= ':root{';
+		$style .= 'body{';
 		foreach ( $colors as $key => $color ) {
 			$style .= '--shapla-' . $key . ':' . $color . ';';
 		}
+		$style .= '}' . PHP_EOL;
+
+		$style .= 'body{';
 		foreach ( $fonts as $key => $font ) {
 			$style .= '--shapla-' . $key . ':' . $font . ';';
 		}
-		$style .= '}';
+		$style .= '}' . PHP_EOL;
 
 		// Page title bar
 		$style .= '.site-header{';
 		$style .= $header_styles;
-		$style .= '}';
+		$style .= '}' . PHP_EOL;
 
 		// Page title bar
 		$style .= '.page-title-bar{';
 		$style .= $title_bar_styles;
-		$style .= '}';
+		$style .= '}' . PHP_EOL;
 
 		// Footer Widget Area
 		$style .= '.footer-widget-area{';
 		$style .= $widget_styles;
-		$style .= '}';
+		$style .= '}' . PHP_EOL;
 
 		// Footer Area
 		$style .= '.site-footer{';
 		$style .= $footer_styles;
-		$style .= '}';
+		$style .= '}' . PHP_EOL;
 
 		$style .= '</style>' . PHP_EOL;
 
@@ -339,7 +342,7 @@ class Shapla_Assets {
 				continue;
 			}
 
-			if ( in_array( $property, [ 'font-backup' ] ) ) {
+			if ( 'font-backup' == $property ) {
 				continue;
 			}
 

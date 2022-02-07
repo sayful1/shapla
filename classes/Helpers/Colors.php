@@ -1,8 +1,11 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+namespace Shapla\Helpers;
 
-class Shapla_Colors {
+/**
+ * Colors class
+ */
+class Colors {
 
 	/**
 	 * List of default colors

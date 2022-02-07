@@ -2,9 +2,7 @@
 
 namespace Shapla\Integrations\WooCommerce;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+defined( 'ABSPATH' ) || exit;
 
 class WooCommerce {
 
@@ -329,7 +327,7 @@ class WooCommerce {
 	 * Filters the HTML list content for navigation menus.
 	 *
 	 * @param string $items The HTML list content for the menu items.
-	 * @param stdClass $args An object containing wp_nav_menu() arguments.
+	 * @param \stdClass $args An object containing wp_nav_menu() arguments.
 	 *
 	 * @return string
 	 * @since 1.3.0

@@ -2,6 +2,8 @@
 
 namespace Shapla\Metabox\Fields;
 
+defined( 'ABSPATH' ) || exit;
+
 abstract class Base {
 	/**
 	 * Field settings

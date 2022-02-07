@@ -17,36 +17,16 @@ define( 'SHAPLA_THEME_PATH', dirname( __FILE__ ) );
 define( 'SHAPLA_THEME_URI', untrailingslashit( get_template_directory_uri() ) );
 
 require_once SHAPLA_THEME_PATH . '/classes/Autoloader.php';
-$loader = new Shapla\Autoloader;
+$loader = new Shapla\Autoloader();
 $loader->add_namespace( 'Shapla', SHAPLA_THEME_PATH . '/classes' );
 $loader->register();
 
 
-spl_autoload_register( function ( $className ) {
-	// If class already exists, no need to include it
-	if ( class_exists( $className ) ) {
-		return;
-	}
+require SHAPLA_THEME_PATH . '/inc/utilities/class-shapla-fonts.php';
 
-	// If class not related to theme, no need to include it
-	if ( false === strpos( $className, 'Shapla' ) ) {
-		return;
-	}
-
-	// Include our classes
-	$file_name = 'class-' . strtolower( str_replace( '_', '-', $className ) ) . '.php';
-
-	$directories = array(
-		SHAPLA_THEME_PATH . '/inc/utilities/',
-	);
-
-	foreach ( $directories as $directory ) {
-		if ( file_exists( $directory . $file_name ) ) {
-			require_once $directory . $file_name;
-		}
-	}
-} );
-
+/**
+ * Load theme base functionality
+ */
 require SHAPLA_THEME_PATH . '/inc/class-shapla.php';
 
 /**

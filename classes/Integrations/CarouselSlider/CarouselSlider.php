@@ -2,10 +2,9 @@
 
 namespace Shapla\Integrations\CarouselSlider;
 
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+use Shapla\Helpers\Colors;
+
+defined( 'ABSPATH' ) || exit;
 
 class CarouselSlider {
 
@@ -49,7 +48,7 @@ class CarouselSlider {
 	 * Carousel Slider Post Carousel
 	 */
 	public function carousel_slider_post() {
-		( new Shapla_Blog() )->get_loop_post_for_grid();
+		( new \Shapla_Blog() )->get_loop_post_for_grid();
 	}
 
 	/**
@@ -60,11 +59,11 @@ class CarouselSlider {
 	 * @return mixed
 	 */
 	public function default_settings( $options ) {
-		$options['product_title_color']       = Shapla_Colors::get_color( 'text-primary' );
-		$options['product_button_bg_color']   = Shapla_Colors::get_color( 'primary' );
-		$options['product_button_text_color'] = Shapla_Colors::get_color( 'on-primary' );
-		$options['nav_color']                 = Shapla_Colors::get_color( 'primary' );
-		$options['nav_active_color']          = Shapla_Colors::get_color( 'primary-variant' );
+		$options['product_title_color']       = Colors::get_color( 'text-primary' );
+		$options['product_button_bg_color']   = Colors::get_color( 'primary' );
+		$options['product_button_text_color'] = Colors::get_color( 'on-primary' );
+		$options['nav_color']                 = Colors::get_color( 'primary' );
+		$options['nav_active_color']          = Colors::get_color( 'primary-variant' );
 		$options['margin_right']              = 30;
 		$options['lazy_load_image']           = 'on';
 

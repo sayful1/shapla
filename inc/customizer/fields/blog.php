@@ -43,7 +43,7 @@ Shapla_Customizer_Config::add_field( 'show_blog_page_title', array(
 	'label'             => __( 'Blog Page Title Bar', 'shapla' ),
 	'description'       => __( 'Controls how the page title bar displays on the assigned blog page in "settings > reading".', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_page_title' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 10,
 ) );
 Shapla_Customizer_Config::add_field( 'blog_page_title', array(
@@ -53,7 +53,7 @@ Shapla_Customizer_Config::add_field( 'blog_page_title', array(
 	'description'       => __( 'Controls the title text that displays in the page title bar only if your front page displays your latest post in "settings > reading".', 'shapla' ),
 	'default'           => shapla_default_options( 'blog_page_title' ),
 	'priority'          => 20,
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'text' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'text' ),
 ) );
 
 Shapla_Customizer_Config::add_field( 'blog_layout', array(
@@ -62,7 +62,7 @@ Shapla_Customizer_Config::add_field( 'blog_layout', array(
 	'label'             => __( 'Blog layout', 'shapla' ),
 	'description'       => __( 'Controls the layout for the assigned blog page in "settings > reading".', 'shapla' ),
 	'default'           => shapla_default_options( 'blog_layout' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'customize_choices' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'customize_choices' ),
 	'priority'          => 30,
 	'choices'           => array(
 		'default' => esc_html__( 'Default', 'shapla' ),
@@ -75,7 +75,7 @@ Shapla_Customizer_Config::add_field( 'blog_excerpt_length', array(
 	'label'             => __( 'Excerpt length', 'shapla' ),
 	'description'       => __( 'Controls the number of words in the post excerpts for the assigned blog page in "settings > reading" or blog archive pages.', 'shapla' ),
 	'default'           => shapla_default_options( 'blog_excerpt_length' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'number' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'number' ),
 	'priority'          => 40,
 	'input_attrs'       => array(
 		'min'  => 5,
@@ -90,7 +90,7 @@ Shapla_Customizer_Config::add_field( 'blog_date_format', array(
 	'label'             => __( 'Blog date format', 'shapla' ),
 	'description'       => __( 'Default date format is format you set from Settings --> General --> Date Format', 'shapla' ),
 	'default'           => shapla_default_options( 'blog_date_format' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'customize_choices' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'customize_choices' ),
 	'priority'          => 50,
 	'choices'           => array(
 		'default' => esc_html__( 'Default', 'shapla' ),
@@ -107,7 +107,7 @@ Shapla_Customizer_Config::add_field( 'show_blog_author_avatar', array(
 	'label'             => __( 'Post Meta Author Avatar', 'shapla' ),
 	'description'       => __( 'Turn on to display the post meta author avatar.', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_author_avatar' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 10,
 ) );
 Shapla_Customizer_Config::add_field( 'show_blog_author_name', array(
@@ -116,7 +116,7 @@ Shapla_Customizer_Config::add_field( 'show_blog_author_name', array(
 	'label'             => __( 'Post Meta Author Name', 'shapla' ),
 	'description'       => __( 'Turn on to display the post meta author name.', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_author_name' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 20,
 ) );
 Shapla_Customizer_Config::add_field( 'show_blog_date', array(
@@ -125,7 +125,7 @@ Shapla_Customizer_Config::add_field( 'show_blog_date', array(
 	'label'             => __( 'Post Meta Date', 'shapla' ),
 	'description'       => __( 'Turn on to display the post meta date.', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_date' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 30,
 ) );
 Shapla_Customizer_Config::add_field( 'show_blog_category_list', array(
@@ -134,7 +134,7 @@ Shapla_Customizer_Config::add_field( 'show_blog_category_list', array(
 	'label'             => __( 'Post Meta Categories', 'shapla' ),
 	'description'       => __( 'Turn on to display the post meta categories.', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_category_list' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 40,
 ) );
 Shapla_Customizer_Config::add_field( 'show_blog_tag_list', array(
@@ -143,7 +143,7 @@ Shapla_Customizer_Config::add_field( 'show_blog_tag_list', array(
 	'label'             => __( 'Post Meta Tags', 'shapla' ),
 	'description'       => __( 'Turn on to display the post meta tags.', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_tag_list' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 50,
 ) );
 Shapla_Customizer_Config::add_field( 'show_blog_comments_link', array(
@@ -152,6 +152,6 @@ Shapla_Customizer_Config::add_field( 'show_blog_comments_link', array(
 	'label'             => __( 'Post Meta Comments', 'shapla' ),
 	'description'       => __( 'Turn on to display the post meta comments.', 'shapla' ),
 	'default'           => shapla_default_options( 'show_blog_comments_link' ),
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 60,
 ) );

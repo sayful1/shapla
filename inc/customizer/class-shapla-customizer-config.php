@@ -158,22 +158,22 @@ class Shapla_Customizer_Config {
 		$type = str_replace( '-', '_', $type );
 
 		$methods = [
-			'typography'  => [ Shapla_Sanitize::class, 'typography' ],
-			'background'  => [ Shapla_Sanitize::class, 'background' ],
-			'number'      => [ Shapla_Sanitize::class, 'number' ],
-			'image'       => [ Shapla_Sanitize::class, 'url' ],
-			'url'         => [ Shapla_Sanitize::class, 'url' ],
-			'email'       => [ Shapla_Sanitize::class, 'email' ],
-			'checkbox'    => [ Shapla_Sanitize::class, 'checked' ],
-			'textarea'    => [ Shapla_Sanitize::class, 'html' ],
-			'alpha_color' => [ Shapla_Sanitize::class, 'color' ],
-			'color'       => [ Shapla_Sanitize::class, 'color' ],
+			'typography'  => [ \Shapla\Helpers\Sanitize::class, 'typography' ],
+			'background'  => [ \Shapla\Helpers\Sanitize::class, 'background' ],
+			'number'      => [ \Shapla\Helpers\Sanitize::class, 'number' ],
+			'image'       => [ \Shapla\Helpers\Sanitize::class, 'url' ],
+			'url'         => [ \Shapla\Helpers\Sanitize::class, 'url' ],
+			'email'       => [ \Shapla\Helpers\Sanitize::class, 'email' ],
+			'checkbox'    => [ \Shapla\Helpers\Sanitize::class, 'checked' ],
+			'textarea'    => [ \Shapla\Helpers\Sanitize::class, 'html' ],
+			'alpha_color' => [ \Shapla\Helpers\Sanitize::class, 'color' ],
+			'color'       => [ \Shapla\Helpers\Sanitize::class, 'color' ],
 		];
 
 		if ( isset( $methods[ $type ] ) ) {
 			return $methods[ $type ];
 		}
 
-		return [ Shapla_Sanitize::class, 'text' ];
+		return [ \Shapla\Helpers\Sanitize::class, 'text' ];
 	}
 }

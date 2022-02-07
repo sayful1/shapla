@@ -1,11 +1,11 @@
 <?php
 
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+namespace Shapla\Helpers;
 
-class Shapla_CSS_Generator {
+/**
+ * CssGenerator class
+ */
+class CssGenerator {
 
 	/**
 	 * Parse output args
@@ -244,3 +244,4 @@ class Shapla_CSS_Generator {
 		return trim( $content );
 	}
 }
+

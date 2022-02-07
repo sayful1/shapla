@@ -39,7 +39,7 @@ Shapla_Customizer_Config::add_field( 'display_go_to_top_button', array(
 	'label'             => __( 'Display Go to top button', 'shapla' ),
 	'description'       => __( 'Enable it to display Go to Top button.', 'shapla' ),
 	'default'           => true,
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 10,
 ) );
 
@@ -52,6 +52,6 @@ Shapla_Customizer_Config::add_field( 'show_structured_data', array(
 	'label'             => __( 'Enable Structured Data', 'shapla' ),
 	'description'       => __( 'Structured Data helps search engine to understand the content of a web page. You may disable it if you are already using a SEO plugin.', 'shapla' ),
 	'default'           => true,
-	'sanitize_callback' => array( 'Shapla_Sanitize', 'checked' ),
+	'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 	'priority'          => 10,
 ) );

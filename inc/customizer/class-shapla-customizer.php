@@ -60,7 +60,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$css            = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
 			if ( ! empty( $css ) ) {
 				$additional_css = "\n/* Additional CSS */\n";
-				$additional_css .= Shapla_CSS_Generator::minify_css( $css );
+				$additional_css .= \Shapla\Helpers\CssGenerator::minify_css( $css );
 			}
 
 
@@ -71,7 +71,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				return;
 			}
 
-			$file_info = Shapla_Filesystem::update_customize_css( $styles );
+			$file_info = \Shapla\Helpers\Filesystem::update_customize_css( $styles );
 			if ( is_array( $file_info ) ) {
 				update_option( '_shapla_customize_file', $file_info, true );
 			} else {
@@ -130,11 +130,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				$default = isset( $field['default'] ) ? $field['default'] : '';
 				$value   = get_theme_mod( $field['settings'], $default );
 
-				Shapla_CSS_Generator::css( $css, $field, $value );
+				\Shapla\Helpers\CssGenerator::css( $css, $field, $value );
 			}
 
 			// Process the array of CSS properties and produce the final CSS
-			return Shapla_CSS_Generator::styles_parse( $css );
+			return \Shapla\Helpers\CssGenerator::styles_parse( $css );
 		}
 
 		/**

@@ -133,7 +133,7 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 		 *
 		 * Hooked into `shapla_breadcrumb` action hook.
 		 *
-		 * @param Shapla_Breadcrumb $breadcrumbs
+		 * @param \Shapla\Helpers\Breadcrumb $breadcrumbs
 		 */
 		public function generate_breadcrumb_data( $breadcrumbs ) {
 			$crumbs = $breadcrumbs->get_breadcrumb();

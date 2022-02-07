@@ -9,7 +9,7 @@ Shapla_Customizer_Config::add_section( 'theme_colors', array(
 	'priority'    => 20,
 ) );
 
-$color_settings = Shapla_Colors::customizer_colors_settings();
+$color_settings = \Shapla\Helpers\Colors::customizer_colors_settings();
 foreach ( $color_settings as $color_id => $color_args ) {
 	Shapla_Customizer_Config::add_field( $color_id, $color_args );
 }

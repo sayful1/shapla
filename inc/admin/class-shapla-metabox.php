@@ -72,10 +72,10 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 				$default = isset( $field['default'] ) ? $field['default'] : '';
 				$value   = isset( $values[ $field['id'] ] ) ? $values[ $field['id'] ] : $default;
 
-				Shapla_CSS_Generator::css( $css, $field, $value );
+				\Shapla\Helpers\CssGenerator::css( $css, $field, $value );
 			}
 
-			return Shapla_CSS_Generator::styles_parse( $css );
+			return \Shapla\Helpers\CssGenerator::styles_parse( $css );
 		}
 
 		/**
@@ -245,7 +245,7 @@ if ( ! class_exists( 'Shapla_Metabox' ) ) {
 			do_action( 'shapla_before_save_post_meta', $post_id, $post, $update );
 
 			if ( isset( $_POST[ $this->option_name ] ) ) {
-				update_post_meta( $post_id, $this->option_name, Shapla_Sanitize::deep( $_POST[ $this->option_name ] ) );
+				update_post_meta( $post_id, $this->option_name, \Shapla\Helpers\Sanitize::deep( $_POST[ $this->option_name ] ) );
 
 				$styles = $this->get_styles();
 				if ( ! empty( $styles ) ) {

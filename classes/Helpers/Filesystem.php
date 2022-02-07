@@ -1,9 +1,12 @@
 <?php
 
-// Exit if accessed directly.
+namespace Shapla\Helpers;
+
+use WP_Filesystem_Base;
+
 defined( 'ABSPATH' ) || exit;
 
-class Shapla_Filesystem {
+class Filesystem {
 
 	/**
 	 * Get WordPress file system

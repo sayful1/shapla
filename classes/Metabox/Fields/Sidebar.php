@@ -2,6 +2,8 @@
 
 namespace Shapla\Metabox\Fields;
 
+defined( 'ABSPATH' ) || exit;
+
 class Sidebar extends Base {
 
 	/**

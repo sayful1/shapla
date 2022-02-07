@@ -422,7 +422,7 @@ if ( ! function_exists( 'shapla_page_header' ) ):
 
 		if ( is_singular() && $post instanceof \WP_Post ) {
 			$hide_page_title = shapla_page_option( 'hide_page_title' );
-			if ( Shapla_Sanitize::checked( $hide_page_title ) ) {
+			if ( \Shapla\Helpers\Sanitize::checked( $hide_page_title ) ) {
 				return;
 			}
 
@@ -797,7 +797,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 			global $post;
 			$page_options = get_post_meta( $post->ID, '_shapla_page_options', true );
 			if ( ! empty( $page_options['show_breadcrumbs'] ) && 'default' != $page_options['show_breadcrumbs'] ) {
-				if ( ! Shapla_Sanitize::checked( $page_options['show_breadcrumbs'] ) ) {
+				if ( ! \Shapla\Helpers\Sanitize::checked( $page_options['show_breadcrumbs'] ) ) {
 					$class .= ' is-hidden';
 				}
 			}
@@ -829,7 +829,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 			return;
 		}
 
-		$breadcrumbs = new Shapla_Breadcrumb();
+		$breadcrumbs = new \Shapla\Helpers\Breadcrumb();
 
 		if ( ! empty( $args['home'] ) ) {
 			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'shapla_breadcrumb_home_url', home_url() ) );

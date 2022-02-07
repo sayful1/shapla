@@ -1,8 +1,8 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+namespace Shapla\Helpers;
 
-class Shapla_System_Info {
+class SystemInfo {
 	/**
 	 * @return string[]
 	 */

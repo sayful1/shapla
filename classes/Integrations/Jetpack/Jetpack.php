@@ -9,9 +9,7 @@
 
 namespace Shapla\Integrations\Jetpack;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) || exit;
 
 class Jetpack {
 
