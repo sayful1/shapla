@@ -9,15 +9,15 @@ $recommended_plugins = array(
 	'install_label'             => esc_html__( 'Install', 'shapla' ),
 	'activate_label'            => esc_html__( 'Activate', 'shapla' ),
 	'deactivate_label'          => esc_html__( 'Deactivate', 'shapla' ),
-	'content'                   => array(
-		array( 'directory' => 'elementor', 'file' => 'elementor.php', ),
-		array( 'directory' => 'carousel-slider', 'file' => 'carousel-slider.php', ),
-		array( 'directory' => 'filterable-portfolio', 'file' => 'filterable-portfolio.php', ),
-		array( 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ),
-		array( 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ),
-		array( 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ),
-		array( 'directory' => 'loginizer', 'file' => 'loginizer.php', ),
-	),
+	'content'                   => [
+		[ 'directory' => 'elementor', 'file' => 'elementor.php', ],
+		[ 'directory' => 'carousel-slider', 'file' => 'carousel-slider.php', ],
+		[ 'directory' => 'filterable-portfolio', 'file' => 'filterable-portfolio.php', ],
+		[ 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ],
+		[ 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ],
+		[ 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ],
+		[ 'directory' => 'loginizer', 'file' => 'loginizer.php', ],
+	],
 );
 
 echo '<div class="recommended-plugins shapla-columns is-multiline" id="plugin-filter">';
