@@ -5,7 +5,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const WebpackCleanPlugin = require('webpack-clean');
 const svgToMiniDataURI = require('mini-svg-data-uri');
-const combineMediaQuery = require('postcss-combine-media-query');
 
 const config = require('./config.json');
 
@@ -64,7 +63,6 @@ module.exports = (env, argv) => {
 								postcssOptions: {
 									plugins: [
 										['postcss-preset-env'],
-										combineMediaQuery(),
 									],
 								},
 							},

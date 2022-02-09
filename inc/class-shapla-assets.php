@@ -45,7 +45,7 @@ class Shapla_Assets {
 	public function shapla_scripts() {
 		// Font Awesome Free icons
 		wp_enqueue_style( 'fontawesome-free', SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
-			array(), '5.15.0', 'all' );
+			array(), '6.0.0', 'all' );
 
 		// Theme stylesheet.
 		wp_enqueue_style( 'shapla-style', SHAPLA_THEME_URI . '/assets/css/main.css',

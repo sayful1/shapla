@@ -10,7 +10,7 @@
 }
 
 @mixin fa-solid() {
-	font-family: 'Font Awesome 5 Free';
+	font-family: 'Font Awesome 6 Free';
 	font-weight: 900;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
@@ -22,7 +22,7 @@
 }
 
 @mixin fa-brand() {
-	font-family: 'Font Awesome 5 Brands';
+	font-family: 'Font Awesome 6 Brands';
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	display: inline-block;
