@@ -1,5 +1,7 @@
 <?php
 
+use Shapla\Helpers\AdminUtils;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -9,8 +11,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 	class Shapla_Admin {
 
 		private static $instance;
-		private $admin_path;
-		private $tabs = array();
 
 		/**
 		 * @return Shapla_Admin
@@ -18,23 +18,114 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		public static function init() {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
+
+				add_filter( 'admin_footer_text', [ self::$instance, 'admin_footer_text' ] );
+				add_action( 'admin_menu', [ self::$instance, 'shapla_admin_menu_page' ] );
+				add_action( 'admin_enqueue_scripts', [ self::$instance, 'admin_scripts' ] );
+
+				/* activation notice */
+				add_action( 'load-themes.php', [ self::$instance, 'activation_admin_notice' ] );
+
+				add_action( 'init', [ self::$instance, 'add_meta_boxes' ] );
 			}
 
 			return self::$instance;
 		}
 
 		/**
-		 * Shapla_Admin constructor.
+		 * Adds the meta box container.
 		 */
-		public function __construct() {
-			add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
-			add_action( 'admin_menu', array( $this, 'shapla_admin_menu_page' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		public function add_meta_boxes() {
+			$options = [
+				'id'       => 'shapla-page-options',
+				'title'    => __( 'Shapla Settings', 'shapla' ),
+				'screen'   => [ 'page', 'post', 'product' ],
+				'context'  => 'side',
+				'priority' => 'low',
+				'fields'   => [
+					[
+						'type'        => 'spacing',
+						'id'          => 'page_content_padding',
+						'label'       => __( 'Content Padding', 'shapla' ),
+						'description' => __( 'Leave empty to use value from theme options.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'page_section',
+						'default'     => [
+							'top'    => '',
+							'bottom' => '',
+						],
+						'output'      => [
+							[
+								'element'  => [
+									'.site-content .content-area',
+									'.site-content .widget-area',
+								],
+								'property' => 'padding',
+							],
+						],
+					],
+					[
+						'type'        => 'select',
+						'id'          => 'sidebar_position',
+						'label'       => __( 'Sidebar Position', 'shapla' ),
+						'description' => __( 'Controls sidebar position for current page.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'sidebar_section',
+						'default'     => 'default',
+						'choices'     => [
+							'default'       => __( 'Default', 'shapla' ),
+							'left-sidebar'  => __( 'Left', 'shapla' ),
+							'right-sidebar' => __( 'Right', 'shapla' ),
+							'full-width'    => __( 'Disabled', 'shapla' ),
+						]
+					],
+					[
+						'type'        => 'sidebars',
+						'id'          => 'sidebar_widget_area',
+						'label'       => __( 'Sidebar widget area', 'shapla' ),
+						'description' => __( 'Controls sidebar widget area for current page.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'sidebar_section',
+						'default'     => 'default',
+						'choices'     => [
+							'default'  => __( 'Default', 'shapla' ),
+							'left'     => __( 'Left', 'shapla' ),
+							'right'    => __( 'Right', 'shapla' ),
+							'disabled' => __( 'Disabled', 'shapla' ),
+						]
+					],
+					[
+						'type'        => 'buttonset',
+						'id'          => 'hide_page_title',
+						'label'       => __( 'Page Title Bar', 'shapla' ),
+						'description' => __( 'Controls title for current page.', 'shapla' ),
+						'priority'    => 10,
+						'section'     => 'page_title_bar_section',
+						'default'     => 'off',
+						'choices'     => [
+							'off' => __( 'Show', 'shapla' ),
+							'on'  => __( 'Hide', 'shapla' ),
+						]
+					],
+					[
+						'type'        => 'buttonset',
+						'id'          => 'show_breadcrumbs',
+						'label'       => __( 'Breadcrumbs', 'shapla' ),
+						'description' => __( 'Controls breadcrumbs for current page.', 'shapla' ),
+						'priority'    => 20,
+						'section'     => 'page_title_bar_section',
+						'default'     => 'default',
+						'choices'     => [
+							'default' => __( 'Default', 'shapla' ),
+							'on'      => __( 'Show', 'shapla' ),
+							'off'     => __( 'Hide', 'shapla' ),
+						]
+					],
+				]
+			];
 
-			/* activation notice */
-			add_action( 'load-themes.php', array( $this, 'activation_admin_notice' ) );
-
-			$this->admin_path = get_template_directory() . '/inc/admin/';
+			$metabox = new Shapla_Metabox();
+			$metabox->add( $options );
 		}
 
 		/**
@@ -65,17 +156,11 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 
 		/**
 		 * Load theme page scripts
-		 *
-		 * @param $hook_suffix
 		 */
-		public function admin_scripts( $hook_suffix ) {
-			if ( $hook_suffix != 'appearance_page_shapla-welcome' ) {
-				return;
-			}
-
+		public function admin_scripts() {
 			wp_enqueue_style( 'thickbox' );
 			wp_enqueue_script( 'thickbox' );
-			wp_enqueue_style( 'shapla-admin-style', get_template_directory_uri() . '/assets/css/admin.css' );
+			wp_enqueue_style( 'shapla-admin-style', SHAPLA_THEME_URI . '/assets/css/admin.css' );
 		}
 
 		/**
@@ -120,12 +205,17 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			$ThemeName        = $theme->get( 'Name' );
 			$ThemeVersion     = $theme->get( 'Version' );
 			$ThemeDescription = $theme->get( 'Description' );
-			$template_path    = $this->admin_path . 'views';
 
 			$welcome_title   = sprintf( __( 'Welcome to %s!', 'shapla' ), $ThemeName );
 			$welcome_version = sprintf( __( 'Version %s', 'shapla' ), $ThemeVersion );
 
-			$tab = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
+			$tabs = array(
+				'getting_started'     => __( 'Getting Started', 'shapla' ),
+				'recommended_plugins' => __( 'Useful Plugins', 'shapla' ),
+				'changelog'           => __( 'Change log', 'shapla' ),
+				'system_status'       => __( 'System Status', 'shapla' ),
+			);
+			$tab  = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
 
 			echo '<div class="wrap about-wrap shapla-about-wrap">';
 
@@ -141,7 +231,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 
 			// Tabs
 			echo '<h2 class="nav-tab-wrapper wp-clearfix">';
-			foreach ( $this->tabs() as $tab_key => $tab_name ) {
+			foreach ( $tabs as $tab_key => $tab_name ) {
 				echo '<a href="' . esc_url( admin_url( 'themes.php?page=shapla-welcome' ) ) . '&tab=' . $tab_key . '" class="nav-tab ' . ( $tab == $tab_key ? 'nav-tab-active' : '' ) . '" role="tab" data-toggle="tab">';
 				echo esc_html( $tab_name );
 				echo '</a>';
@@ -152,7 +242,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			switch ( $tab ) {
 				case 'changelog':
 					$file_path = file_get_contents( SHAPLA_THEME_PATH . '/CHANGELOG.md' );
-					echo static::parse_changelog( $file_path );
+					echo AdminUtils::parse_changelog( $file_path );
 					break;
 
 				case 'system_status':
@@ -160,232 +250,149 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 					break;
 
 				case 'recommended_plugins':
-					$template = $template_path . '/recommended_plugins.php';
+					echo '<div class="shapla-about-content">';
+					self::recommended_plugins_html();
+					echo '</div>';
 					break;
 
 				case 'getting_started':
 				default:
-					$template = $template_path . '/getting_started.php';
+					echo '<div class="shapla-about-content">';
+					echo self::getting_started_html();
+					echo '</div>';
 					break;
-			}
-
-			if ( isset( $template ) && file_exists( $template ) ) {
-				echo '<div class="shapla-about-content">';
-				include $template;
-				echo '</div>';
 			}
 
 			echo '</div><!--/.wrap.about-wrap-->';
 		}
 
-		private function tabs() {
-			$this->tabs = array(
-				'getting_started'     => __( 'Getting Started', 'shapla' ),
-				'recommended_plugins' => __( 'Useful Plugins', 'shapla' ),
-				'changelog'           => __( 'Change log', 'shapla' ),
-				'system_status'       => __( 'System Status', 'shapla' ),
-			);
+		private static function getting_started_html() {
+			$contents = [
+				[
+					'title'       => __( 'Go to the Customizer', 'shapla' ),
+					'description' => [
+						__( 'Using the WordPress Customizer you can easily customize every aspect of the theme.', 'shapla' )
+					],
+					'action'      => [
+						'text' => __( 'Go to the Customizer', 'shapla' ),
+						'url'  => admin_url( 'customize.php' )
+					]
+				],
+				[
+					'title'       => __( 'Get support', 'shapla' ),
+					'description' => [
+						__( 'If you need support, you can try posting on the theme support forum.', 'shapla' )
+					],
+					'action'      => [
+						'text' => __( 'Visit support forum', 'shapla' ),
+						'url'  => 'https://wordpress.org/support/theme/shapla'
+					]
+				],
+				[
+					'title'       => __( 'Contribute to Shapla', 'shapla' ),
+					'description' => [
+						__( 'Would you like to translate Shapla into your language? You can get involved on WordPress.org', 'shapla' )
+					],
+					'action'      => [
+						'text' => __( 'Translate Shapla', 'shapla' ),
+						'url'  => 'https://translate.wordpress.org/projects/wp-themes/shapla'
+					]
+				],
+			];
 
-			return $this->tabs;
-		}
-
-		/**
-		 * Retrieves plugin installer pages from the WordPress.org Plugins API.
-		 *
-		 * @param $slug
-		 *
-		 * @return array|mixed|object|WP_Error
-		 */
-		public function call_plugin_api( $slug ) {
-			include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
-
-			$call_api = get_transient( 'shapla_about_plugin_info_' . $slug );
-
-			if ( false === $call_api ) {
-				$call_api = plugins_api( 'plugin_information', array(
-						'slug'   => $slug,
-						'fields' => array(
-							'downloaded'        => false,
-							'rating'            => false,
-							'description'       => false,
-							'short_description' => true,
-							'donate_link'       => false,
-							'tags'              => false,
-							'sections'          => true,
-							'homepage'          => true,
-							'added'             => false,
-							'last_updated'      => false,
-							'compatibility'     => false,
-							'tested'            => false,
-							'requires'          => false,
-							'downloadlink'      => false,
-							'icons'             => true,
-						),
-					)
-				);
-				set_transient( 'shapla_about_plugin_info_' . $slug, $call_api, HOUR_IN_SECONDS );
-			}
-
-			return $call_api;
-		}
-
-		/**
-		 * Get icon of wordpress.org plugin
-		 *
-		 * @param array $arr array of image formats.
-		 *
-		 * @return mixed
-		 */
-		public function get_plugin_icon( $arr ) {
-
-			if ( ! empty( $arr['svg'] ) ) {
-				$plugin_icon_url = $arr['svg'];
-			} elseif ( ! empty( $arr['2x'] ) ) {
-				$plugin_icon_url = $arr['2x'];
-			} elseif ( ! empty( $arr['1x'] ) ) {
-				$plugin_icon_url = $arr['1x'];
-			} else {
-				$plugin_icon_url = get_template_directory_uri() . '/assets/static-images/placeholder.svg';
-			}
-
-			return $plugin_icon_url;
-		}
-
-		/**
-		 * Check if plugin is active
-		 *
-		 * @param array $slug the plugin slug.
-		 *
-		 * @return array
-		 */
-		public function check_if_plugin_active( $slug ) {
-
-			$plugin = $slug['directory'] . DIRECTORY_SEPARATOR . $slug['file'];
-
-			$path = WPMU_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin;
-			if ( ! file_exists( $path ) ) {
-				$path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $plugin;
-				if ( ! file_exists( $path ) ) {
-					$path = false;
+			$html = '<div class="shapla-columns">';
+			foreach ( $contents as $content ) {
+				$html .= '<div class="shapla-column">';
+				$html .= '<h3>' . esc_html( $content['title'] ) . '</h3>';
+				foreach ( $content['description'] as $description ) {
+					$html .= '<p>' . esc_html( $description ) . '</p>';
 				}
-			}
-
-			if ( file_exists( $path ) ) {
-
-				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-				$needs = is_plugin_active( $plugin ) ? 'deactivate' : 'activate';
-
-				return array(
-					'status' => is_plugin_active( $plugin ),
-					'needs'  => $needs,
-				);
-			}
-
-			return array(
-				'status' => false,
-				'needs'  => 'install',
-			);
-		}
-
-		/**
-		 * Function that crates the action link for install/activate/deactivate.
-		 *
-		 * @param string $state the plugin state (uninstalled/active/inactive).
-		 * @param array  $plugin_info
-		 *
-		 * @return string
-		 */
-		public function create_action_link( $state, $plugin_info ) {
-
-			$slug             = $plugin_info['directory'];
-			$plugin_root_file = $plugin_info['file'];
-			$plugin           = $slug . DIRECTORY_SEPARATOR . $plugin_root_file;
-
-			switch ( $state ) {
-				case 'install':
-					return wp_nonce_url(
-						add_query_arg(
-							array(
-								'action' => 'install-plugin',
-								'plugin' => $slug,
-							),
-							network_admin_url( 'update.php' )
-						),
-						'install-plugin_' . $slug
-					);
-					break;
-				case 'deactivate':
-					return add_query_arg(
-						array(
-							'action'        => 'deactivate',
-							'plugin'        => rawurlencode( $plugin ),
-							'plugin_status' => 'all',
-							'paged'         => '1',
-							'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $plugin ),
-						), network_admin_url( 'plugins.php' )
-					);
-					break;
-				case 'activate':
-					return add_query_arg(
-						array(
-							'action'        => 'activate',
-							'plugin'        => rawurlencode( $plugin ),
-							'plugin_status' => 'all',
-							'paged'         => '1',
-							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
-						), network_admin_url( 'plugins.php' )
-					);
-					break;
-			}// End switch().
-		}
-
-		/**
-		 * Get ThikBox URL for a plugin
-		 *
-		 * @param string $plugin_directory
-		 *
-		 * @return string
-		 */
-		public function plugin_thickbox_url( $plugin_directory ) {
-			return add_query_arg( array(
-				'tab'       => 'plugin-information',
-				'plugin'    => $plugin_directory,
-				'TB_iframe' => 'true',
-			), admin_url( 'plugin-install.php' ) );
-		}
-
-		/**
-		 * @param $string
-		 *
-		 * @return string
-		 */
-		public static function parse_changelog( $string ) {
-			$html = '';
-			$logs = explode( "####", $string );
-			foreach ( $logs as $_log ) {
-				if ( empty( $_log ) ) {
-					continue;
+				if ( $content['action'] ) {
+					$html .= '<p><a target="_blank" href="' . esc_url( $content['action']['url'] ) . '"
+					class="button button-primary">' . esc_html( $content['action']['text'] ) . '</a></p>';
 				}
-				$log = explode( '*', $_log );
-				if ( count( $log ) < 2 ) {
-					continue;
-				}
-
-				$html .= '<table class="widefat table-shapla-changelog">';
-				$html .= '<thead><tr><th>' . esc_html( $log[0] ) . '</th></tr></thead>';
-				$html .= '<tbody><tr><td><ul>';
-				foreach ( $log as $log_num => $log_info ) {
-					if ( 0 == $log_num ) {
-						continue;
-					}
-					$html .= '<li>' . esc_html( $log_info ) . '</li>';
-				}
-				$html .= '</ul></td></tr></tbody>';
-				$html .= '</table>';
+				$html .= '</div>';
 			}
+			$html .= '</div>';
 
 			return $html;
+		}
+
+		private static function recommended_plugins_html() {
+			$recommended_plugins = [
+				[ 'directory' => 'elementor', 'file' => 'elementor.php', ],
+				[ 'directory' => 'carousel-slider', 'file' => 'carousel-slider.php', ],
+				[ 'directory' => 'filterable-portfolio', 'file' => 'filterable-portfolio.php', ],
+				[ 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ],
+				[ 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ],
+				[ 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ],
+				[ 'directory' => 'loginizer', 'file' => 'loginizer.php', ],
+			];
+
+			echo '<div class="recommended-plugins shapla-columns is-multiline" id="plugin-filter">';
+
+			foreach ( $recommended_plugins as $recommended_plugin ) {
+
+				$info   = AdminUtils::plugin_api( $recommended_plugin['directory'] );
+				$active = AdminUtils::is_plugin_active( $recommended_plugin );
+				$icon   = AdminUtils::get_plugin_icon( $info->icons ? $info->icons : [] );
+				$url    = AdminUtils::create_action_link( $active['needs'], $recommended_plugin );
+
+				echo '<div class="shapla-column is-4">';
+				echo '<div class="shapla-plugin-box">';
+
+				if ( ! empty( $icon ) ) {
+					echo '<div class="shapla-plugin-box__image">';
+					$plugin_information_url = AdminUtils::plugin_thickbox_url( $recommended_plugin['directory'] );
+					echo '<a class="thickbox" href="' . $plugin_information_url . '">';
+					echo '<img src="' . esc_url( $icon ) . '" alt="plugin box image">';
+					echo '</a>';
+					echo '</div>';
+				}
+
+				echo '<div class="shapla-plugin-box__info">';
+				if ( ! empty( $info->version ) ) {
+					echo '<span class="shapla-plugin-box__version">' . esc_html__( 'Version: ', 'shapla' ) . esc_html( $info->version ) . '</span>';
+				}
+
+				if ( ! empty( $info->author ) ) {
+					echo '<span class="shapla-plugin-box__separator"> | </span>' . wp_kses_post( $info->author );
+				}
+				echo '</div>';
+
+				if ( ! empty( $info->name ) && ! empty( $active ) ) {
+					echo '<div class="shapla-plugin-box__action_bar action_bar ' . ( ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ) . '">';
+					echo '<span class="shapla-plugin-box__plugin_name">' . ( ( $active['needs'] !== 'install' && $active['status'] ) ? 'Active: ' : '' ) . esc_html( $info->name ) . '</span>';
+
+					$class = '';
+					$label = '';
+
+					switch ( $active['needs'] ) {
+						case 'install':
+							$class = 'install-now button';
+							$label = esc_html__( 'Install', 'shapla' );
+							break;
+						case 'activate':
+							$class = 'activate-now button button-primary';
+							$label = esc_html__( 'Activate', 'shapla' );
+							break;
+						case 'deactivate':
+							$class = 'deactivate-now button';
+							$label = esc_html__( 'Deactivate', 'shapla' );
+							break;
+					}
+
+					echo '<span class="plugin-card-' . esc_attr( $recommended_plugin['directory'] ) . ' shapla-plugin-box__action_button ' . ( ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ) . '">';
+					echo '<a data-slug="' . esc_attr( $recommended_plugin['directory'] ) . '" class="' . esc_attr( $class ) . '" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+					echo '</span>';
+
+					echo '</div>';
+				}
+				echo '</div><!-- .col.plugin_box -->';
+				echo '</div><!-- .shapla-column -->';
+			}
+
+			echo '</div>';
 		}
 	}
 }

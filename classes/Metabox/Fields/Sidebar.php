@@ -14,7 +14,7 @@ class Sidebar extends Base {
 		$value = $this->get_value();
 		$name  = $this->get_name();
 
-		$html = '<select name="' . $name . '" id="" class="regular-text">';
+		$html = '<select name="' . $name . '">';
 		$html .= '<option value="">' . esc_attr__( 'Default', 'shapla' ) . '</option>';
 		foreach ( $wp_registered_sidebars as $key => $option ) {
 			$selected = ( $value == $key ) ? ' selected="selected"' : '';

@@ -96,7 +96,7 @@ abstract class Base {
 			'priority'    => 10,
 			'default'     => '',
 			'choices'     => [],
-			'field_class' => 'regular-text',
+			'field_class' => '',
 			'label_class' => '',
 		];
 		$this->settings = wp_parse_args( $settings, $default );

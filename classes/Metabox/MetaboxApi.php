@@ -2,9 +2,19 @@
 
 namespace Shapla\Metabox;
 
+use Shapla\Helpers\CssGenerator;
+
 defined( 'ABSPATH' ) || exit;
 
 class MetaboxApi {
+
+	/**
+	 * Metabox field name
+	 *
+	 * @var string
+	 */
+	protected $option_name = '_single_post_settings';
+
 	/**
 	 * Metabox config
 	 *
@@ -58,6 +68,42 @@ class MetaboxApi {
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Get sections by panel
+	 *
+	 * @param string $panel
+	 *
+	 * @return array
+	 */
+	public function get_sections_by_panel( $panel ) {
+		$sections = [];
+		foreach ( $this->get_sections() as $section ) {
+			if ( $section['panel'] == $panel ) {
+				$sections[] = $section;
+			}
+		}
+
+		return $sections;
+	}
+
+	/**
+	 * Get fields by section
+	 *
+	 * @param string $section
+	 *
+	 * @return array
+	 */
+	public function get_fields_by_section( $section ) {
+		$current_field = [];
+		foreach ( $this->get_fields() as $field ) {
+			if ( $field['section'] == $section ) {
+				$current_field[] = $field;
+			}
+		}
+
+		return $current_field;
 	}
 
 	/**
@@ -180,6 +226,43 @@ class MetaboxApi {
 		$this->fields[] = wp_parse_args( $options, $default );
 
 		return $this;
+	}
+
+	/**
+	 * Gets all our styles for current page and returns them as a string.
+	 *
+	 * @return string
+	 */
+	public function get_styles() {
+		global $post;
+		$fields = $this->get_fields();
+
+		// Check if we need to exit early
+		if ( empty( $fields ) || ! is_array( $fields ) ) {
+			return '';
+		}
+
+		// initially we're going to format our styles as an array.
+		// This is going to make processing them a lot easier
+		// and make sure there are no duplicate styles etc.
+		$css    = [];
+		$values = get_post_meta( $post->ID, $this->option_name, true );
+
+		// start parsing our fields
+		foreach ( $fields as $field ) {
+			// If no setting id, then exist
+			if ( ! isset( $field['id'] ) ) {
+				continue;
+			}
+
+			// Get the default value of this field
+			$default = isset( $field['default'] ) ? $field['default'] : '';
+			$value   = isset( $values[ $field['id'] ] ) ? $values[ $field['id'] ] : $default;
+
+			CssGenerator::css( $css, $field, $value );
+		}
+
+		return CssGenerator::styles_parse( $css );
 	}
 
 	/**

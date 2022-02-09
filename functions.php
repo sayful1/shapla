@@ -58,11 +58,8 @@ require SHAPLA_THEME_PATH . '/inc/class-shapla-structured-data.php';
 
 if ( is_admin() ) {
 	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-system-status.php';
-	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-admin.php';
-
-	// Metabox
 	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-metabox.php';
-	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-page-metabox-fields.php';
+	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-admin.php';
 }
 
 /**
