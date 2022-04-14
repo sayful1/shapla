@@ -1,24 +1,28 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+namespace Shapla\Customize;
 
-class Shapla_Customizer_Config {
+use Shapla\Helpers\Sanitize;
 
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Customize config class
+ */
+class BaseConfig {
 	/**
 	 * Customize panels
 	 *
 	 * @var array
 	 */
-	protected static $panels = array();
+	protected static $panels = [];
 
 	/**
 	 * Customize sections
 	 *
 	 * @var array
 	 */
-	protected static $sections = array();
+	protected static $sections = [];
 
 	/**
 	 * Customize fields
@@ -32,10 +36,10 @@ class Shapla_Customizer_Config {
 	 *
 	 * @var array
 	 */
-	protected static $setting = array(
+	protected static $setting = [
 		'option_type' => 'theme_mod',
 		'capability'  => 'edit_theme_options',
-	);
+	];
 
 	/**
 	 * @return array
@@ -60,11 +64,16 @@ class Shapla_Customizer_Config {
 	}
 
 	/**
-	 * @param string $id
-	 * @param array $panel
+	 * Set multiple panels
+	 *
+	 * @param array $panels List of panels
+	 *
+	 * @return void
 	 */
-	public static function add_panel( $id, array $panel ) {
-		static::set_panel( $id, $panel );
+	public static function set_panels( array $panels ) {
+		foreach ( $panels as $panel_id => $settings ) {
+			self::set_panel( $panel_id, $settings );
+		}
 	}
 
 	/**
@@ -92,11 +101,16 @@ class Shapla_Customizer_Config {
 	}
 
 	/**
-	 * @param string $id
-	 * @param array $section
+	 * Set sections
+	 *
+	 * @param array $sections List of sections.
+	 *
+	 * @return void
 	 */
-	public static function add_section( $id, array $section ) {
-		static::set_section( $id, $section );
+	public static function set_sections( array $sections ) {
+		foreach ( $sections as $id => $section ) {
+			self::set_section( $id, $section );
+		}
 	}
 
 	/**
@@ -134,13 +148,17 @@ class Shapla_Customizer_Config {
 	}
 
 	/**
-	 * @param string $id
-	 * @param array $field
+	 * Set fields
+	 *
+	 * @param array $fields List of fields
+	 *
+	 * @return void
 	 */
-	public static function add_field( $id, array $field ) {
-		static::set_field( $id, $field );
+	public static function set_fields( array $fields ) {
+		foreach ( $fields as $id => $field ) {
+			self::set_field( $id, $field );
+		}
 	}
-
 
 	/**
 	 * Get customize sanitize method
@@ -158,22 +176,22 @@ class Shapla_Customizer_Config {
 		$type = str_replace( '-', '_', $type );
 
 		$methods = [
-			'typography'  => [ \Shapla\Helpers\Sanitize::class, 'typography' ],
-			'background'  => [ \Shapla\Helpers\Sanitize::class, 'background' ],
-			'number'      => [ \Shapla\Helpers\Sanitize::class, 'number' ],
-			'image'       => [ \Shapla\Helpers\Sanitize::class, 'url' ],
-			'url'         => [ \Shapla\Helpers\Sanitize::class, 'url' ],
-			'email'       => [ \Shapla\Helpers\Sanitize::class, 'email' ],
-			'checkbox'    => [ \Shapla\Helpers\Sanitize::class, 'checked' ],
-			'textarea'    => [ \Shapla\Helpers\Sanitize::class, 'html' ],
-			'alpha_color' => [ \Shapla\Helpers\Sanitize::class, 'color' ],
-			'color'       => [ \Shapla\Helpers\Sanitize::class, 'color' ],
+			'typography'  => [ Sanitize::class, 'typography' ],
+			'background'  => [ Sanitize::class, 'background' ],
+			'number'      => [ Sanitize::class, 'number' ],
+			'image'       => [ Sanitize::class, 'url' ],
+			'url'         => [ Sanitize::class, 'url' ],
+			'email'       => [ Sanitize::class, 'email' ],
+			'checkbox'    => [ Sanitize::class, 'checked' ],
+			'textarea'    => [ Sanitize::class, 'html' ],
+			'alpha_color' => [ Sanitize::class, 'color' ],
+			'color'       => [ Sanitize::class, 'color' ],
 		];
 
 		if ( isset( $methods[ $type ] ) ) {
 			return $methods[ $type ];
 		}
 
-		return [ \Shapla\Helpers\Sanitize::class, 'text' ];
+		return [ Sanitize::class, 'text' ];
 	}
 }

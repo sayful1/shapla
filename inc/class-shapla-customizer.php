@@ -169,12 +169,11 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @param WP_Customize_Manager $wp_customize
 		 */
 		public function init_field_settings( $wp_customize ) {
-			require SHAPLA_THEME_PATH . '/inc/customizer/class-shapla-customizer-config.php';
-			require SHAPLA_THEME_PATH . '/inc/customizer/fields/init.php';
+			\Shapla\Customize\CustomizerConfig::init();
 
-			$panels   = Shapla_Customizer_Config::get_panels();
-			$sections = Shapla_Customizer_Config::get_sections();
-			$fields   = Shapla_Customizer_Config::get_fields();
+			$panels   = \Shapla\Customize\CustomizerConfig::get_panels();
+			$sections = \Shapla\Customize\CustomizerConfig::get_sections();
+			$fields   = \Shapla\Customize\CustomizerConfig::get_fields();
 
 			// @todo remove it
 			$this->fields = $fields;

@@ -213,7 +213,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 				'getting_started'     => __( 'Getting Started', 'shapla' ),
 				'recommended_plugins' => __( 'Useful Plugins', 'shapla' ),
 				'changelog'           => __( 'Change log', 'shapla' ),
-				'system_status'       => __( 'System Status', 'shapla' ),
 			);
 			$tab  = isset( $_GET['tab'] ) ? wp_unslash( $_GET['tab'] ) : 'getting_started';
 
@@ -243,10 +242,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 				case 'changelog':
 					$file_path = file_get_contents( SHAPLA_THEME_PATH . '/CHANGELOG.md' );
 					echo AdminUtils::parse_changelog( $file_path );
-					break;
-
-				case 'system_status':
-					echo Shapla_System_Status::get_html();
 					break;
 
 				case 'recommended_plugins':
@@ -326,7 +321,6 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 				[ 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ],
 				[ 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ],
 				[ 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ],
-				[ 'directory' => 'loginizer', 'file' => 'loginizer.php', ],
 			];
 
 			echo '<div class="recommended-plugins shapla-columns is-multiline" id="plugin-filter">';
