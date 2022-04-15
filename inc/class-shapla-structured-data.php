@@ -187,7 +187,7 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 				return;
 			}
 
-			$structured_data['@context'] = 'http://schema.org/';
+			$structured_data['@context'] = 'https://schema.org/';
 
 			if ( count( $this->structured_data ) > 1 ) {
 				$structured_data['@graph'] = $this->structured_data;
@@ -248,7 +248,7 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 				return;
 			}
 
-			$structured_data['@context'] = 'http://schema.org/';
+			$structured_data['@context'] = 'https://schema.org/';
 			$structured_data             = $structured_data + $this->breadcrumb_data;
 
 			echo '<script type="application/ld+json">' . PHP_EOL;

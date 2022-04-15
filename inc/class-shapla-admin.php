@@ -124,8 +124,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 				]
 			];
 
-			$metabox = new Shapla_Metabox();
-			$metabox->add( $options );
+			( new \Shapla\Metabox\ClassicMetabox() )->add( $options );
 		}
 
 		/**

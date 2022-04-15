@@ -223,7 +223,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			if ( 'color' == $type ) {
-				return new WP_Customize_Color_Control( $wp_customize, $field['settings'], $control_args );
+				return new \Shapla\Customize\Controls\ColorAlpha( $wp_customize, $field['settings'], $control_args );
 			}
 
 			return new WP_Customize_Control( $wp_customize, $field['settings'], $control_args );

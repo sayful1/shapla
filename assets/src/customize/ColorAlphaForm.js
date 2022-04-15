@@ -7,10 +7,13 @@ class ColorAlphaForm extends Component {
 	 * Specifies the default values for props:
 	 */
 	static defaultProps = {
-		customizerSetting: {id: null},
-		control: {id: null},
 		label: '',
-		defaultValue: null,
+		description: '',
+		value: '',
+		defaultValue: '',
+		choices: {save_as: ''},
+		customizerSetting: {id: ''},
+		control: {id: ''},
 	};
 
 	/**
@@ -47,18 +50,20 @@ class ColorAlphaForm extends Component {
 	 * @return {void}
 	 */
 	setValue(color) {
-		wp.customize.control(this.props.customizerSetting.id).setting.set(color);
+		const {customizerSetting} = this.props;
+		wp.customize.control(customizerSetting.id).setting.set(color);
 	}
 
 	/**
 	 * Reset value to its default.
 	 *
-	 * @param {Object} event - The click event.
+	 * @param {Event} event - The click event.
 	 * @return {void}
 	 */
 	resetValue(event) {
 		event.preventDefault();
-		this.setValue(this.props.defaultValue ? this.props.defaultValue : '');
+		const {defaultValue} = this.props;
+		this.setValue(defaultValue ? defaultValue : '');
 	}
 
 	/**
@@ -76,23 +81,33 @@ class ColorAlphaForm extends Component {
 					  dangerouslySetInnerHTML={{__html: description}}/>
 				<div className="customize-control-notifications-container" ref={setNotificationContainer}/>
 				<div className="customize-control-content">
-					<button type="button" className="button wp-color-result"
-							onClick={() => this.setState(state => state.isActive = !state.isActive)}
-							style={{
-								padding: '0px 0px 0px 30px',
-								backgroundColor: 'array' === choices.save_as ? value.css : value,
-								fontSize: '12px'
-							}}
+					<button
+						type="button"
+						className="button wp-color-result"
+						onClick={() => this.setState(state => state.isActive = !state.isActive)}
+						style={{
+							padding: '0px 0px 0px 30px',
+							backgroundColor: 'array' === choices.save_as ? value.css : value,
+							fontSize: '12px'
+						}}
 					>
 						<span className="wp-color-result-text">{window.wp.i18n.__('Select Color')}</span>
 					</button>
-					<div style={{display: (this.state.isActive ? 'block' : 'none'), marginTop: '1rem'}}>
+					<div
+						style={{
+							display: (this.state.isActive ? 'block' : 'none'),
+							marginTop: '1rem',
+							border: '1px solid rgba(0,0,0,0.12)',
+							borderRadius: '4px',
+							padding: '0.5rem'
+						}}
+					>
 						<div className="customize-control-input-wrapper"
 							 style={{display: 'flex', marginBottom: '12px'}}>
 							<input
 								className="customize-control-color-input"
 								type="text"
-								style={{borderRadius: '0 4px 4px 0', width: '100%'}}
+								style={{borderRadius: '0 4px 4px 0', width: '100%', marginRight: '.5rem'}}
 								value={'array' === choices.save_as ? value.css : value}
 								onChange={(event) => this.setValue(event.target.value)}
 								id={control.id + '-input'}
@@ -101,6 +116,7 @@ class ColorAlphaForm extends Component {
 						</div>
 						<ColorPicker
 							className="customize-control-color-picker"
+							style={{marginLeft: 'auto', marginRight: 'auto'}}
 							{...choices}
 							color={'array' === choices.save_as ? value.css : value}
 							onChange={(hex8) => this.setValue(hex8)}

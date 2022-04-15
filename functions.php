@@ -22,7 +22,7 @@ $loader->add_namespace( 'Shapla', SHAPLA_THEME_PATH . '/classes' );
 $loader->register();
 
 
-require SHAPLA_THEME_PATH . '/inc/utilities/class-shapla-fonts.php';
+require SHAPLA_THEME_PATH . '/inc/class-shapla-fonts.php';
 
 /**
  * Load theme base functionality
@@ -57,8 +57,7 @@ require SHAPLA_THEME_PATH . '/inc/class-shapla-assets.php';
 require SHAPLA_THEME_PATH . '/inc/class-shapla-structured-data.php';
 
 if ( is_admin() ) {
-	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-metabox.php';
-	require SHAPLA_THEME_PATH . '/inc/admin/class-shapla-admin.php';
+	require SHAPLA_THEME_PATH . '/inc/class-shapla-admin.php';
 }
 
 /**

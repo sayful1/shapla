@@ -22,9 +22,11 @@ class ColorAlpha extends WP_Customize_Color_Control {
 	 *
 	 * @var string
 	 */
-	public $type = 'color-alpha';
+	public $type = 'shapla-color-alpha';
 
 	/**
+	 * Constructor
+	 *
 	 * @inheritDoc
 	 */
 	public function __construct( $manager, $id, $args = array() ) {
@@ -64,7 +66,6 @@ class ColorAlpha extends WP_Customize_Color_Control {
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
-	 * @since 3.4.0
 	 * @uses WP_Customize_Control::to_json()
 	 */
 	public function to_json() {
@@ -75,9 +76,7 @@ class ColorAlpha extends WP_Customize_Color_Control {
 	/**
 	 * Empty JS template.
 	 *
-	 * @access public
 	 * @return void
-	 * @since 1.0.0
 	 */
 	public function content_template() {
 	}
