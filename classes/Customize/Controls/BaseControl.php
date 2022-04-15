@@ -61,25 +61,18 @@ class BaseControl extends WP_Customize_Control {
 	public function enqueue() {
 		$asset_url = get_template_directory_uri() . '/assets';
 
-		wp_enqueue_style( 'shapla-customize', $asset_url . '/css/customizer.css', array( 'wp-color-picker' ), SHAPLA_THEME_VERSION );
-
-		wp_enqueue_script( 'shapla-color-picker', $asset_url . '/libs/wp-color-picker-alpha/color-alpha.js',
-			array( 'jquery', 'wp-color-picker' ), '3.0.1', true
-		);
+		wp_enqueue_style( 'shapla-customize', $asset_url . '/css/customizer.css', [], SHAPLA_THEME_VERSION );
 
 		// Enqueue selectWoo.
 		wp_enqueue_script( 'selectWoo', $asset_url . '/libs/selectWoo/js/selectWoo.full.min.js', array( 'jquery' ),
 			'1.0.1', true );
 		wp_enqueue_style( 'selectWoo', $asset_url . '/libs/selectWoo/css/selectWoo.min.css', array(), '1.0.1' );
 
-		wp_enqueue_script( 'shapla-customize', $asset_url . '/js/customizer.js',
-			array(
-				'jquery',
-				'customize-base',
-				'jquery-ui-button',
-				'shapla-color-picker',
-				'selectWoo'
-			), SHAPLA_THEME_VERSION, true
+		wp_enqueue_script(
+			'shapla-customize', $asset_url . '/js/customizer.js',
+			[ 'jquery', 'customize-base', 'jquery-ui-button', 'selectWoo' ],
+			SHAPLA_THEME_VERSION,
+			true
 		);
 	}
 
