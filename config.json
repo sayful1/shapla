@@ -8,6 +8,9 @@
 	"admin": [
 	  "./assets/src/scss/admin.scss"
 	],
+	"select2": [
+	  "./assets/src/select2.js"
+	],
 	"blocks": [
 	  "./assets/src/scss/blocks.scss"
 	],

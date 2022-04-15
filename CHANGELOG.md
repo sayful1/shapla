@@ -1,4 +1,18 @@
+#### 2.1.0 - Apr 15, 2022
+
+* Dev - Add fontawesome from npm to the latest version 6.1.1.
+* Dev - Add select2 from npm to the version 4.0.3.
+* Dev - Remove dependency over jQuery tipTip plugin.
+* Dev - Update Metabox Field classes and re-design to adopt with new block based editor.
+* Dev - Update javascript dependencies.
+* Dev - Update classes directory structure using PSR-4 autoload standard.
+* Dev - Update header.php file.
+* Dev - Update customizer panels, sections and fields.
+* Dev - Add new (React based) customize control color replacing old color for handling alpha color.
+* Dev - Update color sanitize functionality.
+
 #### 2.0.1 - June 21, 2020
+
 * Fix - Page navigation style break if not previous navigation.
 * Fix - Full screen template also contain padding on mobile screen.
 * Fix - Extra padding on content bottom on full screen page template.
@@ -13,6 +27,7 @@
 * Tweak - Update coding standard with the latest theme check plugin.
 
 #### 2.0.0 - March 31, 2020
+
 * Feature - Add customize setting for Enable/disable Structured Data.
 * Feature - Update single page entry meta design.
 * Feature - Add color customize option with CSS variable generation.
@@ -42,11 +57,13 @@
 * Dev - Change module bundler from Gulp to Webpack and update src directory.
 
 #### 1.5.3 - January 08, 2019
+
 * Fix - Comment area is taking full visual width for full-screen template.
 * Fix - Carousel slider post carousel does not take full item width.
 * Fix - Fixed embed height issue.
 
 #### 1.5.2 - December 16, 2018
+
 * Add - Add support for full align block on full screen page template.
 * Add - Add body class 'shapla-has-blocks' for single posts when using block editor.
 * Tweak - Update block button styles.
@@ -59,18 +76,22 @@
 * Fix - Breadcrumb show on empty slush on second page if latest posts is displaying on homepage.
 
 #### 1.5.1 - December 06, 2018
+
 * Fix - Fix blocks.css file show 404 not found (as it is not available).
 
 #### 1.5.0 - December 06, 2018
+
 * Add - Add gutenberg block style for WordPress version 5.0.
 * Tweak - Upgrade to Font Awesome version 5.5.0 from version 4.7.0.
 
 #### 1.4.6 - October 02, 2018
+
 * Add - Add new post class 'shapla-grid-item'.
 * Tweak - Rename body class from 'blog-grid' to 'shapla-blog-grid'.
 * Fixed - Fixed Elementor Pro Page Builder archive page style issue.
 
 #### 1.4.5 - October 01, 2018
+
 * Add - Add support for Elementor Pro Page Builder Custom Header.
 * Add - Add support for Elementor Pro Page Builder Custom Footer.
 * Add - Add support for Elementor Pro Page Builder Custom 404 page.
@@ -80,6 +101,7 @@
 * Tweak - Update WooCommerce my account page style.
 
 #### 1.4.4 - May 03, 2018
+
 * Add - Add metabox option to hide or show breadcrumbs.
 * Add - Add metabox option for content padding.
 * Add - Add metabox option for sidebar position and sidebar widget area.
@@ -90,11 +112,13 @@
 * Dev - Add tab for metabox.
 
 #### 1.4.3 - March 15, 2018
+
 * Fixed - Fixed some typography issue.
 * Fixed - Fixed Carousel Slider default value PHP warning.
 * Tweak - Update style for comments, reviews, star rating and some others.
 
 #### 1.4.2 - March 13, 2018
+
 * Fixed - Site title show on left on header center layout.
 * Tweak - Change handle id from font-awesome to shapla-icons to remove conflict between version 4 and version 5.
 * Tweak - Update primary navigation JavaScript code.
@@ -104,18 +128,20 @@
 * Dev - Add Shapla_Metabox class for adding metaboxs.
 
 #### 1.4.1 - February 19, 2018
+
 * Feature - Add scroll back to top button with option to enable or disable from customize.
 * Fixed - Fix wrong font weight for widget text.
 * Fixed - Fix site title font weight showing differently rather than that of front page.
 
 #### 1.4.0 - February 17, 2018
+
 * Feature - Add page title bar section.
 * Feature - Page title for default homepage (with the latest posts).
 * Feature - Add theme custom breadcrumb class for breadcrumb support.
 * Feature - Add Breadcrumb separator, font size, text color, text transform.
 * Feature - Add support Yoast SEO breadcrumb feature
 * Feature - Add support for generating JSON-LD structured data for breadcrumb.
-* Feature - Add Page title bar customize options for background color, background image, and full typography 
+* Feature - Add Page title bar customize options for background color, background image, and full typography
 * Feature - Add Page title bar customize options for text alignment, padding and border color
 * Feature - Add body typography with google fonts, font size, font weight, color and more.
 * Feature - Add headers typography with google fonts, font size, font weight, color and more.
@@ -133,11 +159,13 @@
 * Fix - H1 site title tag on Front page instead of Posts page.
 
 #### 1.3.1 - January 3, 2018
+
 * Added - Add system status tab in theme page.
 * Tweak - Update changelog style in theme page.
 * Tweak - Update some style related to WooCommerce and header.
 
 #### 1.3.0 - November 12, 2017
+
 * Added - Add option to change google fonts from popular 30 fonts.
 * Added - Add custom style for carousel slider plugin.
 * Added - Add recommended plugins list in theme page.
@@ -161,11 +189,13 @@
 * Tweak - Add changelog to theme page.
 
 #### 1.2.2 - September 28, 2017
+
 * Tweak - Update Shapla_Customizer::sanitize_color() method.
 * Fixed - Jetpack in infinite-scroll style not working properly.
-* Added - Added compatibility with PHP 5.3 
+* Added - Added compatibility with PHP 5.3
 
 #### 1.2.1 - August 15, 2017
+
 * Fixed - Header text and link color is not working for toggle and search icon.
 * Tweak - Changed toggle menu width up to 1024px for iPad Pro width.
 * Tweak - Changed sticky header minimum width 1025px for iPad Pro width.
@@ -173,6 +203,7 @@
 * Tweak - Deprecated (Above Footer Widget Region) but will be kept until version 2.0.0
 
 #### 1.2.0 - August 09, 2017
+
 * Added - Added site layout option (Wide or Boxed).
 * Added - Added grid layout for blog.
 * Added - Added option to hide/show page title on blog page.
@@ -184,43 +215,54 @@
 * Fixed - Showing published date instate of modified date.
 
 #### 1.1.5 - July 08, 2017
+
 * Added - Added option to make header sticky on scroll.
 
 #### 1.1.4 - Jun 30, 2017
+
 * Tweak - Removed dependency over jQuery and rewrite with vanilla JS.
 
 #### 1.1.3 - Jun 14, 2017
+
 * Added - Added option to sanitize number field for Customizer
 * Added - Added option to change WooCommerce products per page
 * Added - Added option to change WooCommerce products per row
 
 #### 1.1.2 - Jun 13, 2017
+
 * Added - Added WooCommerce related styles.
 * Tweak - Changed table cell padding and input field padding, and some other small fix.
 
 #### 1.1.1 - Apr 28, 2017
+
 * Fixed - Fixed menu-toggle button hover and active color.
 * Fixed - Fixed loading button icon is not loading properly.
 * Fixed - Fixed .button for a tag text color.
 * Fixed - Fixed style when no sidebar.
 
 #### 1.1.0 - Apr 20, 2017
-* Added - Added Customizer Option to hide/show author avatar, author name, post date, category list, tag list, comments link.
+
+* Added - Added Customizer Option to hide/show author avatar, author name, post date, category list, tag list, comments
+  link.
 * Added - Added Customizer Option to change sidebar layout: Left or Right.
 * Tweak - Improved grids system with Susy.
 
 #### 1.0.1 - Apr 10, 2017
+
 * Added - Added structured data by using JSON-LD.
 * Added - Added Customizer Option to customise the look & feel of your site buttons.
 * Added - Added support for WooCommerce 3.0 product gallery zoom, lightbox and slider.
 
 #### 1.0.0 - Mar 31, 2017
+
 * Added - Added Shapla Welcome admin page.
 * Added - Added Meta box to hide title on page.
 * Added - Added Customizer Option to Hide or Show Search Icon from header.
 
 #### 0.1.4 - Mar 24, 2017
+
 * Approved and become live on WordPress theme directory
 
 #### 0.1.0 - Jan 25, 2017
+
 * Initial release

@@ -2,9 +2,9 @@
 Contributors: sayful
 Tags: one-column, two-columns, left-sidebar, right-sidebar, grid-layout, flexible-header, custom-background, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, blog, e-commerce, portfolio
 Requires at least: 5.1
-Tested up to: 5.4
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -15,4 +15,4 @@ Shapla is a simple, easy-to-use and highly customizable WordPress theme. It feat
 Shapla is distributed under the terms of the GNU GPL. Shapla bundles the following third-party resources:
 
 * [Underscores](http://underscores.me/), (C) 2012-2016 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-* [Font Awesome Free 5.5.0](https://fontawesome.com) by @fontawesome, License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+* [Font Awesome Free 6.0.0](https://fontawesome.com) by @fontawesome, License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

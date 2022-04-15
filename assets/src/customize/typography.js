@@ -126,7 +126,7 @@ wp.customize.controlConstructor['shapla-typography'] = wp.customize.Control.exte
         ];
 
         // Instantiate select2 with the data.
-        fontSelect = jQuery(selector).selectWoo({
+        fontSelect = jQuery(selector).select2({
             data: data
         });
 
@@ -189,7 +189,7 @@ wp.customize.controlConstructor['shapla-typography'] = wp.customize.Control.exte
         }
 
         // Instantiate select2 with the data.
-        fontSelect = jQuery(selector).selectWoo({
+        fontSelect = jQuery(selector).select2({
             data: standardFonts
         });
 
