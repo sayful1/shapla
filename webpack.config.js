@@ -119,6 +119,7 @@ module.exports = (env, argv) => {
 		"jquery": "jQuery",
 		"react": "React",
 		"react-dom": "ReactDOM",
+		'@wordpress/components': 'wp.components'
 	}
 
 	return webpackConfig;

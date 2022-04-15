@@ -5,62 +5,65 @@
   "description": "Shapla, easy-to-use and highly customizable WordPress theme.",
   "homepage": "https://wordpress.org/themes/shapla/",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sayful1/shapla.git"
+	"type": "git",
+	"url": "git+https://github.com/sayful1/shapla.git"
   },
   "bugs": {
-    "url": "https://github.com/sayful1/shapla/issues"
+	"url": "https://github.com/sayful1/shapla/issues"
   },
   "license": "GPL-3.0-only",
   "author": {
-    "name": "Sayful Islam",
-    "email": "sayful.islam001@gmail.com",
-    "url": "https://sayfulislam.com"
+	"name": "Sayful Islam",
+	"email": "sayful.islam001@gmail.com",
+	"url": "https://sayfulislam.com"
   },
   "scripts": {
-    "dev": "webpack --mode=development --progress --watch",
-    "dev-build": "webpack --mode=development",
-    "build": "webpack --mode=production"
+	"dev": "webpack --mode=development --progress --watch",
+	"dev-build": "webpack --mode=development",
+	"build": "webpack --mode=production"
   },
   "browserslist": [
-    "defaults"
+	"defaults"
   ],
   "devDependencies": {
-    "@babel/core": "^7.17.2",
-    "@babel/plugin-proposal-class-properties": "^7.16.7",
-    "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
-    "@babel/plugin-proposal-private-methods": "^7.16.11",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.7",
-    "autoprefixer": "^10.4.2",
-    "babel-loader": "^8.2.3",
-    "browser-sync": "^2.27.7",
-    "browser-sync-webpack-plugin": "^2.3.0",
-    "browserslist": "^4.19.1",
-    "css-loader": "^6.6.0",
-    "css-minimizer-webpack-plugin": "^3.4.1",
-    "file-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^2.5.3",
-    "mini-svg-data-uri": "^1.4.3",
-    "postcss": "^8.4.6",
-    "postcss-loader": "^6.2.1",
-    "postcss-preset-env": "^7.3.1",
-    "sass": "^1.49.7",
-    "sass-loader": "^12.4.0",
-    "style-loader": "^3.3.1",
-    "terser": "^5.10.0",
-    "terser-webpack-plugin": "^5.3.1",
-    "ts-loader": "^9.2.6",
-    "ts-node": "^10.5.0",
-    "typescript": "^4.5.5",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.68.0",
-    "webpack-clean": "^1.2.5",
-    "webpack-cli": "^4.9.2"
+	"@babel/core": "^7.17.2",
+	"@babel/plugin-proposal-class-properties": "^7.16.7",
+	"@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+	"@babel/plugin-proposal-private-methods": "^7.16.11",
+	"@babel/preset-env": "^7.16.11",
+	"@babel/preset-react": "^7.16.7",
+	"@babel/preset-typescript": "^7.16.7",
+	"autoprefixer": "^10.4.2",
+	"babel-loader": "^8.2.3",
+	"browser-sync": "^2.27.7",
+	"browser-sync-webpack-plugin": "^2.3.0",
+	"browserslist": "^4.19.1",
+	"css-loader": "^6.6.0",
+	"css-minimizer-webpack-plugin": "^3.4.1",
+	"file-loader": "^6.2.0",
+	"mini-css-extract-plugin": "^2.5.3",
+	"mini-svg-data-uri": "^1.4.3",
+	"postcss": "^8.4.6",
+	"postcss-loader": "^6.2.1",
+	"postcss-preset-env": "^7.3.1",
+	"sass": "^1.49.7",
+	"sass-loader": "^12.4.0",
+	"style-loader": "^3.3.1",
+	"terser": "^5.10.0",
+	"terser-webpack-plugin": "^5.3.1",
+	"ts-loader": "^9.2.6",
+	"ts-node": "^10.5.0",
+	"typescript": "^4.5.5",
+	"url-loader": "^4.1.1",
+	"webpack": "^5.68.0",
+	"webpack-clean": "^1.2.5",
+	"webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.0.0",
-    "jquery": "^3.6.0"
+	"@fortawesome/fontawesome-free": "^6.0.0",
+	"@wordpress/components": "^19.8.0",
+	"jquery": "^3.6.0",
+	"react": "^17.0.1",
+	"react-dom": "^17.0.1"
   }
 }

@@ -1,105 +1,84 @@
 <?php
 /**
- * Customizer Control: color.
+ * Customize API: ColorAlpha class
  *
- * This class incorporates code from the Kirki Customizer Framework
- *
- * The Kirki Customizer Framework, Copyright Aristeides Stathopoulos (@aristath),
- * is licensed under the terms of the GNU GPL, Version 2 (or later).
- *
- * @link https://wordpress.org/plugins/kirki/
+ * @package WordPress
+ * @subpackage Customize
  */
 
 namespace Shapla\Customize\Controls;
 
-defined( 'ABSPATH' ) || exit;
+use WP_Customize_Color_Control;
 
 /**
- * Adds a color & color-alpha control
+ * Customize Color Control class.
+ *
+ * @see WP_Customize_Control
  */
-class ColorAlpha extends BaseControl {
+class ColorAlpha extends WP_Customize_Color_Control {
 
 	/**
-	 * The control type.
+	 * Type.
 	 *
-	 * @access public
 	 * @var string
 	 */
-	public $type = 'shapla-color';
-
-	/**
-	 * Colorpicker palette
-	 *
-	 * @access public
-	 * @var bool
-	 */
-	public $palette = array(
-			"#000000", // black
-			"#FFFFFF", // white
-			"#9E9E9E", // grey
-			"#2196F3", // blue
-			"#4CAF50", // green
-			"#FFC107", // amber
-			"#009688", // teal
-			"#F44336", // red
-			"#E91E63", // pink
-			"#9C27B0", // purple
-	);
+	public $type = 'color-alpha';
 
 	/**
 	 * @inheritDoc
 	 */
 	public function __construct( $manager, $id, $args = array() ) {
-		parent::__construct( $manager, $id, array(
-				'settings'    => $id,
-				'label'       => isset( $args['label'] ) ? $args['label'] : '',
-				'description' => isset( $args['description'] ) ? $args['description'] : '',
-				'section'     => isset( $args['section'] ) ? $args['section'] : '',
-				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
-		) );
+		$args = array(
+			'settings'    => $id,
+			'label'       => isset( $args['label'] ) ? $args['label'] : '',
+			'description' => isset( $args['description'] ) ? $args['description'] : '',
+			'section'     => isset( $args['section'] ) ? $args['section'] : '',
+			'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
+		);
+		parent::__construct( $manager, $id, $args );
+	}
+
+	/**
+	 * Enqueue scripts/styles for the color picker.
+	 *
+	 * @return void
+	 */
+	public function enqueue() {
+		wp_enqueue_script(
+			'shapla-control-color-picker-alpha',
+			SHAPLA_THEME_URI . '/assets/js/color-control.js',
+			// We're including wp-color-picker for localized strings, nothing more.
+			[
+				'customize-controls',
+				'wp-element',
+				'wp-components',
+				'jquery',
+				'customize-base',
+				'wp-color-picker'
+			],
+			'1.1',
+			true
+		);
 	}
 
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
-	 * @access public
+	 * @since 3.4.0
+	 * @uses WP_Customize_Control::to_json()
 	 */
 	public function to_json() {
 		parent::to_json();
-		$this->json['palette'] = $this->palette;
-		$this->json['alpha']   = 'true';
+		$this->json['choices'] = $this->choices;
 	}
 
 	/**
-	 * An Underscore (JS) template for this control's content (but not its container).
+	 * Empty JS template.
 	 *
-	 * Class variables for this control class are available in the `data` JS object;
-	 * export custom variables by overriding {@see Kirki_Customize_Control::to_json()}.
-	 *
-	 * @see WP_Customize_Control::print_template()
-	 *
-	 * @access protected
+	 * @access public
+	 * @return void
+	 * @since 1.0.0
 	 */
-	protected function content_template() {
-		?>
-		<# if ( data.label ) { #>
-		<span class="customize-control-title">{{{ data.label }}}</span>
-		<# } #>
-		<# if ( data.description ) { #>
-		<span class="description customize-control-description">{{{ data.description }}}</span>
-		<# } #>
-
-		<div class="customize-control-content">
-			<label>
-				<span class="screen-reader-text">{{{ data.label }}}</span>
-				<input type="text" {{{ data.inputAttrs }}}
-					   data-palette="{{ data.palette }}"
-					   data-default-color="{{ data.default }}"
-					   data-alpha="{{ data.alpha }}"
-					   value="{{ data.value }}"
-					   class="shapla-color-control color-picker" {{{ data.link }}}/>
-			</label>
-		</div>
-		<?php
+	public function content_template() {
 	}
 }

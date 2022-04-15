@@ -17,12 +17,14 @@
 	"customizer": [
 	  "./assets/src/scss/customizer.scss",
 	  "./assets/src/customize/background.js",
-	  "./assets/src/customize/color.js",
 	  "./assets/src/customize/radio-buttonset.js",
 	  "./assets/src/customize/radio-image.js",
 	  "./assets/src/customize/slider.js",
 	  "./assets/src/customize/toggle.js",
 	  "./assets/src/customize/typography.js"
+	],
+	"color-control": [
+	  "./assets/src/customize/main.js"
 	],
 	"editor-style": [
 	  "./assets/src/scss/editor-style.scss"
