@@ -1,159 +1,117 @@
-/* globals _, wp */
-import React, {useState} from "react";
+/* globals wp */
+import React, {Component, createRef} from "react";
 import {ColorPicker} from '@wordpress/components';
 
-const ColorAlphaForm = (props) => {
+class ColorAlphaForm extends Component {
+	/**
+	 * Specifies the default values for props:
+	 */
+	static defaultProps = {
+		customizerSetting: {id: null},
+		control: {id: null},
+		label: '',
+		defaultValue: null,
+	};
 
 	/**
-	 * Get the CSS value of the selected color.
+	 * Component constructor
 	 *
-	 * @param {Object} color - The color object from react-color.
-	 * @return {string}
+	 * @param props
 	 */
-	const getCSSColor = (color) => {
-		if ('string' === typeof color) {
-			return color;
-		}
-		if (color.css) {
-			return color.css;
-		}
-		if (color.rgb && color.rgb.a && 1 > color.rgb.a) {
-			return 'rgba(' + color.rgb.r + ',' + color.rgb.g + ',' + color.rgb.b + ',' + color.rgb.a + ')';
-		}
-		if (color.hex) {
-			return color.hex;
-		}
-		return color;
+	constructor(props) {
+		super(props);
+		this.colorPickerRef = createRef();
+		this.state = {isActive: false}
+
+		this.setValue = this.setValue.bind(this);
+		this.resetValue = this.resetValue.bind(this);
 	}
 
 	/**
-	 * Properly format the value to be saved depending on our options.
-	 *
-	 * @param {string} value
-	 * @return {string|Object}
+	 * Close picker on outside click
 	 */
-	const formatValue = (value) => {
-		const saveArray = ('array' === props.choices.save_as);
-		let color, white, black, finalValue;
-
-		if (saveArray) {
-			color = Color(value);
-			white = Color('#ffffff');
-			black = Color('#000000');
-
-			// Get the basics for this color.
-			finalValue = {
-				r: color.r(),
-				g: color.g(),
-				b: color.b(),
-				h: color.h(),
-				s: color.s(),
-				l: color.l(),
-				a: color.a(),
-				v: color.toHsl().v
-			};
-
-			finalValue.hex = 1 === finalValue.a ? color.toCSS() : color.clone().a(1).toCSS();
-			finalValue.css = 1 === finalValue.a ? finalValue.hex : 'rgba(' + finalValue.r + ',' + finalValue.g + ',' + finalValue.b + ',' + finalValue.a + ')';
-
-			// A11y properties.
-			finalValue.a11y = {
-				luminance: color.toLuminosity(),
-				distanceFromWhite: color.getDistanceLuminosityFrom(white),
-				distanceFromBlack: color.getDistanceLuminosityFrom(black),
-				maxContrastColor: color.clone().a(1).getMaxContrastColor().toCSS(),
-				readableContrastingColorFromWhite: [
-					color.clone().a(1).getReadableContrastingColor(white, 7).toCSS(),
-					color.clone().a(1).getReadableContrastingColor(white, 4.5).toCSS()
-				],
-				readableContrastingColorFromBlack: [
-					color.clone().a(1).getReadableContrastingColor(black, 7).toCSS(),
-					color.clone().a(1).getReadableContrastingColor(black, 4.5).toCSS()
-				]
-			};
-			finalValue.a11y.isDark = finalValue.a11y.distanceFromWhite > finalValue.a11y.distanceFromBlack;
-
-			return finalValue;
-		}
-
-		return value;
-	};
+	componentDidMount() {
+		document.addEventListener('click', event => {
+			if (this.state.isActive) {
+				if (!this.colorPickerRef.current.contains(event.target)) {
+					this.setState(state => state.isActive = false);
+				}
+			}
+		});
+	}
 
 	/**
-	 * Save the value when changing the colorpicker.
+	 * Save the value when changing the color-picker.
 	 *
-	 * @param {Object} color - The color object from react-color.
+	 * @param {string} color - The color object from react-color.
 	 * @return {void}
 	 */
-	const handleChangeComplete = (color) => {
-		wp.customize.control(props.customizerSetting.id).setting.set(formatValue(getCSSColor(color)));
-	};
-
-	/**
-	 * Save the value when changing the text input.
-	 *
-	 * @param {Object} e - The change event.
-	 * @return {void}
-	 */
-	const handleInputChange = (e) => {
-		wp.customize.control(props.customizerSetting.id).setting.set(formatValue(e.target.value));
-	};
+	setValue(color) {
+		wp.customize.control(this.props.customizerSetting.id).setting.set(color);
+	}
 
 	/**
 	 * Reset value to its default.
 	 *
-	 * @param {Object} e - The click event.
+	 * @param {Object} event - The click event.
 	 * @return {void}
 	 */
-	const resetValue = (e) => {
-		e.preventDefault();
-		let defaultValue = (props.defaultValue) ? props.defaultValue : '';
-		if ('string' === typeof defaultValue) {
-			defaultValue = formatValue(defaultValue);
-		}
-		wp.customize.control(props.customizerSetting.id).setting.set(defaultValue);
+	resetValue(event) {
+		event.preventDefault();
+		this.setValue(this.props.defaultValue ? this.props.defaultValue : '');
 	}
 
-	const [value, setValue] = useState(false);
-	return (
-		<div>
-			<label className="customize-control-title" htmlFor={props.control.id + '-input'}>{props.label}</label>
-			<span className="description customize-control-description"
-				  dangerouslySetInnerHTML={{__html: props.description}}/>
-			<div className="customize-control-notifications-container" ref={props.setNotificationContainer}/>
-			<div className="customize-control-content">
-				<button type="button" className="button wp-color-result"
-						onClick={() => setValue(!value)}
-						style={{
-							padding: '0px 0px 0px 30px',
-							backgroundColor: props.value,
-							fontSize: '12px'
-						}}
-				>
-					<span className="wp-color-result-text">Select Color</span>
-				</button>
-				<div style={{display: (value ? 'block' : 'none'), marginTop: '1rem'}}>
-					<div className="customize-control-input-wrapper" style={{display: 'flex', marginBottom: '12px'}}>
-						<input
-							className="customize-control-color-input"
-							type="text"
-							style={{borderRadius: '0 4px 4px 0', width: '100%'}}
-							value={'array' === props.choices.save_as ? props.value.css : props.value}
-							onChange={handleInputChange}
-							id={props.control.id + '-input'}
+	/**
+	 * Render component content
+	 *
+	 * @return {JSX.Element}
+	 */
+	render() {
+		const {label, description, value, choices, control, setNotificationContainer} = this.props;
+		return (
+			<div ref={this.colorPickerRef}>
+				<label className="customize-control-title"
+					   htmlFor={control.id + '-input'}>{label}</label>
+				<span className="description customize-control-description"
+					  dangerouslySetInnerHTML={{__html: description}}/>
+				<div className="customize-control-notifications-container" ref={setNotificationContainer}/>
+				<div className="customize-control-content">
+					<button type="button" className="button wp-color-result"
+							onClick={() => this.setState(state => state.isActive = !state.isActive)}
+							style={{
+								padding: '0px 0px 0px 30px',
+								backgroundColor: 'array' === choices.save_as ? value.css : value,
+								fontSize: '12px'
+							}}
+					>
+						<span className="wp-color-result-text">{window.wp.i18n.__('Select Color')}</span>
+					</button>
+					<div style={{display: (this.state.isActive ? 'block' : 'none'), marginTop: '1rem'}}>
+						<div className="customize-control-input-wrapper"
+							 style={{display: 'flex', marginBottom: '12px'}}>
+							<input
+								className="customize-control-color-input"
+								type="text"
+								style={{borderRadius: '0 4px 4px 0', width: '100%'}}
+								value={'array' === choices.save_as ? value.css : value}
+								onChange={(event) => this.setValue(event.target.value)}
+								id={control.id + '-input'}
+							/>
+							<button className="button" onClick={this.resetValue}>{window.wp.i18n.__('Default')}</button>
+						</div>
+						<ColorPicker
+							className="customize-control-color-picker"
+							{...choices}
+							color={'array' === choices.save_as ? value.css : value}
+							onChange={(hex8) => this.setValue(hex8)}
+							enableAlpha={true}
+							copyFormat="rgb"
 						/>
-						<button className="button" onClick={resetValue}>{window.wp.i18n.__('Default')}</button>
 					</div>
-					<ColorPicker
-						className="customize-control-color-picker"
-						{...props.choices}
-						color={'array' === props.choices.save_as ? props.value.css : props.value}
-						onChangeComplete={handleChangeComplete}
-					/>
 				</div>
 			</div>
-		</div>
-	);
-};
+		)
+	}
+}
 
 export default ColorAlphaForm;
