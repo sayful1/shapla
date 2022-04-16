@@ -16,9 +16,9 @@ define( 'SHAPLA_THEME_VERSION', wp_get_theme( 'shapla' )->get( 'Version' ) );
 define( 'SHAPLA_THEME_PATH', dirname( __FILE__ ) );
 define( 'SHAPLA_THEME_URI', untrailingslashit( get_template_directory_uri() ) );
 
-require_once SHAPLA_THEME_PATH . '/classes/Autoloader.php';
+require_once SHAPLA_THEME_PATH . '/inc/classes/Autoloader.php';
 $loader = new Shapla\Autoloader();
-$loader->add_namespace( 'Shapla', SHAPLA_THEME_PATH . '/classes' );
+$loader->add_namespace( 'Shapla', SHAPLA_THEME_PATH . '/inc/classes' );
 $loader->register();
 
 
@@ -63,4 +63,4 @@ if ( is_admin() ) {
 /**
  * Third party plugin integrations
  */
-require SHAPLA_THEME_PATH . '/classes/Integrations/integrations.php';
+require SHAPLA_THEME_PATH . '/inc/classes/Integrations/integrations.php';

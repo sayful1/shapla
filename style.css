@@ -14,13 +14,11 @@ Tags: 			one-column, two-columns, left-sidebar, right-sidebar, grid-layout, flex
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
-*/
-.sticky {}
-.bypostauthor {}
-.alignleft {}
-.alignright {}
-.aligncenter {}
-.wp-caption {}
-.wp-caption-text {}
-.gallery-caption {}
-.screen-reader-text {}
+
+Shapla is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Shapla icon font is based on FontAwesome vector icon by https://fontawesome.com/
+FontAwesome License: SIL Open Font License - http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+
+/* Note: The CSS files are loaded from assets/css/ folder. */
