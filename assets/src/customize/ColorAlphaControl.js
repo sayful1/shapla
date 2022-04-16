@@ -1,4 +1,4 @@
-/* global wp, jQuery, React, ReactDOM, Color */
+/* global wp, jQuery, Color */
 import ColorAlphaForm from './ColorAlphaForm';
 import React from "react";
 import ReactDOM from 'react-dom'
