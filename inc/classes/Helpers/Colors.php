@@ -13,13 +13,14 @@ class Colors {
 	 * @var array
 	 */
 	protected static $default_colors = [
-		'primary'        => '#00d1b2',
-		'secondary'      => '#3273dc',
-		'success'        => '#48c774',
-		'error'          => '#f14668',
-		'surface'        => '#ffffff',
-		'text_primary'   => 'rgba(0, 0, 0, 0.87)',
-		'text_secondary' => 'rgba(0, 0, 0, 0.54)',
+		'primary'        => '#0d6efd', // Blue color.
+		'secondary'      => '#6c757d', // Gray 600 color.
+		'success'        => '#198754', // Green color.
+		'warning'        => '#ffc107', // Yellow color.
+		'error'          => '#dc3545', // Red color.
+		'surface'        => '#ffffff', // White color.
+		'text_primary'   => '#000000de', // Black with 87 opacity.
+		'text_secondary' => '#0000008a', // Black with 54 opacity.
 	];
 
 	/**
@@ -52,7 +53,7 @@ class Colors {
 		$color = str_replace( ' ', '', $color );
 
 		// 3 or 6 hex digits, or the empty string.
-		if ( preg_match( '|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+		if ( preg_match( '/^(\#[\da-f]{3}|\#[\da-f]{6}|\#[\da-f]{8})$/', $color ) ) {
 			// Format the hex color string.
 			$hex = str_replace( '#', '', $color );
 

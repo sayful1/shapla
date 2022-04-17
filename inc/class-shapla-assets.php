@@ -187,7 +187,7 @@ class Shapla_Assets {
 	 * @return void
 	 */
 	public function enqueue_fonts() {
-		$google_fonts = get_option( '_shapla_google_fonts' );
+		$google_fonts = get_option( '_shapla_google_fonts', [ 'Roboto:400,500' ] );
 
 		if ( ! ( is_array( $google_fonts ) && count( $google_fonts ) ) ) {
 			return;
@@ -199,7 +199,7 @@ class Shapla_Assets {
 		);
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-		wp_enqueue_style( 'shapla-fonts', $fonts_url, array(), null );
+		wp_enqueue_style( 'shapla-fonts', shapla_get_webfont_url( $fonts_url ), array(), null );
 	}
 
 	/**

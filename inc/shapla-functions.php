@@ -289,3 +289,20 @@ if ( ! function_exists( 'shapla_get_post_format' ) ) {
 		return apply_filters( 'shapla_get_post_format', $post_format );
 	}
 }
+
+if ( ! function_exists( 'shapla_get_webfont_url' ) ) {
+	/**
+	 * Get a stylesheet URL for a webfont.
+	 *
+	 * @param string $url The URL of the remote webfont.
+	 * @param string $format The font-format. If you need to support IE, change this to "woff".
+	 *
+	 * @return string Returns the CSS.
+	 */
+	function shapla_get_webfont_url( $url, $format = 'woff2' ) {
+		$font = new \Shapla\Helpers\WebFontLoader( $url );
+		$font->set_font_format( $format );
+
+		return $font->get_url();
+	}
+}

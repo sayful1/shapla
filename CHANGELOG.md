@@ -1,3 +1,9 @@
+#### 2.2.0 - Apr 17, 2022
+
+* Tweak - Add webfont loader class to copy google fonts locally.
+* Tweak - Update theme default color pallet.
+* Dev - Fix sass warning for deprecated operation.
+
 #### 2.1.0 - Apr 15, 2022
 
 * Dev - Add fontawesome from npm to the latest version 6.1.1.

@@ -16,17 +16,10 @@ class Filesystem {
 	public static function get_filesystem() {
 		global $wp_filesystem;
 		if ( ! $wp_filesystem instanceof WP_Filesystem_Base ) {
-			/**
-			 * you can safely run request_filesystem_credentials() without any issues and don't need
-			 * to worry about passing in a URL
-			 */
-			$credentials = request_filesystem_credentials( site_url(), '', false, false, array() );
-
-			/* initialize the API */
-			if ( ! WP_Filesystem( $credentials ) ) {
-				/* any problems and we exit */
-				return false;
+			if ( ! function_exists( 'WP_Filesystem' ) ) {
+				require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
 			}
+			WP_Filesystem();
 		}
 
 		// Set the permission constants if not already set.

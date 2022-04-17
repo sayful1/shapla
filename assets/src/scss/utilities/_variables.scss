@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "functions";
 
 // == Base Colors
@@ -8,10 +9,12 @@ $color--light_grey: #f1f1f1 !default;
 
 // == Colors
 // Start with assigning color names to specific hex values.
-$color--blue: #2196f3 !default;
+$color--blue: #0d6efd !default;
 $color--purple: #9c27b0 !default;
-$color--green: #4caf50 !default;
-$color--red: #f44336 !default;
+$color--green: #198754 !default;
+$color--yellow: #ffc107 !default;
+$color--red: #dc3545 !default;
+$color--cyan: #0dcaf0 !default;
 $color--white: #ffffff !default;
 $color--black: #000000 !default;
 
@@ -27,10 +30,10 @@ $on-primary: var(--shapla-on-primary, #{$color--white}); // Text on primary colo
 $primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
 $primary-alpha: var(--shapla-primary-alpha, rgba($color--blue, .25)) !default;
 
-$secondary: var(--shapla-secondary, $color--purple); // Secondary buttons, On sale, Prices, In stock labels, sales flash
-$on-secondary: var(--shapla-on-secondary, #{$color--purple}); // Text on secondary color bg
-$secondary-variant: var(--shapla-secondary-variant, #{darken($color--purple,10%)});
-$secondary-alpha: var(--shapla-secondary-alpha, rgba($color--purple, .25)) !default;
+$secondary: var(--shapla-secondary, $color--gray-light); // Secondary buttons, On sale, Prices, In stock labels, sales flash
+$on-secondary: var(--shapla-on-secondary, #{$color--white}); // Text on secondary color bg
+$secondary-variant: var(--shapla-secondary-variant, #{darken($color--gray-light,10%)});
+$secondary-alpha: var(--shapla-secondary-alpha, rgba($color--gray-light, .25)) !default;
 
 $success: var(--shapla-success, $color--green) !default;
 $on-success: var(--shapla-on-success, $color--white) !default;
@@ -40,10 +43,9 @@ $error: var(--shapla-error, $color--red); // Content BG - Tabs (active state)
 $on-error: var(--shapla-on-error, $color--white); // Product Title, Price
 $error-alpha: var(--shapla-error-alpha, rgba($color--red, .25)) !default;
 
+$background: var(--shapla-background, $color--white) !default;
 $surface: var(--shapla-surface, $color--white); // Content BG - Tabs (active state)
 $on-surface: var(--shapla-on-surface, $color--black); // Product Title, Price
-
-$background: var(--shapla-background, $color--white) !default;
 
 $text-primary: var(--shapla-text-primary, rgba($color--black, .87));
 $text-secondary: var(--shapla-text-secondary, rgba($color--black, .54));
@@ -120,7 +122,7 @@ $table-header-color: rgba(#000, 0.54) !default;
 $table-divider-color: rgba(#000, 0.12) !default;
 $table-dividers: 1px solid $table-divider-color !default;
 $table-column-spacing: 2.25rem !default;
-$table-column-padding: $table-column-spacing / 2 !default;
+$table-column-padding: math.div($table-column-spacing, 2) !default;
 
 //== Widgets
 $widget-footer-background-color: #212a34 !default;
