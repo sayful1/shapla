@@ -27,4 +27,4 @@ class ShaplaSkipLinkFocusFix {
     }
 }
 
-export {ShaplaSkipLinkFocusFix}
+export default ShaplaSkipLinkFocusFix

@@ -438,9 +438,30 @@ class CustomizerConfig extends BaseConfig {
 			'header_link_color'        => [
 				'type'     => 'alpha-color',
 				'section'  => 'header_image',
-				'label'    => __( 'Header Link Color', 'shapla' ),
+				'label'    => __( 'Header Accent Color', 'shapla' ),
 				'default'  => shapla_default_options( 'header_link_color' ),
 				'priority' => 30,
+			],
+			'submenu_background_color' => [
+				'type'     => 'alpha-color',
+				'section'  => 'header_image',
+				'label'    => __( 'Submenu Background Color', 'shapla' ),
+				'default'  => shapla_default_options( 'header_background_color' ),
+				'priority' => 35,
+			],
+			'submenu_text_color'       => [
+				'type'     => 'alpha-color',
+				'section'  => 'header_image',
+				'label'    => __( 'Submenu Text Color', 'shapla' ),
+				'default'  => shapla_default_options( 'header_text_color' ),
+				'priority' => 36,
+			],
+			'submenu_accent_color'     => [
+				'type'     => 'alpha-color',
+				'section'  => 'header_image',
+				'label'    => __( 'Submenu Accent Color', 'shapla' ),
+				'default'  => shapla_default_options( 'header_link_color' ),
+				'priority' => 37,
 			],
 			'sticky_header'            => [
 				'type'        => 'toggle',

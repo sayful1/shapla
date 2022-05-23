@@ -15,15 +15,15 @@ class ShaplaSearch {
 		toggle.addEventListener('click', function (event) {
 			event.preventDefault();
 			menuSearch.classList.toggle('shapla-main-menu-search-open');
-			menuSearch.querySelector('input[name="s"]').focus();
+			(menuSearch.querySelector('input[name="s"]') as HTMLElement).focus();
 		});
 
 		window.addEventListener('click', function (e) {
-			if (!menuSearch.contains(e.target)) {
+			if (!menuSearch.contains(e.target as HTMLElement)) {
 				menuSearch.classList.remove('shapla-main-menu-search-open');
 			}
 		});
 	}
 }
 
-export {ShaplaSearch}
+export default ShaplaSearch

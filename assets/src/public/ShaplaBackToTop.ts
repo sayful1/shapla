@@ -1,4 +1,6 @@
 class ShaplaBackToTop {
+	private readonly distance: number;
+	private readonly button: Element;
 
 	/**
 	 * ShaplaBackToTop constructor
@@ -6,7 +8,7 @@ class ShaplaBackToTop {
 	 * @param selector
 	 * @param config
 	 */
-	constructor(selector, config) {
+	constructor(selector: string, config: Record<string, any>) {
 		this.distance = 500;
 		this.button = document.querySelector(selector);
 
@@ -18,7 +20,7 @@ class ShaplaBackToTop {
 	 * Init class functionality
 	 */
 	init() {
-		let element;
+		let element: HTMLElement;
 
 		window.addEventListener("scroll", () => {
 			this.toggleButton();
@@ -43,7 +45,7 @@ class ShaplaBackToTop {
 	 * @param element
 	 * @param {Number} duration
 	 */
-	static scrollToTop(element, duration) {
+	static scrollToTop(element: HTMLElement, duration: number) {
 		if (duration <= 0) return;
 		let difference = 0 - element.scrollTop;
 		let perTick = difference / duration * 10;
@@ -67,4 +69,4 @@ class ShaplaBackToTop {
 	}
 }
 
-export {ShaplaBackToTop}
+export default ShaplaBackToTop;

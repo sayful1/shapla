@@ -109,7 +109,7 @@ module.exports = (env, argv) => {
 			modules: [
 				path.resolve('./node_modules'),
 			],
-			extensions: ['*', '.js', '.jsx', '.json']
+			extensions: ['*', '.js', '.jsx', '.ts', '.tsx']
 		},
 		plugins: plugins
 	}

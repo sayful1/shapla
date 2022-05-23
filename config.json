@@ -3,7 +3,7 @@
   "entryPoints": {
 	"main": [
 	  "./assets/src/scss/style.scss",
-	  "./assets/src/public/main.js"
+	  "./assets/src/public/main.ts"
 	],
 	"admin": [
 	  "./assets/src/scss/admin.scss"

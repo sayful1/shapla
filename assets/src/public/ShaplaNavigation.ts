@@ -1,4 +1,6 @@
 class ShaplaNavigation {
+	private readonly element: Element;
+	private settings: Record<string, any>;
 
 	/**
 	 * ShaplaNavigation constructor
@@ -6,7 +8,7 @@ class ShaplaNavigation {
 	 * @param selector
 	 * @param config
 	 */
-	constructor(selector, config) {
+	constructor(selector: string, config: Record<string, any>) {
 		this.element = document.querySelector(selector);
 		this.settings = config;
 
@@ -34,7 +36,7 @@ class ShaplaNavigation {
 			return;
 		}
 
-		toggleButtons.forEach(menuToggle => {
+		toggleButtons.forEach((menuToggle: HTMLElement) => {
 
 			// Get the target from the "data-target" attribute
 			const target = menuToggle.dataset.target;
@@ -111,8 +113,8 @@ class ShaplaNavigation {
 	/**
 	 * Sets or removes .focus class on an element.
 	 */
-	static toggleFocus() {
-		let self = this;
+	static toggleFocus(event: Event) {
+		let self = event.target as HTMLElement;
 		// Move up through the ancestors of the current link until we hit .nav-menu.
 		while (-1 === self.className.indexOf('primary-menu')) {
 			// On li elements toggle the class .focus.
@@ -152,4 +154,4 @@ class ShaplaNavigation {
 	}
 }
 
-export {ShaplaNavigation}
+export default ShaplaNavigation

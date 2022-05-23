@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+@use "shapla-css/src/index.scss" as shapla;
 /*!
  * Theme Name: Shapla
  * Description: Theme main style file
@@ -117,4 +119,9 @@
 # Modules
 --------------------------------------------------------------*/
 @import "core/components/scroll-to-top";
-@import "components/icon";
+
+/*--------------------------------------------------------------
+# Custom Elements and Components
+--------------------------------------------------------------*/
+@include shapla.columns();
+@include shapla.icon-container();

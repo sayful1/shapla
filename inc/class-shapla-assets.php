@@ -217,6 +217,12 @@ class Shapla_Assets {
 			'stickyHeader'     => array(
 				'isEnabled' => get_theme_mod( 'sticky_header', false ),
 				'minWidth'  => 1025,
+				'classes'   => [
+					'body'    => 'has-fixed-header',
+					'initial' => 'header--fixed',
+					'top'     => 'header--top',
+					'notTop'  => 'header--not-top',
+				],
 			),
 			'BackToTopButton'  => array(
 				'isEnabled' => get_theme_mod( 'display_go_to_top_button', true ),
@@ -373,6 +379,9 @@ class Shapla_Assets {
 		$background_color = get_theme_mod( 'header_background_color', $default_background );
 		$text_color       = get_theme_mod( 'header_text_color', $default_text_color );
 		$link_color       = get_theme_mod( 'header_link_color', $default_link_color );
+		$submenu_bg       = get_theme_mod( 'submenu_background_color', $default_background );
+		$submenu_text     = get_theme_mod( 'submenu_text_color', $default_text_color );
+		$submenu_accent   = get_theme_mod( 'submenu_accent_color', $default_link_color );
 
 		$get_header_image = get_header_image();
 
@@ -387,6 +396,9 @@ class Shapla_Assets {
 		$string .= '--header-background-color:' . $background_color . ';';
 		$string .= '--header-text-color:' . $text_color . ';';
 		$string .= '--header-accent-color:' . $link_color . ';';
+		$string .= '--submenu-background-color:' . $submenu_bg . ';';
+		$string .= '--submenu-text-color:' . $submenu_text . ';';
+		$string .= '--submenu-accent-color:' . $submenu_accent . ';';
 
 		return $string;
 	}
