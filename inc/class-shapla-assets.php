@@ -194,8 +194,9 @@ class Shapla_Assets {
 		}
 
 		$query_args = array(
-			'family' => urlencode( implode( '|', $google_fonts ) ),
-			'subset' => urlencode( apply_filters( 'shapla_google_font_families_subset', 'latin,latin-ext' ) ),
+			'family'  => urlencode( implode( '|', $google_fonts ) ),
+			'subset'  => urlencode( apply_filters( 'shapla_google_font_families_subset', 'latin,latin-ext' ) ),
+			'display' => 'swap',
 		);
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
