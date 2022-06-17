@@ -33,17 +33,23 @@
 	}
 
 	a {
+		align-items: center;
 		color: var(--header-text-color, #{$text-primary});
-		display: block;
+		cursor: pointer;
+		display: flex;
 		line-height: 1.2;
 		outline-offset: -1px;
 		padding: 1rem 0;
 		text-decoration: none;
-		cursor: pointer;
 
 		&:hover,
 		&.focus {
 			color: var(--header-accent-color, #{$primary});
+		}
+
+		// for icon font
+		i {
+			margin-right: .25rem;
 		}
 	}
 
