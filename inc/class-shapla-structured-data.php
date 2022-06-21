@@ -18,12 +18,12 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 		/**
 		 * @var array
 		 */
-		private $structured_data = [];
+		private $structured_data = array();
 
 		/**
 		 * @var array
 		 */
-		private $breadcrumb_data = [];
+		private $breadcrumb_data = array();
 
 		/**
 		 * The instance of the class
@@ -41,7 +41,7 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 
-				if ( false === get_theme_mod( 'show_structured_data', true ) ) {
+				if ( false === shapla_get_option( 'show_structured_data', true ) ) {
 					return self::$instance;
 				}
 
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 			// Post's structured data.
 			if ( is_home() || is_category() || is_date() || is_search() || is_single() && ( shapla_is_woocommerce_activated() && ! is_woocommerce() ) ) {
 				$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'normal' );
-				$logo  = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' );
+				$logo  = wp_get_attachment_image_src( shapla_get_option( 'custom_logo' ), 'full' );
 
 				$json['@type'] = 'BlogPosting';
 
@@ -160,8 +160,13 @@ if ( ! class_exists( 'Shapla_Structured_Data' ) ) {
 				}
 			}
 
-			$this->set_breadcrumb_structured_data( apply_filters( 'shapla_structured_data_breadcrumb', $markup,
-				$breadcrumbs ) );
+			$this->set_breadcrumb_structured_data(
+				apply_filters(
+					'shapla_structured_data_breadcrumb',
+					$markup,
+					$breadcrumbs
+				)
+			);
 		}
 
 		/**

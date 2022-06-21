@@ -20,28 +20,28 @@ class MetaboxApi {
 	 *
 	 * @var array
 	 */
-	protected $config = [];
+	protected $config = array();
 
 	/**
 	 * Metabox panels
 	 *
 	 * @var array
 	 */
-	protected $panels = [];
+	protected $panels = array();
 
 	/**
 	 * Metabox sections
 	 *
 	 * @var array
 	 */
-	protected $sections = [];
+	protected $sections = array();
 
 	/**
 	 * Metabox fields
 	 *
 	 * @var array
 	 */
-	protected $fields = [];
+	protected $fields = array();
 
 	/**
 	 * @return array
@@ -56,13 +56,13 @@ class MetaboxApi {
 	 * @return static
 	 */
 	public function set_config( array $config ) {
-		$default = [
+		$default = array(
 			'id'       => 'shapla_meta_box_options',
 			'title'    => __( 'Page Options', 'shapla' ),
 			'screen'   => 'page',
 			'context'  => 'advanced',
 			'priority' => 'low',
-		];
+		);
 		foreach ( $default as $key => $value ) {
 			$this->config[ $key ] = isset( $config[ $key ] ) ? $config[ $key ] : $value;
 		}
@@ -78,7 +78,7 @@ class MetaboxApi {
 	 * @return array
 	 */
 	public function get_sections_by_panel( $panel ) {
-		$sections = [];
+		$sections = array();
 		foreach ( $this->get_sections() as $section ) {
 			if ( $section['panel'] == $panel ) {
 				$sections[] = $section;
@@ -96,7 +96,7 @@ class MetaboxApi {
 	 * @return array
 	 */
 	public function get_fields_by_section( $section ) {
-		$current_field = [];
+		$current_field = array();
 		foreach ( $this->get_fields() as $field ) {
 			if ( $field['section'] == $section ) {
 				$current_field[] = $field;
@@ -134,13 +134,13 @@ class MetaboxApi {
 	 * @return static
 	 */
 	public function set_panel( array $options ) {
-		$default        = [
+		$default        = array(
 			'id'          => '',
 			'title'       => '',
 			'description' => '',
 			'class'       => '',
 			'priority'    => 200,
-		];
+		);
 		$this->panels[] = wp_parse_args( $options, $default );
 
 		return $this;
@@ -174,13 +174,13 @@ class MetaboxApi {
 	 * @return static
 	 */
 	public function set_section( array $options ) {
-		$default          = [
+		$default          = array(
 			'id'          => '',
 			'title'       => '',
 			'description' => '',
 			'panel'       => '',
 			'priority'    => 200,
-		];
+		);
 		$this->sections[] = wp_parse_args( $options, $default );
 
 		return $this;
@@ -214,7 +214,7 @@ class MetaboxApi {
 	 * @return static
 	 */
 	public function set_field( array $options ) {
-		$default        = [
+		$default        = array(
 			'type'        => 'text',
 			'id'          => '',
 			'section'     => 'default',
@@ -222,7 +222,7 @@ class MetaboxApi {
 			'description' => '',
 			'priority'    => 200,
 			'default'     => '',
-		];
+		);
 		$this->fields[] = wp_parse_args( $options, $default );
 
 		return $this;
@@ -245,7 +245,7 @@ class MetaboxApi {
 		// initially we're going to format our styles as an array.
 		// This is going to make processing them a lot easier
 		// and make sure there are no duplicate styles etc.
-		$css    = [];
+		$css    = array();
 		$values = get_post_meta( $post->ID, $this->option_name, true );
 
 		// start parsing our fields
@@ -274,9 +274,12 @@ class MetaboxApi {
 	 */
 	protected function sort_by_priority( array $array ) {
 		$array_copy = $array;
-		usort( $array_copy, function ( $a, $b ) {
-			return $a['priority'] - $b['priority'];
-		} );
+		usort(
+			$array_copy,
+			function ( $a, $b ) {
+				return $a['priority'] - $b['priority'];
+			} 
+		);
 
 		return $array_copy;
 	}

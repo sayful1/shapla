@@ -1,0 +1,13 @@
+{
+  "require-dev": {
+	"wptrt/wpthemereview": "*",
+	"dealerdirect/phpcodesniffer-composer-installer": "^0.7"
+  },
+  "require": {
+	"ext-json": "*"
+  },
+  "scripts": {
+	"lint": "phpcs --standard=phpcs.xml",
+	"format": "phpcbf --standard=phpcs.xml"
+  }
+}

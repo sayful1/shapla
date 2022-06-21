@@ -1,5 +1,6 @@
 # Ignore Idea generated files
 /.idea/
+/vendor
 
 # Ignore all Node modules
 /node_modules/
@@ -22,3 +23,4 @@
 
 install_nvm.sh
 package-lock.json
+composer.lock

@@ -11,7 +11,7 @@ class Autoloader {
 	 *
 	 * @var array
 	 */
-	protected $prefixes = [];
+	protected $prefixes = array();
 
 	/**
 	 * Register loader with SPL autoloader stack.
@@ -19,7 +19,7 @@ class Autoloader {
 	 * @return void
 	 */
 	public function register() {
-		spl_autoload_register( [ $this, 'load_class' ] );
+		spl_autoload_register( array( $this, 'load_class' ) );
 	}
 
 	/**
@@ -28,9 +28,9 @@ class Autoloader {
 	 * @param string $prefix The namespace prefix.
 	 * @param string $base_dir A base directory for class files in the
 	 *                         namespace.
-	 * @param bool $prepend If true, prepend the base directory to the stack
-	 *                         instead of appending it; this causes it to be searched first rather
-	 *                         than last.
+	 * @param bool   $prepend If true, prepend the base directory to the stack
+	 *                           instead of appending it; this causes it to be searched first rather
+	 *                           than last.
 	 *
 	 * @return void
 	 */
@@ -113,8 +113,8 @@ class Autoloader {
 			// replace namespace separators with directory separators
 			// in the relative class name, append with .php
 			$file = $base_dir
-			        . str_replace( '\\', '/', $relative_class )
-			        . '.php';
+					. str_replace( '\\', '/', $relative_class )
+					. '.php';
 
 			// if the mapped file exists, require it
 			if ( $this->require_file( $file ) ) {

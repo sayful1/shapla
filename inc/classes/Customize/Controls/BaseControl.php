@@ -62,14 +62,15 @@ class BaseControl extends WP_Customize_Control {
 		$asset_url = SHAPLA_THEME_URI . '/assets';
 
 		// Enqueue selectWoo.
-		wp_enqueue_script( 'select2', $asset_url . '/js/select2.js', [ 'jquery' ], '4.0.3', true );
-		wp_enqueue_style( 'select2', $asset_url . '/css/select2.css', [], '4.0.3' );
+		wp_enqueue_script( 'select2', $asset_url . '/js/select2.js', array( 'jquery' ), '4.0.3', true );
+		wp_enqueue_style( 'select2', $asset_url . '/css/select2.css', array(), '4.0.3' );
 
-		wp_enqueue_style( 'shapla-customize', $asset_url . '/css/customizer.css', [], SHAPLA_THEME_VERSION );
+		wp_enqueue_style( 'shapla-customize', $asset_url . '/css/customizer.css', array(), SHAPLA_THEME_VERSION );
 
 		wp_enqueue_script(
-			'shapla-customize', $asset_url . '/js/customizer.js',
-			[ 'jquery', 'customize-base', 'jquery-ui-button', 'select2' ],
+			'shapla-customize',
+			$asset_url . '/js/customizer.js',
+			array( 'jquery', 'customize-base', 'jquery-ui-button', 'select2' ),
 			SHAPLA_THEME_VERSION,
 			true
 		);

@@ -24,8 +24,9 @@ if ( post_password_required() ) {
 
 	<?php
 	// You can start editing here -- including this comment!
-	if ( have_comments() ) : ?>
-        <h2 class="comments-title">
+	if ( have_comments() ) : 
+		?>
+		<h2 class="comments-title">
 			<?php
 			printf( // WPCS: XSS OK.
 				esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'shapla' ) ),
@@ -33,31 +34,36 @@ if ( post_password_required() ) {
 				'<span>' . get_the_title() . '</span>'
 			);
 			?>
-        </h2>
+		</h2>
 
-        <ol class="comment-list">
+		<ol class="comment-list">
 			<?php
-			wp_list_comments( array(
-				'style'      => 'ol',
-				'short_ping' => true,
-				'callback'   => 'shapla_comment',
-			) );
+			wp_list_comments(
+				array(
+					'style'      => 'ol',
+					'short_ping' => true,
+					'callback'   => 'shapla_comment',
+				) 
+			);
 			?>
-        </ol><!-- .comment-list -->
+		</ol><!-- .comment-list -->
 
 		<?php
-		the_comments_pagination( array(
-			'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'shapla' ) . '</span>',
-			'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'shapla' ) . '</span>',
-		) );
+		the_comments_pagination(
+			array(
+				'prev_text' => '<span class="screen-reader-text">' . __( 'Previous', 'shapla' ) . '</span>',
+				'next_text' => '<span class="screen-reader-text">' . __( 'Next', 'shapla' ) . '</span>',
+			) 
+		);
 
 	endif; // Check for have_comments().
 
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-        <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'shapla' ); ?></p>
-	<?php
+	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : 
+		?>
+		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'shapla' ); ?></p>
+		<?php
 	endif;
 
 	comment_form();

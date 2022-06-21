@@ -15,31 +15,31 @@ class BaseConfig {
 	 *
 	 * @var array
 	 */
-	protected static $panels = [];
+	protected static $panels = array();
 
 	/**
 	 * Customize sections
 	 *
 	 * @var array
 	 */
-	protected static $sections = [];
+	protected static $sections = array();
 
 	/**
 	 * Customize fields
 	 *
 	 * @var array
 	 */
-	protected static $fields = [];
+	protected static $fields = array();
 
 	/**
 	 * Customize settings configuration
 	 *
 	 * @var array
 	 */
-	protected static $setting = [
+	protected static $setting = array(
 		'option_type' => 'theme_mod',
 		'capability'  => 'edit_theme_options',
-	];
+	);
 
 	/**
 	 * @return array
@@ -52,15 +52,18 @@ class BaseConfig {
 	 * Set customize panel
 	 *
 	 * @param string $id Unique id for panel
-	 * @param array $panel Panel arguments
+	 * @param array  $panel Panel arguments
 	 */
 	public static function set_panel( $id, array $panel ) {
-		self::$panels[ $id ] = wp_parse_args( $panel, [
-			'title'       => '',
-			'description' => '',
-			'priority'    => 30,
-			'capability'  => static::$setting['capability'],
-		] );
+		self::$panels[ $id ] = wp_parse_args(
+			$panel,
+			array(
+				'title'       => '',
+				'description' => '',
+				'priority'    => 30,
+				'capability'  => static::$setting['capability'],
+			) 
+		);
 	}
 
 	/**
@@ -89,15 +92,18 @@ class BaseConfig {
 	 * Set customize section
 	 *
 	 * @param string $id Unique id for section
-	 * @param array $section Section arguments
+	 * @param array  $section Section arguments
 	 */
 	public static function set_section( $id, array $section ) {
-		self::$sections[ $id ] = wp_parse_args( $section, [
-			'title'       => '',
-			'description' => '',
-			'priority'    => 30,
-			'panel'       => '',
-		] );
+		self::$sections[ $id ] = wp_parse_args(
+			$section,
+			array(
+				'title'       => '',
+				'description' => '',
+				'priority'    => 30,
+				'panel'       => '',
+			) 
+		);
 	}
 
 	/**
@@ -126,20 +132,23 @@ class BaseConfig {
 	 * Set customize field
 	 *
 	 * @param string $id Unique id for field
-	 * @param array $field Field arguments
+	 * @param array  $field Field arguments
 	 */
 	public static function set_field( $id, array $field ) {
-		$_field = wp_parse_args( $field, [
-			'default'     => '',
-			'transport'   => 'refresh',
-			'label'       => '',
-			'description' => '',
-			'section'     => '',
-			'priority'    => 10,
-			'type'        => 'text',
-			'choices'     => [],
-			'input_attrs' => [],
-		] );
+		$_field = wp_parse_args(
+			$field,
+			array(
+				'default'     => '',
+				'transport'   => 'refresh',
+				'label'       => '',
+				'description' => '',
+				'section'     => '',
+				'priority'    => 10,
+				'type'        => 'text',
+				'choices'     => array(),
+				'input_attrs' => array(),
+			) 
+		);
 
 		$_field['settings']          = $id;
 		$_field['sanitize_callback'] = static::get_sanitize_callback( $field );
@@ -175,23 +184,23 @@ class BaseConfig {
 		$type = isset( $field['type'] ) ? $field['type'] : 'text';
 		$type = str_replace( '-', '_', $type );
 
-		$methods = [
-			'typography'  => [ Sanitize::class, 'typography' ],
-			'background'  => [ Sanitize::class, 'background' ],
-			'number'      => [ Sanitize::class, 'number' ],
-			'image'       => [ Sanitize::class, 'url' ],
-			'url'         => [ Sanitize::class, 'url' ],
-			'email'       => [ Sanitize::class, 'email' ],
-			'checkbox'    => [ Sanitize::class, 'checked' ],
-			'textarea'    => [ Sanitize::class, 'html' ],
-			'alpha_color' => [ Sanitize::class, 'color' ],
-			'color'       => [ Sanitize::class, 'color' ],
-		];
+		$methods = array(
+			'typography'  => array( Sanitize::class, 'typography' ),
+			'background'  => array( Sanitize::class, 'background' ),
+			'number'      => array( Sanitize::class, 'number' ),
+			'image'       => array( Sanitize::class, 'url' ),
+			'url'         => array( Sanitize::class, 'url' ),
+			'email'       => array( Sanitize::class, 'email' ),
+			'checkbox'    => array( Sanitize::class, 'checked' ),
+			'textarea'    => array( Sanitize::class, 'html' ),
+			'alpha_color' => array( Sanitize::class, 'color' ),
+			'color'       => array( Sanitize::class, 'color' ),
+		);
 
 		if ( isset( $methods[ $type ] ) ) {
 			return $methods[ $type ];
 		}
 
-		return [ Sanitize::class, 'text' ];
+		return array( Sanitize::class, 'text' );
 	}
 }

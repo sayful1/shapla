@@ -129,9 +129,13 @@ class WebFontLoader {
 		}
 
 		// If the local file exists, return its URL, with a fallback to the remote URL.
-		return file_exists( $this->get_local_stylesheet_path() )
+		$font_url = file_exists( $this->get_local_stylesheet_path() )
 			? $this->get_local_stylesheet_url()
 			: $this->remote_url;
+
+		update_site_option( 'shapla_webfont_url', wp_json_encode( $font_url ) );
+
+		return $font_url;
 	}
 
 	/**
@@ -266,7 +270,7 @@ class WebFontLoader {
 			$this->get_filesystem()->mkdir( $this->get_fonts_folder(), FS_CHMOD_DIR );
 		}
 
-		foreach ( $font_files as $font_family => $files ) {
+		foreach ( $font_files as $font_family => $font_weights ) {
 
 			// The folder path for this font-family.
 			$folder_path = $this->get_fonts_folder() . '/' . $font_family;
@@ -276,50 +280,52 @@ class WebFontLoader {
 				$this->get_filesystem()->mkdir( $folder_path, FS_CHMOD_DIR );
 			}
 
-			foreach ( $files as $url ) {
+			foreach ( $font_weights as $files ) {
+				foreach ( $files as $url ) {
 
-				// Get the filename.
-				$filename  = basename( wp_parse_url( $url, PHP_URL_PATH ) );
-				$font_path = $folder_path . '/' . $filename;
+					// Get the filename.
+					$filename  = basename( wp_parse_url( $url, PHP_URL_PATH ) );
+					$font_path = $folder_path . '/' . $filename;
 
-				// Check if the file already exists.
-				if ( file_exists( $font_path ) ) {
+					// Check if the file already exists.
+					if ( file_exists( $font_path ) ) {
 
-					// Skip if already cached.
-					if ( isset( $stored[ $url ] ) ) {
+						// Skip if already cached.
+						if ( isset( $stored[ $url ] ) ) {
+							continue;
+						}
+
+						// Add file to the cache and change the $changed var to indicate we need to update the option.
+						$stored[ $url ] = $font_path;
+						$change         = true;
+
+						// Since the file exists we don't need to proceed with downloading it.
 						continue;
 					}
 
-					// Add file to the cache and change the $changed var to indicate we need to update the option.
-					$stored[ $url ] = $font_path;
-					$change         = true;
+					/**
+					 * If we got this far, we need to download the file.
+					 */
 
-					// Since the file exists we don't need to proceed with downloading it.
-					continue;
-				}
+					// require file.php if the download_url function doesn't exist.
+					if ( ! function_exists( 'download_url' ) ) {
+						require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
+					}
 
-				/**
-				 * If we got this far, we need to download the file.
-				 */
+					// Download file to temporary location.
+					$tmp_path = download_url( $url );
 
-				// require file.php if the download_url function doesn't exist.
-				if ( ! function_exists( 'download_url' ) ) {
-					require_once wp_normalize_path( ABSPATH . '/wp-admin/includes/file.php' );
-				}
+					// Make sure there were no errors.
+					if ( is_wp_error( $tmp_path ) ) {
+						continue;
+					}
 
-				// Download file to temporary location.
-				$tmp_path = download_url( $url );
-
-				// Make sure there were no errors.
-				if ( is_wp_error( $tmp_path ) ) {
-					continue;
-				}
-
-				// Move temp file to final destination.
-				$success = $this->get_filesystem()->move( $tmp_path, $font_path, true );
-				if ( $success ) {
-					$stored[ $url ] = $font_path;
-					$change         = true;
+					// Move temp file to final destination.
+					$success = $this->get_filesystem()->move( $tmp_path, $font_path, true );
+					if ( $success ) {
+						$stored[ $url ] = $font_path;
+						$change         = true;
+					}
 				}
 			}
 		}
@@ -340,13 +346,43 @@ class WebFontLoader {
 	}
 
 	/**
+	 * Get the font files and preload them.
+	 *
+	 * @access public
+	 */
+	public function preload_local_fonts() {
+		// Make sure variables are set.
+		// Get the remote URL contents.
+		$styles = $this->get_styles();
+
+		// Get an array of locally-hosted files.
+		$local_font = array();
+		$font_files = $this->get_remote_files_from_css( $styles );
+
+		foreach ( $font_files as $font_family => $font_weights ) {
+			foreach ( $font_weights as $files ) {
+				if ( is_array( $files ) ) {
+					$local_font[] = end( $files );
+				}
+			}
+		}
+
+		// Caching this for further optimization.
+		update_site_option( 'shapla_local_font_files', $local_font );
+	}
+
+	/**
 	 * Get font files from the CSS.
 	 *
 	 * @return array Returns an array of font-families and the font-files used.
 	 */
-	public function get_remote_files_from_css() {
+	public function get_remote_files_from_css( $remote_styles = '' ) {
 
-		$font_faces = explode( '@font-face', $this->remote_styles );
+		if ( '' === $remote_styles ) {
+			$remote_styles = $this->remote_styles;
+		}
+
+		$font_faces = explode( '@font-face', $remote_styles );
 
 		$result = array();
 
@@ -364,6 +400,15 @@ class WebFontLoader {
 			// Get an array of our font-families.
 			preg_match_all( '/font-family.*?\;/', $style, $matched_font_families );
 
+			// Get an array of our font-weights.
+			preg_match( '/font-weight:\s?(?P<font_weight>.*?)\;/', $style, $matched_font_weights );
+
+			if ( isset( $matched_font_weights['font_weight'] ) ) {
+				$font_weight = $matched_font_weights['font_weight'];
+			} else {
+				$font_weight = 'normal';
+			}
+
 			// Get an array of our font-files.
 			preg_match_all( '/url\(.*?\)/i', $style, $matched_font_files );
 
@@ -377,7 +422,9 @@ class WebFontLoader {
 
 			// Make sure the font-family is set in our array.
 			if ( ! isset( $result[ $font_family ] ) ) {
-				$result[ $font_family ] = array();
+				$result[ $font_family ] = array(
+					"$font_weight" => []
+				);
 			}
 
 			// Get files for this font-family and add them to the array.
@@ -389,12 +436,12 @@ class WebFontLoader {
 				}
 
 				// Add the file URL.
-				$result[ $font_family ][] = rtrim( ltrim( $match[0], 'url(' ), ')' );
+				$result[ $font_family ][ $font_weight ][] = rtrim( ltrim( $match[0], 'url(' ), ')' );
 			}
 
 			// Make sure we have unique items.
 			// We're using array_flip here instead of array_unique for improved performance.
-			$result[ $font_family ] = array_flip( array_flip( $result[ $font_family ] ) );
+			$result[ $font_family ][ $font_weight ] = array_flip( array_flip( $result[ $font_family ][ $font_weight ] ) );
 		}
 
 		return $result;
@@ -489,7 +536,8 @@ class WebFontLoader {
 	 */
 	public function get_base_path() {
 		if ( ! $this->base_path ) {
-			$dir             = Filesystem::get_uploads_dir();
+			$dir = Filesystem::get_uploads_dir();
+			Filesystem::maybe_create_uploads_dir( $dir['path'] );
 			$this->base_path = apply_filters( 'shapla_get_local_fonts_base_path', $dir['path'] );
 		}
 
@@ -564,6 +612,9 @@ class WebFontLoader {
 	 * @return bool
 	 */
 	public function delete_fonts_folder() {
+		delete_site_option( 'shapla_local_font_files' );
+		delete_site_option( 'shapla_webfont_url' );
+
 		return $this->get_filesystem()->delete( $this->get_fonts_folder(), true );
 	}
 

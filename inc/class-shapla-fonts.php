@@ -230,7 +230,7 @@ class Shapla_Fonts {
 	 * @return string
 	 */
 	public static function get_site_font_family() {
-		$typography = get_theme_mod( 'body_typography' );
+		$typography = shapla_get_option( 'body_typography' );
 
 		return self::format_font_to_display( $typography );
 	}
@@ -241,7 +241,7 @@ class Shapla_Fonts {
 	 * @return int
 	 */
 	public static function get_site_font_weight() {
-		$typography = get_theme_mod( 'body_typography' );
+		$typography = shapla_get_option( 'body_typography' );
 
 		return ! empty( $typography['font-weight'] ) ? $typography['font-weight'] : '400';
 	}
@@ -252,7 +252,7 @@ class Shapla_Fonts {
 	 * @return string
 	 */
 	public static function get_header_font_family() {
-		$typography = get_theme_mod( 'headers_typography' );
+		$typography = shapla_get_option( 'headers_typography' );
 
 		return self::format_font_to_display( $typography );
 	}
@@ -263,7 +263,7 @@ class Shapla_Fonts {
 	 * @return int
 	 */
 	public static function get_header_font_weight() {
-		$typography = get_theme_mod( 'headers_typography' );
+		$typography = shapla_get_option( 'headers_typography' );
 
 		return ! empty( $typography['font-weight'] ) ? $typography['font-weight'] : '500';
 	}
@@ -280,7 +280,7 @@ class Shapla_Fonts {
 		$is_valid    = isset( $typography['font-family'] ) && static::is_google_font( $typography['font-family'] );
 		$font_family = $is_valid ? $typography['font-family'] : $default;
 
-		$font_categories = [ "sans-serif", "serif", "monospace" ];
+		$font_categories = array( 'sans-serif', 'serif', 'monospace' );
 		if ( isset( $typography['font-category'] ) && in_array( $typography['font-category'], $font_categories ) ) {
 			$font_category = $typography['font-category'];
 		} else {
@@ -304,11 +304,11 @@ class Shapla_Fonts {
 	 * @return array
 	 */
 	public static function get_site_fonts() {
-		return [
+		return array(
 			'body-font-family'     => static::get_site_font_family(),
 			'body-font-weight'     => static::get_site_font_weight(),
 			'headings-font-family' => static::get_header_font_family(),
 			'headings-font-weight' => static::get_header_font_weight(),
-		];
+		);
 	}
 }

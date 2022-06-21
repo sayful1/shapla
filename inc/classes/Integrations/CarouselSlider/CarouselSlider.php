@@ -39,9 +39,13 @@ class CarouselSlider {
 	 * Load carousel slider scripts
 	 */
 	public function scripts() {
-		wp_enqueue_style( 'shapla-carousel-slider',
+		wp_enqueue_style(
+			'shapla-carousel-slider',
 			get_template_directory_uri() . '/assets/css/carousel-slider.css',
-			array(), SHAPLA_THEME_VERSION, 'all' );
+			array(),
+			SHAPLA_THEME_VERSION,
+			'all' 
+		);
 	}
 
 	/**

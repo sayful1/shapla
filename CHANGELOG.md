@@ -1,3 +1,8 @@
+#### 2.3.0 - Apr 17, 2022
+
+* Tweak - Fix issue to create web-font directory if it is not exists.
+* Tweak - Add font preload functionality to improve performance.
+
 #### 2.2.0 - Apr 17, 2022
 
 * Tweak - Add webfont loader class to copy google fonts locally.

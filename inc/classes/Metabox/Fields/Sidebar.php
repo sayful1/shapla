@@ -14,11 +14,11 @@ class Sidebar extends Base {
 		$value = $this->get_value();
 		$name  = $this->get_name();
 
-		$html = '<select name="' . $name . '">';
+		$html  = '<select name="' . $name . '">';
 		$html .= '<option value="">' . esc_attr__( 'Default', 'shapla' ) . '</option>';
 		foreach ( $wp_registered_sidebars as $key => $option ) {
 			$selected = ( $value == $key ) ? ' selected="selected"' : '';
-			$html     .= '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . esc_attr( $option['name'] ) . '</option>';
+			$html    .= '<option value="' . esc_attr( $key ) . '" ' . $selected . '>' . esc_attr( $option['name'] ) . '</option>';
 		}
 		$html .= '</select>';
 

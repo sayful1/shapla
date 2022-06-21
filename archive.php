@@ -9,8 +9,8 @@
 
 get_header(); ?>
 
-    <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 			<?php
 			/**
 			 * Functions hooked into shapla_archive_page_content action
@@ -19,8 +19,8 @@ get_header(); ?>
 			 */
 			do_action( 'shapla_archive_page_content' );
 			?>
-        </main><!-- #main -->
-    </div><!-- #primary -->
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
 <?php
 get_sidebar();

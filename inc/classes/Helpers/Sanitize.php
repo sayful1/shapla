@@ -97,7 +97,7 @@ class Sanitize {
 			'vh',
 			'vw',
 			'vmin',
-			'vmax'
+			'vmax',
 		);
 		foreach ( $units as $unit ) {
 			if ( false !== strpos( $value, $unit ) ) {
@@ -230,10 +230,10 @@ class Sanitize {
 	 * @return mixed
 	 */
 	public static function customize_choices( $input, $setting ) {
-		//get the list of possible select options
+		// get the list of possible select options
 		$choices = $setting->manager->get_control( $setting->id )->choices;
 
-		//return input if valid or return default option
+		// return input if valid or return default option
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 
@@ -310,26 +310,34 @@ class Sanitize {
 					}
 					break;
 				case 'text-transform':
-					if ( ! in_array( $val, [
-						'none',
-						'capitalize',
-						'uppercase',
-						'lowercase',
-						'initial',
-						'inherit'
-					], true ) ) {
+					if ( ! in_array(
+						$val,
+						array(
+							'none',
+							'capitalize',
+							'uppercase',
+							'lowercase',
+							'initial',
+							'inherit',
+						),
+						true 
+					) ) {
 						$value['text-transform'] = 'none';
 					}
 					break;
 				case 'text-decoration':
-					if ( ! in_array( $val, array(
-						'none',
-						'underline',
-						'overline',
-						'line-through',
-						'initial',
-						'inherit'
-					), true ) ) {
+					if ( ! in_array(
+						$val,
+						array(
+							'none',
+							'underline',
+							'overline',
+							'line-through',
+							'initial',
+							'inherit',
+						),
+						true 
+					) ) {
 						$value['text-transform'] = 'none';
 					}
 					break;
@@ -372,7 +380,7 @@ class Sanitize {
 			return static::text( $value );
 		}
 
-		$sanitized_value = [];
+		$sanitized_value = array();
 		if ( is_array( $value ) ) {
 			foreach ( $value as $index => $item ) {
 				$sanitized_value[ $index ] = static::deep( $item );

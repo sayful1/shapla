@@ -50,14 +50,14 @@ class ColorAlpha extends WP_Customize_Color_Control {
 			'shapla-control-color-picker-alpha',
 			SHAPLA_THEME_URI . '/assets/js/color-control.js',
 			// We're including wp-color-picker for localized strings, nothing more.
-			[
+			array(
 				'customize-controls',
 				'wp-element',
 				'wp-components',
 				'jquery',
 				'customize-base',
-				'wp-color-picker'
-			],
+				'wp-color-picker',
+			),
 			'1.1',
 			true
 		);

@@ -37,7 +37,7 @@ require SHAPLA_THEME_PATH . '/inc/class-shapla-customizer.php';
 /**
  * Load Shapla blog
  */
-include SHAPLA_THEME_PATH . '/inc/class-shapla-blog.php';
+require SHAPLA_THEME_PATH . '/inc/class-shapla-blog.php';
 
 /**
  * Load template hooks and functions file.

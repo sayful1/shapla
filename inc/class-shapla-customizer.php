@@ -51,7 +51,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				update_option( '_shapla_google_fonts', $google_fonts, true );
 			}
 
-			$styles = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
+			$styles  = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
 			$styles .= wp_strip_all_tags( $this->get_styles() ) . PHP_EOL;
 
 			// Fetch the saved Custom CSS content for rendering.
@@ -59,7 +59,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$post           = wp_get_custom_css_post();
 			$css            = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
 			if ( ! empty( $css ) ) {
-				$additional_css = "\n/* Additional CSS */\n";
+				$additional_css  = "\n/* Additional CSS */\n";
 				$additional_css .= \Shapla\Helpers\CssGenerator::minify_css( $css );
 			}
 
@@ -128,7 +128,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 				// Get the default value of this field
 				$default = isset( $field['default'] ) ? $field['default'] : '';
-				$value   = get_theme_mod( $field['settings'], $default );
+				$value   = shapla_get_option( $field['settings'], $default );
 
 				\Shapla\Helpers\CssGenerator::css( $css, $field, $value );
 			}
@@ -143,7 +143,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return array
 		 */
 		public static function get_custom_controls() {
-			return [
+			return array(
 				'radio-button' => \Shapla\Customize\Controls\RadioButton::class,
 				'typography'   => \Shapla\Customize\Controls\Typography::class,
 				'toggle'       => \Shapla\Customize\Controls\Toggle::class,
@@ -151,7 +151,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				'background'   => \Shapla\Customize\Controls\Background::class,
 				'alpha-color'  => \Shapla\Customize\Controls\ColorAlpha::class,
 				'radio-image'  => \Shapla\Customize\Controls\RadioImage::class,
-			];
+			);
 		}
 
 		/**
@@ -190,11 +190,14 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 			// Add fields
 			foreach ( $fields as $field_id => $field ) {
-				$wp_customize->add_setting( $field_id, array(
-					'default'           => $field['default'],
-					'transport'         => $field['transport'],
-					'sanitize_callback' => $field['sanitize_callback'],
-				) );
+				$wp_customize->add_setting(
+					$field_id,
+					array(
+						'default'           => $field['default'],
+						'transport'         => $field['transport'],
+						'sanitize_callback' => $field['sanitize_callback'],
+					)
+				);
 				$wp_customize->add_control( $this->add_control( $wp_customize, $field ) );
 			}
 		}
@@ -203,7 +206,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * Displays a new controller on the Theme Customization admin screen
 		 *
 		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
+		 * @param array                $field
 		 *
 		 * @return WP_Customize_Control
 		 */
@@ -237,18 +240,18 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * @return array
 		 */
 		public static function get_control_arguments( array $args ) {
-			$valid_args = [
+			$valid_args = array(
 				'label'       => '',
 				'description' => '',
 				'section'     => '',
 				'priority'    => 10,
 				'settings'    => '',
 				'type'        => 'text',
-				'choices'     => [],
-				'input_attrs' => [],
-			];
+				'choices'     => array(),
+				'input_attrs' => array(),
+			);
 
-			$new_args = [];
+			$new_args = array();
 			foreach ( $args as $key => $value ) {
 				if ( array_key_exists( $key, $valid_args ) ) {
 					$new_args[ $key ] = $value;
@@ -274,7 +277,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 				// Check if we've got everything we need.
 				$default = isset( $field['default'] ) ? $field['default'] : array();
-				$value   = (array) get_theme_mod( $field['settings'], $default );
+				$value   = (array) shapla_get_option( $field['settings'], $default );
 
 				// Process typography fields.
 				if ( 'typography' !== $field['type'] ) {
@@ -293,10 +296,10 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			}
 
 			foreach ( $fonts as $font_name => $font_variant ) {
-				$variant = is_array( $font_variant ) ? implode( ",", array_unique( $font_variant ) ) : '';
+				$variant = is_array( $font_variant ) ? implode( ',', array_unique( $font_variant ) ) : '';
 				$variant = str_replace( 'regular', '400', $variant );
 				if ( ! empty( $variant ) ) {
-					$google_fonts[] = $font_name . ":" . $variant;
+					$google_fonts[] = $font_name . ':' . $variant;
 				} else {
 					$google_fonts[] = $font_name;
 				}

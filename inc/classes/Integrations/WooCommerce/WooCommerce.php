@@ -80,7 +80,7 @@ class WooCommerce {
 		add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
 
 		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
-		add_filter( 'wp_nav_menu_items', [ $this, 'header_cart_icon' ], 10, 2 );
+		add_filter( 'wp_nav_menu_items', array( $this, 'header_cart_icon' ), 10, 2 );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class WooCommerce {
 	 * @since  1.1.3
 	 */
 	public function body_classes( $classes ) {
-		$cols = get_theme_mod( 'wc_products_per_row', 4 );
+		$cols = shapla_get_option( 'wc_products_per_row', 4 );
 		$cols = apply_filters( 'shapla_wc_products_per_row', intval( $cols ) );
 
 		if ( in_array( $cols, array( 3, 4, 5, 6 ) ) ) {
@@ -173,11 +173,11 @@ class WooCommerce {
 	 */
 	public function woocommerce_scripts() {
 		wp_enqueue_style(
-				'shapla-woocommerce-style',
-				get_template_directory_uri() . '/assets/css/woocommerce.css',
-				array(),
-				SHAPLA_THEME_VERSION,
-				'all'
+			'shapla-woocommerce-style',
+			get_template_directory_uri() . '/assets/css/woocommerce.css',
+			array(),
+			SHAPLA_THEME_VERSION,
+			'all'
 		);
 
 		$font_path   = WC()->plugin_url() . '/assets/fonts/';
@@ -203,7 +203,7 @@ class WooCommerce {
 	 * @return int
 	 */
 	public function loop_shop_per_page( $cols ) {
-		$cols = get_theme_mod( 'wc_products_per_page', 12 );
+		$cols = shapla_get_option( 'wc_products_per_page', 12 );
 
 		return apply_filters( 'shapla_wc_products_per_page', intval( $cols ) );
 	}
@@ -216,7 +216,7 @@ class WooCommerce {
 	 * @return int
 	 */
 	public function loop_shop_columns( $cols ) {
-		$cols = get_theme_mod( 'wc_products_per_row', 4 );
+		$cols = shapla_get_option( 'wc_products_per_row', 4 );
 
 		return apply_filters( 'shapla_wc_products_per_row', intval( $cols ) );
 	}
@@ -229,7 +229,7 @@ class WooCommerce {
 	 * @return int
 	 */
 	public function cross_sells_columns( $cols ) {
-		$cols = get_theme_mod( 'wc_products_per_row', 4 );
+		$cols = shapla_get_option( 'wc_products_per_row', 4 );
 
 		return apply_filters( 'shapla_wc_products_per_row', intval( $cols ) );
 	}
@@ -242,7 +242,7 @@ class WooCommerce {
 	 * @return mixed
 	 */
 	public function related_products_args( $args ) {
-		$cols                   = get_theme_mod( 'wc_products_per_row', 4 );
+		$cols                   = shapla_get_option( 'wc_products_per_row', 4 );
 		$args['posts_per_page'] = apply_filters( 'shapla_wc_related_products_per_page', intval( $cols ) );
 
 		return $args;
@@ -252,7 +252,7 @@ class WooCommerce {
 	 * Set up sales display
 	 */
 	public function output_upsells() {
-		$cols = get_theme_mod( 'wc_products_per_row', 4 );
+		$cols = shapla_get_option( 'wc_products_per_row', 4 );
 		$cols = apply_filters( 'shapla_wc_upsell_products_per_page', intval( $cols ) );
 		// Display 3 products in rows of 3
 		woocommerce_upsell_display( $cols, $cols );
@@ -296,12 +296,12 @@ class WooCommerce {
 	 * @since  1.6.0
 	 */
 	public function header_cart() {
-		$show_cart_icon = get_theme_mod( 'show_cart_icon', true );
+		$show_cart_icon = shapla_get_option( 'show_cart_icon', true );
 		if ( ! $show_cart_icon ) {
 			return;
 		}
 
-		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
 		if ( $header_layout != 'layout-3' ) {
 			return;
 		}
@@ -326,15 +326,15 @@ class WooCommerce {
 	/**
 	 * Filters the HTML list content for navigation menus.
 	 *
-	 * @param string $items The HTML list content for the menu items.
+	 * @param string    $items The HTML list content for the menu items.
 	 * @param \stdClass $args An object containing wp_nav_menu() arguments.
 	 *
 	 * @return string
 	 * @since 1.3.0
 	 */
 	public function header_cart_icon( $items, $args ) {
-		$show_cart_icon = get_theme_mod( 'show_cart_icon', true );
-		$header_layout  = get_theme_mod( 'header_layout', 'layout-1' );
+		$show_cart_icon = shapla_get_option( 'show_cart_icon', true );
+		$header_layout  = shapla_get_option( 'header_layout', 'layout-1' );
 
 		if ( 'primary' == $args->theme_location && $header_layout !== 'layout-3' && $show_cart_icon ) {
 			ob_start();
@@ -371,7 +371,7 @@ class WooCommerce {
 	 * @since   1.6.0
 	 */
 	function product_search_form() {
-		$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
 		if ( $header_layout != 'layout-3' ) {
 			return;
 		}

@@ -29,11 +29,11 @@ class Background extends BaseControl {
 	 */
 	public function __construct( $manager, $id, $args = array() ) {
 		$args = array(
-				'settings'    => $id,
-				'label'       => isset( $args['label'] ) ? $args['label'] : '',
-				'description' => isset( $args['description'] ) ? $args['description'] : '',
-				'section'     => isset( $args['section'] ) ? $args['section'] : '',
-				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
+			'settings'    => $id,
+			'label'       => isset( $args['label'] ) ? $args['label'] : '',
+			'description' => isset( $args['description'] ) ? $args['description'] : '',
+			'section'     => isset( $args['section'] ) ? $args['section'] : '',
+			'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
 		);
 		parent::__construct( $manager, $id, $args );
 	}
@@ -87,7 +87,7 @@ class Background extends BaseControl {
 		<div class="background-repeat">
 			<h4><?php esc_html_e( 'Background Repeat', 'shapla' ); ?></h4>
 			<select {{{ data.inputAttrs }}}>
-				<?php foreach ( $this->background_repeat() as $repeat_key => $repeat_label ): ?>
+				<?php foreach ( $this->background_repeat() as $repeat_key => $repeat_label ) : ?>
 					<option value="<?php echo $repeat_key; ?>"
 					<# if ( '<?php echo $repeat_key; ?>' === data.value['background-repeat'] ) { #> selected <# } #>
 					><?php echo esc_html( $repeat_label ); ?></option>
@@ -99,7 +99,7 @@ class Background extends BaseControl {
 		<div class="background-position">
 			<h4><?php esc_html_e( 'Background Position', 'shapla' ); ?></h4>
 			<select {{{ data.inputAttrs }}}>
-				<?php foreach ( $this->background_position() as $position_key => $position_label ): ?>
+				<?php foreach ( $this->background_position() as $position_key => $position_label ) : ?>
 					<option value="<?php echo $position_key; ?>"
 					<# if ( '<?php echo $position_key; ?>' === data.value['background-position'] ) { #> selected <# } #>
 					><?php echo esc_html( $position_label ); ?></option>
@@ -111,7 +111,7 @@ class Background extends BaseControl {
 		<div class="background-size">
 			<h4><?php esc_html_e( 'Background Size', 'shapla' ); ?></h4>
 			<div class="buttonset">
-				<?php foreach ( $this->background_size() as $size_key => $size_label ): ?>
+				<?php foreach ( $this->background_size() as $size_key => $size_label ) : ?>
 					<input {{{ data.inputAttrs }}}
 						   class="switch-input screen-reader-text"
 						   type="radio"
@@ -134,7 +134,7 @@ class Background extends BaseControl {
 		<div class="background-attachment">
 			<h4><?php esc_html_e( 'Background Attachment', 'shapla' ); ?></h4>
 			<div class="buttonset">
-				<?php foreach ( $this->background_attachment() as $attachment_key => $attachment ): ?>
+				<?php foreach ( $this->background_attachment() as $attachment_key => $attachment ) : ?>
 					<input {{{ data.inputAttrs }}}
 						   class="switch-input screen-reader-text"
 						   type="radio"
@@ -161,10 +161,10 @@ class Background extends BaseControl {
 	 */
 	private function background_repeat() {
 		return array(
-				'no-repeat' => esc_attr__( 'No Repeat', 'shapla' ),
-				'repeat'    => esc_attr__( 'Repeat All', 'shapla' ),
-				'repeat-x'  => esc_attr__( 'Repeat Horizontally', 'shapla' ),
-				'repeat-y'  => esc_attr__( 'Repeat Vertically', 'shapla' ),
+			'no-repeat' => esc_attr__( 'No Repeat', 'shapla' ),
+			'repeat'    => esc_attr__( 'Repeat All', 'shapla' ),
+			'repeat-x'  => esc_attr__( 'Repeat Horizontally', 'shapla' ),
+			'repeat-y'  => esc_attr__( 'Repeat Vertically', 'shapla' ),
 		);
 	}
 
@@ -173,15 +173,15 @@ class Background extends BaseControl {
 	 */
 	private function background_position() {
 		return array(
-				'left top'      => esc_attr__( 'Left Top', 'shapla' ),
-				'left center'   => esc_attr__( 'Left Center', 'shapla' ),
-				'left bottom'   => esc_attr__( 'Left Bottom', 'shapla' ),
-				'right top'     => esc_attr__( 'Right Top', 'shapla' ),
-				'right center'  => esc_attr__( 'Right Center', 'shapla' ),
-				'right bottom'  => esc_attr__( 'Right Bottom', 'shapla' ),
-				'center top'    => esc_attr__( 'Center Top', 'shapla' ),
-				'center center' => esc_attr__( 'Center Center', 'shapla' ),
-				'center bottom' => esc_attr__( 'Center Bottom', 'shapla' ),
+			'left top'      => esc_attr__( 'Left Top', 'shapla' ),
+			'left center'   => esc_attr__( 'Left Center', 'shapla' ),
+			'left bottom'   => esc_attr__( 'Left Bottom', 'shapla' ),
+			'right top'     => esc_attr__( 'Right Top', 'shapla' ),
+			'right center'  => esc_attr__( 'Right Center', 'shapla' ),
+			'right bottom'  => esc_attr__( 'Right Bottom', 'shapla' ),
+			'center top'    => esc_attr__( 'Center Top', 'shapla' ),
+			'center center' => esc_attr__( 'Center Center', 'shapla' ),
+			'center bottom' => esc_attr__( 'Center Bottom', 'shapla' ),
 		);
 	}
 
@@ -190,9 +190,9 @@ class Background extends BaseControl {
 	 */
 	private function background_size() {
 		return array(
-				'cover'   => esc_attr__( 'Cover', 'shapla' ),
-				'contain' => esc_attr__( 'Contain', 'shapla' ),
-				'auto'    => esc_attr__( 'Auto', 'shapla' ),
+			'cover'   => esc_attr__( 'Cover', 'shapla' ),
+			'contain' => esc_attr__( 'Contain', 'shapla' ),
+			'auto'    => esc_attr__( 'Auto', 'shapla' ),
 		);
 	}
 
@@ -201,8 +201,8 @@ class Background extends BaseControl {
 	 */
 	private function background_attachment() {
 		return array(
-				'fixed'  => esc_attr__( 'Fixed', 'shapla' ),
-				'scroll' => esc_attr__( 'Scroll', 'shapla' ),
+			'fixed'  => esc_attr__( 'Fixed', 'shapla' ),
+			'scroll' => esc_attr__( 'Scroll', 'shapla' ),
 		);
 	}
 }

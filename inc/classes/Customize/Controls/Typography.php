@@ -34,14 +34,18 @@ class Typography extends BaseControl {
 	 * @inheritDoc
 	 */
 	public function __construct( $manager, $id, $args = array() ) {
-		parent::__construct( $manager, $id, array(
+		parent::__construct(
+			$manager,
+			$id,
+			array(
 				'settings'    => $id,
 				'label'       => isset( $args['label'] ) ? $args['label'] : '',
 				'description' => isset( $args['description'] ) ? $args['description'] : '',
 				'section'     => isset( $args['section'] ) ? $args['section'] : '',
 				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
 				'choices'     => isset( $args['choices'] ) ? $args['choices'] : array(),
-		) );
+			) 
+		);
 	}
 
 	/**
@@ -51,10 +55,14 @@ class Typography extends BaseControl {
 		parent::enqueue();
 		$custom_fonts_array  = ( isset( $this->choices['fonts'] ) && ( isset( $this->choices['fonts']['google'] ) || isset( $this->choices['fonts']['standard'] ) ) && ( ! empty( $this->choices['fonts']['google'] ) || ! empty( $this->choices['fonts']['standard'] ) ) );
 		$localize_script_var = ( $custom_fonts_array ) ? 'shaplaFonts' . $this->id : 'shaplaAllFonts';
-		wp_localize_script( 'shapla-customize', $localize_script_var, array(
+		wp_localize_script(
+			'shapla-customize',
+			$localize_script_var,
+			array(
 				'standard' => $this->get_standard_fonts(),
 				'google'   => $this->get_google_fonts(),
-		) );
+			) 
+		);
 	}
 
 	/**
@@ -67,11 +75,15 @@ class Typography extends BaseControl {
 
 		if ( is_array( $this->json['value'] ) ) {
 			foreach ( array_keys( $this->json['value'] ) as $key ) {
-				if ( ! in_array( $key, array(
-								'variant',
-								'font-weight',
-								'font-style'
-						), true ) && ! isset( $this->json['default'][ $key ] ) ) {
+				if ( ! in_array(
+					$key,
+					array(
+						'variant',
+						'font-weight',
+						'font-style',
+					),
+					true 
+				) && ! isset( $this->json['default'][ $key ] ) ) {
 					unset( $this->json['value'][ $key ] );
 				}
 				// Fix for https://wordpress.org/support/topic/white-font-after-updateing-to-3-0-16.
@@ -311,7 +323,6 @@ class Typography extends BaseControl {
 	 *
 	 * @return array
 	 * @since 3.0.0
-	 *
 	 */
 	protected function format_variants_array( $variants ) {
 
@@ -320,8 +331,8 @@ class Typography extends BaseControl {
 		foreach ( $variants as $variant ) {
 			if ( is_string( $variant ) ) {
 				$final_variants[] = array(
-						'id'    => $variant,
-						'label' => isset( $all_variants[ $variant ] ) ? $all_variants[ $variant ] : $variant,
+					'id'    => $variant,
+					'label' => isset( $all_variants[ $variant ] ) ? $all_variants[ $variant ] : $variant,
 				);
 			} elseif ( is_array( $variant ) && isset( $variant['id'] ) && isset( $variant['label'] ) ) {
 				$final_variants[] = $variant;
@@ -348,22 +359,24 @@ class Typography extends BaseControl {
 		}
 
 		$standard_fonts_final = array();
-		$default_variants     = $this->format_variants_array( array(
+		$default_variants     = $this->format_variants_array(
+			array(
 				'regular',
 				'italic',
 				'700',
 				'700italic',
-		) );
+			) 
+		);
 		foreach ( $standard_fonts as $key => $font ) {
 			if ( ( ! empty( $std_user_keys ) && ! in_array( $key, $std_user_keys, true ) ) || ! isset( $font['stack'] ) || ! isset( $font['label'] ) ) {
 				continue;
 			}
 			$standard_fonts_final[] = array(
-					'family'      => $font['stack'],
-					'label'       => $font['label'],
-					'subsets'     => array(),
-					'is_standard' => true,
-					'variants'    => ( isset( $font['variants'] ) ) ? $this->format_variants_array( $font['variants'] ) : $default_variants,
+				'family'      => $font['stack'],
+				'label'       => $font['label'],
+				'subsets'     => array(),
+				'is_standard' => true,
+				'variants'    => ( isset( $font['variants'] ) ) ? $this->format_variants_array( $font['variants'] ) : $default_variants,
 			);
 		}
 
@@ -403,8 +416,8 @@ class Typography extends BaseControl {
 				foreach ( $variants as $variant ) {
 					if ( array_key_exists( $variant, $all_variants ) ) {
 						$available_variants[] = array(
-								'id'    => $variant,
-								'label' => $all_variants[ $variant ],
+							'id'    => $variant,
+							'label' => $all_variants[ $variant ],
 						);
 					}
 				}
@@ -415,18 +428,18 @@ class Typography extends BaseControl {
 				foreach ( $subsets as $subset ) {
 					if ( array_key_exists( $subset, $all_subsets ) ) {
 						$available_subsets[] = array(
-								'id'    => $subset,
-								'label' => $all_subsets[ $subset ],
+							'id'    => $subset,
+							'label' => $all_subsets[ $subset ],
 						);
 					}
 				}
 			}
 
 			$google_fonts_final[] = array(
-					'family'   => $family,
-					'label'    => $label,
-					'variants' => $available_variants,
-					'subsets'  => $available_subsets,
+				'family'   => $family,
+				'label'    => $label,
+				'variants' => $available_variants,
+				'subsets'  => $available_subsets,
 			);
 		} // End foreach().
 

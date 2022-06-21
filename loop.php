@@ -10,7 +10,8 @@
 
 do_action( 'shapla_loop_before' );
 
-while ( have_posts() ) : the_post();
+while ( have_posts() ) :
+	the_post();
 
 	/*
 	 * Include the Post-Format-specific template for the content.

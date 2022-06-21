@@ -103,7 +103,7 @@ class Breadcrumb {
 	/**
 	 * Single post trail.
 	 *
-	 * @param int $post_id
+	 * @param int    $post_id
 	 * @param string $permalink
 	 */
 	private function add_crumbs_single( $post_id = 0, $permalink = '' ) {
@@ -182,8 +182,13 @@ class Breadcrumb {
 	 */
 	private function add_crumbs_tag() {
 		$queried_object = $GLOBALS['wp_query']->get_queried_object();
-		$this->add_crumb( sprintf( __( 'Posts tagged &ldquo;%s&rdquo;', 'shapla' ),
-			single_tag_title( '', false ) ), get_tag_link( $queried_object->term_id ) );
+		$this->add_crumb(
+			sprintf(
+				__( 'Posts tagged &ldquo;%s&rdquo;', 'shapla' ),
+				single_tag_title( '', false ) 
+			),
+			get_tag_link( $queried_object->term_id ) 
+		);
 	}
 
 	/**
@@ -230,7 +235,7 @@ class Breadcrumb {
 	/**
 	 * Add crumbs for a term.
 	 *
-	 * @param int $term_id
+	 * @param int    $term_id
 	 * @param string $taxonomy
 	 */
 	private function term_ancestors( $term_id, $taxonomy ) {
@@ -251,8 +256,10 @@ class Breadcrumb {
 	 */
 	private function search_trail() {
 		if ( is_search() ) {
-			$this->add_crumb( sprintf( __( 'Search results for &ldquo;%s&rdquo;', 'shapla' ), get_search_query() ),
-				remove_query_arg( 'paged' ) );
+			$this->add_crumb(
+				sprintf( __( 'Search results for &ldquo;%s&rdquo;', 'shapla' ), get_search_query() ),
+				remove_query_arg( 'paged' ) 
+			);
 		}
 	}
 

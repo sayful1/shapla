@@ -58,9 +58,12 @@ if ( ! function_exists( 'shapla_header_styles' ) ) {
 			$header_bg_image = 'none';
 		}
 
-		$styles = apply_filters( 'shapla_header_styles', array(
-			'background-image' => $header_bg_image,
-		) );
+		$styles = apply_filters(
+			'shapla_header_styles',
+			array(
+				'background-image' => $header_bg_image,
+			)
+		);
 
 		foreach ( $styles as $style => $value ) {
 			echo esc_attr( $style . ': ' . $value . '; ' );
@@ -106,7 +109,7 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 	 * @param null $key option key
 	 * $key has been added since 1.4.5
 	 *
-	 * @return object
+	 * @return mixed
 	 * @since  1.3.0
 	 */
 	function shapla_default_options( $key = null ) {
@@ -116,85 +119,88 @@ if ( ! function_exists( 'shapla_default_options' ) ) {
 		$primary_hover   = \Shapla\Helpers\Colors::get_color( 'primary-variant' );
 		$primary_inverse = \Shapla\Helpers\Colors::get_color( 'on-primary' );
 
-		$options = apply_filters( 'shapla_default_options', array(
-			'heading_color'                         => $heading_color,
-			'text_color'                            => $text_color,
-			'primary_color'                         => $primary_color,
-			'font_family'                           => 'Roboto',
-			// Form
-			'form_background_color'                 => '#ffffff',
-			'form_text_color'                       => $text_color,
-			'form_border_color'                     => '#dbdbdb',
-			// Blog
-			'show_blog_page_title'                  => true,
-			'blog_page_title'                       => __( 'Blog', 'shapla' ),
-			'blog_layout'                           => 'grid',
-			'blog_excerpt_length'                   => 20,
-			'blog_date_format'                      => 'human',
-			'show_blog_author_avatar'               => true,
-			'show_blog_author_name'                 => true,
-			'show_blog_date'                        => true,
-			'show_blog_category_list'               => true,
-			'show_blog_tag_list'                    => false,
-			'show_blog_comments_link'               => true,
-			// Primary Nav
-			'dropdown_direction'                    => 'ltr',
-			// Primary Button
-			'button_primary_background_color'       => $primary_color,
-			'button_primary_background_hover_color' => $primary_hover,
-			'button_primary_text_color'             => $primary_inverse,
-			'button_primary_text_hover_color'       => $primary_inverse,
-			'button_primary_border_radius'          => 3,
-			// Header
-			'site_logo_text_font_size'              => '30px',
-			'header_background_color'               => '#ffffff',
-			'header_text_color'                     => $text_color,
-			'header_link_color'                     => $primary_color,
-			'show_search_icon'                      => false,
-			'sticky_header'                         => false,
-			// Page Title Bar
-			'page_title_bar_padding'                => '2rem',
-			'page_title_bar_border_color'           => '#cccccc',
-			'page_title_font_size'                  => '2rem',
-			'page_title_line_height'                => '1.4',
-			'page_title_font_color'                 => $heading_color,
-			'page_title_text_transform'             => 'none',
-			'page_title_bar_text_alignment'         => 'left',
-			'page_title_bar_background_color'       => '#f5f5f5',
-			'page_title_bar_background_repeat'      => 'no-repeat',
-			'page_title_bar_background_size'        => 'cover',
-			'page_title_bar_background_attachment'  => 'fixed',
-			'page_title_bar_background_position'    => 'center center',
-			'page_title_bar_background_image'       => 'none',
-			// Breadcrumbs
-			'breadcrumbs_content_display'           => 'breadcrumb',
-			'breadcrumbs_on_mobile_devices'         => 'off',
-			'breadcrumbs_separator'                 => 'slash',
-			'breadcrumbs_font_size'                 => '0.875rem',
-			'breadcrumbs_text_color'                => $text_color,
-			'breadcrumbs_text_transform'            => 'none',
-			// Layout
-			'site_layout'                           => 'wide',
-			'general_layout'                        => 'right-sidebar',
-			'header_layout'                         => 'default',
-			// Footer
-			'footer_widget_rows'                    => 1,
-			'footer_widget_columns'                 => 4,
-			'footer_widget_background_color'        => '#212a34',
-			'footer_widget_text_color'              => '#f1f1f1',
-			'footer_widget_link_color'              => '#f1f1f1',
-			'site_footer_bg_color'                  => '#19212a',
-			'site_footer_text_color'                => '#9e9e9e',
-			'site_footer_link_color'                => '#f1f1f1',
-			'site_copyright_text'                   => shapla_footer_credits(),
-			// WooCommerce
-			'wc_products_per_page'                  => 16,
-			'wc_products_per_row'                   => 4,
-			'show_cart_icon'                        => true,
-			'show_product_search_categories'        => true,
-			'wc_highlight_color'                    => $primary_color,
-			'wc_highlight_text_color'               => $primary_inverse,
-		) );
+		$options = apply_filters(
+			'shapla_default_options',
+			array(
+				'heading_color'                         => $heading_color,
+				'text_color'                            => $text_color,
+				'primary_color'                         => $primary_color,
+				'font_family'                           => 'Roboto',
+				// Form
+				'form_background_color'                 => '#ffffff',
+				'form_text_color'                       => $text_color,
+				'form_border_color'                     => '#dbdbdb',
+				// Blog
+				'show_blog_page_title'                  => true,
+				'blog_page_title'                       => __( 'Blog', 'shapla' ),
+				'blog_layout'                           => 'grid',
+				'blog_excerpt_length'                   => 20,
+				'blog_date_format'                      => 'human',
+				'show_blog_author_avatar'               => true,
+				'show_blog_author_name'                 => true,
+				'show_blog_date'                        => true,
+				'show_blog_category_list'               => true,
+				'show_blog_tag_list'                    => false,
+				'show_blog_comments_link'               => true,
+				// Primary Nav
+				'dropdown_direction'                    => 'ltr',
+				// Primary Button
+				'button_primary_background_color'       => $primary_color,
+				'button_primary_background_hover_color' => $primary_hover,
+				'button_primary_text_color'             => $primary_inverse,
+				'button_primary_text_hover_color'       => $primary_inverse,
+				'button_primary_border_radius'          => 3,
+				// Header
+				'site_logo_text_font_size'              => '30px',
+				'header_background_color'               => '#ffffff',
+				'header_text_color'                     => $text_color,
+				'header_link_color'                     => $primary_color,
+				'show_search_icon'                      => false,
+				'sticky_header'                         => false,
+				// Page Title Bar
+				'page_title_bar_padding'                => '2rem',
+				'page_title_bar_border_color'           => '#cccccc',
+				'page_title_font_size'                  => '2rem',
+				'page_title_line_height'                => '1.4',
+				'page_title_font_color'                 => $heading_color,
+				'page_title_text_transform'             => 'none',
+				'page_title_bar_text_alignment'         => 'left',
+				'page_title_bar_background_color'       => '#f5f5f5',
+				'page_title_bar_background_repeat'      => 'no-repeat',
+				'page_title_bar_background_size'        => 'cover',
+				'page_title_bar_background_attachment'  => 'fixed',
+				'page_title_bar_background_position'    => 'center center',
+				'page_title_bar_background_image'       => 'none',
+				// Breadcrumbs
+				'breadcrumbs_content_display'           => 'breadcrumb',
+				'breadcrumbs_on_mobile_devices'         => 'off',
+				'breadcrumbs_separator'                 => 'slash',
+				'breadcrumbs_font_size'                 => '0.875rem',
+				'breadcrumbs_text_color'                => $text_color,
+				'breadcrumbs_text_transform'            => 'none',
+				// Layout
+				'site_layout'                           => 'wide',
+				'general_layout'                        => 'right-sidebar',
+				'header_layout'                         => 'default',
+				// Footer
+				'footer_widget_rows'                    => 1,
+				'footer_widget_columns'                 => 4,
+				'footer_widget_background_color'        => '#212a34',
+				'footer_widget_text_color'              => '#f1f1f1',
+				'footer_widget_link_color'              => '#f1f1f1',
+				'site_footer_bg_color'                  => '#19212a',
+				'site_footer_text_color'                => '#9e9e9e',
+				'site_footer_link_color'                => '#f1f1f1',
+				'site_copyright_text'                   => shapla_footer_credits(),
+				// WooCommerce
+				'wc_products_per_page'                  => 16,
+				'wc_products_per_row'                   => 4,
+				'show_cart_icon'                        => true,
+				'show_product_search_categories'        => true,
+				'wc_highlight_color'                    => $primary_color,
+				'wc_highlight_text_color'               => $primary_inverse,
+			)
+		);
 
 		if ( ! empty( $key ) && isset( $options[ $key ] ) ) {
 			return $options[ $key ];
@@ -300,9 +306,68 @@ if ( ! function_exists( 'shapla_get_webfont_url' ) ) {
 	 * @return string Returns the CSS.
 	 */
 	function shapla_get_webfont_url( $url, $format = 'woff2' ) {
+		// Check if already Google font URL present or not.
+		// Basically avoiding '\Shapla\Helpers\WebFontLoader' class rendering.
+		$shapla_webfont_url = get_site_option( 'shapla_webfont_url', false );
+		if ( $shapla_webfont_url ) {
+			return json_decode( $shapla_webfont_url );
+		}
 		$font = new \Shapla\Helpers\WebFontLoader( $url );
 		$font->set_font_format( $format );
 
 		return $font->get_url();
+	}
+}
+
+/**
+ * Get the file preloads.
+ *
+ * @param string $url The URL of the remote webfont.
+ * @param string $format The font-format. If you need to support IE, change this to "woff".
+ */
+function shapla_load_preload_local_fonts( $url, $format = 'woff2' ) {
+
+	// Check if cached font files data preset present or not.
+	// Basically avoiding '\Shapla\Helpers\WebFontLoader' class rendering.
+	$local_font_files = get_site_option( 'shapla_local_font_files', false );
+
+	if ( is_array( $local_font_files ) && ! empty( $local_font_files ) ) {
+		foreach ( $local_font_files as $local_font ) {
+			if ( $local_font ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<link rel="preload" href="' . esc_url( $local_font ) . '" as="font" type="font/' . esc_attr( $format ) . '" crossorigin>' . PHP_EOL;
+			}
+		}
+
+		return;
+	}
+
+	// Now preload font data after processing it, as we didn't get stored data.
+	$font = new \Shapla\Helpers\WebFontLoader( $url );
+	$font->set_font_format( $format );
+	$font->preload_local_fonts();
+}
+
+
+if ( ! function_exists( 'shapla_get_option' ) ) {
+	/**
+	 * Return Theme options.
+	 *
+	 * @param string $name Option key.
+	 * @param mixed $default Option default value.
+	 *
+	 * @return mixed Return option value.
+	 */
+	function shapla_get_option( $name, $default = false ) {
+		$value = get_theme_mod( $name, $default );
+
+		/**
+		 * Dynamic filter shapla_get_option_$option.
+		 * $name is the name of the Shapla Setting
+		 *
+		 * @see shapla_default_options() for option names from the theme.
+		 * @var mixed.
+		 */
+		return apply_filters( "shapla_get_option_{$name}", $value, $name, $default );
 	}
 }

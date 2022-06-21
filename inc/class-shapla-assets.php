@@ -22,7 +22,7 @@ class Shapla_Assets {
 
 			add_filter( 'wp_get_custom_css', array( self::$instance, 'wp_get_custom_css' ) );
 
-			add_action( 'wp_enqueue_scripts', array( self::$instance, 'enqueue_fonts' ), 5 );
+			add_action( 'wp_enqueue_scripts', array( self::$instance, 'enqueue_fonts' ), 1 );
 			add_action( 'enqueue_block_editor_assets', array( self::$instance, 'enqueue_fonts' ), 1, 1 );
 
 			add_action( 'wp_enqueue_scripts', array( self::$instance, 'shapla_scripts' ), 10 );
@@ -44,22 +44,41 @@ class Shapla_Assets {
 	 */
 	public function shapla_scripts() {
 		// Font Awesome Free icons
-		wp_enqueue_style( 'fontawesome-free', SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
-			array(), '6.0.0', 'all' );
+		wp_enqueue_style(
+			'fontawesome-free',
+			SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
+			array(),
+			'6.0.0',
+			'all'
+		);
 
 		// Theme stylesheet.
-		wp_enqueue_style( 'shapla-style', SHAPLA_THEME_URI . '/assets/css/main.css',
-			array(), SHAPLA_THEME_VERSION, 'all' );
+		wp_enqueue_style(
+			'shapla-style',
+			SHAPLA_THEME_URI . '/assets/css/main.css',
+			array(),
+			SHAPLA_THEME_VERSION,
+			'all'
+		);
 
 		// Theme block stylesheet.
 		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
-			wp_enqueue_style( 'shapla-block-style', SHAPLA_THEME_URI . '/assets/css/blocks.css',
-				array( 'shapla-style' ), SHAPLA_THEME_VERSION );
+			wp_enqueue_style(
+				'shapla-block-style',
+				SHAPLA_THEME_URI . '/assets/css/blocks.css',
+				array( 'shapla-style' ),
+				SHAPLA_THEME_VERSION
+			);
 		}
 
 		// Load theme script.
-		wp_enqueue_script( 'shapla-script', SHAPLA_THEME_URI . '/assets/js/main.js',
-			array(), SHAPLA_THEME_VERSION, true );
+		wp_enqueue_script(
+			'shapla-script',
+			SHAPLA_THEME_URI . '/assets/js/main.js',
+			array(),
+			SHAPLA_THEME_VERSION,
+			true
+		);
 
 		wp_localize_script( 'shapla-script', 'Shapla', $this->localize_script() );
 
@@ -187,7 +206,7 @@ class Shapla_Assets {
 	 * @return void
 	 */
 	public function enqueue_fonts() {
-		$google_fonts = get_option( '_shapla_google_fonts', [ 'Roboto:400,500' ] );
+		$google_fonts = get_option( '_shapla_google_fonts', array( 'Roboto:400,500' ) );
 
 		if ( ! ( is_array( $google_fonts ) && count( $google_fonts ) ) ) {
 			return;
@@ -201,6 +220,10 @@ class Shapla_Assets {
 
 		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
 		wp_enqueue_style( 'shapla-fonts', shapla_get_webfont_url( $fonts_url ), array(), null );
+
+		if ( shapla_get_option( 'preload_local_fonts', true ) ) {
+			shapla_load_preload_local_fonts( $fonts_url );
+		}
 	}
 
 	/**
@@ -216,17 +239,17 @@ class Shapla_Assets {
 				'collapse' => __( 'collapse child menu', 'shapla' ),
 			),
 			'stickyHeader'     => array(
-				'isEnabled' => get_theme_mod( 'sticky_header', false ),
+				'isEnabled' => shapla_get_option( 'sticky_header', false ),
 				'minWidth'  => 1025,
-				'classes'   => [
+				'classes'   => array(
 					'body'    => 'has-fixed-header',
 					'initial' => 'header--fixed',
 					'top'     => 'header--top',
 					'notTop'  => 'header--not-top',
-				],
+				),
 			),
 			'BackToTopButton'  => array(
-				'isEnabled' => get_theme_mod( 'display_go_to_top_button', true ),
+				'isEnabled' => shapla_get_option( 'display_go_to_top_button', true ),
 			),
 		);
 
@@ -248,11 +271,14 @@ class Shapla_Assets {
 			'background-attachment' => 'fixed',
 		);
 
-		$background = (array) get_theme_mod( 'footer_widget_background', $background_default );
-		$text_color = get_theme_mod( 'footer_widget_text_color', shapla_default_options( 'footer_widget_text_color' ) );
-		$link_color = get_theme_mod( 'footer_widget_link_color', shapla_default_options( 'footer_widget_link_color' ) );
+		$background = (array) shapla_get_option( 'footer_widget_background', $background_default );
+		$text_color = shapla_get_option( 'footer_widget_text_color', shapla_default_options( 'footer_widget_text_color' ) );
+		$link_color = shapla_get_option( 'footer_widget_link_color', shapla_default_options( 'footer_widget_link_color' ) );
 
-		$styles = [ 'text-primary' => $text_color, 'text-accent' => $link_color, ];
+		$styles = array(
+			'text-primary' => $text_color,
+			'text-accent'  => $link_color,
+		);
 
 		// Background style
 		foreach ( $background as $property => $value ) {
@@ -292,9 +318,9 @@ class Shapla_Assets {
 		$default_text_color       = shapla_default_options( 'site_footer_text_color' );
 		$default_link_color       = shapla_default_options( 'site_footer_link_color' );
 
-		$background_color = get_theme_mod( 'site_footer_bg_color', $default_background_color );
-		$text_color       = get_theme_mod( 'site_footer_text_color', $default_text_color );
-		$link_color       = get_theme_mod( 'site_footer_link_color', $default_link_color );
+		$background_color = shapla_get_option( 'site_footer_bg_color', $default_background_color );
+		$text_color       = shapla_get_option( 'site_footer_text_color', $default_text_color );
+		$link_color       = shapla_get_option( 'site_footer_link_color', $default_link_color );
 
 		$string = '--footer-background-color:' . $background_color . ';';
 		$string .= '--footer-text-primary:' . $text_color . ';';
@@ -309,34 +335,42 @@ class Shapla_Assets {
 	 * @return string
 	 */
 	public static function page_title_bar_dynamic_css_variables() {
-		$background_default = [
+		$background_default = array(
 			'background-color'      => shapla_default_options( 'page_title_bar_background_color' ),
 			'background-image'      => shapla_default_options( 'page_title_bar_background_image' ),
 			'background-repeat'     => shapla_default_options( 'page_title_bar_background_repeat' ),
 			'background-position'   => shapla_default_options( 'page_title_bar_background_position' ),
 			'background-size'       => shapla_default_options( 'page_title_bar_background_size' ),
 			'background-attachment' => shapla_default_options( 'page_title_bar_background_attachment' ),
-		];
+		);
 
-		$background = get_theme_mod( 'page_title_bar_background', $background_default );
+		$background = shapla_get_option( 'page_title_bar_background', $background_default );
 
-		$typography_default = [
+		$typography_default = array(
 			'font-size'      => shapla_default_options( 'page_title_font_size' ),
 			'line-height'    => shapla_default_options( 'page_title_line_height' ),
 			'color'          => shapla_default_options( 'page_title_font_color' ),
 			'text-transform' => shapla_default_options( 'page_title_text_transform' ),
-		];
-		$typography         = get_theme_mod( 'page_title_typography', $typography_default );
+		);
+		$typography         = shapla_get_option( 'page_title_typography', $typography_default );
 
-		$defaults = array_merge( $background_default, $typography_default, [
-			'padding'      => shapla_default_options( 'page_title_bar_padding' ),
-			'border-color' => shapla_default_options( 'page_title_bar_border_color' ),
-		] );
+		$defaults = array_merge(
+			$background_default,
+			$typography_default,
+			array(
+				'padding'      => shapla_default_options( 'page_title_bar_padding' ),
+				'border-color' => shapla_default_options( 'page_title_bar_border_color' ),
+			)
+		);
 
-		$values = array_merge( $background, $typography, [
-			'padding'      => get_theme_mod( 'page_title_bar_padding', $defaults['padding'] ),
-			'border-color' => get_theme_mod( 'page_title_bar_border_color', $defaults['border-color'] ),
-		] );
+		$values = array_merge(
+			$background,
+			$typography,
+			array(
+				'padding'      => shapla_get_option( 'page_title_bar_padding', $defaults['padding'] ),
+				'border-color' => shapla_get_option( 'page_title_bar_border_color', $defaults['border-color'] ),
+			)
+		);
 
 		$string = '';
 		foreach ( $values as $property => $value ) {
@@ -376,13 +410,13 @@ class Shapla_Assets {
 		$default_text_color     = shapla_default_options( 'header_text_color' );
 		$default_link_color     = shapla_default_options( 'header_link_color' );
 
-		$logo_font_size   = get_theme_mod( 'site_logo_text_font_size', $default_logo_font_size );
-		$background_color = get_theme_mod( 'header_background_color', $default_background );
-		$text_color       = get_theme_mod( 'header_text_color', $default_text_color );
-		$link_color       = get_theme_mod( 'header_link_color', $default_link_color );
-		$submenu_bg       = get_theme_mod( 'submenu_background_color', $default_background );
-		$submenu_text     = get_theme_mod( 'submenu_text_color', $default_text_color );
-		$submenu_accent   = get_theme_mod( 'submenu_accent_color', $default_link_color );
+		$logo_font_size   = shapla_get_option( 'site_logo_text_font_size', $default_logo_font_size );
+		$background_color = shapla_get_option( 'header_background_color', $default_background );
+		$text_color       = shapla_get_option( 'header_text_color', $default_text_color );
+		$link_color       = shapla_get_option( 'header_link_color', $default_link_color );
+		$submenu_bg       = shapla_get_option( 'submenu_background_color', $default_background );
+		$submenu_text     = shapla_get_option( 'submenu_text_color', $default_text_color );
+		$submenu_accent   = shapla_get_option( 'submenu_accent_color', $default_link_color );
 
 		$get_header_image = get_header_image();
 

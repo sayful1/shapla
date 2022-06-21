@@ -7,11 +7,11 @@ class SystemInfo {
 	 * @return string[]
 	 */
 	public static function all() {
-		return [
+		return array(
 			'server_id'    => static::get_server_ip(),
 			'host_name'    => static::get_host_name(),
 			'gd_extension' => static::get_gd_extension_info(),
-		];
+		);
 	}
 
 	/**
@@ -20,7 +20,7 @@ class SystemInfo {
 	 * @return array
 	 */
 	public static function get_server_environment() {
-		return [
+		return array(
 			'os'                 => static::get_os(),
 			'server_software'    => static::get_server_software(),
 			'server_id'          => static::get_server_ip(),
@@ -32,7 +32,7 @@ class SystemInfo {
 			'max_input_vars'     => static::get_max_input_vars(),
 			'max_upload_size'    => static::get_max_upload_size(),
 			'gd_library'         => static::get_gd_extension_info(),
-		];
+		);
 	}
 
 	/**
@@ -41,10 +41,10 @@ class SystemInfo {
 	 * @return array
 	 */
 	public static function get_wordpress_environment() {
-		return [
+		return array(
 			'permalink_structure' => static::get_permalink_structure(),
 			'timezone_string'     => static::get_timezone_string(),
-		];
+		);
 	}
 
 	/**
@@ -261,7 +261,7 @@ class SystemInfo {
 	}
 
 	/**
-	 * Get wordpress memory limit
+	 * Get WordPress memory limit
 	 *
 	 * @return false|string
 	 */

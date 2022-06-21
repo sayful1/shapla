@@ -32,15 +32,15 @@ class ClassicMetabox extends MetaboxApi {
 	 * Shapla_Metabox constructor.
 	 */
 	public function __construct() {
-		add_action( 'save_post', [ $this, 'save_meta_box' ], 10, 3 );
+		add_action( 'save_post', array( $this, 'save_meta_box' ), 10, 3 );
 	}
 
 	/**
 	 * Save the meta when the post is saved.
 	 *
-	 * @param int $post_id Post ID.
+	 * @param int     $post_id Post ID.
 	 * @param WP_Post $post Post object.
-	 * @param bool $update Whether this is an existing post being updated or not.
+	 * @param bool    $update Whether this is an existing post being updated or not.
 	 *
 	 * @return void
 	 */
@@ -107,18 +107,28 @@ class ClassicMetabox extends MetaboxApi {
 
 		$this->set_fields( $options['fields'] );
 
-		add_action( 'add_meta_boxes', function () {
-			$config = $this->get_config();
-			add_meta_box( $config['id'], $config['title'], [ $this, 'meta_box_callback' ], $config['screen'],
-				$config['context'], $config['priority'], $this->fields );
-		} );
+		add_action(
+			'add_meta_boxes',
+			function () {
+				$config = $this->get_config();
+				add_meta_box(
+					$config['id'],
+					$config['title'],
+					array( $this, 'meta_box_callback' ),
+					$config['screen'],
+					$config['context'],
+					$config['priority'],
+					$this->fields 
+				);
+			} 
+		);
 
 		return true;
 	}
 
 	/**
 	 * @param WP_Post $post
-	 * @param array $fields
+	 * @param array   $fields
 	 */
 	public function meta_box_callback( $post, $fields ) {
 		if ( ! is_array( $fields ) ) {
@@ -165,25 +175,25 @@ class ClassicMetabox extends MetaboxApi {
 	/**
 	 * Render field
 	 *
-	 * @param array $settings
+	 * @param array  $settings
 	 * @param string $name
-	 * @param mixed $value
+	 * @param mixed  $value
 	 *
 	 * @return string
 	 */
 	public function render( $settings, $name, $value ) {
-		$types = [
+		$types = array(
 			'text'      => Text::class,
 			'checkbox'  => Checkbox::class,
 			'buttonset' => ButtonGroup::class,
 			'spacing'   => Spacing::class,
 			'sidebars'  => Sidebar::class,
 			'select'    => Select::class,
-		];
+		);
 
 		$type      = isset( $settings['type'] ) && array_key_exists( $settings['type'], $types ) ? $settings['type'] : 'text';
 		$className = array_key_exists( $type, $types ) ? $types[ $type ] : $types['text'];
-		$field     = new $className;
+		$field     = new $className();
 		$field->set_settings( $settings );
 		$field->set_name( $name );
 		$field->set_value( $value );

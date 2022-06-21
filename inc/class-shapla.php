@@ -64,12 +64,18 @@ if ( ! class_exists( 'Shapla' ) ) {
 			/*
 			 * Enable support for custom logo.
 			 */
-			add_theme_support( 'custom-logo', apply_filters( 'shapla_custom_logo_args', array(
-				'height'      => 250,
-				'width'       => 250,
-				'flex-width'  => true,
-				'flex-height' => true,
-			) ) );
+			add_theme_support(
+				'custom-logo',
+				apply_filters(
+					'shapla_custom_logo_args',
+					array(
+						'height'      => 250,
+						'width'       => 250,
+						'flex-width'  => true,
+						'flex-height' => true,
+					)
+				)
+			);
 
 			/*
 			 * Enable support for Post Thumbnails on posts and pages.
@@ -79,38 +85,61 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_theme_support( 'post-thumbnails' );
 
 			// This theme uses wp_nav_menu() in one location.
-			register_nav_menus( apply_filters( 'shapla_register_nav_menus', array(
-				'primary'    => esc_html__( 'Primary', 'shapla' ),
-				'social-nav' => esc_html__( 'Social Link', 'shapla' ),
-			) ) );
+			register_nav_menus(
+				apply_filters(
+					'shapla_register_nav_menus',
+					array(
+						'primary'    => esc_html__( 'Primary', 'shapla' ),
+						'social-nav' => esc_html__( 'Social Link', 'shapla' ),
+					)
+				)
+			);
 
 			/*
 			 * Switch default core markup for search form, comment form, and comments
 			 * to output valid HTML5.
 			 */
-			add_theme_support( 'html5', apply_filters( 'shapla_html5_args', array(
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-			) ) );
+			add_theme_support(
+				'html5',
+				apply_filters(
+					'shapla_html5_args',
+					array(
+						'search-form',
+						'comment-form',
+						'comment-list',
+						'gallery',
+						'caption',
+					)
+				)
+			);
 
 			// Set up the WordPress core custom background feature.
-			add_theme_support( 'custom-background', apply_filters( 'shapla_custom_background_args', array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			) ) );
+			add_theme_support(
+				'custom-background',
+				apply_filters(
+					'shapla_custom_background_args',
+					array(
+						'default-color' => 'ffffff',
+						'default-image' => '',
+					)
+				)
+			);
 
 			// Set up the WordPress core custom header feature.
-			add_theme_support( 'custom-header', apply_filters( 'shapla_custom_header_args', array(
-				'default-image' => '',
-				'header-text'   => false,
-				'width'         => 1920,
-				'height'        => 500,
-				'flex-width'    => true,
-				'flex-height'   => true,
-			) ) );
+			add_theme_support(
+				'custom-header',
+				apply_filters(
+					'shapla_custom_header_args',
+					array(
+						'default-image' => '',
+						'header-text'   => false,
+						'width'         => 1920,
+						'height'        => 500,
+						'flex-width'    => true,
+						'flex-height'   => true,
+					)
+				)
+			);
 
 			// Indicate widget sidebars can use selective refresh in the Customizer.
 			add_theme_support( 'customize-selective-refresh-widgets' );
@@ -159,11 +188,11 @@ if ( ! class_exists( 'Shapla' ) ) {
 			$sidebar_args['sidebar'] = array(
 				'name'        => __( 'Sidebar', 'shapla' ),
 				'id'          => 'sidebar-1',
-				'description' => esc_html__( 'Widgets added to this region will appear beside the main content. Only show left or right sidebar layout.', 'shapla' )
+				'description' => esc_html__( 'Widgets added to this region will appear beside the main content. Only show left or right sidebar layout.', 'shapla' ),
 			);
 
-			$rows    = intval( get_theme_mod( 'footer_widget_rows', 1 ) );
-			$regions = intval( get_theme_mod( 'footer_widget_columns', 4 ) );
+			$rows    = intval( shapla_get_option( 'footer_widget_rows', 1 ) );
+			$regions = intval( shapla_get_option( 'footer_widget_columns', 4 ) );
 
 			for ( $row = 1; $row <= $rows; $row ++ ) {
 				for ( $region = 1; $region <= $regions; $region ++ ) {
@@ -268,7 +297,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			if ( ! is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) ) {
 
 				// Check if side position has been overwrite from page
-				$general_layout = get_theme_mod( 'general_layout', 'right-sidebar' );
+				$general_layout = shapla_get_option( 'general_layout', 'right-sidebar' );
 				if ( is_singular() ) {
 					$sidebar_position = shapla_page_option( 'sidebar_position', 'default' );
 					if ( ! empty( $sidebar_position ) && 'default' !== $sidebar_position ) {
@@ -295,7 +324,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 				}
 			}
 
-			$site_layout = get_theme_mod( 'site_layout', 'wide' );
+			$site_layout = shapla_get_option( 'site_layout', 'wide' );
 			if ( $site_layout == 'boxed' ) {
 				$classes[] = 'boxed-layout';
 			}
@@ -306,7 +335,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 				$classes[] = 'full-width';
 			}
 
-			$header_layout = get_theme_mod( 'header_layout', 'layout-1' );
+			$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
 			if ( $header_layout == 'layout-2' ) {
 				$classes[] = 'shapla-header-center';
 			} elseif ( $header_layout == 'layout-3' ) {

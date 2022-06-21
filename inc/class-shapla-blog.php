@@ -54,7 +54,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return array
 		 */
 		public function body_classes( $classes ) {
-			$blog_layout = get_theme_mod( 'blog_layout', 'grid' );
+			$blog_layout = shapla_get_option( 'blog_layout', 'grid' );
 
 			// Blog page
 			if ( static::is_blog() && 'grid' == $blog_layout ) {
@@ -70,7 +70,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return int
 		 */
 		public function excerpt_length() {
-			$excerpt_length = get_theme_mod( 'blog_excerpt_length', 20 );
+			$excerpt_length = shapla_get_option( 'blog_excerpt_length', 20 );
 
 			return absint( $excerpt_length );
 		}
@@ -81,7 +81,8 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public function excerpt_more() {
-			return sprintf( '%1$s <a class="read-more" href="%2$s" rel="nofollow"> %3$s</a>',
+			return sprintf(
+				'%1$s <a class="read-more" href="%2$s" rel="nofollow"> %3$s</a>',
 				__( '...', 'shapla' ),
 				get_permalink( get_the_ID() ),
 				__( 'Read more', 'shapla' )
@@ -92,7 +93,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * Get grid blog style
 		 */
 		public function loop_post() {
-			$blog_layout = get_theme_mod( 'blog_layout', 'grid' );
+			$blog_layout = shapla_get_option( 'blog_layout', 'grid' );
 			if ( 'grid' == $blog_layout ) {
 				$this->get_loop_post_for_grid();
 
@@ -157,12 +158,16 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 			if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 				return '';
 			}
-			$post_thumbnail = get_the_post_thumbnail( null, 'post-thumbnail',
+			$post_thumbnail = get_the_post_thumbnail(
+				null,
+				'post-thumbnail',
 				array( 'alt' => the_title_attribute( array( 'echo' => false ) ) )
 			);
 
-			return sprintf( '<a class="post-thumbnail" href="%s">%s</a>',
-				esc_url( get_permalink() ), $post_thumbnail
+			return sprintf(
+				'<a class="post-thumbnail" href="%s">%s</a>',
+				esc_url( get_permalink() ),
+				$post_thumbnail
 			);
 		}
 
@@ -172,7 +177,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public static function post_category() {
-			$show_category_list = get_theme_mod( 'show_blog_category_list', true );
+			$show_category_list = shapla_get_option( 'show_blog_category_list', true );
 
 			$html = '';
 			if ( ! $show_category_list ) {
@@ -193,7 +198,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public static function post_tag() {
-			$show_tag_list = get_theme_mod( 'show_blog_tag_list', false );
+			$show_tag_list = shapla_get_option( 'show_blog_tag_list', false );
 
 			if ( ( ! is_singular() && $show_tag_list == false ) ) {
 				return '';
@@ -213,8 +218,10 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public static function post_title() {
-			return sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
-				esc_url( get_permalink() ), get_the_title()
+			return sprintf(
+				'<h2 class="entry-title"><a href="%s" rel="bookmark">%s</a></h2>',
+				esc_url( get_permalink() ),
+				get_the_title()
 			);
 		}
 
@@ -224,8 +231,8 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public static function post_author() {
-			$author_avatar = get_theme_mod( 'show_blog_author_avatar', false );
-			$author_name   = get_theme_mod( 'show_blog_author_name', true );
+			$author_avatar = shapla_get_option( 'show_blog_author_avatar', false );
+			$author_name   = shapla_get_option( 'show_blog_author_name', true );
 			$html          = '';
 
 			if ( ! $author_avatar && ! $author_name ) {
@@ -262,8 +269,8 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		 * @return string
 		 */
 		public static function post_date() {
-			$show_date        = get_theme_mod( 'show_blog_date', true );
-			$blog_date_format = get_theme_mod( 'blog_date_format', 'human' );
+			$show_date        = shapla_get_option( 'show_blog_date', true );
+			$blog_date_format = shapla_get_option( 'blog_date_format', 'human' );
 
 			if ( ! $show_date ) {
 				return '';
@@ -282,7 +289,8 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 				$modified_time = get_the_modified_date();
 			}
 
-			$time_string = sprintf( $time_string,
+			$time_string = sprintf(
+				$time_string,
 				esc_attr( get_the_date( 'c' ) ),
 				esc_html( $created_time ),
 				esc_attr( get_the_modified_date( 'c' ) ),

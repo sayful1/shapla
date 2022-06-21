@@ -16,15 +16,16 @@ class AdminUtils {
 	 * @return object|WP_Error
 	 */
 	public static function plugin_api( $slug ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 
 		$call_api = get_transient( 'shapla_about_plugin_info_' . $slug );
 
 		if ( false === $call_api ) {
-			$call_api = plugins_api( 'plugin_information',
-				[
+			$call_api = plugins_api(
+				'plugin_information',
+				array(
 					'slug'   => $slug,
-					'fields' => [
+					'fields' => array(
 						'short_description' => true,
 						'sections'          => true,
 						'homepage'          => true,
@@ -40,8 +41,8 @@ class AdminUtils {
 						'tested'            => false,
 						'requires'          => false,
 						'downloadlink'      => false,
-					],
-				]
+					),
+				)
 			);
 			set_transient( 'shapla_about_plugin_info_' . $slug, $call_api, HOUR_IN_SECONDS );
 		}
@@ -90,27 +91,27 @@ class AdminUtils {
 
 		if ( file_exists( $path ) ) {
 
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 			$needs = is_plugin_active( $plugin ) ? 'deactivate' : 'activate';
 
-			return [
+			return array(
 				'status' => is_plugin_active( $plugin ),
 				'needs'  => $needs,
-			];
+			);
 		}
 
-		return [
+		return array(
 			'status' => false,
 			'needs'  => 'install',
-		];
+		);
 	}
 
 	/**
 	 * Function that crates the action link for install/activate/deactivate.
 	 *
 	 * @param string $state the plugin state (uninstalled/active/inactive).
-	 * @param array $plugin_info
+	 * @param array  $plugin_info
 	 *
 	 * @return string
 	 */
@@ -139,7 +140,8 @@ class AdminUtils {
 					'plugin_status' => 'all',
 					'paged'         => '1',
 					'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $plugin ),
-				), network_admin_url( 'plugins.php' )
+				),
+				network_admin_url( 'plugins.php' )
 			);
 		}
 
@@ -151,7 +153,8 @@ class AdminUtils {
 					'plugin_status' => 'all',
 					'paged'         => '1',
 					'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
-				), network_admin_url( 'plugins.php' )
+				),
+				network_admin_url( 'plugins.php' )
 			);
 		}
 
@@ -166,11 +169,14 @@ class AdminUtils {
 	 * @return string
 	 */
 	public static function plugin_thickbox_url( $plugin_directory ) {
-		return add_query_arg( array(
-			'tab'       => 'plugin-information',
-			'plugin'    => $plugin_directory,
-			'TB_iframe' => 'true',
-		), admin_url( 'plugin-install.php' ) );
+		return add_query_arg(
+			array(
+				'tab'       => 'plugin-information',
+				'plugin'    => $plugin_directory,
+				'TB_iframe' => 'true',
+			),
+			admin_url( 'plugin-install.php' ) 
+		);
 	}
 
 	/**
@@ -180,7 +186,7 @@ class AdminUtils {
 	 */
 	public static function parse_changelog( $string ) {
 		$html = '';
-		$logs = explode( "####", $string );
+		$logs = explode( '####', $string );
 		foreach ( $logs as $_log ) {
 			if ( empty( $_log ) ) {
 				continue;

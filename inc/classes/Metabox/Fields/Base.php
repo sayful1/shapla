@@ -10,7 +10,7 @@ abstract class Base {
 	 *
 	 * @var array
 	 */
-	protected $settings = [];
+	protected $settings = array();
 
 	/**
 	 * @var string
@@ -48,7 +48,7 @@ abstract class Base {
 			return sanitize_text_field( $value );
 		}
 
-		$sanitized_value = [];
+		$sanitized_value = array();
 		if ( is_array( $value ) ) {
 			foreach ( $value as $index => $item ) {
 				$sanitized_value[ $index ] = $this->sanitize( $item );
@@ -87,7 +87,7 @@ abstract class Base {
 	 * @return static
 	 */
 	public function set_settings( $settings ) {
-		$default        = [
+		$default        = array(
 			'type'        => 'text',
 			'id'          => '',
 			'section'     => 'default',
@@ -95,10 +95,10 @@ abstract class Base {
 			'description' => '',
 			'priority'    => 10,
 			'default'     => '',
-			'choices'     => [],
+			'choices'     => array(),
 			'field_class' => '',
 			'label_class' => '',
-		];
+		);
 		$this->settings = wp_parse_args( $settings, $default );
 
 		return $this;
@@ -226,28 +226,32 @@ abstract class Base {
 	 * @return string
 	 */
 	protected function array_to_attributes( $attributes ) {
-		$string = array_map( function ( $key, $value ) {
-			if ( empty( $value ) && 'value' !== $key ) {
-				return null;
-			}
-			if ( in_array( $key, array( 'required', 'checked', 'multiple' ) ) && $value ) {
-				return $key;
-			}
+		$string = array_map(
+			function ( $key, $value ) {
+				if ( empty( $value ) && 'value' !== $key ) {
+					  return null;
+				}
+				if ( in_array( $key, array( 'required', 'checked', 'multiple' ) ) && $value ) {
+					return $key;
+				}
 
-			// If boolean value
-			if ( is_bool( $value ) ) {
-				return sprintf( '%s="%s"', $key, $value ? 'true' : 'false' );
-			}
+				// If boolean value
+				if ( is_bool( $value ) ) {
+					return sprintf( '%s="%s"', $key, $value ? 'true' : 'false' );
+				}
 
-			// If array value
-			if ( is_array( $value ) ) {
-				return sprintf( '%s="%s"', $key, implode( " ", $value ) );
-			}
+				// If array value
+				if ( is_array( $value ) ) {
+					return sprintf( '%s="%s"', $key, implode( ' ', $value ) );
+				}
 
-			// If string value
-			return sprintf( '%s="%s"', $key, esc_attr( $value ) );
+				// If string value
+				return sprintf( '%s="%s"', $key, esc_attr( $value ) );
 
-		}, array_keys( $attributes ), array_values( $attributes ) );
+			},
+			array_keys( $attributes ),
+			array_values( $attributes ) 
+		);
 
 		return implode( ' ', array_filter( $string ) );
 	}

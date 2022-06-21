@@ -19,14 +19,14 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 
-				add_filter( 'admin_footer_text', [ self::$instance, 'admin_footer_text' ] );
-				add_action( 'admin_menu', [ self::$instance, 'shapla_admin_menu_page' ] );
-				add_action( 'admin_enqueue_scripts', [ self::$instance, 'admin_scripts' ] );
+				add_filter( 'admin_footer_text', array( self::$instance, 'admin_footer_text' ) );
+				add_action( 'admin_menu', array( self::$instance, 'shapla_admin_menu_page' ) );
+				add_action( 'admin_enqueue_scripts', array( self::$instance, 'admin_scripts' ) );
 
 				/* activation notice */
-				add_action( 'load-themes.php', [ self::$instance, 'activation_admin_notice' ] );
+				add_action( 'load-themes.php', array( self::$instance, 'activation_admin_notice' ) );
 
-				add_action( 'init', [ self::$instance, 'add_meta_boxes' ] );
+				add_action( 'init', array( self::$instance, 'add_meta_boxes' ) );
 			}
 
 			return self::$instance;
@@ -36,35 +36,35 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		 * Adds the meta box container.
 		 */
 		public function add_meta_boxes() {
-			$options = [
+			$options = array(
 				'id'       => 'shapla-page-options',
 				'title'    => __( 'Shapla Settings', 'shapla' ),
-				'screen'   => [ 'page', 'post', 'product' ],
+				'screen'   => array( 'page', 'post', 'product' ),
 				'context'  => 'side',
 				'priority' => 'low',
-				'fields'   => [
-					[
+				'fields'   => array(
+					array(
 						'type'        => 'spacing',
 						'id'          => 'page_content_padding',
 						'label'       => __( 'Content Padding', 'shapla' ),
 						'description' => __( 'Leave empty to use value from theme options.', 'shapla' ),
 						'priority'    => 10,
 						'section'     => 'page_section',
-						'default'     => [
+						'default'     => array(
 							'top'    => '',
 							'bottom' => '',
-						],
-						'output'      => [
-							[
-								'element'  => [
+						),
+						'output'      => array(
+							array(
+								'element'  => array(
 									'.site-content .content-area',
 									'.site-content .widget-area',
-								],
+								),
 								'property' => 'padding',
-							],
-						],
-					],
-					[
+							),
+						),
+					),
+					array(
 						'type'        => 'select',
 						'id'          => 'sidebar_position',
 						'label'       => __( 'Sidebar Position', 'shapla' ),
@@ -72,14 +72,14 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 						'priority'    => 10,
 						'section'     => 'sidebar_section',
 						'default'     => 'default',
-						'choices'     => [
+						'choices'     => array(
 							'default'       => __( 'Default', 'shapla' ),
 							'left-sidebar'  => __( 'Left', 'shapla' ),
 							'right-sidebar' => __( 'Right', 'shapla' ),
 							'full-width'    => __( 'Disabled', 'shapla' ),
-						]
-					],
-					[
+						),
+					),
+					array(
 						'type'        => 'sidebars',
 						'id'          => 'sidebar_widget_area',
 						'label'       => __( 'Sidebar widget area', 'shapla' ),
@@ -87,14 +87,14 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 						'priority'    => 10,
 						'section'     => 'sidebar_section',
 						'default'     => 'default',
-						'choices'     => [
+						'choices'     => array(
 							'default'  => __( 'Default', 'shapla' ),
 							'left'     => __( 'Left', 'shapla' ),
 							'right'    => __( 'Right', 'shapla' ),
 							'disabled' => __( 'Disabled', 'shapla' ),
-						]
-					],
-					[
+						),
+					),
+					array(
 						'type'        => 'buttonset',
 						'id'          => 'hide_page_title',
 						'label'       => __( 'Page Title Bar', 'shapla' ),
@@ -102,12 +102,12 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 						'priority'    => 10,
 						'section'     => 'page_title_bar_section',
 						'default'     => 'off',
-						'choices'     => [
+						'choices'     => array(
 							'off' => __( 'Show', 'shapla' ),
 							'on'  => __( 'Hide', 'shapla' ),
-						]
-					],
-					[
+						),
+					),
+					array(
 						'type'        => 'buttonset',
 						'id'          => 'show_breadcrumbs',
 						'label'       => __( 'Breadcrumbs', 'shapla' ),
@@ -115,14 +115,14 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 						'priority'    => 20,
 						'section'     => 'page_title_bar_section',
 						'default'     => 'default',
-						'choices'     => [
+						'choices'     => array(
 							'default' => __( 'Default', 'shapla' ),
 							'on'      => __( 'Show', 'shapla' ),
 							'off'     => __( 'Hide', 'shapla' ),
-						]
-					],
-				]
-			];
+						),
+					),
+				),
+			);
 
 			( new \Shapla\Metabox\ClassicMetabox() )->add( $options );
 		}
@@ -142,13 +142,19 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			$welcome_url   = admin_url( 'themes.php?page=shapla-welcome' );
 			$customize_url = admin_url( 'customize.php' );
 			echo '<div class="updated notice is-dismissible">';
-			echo '<p>' . esc_html__( 'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ',
-					'shapla' ) . '</p>';
+			echo '<p>' . esc_html__(
+				'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ',
+				'shapla' 
+			) . '</p>';
 			echo '<p>';
-			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__( 'About Shapla',
-					'shapla' ) . '</a>';
-			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__( 'Start Customize',
-					'shapla' ) . '</a>';
+			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__(
+				'About Shapla',
+				'shapla' 
+			) . '</a>';
+			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__(
+				'Start Customize',
+				'shapla' 
+			) . '</a>';
 			echo '</p>';
 			echo '</div>';
 		}
@@ -172,9 +178,15 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		public function admin_footer_text( $text ) {
 			global $hook_suffix;
 
-			$footer_text = sprintf( esc_html__( 'If you like %1$s Shapla %2$s please leave us a %3$s rating. A huge thanks in advance!',
-				'shapla' ), '<strong>', '</strong>',
-				'<a href="https://wordpress.org/support/theme/shapla/reviews/?filter=5" target="_blank" data-rated="Thanks :)">&starf;&starf;&starf;&starf;&starf;</a>' );
+			$footer_text = sprintf(
+				esc_html__(
+					'If you like %1$s Shapla %2$s please leave us a %3$s rating. A huge thanks in advance!',
+					'shapla' 
+				),
+				'<strong>',
+				'</strong>',
+				'<a href="https://wordpress.org/support/theme/shapla/reviews/?filter=5" target="_blank" data-rated="Thanks :)">&starf;&starf;&starf;&starf;&starf;</a>' 
+			);
 
 			if ( $hook_suffix == 'appearance_page_shapla-welcome' ) {
 				return $footer_text;
@@ -261,38 +273,38 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		}
 
 		private static function getting_started_html() {
-			$contents = [
-				[
+			$contents = array(
+				array(
 					'title'       => __( 'Go to the Customizer', 'shapla' ),
-					'description' => [
-						__( 'Using the WordPress Customizer you can easily customize every aspect of the theme.', 'shapla' )
-					],
-					'action'      => [
+					'description' => array(
+						__( 'Using the WordPress Customizer you can easily customize every aspect of the theme.', 'shapla' ),
+					),
+					'action'      => array(
 						'text' => __( 'Go to the Customizer', 'shapla' ),
-						'url'  => admin_url( 'customize.php' )
-					]
-				],
-				[
+						'url'  => admin_url( 'customize.php' ),
+					),
+				),
+				array(
 					'title'       => __( 'Get support', 'shapla' ),
-					'description' => [
-						__( 'If you need support, you can try posting on the theme support forum.', 'shapla' )
-					],
-					'action'      => [
+					'description' => array(
+						__( 'If you need support, you can try posting on the theme support forum.', 'shapla' ),
+					),
+					'action'      => array(
 						'text' => __( 'Visit support forum', 'shapla' ),
-						'url'  => 'https://wordpress.org/support/theme/shapla'
-					]
-				],
-				[
+						'url'  => 'https://wordpress.org/support/theme/shapla',
+					),
+				),
+				array(
 					'title'       => __( 'Contribute to Shapla', 'shapla' ),
-					'description' => [
-						__( 'Would you like to translate Shapla into your language? You can get involved on WordPress.org', 'shapla' )
-					],
-					'action'      => [
+					'description' => array(
+						__( 'Would you like to translate Shapla into your language? You can get involved on WordPress.org', 'shapla' ),
+					),
+					'action'      => array(
 						'text' => __( 'Translate Shapla', 'shapla' ),
-						'url'  => 'https://translate.wordpress.org/projects/wp-themes/shapla'
-					]
-				],
-			];
+						'url'  => 'https://translate.wordpress.org/projects/wp-themes/shapla',
+					),
+				),
+			);
 
 			$html = '<div class="shapla-columns">';
 			foreach ( $contents as $content ) {
@@ -313,14 +325,32 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		}
 
 		private static function recommended_plugins_html() {
-			$recommended_plugins = [
-				[ 'directory' => 'elementor', 'file' => 'elementor.php', ],
-				[ 'directory' => 'carousel-slider', 'file' => 'carousel-slider.php', ],
-				[ 'directory' => 'filterable-portfolio', 'file' => 'filterable-portfolio.php', ],
-				[ 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ],
-				[ 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ],
-				[ 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ],
-			];
+			$recommended_plugins = array(
+				array(
+					'directory' => 'elementor',
+					'file'      => 'elementor.php',
+				),
+				array(
+					'directory' => 'carousel-slider',
+					'file'      => 'carousel-slider.php',
+				),
+				array(
+					'directory' => 'filterable-portfolio',
+					'file'      => 'filterable-portfolio.php',
+				),
+				array(
+					'directory' => 'woocommerce',
+					'file'      => 'woocommerce.php',
+				),
+				array(
+					'directory' => 'wordpress-seo',
+					'file'      => 'wp-seo.php',
+				),
+				array(
+					'directory' => 'updraftplus',
+					'file'      => 'updraftplus.php',
+				),
+			);
 
 			echo '<div class="recommended-plugins shapla-columns is-multiline" id="plugin-filter">';
 
@@ -328,7 +358,7 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 
 				$info   = AdminUtils::plugin_api( $recommended_plugin['directory'] );
 				$active = AdminUtils::is_plugin_active( $recommended_plugin );
-				$icon   = AdminUtils::get_plugin_icon( $info->icons ? $info->icons : [] );
+				$icon   = AdminUtils::get_plugin_icon( $info->icons ? $info->icons : array() );
 				$url    = AdminUtils::create_action_link( $active['needs'], $recommended_plugin );
 
 				echo '<div class="shapla-column is-4">';

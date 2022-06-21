@@ -10,18 +10,18 @@ class Spacing extends Base {
 	 * @inheritDoc
 	 */
 	public function render() {
-		$default = (array) $this->get_setting( 'default', [] );
+		$default = (array) $this->get_setting( 'default', array() );
 		$value   = (array) $this->get_value();
 		$name    = $this->get_name();
 
 		$html       = '';
-		$dimensions = [ 'top', 'right', 'bottom', 'left' ];
+		$dimensions = array( 'top', 'right', 'bottom', 'left' );
 		foreach ( $dimensions as $dimension ) {
 			if ( ! array_key_exists( $dimension, $default ) ) {
 				continue;
 			}
 
-			$attr_name  = $name . "[" . $dimension . "]";
+			$attr_name  = $name . '[' . $dimension . ']';
 			$attr_value = isset( $value[ $dimension ] ) ? $value[ $dimension ] : $default[ $dimension ];
 			if ( 'top' == $dimension ) {
 				$icon_class = 'dashicons dashicons-arrow-up-alt';

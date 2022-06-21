@@ -9,12 +9,12 @@ class Select extends Base {
 	 */
 	public function render() {
 		$value   = $this->get_value();
-		$choices = (array) $this->get_setting( 'choices', [] );
+		$choices = (array) $this->get_setting( 'choices', array() );
 
 		$html = '<select ' . $this->build_attributes() . ' >';
 		foreach ( $choices as $option_value => $label ) {
 			$selected = ( $value == $option_value ) ? ' selected="selected"' : '';
-			$html     .= '<option value="' . esc_attr( $option_value ) . '" ' . $selected . '>' . esc_html( $label ) . '</option>';
+			$html    .= '<option value="' . esc_attr( $option_value ) . '" ' . $selected . '>' . esc_html( $label ) . '</option>';
 		}
 		$html .= '</select>';
 

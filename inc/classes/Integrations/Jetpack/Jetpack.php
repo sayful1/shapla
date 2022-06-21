@@ -43,13 +43,16 @@ class Jetpack {
 	 */
 	public function shapla_jetpack_setup() {
 		// Add theme support for Infinite Scroll.
-		add_theme_support( 'infinite-scroll', array(
-			'container'      => 'main',
-			'footer'         => 'page',
-			'type'           => 'click',
-			'posts_per_page' => '12',
-			'render'         => array( $this, 'infinite_scroll_render' ),
-		) );
+		add_theme_support(
+			'infinite-scroll',
+			array(
+				'container'      => 'main',
+				'footer'         => 'page',
+				'type'           => 'click',
+				'posts_per_page' => '12',
+				'render'         => array( $this, 'infinite_scroll_render' ),
+			) 
+		);
 
 		// Add theme support for Responsive Videos.
 		add_theme_support( 'jetpack-responsive-videos' );

@@ -12,7 +12,7 @@ class Colors {
 	 *
 	 * @var array
 	 */
-	protected static $default_colors = [
+	protected static $default_colors = array(
 		'primary'        => '#0d6efd', // Blue color.
 		'secondary'      => '#6c757d', // Gray 600 color.
 		'success'        => '#198754', // Green color.
@@ -21,14 +21,14 @@ class Colors {
 		'surface'        => '#ffffff', // White color.
 		'text_primary'   => '#000000de', // Black with 87 opacity.
 		'text_secondary' => '#0000008a', // Black with 54 opacity.
-	];
+	);
 
 	/**
 	 * List of all colors
 	 *
 	 * @var array
 	 */
-	protected static $colors = [];
+	protected static $colors = array();
 
 	/**
 	 * Check if color has been read already
@@ -59,8 +59,8 @@ class Colors {
 
 			if ( 3 == strlen( $hex ) ) {
 				$hex = str_repeat( substr( $hex, 0, 1 ), 2 ) .
-				       str_repeat( substr( $hex, 1, 1 ), 2 ) .
-				       str_repeat( substr( $hex, 2, 1 ), 2 );
+					   str_repeat( substr( $hex, 1, 1 ), 2 ) .
+					   str_repeat( substr( $hex, 2, 1 ), 2 );
 			}
 
 			$r = hexdec( substr( $hex, 0, 2 ) );
@@ -89,6 +89,7 @@ class Colors {
 
 	/**
 	 * Calculate the luminance for a color.
+	 *
 	 * @link https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 	 *
 	 * @param string $color
@@ -102,7 +103,7 @@ class Colors {
 			return '';
 		}
 
-		$colors = [];
+		$colors = array();
 		list( $colors['red'], $colors['green'], $colors['blue'] ) = $rgb_color;
 
 		foreach ( $colors as $name => $value ) {
@@ -131,10 +132,10 @@ class Colors {
 		$luminance = static::calculate_color_luminance( $color );
 
 		if ( $luminance > 0.55 ) {
-			//bright color, use dark font
+			// bright color, use dark font
 			return '#000000';
 		} else {
-			//dark color, use bright font
+			// dark color, use bright font
 			return '#ffffff';
 		}
 	}
@@ -143,7 +144,7 @@ class Colors {
 	 * Adjust a hex color brightness
 	 * Allows us to create hover styles for custom link colors
 	 *
-	 * @param string $color color e.g. #111111.
+	 * @param string  $color color e.g. #111111.
 	 * @param integer $steps factor by which to brighten/darken ranging from -255 (darken) to 255 (brighten).
 	 *
 	 * @return string        brightened/darkened hex color
@@ -193,7 +194,7 @@ class Colors {
 		$default     = static::get_default_color( $name );
 		$option_name = sprintf( 'shapla_%s_color', $name );
 
-		return get_theme_mod( $option_name, $default );
+		return shapla_get_option( $option_name, $default );
 	}
 
 	/**
@@ -206,25 +207,25 @@ class Colors {
 		self::$colors['primary']         = static::get_color_option( 'primary' );
 		self::$colors['primary-variant'] = static::adjust_color_brightness( self::$colors['primary'], - 25 );
 		self::$colors['on-primary']      = static::find_color_invert( self::$colors['primary'] );
-		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['primary'] );
-		self::$colors['primary-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
+		list( $r, $g, $b )               = static::find_rgb_color( self::$colors['primary'] );
+		self::$colors['primary-alpha']   = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
 		$secondary                         = static::get_color_option( 'secondary' );
 		self::$colors['secondary']         = ! empty( $secondary ) ? $secondary : self::$colors['primary'];
 		self::$colors['secondary-variant'] = static::adjust_color_brightness( self::$colors['secondary'], - 25 );
 		self::$colors['on-secondary']      = static::find_color_invert( self::$colors['secondary'] );
-		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['secondary'] );
-		self::$colors['secondary-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
+		list( $r, $g, $b )                 = static::find_rgb_color( self::$colors['secondary'] );
+		self::$colors['secondary-alpha']   = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
-		self::$colors['success']    = static::get_color_option( 'success' );
-		self::$colors['on-success'] = static::find_color_invert( self::$colors['success'] );
-		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['success'] );
-		self::$colors['success-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
+		self::$colors['success']       = static::get_color_option( 'success' );
+		self::$colors['on-success']    = static::find_color_invert( self::$colors['success'] );
+		list( $r, $g, $b )             = static::find_rgb_color( self::$colors['success'] );
+		self::$colors['success-alpha'] = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
-		self::$colors['error']    = static::get_color_option( 'error' );
-		self::$colors['on-error'] = static::find_color_invert( self::$colors['error'] );
-		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['error'] );
-		self::$colors['error-alpha'] = sprintf( "rgba(%s, %s, %s, 0.25)", $r, $g, $b );
+		self::$colors['error']       = static::get_color_option( 'error' );
+		self::$colors['on-error']    = static::find_color_invert( self::$colors['error'] );
+		list( $r, $g, $b )           = static::find_rgb_color( self::$colors['error'] );
+		self::$colors['error-alpha'] = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
 		self::$colors['surface']    = static::get_color_option( 'surface' );
 		self::$colors['on-surface'] = static::find_color_invert( self::$colors['surface'] );
@@ -236,9 +237,9 @@ class Colors {
 
 		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['text-primary'] );
 
-		self::$colors['text-hint']     = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
-		self::$colors['text-disabled'] = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
-		self::$colors['text-icon']     = sprintf( "rgba(%s, %s, %s, 0.38)", $r, $g, $b );
+		self::$colors['text-hint']     = sprintf( 'rgba(%s, %s, %s, 0.38)', $r, $g, $b );
+		self::$colors['text-disabled'] = sprintf( 'rgba(%s, %s, %s, 0.38)', $r, $g, $b );
+		self::$colors['text-icon']     = sprintf( 'rgba(%s, %s, %s, 0.38)', $r, $g, $b );
 
 		static::$read = true;
 	}
@@ -273,63 +274,63 @@ class Colors {
 	 * @return array
 	 */
 	public static function customizer_colors_settings() {
-		return [
-			'shapla_primary_color'        => [
+		return array(
+			'shapla_primary_color'        => array(
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Primary Color', 'shapla' ),
 				'description' => __( 'A primary color is the color displayed most frequently across your site.', 'shapla' ),
 				'default'     => static::get_default_color( 'primary' ),
 				'priority'    => 10,
-			],
-			'shapla_secondary_color'      => [
+			),
+			'shapla_secondary_color'      => array(
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Secondary Color', 'shapla' ),
 				'description' => __( 'Color for Links, Actions buttons, Highlighting text', 'shapla' ),
 				'default'     => static::get_default_color( 'secondary' ),
 				'priority'    => 20,
-			],
-			'shapla_success_color'        => [
+			),
+			'shapla_success_color'        => array(
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Success Color', 'shapla' ),
 				'description' => __( 'Color for success in components.', 'shapla' ),
 				'default'     => static::get_default_color( 'success' ),
 				'priority'    => 30,
-			],
-			'shapla_error_color'          => [
+			),
+			'shapla_error_color'          => array(
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Error Color', 'shapla' ),
 				'description' => __( 'Color for error in components.', 'shapla' ),
 				'default'     => static::get_default_color( 'error' ),
 				'priority'    => 40,
-			],
-			'shapla_surface_color'        => [
+			),
+			'shapla_surface_color'        => array(
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Surface Color', 'shapla' ),
 				'description' => __( 'Color for surfaces of components such as cards, modal.', 'shapla' ),
 				'default'     => static::get_default_color( 'surface' ),
 				'priority'    => 50,
-			],
-			'shapla_text_primary_color'   => [
+			),
+			'shapla_text_primary_color'   => array(
 				'type'        => 'alpha-color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Text Primary Color', 'shapla' ),
 				'description' => __( 'Used for most text.', 'shapla' ),
 				'default'     => static::get_default_color( 'text_primary' ),
 				'priority'    => 60,
-			],
-			'shapla_text_secondary_color' => [
+			),
+			'shapla_text_secondary_color' => array(
 				'type'        => 'alpha-color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Text Secondary Color', 'shapla' ),
 				'description' => __( 'Used for text which is lower in the visual hierarchy.', 'shapla' ),
 				'default'     => static::get_default_color( 'text_secondary' ),
 				'priority'    => 60,
-			],
-		];
+			),
+		);
 	}
 }

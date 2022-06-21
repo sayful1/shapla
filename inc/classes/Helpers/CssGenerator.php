@@ -66,7 +66,7 @@ class CssGenerator {
 	/**
 	 * Get spacing value
 	 *
-	 * @param array $value
+	 * @param array  $value
 	 * @param string $output_property
 	 *
 	 * @return array
@@ -204,7 +204,7 @@ class CssGenerator {
 	 * Minify CSS
 	 *
 	 * @param string $content
-	 * @param bool $newline
+	 * @param bool   $newline
 	 *
 	 * @return string
 	 */
@@ -230,8 +230,11 @@ class CssGenerator {
 		// not in things like `calc(3px + 2px)`, shorthands like `3px -2px`, or
 		// selectors like `div.weird- p`
 		$pseudos = array( 'nth-child', 'nth-last-child', 'nth-last-of-type', 'nth-of-type' );
-		$content = preg_replace( '/:(' . implode( '|', $pseudos ) . ')\(\s*([+-]?)\s*(.+?)\s*([+-]?)\s*(.*?)\s*\)/',
-			':$1($2$3$4$5)', $content );
+		$content = preg_replace(
+			'/:(' . implode( '|', $pseudos ) . ')\(\s*([+-]?)\s*(.+?)\s*([+-]?)\s*(.*?)\s*\)/',
+			':$1($2$3$4$5)',
+			$content 
+		);
 
 		// remove semicolon/whitespace followed by closing bracket
 		$content = str_replace( ';}', '}', $content );
