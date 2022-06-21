@@ -29,13 +29,36 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
 
-				add_action( 'customize_register', array( self::$instance, 'modify_customize_defaults' ) );
-				add_action( 'customize_register', array( self::$instance, 'register_control_type' ) );
-				add_action( 'customize_register', array( self::$instance, 'init_field_settings' ) );
-				add_action( 'customize_save_after', array( self::$instance, 'generate_css_file' ) );
+				add_action( 'customize_register', [ self::$instance, 'modify_customize_defaults' ] );
+				add_action( 'customize_register', [ self::$instance, 'register_control_type' ] );
+				add_action( 'customize_register', [ self::$instance, 'init_field_settings' ] );
+				add_action( 'customize_save_after', [ self::$instance, 'generate_css_file' ] );
+				add_action( 'wp_ajax_shapla_regenerate_fonts_folder', [ self::$instance, 'regenerate_fonts_folder' ] );
 			}
 
 			return self::$instance;
+		}
+
+		/**
+		 * Re-generate fonts folder
+		 *
+		 * @return void
+		 */
+		public function regenerate_fonts_folder() {
+			check_ajax_referer( 'shapla-regenerate-local-fonts', 'nonce' );
+
+			// Check if current can delete theme options.
+			if ( ! current_user_can( 'edit_theme_options' ) ) {
+				wp_send_json_error( 'invalid_permissions' );
+			}
+
+			$flushed = shapla_webfont_loader_instance()->delete_fonts_folder();
+
+			if ( ! $flushed ) {
+				wp_send_json_error( 'failed_to_flush' );
+			}
+
+			wp_send_json_success();
 		}
 
 		/**
@@ -51,7 +74,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				update_option( '_shapla_google_fonts', $google_fonts, true );
 			}
 
-			$styles  = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
+			$styles = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
 			$styles .= wp_strip_all_tags( $this->get_styles() ) . PHP_EOL;
 
 			// Fetch the saved Custom CSS content for rendering.
@@ -59,7 +82,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 			$post           = wp_get_custom_css_post();
 			$css            = ! empty( $post->post_content ) ? wp_strip_all_tags( $post->post_content ) : '';
 			if ( ! empty( $css ) ) {
-				$additional_css  = "\n/* Additional CSS */\n";
+				$additional_css = "\n/* Additional CSS */\n";
 				$additional_css .= \Shapla\Helpers\CssGenerator::minify_css( $css );
 			}
 
@@ -80,6 +103,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 			// Delete Fonts transient
 			delete_transient( 'shapla_google_fonts' );
+			shapla_webfont_loader_instance()->delete_fonts_folder();
 		}
 
 		/**
@@ -206,7 +230,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		 * Displays a new controller on the Theme Customization admin screen
 		 *
 		 * @param WP_Customize_Manager $wp_customize
-		 * @param array                $field
+		 * @param array $field
 		 *
 		 * @return WP_Customize_Control
 		 */

@@ -356,19 +356,26 @@ class WebFontLoader {
 		$styles = $this->get_styles();
 
 		// Get an array of locally-hosted files.
-		$local_font = array();
-		$font_files = $this->get_remote_files_from_css( $styles );
+		$local_font_files = array();
+		$font_files       = $this->get_remote_files_from_css( $styles );
 
 		foreach ( $font_files as $font_family => $font_weights ) {
 			foreach ( $font_weights as $files ) {
 				if ( is_array( $files ) ) {
-					$local_font[] = end( $files );
+					$local_font_files[] = end( $files );
 				}
 			}
 		}
 
 		// Caching this for further optimization.
-		update_site_option( 'shapla_local_font_files', $local_font );
+		update_site_option( 'shapla_local_font_files', $local_font_files );
+
+		foreach ( $local_font_files as $local_font ) {
+			if ( $local_font ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<link rel="preload" href="' . esc_url( $local_font ) . '" as="font" type="font/' . esc_attr( $this->font_format ) . '" crossorigin>' . PHP_EOL;
+			}
+		}
 	}
 
 	/**

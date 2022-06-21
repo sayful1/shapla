@@ -1,7 +1,11 @@
-#### 2.3.0 - Apr 17, 2022
+#### 2.2.1 - Jun 21, 2022
 
 * Tweak - Fix issue to create web-font directory if it is not exists.
-* Tweak - Add font preload functionality to improve performance.
+* Tweak - Add local fonts preload functionality to improve performance.
+* Tweak - Update style to support Font Awesome icon on menu item.
+* Tweak - Add query parameter display with value swap for Google Fonts.
+* Tweak - Add customize field for header submenu background color, test color and accent color.
+* Dev - Add typescript support for frontend scripts.
 
 #### 2.2.0 - Apr 17, 2022
 

@@ -295,6 +295,18 @@ if ( ! function_exists( 'shapla_get_post_format' ) ) {
 		return apply_filters( 'shapla_get_post_format', $post_format );
 	}
 }
+if ( ! function_exists( 'shapla_webfont_loader_instance' ) ) {
+	/**
+	 * Create instance of \Shapla\Helpers\WebFontLoader class.
+	 *
+	 * @param string $font_url Google font URL to set data.
+	 *
+	 * @return \Shapla\Helpers\WebFontLoader
+	 */
+	function shapla_webfont_loader_instance( $font_url = '' ) {
+		return new \Shapla\Helpers\WebFontLoader( $font_url );
+	}
+}
 
 if ( ! function_exists( 'shapla_get_webfont_url' ) ) {
 	/**
@@ -312,7 +324,7 @@ if ( ! function_exists( 'shapla_get_webfont_url' ) ) {
 		if ( $shapla_webfont_url ) {
 			return json_decode( $shapla_webfont_url );
 		}
-		$font = new \Shapla\Helpers\WebFontLoader( $url );
+		$font = shapla_webfont_loader_instance( $url );
 		$font->set_font_format( $format );
 
 		return $font->get_url();
@@ -343,7 +355,7 @@ function shapla_load_preload_local_fonts( $url, $format = 'woff2' ) {
 	}
 
 	// Now preload font data after processing it, as we didn't get stored data.
-	$font = new \Shapla\Helpers\WebFontLoader( $url );
+	$font = shapla_webfont_loader_instance( $url );
 	$font->set_font_format( $format );
 	$font->preload_local_fonts();
 }
