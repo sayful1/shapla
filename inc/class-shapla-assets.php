@@ -55,7 +55,7 @@ class Shapla_Assets {
 		// Theme stylesheet.
 		wp_enqueue_style(
 			'shapla-style',
-			SHAPLA_THEME_URI . '/assets/css/main.css',
+			apply_filters( 'shapla_main_stylesheet_uri', SHAPLA_THEME_URI . '/assets/css/main.css' ),
 			array(),
 			SHAPLA_THEME_VERSION,
 			'all'
@@ -95,8 +95,8 @@ class Shapla_Assets {
 	 * @since  0.1.0
 	 */
 	public function child_scripts() {
-		if ( is_child_theme() ) {
-			wp_enqueue_style( 'shapla-child-style', get_stylesheet_uri(), array() );
+		if ( is_child_theme() && apply_filters( 'shapla_load_child_style', true ) ) {
+			wp_enqueue_style( 'shapla-child-style', get_stylesheet_uri() );
 		}
 	}
 
