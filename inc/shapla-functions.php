@@ -371,7 +371,18 @@ if ( ! function_exists( 'shapla_get_option' ) ) {
 	 * @return mixed Return option value.
 	 */
 	function shapla_get_option( $name, $default = false ) {
-		$value = get_theme_mod( $name, $default );
+		$value = get_theme_mod( $name, 'undefined' );
+
+		// If it is a child theme, get value from parent theme modifications
+		if ( 'undefined' === $value ) {
+			$template = wp_get_theme()->get( 'Template' );
+			if ( ! empty( $template ) ) {
+				$mods  = get_option( "theme_mods_$template" );
+				$value = is_array( $mods ) && isset( $mods[ $name ] ) ? $mods[ $name ] : $default;
+			} else {
+				$value = $default;
+			}
+		}
 
 		/**
 		 * Dynamic filter shapla_get_option_$option.
