@@ -34,6 +34,10 @@ input[type="submit"] {
 	&.alt {
 		background-color: $btn-alt-background;
 		color: $btn-alt-color;
+		--shapla-button-color: #{$primary};
+		--shapla-button-color-dark: #{$primary-variant};
+		--shapla-button-color-alpha: #{$primary-alpha};
+		--shapla-button-on-color: #{$on-primary};
 	}
 }
 

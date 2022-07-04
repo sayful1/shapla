@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "settings": {
+	"color": {
+	  "palette": [
+		{
+		  "name": "Primary",
+		  "slug": "shapla-primary",
+		  "color": "var(--shapla-primary)"
+		},
+		{
+		  "name": "Secondary",
+		  "slug": "shapla-secondary",
+		  "color": "var(--shapla-secondary)"
+		},
+		{
+		  "name": "Success",
+		  "slug": "shapla-success",
+		  "color": "var(--shapla-success)"
+		},
+		{
+		  "name": "Error",
+		  "slug": "shapla-error",
+		  "color": "var(--shapla-error)"
+		},
+		{
+		  "name": "Text Primary",
+		  "slug": "shapla-text-primary",
+		  "color": "var(--shapla-text-primary)"
+		},
+		{
+		  "name": "Text Secondary",
+		  "slug": "shapla-text-secondary",
+		  "color": "var(--shapla-text-secondary)"
+		}
+	  ]
+	}
+  }
+}

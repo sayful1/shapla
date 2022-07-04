@@ -67,13 +67,13 @@ $nav-color-dropdown-hover-text: $color--white;
 $nav-toggle-width: 1025px; // iPad Pro width
 
 // == Buttons
-$btn-background: $primary;
-$btn-color: $on-primary;
-$btn-hover-background: $primary-variant;
+$btn-background: $secondary;
+$btn-color: $on-secondary;
+$btn-hover-background: $secondary-variant;
 
-$btn-alt-background: $secondary;
-$btn-alt-color: $on-secondary;
-$btn-alt-hover-background: $secondary-variant;
+$btn-alt-background: $primary;
+$btn-alt-color: $on-primary;
+$btn-alt-hover-background: $primary-variant;
 
 // == Form
 $color__border-input: $color--grey;

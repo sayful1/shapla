@@ -1,9 +1,16 @@
+@import "../../utilities/variables";
+
 .button,
 a.button,
 button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+	--shapla-button-color: #{$secondary};
+	--shapla-button-color-dark: #{$secondary-variant};
+	--shapla-button-on-color: #{$on-secondary};
+	--shapla-button-color-alpha: #{$secondary-alpha};
+
 	appearance: none;
 	align-items: center;
 	border: 1px solid transparent;
@@ -20,26 +27,40 @@ input[type="submit"] {
 	white-space: nowrap;
 	border-radius: 3px; // 2px for Small
 	font-size: 1rem; // 1.25rem for medium, 1.5rem for large
-	background-color: $btn-background;
-	color: $btn-color;
 	margin: 0;
 	transition: all 0.3s ease-in-out;
+
+	background-color: var(--shapla-button-color);
+	color: var(--shapla-button-on-color);
+
+	&:not(:disabled):hover,
+	&:not(:disabled):active {
+		background-color: var(--shapla-button-color-dark);
+		color: var(--shapla-button-on-color);
+	}
 
 	&:hover,
 	&:active,
 	&:focus {
-		background-color: $btn-hover-background;
-		color: $btn-color;
 		outline: none;
 	}
 
 	&:focus {
 		&:not(:active) {
-			box-shadow: 0 0 0 0.125em $primary-alpha;
+			box-shadow: 0 0 0 0.125em var(--shapla-button-color-alpha);
 		}
 	}
 
-	&[disabled] {
+	strong {
+		color: currentColor;
+	}
+
+	svg {
+		fill: currentColor;
+	}
+
+	&[disabled],
+	fieldset[disabled] & {
 		box-shadow: none;
 		cursor: not-allowed;
 		opacity: 0.5;
