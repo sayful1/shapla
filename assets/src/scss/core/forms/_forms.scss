@@ -37,20 +37,12 @@ textarea {
 		outline: none;
 	}
 
-	&::-moz-placeholder {
+	&::placeholder {
 		color: $text-hint;
 	}
 
-	&::-webkit-input-placeholder {
-		color: $text-hint;
-	}
-
-	&:-moz-placeholder {
-		color: $text-hint;
-	}
-
-	&:-ms-input-placeholder {
-		color: $text-hint;
+	&:focus::placeholder {
+		opacity: 0.5;
 	}
 
 	&:hover {
@@ -60,7 +52,7 @@ textarea {
 	&:focus,
 	&:active {
 		border-color: $primary;
-		box-shadow: 0 0 0 0.125em $primary-alpha;
+		box-shadow: 0 0 0 1px transparent, 0 0 0 3px $primary-alpha;
 	}
 
 	&[disabled] {
@@ -122,20 +114,11 @@ select {
 		cursor: not-allowed;
 	}
 
-	&::-moz-placeholder {
-		color: rgba(#363636, 0.3);
-	}
-
-	&::-webkit-input-placeholder {
-		color: rgba(#363636, 0.3);
-	}
-
-	&:-moz-placeholder {
-		color: rgba(#363636, 0.3);
-	}
-
-	&:-ms-input-placeholder {
-		color: rgba(#363636, 0.3);
+	&::-moz-placeholder,
+	&::-webkit-input-placeholder,
+	&::-moz-placeholder,
+	&::-ms-input-placeholder {
+		color: $text-hint;
 	}
 
 	&:hover {
@@ -145,7 +128,7 @@ select {
 	&:focus,
 	&:active {
 		border-color: $primary;
-		 box-shadow: 0 0 0 0.125em $primary-alpha;
+		box-shadow: 0 0 0 0.125em $primary-alpha;
 	}
 
 	&[disabled] {

@@ -8,6 +8,9 @@
 
 $size__spacing-unit: 1rem;
 
+// ==Editor style
+@import "gutenberg-blocks/editor-styles";
+
 @import "gutenberg-blocks/layout";
 
 // ==Audio
@@ -66,3 +69,9 @@ $size__spacing-unit: 1rem;
 
 // ==Captions
 @import "gutenberg-blocks/caption";
+
+// ==container
+@import "components/container";
+
+// ==Section
+@import "gutenberg-blocks/shapla-section";

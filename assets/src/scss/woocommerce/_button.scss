@@ -5,12 +5,6 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 
-	&.disabled {
-		box-shadow: none;
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
-
 	&.loading {
 		color: transparent !important;
 		pointer-events: none;
@@ -32,8 +26,6 @@ input[type="submit"] {
 	}
 
 	&.alt {
-		background-color: $btn-alt-background;
-		color: $btn-alt-color;
 		--shapla-button-color: #{$primary};
 		--shapla-button-color-dark: #{$primary-variant};
 		--shapla-button-color-alpha: #{$primary-alpha};

@@ -47,7 +47,7 @@ input[type="submit"] {
 
 	&:focus {
 		&:not(:active) {
-			box-shadow: 0 0 0 0.125em var(--shapla-button-color-alpha);
+			box-shadow: 0 0 0 1px transparent, 0 0 0 3px var(--shapla-button-color-alpha);
 		}
 	}
 
@@ -60,7 +60,8 @@ input[type="submit"] {
 	}
 
 	&[disabled],
-	fieldset[disabled] & {
+	fieldset[disabled] &,
+	&.disabled {
 		box-shadow: none;
 		cursor: not-allowed;
 		opacity: 0.5;

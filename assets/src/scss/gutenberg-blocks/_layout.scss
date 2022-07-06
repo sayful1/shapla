@@ -1,5 +1,5 @@
 .shapla-has-blocks.full-screen {
-	.entry-content > * {
+	.entry-content > *:not(.shapla-section) {
 		margin: 2rem 1rem;
 		max-width: 100%;
 

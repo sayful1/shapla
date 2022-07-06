@@ -1,6 +1,7 @@
 .wp-block-columns {
-	display: flex;
-	flex-wrap: wrap;
+	&:last-child {
+		margin-bottom: 0;
+	}
 
 	@include media(tablet) {
 		flex-wrap: nowrap;
