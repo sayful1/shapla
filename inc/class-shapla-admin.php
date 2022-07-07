@@ -121,6 +121,20 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 							'off'     => __( 'Hide', 'shapla' ),
 						),
 					),
+					array(
+						'type'        => 'buttonset',
+						'id'          => 'transparent_header',
+						'label'       => __( 'Transparent Header', 'shapla' ),
+						'description' => __( 'Show transparent header.', 'shapla' ),
+						'priority'    => 30,
+						'section'     => 'page_title_bar_section',
+						'default'     => 'default',
+						'choices'     => array(
+							'default' => __( 'Default', 'shapla' ),
+							'on'      => __( 'Enable', 'shapla' ),
+							'off'     => __( 'Disable', 'shapla' ),
+						),
+					),
 				),
 			);
 
@@ -144,16 +158,16 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			echo '<div class="updated notice is-dismissible">';
 			echo '<p>' . esc_html__(
 				'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ',
-				'shapla' 
+				'shapla'
 			) . '</p>';
 			echo '<p>';
 			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__(
 				'About Shapla',
-				'shapla' 
+				'shapla'
 			) . '</a>';
 			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__(
 				'Start Customize',
-				'shapla' 
+				'shapla'
 			) . '</a>';
 			echo '</p>';
 			echo '</div>';
@@ -181,11 +195,11 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			$footer_text = sprintf(
 				esc_html__(
 					'If you like %1$s Shapla %2$s please leave us a %3$s rating. A huge thanks in advance!',
-					'shapla' 
+					'shapla'
 				),
 				'<strong>',
 				'</strong>',
-				'<a href="https://wordpress.org/support/theme/shapla/reviews/?filter=5" target="_blank" data-rated="Thanks :)">&starf;&starf;&starf;&starf;&starf;</a>' 
+				'<a href="https://wordpress.org/support/theme/shapla/reviews/?filter=5" target="_blank" data-rated="Thanks :)">&starf;&starf;&starf;&starf;&starf;</a>'
 			);
 
 			if ( $hook_suffix == 'appearance_page_shapla-welcome' ) {

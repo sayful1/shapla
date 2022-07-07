@@ -16,8 +16,13 @@ if ( ! function_exists( 'shapla_header_markup' ) ) {
 	 * @since 1.4.5
 	 */
 	function shapla_header_markup() {
+		$transparent_header = shapla_page_option( 'transparent_header', 'default' );
+		$classes            = [ 'site-header' ];
+		if ( 'on' == $transparent_header ) {
+			$classes[] = 'is-transparent';
+		}
 		?>
-		<header id="masthead" class="site-header" role="banner">
+		<header id="masthead" class="<?php echo esc_attr( join( ' ', $classes ) ) ?>" role="banner">
 			<div class="shapla-container">
 				<div class="site-header-inner">
 					<?php

@@ -16,11 +16,20 @@
 			color: var(--header-text-color, #{$color--dark_grey});
 		}
 	}
+
+	&.is-transparent:not(.header--not-top) {
+		--header-background-color: transparent;
+		box-shadow: none;
+	}
 }
 
 // Fixed Header
 .has-fixed-header {
 	padding-top: var(--body-pt, 0);
+}
+
+.has-transparent-header {
+	--body-pt: 0 !important;
 }
 
 .header--fixed {

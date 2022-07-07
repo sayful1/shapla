@@ -284,6 +284,11 @@ if ( ! class_exists( 'Shapla' ) ) {
 				if ( function_exists( 'has_blocks' ) && has_blocks( $post ) ) {
 					$classes[] = 'shapla-has-blocks';
 				}
+
+				$transparent_header = shapla_page_option( 'transparent_header', 'default' );
+				if ( 'on' == $transparent_header ) {
+					$classes[] = 'has-transparent-header';
+				}
 			}
 
 			if ( is_page_template( 'templates/full-width.php' ) ) {
