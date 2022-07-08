@@ -232,14 +232,16 @@ class Shapla_Assets {
 	 * @return array
 	 */
 	private function localize_script() {
-		$localize_script = array(
+		$sticky_header      = shapla_get_option( 'sticky_header', false );
+		$transparent_header = shapla_page_option( 'transparent_header', 'default' );
+		$localize_script    = array(
 			'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 			'screenReaderText' => array(
 				'expand'   => __( 'expand child menu', 'shapla' ),
 				'collapse' => __( 'collapse child menu', 'shapla' ),
 			),
 			'stickyHeader'     => array(
-				'isEnabled' => shapla_get_option( 'sticky_header', false ),
+				'isEnabled' => $sticky_header || 'on' == $transparent_header,
 				'minWidth'  => 1025,
 				'classes'   => array(
 					'body'    => 'has-fixed-header',

@@ -17,9 +17,11 @@
 		}
 	}
 
-	&.is-transparent:not(.header--not-top) {
-		--header-background-color: transparent;
-		box-shadow: none;
+	&.is-transparent {
+		&:not(.header--not-top) {
+			--header-background-color: transparent;
+			box-shadow: none;
+		}
 	}
 }
 
@@ -29,7 +31,7 @@
 }
 
 .has-transparent-header {
-	--body-pt: 0 !important;
+	margin-top: calc(-1 * var(--body-pt));
 }
 
 .header--fixed {
