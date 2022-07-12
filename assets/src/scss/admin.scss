@@ -1,4 +1,7 @@
 @charset "UTF-8";
+
+@use "shapla-css/src/index.scss" as shapla;
+
 /*!
  * Theme Name: Shapla
  * Description: Used to style shapla theme page
@@ -9,4 +12,5 @@
 @import "admin/about";
 @import "admin/meta-box";
 @import "admin/tiptip";
-@import "components/columns";
+
+@include shapla.columns();

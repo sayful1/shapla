@@ -1,8 +1,8 @@
 .shapla-container {
 	margin-right: auto;
 	margin-left: auto;
-	padding-left: var(--container-padding-x, 1rem);
-	padding-right: var(--container-padding-x, 1rem);
+	padding-left: var(--container-px, 1rem);
+	padding-right: var(--container-px, 1rem);
 	width: 100%;
 
 	@include media(tablet-small) {

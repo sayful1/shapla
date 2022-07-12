@@ -21,6 +21,14 @@ if ( ! function_exists( 'shapla_header_markup' ) ) {
 		if ( 'on' == $transparent_header ) {
 			$classes[] = 'is-transparent';
 		}
+		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
+		if ( $header_layout == 'layout-2' ) {
+			$classes[] = 'shapla-header-center';
+		} elseif ( $header_layout == 'layout-3' ) {
+			$classes[] = 'shapla-header-widget';
+		} else {
+			$classes[] = 'shapla-header-default';
+		}
 		?>
 		<header id="masthead" class="<?php echo esc_attr( join( ' ', $classes ) ) ?>" role="banner">
 			<div class="shapla-container">

@@ -1,6 +1,9 @@
 {
   "proxyURL": "http://shapla.test",
   "entryPoints": {
+	"critical-style": [
+	  "./assets/src/scss/critical-style.scss"
+	],
 	"main": [
 	  "./assets/src/scss/style.scss",
 	  "./assets/src/public/main.ts"
@@ -45,6 +48,7 @@
 	"./assets/js/carousel-slider.js",
 	"./assets/js/editor-style.js",
 	"./assets/js/fontawesome-free.js",
-	"./assets/js/woocommerce.js"
+	"./assets/js/woocommerce.js",
+	"./assets/js/critical-style.js"
   ]
 }

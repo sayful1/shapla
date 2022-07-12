@@ -394,3 +394,31 @@ if ( ! function_exists( 'shapla_get_option' ) ) {
 		return apply_filters( "shapla_get_option_{$name}", $value, $name, $default );
 	}
 }
+
+if ( ! function_exists( 'shapla_get_sidebar_position' ) ) {
+	/**
+	 * Get sidebar position
+	 *
+	 * @return string
+	 */
+	function shapla_get_sidebar_position() {
+		$general_layout = shapla_get_option( 'general_layout', 'right-sidebar' );
+		if ( is_singular() ) {
+			$sidebar_position = shapla_page_option( 'sidebar_position', 'default' );
+			if ( ! empty( $sidebar_position ) && 'default' !== $sidebar_position ) {
+				$general_layout = $sidebar_position;
+			}
+		}
+		if ( shapla_is_woocommerce_activated() ) {
+			if ( is_shop() || is_product_category() || is_product_tag() ) {
+				$shop_page_id = wc_get_page_id( 'shop' );
+				$page_options = get_post_meta( $shop_page_id, '_shapla_page_options', true );
+				if ( ! empty( $page_options['sidebar_position'] ) && 'default' !== $page_options['sidebar_position'] ) {
+					$general_layout = esc_attr( $page_options['sidebar_position'] );
+				}
+			}
+		}
+
+		return $general_layout;
+	}
+}

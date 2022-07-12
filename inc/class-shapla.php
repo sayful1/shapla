@@ -279,8 +279,6 @@ if ( ! class_exists( 'Shapla' ) ) {
 
 			// Adds a class of shapla-page-## to singular pages.
 			if ( is_singular() ) {
-				$classes[] = 'shapla-page-' . $post->ID;
-
 				if ( function_exists( 'has_blocks' ) && has_blocks( $post ) ) {
 					$classes[] = 'shapla-has-blocks';
 				}
@@ -300,26 +298,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			}
 
 			if ( ! is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) ) {
-
-				// Check if side position has been overwrite from page
-				$general_layout = shapla_get_option( 'general_layout', 'right-sidebar' );
-				if ( is_singular() ) {
-					$sidebar_position = shapla_page_option( 'sidebar_position', 'default' );
-					if ( ! empty( $sidebar_position ) && 'default' !== $sidebar_position ) {
-						$general_layout = $sidebar_position;
-					}
-				}
-
-				if ( shapla_is_woocommerce_activated() ) {
-					if ( is_shop() || is_product_category() || is_product_tag() ) {
-						$shop_page_id = wc_get_page_id( 'shop' );
-						$page_options = get_post_meta( $shop_page_id, '_shapla_page_options', true );
-						if ( ! empty( $page_options['sidebar_position'] ) && 'default' !== $page_options['sidebar_position'] ) {
-							$general_layout = esc_attr( $page_options['sidebar_position'] );
-						}
-					}
-				}
-
+				$general_layout = shapla_get_sidebar_position();
 				if ( $general_layout == 'right-sidebar' ) {
 					$classes[] = 'right-sidebar';
 				} elseif ( $general_layout == 'left-sidebar' ) {
@@ -339,17 +318,6 @@ if ( ! class_exists( 'Shapla' ) ) {
 			if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 				$classes[] = 'full-width';
 			}
-
-			$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
-			if ( $header_layout == 'layout-2' ) {
-				$classes[] = 'shapla-header-center';
-			} elseif ( $header_layout == 'layout-3' ) {
-				$classes[] = 'shapla-header-widget';
-			} else {
-				$classes[] = 'shapla-header-default';
-			}
-
-			$classes[] = 'shapla';
 
 			return $classes;
 		}

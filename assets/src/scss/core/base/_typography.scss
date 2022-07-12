@@ -7,7 +7,7 @@ html {
 *,
 *:before,
 *:after {
-	box-sizing: inherit;
+	box-sizing: border-box;
 }
 
 // Blocks
@@ -50,8 +50,8 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: $headings-font-family;
 	font-weight: $headings-font-weight;
 	color: $headings-color;
-	margin: 0 0 0.75em;
 	line-height: $line-height-heading;
+	margin: 0 0 0.75em;
 }
 
 h1 {
@@ -255,9 +255,4 @@ iframe {
 template,
 [hidden] {
 	display: none;
-}
-
-::selection {
-	color: $on-primary;
-	background: $primary;
 }
