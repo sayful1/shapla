@@ -145,7 +145,7 @@ if ( ! class_exists( 'Shapla' ) ) {
 			add_theme_support( 'customize-selective-refresh-widgets' );
 
 			// Load default block styles.
-			// add_theme_support( 'wp-block-styles' );
+			add_theme_support( 'wp-block-styles' );
 
 			// Add support for full and wide align images.
 			add_theme_support( 'align-wide' );

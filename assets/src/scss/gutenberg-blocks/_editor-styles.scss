@@ -1,7 +1,7 @@
 @import "../utilities/variables";
 
-.editor-post-title__block .editor-post-title__input {
-	font-family: $body-font-family !important;
+.editor-post-title__input {
+	font-family: $headings-font-family !important;
 }
 
 .editor-styles-wrapper {
@@ -14,6 +14,11 @@
 			font-family: $headings-font-family !important;
 		}
 	}
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 // Main column width
