@@ -1,3 +1,13 @@
+#### 2.2.2 - Jul 20, 2022
+
+* Feature - Add support for 'Transparent Header' feature to enable from page setting.
+* Feature - Add theme.json file with global color palette.
+* Tweak - Update button and input field design for focus state.
+* Tweak - Update button style default to secondary color.
+* Dev - Add option to get value from parent theme modifications if it is a child theme.
+* Dev - Add filter to hide child stylesheet loading from parent theme.
+* Fix - Fix PHP notices for variable not set issue on yoast_breadcrumb option.
+
 #### 2.2.1 - Jun 21, 2022
 
 * Tweak - Fix issue to create web-font directory if it is not exists.

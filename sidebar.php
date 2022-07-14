@@ -29,6 +29,12 @@ if ( shapla_is_woocommerce_activated() ) {
 if ( ! is_active_sidebar( $sidebar_index ) ) {
 	return;
 }
+if ( is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) ) {
+	return;
+}
+if ( is_singular() && 'full-width' === shapla_page_option( 'sidebar_position' ) ) {
+	return;
+}
 ?>
 
 <aside id="secondary" class="widget-area" role="complementary">

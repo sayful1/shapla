@@ -1,7 +1,6 @@
-.site-content {
-	margin-right: auto;
-	margin-left: auto;
+@import "../../../utilities/mixins";
 
+.site-content {
 	.content-area,
 	.widget-area {
 		width: 100%;
@@ -9,82 +8,28 @@
 	}
 }
 
-.hentry.type-post {
-	.entry-content {
-		width: 100%;
-	}
-}
-
 .full-width {
-	.site-content {
-		.content-area {
-			width: 100%;
-			margin-right: 0;
-		}
-
-		.widget-area {
-			display: none;
-		}
+	.content-area {
+		//width: 100%;
+		//margin-right: 0;
 	}
 }
 
 .full-screen {
-	.site-content {
-		.site-content-inner,
-		.content-area {
-			margin: 0;
-			padding: 0;
-			width: 100%;
-		}
-
-		.widget-area {
-			display: none;
-		}
+	.site-content-inner,
+	.content-area {
+		padding: 0;
 	}
 
 	.hentry,
-	.entry-content {
-		margin-bottom: 0 !important;
+	.hentry .entry-content {
+		margin-bottom: 0;
 	}
 }
 
-@media screen and (min-width: $screen-sm) {
-	.site-content {
-		.content-area,
-		.widget-area {
-			padding: 2rem 0 1.125rem;
-		}
-	}
-}
-
-@media screen and (min-width: $screen-md) {
-	.site-content {
-		.content-area {
-			width: 100%;
-			float: none;
-		}
-
-		.widget-area {
-			width: 100%;
-			float: none;
-		}
-	}
-
-	.left-sidebar {
-		.site-content {
-			.content-area {
-				width: 100%;
-			}
-
-			.widget-area {
-				width: 100%;
-			}
-		}
-	}
-}
-
-@media screen and (min-width: $screen-lg) {
-	.site-content {
+@include media('desktop') {
+	.left-sidebar,
+	.right-sidebar {
 		.site-content-inner {
 			margin-left: -1rem;
 			margin-right: -1rem;
@@ -92,28 +37,31 @@
 
 		.content-area {
 			width: 75%;
-			float: left;
 			padding: 2rem 1rem;
 		}
 
 		.widget-area {
 			width: 25%;
+			padding: 2rem 1rem;
+		}
+	}
+	.right-sidebar {
+		.content-area {
+			float: left;
+		}
+
+		.widget-area {
 			float: right;
-			padding: 2rem 1rem 1.125rem;
 		}
 	}
 
 	.left-sidebar {
-		.site-content {
-			.content-area {
-				width: 75%;
-				float: right;
-			}
+		.content-area {
+			float: right;
+		}
 
-			.widget-area {
-				width: 25%;
-				float: left;
-			}
+		.widget-area {
+			float: left;
 		}
 	}
 }

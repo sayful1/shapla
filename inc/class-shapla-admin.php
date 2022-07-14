@@ -157,18 +157,18 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 			$customize_url = admin_url( 'customize.php' );
 			echo '<div class="updated notice is-dismissible">';
 			echo '<p>' . esc_html__(
-				'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ',
-				'shapla'
-			) . '</p>';
+					'Welcome! Thank you for choosing Shapla! To fully take advantage of the best our theme can offer please make sure you visit our ',
+					'shapla'
+				) . '</p>';
 			echo '<p>';
 			echo '<a href="' . $welcome_url . '" class="button button-primary">' . esc_html__(
-				'About Shapla',
-				'shapla'
-			) . '</a>';
+					'About Shapla',
+					'shapla'
+				) . '</a>';
 			echo '<a href="' . $customize_url . '" class="button button-default" style="margin-left: 5px;">' . esc_html__(
-				'Start Customize',
-				'shapla'
-			) . '</a>';
+					'Start Customize',
+					'shapla'
+				) . '</a>';
 			echo '</p>';
 			echo '</div>';
 		}
@@ -339,32 +339,20 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 		}
 
 		private static function recommended_plugins_html() {
-			$recommended_plugins = array(
-				array(
-					'directory' => 'elementor',
-					'file'      => 'elementor.php',
-				),
-				array(
-					'directory' => 'carousel-slider',
-					'file'      => 'carousel-slider.php',
-				),
-				array(
-					'directory' => 'filterable-portfolio',
-					'file'      => 'filterable-portfolio.php',
-				),
-				array(
-					'directory' => 'woocommerce',
-					'file'      => 'woocommerce.php',
-				),
-				array(
-					'directory' => 'wordpress-seo',
-					'file'      => 'wp-seo.php',
-				),
-				array(
-					'directory' => 'updraftplus',
-					'file'      => 'updraftplus.php',
-				),
-			);
+			$recommended_plugins = [
+				[ 'directory' => 'elementor', 'file' => 'class-coblocks.php' ],
+				[ 'directory' => 'coblocks', 'file' => 'elementor.php' ],
+				[ 'directory' => 'carousel-slider', 'file' => 'carousel-slider.php', ],
+				[ 'directory' => 'filterable-portfolio', 'file' => 'filterable-portfolio.php', ],
+				[ 'directory' => 'contact-form-7', 'file' => 'wp-contact-form-7.php', ],
+				[ 'directory' => 'wordpress-seo', 'file' => 'wp-seo.php', ],
+				[ 'directory' => 'woocommerce', 'file' => 'woocommerce.php', ],
+				[ 'directory' => 'ti-woocommerce-wishlist', 'file' => 'ti-woocommerce-wishlist.php' ],
+				[ 'directory' => 'updraftplus', 'file' => 'updraftplus.php', ],
+				[ 'directory' => 'motopress-hotel-booking-lite', 'file' => 'motopress-hotel-booking.php', ],
+				[ 'directory' => 'give', 'file' => 'give.php', ],
+				[ 'directory' => 'stripe-payments', 'file' => 'accept-stripe-payments.php', ],
+			];
 
 			echo '<div class="recommended-plugins shapla-columns is-multiline" id="plugin-filter">';
 
