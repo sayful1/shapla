@@ -10,7 +10,7 @@
 
 do_action( 'shapla_loop_before' );
 
-while ( have_posts() ) :
+while ( have_posts() ) {
 	the_post();
 
 	/*
@@ -20,7 +20,7 @@ while ( have_posts() ) :
 	 */
 	get_template_part( 'template-parts/content', shapla_get_post_format() );
 
-endwhile;
+}
 
 /**
  * Functions hooked in to shapla_paging_nav action

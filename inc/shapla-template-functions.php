@@ -81,12 +81,7 @@ if ( ! function_exists( 'shapla_single_post_content' ) ) {
 	function shapla_single_post_content() {
 		while ( have_posts() ) {
 			the_post();
-
-			do_action( 'shapla_single_post_before' );
-
 			get_template_part( 'template-parts/content', 'single' );
-
-			do_action( 'shapla_single_post_after' );
 		}
 	}
 }

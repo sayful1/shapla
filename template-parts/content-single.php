@@ -7,6 +7,7 @@
  * @package Shapla
  */
 
+do_action( 'shapla_single_post_before' );
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -23,5 +24,7 @@
 	 */
 	do_action( 'shapla_single_post' );
 	?>
-
 </div><!-- #post-## -->
+<?php
+
+do_action( 'shapla_single_post_after' );

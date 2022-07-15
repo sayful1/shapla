@@ -15,7 +15,7 @@ get_header(); ?>
 			/**
 			 * Functions hooked into shapla_single_post_content action
 			 *
-			 * @hooked shapla_single_post_content - 10
+			 * @see shapla_single_post_content - 10
 			 */
 			do_action( 'shapla_single_post_content' );
 			?>

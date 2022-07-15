@@ -6,11 +6,9 @@
  *
  * @package Shapla
  */
-
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
 	<?php
 	/**
 	 * Functions hooked in to shapla_loop_post action.
@@ -22,5 +20,4 @@
 	 */
 	do_action( 'shapla_loop_post' );
 	?>
-
 </article><!-- #post-## -->
