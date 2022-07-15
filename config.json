@@ -1,9 +1,6 @@
 {
   "proxyURL": "http://shapla.test",
   "entryPoints": {
-	"critical-style": [
-	  "./assets/src/scss/critical-style.scss"
-	],
 	"main": [
 	  "./assets/src/scss/style.scss",
 	  "./assets/src/public/main.ts"

@@ -1,43 +1,12 @@
 .widget {
-	margin: 0 auto 2em;
+	margin: 0 auto 2rem;
 
-	.widget-title,
-	.widgettitle {
+	.widget-title {
 		margin-top: 0;
 		margin-bottom: 15px;
 		padding-bottom: 15px;
 		font-size: $font-size-large;
 		border-bottom: 1px solid $color--light_grey;
-	}
-
-	li:before {
-		@include fa-solid();
-		margin-right: 0.5rem;
-		color: $text-icon;
-	}
-
-	&.widget_archive li:before {
-		content: '\f07c'; // folder-open
-	}
-
-	&.widget_categories li:before {
-		content: '\f07b'; // folder
-	}
-
-	&.widget_pages li:before {
-		content: '\f15c'; // f15c
-	}
-
-	&.widget_recent_comments li:before {
-		content: '\f086'; // comments
-	}
-
-	&.widget_recent_entries li:before {
-		content: '\f15c'; // file-alt
-	}
-
-	&.widget_nav_menu li:before {
-		content: '\f15c';
 	}
 
 	ul {
@@ -67,38 +36,6 @@
 
 	select {
 		width: 100%;
-	}
-}
-
-.widget_rss {
-	ul {
-		list-style: none;
-		margin: 0;
-
-		li {
-			margin-bottom: 25px;
-		}
-	}
-
-	ul:last-child,
-	li:last-child {
-		margin-bottom: 0;
-	}
-
-	.rsswidget {
-		border: 0;
-		font-weight: $text-font-weight;
-
-		img {
-			margin-top: -4px;
-		}
-	}
-
-	.rss-date, cite {
-		font-style: normal;
-		display: block;
-		line-height: 2;
-		opacity: 0.8;
 	}
 }
 
