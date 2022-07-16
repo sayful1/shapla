@@ -64,7 +64,7 @@ class ElementorPro {
 	 * @return void
 	 */
 	public function do_header() {
-		$did_location = Module::instance()->get_locations_manager()->do_location( 'header' );
+		$did_location = elementor_theme_do_location( 'header' );
 		if ( $did_location ) {
 			remove_action( 'shapla_header', 'shapla_header_markup', 10 );
 		}
@@ -76,7 +76,7 @@ class ElementorPro {
 	 * @return void
 	 */
 	public function do_footer() {
-		$did_location = Module::instance()->get_locations_manager()->do_location( 'footer' );
+		$did_location = elementor_theme_do_location( 'footer' );
 		if ( $did_location ) {
 			remove_action( 'shapla_footer', 'shapla_footer_markup', 10 );
 		}
@@ -89,7 +89,7 @@ class ElementorPro {
 	 */
 	public function do_template_part_404() {
 		if ( is_404() ) {
-			$did_location = Module::instance()->get_locations_manager()->do_location( 'single' );
+			$did_location = elementor_theme_do_location( 'single' );
 			if ( $did_location ) {
 				remove_action( 'shapla_404_page_content', 'shapla_404_page_content', 10 );
 			}
@@ -103,7 +103,7 @@ class ElementorPro {
 	 */
 	public function do_template_part_single() {
 		if ( is_single() ) {
-			$did_location = Module::instance()->get_locations_manager()->do_location( 'single' );
+			$did_location = elementor_theme_do_location( 'single' );
 			if ( $did_location ) {
 				remove_action( 'shapla_single_post_content', 'shapla_single_post_content', 10 );
 			}
@@ -116,7 +116,7 @@ class ElementorPro {
 	 * @return void
 	 */
 	public function do_template_part_archive() {
-		$did_location = Module::instance()->get_locations_manager()->do_location( 'archive' );
+		$did_location = elementor_theme_do_location( 'archive' );
 		if ( $did_location ) {
 			remove_action( 'shapla_archive_page_content', 'shapla_archive_page_content', 10 );
 		}

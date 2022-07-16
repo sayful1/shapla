@@ -18,9 +18,34 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 			<?php
 			if ( have_posts() ) {
-				get_template_part( 'loop' );
+				if ( is_singular() && ! is_page() ) {
+					/**
+					 * Functions hooked into shapla_single_post_content action
+					 *
+					 * @see shapla_single_post_content - 10
+					 */
+					do_action( 'shapla_single_post_content' );
+				} elseif ( is_archive() ) {
+					/**
+					 * Functions hooked into shapla_archive_page_content action
+					 *
+					 * @see shapla_archive_page_content - 10
+					 */
+					do_action( 'shapla_archive_page_content' );
+				} else {
+					get_template_part( 'loop' );
+				}
 			} else {
-				get_template_part( 'template-parts/content', 'none' );
+				if ( is_404() ) {
+					/**
+					 * Functions hooked into shapla_404_page_content action
+					 *
+					 * @see shapla_404_page_content - 10
+					 */
+					do_action( 'shapla_404_page_content' );
+				} else {
+					get_template_part( 'template-parts/content', 'none' );
+				}
 			}
 			?>
 		</main><!-- #main -->
