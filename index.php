@@ -17,36 +17,10 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			<?php
-			if ( have_posts() ) {
-				if ( is_singular() && ! is_page() ) {
-					/**
-					 * Functions hooked into shapla_single_post_content action
-					 *
-					 * @see shapla_single_post_content - 10
-					 */
-					do_action( 'shapla_single_post_content' );
-				} elseif ( is_archive() ) {
-					/**
-					 * Functions hooked into shapla_archive_page_content action
-					 *
-					 * @see shapla_archive_page_content - 10
-					 */
-					do_action( 'shapla_archive_page_content' );
-				} else {
-					get_template_part( 'loop' );
-				}
-			} else {
-				if ( is_404() ) {
-					/**
-					 * Functions hooked into shapla_404_page_content action
-					 *
-					 * @see shapla_404_page_content - 10
-					 */
-					do_action( 'shapla_404_page_content' );
-				} else {
-					get_template_part( 'template-parts/content', 'none' );
-				}
-			}
+			/**
+			 * @see shapla_dynamic_content - 10
+			 */
+			do_action( 'shapla_dynamic_content' );
 			?>
 		</main><!-- #main -->
 	</div><!-- #primary -->

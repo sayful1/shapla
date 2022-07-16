@@ -8,12 +8,45 @@
 @import "core/base/typography";
 @import "core/components/table";
 @import "core/modules/alignments";
+@import "core/modules/gutenberg-blocks";
 @import "core/media/media";
 @import "core/media/captions";
 @import "core/media/galleries";
-@import "gutenberg-blocks/editor-styles";
-@import "blocks";
 
-body {
-	margin: 1em;
+//== Gutenberg Editor Style
+.editor-post-title__input {
+	font-family: $headings-font-family !important;
 }
+
+.editor-styles-wrapper {
+	> * {
+		font-family: $body-font-family !important;
+	}
+
+	.wp-block {
+		h1, h2, h3, h4, h5, h6 {
+			font-family: $headings-font-family !important;
+		}
+	}
+}
+
+.editor-styles-wrapper .block-editor-block-list__layout.is-root-container > * {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Main column width
+.wp-block {
+	max-width: 1140px;
+}
+
+// Width of "wide" blocks
+.wp-block[data-align="wide"] {
+	max-width: 1140px;
+}
+
+// Width of "full-wide" blocks
+.wp-block[data-align="full"] {
+	max-width: none;
+}
+

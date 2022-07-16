@@ -61,16 +61,6 @@ class Shapla_Assets {
 			'all'
 		);
 
-		// Theme block stylesheet.
-		if ( function_exists( 'has_blocks' ) && has_blocks() ) {
-			wp_enqueue_style(
-				'shapla-block-style',
-				SHAPLA_THEME_URI . '/assets/css/blocks.css',
-				array( 'shapla-style' ),
-				SHAPLA_THEME_VERSION
-			);
-		}
-
 		// Load theme script.
 		wp_enqueue_script(
 			'shapla-script',

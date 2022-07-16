@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'shapla_header', 'shapla_header_markup', 10 );
 add_action( 'shapla_footer', 'shapla_footer_markup', 10 );
 
+
+add_action( 'shapla_dynamic_content', 'shapla_dynamic_content', 10 );
+
 /**
  * Header Inner
  *
