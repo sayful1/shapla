@@ -12,9 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'shapla_header', 'shapla_header_markup', 10 );
 add_action( 'shapla_footer', 'shapla_footer_markup', 10 );
 
-
-add_action( 'shapla_dynamic_content', 'shapla_dynamic_content', 10 );
-
 /**
  * Header Inner
  *
@@ -72,8 +69,10 @@ add_action( 'shapla_single_post', 'shapla_post_meta', 30 );
 add_action( 'shapla_single_post_after', 'shapla_navigation', 10 );
 add_action( 'shapla_single_post_after', 'shapla_display_comments', 20 );
 
+add_action( 'shapla_single_page_content', 'shapla_single_page_content', 10 );
 add_action( 'shapla_single_post_content', 'shapla_single_post_content', 10 );
 add_action( 'shapla_archive_page_content', 'shapla_archive_page_content', 10 );
+add_action( 'shapla_search_page_content', 'shapla_archive_page_content', 10 );
 
 /**
  * Posts

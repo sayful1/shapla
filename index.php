@@ -17,10 +17,17 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			<?php
-			/**
-			 * @see shapla_dynamic_content - 10
-			 */
-			do_action( 'shapla_dynamic_content' );
+			if ( is_archive() || is_home() ) {
+				do_action( 'shapla_archive_page_content' );
+			} elseif ( is_search() ) {
+				do_action( 'shapla_search_page_content' );
+			} elseif ( is_page() ) {
+				do_action( 'shapla_single_page_content' );
+			} elseif ( is_singular() ) {
+				do_action( 'shapla_single_post_content' );
+			} else {
+				do_action( 'shapla_404_page_content' );
+			}
 			?>
 		</main><!-- #main -->
 	</div><!-- #primary -->

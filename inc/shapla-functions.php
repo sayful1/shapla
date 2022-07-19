@@ -288,10 +288,6 @@ if ( ! function_exists( 'shapla_get_post_format' ) ) {
 			$post_format = 'page';
 		}
 
-		if ( is_search() ) {
-			$post_format = 'search';
-		}
-
 		return apply_filters( 'shapla_get_post_format', $post_format );
 	}
 }

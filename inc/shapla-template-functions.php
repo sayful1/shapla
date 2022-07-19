@@ -58,12 +58,7 @@ if ( ! function_exists( 'shapla_footer_markup' ) ) {
 		<footer id="colophon" class="site-footer" role="contentinfo">
 			<div class="shapla-container">
 				<div class="site-footer-inner">
-					<?php
-					/**
-					 * Functions hooked into shapla_footer_inner action
-					 */
-					do_action( 'shapla_footer_inner' );
-					?>
+					<?php do_action( 'shapla_footer_inner' ); ?>
 				</div>
 			</div>
 		</footer><!-- #colophon -->
@@ -71,43 +66,51 @@ if ( ! function_exists( 'shapla_footer_markup' ) ) {
 	}
 }
 
-if ( ! function_exists( 'shapla_dynamic_content' ) ) {
+if ( ! function_exists( 'shapla_loop_content' ) ) {
 	/**
-	 * Dynamic page/post content
+	 * The loop content.
 	 *
-	 * @since 2.2.2
+	 * Included on pages like index.php, archive.php and search.php to display a loop of posts
+	 * Learn more: http://codex.wordpress.org/The_Loop
+	 *
+	 * @since 2.3.0
 	 */
-	function shapla_dynamic_content() {
+	function shapla_loop_content() {
+		do_action( 'shapla_loop_before' );
 		if ( have_posts() ) {
-			if ( is_singular() && ! is_page() ) {
-				/**
-				 * Functions hooked into shapla_single_post_content action
-				 *
-				 * @see shapla_single_post_content - 10
+			while ( have_posts() ) {
+				the_post();
+
+				/*
+				 * Include the Post-Format-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				do_action( 'shapla_single_post_content' );
-			} elseif ( is_archive() ) {
-				/**
-				 * Functions hooked into shapla_archive_page_content action
-				 *
-				 * @see shapla_archive_page_content - 10
-				 */
-				do_action( 'shapla_archive_page_content' );
-			} else {
-				get_template_part( 'loop' );
+				get_template_part( 'template-parts/content', shapla_get_post_format() );
+
 			}
 		} else {
-			if ( is_404() ) {
-				/**
-				 * Functions hooked into shapla_404_page_content action
-				 *
-				 * @see shapla_404_page_content - 10
-				 */
-				do_action( 'shapla_404_page_content' );
-			} else {
-				get_template_part( 'template-parts/content', 'none' );
-			}
+			get_template_part( 'template-parts/content', 'none' );
 		}
+
+		/**
+		 * Functions hooked in to shapla_paging_nav action
+		 *
+		 * @hooked shapla_paging_nav - 10
+		 */
+		do_action( 'shapla_loop_after' );
+	}
+}
+
+if ( ! function_exists( 'shapla_archive_page_content' ) ) {
+	/**
+	 * Category archive page content
+	 * Function to get category archive page content
+	 *
+	 * @since 1.4.5
+	 */
+	function shapla_archive_page_content() {
+		shapla_loop_content();
 	}
 }
 
@@ -126,19 +129,29 @@ if ( ! function_exists( 'shapla_single_post_content' ) ) {
 	}
 }
 
-if ( ! function_exists( 'shapla_archive_page_content' ) ) {
+if ( ! function_exists( 'shapla_single_page_content' ) ) {
 	/**
 	 * Category archive page content
 	 * Function to get category archive page content
 	 *
+	 * @since 2.3.0
+	 */
+	function shapla_single_page_content() {
+		while ( have_posts() ) {
+			the_post();
+			get_template_part( 'template-parts/content', 'page' );
+		}
+	}
+}
+
+if ( ! function_exists( 'shapla_404_page_content' ) ) {
+	/**
+	 * Shapla 404 page content
+	 *
 	 * @since 1.4.5
 	 */
-	function shapla_archive_page_content() {
-		if ( have_posts() ) {
-			get_template_part( 'loop' );
-		} else {
-			get_template_part( 'template-parts/content', 'none' );
-		}
+	function shapla_404_page_content() {
+		get_template_part( 'template-parts/content', '404' );
 	}
 }
 
@@ -614,17 +627,6 @@ if ( ! function_exists( 'shapla_page_content' ) ) :
 
 endif;
 
-if ( ! function_exists( 'shapla_404_page_content' ) ) {
-	/**
-	 * Shapla 404 page content
-	 *
-	 * @since 1.4.5
-	 */
-	function shapla_404_page_content() {
-		get_template_part( 'template-parts/content', '404' );
-	}
-}
-
 if ( ! function_exists( 'shapla_display_comments' ) ) :
 	/**
 	 * Shapla display comments
@@ -790,7 +792,7 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 		}
 
 		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
-		if ( $header_layout != 'layout-3' ) {
+		if ( 'layout-3' != $header_layout ) {
 			return;
 		}
 
@@ -813,7 +815,7 @@ if ( ! function_exists( 'shapla_search_icon' ) ) {
 		$show_search_icon = shapla_get_option( 'show_search_icon', false );
 		$header_layout    = shapla_get_option( 'header_layout', 'layout-1' );
 
-		if ( 'primary' == $args->theme_location && $header_layout != 'layout-3' && $show_search_icon ) {
+		if ( 'primary' == $args->theme_location && 'layout-3' != $header_layout && $show_search_icon ) {
 			ob_start();
 			?>
 			<li class="shapla-custom-menu-item shapla-main-menu-search">
@@ -856,7 +858,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 			$class .= ' is-hidden';
 		}
 
-		if ( is_page() || is_single() ) {
+		if ( is_singular() ) {
 			global $post;
 			$page_options = get_post_meta( $post->ID, '_shapla_page_options', true );
 			if ( ! empty( $page_options['show_breadcrumbs'] ) && 'default' != $page_options['show_breadcrumbs'] ) {
@@ -867,7 +869,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 		}
 
 		$args = apply_filters(
-				'shapla_wc_breadcrumb',
+				'shapla_breadcrumb',
 				array(
 						'delimiter'   => '',
 						'wrap_before' => '<nav class="' . $class . '"><ul>',

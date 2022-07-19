@@ -14,8 +14,8 @@ do_action( 'shapla_page_before' );
 		/**
 		 * Functions hooked in to shapla_page add_action
 		 *
-		 * @hooked shapla_page_header          - 10
-		 * @hooked shapla_page_content         - 20
+		 * @see shapla_page_header          - 10
+		 * @see shapla_page_content         - 20
 		 */
 		do_action( 'shapla_page' );
 		?>

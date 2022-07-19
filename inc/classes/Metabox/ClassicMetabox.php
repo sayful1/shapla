@@ -38,9 +38,9 @@ class ClassicMetabox extends MetaboxApi {
 	/**
 	 * Save the meta when the post is saved.
 	 *
-	 * @param int     $post_id Post ID.
+	 * @param int $post_id Post ID.
 	 * @param WP_Post $post Post object.
-	 * @param bool    $update Whether this is an existing post being updated or not.
+	 * @param bool $update Whether this is an existing post being updated or not.
 	 *
 	 * @return void
 	 */
@@ -109,18 +109,18 @@ class ClassicMetabox extends MetaboxApi {
 
 		add_action(
 			'add_meta_boxes',
-			function () {
+			function ( $post_type ) {
 				$config = $this->get_config();
 				add_meta_box(
 					$config['id'],
 					$config['title'],
 					array( $this, 'meta_box_callback' ),
-					$config['screen'],
+					$post_type,
 					$config['context'],
 					$config['priority'],
-					$this->fields 
+					$this->fields
 				);
-			} 
+			}
 		);
 
 		return true;
@@ -128,7 +128,7 @@ class ClassicMetabox extends MetaboxApi {
 
 	/**
 	 * @param WP_Post $post
-	 * @param array   $fields
+	 * @param array $fields
 	 */
 	public function meta_box_callback( $post, $fields ) {
 		if ( ! is_array( $fields ) ) {
@@ -175,9 +175,9 @@ class ClassicMetabox extends MetaboxApi {
 	/**
 	 * Render field
 	 *
-	 * @param array  $settings
+	 * @param array $settings
 	 * @param string $name
-	 * @param mixed  $value
+	 * @param mixed $value
 	 *
 	 * @return string
 	 */
