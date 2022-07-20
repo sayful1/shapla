@@ -32,7 +32,10 @@ if ( ! is_active_sidebar( $sidebar_index ) ) {
 if ( is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) ) {
 	return;
 }
-if ( is_singular() && 'full-width' === shapla_page_option( 'sidebar_position' ) ) {
+if ( is_singular() &&
+	 ( 'full-width' === shapla_page_option( 'sidebar_position' ) ||
+	   'full-width' === shapla_page_option( 'interior_content_width' ) )
+) {
 	return;
 }
 ?>

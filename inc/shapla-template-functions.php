@@ -869,7 +869,7 @@ if ( ! function_exists( 'shapla_breadcrumb' ) ) {
 		}
 
 		$args = apply_filters(
-				'shapla_breadcrumb',
+				'shapla_breadcrumb_args',
 				array(
 						'delimiter'   => '',
 						'wrap_before' => '<nav class="' . $class . '"><ul>',

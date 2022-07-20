@@ -297,7 +297,14 @@ if ( ! class_exists( 'Shapla' ) ) {
 				$classes[] = 'full-screen';
 			}
 
-			if ( ! is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) ) {
+			if ( 'full-width' === shapla_page_option( 'interior_content_width' ) ) {
+				$classes[] = 'full-screen';
+			}
+
+			if (
+				! is_page_template( array( 'templates/full-width.php', 'templates/full-screen.php' ) ) &&
+				'full-width' !== shapla_page_option( 'interior_content_width' )
+			) {
 				$general_layout = shapla_get_sidebar_position();
 				if ( $general_layout == 'right-sidebar' ) {
 					$classes[] = 'right-sidebar';

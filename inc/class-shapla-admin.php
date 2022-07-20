@@ -65,6 +65,19 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 						),
 					),
 					array(
+						'type'        => 'buttonset',
+						'id'          => 'interior_content_width',
+						'label'       => __( 'Interior Content Width', 'shapla' ),
+						'description' => __( '"100% Width" will take all screen width. Useful when using page builder like Elementor. On block editor, only certain blocks takes 100% width.', 'shapla' ),
+						'priority'    => 15,
+						'section'     => 'page_section',
+						'default'     => 'site-width',
+						'choices'     => array(
+							'site-width' => __( 'Site Width', 'shapla' ),
+							'full-width' => __( '100% Width', 'shapla' ),
+						),
+					),
+					array(
 						'type'        => 'select',
 						'id'          => 'sidebar_position',
 						'label'       => __( 'Sidebar Position', 'shapla' ),
