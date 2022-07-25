@@ -44,13 +44,15 @@ class Shapla_Assets {
 	 */
 	public function shapla_scripts() {
 		// Font Awesome Free icons
-		wp_enqueue_style(
-			'fontawesome-free',
-			SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
-			array(),
-			'6.0.0',
-			'all'
-		);
+		if ( ! shapla_is_fontawesome_activated() ) {
+			wp_enqueue_style(
+				'fontawesome-free',
+				SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
+				array(),
+				'6.0.0',
+				'all'
+			);
+		}
 
 		// Theme stylesheet.
 		wp_enqueue_style(

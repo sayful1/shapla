@@ -13,8 +13,10 @@
 	margin-bottom: $column-gap;
 
 	.post-thumbnail {
-		display: block;
 		margin-bottom: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.entry-content,
