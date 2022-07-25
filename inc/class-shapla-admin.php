@@ -136,6 +136,20 @@ if ( ! class_exists( 'Shapla_Admin' ) ) {
 					),
 					array(
 						'type'        => 'buttonset',
+						'id'          => 'show_post_navigation',
+						'label'       => __( 'Post Navigation', 'shapla' ),
+						'description' => __( 'Controls navigation for current page.', 'shapla' ),
+						'priority'    => 20,
+						'section'     => 'page_title_bar_section',
+						'default'     => 'default',
+						'choices'     => array(
+							'default' => __( 'Default', 'shapla' ),
+							'on'      => __( 'Show', 'shapla' ),
+							'off'     => __( 'Hide', 'shapla' ),
+						),
+					),
+					array(
+						'type'        => 'buttonset',
 						'id'          => 'transparent_header',
 						'label'       => __( 'Transparent Header', 'shapla' ),
 						'description' => __( 'Show transparent header.', 'shapla' ),

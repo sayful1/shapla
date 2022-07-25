@@ -437,15 +437,17 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
 	function shapla_post_meta() {
+		// Hide category and tag text for pages.
+		if ( 'post' !== get_post_type() ) {
+			return;
+		}
+
 		$show_comments_link = shapla_get_option( 'show_blog_comments_link', true );
 
 		echo '<div class="entry-meta">';
-		// Hide category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
-			echo Shapla_Blog::post_author();
-			echo Shapla_Blog::post_date();
-			echo Shapla_Blog::post_category();
-		}
+		echo Shapla_Blog::post_author();
+		echo Shapla_Blog::post_date();
+		echo Shapla_Blog::post_category();
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			if ( $show_comments_link ) {
@@ -467,16 +469,18 @@ if ( ! function_exists( 'shapla_post_meta' ) ) :
 			}
 		}
 
-		edit_post_link(
-				sprintf(
-				/* translators: %s: Name of current post */
-						esc_html__( '%1$s Edit %2$s', 'shapla' ),
-						'<span class="shapla-icon"><i class="fas fa-pencil-alt"></i></span>',
-						the_title( '<span class="screen-reader-text">"', '"</span>', false )
-				),
-				'<div class="edit-link">',
-				'</div>'
-		);
+		if ( ! is_singular() ) {
+			edit_post_link(
+					sprintf(
+					/* translators: %s: Name of current post */
+							esc_html__( '%1$s Edit %2$s', 'shapla' ),
+							'<span class="shapla-icon"><i class="fas fa-pencil-alt"></i></span>',
+							the_title( '<span class="screen-reader-text">"', '"</span>', false )
+					),
+					'<div class="edit-link">',
+					'</div>'
+			);
+		}
 
 		echo '</div>';
 		echo Shapla_Blog::post_tag();
@@ -714,6 +718,10 @@ if ( ! function_exists( 'shapla_navigation' ) ) :
 	 * @since  1.0.0
 	 */
 	function shapla_navigation() {
+		$show_post_navigation = shapla_page_option( 'show_post_navigation' );
+		if ( 'off' == $show_post_navigation ) {
+			return;
+		}
 		$args = apply_filters(
 				'shapla_post_navigation_args',
 				array(

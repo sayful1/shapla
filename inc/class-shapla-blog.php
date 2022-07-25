@@ -200,7 +200,7 @@ if ( ! class_exists( 'Shapla_Blog' ) ) {
 		public static function post_tag() {
 			$show_tag_list = shapla_get_option( 'show_blog_tag_list', false );
 
-			if ( ( ! is_singular() && $show_tag_list == false ) ) {
+			if ( ( ! is_singular() && false === $show_tag_list ) ) {
 				return '';
 			}
 
