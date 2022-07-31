@@ -29,9 +29,15 @@ if ( ! function_exists( 'shapla_header_markup' ) ) {
 		} else {
 			$classes[] = 'shapla-header-default';
 		}
+
+		$container = [ 'shapla-container' ];
+		if ( 'full-width' === shapla_get_option( 'header_container_width', 'site-width' ) ) {
+			$container[] = 'is-fluid';
+		}
 		?>
-		<header id="masthead" class="<?php echo esc_attr( join( ' ', $classes ) ) ?>" role="banner">
-			<div class="shapla-container">
+		<header id="masthead" class="<?php echo esc_attr( join( ' ', $classes ) ) ?>" role="banner"
+				itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
+			<div class="<?php echo esc_attr( join( ' ', $container ) ) ?>">
 				<div class="site-header-inner">
 					<?php
 					/**

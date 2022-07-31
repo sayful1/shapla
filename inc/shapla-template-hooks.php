@@ -9,18 +9,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+add_action( 'shapla_before_site', 'shapla_skip_links', 0 );
+
 add_action( 'shapla_header', 'shapla_header_markup', 10 );
 add_action( 'shapla_footer', 'shapla_footer_markup', 10 );
 
 /**
  * Header Inner
  *
- * @see  shapla_skip_links()
  * @see  shapla_site_branding()
  * @see  shapla_default_search()
  * @see  shapla_primary_navigation()
  */
-add_action( 'shapla_header_inner', 'shapla_skip_links', 0 );
 add_action( 'shapla_header_inner', 'shapla_site_branding', 20 );
 add_action( 'shapla_header_inner', 'shapla_default_search', 25 );
 add_action( 'shapla_header_inner', 'shapla_primary_navigation', 30 );

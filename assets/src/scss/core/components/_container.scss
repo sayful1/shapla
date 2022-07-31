@@ -1,24 +1,9 @@
 .shapla-container {
-	margin-right: auto;
-	margin-left: auto;
-	padding-left: var(--container-px, 1rem);
-	padding-right: var(--container-px, 1rem);
-	width: 100%;
+	@include container();
 
-	@include media(tablet-small) {
-		max-width: $container-sm;
-	}
-
-	@include media(tablet) {
-		max-width: $container-md;
-	}
-
-	@include media(desktop) {
-		max-width: $container-lg;
-	}
-
-	@include media(wide) {
-		max-width: $container-xl;
+	&.is-fluid {
+		max-width: 100%;
+		width: 100%;
 	}
 
 	.full-screen .site-content > & {

@@ -490,6 +490,18 @@ class CustomizerConfig extends BaseConfig {
 					'rtl' => esc_html__( 'Right to Left', 'shapla' ),
 				),
 			),
+			'header_container_width'   => array(
+				'type'        => 'radio-button',
+				'section'     => 'header_image',
+				'label'       => __( 'Container Width', 'shapla' ),
+				'description' => __( '100% Width" will take all screen width.', 'shapla' ),
+				'default'     => 'site-width',
+				'priority'    => 70,
+				'choices'     => array(
+					'site-width' => __( 'Site Width', 'shapla' ),
+					'full-width' => __( '100% Width', 'shapla' ),
+				),
+			),
 		);
 		self::set_fields( $fields );
 	}
@@ -507,7 +519,7 @@ class CustomizerConfig extends BaseConfig {
 				'label'       => __( 'Page Title Bar Top &amp; Bottom Padding', 'shapla' ),
 				'description' => __(
 					'Controls the top and bottom padding of the page title bar. Enter value including any valid CSS unit(px,em,rem)',
-					'shapla' 
+					'shapla'
 				),
 				'default'     => shapla_default_options( 'page_title_bar_padding' ),
 				'priority'    => 10,
