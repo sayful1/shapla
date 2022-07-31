@@ -23,6 +23,15 @@
 			box-shadow: none;
 		}
 	}
+
+	.is-fluid {
+		@include media('tablet') {
+			--container-padding-x: 2rem;
+		}
+		@include media('wide') {
+			--container-padding-x: 3rem;
+		}
+	}
 }
 
 // Fixed Header
@@ -87,16 +96,6 @@
 	line-height: 1.2;
 }
 
-// Search form
-.search-toggle {
-	i.fa-search {
-		color: var(--header-text-color, #{$text-primary});
-		cursor: pointer;
-		font-size: 0.875rem;
-		padding: 0.75rem;
-	}
-}
-
 //== Header layout
 .site-header-inner {
 	display: flex;
@@ -121,11 +120,11 @@
 	}
 
 	.menu-toggle {
-		order: 3;
+		order: 9;
 	}
 
 	.main-navigation {
-		order: 4;
+		order: 10;
 		margin-left: auto;
 		flex: 0 0 100%;
 	}
@@ -143,10 +142,6 @@
 			order: 3;
 			margin-left: auto;
 			flex: 0 0 auto;
-		}
-		.search-toggle {
-			order: 4;
-			margin: 1rem 0 1rem 0.5rem;
 		}
 	}
 }

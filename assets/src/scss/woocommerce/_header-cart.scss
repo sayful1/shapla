@@ -1,11 +1,14 @@
 .site-header-cart {
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	list-style-type: none;
 	position: relative;
-	order: 1;
-	width: auto; //calc(25% - 2rem);
-	padding: 1rem 0;
-	margin: 0 0 0 auto;
+	order: 4;
+	padding: 0;
+	margin: 0 0 0 .625rem;
+	width: 3rem;
+	height: 3rem;
 
 	.widget_shopping_cart {
 		display: none;
@@ -57,7 +60,6 @@
 	}
 
 	@media screen and (min-width: $nav-toggle-width) {
-		margin: 0 0 0 2rem;
 
 		.cart-contents {
 			span {

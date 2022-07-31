@@ -262,25 +262,72 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	 * Shapla Search toggle icon
 	 *
 	 * @return void
-	 * @deprecated 1.2.3
-	 *
 	 * @since  1.0.0
 	 */
 	function shapla_search_toggle() {
-		_deprecated_function( __FUNCTION__, '1.2.3' );
-
 		$show_search_icon = shapla_get_option( 'show_search_icon' );
-		$header_layout    = shapla_get_option( 'header_layout', 'default' );
 		if ( ! $show_search_icon ) {
 			return;
 		}
-		if ( $header_layout != 'default' ) {
+		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
+		if ( 'layout-3' == $header_layout ) {
 			return;
 		}
-
-		return;
 		?>
-		<span id="search-toggle" class="search-toggle"><i class="fa fa-search"></i></span>
+		<button id="header__search-toggle" class="header__search-toggle" data-toggle-target=".search-modal"
+				data-set-focus=".search-modal .search-form__input" type="button" aria-controls="js-site-search">
+			<span class="search-toggle-icon"><i class="fa fa-search"></i></span>
+			<span class="screen-reader-text">Search Toggle</span>
+		</button>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'shapla_search_modal' ) ) {
+	function shapla_search_modal() {
+		$show_search_icon = shapla_get_option( 'show_search_icon' );
+		if ( ! $show_search_icon ) {
+			return;
+		}
+		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
+		if ( 'layout-3' == $header_layout ) {
+			return;
+		}
+		?>
+		<div class="search-modal" data-modal-target-string=".search-modal" aria-expanded="false">
+			<div class="search-modal-inner">
+				<div class="shapla-container">
+					<div id="js-site-search" class="site-search" itemscope itemtype="https://schema.org/WebSite">
+						<form role="search" id="searchform" class="search-form" method="get"
+							  action="<?php echo esc_url( home_url( '/' ) ) ?>">
+							<meta itemprop="target" content="<?php echo esc_url( home_url( '/?s={s}' ) ) ?>">
+							<label for="search-field" class="screen-reader-text">
+								<?php _ex( 'Search for:', 'label', 'shapla' ) ?>
+							</label>
+							<input itemprop="query-input" type="search" id="search-field"
+								   class="input input--search search-form__input" autocomplete="off"
+								   placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' ) ?>"
+								   value="<?php the_search_query() ?>" name="s">
+							<button type="submit" class="search-input__button">
+								<span class="search-input__label">Submit</span>
+								<svg role="img" class="search-input__arrow-icon" width="30" height="28"
+									 viewBox="0 0 30 28" fill="inherit" xmlns="http://www.w3.org/2000/svg">
+									<g clip-path="url(#clip0)">
+										<path d="M16.1279 0L29.9121 13.7842L16.1279 27.5684L14.8095 26.25L26.3378 14.7217H-6.10352e-05V12.8467H26.3378L14.8095 1.31844L16.1279 0Z"
+											  fill="inherit"></path>
+									</g>
+									<defs>
+										<clipPath id="clip0">
+											<rect width="29.9121" height="27.5684" fill="white"></rect>
+										</clipPath>
+									</defs>
+								</svg>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div><!-- .search-modal-inner -->
+		</div>
 		<?php
 	}
 }
@@ -811,40 +858,6 @@ if ( ! function_exists( 'shapla_default_search' ) ) {
 		}
 
 		shapla_search_form();
-	}
-}
-
-
-if ( ! function_exists( 'shapla_search_icon' ) ) {
-	/**
-	 * Filters the HTML list content for navigation menus.
-	 *
-	 * @param string $items The HTML list content for the menu items.
-	 * @param stdClass $args An object containing wp_nav_menu() arguments.
-	 *
-	 * @return string
-	 * @since 1.3.0
-	 */
-	function shapla_search_icon( $items, $args ) {
-		$show_search_icon = shapla_get_option( 'show_search_icon', false );
-		$header_layout    = shapla_get_option( 'header_layout', 'layout-1' );
-
-		if ( 'primary' == $args->theme_location && 'layout-3' != $header_layout && $show_search_icon ) {
-			ob_start();
-			?>
-			<li class="shapla-custom-menu-item shapla-main-menu-search">
-				<a href="#" id="search-toggle" class="shapla-search-toggle">
-					<span class="shapla-icon"><i class="fa fa-search"></i></span>
-				</a>
-				<div class="shapla-custom-menu-item-contents">
-					<?php shapla_search_form(); ?>
-				</div>
-			</li>
-			<?php
-			$items .= ob_get_clean();
-		}
-
-		return $items;
 	}
 }
 

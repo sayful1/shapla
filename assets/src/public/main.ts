@@ -3,6 +3,7 @@ import ShaplaNavigation from "./ShaplaNavigation";
 import ShaplaBackToTop from "./ShaplaBackToTop";
 import ShaplaStickyHeader from "./ShaplaStickyHeader";
 import ShaplaSearch from "./ShaplaSearch";
+import searchToggle from './search-toggle'
 
 // @ts-ignore
 const config = window.Shapla || {};
@@ -12,3 +13,4 @@ new ShaplaNavigation('#site-navigation', config);
 new ShaplaBackToTop('#shapla-back-to-top', config.BackToTopButton);
 new ShaplaStickyHeader("#masthead", config.stickyHeader);
 new ShaplaSearch();
+searchToggle();

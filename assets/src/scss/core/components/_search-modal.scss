@@ -1,0 +1,87 @@
+.header__search-toggle {
+	height: 3rem;
+	padding: 0;
+	width: 3rem;
+
+	&,
+	&:not(:disabled):hover {
+		background: transparent;
+		color: var(--header-text-color, #3a3a3a);
+	}
+
+	.search-toggle-icon,
+	svg {
+		width: 1.25em;
+		height: 1.25em;
+		font-size: 1.25rem;
+	}
+}
+
+.search-modal {
+	background: rgba(0, 0, 0, .25);
+	bottom: 0;
+	display: none;
+	left: -9999rem;
+	opacity: 0;
+	overflow: -moz-scrollbars-none;
+	-ms-overflow-style: none;
+	position: fixed;
+	top: 0;
+	transition: opacity .15s linear, left 0s .15s linear;
+	width: 100%;
+	z-index: 10001;
+}
+
+.search-modal.show-modal {
+	display: block;
+	left: 0;
+}
+
+.search-modal.active {
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity .2s linear;
+
+	> * {
+		cursor: default;
+	}
+}
+
+
+.search-modal.active .search-modal-inner {
+	box-shadow: 0 0 2rem 0 rgb(0 0 0 / 8%);
+	transform: translateY(0);
+	transition: transform .25s ease-in-out, box-shadow .1s .25s linear;
+}
+
+.search-modal-inner {
+	background-color: var(--header-background-color, #ffffff);
+	color: var(--header-text-color, #3a3a3a);
+	padding-top: var(--header-padding-y, 1rem);
+	padding-bottom: var(--header-padding-y, 1rem);
+	transform: translateY(-100%);
+	transition: transform .15s linear, box-shadow .15s linear;
+}
+
+.admin-bar .search-modal.active {
+	top: 32px;
+
+	@media screen and (max-width: 782px) {
+		top: 46px;
+	}
+}
+
+.shapla-header-default {
+	.header__search-toggle {
+		order: 2;
+
+		@include media('desktop') {
+			order: 3;
+			margin-left: .625rem;
+		}
+	}
+
+	.site-branding {
+		margin-right: auto;
+	}
+}

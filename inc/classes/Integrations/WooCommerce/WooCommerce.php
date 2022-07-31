@@ -80,7 +80,6 @@ class WooCommerce {
 		add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
 
 		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
-		add_filter( 'wp_nav_menu_items', array( $this, 'header_cart_icon' ), 10, 2 );
 	}
 
 	/**
@@ -173,11 +172,11 @@ class WooCommerce {
 	 */
 	public function woocommerce_scripts() {
 		wp_enqueue_style(
-			'shapla-woocommerce-style',
-			get_template_directory_uri() . '/assets/css/woocommerce.css',
-			array(),
-			SHAPLA_THEME_VERSION,
-			'all'
+				'shapla-woocommerce-style',
+				get_template_directory_uri() . '/assets/css/woocommerce.css',
+				array(),
+				SHAPLA_THEME_VERSION,
+				'all'
 		);
 
 		$font_path   = WC()->plugin_url() . '/assets/fonts/';
@@ -301,11 +300,6 @@ class WooCommerce {
 			return;
 		}
 
-		$header_layout = shapla_get_option( 'header_layout', 'layout-1' );
-		if ( $header_layout != 'layout-3' ) {
-			return;
-		}
-
 		if ( is_cart() ) {
 			$class = 'current-menu-item';
 		} else {
@@ -321,30 +315,6 @@ class WooCommerce {
 			</li>
 		</ul>
 		<?php
-	}
-
-	/**
-	 * Filters the HTML list content for navigation menus.
-	 *
-	 * @param string    $items The HTML list content for the menu items.
-	 * @param \stdClass $args An object containing wp_nav_menu() arguments.
-	 *
-	 * @return string
-	 * @since 1.3.0
-	 */
-	public function header_cart_icon( $items, $args ) {
-		$show_cart_icon = shapla_get_option( 'show_cart_icon', true );
-		$header_layout  = shapla_get_option( 'header_layout', 'layout-1' );
-
-		if ( 'primary' == $args->theme_location && $header_layout !== 'layout-3' && $show_cart_icon ) {
-			ob_start();
-			echo '<li class="shapla-custom-menu-item shapla-main-menu-cart">';
-			$this->shapla_cart_link();
-			echo '</li>';
-			$items .= ob_get_clean();
-		}
-
-		return $items;
 	}
 
 	/**

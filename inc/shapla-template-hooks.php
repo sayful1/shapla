@@ -25,6 +25,9 @@ add_action( 'shapla_header_inner', 'shapla_site_branding', 20 );
 add_action( 'shapla_header_inner', 'shapla_default_search', 25 );
 add_action( 'shapla_header_inner', 'shapla_primary_navigation', 30 );
 
+add_action( 'shapla_header_inner', 'shapla_search_toggle', 40 );
+add_action( 'shapla_before_content', 'shapla_search_modal', 10 );
+
 /**
  * Footer Widget
  *
@@ -80,11 +83,6 @@ add_action( 'shapla_search_page_content', 'shapla_archive_page_content', 10 );
  * @see  shapla_pagination()
  */
 add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
-
-/**
- * Add search icon on menu
- */
-add_filter( 'wp_nav_menu_items', 'shapla_search_icon', 10, 2 );
 
 // Add theme custom Breadcrumbs
 add_action( 'shapla_after_page_title', 'shapla_breadcrumb', 10 );
