@@ -2,6 +2,8 @@
 
 namespace Shapla\Integrations\WooCommerce;
 
+use Shapla\Helpers\SvgIcon;
+
 defined( 'ABSPATH' ) || exit;
 
 class WooCommerce {
@@ -78,6 +80,7 @@ class WooCommerce {
 
 		add_action( 'shapla_header_inner', array( $this, 'product_search_form' ), 25 );
 		add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
+		add_action( 'shapla_before_content', array( $this, 'cart_sidenav' ), 30 );
 
 		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
 	}
@@ -281,9 +284,7 @@ class WooCommerce {
 	 * @since   1.6.0
 	 */
 	public function add_to_cart_fragments( $fragments ) {
-		ob_start();
-		$this->shapla_cart_link();
-		$fragments['a.shapla-cart-contents'] = ob_get_clean();
+		$fragments['.item-count'] = '<span class="item-count">' . wp_kses_data( WC()->cart->get_cart_contents_count() ) . '</span>';
 
 		return $fragments;
 	}
@@ -300,20 +301,29 @@ class WooCommerce {
 			return;
 		}
 
-		if ( is_cart() ) {
-			$class = 'current-menu-item';
-		} else {
-			$class = '';
+		$this->shapla_cart_link();
+	}
+
+	public function cart_sidenav() {
+		$show_cart_icon = shapla_get_option( 'show_cart_icon', true );
+		if ( ! $show_cart_icon || is_cart() || is_checkout() ) {
+			return;
 		}
 		?>
-		<ul id="site-header-cart" class="site-header-cart menu">
-			<li class="<?php echo esc_attr( $class ); ?>">
-				<?php $this->shapla_cart_link(); ?>
-			</li>
-			<li>
+		<div class="site-nav">
+			<div class="site-nav-overlay"></div>
+			<div class="site-nav-body style--sidebar">
+				<div class="site-cart-heading">
+					<h4 class="title"><?php esc_html_e( 'Cart', 'shapla' ); ?></h4>
+					<button id="site-close-handle" class="site-close-handle"
+							aria-label="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>"
+							title="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>">
+						<?php echo SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
+					</button>
+				</div>
 				<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
-			</li>
-		</ul>
+			</div>
+		</div>
 		<?php
 	}
 
@@ -326,11 +336,11 @@ class WooCommerce {
 	 */
 	public function shapla_cart_link() {
 		?>
-		<a class="shapla-cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>"
-		   title="<?php esc_attr_e( 'View your shopping cart', 'shapla' ); ?>">
-			<span class="shapla-icon"><i class="fas fa-shopping-basket"></i></span>
-			<span class="count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
-		</a>
+		<button id="header__cart-toggle" class="header__cart-toggle"
+				title="<?php esc_attr_e( 'View cart', 'shapla' ); ?>">
+			<?php echo SvgIcon::get_svg( 'ui', 'shopping_cart', 24 ); ?>
+			<span class="item-count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
+		</button>
 		<?php
 	}
 

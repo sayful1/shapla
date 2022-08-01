@@ -1,31 +1,51 @@
 .shapla-header-widget {
-    .site-header-inner {
-        .site-branding {
-            display: inline-flex;
-            padding-right: 1rem;
-            align-items: center;
-        }
+	.site-header-inner {
+		.site-branding {
+			display: inline-flex;
+			padding-right: 1rem;
+			align-items: center;
+		}
 
-        .site-description {
-            margin-left: 0.5rem;
-        }
+		.site-description {
+			margin-left: 0.5rem;
+		}
 
-        .main-navigation {
-            width: 100%;
-            margin: 1rem 0 0;
-        }
+		.main-navigation {
+			width: 100%;
+			margin: 0;
+		}
 
-        .primary-menu-container {
-            display: block;
-        }
-        .search-toggle {
-            display: none;
-        }
+		.primary-menu-container {
+			display: block;
+		}
 
-        ul.primary-menu > li {
-            &:first-child > a {
-                padding-left: 0;
-            }
-        }
-    }
+		.search-toggle {
+			display: none;
+		}
+
+		ul.primary-menu > li {
+			&:first-child > a {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.site-header-cart {
+		order: 2;
+		margin-left: auto;
+	}
+
+	.menu-toggle {
+		order: 3;
+	}
+
+	@include media('tablet') {
+		.site-header-cart {
+			margin-left: .625rem;
+		}
+		.shapla-search {
+			order: 1;
+			width: 50%;
+		}
+	}
 }

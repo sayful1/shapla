@@ -276,7 +276,7 @@ class Sanitize {
 			switch ( $key ) {
 				case 'font-family':
 					$value['font-family']   = esc_attr( $val );
-					$value['font-category'] = \Shapla_Fonts::get_google_font_category( $value['font-family'] );
+					$value['font-category'] = ShaplaFonts::get_google_font_category( $value['font-family'] );
 					break;
 				case 'font-weight':
 					if ( isset( $value['variant'] ) ) {
@@ -320,7 +320,7 @@ class Sanitize {
 							'initial',
 							'inherit',
 						),
-						true 
+						true
 					) ) {
 						$value['text-transform'] = 'none';
 					}
@@ -336,7 +336,7 @@ class Sanitize {
 							'initial',
 							'inherit',
 						),
-						true 
+						true
 					) ) {
 						$value['text-transform'] = 'none';
 					}

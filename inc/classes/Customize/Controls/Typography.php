@@ -44,7 +44,7 @@ class Typography extends BaseControl {
 				'section'     => isset( $args['section'] ) ? $args['section'] : '',
 				'priority'    => isset( $args['priority'] ) ? $args['priority'] : 10,
 				'choices'     => isset( $args['choices'] ) ? $args['choices'] : array(),
-			) 
+			)
 		);
 	}
 
@@ -61,7 +61,7 @@ class Typography extends BaseControl {
 			array(
 				'standard' => $this->get_standard_fonts(),
 				'google'   => $this->get_google_fonts(),
-			) 
+			)
 		);
 	}
 
@@ -82,7 +82,7 @@ class Typography extends BaseControl {
 						'font-weight',
 						'font-style',
 					),
-					true 
+					true
 				) && ! isset( $this->json['default'][ $key ] ) ) {
 					unset( $this->json['value'][ $key ] );
 				}
@@ -97,7 +97,7 @@ class Typography extends BaseControl {
 			}
 		}
 
-		$this->json['show_variants'] = ! ( true === \Shapla_Fonts::$force_load_all_variants );
+		$this->json['show_variants'] = ! ( true === \Shapla\Helpers\ShaplaFonts::$force_load_all_variants );
 	}
 
 	/**
@@ -326,7 +326,7 @@ class Typography extends BaseControl {
 	 */
 	protected function format_variants_array( $variants ) {
 
-		$all_variants   = \Shapla_Fonts::get_all_variants();
+		$all_variants   = \Shapla\Helpers\ShaplaFonts::get_all_variants();
 		$final_variants = array();
 		foreach ( $variants as $variant ) {
 			if ( is_string( $variant ) ) {
@@ -351,7 +351,7 @@ class Typography extends BaseControl {
 	 */
 	protected function get_standard_fonts() {
 		// Add fonts to our JS objects.
-		$standard_fonts = \Shapla_Fonts::get_standard_fonts();
+		$standard_fonts = \Shapla\Helpers\ShaplaFonts::get_standard_fonts();
 
 		$std_user_keys = array();
 		if ( isset( $this->choices['fonts'] ) && isset( $this->choices['fonts']['standard'] ) ) {
@@ -365,7 +365,7 @@ class Typography extends BaseControl {
 				'italic',
 				'700',
 				'700italic',
-			) 
+			)
 		);
 		foreach ( $standard_fonts as $key => $font ) {
 			if ( ( ! empty( $std_user_keys ) && ! in_array( $key, $std_user_keys, true ) ) || ! isset( $font['stack'] ) || ! isset( $font['label'] ) ) {
@@ -392,9 +392,9 @@ class Typography extends BaseControl {
 	 */
 	protected function get_google_fonts() {
 		// Add fonts to our JS objects.
-		$google_fonts = \Shapla_Fonts::get_google_fonts();
-		$all_variants = \Shapla_Fonts::get_all_variants();
-		$all_subsets  = \Shapla_Fonts::get_google_font_subsets();
+		$google_fonts = \Shapla\Helpers\ShaplaFonts::get_google_fonts();
+		$all_variants = \Shapla\Helpers\ShaplaFonts::get_all_variants();
+		$all_subsets  = \Shapla\Helpers\ShaplaFonts::get_google_font_subsets();
 
 		$gf_user_keys = array();
 		if ( isset( $this->choices['fonts'] ) && isset( $this->choices['fonts']['google'] ) ) {

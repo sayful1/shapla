@@ -128,7 +128,7 @@ class Shapla_Assets {
 	 */
 	public function dynamic_css_variables() {
 		$colors           = \Shapla\Helpers\Colors::get_colors();
-		$fonts            = Shapla_Fonts::get_site_fonts();
+		$fonts            = shapla_fonts_css_variables();
 		$widget_styles    = static::footer_widget_dynamic_css_variables();
 		$footer_styles    = static::footer_dynamic_css_variables();
 		$title_bar_styles = static::page_title_bar_dynamic_css_variables();

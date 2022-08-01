@@ -291,6 +291,25 @@ if ( ! function_exists( 'shapla_get_post_format' ) ) {
 		return apply_filters( 'shapla_get_post_format', $post_format );
 	}
 }
+
+if ( ! function_exists( 'shapla_fonts_css_variables' ) ) {
+	/**
+	 * Get css variable for font setting
+	 *
+	 * @return array
+	 */
+	function shapla_fonts_css_variables() {
+		$css_var = get_transient( 'shapla_fonts_css_variables' );
+		if ( is_array( $css_var ) ) {
+			return $css_var;
+		}
+		$css_var = \Shapla\Helpers\ShaplaFonts::get_site_fonts();
+		set_transient( 'shapla_fonts_css_variables', $css_var );
+
+		return $css_var;
+	}
+}
+
 if ( ! function_exists( 'shapla_webfont_loader_instance' ) ) {
 	/**
 	 * Create instance of \Shapla\Helpers\WebFontLoader class.

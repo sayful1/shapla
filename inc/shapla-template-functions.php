@@ -276,7 +276,7 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 		?>
 		<button id="header__search-toggle" class="header__search-toggle" data-toggle-target=".search-modal"
 				data-set-focus=".search-modal .search-form__input" type="button" aria-controls="js-site-search">
-			<span class="search-toggle-icon"><i class="fa fa-search"></i></span>
+			<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'ui', 'search', 24 ); ?>
 			<span class="screen-reader-text">Search Toggle</span>
 		</button>
 		<?php

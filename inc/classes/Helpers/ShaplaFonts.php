@@ -1,4 +1,7 @@
 <?php
+
+namespace Shapla\Helpers;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -9,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @class        Shapla_Fonts
  * @version        1.4.0
  */
-class Shapla_Fonts {
+class ShaplaFonts {
 
 	/**
 	 * List of Google fonts

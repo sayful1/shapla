@@ -21,9 +21,6 @@ $loader = new Shapla\Autoloader();
 $loader->add_namespace( 'Shapla', SHAPLA_THEME_PATH . '/inc/classes' );
 $loader->register();
 
-
-require SHAPLA_THEME_PATH . '/inc/class-shapla-fonts.php';
-
 /**
  * Load theme base functionality
  */
@@ -43,8 +40,8 @@ require SHAPLA_THEME_PATH . '/inc/class-shapla-blog.php';
  * Load template hooks and functions file.
  */
 require SHAPLA_THEME_PATH . '/inc/shapla-functions.php';
-require SHAPLA_THEME_PATH . '/inc/shapla-template-hooks.php';
 require SHAPLA_THEME_PATH . '/inc/shapla-template-functions.php';
+require SHAPLA_THEME_PATH . '/inc/shapla-template-hooks.php';
 
 /**
  * Load theme scripts and styles

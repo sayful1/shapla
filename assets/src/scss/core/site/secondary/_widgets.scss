@@ -24,7 +24,7 @@
 		}
 	}
 
-	a {
+	a:not(.button) {
 		color: $text-primary;
 		text-decoration: none;
 

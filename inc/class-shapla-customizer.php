@@ -1,5 +1,7 @@
 <?php
 
+use Shapla\Helpers\ShaplaFonts;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -103,6 +105,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 			// Delete Fonts transient
 			delete_transient( 'shapla_google_fonts' );
+			delete_transient( 'shapla_fonts_css_variables' );
 			shapla_webfont_loader_instance()->delete_fonts_folder();
 		}
 
@@ -312,7 +315,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 					continue;
 				}
 
-				if ( ! Shapla_Fonts::is_google_font( $value['font-family'] ) ) {
+				if ( ! ShaplaFonts::is_google_font( $value['font-family'] ) ) {
 					continue;
 				}
 
