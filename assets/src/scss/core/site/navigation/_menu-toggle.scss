@@ -6,29 +6,30 @@
 	height: 3rem;
 	position: relative;
 	width: 3rem;
+	font-size: 1.25rem;
 
 	span {
 		background-color: currentColor;
 		display: block;
-		height: 1px;
-		left: calc(50% - 8px);
+		height: 2px;
+		left: calc(50% - .5em);
 		position: absolute;
 		transform-origin: center;
 		transition-duration: 86ms;
 		transition-property: background-color, opacity, transform;
 		transition-timing-function: ease-out;
-		width: 16px;
+		width: 1em;
 
 		&:nth-child(1) {
-			top: calc(50% - 6px);
+			top: calc(50% - .375em);
 		}
 
 		&:nth-child(2) {
-			top: calc(50% - 1px);
+			top: calc(50% - .0625em);
 		}
 
 		&:nth-child(3) {
-			top: calc(50% + 4px);
+			top: calc(50% + .25em);
 		}
 
 	}
@@ -36,7 +37,7 @@
 	&.toggled-on {
 		span {
 			&:nth-child(1) {
-				transform: translateY(5px) rotate(45deg);
+				transform: translateY(.3125em) rotate(45deg);
 			}
 
 			&:nth-child(2) {
@@ -44,7 +45,7 @@
 			}
 
 			&:nth-child(3) {
-				transform: translateY(-5px) rotate(-45deg);
+				transform: translateY(-.3125em) rotate(-45deg);
 			}
 		}
 	}

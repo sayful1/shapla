@@ -19,6 +19,23 @@
 .search-drawer-inner {
 	padding-top: var(--header-padding-y, 1rem);
 	padding-bottom: var(--header-padding-y, 1rem);
+
+	.search-form {
+		display: flex;
+	}
+
+	input[type=search] {
+		width: calc(100% - 4rem);
+	}
+
+	.search-form button[type=submit] {
+		position: static !important;
+		padding: 0;
+		width: 3rem;
+		height: 3rem;
+		margin-left: 1rem;
+		flex-shrink: 0;
+	}
 }
 
 .shapla-header-default {

@@ -103,9 +103,9 @@
 }
 
 body.admin-bar {
-	.shapla-drawer--top .shapla-drawer__body,
-	.shapla-drawer--right .shapla-drawer__body,
-	.shapla-drawer--left .shapla-drawer__body {
+	.is-active.shapla-drawer--top .shapla-drawer__body,
+	.is-active.shapla-drawer--right .shapla-drawer__body,
+	.is-active.shapla-drawer--left .shapla-drawer__body {
 		top: 32px;
 
 		@media screen and (max-width: 782px) {
@@ -113,8 +113,8 @@ body.admin-bar {
 		}
 	}
 
-	.shapla-drawer--right .shapla-drawer__body,
-	.shapla-drawer--left .shapla-drawer__body {
+	.is-active.shapla-drawer--right .shapla-drawer__body,
+	.is-active.shapla-drawer--left .shapla-drawer__body {
 		height: calc(100% - 32px);
 
 		@media screen and (max-width: 782px) {

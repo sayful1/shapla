@@ -40,7 +40,7 @@
 		position: absolute;
 		z-index: 10;
 		color: $text-icon;
-		top: 0.75em;
+		top: calc(50% - 0.5em);
 		left: 0.75em;
 	}
 }
