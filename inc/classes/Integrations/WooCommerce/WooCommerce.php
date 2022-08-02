@@ -310,18 +310,23 @@ class WooCommerce {
 			return;
 		}
 		?>
-		<div class="site-nav">
-			<div class="site-nav-overlay"></div>
-			<div class="site-nav-body style--sidebar">
-				<div class="site-cart-heading">
-					<h4 class="title"><?php esc_html_e( 'Cart', 'shapla' ); ?></h4>
-					<button id="site-close-handle" class="site-close-handle"
-							aria-label="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>"
-							title="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>">
-						<?php echo SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
-					</button>
+		<div id="drawer-cart" class="shapla-drawer shapla-drawer--right drawer-cart" tabindex="-1"
+			 aria-hidden="true">
+			<div class="shapla-drawer__background"></div>
+			<div class="shapla-drawer__body">
+				<div class="shapla-drawer__content">
+					<div class="drawer-cart-content">
+						<div class="drawer-cart-heading">
+							<h4 class="drawer-cart-title"><?php esc_html_e( 'Cart', 'shapla' ); ?></h4>
+							<button class="drawer-cart-close" data-dismiss="drawer"
+									aria-label="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>"
+									title="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>">
+								<?php echo SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
+							</button>
+						</div>
+						<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
+					</div>
 				</div>
-				<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
 			</div>
 		</div>
 		<?php
@@ -336,7 +341,7 @@ class WooCommerce {
 	 */
 	public function shapla_cart_link() {
 		?>
-		<button id="header__cart-toggle" class="header__cart-toggle"
+		<button id="header__cart-toggle" class="header__cart-toggle" data-toggle="drawer" data-target="#drawer-cart"
 				title="<?php esc_attr_e( 'View cart', 'shapla' ); ?>">
 			<?php echo SvgIcon::get_svg( 'ui', 'shopping_cart', 24 ); ?>
 			<span class="item-count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
