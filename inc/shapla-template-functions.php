@@ -275,7 +275,8 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 		}
 		?>
 		<button id="header__search-toggle" class="header__search-toggle" data-toggle-target=".search-modal"
-				data-set-focus=".search-modal .search-form__input" type="button" aria-controls="js-site-search">
+				data-toggle="drawer" data-target="#drawer-search"
+				data-set-focus=".drawer-search .search-form__input" type="button" aria-controls="js-site-search">
 			<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'ui', 'search', 24 ); ?>
 			<span class="screen-reader-text">Search Toggle</span>
 		</button>
@@ -294,39 +295,46 @@ if ( ! function_exists( 'shapla_search_modal' ) ) {
 			return;
 		}
 		?>
-		<div class="search-modal" data-modal-target-string=".search-modal" aria-expanded="false">
-			<div class="search-modal-inner">
-				<div class="shapla-container">
-					<div id="js-site-search" class="site-search" itemscope itemtype="https://schema.org/WebSite">
-						<form role="search" id="searchform" class="search-form" method="get"
-							  action="<?php echo esc_url( home_url( '/' ) ) ?>">
-							<meta itemprop="target" content="<?php echo esc_url( home_url( '/?s={s}' ) ) ?>">
-							<label for="search-field" class="screen-reader-text">
-								<?php _ex( 'Search for:', 'label', 'shapla' ) ?>
-							</label>
-							<input itemprop="query-input" type="search" id="search-field"
-								   class="input input--search search-form__input" autocomplete="off"
-								   placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' ) ?>"
-								   value="<?php the_search_query() ?>" name="s">
-							<button type="submit" class="search-input__button">
-								<span class="search-input__label">Submit</span>
-								<svg role="img" class="search-input__arrow-icon" width="30" height="28"
-									 viewBox="0 0 30 28" fill="inherit" xmlns="http://www.w3.org/2000/svg">
-									<g clip-path="url(#clip0)">
-										<path d="M16.1279 0L29.9121 13.7842L16.1279 27.5684L14.8095 26.25L26.3378 14.7217H-6.10352e-05V12.8467H26.3378L14.8095 1.31844L16.1279 0Z"
-											  fill="inherit"></path>
-									</g>
-									<defs>
-										<clipPath id="clip0">
-											<rect width="29.9121" height="27.5684" fill="white"></rect>
-										</clipPath>
-									</defs>
-								</svg>
-							</button>
-						</form>
+		<div id="drawer-search" class="shapla-drawer shapla-drawer--top drawer-search" tabindex="-1"
+			 aria-hidden="true">
+			<div class="shapla-drawer__background"></div>
+			<div class="shapla-drawer__body">
+				<div class="shapla-drawer__content">
+					<div class="search-drawer-inner">
+						<div class="shapla-container">
+							<div id="js-site-search" class="site-search" itemscope
+								 itemtype="https://schema.org/WebSite">
+								<form role="search" id="searchform" class="search-form" method="get"
+									  action="<?php echo esc_url( home_url( '/' ) ) ?>">
+									<meta itemprop="target" content="<?php echo esc_url( home_url( '/?s={s}' ) ) ?>">
+									<label for="search-field" class="screen-reader-text">
+										<?php _ex( 'Search for:', 'label', 'shapla' ) ?>
+									</label>
+									<input itemprop="query-input" type="search" id="search-field"
+										   class="input input--search search-form__input" autocomplete="off"
+										   placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' ) ?>"
+										   value="<?php the_search_query() ?>" name="s">
+									<button type="submit" class="search-input__button">
+										<span class="search-input__label">Submit</span>
+										<svg role="img" class="search-input__arrow-icon" width="30" height="28"
+											 viewBox="0 0 30 28" fill="inherit" xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0)">
+												<path d="M16.1279 0L29.9121 13.7842L16.1279 27.5684L14.8095 26.25L26.3378 14.7217H-6.10352e-05V12.8467H26.3378L14.8095 1.31844L16.1279 0Z"
+													  fill="inherit"></path>
+											</g>
+											<defs>
+												<clipPath id="clip0">
+													<rect width="29.9121" height="27.5684" fill="white"></rect>
+												</clipPath>
+											</defs>
+										</svg>
+									</button>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div><!-- .search-modal-inner -->
+			</div>
 		</div>
 		<?php
 	}

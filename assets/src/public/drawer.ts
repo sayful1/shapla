@@ -7,6 +7,16 @@ const toggleSidenav = (drawerElement: HTMLElement) => {
 		drawerElement.removeAttribute('aria-hidden');
 	}
 }
+const focusInputElement = (selector: string) => {
+	const focusElement = document.querySelector(selector) as HTMLInputElement;
+
+	if (focusElement) {
+		const searchTerm = focusElement.value as string;
+		focusElement.value = '';
+		focusElement.focus();
+		focusElement.value = searchTerm;
+	}
+}
 const openSidenav = () => {
 	const toggles = document.querySelectorAll('[data-toggle="drawer"]');
 	if (!toggles.length) {
@@ -14,9 +24,14 @@ const openSidenav = () => {
 	}
 	toggles.forEach((toggle: HTMLElement) => {
 		toggle.addEventListener('click', () => {
-			const drawerEl = document.querySelector(toggle.getAttribute('data-target')) as HTMLElement;
+			const drawerEl = document.querySelector(toggle.dataset.target) as HTMLElement;
 			if (drawerEl) {
 				toggleSidenav(drawerEl);
+				setTimeout(() => {
+					if (toggle.dataset.setFocus) {
+						focusInputElement(toggle.dataset.setFocus);
+					}
+				}, 10)
 			}
 		})
 	})
@@ -35,7 +50,7 @@ const closeSidenav = () => {
 	})
 
 	// Close modal on escape key press.
-	document.addEventListener('keyup', (event) => {
+	document.addEventListener('keyup', (event: KeyboardEvent) => {
 		if (event.keyCode === 27) {
 			event.preventDefault();
 			document.querySelectorAll('.shapla-drawer.is-active').forEach((element: HTMLElement) => {

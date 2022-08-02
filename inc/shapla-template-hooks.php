@@ -26,7 +26,6 @@ add_action( 'shapla_header_inner', 'shapla_default_search', 25 );
 add_action( 'shapla_header_inner', 'shapla_primary_navigation', 30 );
 
 add_action( 'shapla_header_inner', 'shapla_search_toggle', 40 );
-add_action( 'shapla_before_content', 'shapla_search_modal', 10 );
 
 /**
  * Footer Widget
@@ -87,7 +86,8 @@ add_action( 'shapla_loop_after', 'shapla_pagination', 10 );
 // Add theme custom Breadcrumbs
 add_action( 'shapla_after_page_title', 'shapla_breadcrumb', 10 );
 
-add_action( 'wp_footer', 'shapla_scroll_to_top_button', 1 );
+add_action( 'wp_footer', 'shapla_search_modal', 1 );
+add_action( 'wp_footer', 'shapla_scroll_to_top_button', 2 );
 
 // 404 page
 add_action( 'shapla_404_page_content', 'shapla_404_page_content', 10 );

@@ -80,7 +80,7 @@ class WooCommerce {
 
 		add_action( 'shapla_header_inner', array( $this, 'product_search_form' ), 25 );
 		add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
-		add_action( 'shapla_before_content', array( $this, 'cart_sidenav' ), 30 );
+		add_action( 'wp_footer', array( $this, 'cart_sidenav' ), 1 );
 
 		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
 	}
