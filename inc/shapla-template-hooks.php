@@ -25,6 +25,7 @@ add_action( 'shapla_header_inner', 'shapla_site_branding', 20 );
 add_action( 'shapla_header_inner', 'shapla_default_search', 25 );
 add_action( 'shapla_header_inner', 'shapla_primary_navigation', 30 );
 
+add_action( 'shapla_header_inner', 'shapla_mobile_navigation_toggle', 40 );
 add_action( 'shapla_header_inner', 'shapla_search_toggle', 40 );
 
 /**

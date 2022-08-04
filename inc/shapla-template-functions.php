@@ -220,11 +220,6 @@ if ( ! function_exists( 'shapla_primary_navigation' ) ) {
 		$nav_class = 'main-navigation';
 		$nav_class .= $dropdown_direction == 'rtl' ? ' dropdown-rtl' : ' dropdown-ltr';
 		?>
-		<a role="button" class="menu-toggle" data-target="#site-navigation" aria-label="menu">
-			<span aria-hidden="true"></span>
-			<span aria-hidden="true"></span>
-			<span aria-hidden="true"></span>
-		</a>
 		<nav id="site-navigation" class="<?php echo esc_attr( $nav_class ); ?>" role="navigation">
 			<?php
 			wp_nav_menu(
@@ -302,25 +297,46 @@ if ( ! function_exists( 'shapla_search_modal' ) ) {
 				<div class="shapla-drawer__content">
 					<div class="search-drawer-inner">
 						<div class="shapla-container">
-							<div id="js-site-search" class="site-search" itemscope
-								 itemtype="https://schema.org/WebSite">
-								<form role="search" id="searchform" class="search-form" method="get"
-									  action="<?php echo esc_url( home_url( '/' ) ) ?>">
-									<meta itemprop="target" content="<?php echo esc_url( home_url( '/?s={s}' ) ) ?>">
-									<label for="search-field" class="screen-reader-text">
-										<?php _ex( 'Search for:', 'label', 'shapla' ) ?>
-									</label>
-									<input itemprop="query-input" type="search" id="search-field"
-										   class="input input--search search-form__input" autocomplete="off"
-										   placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' ) ?>"
-										   value="<?php the_search_query() ?>" name="s">
-									<button type="submit" class="search-input__button alt">
-										<span class="search-input__label screen-reader-text">Submit</span>
-										<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'ui', 'arrow_forward', 24 ) ?>
-									</button>
-								</form>
-							</div>
+							<?php get_search_form( [ 'echo' => true ] ) ?>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'shapla_mobile_navigation_toggle' ) ) {
+	function shapla_mobile_navigation_toggle() {
+		?>
+		<button class="header__nav-toggle button is-icon menu-toggle" data-toggle="drawer"
+				data-target="#drawer-navigation" aria-label="menu">
+			<?php echo Shapla\Helpers\SvgIcon::get_svg( 'ui', 'menu', 24 ) ?>
+		</button>
+		<?php
+
+		add_action( 'wp_footer', 'shapla_mobile_navigation', 1 );
+	}
+}
+
+if ( ! function_exists( 'shapla_mobile_navigation' ) ) {
+	function shapla_mobile_navigation() {
+		?>
+		<div id="drawer-navigation" class="shapla-drawer shapla-drawer--left drawer-navigation" tabindex="-1"
+			 aria-hidden="true">
+			<div class="shapla-drawer__background"></div>
+			<div class="shapla-drawer__body">
+				<div class="shapla-drawer__content">
+					<div class="drawer-navigation-content">
+						<div class="drawer-navigation-heading">
+							<button class="is-icon" data-dismiss="drawer"
+									aria-label="<?php esc_attr_e( 'Close menu', 'shapla' ); ?>"
+									title="<?php esc_attr_e( 'Close menu', 'shapla' ); ?>">
+								<?php echo Shapla\Helpers\SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
+							</button>
+						</div>
+						<nav id="site-mobile-navigation" class="main-navigation toggled-on" role="navigation"></nav>
 					</div>
 				</div>
 			</div>

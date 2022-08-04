@@ -24,13 +24,6 @@ input[type="submit"] {
 			position: absolute !important;
 		}
 	}
-
-	&.alt {
-		--shapla-button-color: #{$primary};
-		--shapla-button-color-dark: #{$primary-variant};
-		--shapla-button-color-alpha: #{$primary-alpha};
-		--shapla-button-on-color: #{$on-primary};
-	}
 }
 
 .wc-forward {

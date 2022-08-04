@@ -261,3 +261,10 @@
 		display: none;
 	}
 }
+
+
+.drawer-navigation-content {
+	max-width: 400px;
+	padding: 1rem;
+	width: calc(100vw - 3rem);
+}

@@ -19,14 +19,14 @@
 		content: "";
 		background-color: currentColor;
 		display: block;
-		height: 1px;
-		left: calc(50% - 8px);
+		height: 2px;
+		left: calc(50% - .5rem);
 		position: absolute;
 		transform-origin: center;
 		transition-duration: 86ms;
 		transition-property: background-color, opacity, transform;
 		transition-timing-function: ease-out;
-		width: 16px;
+		width: 1rem;
 	}
 
 	&:before {
@@ -39,14 +39,14 @@
 		}
 	}
 
-	&:hover,
-	&:focus {
+	&:not(:disabled):hover,
+	&:not(:disabled):focus {
 		background-color: transparent;
 		box-shadow: none;
 		color: var(--header-accent-color, #{$primary});
 	}
 
-	&:focus {
+	&:not(:disabled):focus {
 		color: var(--header-accent-color, #{$primary});
 		outline: thin dotted;
 		outline-offset: -1px;
