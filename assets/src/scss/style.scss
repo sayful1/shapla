@@ -62,7 +62,10 @@
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
-@import "core/site/navigation/navigation";
+@import "core/site/navigation/links";
+@import "core/site/navigation/primary-menu";
+@import "core/site/navigation/social-menus";
+@import "core/site/navigation/pagination";
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/

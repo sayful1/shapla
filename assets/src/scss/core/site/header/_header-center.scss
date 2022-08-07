@@ -40,4 +40,15 @@
 			justify-content: center;
 		}
 	}
+
+	@include media('desktop') {
+		.site-header-inner {
+			position: relative;
+		}
+		.header__extras {
+			position: absolute;
+			top: 1rem;
+			right: 0;
+		}
+	}
 }

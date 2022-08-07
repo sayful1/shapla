@@ -1,21 +1,3 @@
-.header__search-toggle {
-	height: 3rem;
-	padding: 0;
-	width: 3rem;
-
-	&,
-	&:not(:disabled):hover {
-		background: transparent;
-		color: var(--header-text-color, #3a3a3a);
-	}
-
-	svg {
-		width: 1.25em;
-		height: 1.25em;
-		font-size: 1.25rem;
-	}
-}
-
 .search-drawer-inner {
 	padding-top: var(--header-padding-y, 1rem);
 	padding-bottom: var(--header-padding-y, 1rem);
@@ -39,15 +21,6 @@
 }
 
 .shapla-header-default {
-	.header__search-toggle {
-		order: 2;
-
-		@include media('desktop') {
-			order: 3;
-			margin-left: .625rem;
-		}
-	}
-
 	.site-branding {
 		margin-right: auto;
 	}

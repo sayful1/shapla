@@ -252,6 +252,16 @@ if ( ! function_exists( 'shapla_skip_links' ) ) {
 	}
 }
 
+if ( ! function_exists( 'shapla_header_extras' ) ) {
+	function shapla_header_extras() {
+		?>
+		<div class="header__extras">
+			<?php do_action( 'shapla_header_extras' ); ?>
+		</div>
+		<?php
+	}
+}
+
 if ( ! function_exists( 'shapla_search_toggle' ) ) {
 	/**
 	 * Shapla Search toggle icon
@@ -269,7 +279,7 @@ if ( ! function_exists( 'shapla_search_toggle' ) ) {
 			return;
 		}
 		?>
-		<button id="header__search-toggle" class="header__search-toggle" data-toggle-target=".search-modal"
+		<button id="header__search-toggle" class="header__search-toggle is-icon" data-toggle-target=".search-modal"
 				data-toggle="drawer" data-target="#drawer-search"
 				data-set-focus=".drawer-search .search-form__input" type="button" aria-controls="js-site-search">
 			<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'ui', 'search', 24 ); ?>
@@ -336,7 +346,7 @@ if ( ! function_exists( 'shapla_mobile_navigation' ) ) {
 								<?php echo Shapla\Helpers\SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
 							</button>
 						</div>
-						<nav id="site-mobile-navigation" class="main-navigation toggled-on" role="navigation"></nav>
+						<nav id="site-mobile-navigation" class="main-navigation is-vertical toggled-on" role="navigation"></nav>
 					</div>
 				</div>
 			</div>

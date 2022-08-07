@@ -79,8 +79,7 @@ class WooCommerce {
 		add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
 
 		add_action( 'shapla_header_inner', array( $this, 'product_search_form' ), 25 );
-		add_action( 'shapla_header_inner', array( $this, 'header_cart' ), 30 );
-		add_action( 'wp_footer', array( $this, 'cart_sidenav' ), 1 );
+		add_action( 'shapla_header_extras', array( $this, 'header_cart' ), 30 );
 
 		add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'add_to_cart_fragments' ) );
 	}
@@ -302,6 +301,7 @@ class WooCommerce {
 		}
 
 		$this->shapla_cart_link();
+		add_action( 'wp_footer', array( $this, 'cart_sidenav' ), 1 );
 	}
 
 	public function cart_sidenav() {
@@ -318,7 +318,7 @@ class WooCommerce {
 					<div class="drawer-cart-content">
 						<div class="drawer-cart-heading">
 							<h4 class="drawer-cart-title"><?php esc_html_e( 'Cart', 'shapla' ); ?></h4>
-							<button class="drawer-cart-close" data-dismiss="drawer"
+							<button class="is-icon drawer-cart-close" data-dismiss="drawer"
 									aria-label="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>"
 									title="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>">
 								<?php echo SvgIcon::get_svg( 'ui', 'close', 24 ) ?>

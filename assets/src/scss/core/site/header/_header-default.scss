@@ -119,8 +119,12 @@
 		margin: 1rem 0.5rem 1rem auto;
 	}
 
+	.header__extras {
+		order: 8;
+	}
+
 	.menu-toggle {
-		order: 9;
+		//order: 9;
 	}
 
 	.main-navigation {

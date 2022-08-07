@@ -1,3 +1,58 @@
+// Drop Toggle button
+.dropdown-toggle {
+	color: var(--header-text-color, #{$color--dark_grey});
+	cursor: pointer;
+	display: block;
+	height: 3rem;
+	width: 3rem;
+
+	background-color: transparent;
+	border: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+
+	&:before,
+	&:after {
+		content: "";
+		background-color: currentColor;
+		display: block;
+		height: 2px;
+		left: calc(50% - .5rem);
+		position: absolute;
+		transform-origin: center;
+		transition-duration: 86ms;
+		transition-property: background-color, opacity, transform;
+		transition-timing-function: ease-out;
+		width: 1rem;
+	}
+
+	&:before {
+		transform: rotate(90deg);
+	}
+
+	&.toggled-on {
+		&:before {
+			transform: rotate(180deg);
+		}
+	}
+
+	&:not(:disabled):hover,
+	&:not(:disabled):focus {
+		background-color: transparent;
+		box-shadow: none;
+		color: var(--header-accent-color, #{$primary});
+	}
+
+	&:not(:disabled):focus {
+		color: var(--header-accent-color, #{$primary});
+		outline: thin dotted;
+		outline-offset: -1px;
+	}
+}
+
 // Main Navigation style for small screen
 .main-navigation {
 	display: none;
@@ -72,7 +127,7 @@
  */
 @media screen and (min-width: $nav-toggle-width) {
 
-	.main-navigation {
+	.main-navigation:not(.is-vertical) {
 		margin: 0;
 
 		// Add Down Angle Icon on menu item that has children
@@ -206,7 +261,7 @@
 	}
 
 	// Left to Right dropdown direction
-	.main-navigation.dropdown-ltr {
+	.main-navigation:not(.is-vertical).dropdown-ltr {
 		li {
 			&:hover > ul,
 			&.focus > ul {
@@ -231,7 +286,7 @@
 	}
 
 	// Right to Left dropdown direction
-	.main-navigation.dropdown-rtl {
+	.main-navigation:not(.is-vertical).dropdown-rtl {
 		li {
 			&:hover > ul,
 			&.focus > ul {
@@ -255,8 +310,13 @@
 		}
 	}
 
+	.main-navigation:not(.is-vertical) {
+		.dropdown-toggle {
+			display: none;
+		}
+	}
+
 	// Hide both dropdown toggle and menu toggle on large screen
-	.dropdown-toggle,
 	.menu-toggle {
 		display: none;
 	}
@@ -267,4 +327,14 @@
 	max-width: 400px;
 	padding: 1rem;
 	width: calc(100vw - 3rem);
+
+	ul.primary-menu > li {
+		> a {
+			font-weight: $headings-font-weight;
+		}
+
+		&:not(:last-child) {
+			border-bottom: 1px solid rgba(#000, .08);
+		}
+	}
 }
