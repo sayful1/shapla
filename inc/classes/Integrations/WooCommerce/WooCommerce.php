@@ -78,6 +78,7 @@ class WooCommerce {
 		remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 		add_action( 'woocommerce_after_cart', 'woocommerce_cross_sell_display' );
 
+		add_action( 'shapla_search_form_before_submit', array( $this, 'product_search_form_post_type' ), 25 );
 		add_action( 'shapla_header_inner', array( $this, 'product_search_form' ), 25 );
 		add_action( 'shapla_header_extras', array( $this, 'header_cart' ), 30 );
 
@@ -300,6 +301,7 @@ class WooCommerce {
 			return;
 		}
 
+		$this->my_account_link();
 		$this->shapla_cart_link();
 		add_action( 'wp_footer', array( $this, 'cart_sidenav' ), 1 );
 	}
@@ -350,6 +352,20 @@ class WooCommerce {
 	}
 
 	/**
+	 * My account page link
+	 *
+	 * @return void
+	 */
+	public function my_account_link() {
+		?>
+		<a id="header__my-account" class="button is-icon" title="<?php esc_attr_e( 'View dashboard', 'shapla' ); ?>"
+		   href="<?php echo get_permalink( wc_get_page_id( 'myaccount' ) ); ?>">
+			<?php echo SvgIcon::get_svg( 'ui', 'person', 24 ); ?>
+		</a>
+		<?php
+	}
+
+	/**
 	 * WooCommerce Product Search
 	 *
 	 * @return  void
@@ -362,5 +378,14 @@ class WooCommerce {
 		}
 
 		shapla_search_form();
+	}
+
+	/**
+	 * Add post type hidden field for WooCommerce search form
+	 *
+	 * @return void
+	 */
+	public function product_search_form_post_type() {
+		?><input type="hidden" name="post_type" value="product"/><?php
 	}
 }

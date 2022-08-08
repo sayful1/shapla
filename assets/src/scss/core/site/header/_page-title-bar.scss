@@ -63,7 +63,7 @@
 		text-transform: var(--title-bar-text-transform, none);
 	}
 
-	@media screen and (min-width: $screen-sm) {
+	@include media('tablet-small') {
 		padding-top: var(--title-bar-padding, 2rem);
 		padding-bottom: var(--title-bar-padding, 2rem);
 

@@ -125,7 +125,7 @@
  * Main navigation style for large screen
  * media screen >= 1025px
  */
-@media screen and (min-width: $nav-toggle-width) {
+@include media('desktop') {
 
 	.main-navigation:not(.is-vertical) {
 		margin: 0;

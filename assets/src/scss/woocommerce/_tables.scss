@@ -110,7 +110,7 @@
 	}
 }
 
-@media only screen and (max-width: $screen-md - 1px) {
+@include media('mobile') {
 	table.shop_table_responsive {
 		thead,
 		tbody th {

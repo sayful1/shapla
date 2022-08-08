@@ -19,10 +19,10 @@
 	}
 
 	.menu-toggle {
-		margin-left: .625rem;
+		order: -1;
 	}
 
-	@media screen and (min-width: $nav-toggle-width) {
+	@include media('desktop') {
 		.site-branding,
 		.site-title {
 			flex-grow: 1;

@@ -11,14 +11,14 @@
         padding: 0 1rem;
         flex: 1 0 100%;
 
-        @media screen and (min-width: $screen-sm) {
+        @include media('tablet-small') {
             flex: 1 0 50%;
         }
-        @media screen and (min-width: $screen-lg) {
+        @include media('desktop') {
             flex: 1 0 33.333333%;
         }
 
-        @media screen and (min-width: $screen-xl) {
+        @include media('wide') {
             flex: 1 0 25%;
         }
     }

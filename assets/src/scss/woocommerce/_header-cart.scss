@@ -25,6 +25,19 @@
 	}
 }
 
+.header__wishlist-toggle {
+	.wishlist-item-count {
+		display: block;
+		font-size: 11px;
+		letter-spacing: 0;
+		line-height: 1;
+		position: absolute;
+		right: 0.3rem;
+		text-align: right;
+		top: 0.3rem;
+	}
+}
+
 .drawer-cart {
 
 	&-content {

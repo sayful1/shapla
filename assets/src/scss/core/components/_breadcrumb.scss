@@ -80,7 +80,7 @@ $breadcrumb-item-separator-color: $text-primary !default;
 		}
 	}
 
-	@media screen and (max-width: $screen-md - 1px) {
+	@include media('mobile') {
 		&.is-hidden-mobile {
 			display: none;
 		}

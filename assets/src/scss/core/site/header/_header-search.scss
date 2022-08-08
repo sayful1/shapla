@@ -6,7 +6,7 @@
 	z-index: 1;
 	margin-left: auto;
 
-	@media screen and (min-width: $nav-toggle-width) {
+	@include media('desktop') {
 		order: 1;
 		padding: 1rem 0 1rem 1rem;
 		width: 50%;

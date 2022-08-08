@@ -23,20 +23,20 @@
 		flex: 0 0 100%;
 		max-width: 100%;
 
-		@media screen and (min-width: $screen-sm) {
+		@include media('tablet-small') {
 			flex: 0 0 calc(100% / 2);
 			max-width: calc(100% / 2);
 		}
 
-		@media screen and (min-width: $screen-md) {
+		@include media('tablet') {
 			flex: 0 0 calc(100% / 2);
 			max-width: calc(100% / 2);
 		}
-		@media screen and (min-width: $screen-lg) {
+		@include media('desktop') {
 			flex: 0 0 calc(100% / 2);
 			max-width: calc(100% / 2);
 		}
-		@media screen and (min-width: $screen-xl) {
+		@include media('wide') {
 			flex: 0 0 calc(100% / 3);
 			max-width: calc(100% / 3);
 		}

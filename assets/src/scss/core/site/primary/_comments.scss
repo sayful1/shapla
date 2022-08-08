@@ -142,7 +142,7 @@
 	}
 }
 
-@media screen and (min-width: $screen-md) {
+@include media('tablet') {
 	.comment-list {
 
 		.comment {

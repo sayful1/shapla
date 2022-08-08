@@ -58,7 +58,7 @@
 	}
 
 	// The sticky class is added to the header with JS when it reaches its scroll position
-	@media screen and (min-width: $nav-toggle-width) {
+	@include media('desktop') {
 		&.header--not-top {
 			box-shadow: 0 3px 3px rgba(#000, 0.25);
 		}
@@ -134,7 +134,7 @@
 	}
 
 	// media screen >= 1025px
-	@media screen and (min-width: $nav-toggle-width) {
+	@include media('desktop') {
 		.site-branding {
 			order: 1;
 		}

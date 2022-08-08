@@ -9,6 +9,7 @@
 			   class="input input--search search-form__input" value="<?php the_search_query() ?>" name="s"
 			   placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'shapla' ) ?>"
 		>
+		<?php do_action( 'shapla_search_form_before_submit' ); ?>
 		<button type="submit" class="search-input__button alt">
 			<span class="search-input__label screen-reader-text">
 				<?php echo esc_html_x( 'Submit', 'submit button', 'shapla' ) ?>
