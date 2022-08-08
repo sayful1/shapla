@@ -5,131 +5,79 @@
  * Theme Name: Shapla
  * Description: Theme main style file
  */
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-# Typography
-# Table
-# Button
-# Forms
-# Layout
-# Navigation
-	## Links
-	## Menus
-# Accessibility
-# Alignments
-# Clearings
-# Header
-# Breadcrumb
-# Widgets
-# Content
-	## Posts and pages
-	## Comments
-# Infinite scroll
-# Media
-	## Captions
-	## Galleries
-# Modules
---------------------------------------------------------------*/
 
 @import "utilities/variables";
 @import "utilities/mixins";
+
 /*--------------------------------------------------------------
-# Typography
+# Base styles
 --------------------------------------------------------------*/
 @import "core/base/typography";
+@import "core/base/table";
+@import "core/base/button";
+@import "core/base/forms";
+
 /*--------------------------------------------------------------
-# Table
+# Components
 --------------------------------------------------------------*/
-@import "core/components/table";
-/*--------------------------------------------------------------
-# Button
---------------------------------------------------------------*/
-@import "core/forms/button";
-/*--------------------------------------------------------------
-# Forms
---------------------------------------------------------------*/
-@import "core/forms/forms";
-/*--------------------------------------------------------------
-# Layout
---------------------------------------------------------------*/
+@import "core/components/visibility";
 @import "core/components/container";
 @import "core/components/drawer";
-@import "core/components/search-modal";
-@import "core/site/layout/default";
-@import "core/site/layout/boxed";
-@import "core/site/secondary/layout-widget";
+@import 'core/components/breadcrumb';
+@import "core/components/scroll-to-top";
+@import "core/components/infinite-scroll";
+
+@include shapla.columns();
+@include shapla.icon-container();
+
+/*--------------------------------------------------------------
+# WordPress Components
+--------------------------------------------------------------*/
+@import "core/modules/accessibility";
+@import "core/modules/alignments";
+@import "core/modules/clearings";
+@import "core/modules/media";
+@import "core/modules/captions";
+@import "core/modules/galleries";
+
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
-@import "core/site/navigation/links";
-@import "core/site/navigation/primary-menu";
-@import "core/site/navigation/social-menus";
-@import "core/site/navigation/pagination";
-/*--------------------------------------------------------------
-# Accessibility
---------------------------------------------------------------*/
-@import "core/modules/accessibility";
-/*--------------------------------------------------------------
-# Alignments
---------------------------------------------------------------*/
-@import "core/modules/alignments";
-/*--------------------------------------------------------------
-# Clearings
---------------------------------------------------------------*/
-@import "core/modules/clearings";
+@import "core/navigation/links";
+@import "core/navigation/primary-menu";
+@import "core/navigation/social-menus";
+@import "core/navigation/pagination";
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-@import "core/site/header/header-default";
-@import "core/site/header/header-center";
-@import "core/site/header/header-widget";
-@import "core/site/header/header-search";
-@import "core/site/header/page-title-bar";
-/*--------------------------------------------------------------
-# Breadcrumb
---------------------------------------------------------------*/
-@import 'core/components/breadcrumb';
-/*--------------------------------------------------------------
-# Widgets
---------------------------------------------------------------*/
-@import "core/site/secondary/widgets";
+@import "core/header/header-default";
+@import "core/header/header-center";
+@import "core/header/header-widget";
+@import "core/header/header-search";
+@import "core/header/page-title-bar";
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
-@import "core/site/primary/posts-and-pages";
-@import "core/site/primary/404";
-@import "core/site/primary/blog-grid";
-@import "core/site/primary/entry-meta";
-@import "core/site/primary/page-links";
+@import "core/site/layout";
+@import "core/site/posts-and-pages";
+@import "core/site/404";
+@import "core/site/blog-grid";
+@import "core/site/entry-meta";
+@import "core/site/page-links";
+@import "core/site/widgets";
+
 /*--------------------------------------------------------------
 ## Comments
 --------------------------------------------------------------*/
-@import "core/site/primary/comments";
+@import "core/site/comments";
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
-@import "core/site/footer/site-footer";
-/*--------------------------------------------------------------
-# Infinite scroll
---------------------------------------------------------------*/
-@import "core/components/infinite-scroll";
-/*--------------------------------------------------------------
-# Media, Captions and Galleries
---------------------------------------------------------------*/
-@import "core/media/media";
-@import "core/media/captions";
-@import "core/media/galleries";
-/*--------------------------------------------------------------
-# Modules
---------------------------------------------------------------*/
-@import "core/components/scroll-to-top";
-
-/*--------------------------------------------------------------
-# Custom Elements and Components
---------------------------------------------------------------*/
-@include shapla.columns();
-@include shapla.icon-container();
+@import "core/footer/footer-widgets";
+@import "core/footer/footer";
 
 /*--------------------------------------------------------------
 # Gutenberg Blocks style

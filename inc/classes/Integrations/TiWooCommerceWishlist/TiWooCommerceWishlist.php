@@ -40,7 +40,7 @@ class TiWooCommerceWishlist {
 			return;
 		}
 		?>
-		<a id="header__my-account" class="header__wishlist-toggle button is-icon"
+		<a id="header__my-account" class="header__wishlist-toggle button is-icon is-hidden-mobile"
 		   title="<?php esc_attr_e( 'View wishlist', 'shapla' ); ?>"
 		   href="<?php echo tinv_url_wishlist_default(); ?>"
 		>

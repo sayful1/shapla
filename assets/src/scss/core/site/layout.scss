@@ -1,4 +1,4 @@
-@import "../../../utilities/mixins";
+@import "../../utilities/mixins";
 
 .site-content {
 	.content-area,
@@ -62,6 +62,37 @@
 
 		.widget-area {
 			float: left;
+		}
+	}
+}
+
+// Box layout
+.boxed-layout {
+	.site {
+		box-shadow: 0 1px 2px rgba(#000, 0.12), 0 2px 5px rgba(#000, 0.19);
+		max-width: 90%;
+		background-color: #fff;
+		margin: 1rem auto;
+
+		@include media(tablet-small) {
+			max-width: calc(#{$container-sm} + 2rem);
+		}
+		@include media(tablet) {
+			max-width: calc(#{$container-md} + 2rem);
+		}
+		@include media(desktop) {
+			max-width: calc(#{$container-lg} + 2rem);
+		}
+		@include media(wide) {
+			max-width: calc(#{$container-xl} + 2rem);
+		}
+	}
+
+	&.has-fixed-header {
+		--body-pt: 0 !important;
+
+		.site-header {
+			position: static;
 		}
 	}
 }

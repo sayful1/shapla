@@ -1,11 +1,23 @@
-#### 2.2.2 - Jul 20, 2022
+#### 3.0.0 - Aug 8, 2022
 
 * Feature - Add support for 'Transparent Header' feature to enable from page setting.
 * Feature - Add theme.json file with global color palette.
+* Feature - Add meta box setting for 'Interior Content Width' removing 'Full Width' and 'Full Screen' page template.
+* Feature - Add meta box setting to hide/show post navigation.
+* Feature - Add fluid container for header.
+* Feature - Re-design header search design using drawer component.
+* Feature - Re-design header card icon design using drawer component for WooCommerce.
+* Feature - Update navigation design using drawer component for small device.
+* Tweak - Add support for **YITH WooCommerce Wishlist** and **TI WooCommerce Wishlist**.
+* Tweak - Add function to disable fontawesome style when official fontawesome plugin installed.
 * Tweak - Update button and input field design for focus state.
+* Tweak - Update block style merging into main style file.
 * Tweak - Update button style default to secondary color.
+* Tweak - Update widgets style removing Font Awesome icon.
 * Dev - Add option to get value from parent theme modifications if it is a child theme.
 * Dev - Add filter to hide child stylesheet loading from parent theme.
+* Dev - Add new screenshot image.
+* Dev - Removed archive.php, page.php, 404.php, single.php and search.php files.
 * Fix - Fix PHP notices for variable not set issue on yoast_breadcrumb option.
 
 #### 2.2.1 - Jun 21, 2022

@@ -6,12 +6,12 @@
 @import "utilities/variables";
 @import "utilities/mixins";
 @import "core/base/typography";
-@import "core/components/table";
+@import "core/base/table";
 @import "core/modules/alignments";
 @import "core/modules/gutenberg-blocks";
-@import "core/media/media";
-@import "core/media/captions";
-@import "core/media/galleries";
+@import "core/modules/media";
+@import "core/modules/captions";
+@import "core/modules/galleries";
 
 //== Gutenberg Editor Style
 .editor-post-title__input {

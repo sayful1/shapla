@@ -346,7 +346,8 @@ if ( ! function_exists( 'shapla_mobile_navigation' ) ) {
 								<?php echo Shapla\Helpers\SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
 							</button>
 						</div>
-						<nav id="site-mobile-navigation" class="main-navigation is-vertical toggled-on" role="navigation"></nav>
+						<nav id="site-mobile-navigation" class="main-navigation is-vertical toggled-on"
+							 role="navigation"></nav>
 					</div>
 				</div>
 			</div>
@@ -1005,9 +1006,10 @@ if ( ! function_exists( 'shapla_scroll_to_top_button' ) ) {
 			return;
 		}
 		?>
-		<span id="shapla-back-to-top" class="back-to-top" data-distance="500">
+		<button id="shapla-back-to-top" class="is-icon is-static back-to-top" data-distance="500">
+			<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'ui', 'arrow_upward', 24 ) ?>
 			<span class="screen-reader-text"><?php esc_html_e( 'Scroll to Top', 'shapla' ); ?></span>
-		</span>
+		</button>
 		<?php
 	}
 }

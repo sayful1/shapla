@@ -55,7 +55,7 @@ class WooCommerceWishlist {
 		}
 		$wishlist_url = YITH_WCWL()->get_wishlist_url();
 		?>
-		<a id="header__my-account" class="header__wishlist-toggle button is-icon"
+		<a id="header__my-account" class="header__wishlist-toggle button is-icon is-hidden-mobile"
 		   title="<?php esc_attr_e( 'View wishlist', 'shapla' ); ?>"
 		   href="<?php echo esc_url( $wishlist_url ) ?>"
 		>

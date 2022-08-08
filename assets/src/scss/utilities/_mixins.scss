@@ -52,28 +52,34 @@
 }
 
 @mixin media( $res ) {
-	@if mobile == $res {
+	@if mobile == $res or xs == $res {
 		@media screen and (max-width: ($screen-sm - 1px)) {
 			@content;
 		}
 	}
-	@if tablet-small == $res {
+	@if tablet-small == $res or sm == $res {
 		@media screen and (min-width: $screen-sm) {
 			@content;
 		}
 	}
-	@if tablet == $res {
+	@if tablet == $res or md == $res {
 		@media screen and (min-width: $screen-md) {
 			@content;
 		}
 	}
-	@if desktop == $res {
+	@if desktop == $res or lg == $res {
 		@media screen and (min-width: $screen-lg) {
 			@content;
 		}
 	}
 
-	@if wide == $res {
+	@if wide == $res or xl == $res {
+		@media screen and (min-width: $screen-xl) {
+			@content;
+		}
+	}
+
+	@if fullhd == $res or xxl == $res {
 		@media screen and (min-width: $screen-xl) {
 			@content;
 		}

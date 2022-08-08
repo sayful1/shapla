@@ -1,0 +1,27 @@
+.is-hidden {
+	display: none !important;
+}
+
+@include media('mobile') {
+	.is-hidden-mobile {
+		display: none !important;
+	}
+}
+
+@include media('tablet') {
+	.is-hidden-tablet {
+		display: none !important;
+	}
+}
+
+@include media('desktop') {
+	.is-hidden-desktop {
+		display: none !important;
+	}
+}
+
+@include media('wide') {
+	.is-hidden-widescreen {
+		display: none !important;
+	}
+}
