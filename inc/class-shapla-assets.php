@@ -49,7 +49,7 @@ class Shapla_Assets {
 				'fontawesome-free',
 				SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
 				array(),
-				'6.0.0',
+				'6.4.2',
 				'all'
 			);
 		}
@@ -95,7 +95,7 @@ class Shapla_Assets {
 	/**
 	 * Filters the Custom CSS Output into the <head>.
 	 *
-	 * @param string $css
+	 * @param  string  $css
 	 *
 	 * @return string
 	 */
@@ -127,36 +127,34 @@ class Shapla_Assets {
 	 * Inline color style
 	 */
 	public function dynamic_css_variables() {
-		$colors           = \Shapla\Helpers\Colors::get_colors();
 		$fonts            = shapla_fonts_css_variables();
 		$widget_styles    = static::footer_widget_dynamic_css_variables();
 		$footer_styles    = static::footer_dynamic_css_variables();
 		$title_bar_styles = static::page_title_bar_dynamic_css_variables();
 		$header_styles    = static::page_header_dynamic_css_variables();
 
-		$style = '<style id="shapla-styles-inline-css" type="text/css">' . PHP_EOL;
-		// Root style
-		$style .= 'body{';
-		foreach ( $colors as $key => $color ) {
-			$style .= '--shapla-' . $key . ':' . $color . ';';
-		}
-		$style .= '}' . PHP_EOL;
+		$style = \Shapla\Helpers\Colors::get_color_scheme_css();
 
-		$style .= 'body{';
+		$style .= '<style id="shapla-base-typography-css" type="text/css">' . PHP_EOL;
+		$style .= ':root {';
 		foreach ( $fonts as $key => $font ) {
 			$style .= '--shapla-' . $key . ':' . $font . ';';
 		}
 		$style .= '}' . PHP_EOL;
+		$style .= '</style>' . PHP_EOL;
 
+		$style .= '<style id="shapla-styles-inline-css" type="text/css">' . PHP_EOL;
 		// Page title bar
 		$style .= '.site-header{';
 		$style .= $header_styles;
 		$style .= '}' . PHP_EOL;
 
 		// Page title bar
-		$style .= '.page-title-bar{';
-		$style .= $title_bar_styles;
-		$style .= '}' . PHP_EOL;
+		if ( ! empty( $title_bar_styles ) ) {
+			$style .= '.page-title-bar{';
+			$style .= $title_bar_styles;
+			$style .= '}' . PHP_EOL;
+		}
 
 		// Footer Widget Area
 		$style .= '.footer-widget-area{';
@@ -266,8 +264,10 @@ class Shapla_Assets {
 		);
 
 		$background = (array) shapla_get_option( 'footer_widget_background', $background_default );
-		$text_color = shapla_get_option( 'footer_widget_text_color', shapla_default_options( 'footer_widget_text_color' ) );
-		$link_color = shapla_get_option( 'footer_widget_link_color', shapla_default_options( 'footer_widget_link_color' ) );
+		$text_color = shapla_get_option( 'footer_widget_text_color',
+			shapla_default_options( 'footer_widget_text_color' ) );
+		$link_color = shapla_get_option( 'footer_widget_link_color',
+			shapla_default_options( 'footer_widget_link_color' ) );
 
 		$styles = array(
 			'text-primary' => $text_color,

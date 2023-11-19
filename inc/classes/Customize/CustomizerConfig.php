@@ -240,7 +240,7 @@ class CustomizerConfig extends BaseConfig {
 	 */
 	private static function register_typography_fields() {
 		$fields = array(
-			'body_typography'        => array(
+			'body_typography'       => array(
 				'type'        => 'typography',
 				'section'     => 'body_typography_section',
 				'label'       => esc_attr__( 'Body Typography', 'shapla' ),
@@ -257,18 +257,14 @@ class CustomizerConfig extends BaseConfig {
 						'standard' => array( 'serif', 'sans-serif' ),
 					),
 					'font-backup' => true,
-				),
-				'output'      => array(
-					array(
-						'element' => array( 'body', 'button', 'input', 'select', 'textarea' ),
-					),
-				),
+				)
 			),
-			'headers_typography'     => array(
+			'headers_typography'    => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'Headers Typography', 'shapla' ),
-				'description' => esc_attr__( 'These settings control the typography for all H1, H2, H3, H4, H5, H6 Headers.', 'shapla' ),
+				'description' => esc_attr__( 'These settings control the typography for all H1, H2, H3, H4, H5, H6 Headers.',
+					'shapla' ),
 				'default'     => array(
 					'font-family'    => shapla_default_options( 'font_family' ),
 					'variant'        => '500',
@@ -283,13 +279,8 @@ class CustomizerConfig extends BaseConfig {
 						),
 					),
 				),
-				'output'      => array(
-					array(
-						'element' => 'h1,h2,h3,h4,h5,h6',
-					),
-				),
 			),
-			'h1_headers_typography'  => array(
+			'h1_headers_typography' => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'H1 Headers Typography', 'shapla' ),
@@ -299,13 +290,8 @@ class CustomizerConfig extends BaseConfig {
 					'line-height' => '1.2',
 				),
 				'priority'    => 20,
-				'output'      => array(
-					array(
-						'element' => 'h1',
-					),
-				),
 			),
-			'h2_headers_typography'  => array(
+			'h2_headers_typography' => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'H2 Headers Typography', 'shapla' ),
@@ -315,13 +301,8 @@ class CustomizerConfig extends BaseConfig {
 					'font-size'   => '2rem',
 					'line-height' => '1.2',
 				),
-				'output'      => array(
-					array(
-						'element' => 'h2',
-					),
-				),
 			),
-			'h3_headers_typography'  => array(
+			'h3_headers_typography' => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'H3 Headers Typography', 'shapla' ),
@@ -331,13 +312,8 @@ class CustomizerConfig extends BaseConfig {
 					'font-size'   => '1.75rem',
 					'line-height' => '1.2',
 				),
-				'output'      => array(
-					array(
-						'element' => 'h3',
-					),
-				),
 			),
-			'h4_headers_typography'  => array(
+			'h4_headers_typography' => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'H4 Headers Typography', 'shapla' ),
@@ -347,13 +323,8 @@ class CustomizerConfig extends BaseConfig {
 					'font-size'   => '1.5rem',
 					'line-height' => '1.2',
 				),
-				'output'      => array(
-					array(
-						'element' => 'h4',
-					),
-				),
 			),
-			'h5_headers_typography'  => array(
+			'h5_headers_typography' => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'H5 Headers Typography', 'shapla' ),
@@ -363,44 +334,16 @@ class CustomizerConfig extends BaseConfig {
 					'font-size'   => '1.25rem',
 					'line-height' => '1.2',
 				),
-				'output'      => array(
-					array(
-						'element' => 'h5',
-					),
-				),
 			),
-			'h6_headers_typography'  => array(
+			'h6_headers_typography' => array(
 				'type'        => 'typography',
 				'section'     => 'headers_typography_section',
 				'label'       => esc_attr__( 'H6 Headers Typography', 'shapla' ),
 				'description' => esc_attr__( 'These settings control the typography for all H6 Headers.', 'shapla' ),
 				'priority'    => 50,
 				'default'     => array(
-					'font-size'   => '1rem',
+					'font-size'   => '1.125rem',
 					'line-height' => '1.2',
-				),
-				'output'      => array(
-					array(
-						'element' => 'h6',
-					),
-				),
-			),
-			'post_titles_typography' => array(
-				'type'        => 'typography',
-				'section'     => 'headers_typography_section',
-				'label'       => esc_attr__( 'Post Titles Typography', 'shapla' ),
-				'description' => esc_attr__( 'Controls the font size and line height of post titles including archive and single posts. This is a H2 heading. Enter value including CSS unit (px, em, rem), ex: 18px.', 'shapla' ),
-				'priority'    => 50,
-				'default'     => array(
-					'font-size'   => '1.25rem',
-					'line-height' => '1.2',
-				),
-				'output'      => array(
-					array(
-						'element' => array(
-							'.blog-grid .blog-grid-inside .entry-title',
-						),
-					),
 				),
 			),
 		);
@@ -638,7 +581,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'        => 'range-slider',
 				'section'     => 'site_footer_widgets',
 				'label'       => __( 'Footer Widget Rows', 'shapla' ),
-				'description' => __( 'Select the number of widgets rows you want in the footer. After changing value, save and refresh the page.', 'shapla' ),
+				'description' => __( 'Select the number of widgets rows you want in the footer. After changing value, save and refresh the page.',
+					'shapla' ),
 				'default'     => shapla_default_options( 'footer_widget_rows' ),
 				'priority'    => 10,
 				'input_attrs' => array(
@@ -651,7 +595,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'        => 'range-slider',
 				'section'     => 'site_footer_widgets',
 				'label'       => __( 'Footer Widget Columns', 'shapla' ),
-				'description' => __( 'Select the number of columns you want in each widgets rows in the footer.  After changing value, save and refresh the page.', 'shapla' ),
+				'description' => __( 'Select the number of columns you want in each widgets rows in the footer.  After changing value, save and refresh the page.',
+					'shapla' ),
 				'default'     => shapla_default_options( 'footer_widget_columns' ),
 				'priority'    => 20,
 				'input_attrs' => array(
@@ -714,7 +659,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'        => 'textarea',
 				'section'     => 'site_footer_bottom_bar',
 				'label'       => __( 'Copyright Text', 'shapla' ),
-				'description' => __( 'Enter the text that displays in the copyright bar. HTML markup can be used.', 'shapla' ),
+				'description' => __( 'Enter the text that displays in the copyright bar. HTML markup can be used.',
+					'shapla' ),
 				'default'     => shapla_default_options( 'site_copyright_text' ),
 				'priority'    => 40,
 			),
@@ -733,7 +679,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'              => 'toggle',
 				'section'           => 'general_blog_section',
 				'label'             => __( 'Blog Page Title Bar', 'shapla' ),
-				'description'       => __( 'Controls how the page title bar displays on the assigned blog page in "settings > reading".', 'shapla' ),
+				'description'       => __( 'Controls how the page title bar displays on the assigned blog page in "settings > reading".',
+					'shapla' ),
 				'default'           => shapla_default_options( 'show_blog_page_title' ),
 				'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 				'priority'          => 10,
@@ -742,7 +689,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'              => 'text',
 				'section'           => 'general_blog_section',
 				'label'             => __( 'Blog Page Title', 'shapla' ),
-				'description'       => __( 'Controls the title text that displays in the page title bar only if your front page displays your latest post in "settings > reading".', 'shapla' ),
+				'description'       => __( 'Controls the title text that displays in the page title bar only if your front page displays your latest post in "settings > reading".',
+					'shapla' ),
 				'default'           => shapla_default_options( 'blog_page_title' ),
 				'priority'          => 20,
 				'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'text' ),
@@ -751,7 +699,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'              => 'select',
 				'section'           => 'general_blog_section',
 				'label'             => __( 'Blog layout', 'shapla' ),
-				'description'       => __( 'Controls the layout for the assigned blog page in "settings > reading".', 'shapla' ),
+				'description'       => __( 'Controls the layout for the assigned blog page in "settings > reading".',
+					'shapla' ),
 				'default'           => shapla_default_options( 'blog_layout' ),
 				'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'customize_choices' ),
 				'priority'          => 30,
@@ -764,7 +713,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'              => 'range-slider',
 				'section'           => 'general_blog_section',
 				'label'             => __( 'Excerpt length', 'shapla' ),
-				'description'       => __( 'Controls the number of words in the post excerpts for the assigned blog page in "settings > reading" or blog archive pages.', 'shapla' ),
+				'description'       => __( 'Controls the number of words in the post excerpts for the assigned blog page in "settings > reading" or blog archive pages.',
+					'shapla' ),
 				'default'           => shapla_default_options( 'blog_excerpt_length' ),
 				'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'number' ),
 				'priority'          => 40,
@@ -778,7 +728,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'              => 'radio-button',
 				'section'           => 'general_blog_section',
 				'label'             => __( 'Blog date format', 'shapla' ),
-				'description'       => __( 'Default date format is format you set from Settings --> General --> Date Format', 'shapla' ),
+				'description'       => __( 'Default date format is format you set from Settings --> General --> Date Format',
+					'shapla' ),
 				'default'           => shapla_default_options( 'blog_date_format' ),
 				'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'customize_choices' ),
 				'priority'          => 50,
@@ -866,7 +817,8 @@ class CustomizerConfig extends BaseConfig {
 				'type'              => 'toggle',
 				'section'           => 'structured_data_section',
 				'label'             => __( 'Enable Structured Data', 'shapla' ),
-				'description'       => __( 'Structured Data helps search engine to understand the content of a web page. You may disable it if you are already using a SEO plugin.', 'shapla' ),
+				'description'       => __( 'Structured Data helps search engine to understand the content of a web page. You may disable it if you are already using a SEO plugin.',
+					'shapla' ),
 				'default'           => true,
 				'sanitize_callback' => array( '\Shapla\Helpers\Sanitize', 'checked' ),
 				'priority'          => 10,

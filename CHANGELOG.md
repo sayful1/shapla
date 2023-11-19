@@ -1,3 +1,9 @@
+#### 3.0.1 - Nov 19, 2023
+
+* Tweak - Update color there and typography css variables.
+* Dev - Update JavaScript dependencies to latest version.
+* Dev - Tested with WordPress 6.4
+
 #### 3.0.0 - Aug 8, 2022
 
 * Feature - Add support for 'Transparent Header' feature to enable from page setting.

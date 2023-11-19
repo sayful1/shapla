@@ -76,8 +76,10 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 				update_option( '_shapla_google_fonts', $google_fonts, true );
 			}
 
+			$dynamic_style = wp_strip_all_tags( $this->get_styles() );
+
 			$styles = "/*!\n * Theme Name: Shapla\n * Description: Dynamically generated theme style.\n */\n";
-			$styles .= wp_strip_all_tags( $this->get_styles() ) . PHP_EOL;
+			$styles .= $dynamic_style . PHP_EOL;
 
 			// Fetch the saved Custom CSS content for rendering.
 			$additional_css = '';
@@ -90,8 +92,12 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 
 
 			$styles = $styles . $additional_css;
-			if ( empty( $styles ) ) {
+			if ( empty( $dynamic_style ) && empty( $additional_css ) ) {
 				delete_option( '_shapla_customize_file' );
+				// Delete Fonts transient
+				delete_transient( 'shapla_google_fonts' );
+				delete_transient( 'shapla_fonts_css_variables' );
+				shapla_webfont_loader_instance()->delete_fonts_folder();
 
 				return;
 			}
@@ -112,7 +118,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Modify WordPress default section and control
 		 *
-		 * @param WP_Customize_Manager $wp_customize Theme Customizer object
+		 * @param  WP_Customize_Manager  $wp_customize  Theme Customizer object
 		 *
 		 * @since  1.0.1
 		 */
@@ -184,7 +190,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Registered Control Types
 		 *
-		 * @param \WP_Customize_Manager $wp_customize
+		 * @param  \WP_Customize_Manager  $wp_customize
 		 */
 		public function register_control_type( $wp_customize ) {
 			foreach ( static::get_custom_controls() as $custom_control ) {
@@ -193,7 +199,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		}
 
 		/**
-		 * @param WP_Customize_Manager $wp_customize
+		 * @param  WP_Customize_Manager  $wp_customize
 		 */
 		public function init_field_settings( $wp_customize ) {
 			\Shapla\Customize\CustomizerConfig::init();
@@ -232,8 +238,8 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Displays a new controller on the Theme Customization admin screen
 		 *
-		 * @param WP_Customize_Manager $wp_customize
-		 * @param array $field
+		 * @param  WP_Customize_Manager  $wp_customize
+		 * @param  array  $field
 		 *
 		 * @return WP_Customize_Control
 		 */
@@ -262,7 +268,7 @@ if ( ! class_exists( 'Shapla_Customizer' ) ) {
 		/**
 		 * Get customize control arguments
 		 *
-		 * @param array $args
+		 * @param  array  $args
 		 *
 		 * @return array
 		 */

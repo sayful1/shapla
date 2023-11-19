@@ -179,7 +179,7 @@ class ShaplaFonts {
 	 * @static
 	 * @access public
 	 *
-	 * @param string $fontname The name of the font we want to check.
+	 * @param  string  $fontname  The name of the font we want to check.
 	 *
 	 * @return bool
 	 */
@@ -225,6 +225,27 @@ class ShaplaFonts {
 		}
 
 		return null;
+	}
+
+	public static function get_body_typography(): array {
+		$default = [
+			'font-family' => shapla_default_options( 'font_family' ),
+			'font-weight' => '400',
+			'font-size'   => '1rem',
+			'line-height' => '1.5',
+		];
+
+		return shapla_get_option( 'body_typography', $default );
+	}
+
+	public static function get_headers_typography(): array {
+		$default = [
+			'font-family'    => shapla_default_options( 'font_family' ),
+			'font-weight'    => '600',
+			'text-transform' => 'none',
+		];
+
+		return shapla_get_option( 'headers_typography', $default );
 	}
 
 	/**
@@ -274,7 +295,7 @@ class ShaplaFonts {
 	/**
 	 * Format font to display
 	 *
-	 * @param array $typography
+	 * @param  array  $typography
 	 *
 	 * @return string
 	 */
@@ -306,12 +327,37 @@ class ShaplaFonts {
 	 *
 	 * @return array
 	 */
-	public static function get_site_fonts() {
+	public static function get_site_fonts(): array {
+		$body_typography    = static::get_body_typography();
+		$heading_typography = static::get_headers_typography();
+
+		$h1 = shapla_get_option( 'h1_headers_typography', array( 'font-size' => '2.5rem', 'line-height' => '1.2', ) );
+		$h2 = shapla_get_option( 'h2_headers_typography', array( 'font-size' => '2rem', 'line-height' => '1.2', ) );
+		$h3 = shapla_get_option( 'h3_headers_typography', array( 'font-size' => '1.75rem', 'line-height' => '1.2', ) );
+		$h4 = shapla_get_option( 'h4_headers_typography', array( 'font-size' => '1.5rem', 'line-height' => '1.2', ) );
+		$h5 = shapla_get_option( 'h5_headers_typography', array( 'font-size' => '1.25rem', 'line-height' => '1.2', ) );
+		$h6 = shapla_get_option( 'h6_headers_typography', array( 'font-size' => '1.125rem', 'line-height' => '1.2', ) );
+
 		return array(
-			'body-font-family'     => static::get_site_font_family(),
-			'body-font-weight'     => static::get_site_font_weight(),
-			'headings-font-family' => static::get_header_font_family(),
-			'headings-font-weight' => static::get_header_font_weight(),
+			'body-font-family'        => static::get_site_font_family(),
+			'body-font-weight'        => $body_typography['font-weight'],
+			'body-font-size'          => $body_typography['font-size'],
+			'body-line-height'        => $body_typography['line-height'],
+			'headings-font-family'    => static::get_header_font_family(),
+			'headings-font-weight'    => $heading_typography['font-weight'],
+			'headings-text-transform' => $heading_typography['text-transform'],
+			'h1-font-size'            => $h1['font-size'],
+			'h1-line-height'          => $h1['line-height'],
+			'h2-font-size'            => $h2['font-size'],
+			'h2-line-height'          => $h2['line-height'],
+			'h3-font-size'            => $h3['font-size'],
+			'h3-line-height'          => $h3['line-height'],
+			'h4-font-size'            => $h4['font-size'],
+			'h4-line-height'          => $h4['line-height'],
+			'h5-font-size'            => $h5['font-size'],
+			'h5-line-height'          => $h5['line-height'],
+			'h6-font-size'            => $h6['font-size'],
+			'h6-line-height'          => $h6['line-height'],
 		);
 	}
 }
