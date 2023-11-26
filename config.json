@@ -1,46 +1,46 @@
 {
   "proxyURL": "http://shapla.test",
   "entryPoints": {
-	"main": [
-	  "./assets/src/scss/style.scss",
-	  "./assets/src/public/main.ts"
-	],
-	"admin": [
-	  "./assets/src/scss/admin.scss"
-	],
-	"select2": [
-	  "./assets/src/select2.js"
-	],
-	"carousel-slider": [
-	  "./assets/src/scss/carousel-slider.scss"
-	],
-	"customizer": [
-	  "./assets/src/scss/customizer.scss",
-	  "./assets/src/customize/background.js",
-	  "./assets/src/customize/radio-buttonset.js",
-	  "./assets/src/customize/radio-image.js",
-	  "./assets/src/customize/slider.js",
-	  "./assets/src/customize/toggle.js",
-	  "./assets/src/customize/typography.js"
-	],
-	"color-control": [
-	  "./assets/src/customize/main.js"
-	],
-	"editor-style": [
-	  "./assets/src/scss/editor-style.scss"
-	],
-	"woocommerce": [
-	  "./assets/src/scss/woocommerce.scss"
-	],
-	"fontawesome-free": [
-	  "./assets/src/scss/fontawesome-free.scss"
-	]
+    "main": [
+      "./resources/scss/style.scss",
+      "./resources/public/main.ts"
+    ],
+    "admin": [
+      "./resources/scss/admin.scss"
+    ],
+    "select2": [
+      "./resources/select2.js"
+    ],
+    "carousel-slider": [
+      "./resources/scss/carousel-slider.scss"
+    ],
+    "customizer": [
+      "./resources/scss/customizer.scss",
+      "./resources/customize/background.js",
+      "./resources/customize/radio-buttonset.js",
+      "./resources/customize/radio-image.js",
+      "./resources/customize/slider.js",
+      "./resources/customize/toggle.js",
+      "./resources/customize/typography.js"
+    ],
+    "color-control": [
+      "./resources/customize/main.js"
+    ],
+    "editor-style": [
+      "./resources/scss/editor-style.scss"
+    ],
+    "woocommerce": [
+      "./resources/scss/woocommerce.scss"
+    ],
+    "fontawesome-free": [
+      "./resources/scss/fontawesome-free.scss"
+    ]
   },
   "cleanFiles": [
-	"./assets/js/admin.js",
-	"./assets/js/carousel-slider.js",
-	"./assets/js/editor-style.js",
-	"./assets/js/fontawesome-free.js",
-	"./assets/js/woocommerce.js"
+    "./assets/js/admin.js",
+    "./assets/js/carousel-slider.js",
+    "./assets/js/editor-style.js",
+    "./assets/js/fontawesome-free.js",
+    "./assets/js/woocommerce.js"
   ]
 }

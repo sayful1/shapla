@@ -10,13 +10,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./assets/src/*"
+        "./resources/*"
       ]
     }
   },
   "include": [
-    "./assets/src/**/*.ts",
-    "./assets/src/**/*.tsx",
+    "./resources/**/*.ts",
+    "./resources/**/*.tsx",
     "./tests/**/*.ts",
     "./tests/**/*.tsx"
   ],
