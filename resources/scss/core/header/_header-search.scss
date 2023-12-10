@@ -1,74 +1,63 @@
 .shapla-search {
-	order: 4;
-	padding: 1rem 0;
-	width: 100%;
-	float: none;
-	z-index: 1;
-	margin-left: auto;
+  order: 4;
+  padding: 1rem 0;
+  width: 100%;
+  float: none;
+  z-index: 1;
+  margin-left: auto;
 
-	@include media('desktop') {
-		order: 1;
-		padding: 1rem 0 1rem 1rem;
-		width: 50%;
-		float: left;
-	}
+  @include media('desktop') {
+    order: 1;
+    padding: 1rem 0 1rem 1rem;
+    width: 50%;
+    float: left;
+  }
 }
 
 // Search form
 .woocommerce-product-search,
 .search-form {
-	font-size: 1rem;
-	position: relative;
+  font-size: 1rem;
+  position: relative;
 
-	input[type=text],
-	input[type=search] {
-		width: 100%;
-		padding-left: 35px;
-	}
+  input[type=text],
+  input[type=search] {
+    width: 100%;
+  }
 
-	.search-submit,
-	button[type=submit] {
-		clip: rect(1px, 1px, 1px, 1px);
-		left: 0;
-		position: absolute !important;
-		top: 0;
-	}
-
-	&:before {
-		@include fa-solid();
-		content: "\f002";
-		position: absolute;
-		z-index: 10;
-		color: $text-icon;
-		top: calc(50% - 0.5em);
-		left: 0.75em;
-	}
+  .search-submit,
+  button[type=submit] {
+    clip: rect(1px, 1px, 1px, 1px);
+    left: 0;
+    position: absolute !important;
+    top: 0;
+  }
 }
 
 .search-drawer-inner {
-	padding-top: var(--header-padding-y, 1rem);
-	padding-bottom: var(--header-padding-y, 1rem);
+  padding-top: var(--header-padding-y, 1rem);
+  padding-bottom: var(--header-padding-y, 1rem);
 
-	.search-form {
-		display: flex;
-	}
+  .search-form {
+    display: flex;
+  }
 
-	input[type=search] {
-		width: calc(100% - 4rem);
-	}
+  input[type=search] {
+    width: calc(100% - 4rem);
+  }
 
-	.search-form button[type=submit] {
-		position: static !important;
-		padding: 0;
-		width: 3rem;
-		height: 3rem;
-		margin-left: 1rem;
-		flex-shrink: 0;
-	}
+  .search-form button[type=submit] {
+    position: static !important;
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+  }
 }
 
 .shapla-header-default {
-	.site-branding {
-		margin-right: auto;
-	}
+  .site-branding {
+    margin-right: auto;
+  }
 }

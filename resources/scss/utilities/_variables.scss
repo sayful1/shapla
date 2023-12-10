@@ -25,33 +25,32 @@ $color--gray-light: #616161 !default;
 $color--gray-lighter: #e0e0e0 !default;
 $color--gray-lightest: #f5f5f5 !default;
 
-$primary: var(--shapla-primary, #{$color--blue}); // buttons (alt), price filter, store-notice, default message, star ratings, breadcrumb
-$on-primary: var(--shapla-on-primary, #{$color--white}); // Text on primary color bg
-$primary-variant: var(--shapla-primary-variant, #{darken($color--blue,10%)});
-$primary-alpha: var(--shapla-primary-alpha, rgba($color--blue, .25)) !default;
+$primary: var(--shapla-primary); // buttons (alt), price filter, store-notice, default message, star ratings, breadcrumb
+$on-primary: var(--shapla-on-primary); // Text on primary color bg
+$primary-variant: var(--shapla-primary-variant);
+$primary-alpha: rgba(var(--shapla-primary-rgb), .25);
 
-$secondary: var(--shapla-secondary, $color--gray-light); // Secondary buttons, On sale, Prices, In stock labels, sales flash
-$on-secondary: var(--shapla-on-secondary, #{$color--white}); // Text on secondary color bg
-$secondary-variant: var(--shapla-secondary-variant, #{darken($color--gray-light,10%)});
-$secondary-alpha: var(--shapla-secondary-alpha, rgba($color--gray-light, .25)) !default;
+$secondary: var(--shapla-secondary); // Secondary buttons, On sale, Prices, In stock labels, sales flash
+$on-secondary: var(--shapla-on-secondary); // Text on secondary color bg
+$secondary-variant: var(--shapla-secondary-variant);
+$secondary-alpha: rgba(var(--shapla-secondary-rgba), .25);
 
-$success: var(--shapla-success, $color--green) !default;
-$on-success: var(--shapla-on-success, $color--white) !default;
-$success-alpha: var(--shapla-success-alpha, rgba($color--green, .25)) !default;
+$success: var(--shapla-success);
+$on-success: var(--shapla-on-success);
+$success-alpha: rgba(var(--shapla-success-rgb), .25);
 
-$error: var(--shapla-error, $color--red); // Content BG - Tabs (active state)
-$on-error: var(--shapla-on-error, $color--white); // Product Title, Price
-$error-alpha: var(--shapla-error-alpha, rgba($color--red, .25)) !default;
+$error: var(--shapla-error); // Content BG - Tabs (active state)
+$on-error: var(--shapla-on-error); // Product Title, Price
+$error-alpha: rgba(var(--shapla-error-rgb), .25);
 
-$background: var(--shapla-background, $color--white) !default;
-$surface: var(--shapla-surface, $color--white); // Content BG - Tabs (active state)
-$on-surface: var(--shapla-on-surface, $color--black); // Product Title, Price
+$background: var(--shapla-background);
+$surface: var(--shapla-surface);
+$surface-secondary: var(--shapla-surface-secondary);
+$on-surface: var(--shapla-on-surface); // Product Title, Price
 
-$text-primary: var(--shapla-text-primary, rgba($color--black, .87));
-$text-secondary: var(--shapla-text-secondary, rgba($color--black, .54));
-$text-hint: var(--shapla-text-tertiary, rgba($color--black, .38)) !default;
-$text-disabled: var(--shapla-text-tertiary, rgba($color--black, .38)) !default;
-$text-icon: var(--shapla-text-tertiary, rgba($color--black, .38));
+$text-primary: var(--shapla-text-primary);
+$text-secondary: var(--shapla-text-secondary);
+$text-tertiary: var(--shapla-text-tertiary);
 
 // == Site Navigation
 $nav-color-bg: $color--white;
@@ -74,6 +73,9 @@ $btn-hover-background: $secondary-variant;
 $btn-alt-background: $primary;
 $btn-alt-color: $on-primary;
 $btn-alt-hover-background: $primary-variant;
+
+// == Border
+$border-color: var(--shapla-border-color) !default;
 
 // == Form
 $color__border-input: $color--grey;

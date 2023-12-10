@@ -155,10 +155,10 @@ pre {
 }
 
 pre {
-  background: $color--light_grey;
+  background: $surface-secondary;
   font-family: $font-family-monospace;
   font-size: 1rem;
-  border: 1px solid $color--grey;
+  border: 1px solid $border-color;
   margin-bottom: 1em;
   max-width: 100%;
   overflow: auto;
@@ -169,7 +169,7 @@ pre {
 }
 
 code, kbd, tt, var {
-  background: $color--light_grey;
+  background: $surface-secondary;
   font-family: $font-family-monospace;
   padding: 4px 8px;
   font-size: 1rem;

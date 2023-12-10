@@ -5,7 +5,7 @@
 	a {
 		background-color: $color__white;
 		color: $color--dark_grey;
-		border: 1px solid $color--grey;
+		border: 1px solid $border-color;
 
 		&:hover, &:focus {
 			background-color: $color--light_grey;

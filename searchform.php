@@ -14,7 +14,7 @@
 			<span class="search-input__label screen-reader-text">
 				<?php echo esc_html_x( 'Submit', 'submit button', 'shapla' ) ?>
 			</span>
-			<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'ui', 'arrow_forward', 24 ) ?>
+			<?php echo \Shapla\Helpers\SvgIcon::get_svg( 'arrow_forward') ?>
 		</button>
 	</form>
 </div>

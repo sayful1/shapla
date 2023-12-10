@@ -93,3 +93,6 @@ add_action( 'wp_footer', 'shapla_scroll_to_top_button', 2 );
 
 // 404 page
 add_action( 'shapla_404_page_content', 'shapla_404_page_content', 10 );
+
+// Extra hook.
+add_filter( 'walker_nav_menu_start_el', 'shapla_nav_menu_social_icons', 10, 4 );

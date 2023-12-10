@@ -44,7 +44,7 @@ class TiWooCommerceWishlist {
 		   title="<?php esc_attr_e( 'View wishlist', 'shapla' ); ?>"
 		   href="<?php echo tinv_url_wishlist_default(); ?>"
 		>
-			<?php echo SvgIcon::get_svg( 'ui', 'favorite', 24 ); ?>
+			<?php echo SvgIcon::get_svg( 'favorite', 24, 'ui' ); ?>
 			<span class="wishlist-item-count wishlist_products_counter_number"></span>
 		</a>
 		<?php

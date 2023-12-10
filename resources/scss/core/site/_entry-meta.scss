@@ -1,5 +1,5 @@
 .entry-meta {
-	background: rgba(#000, 0.04);
+	background: $surface-secondary;
 	color: $text-secondary;
 	display: flex;
 	flex-wrap: wrap;
@@ -44,8 +44,7 @@
 		margin-bottom: .5rem;
 
 		&:before {
-			@include fa-solid();
-			color: $text-icon;
+			color: $text-tertiary;
 			padding-right: 5px;
 		}
 	}
@@ -89,7 +88,7 @@
 	}
 
 	a {
-		background: rgba(#000, 0.05);
+		background: $surface-secondary;
 		border-radius: 4px;
 		color: $text-secondary;
 		display: block;

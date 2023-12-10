@@ -1,13 +1,14 @@
 {
   "require-dev": {
-	"wptrt/wpthemereview": "*",
-	"dealerdirect/phpcodesniffer-composer-installer": "^0.7"
+    "wptrt/wpthemereview": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+    "roots/wordpress": "6.4"
   },
   "require": {
-	"ext-json": "*"
+    "ext-json": "*"
   },
   "scripts": {
-	"lint": "phpcs --standard=phpcs.xml",
-	"format": "phpcbf --standard=phpcs.xml"
+    "lint": "phpcs --standard=phpcs.xml",
+    "format": "phpcbf --standard=phpcs.xml"
   }
 }

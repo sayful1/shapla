@@ -30,7 +30,7 @@ textarea {
 	max-width: 100%;
 	width: 100%;
 	margin: 0;
-	border: 1px solid #dbdbdb;
+	border: 1px solid $border-color;
 
 	&:active,
 	&:focus {
@@ -38,7 +38,7 @@ textarea {
 	}
 
 	&::placeholder {
-		color: $text-hint;
+		color: $text-tertiary;
 	}
 
 	&:focus::placeholder {
@@ -60,7 +60,7 @@ textarea {
 		background-color: whitesmoke;
 		border-color: whitesmoke;
 		box-shadow: none;
-		color: $text-disabled;
+		color: $text-tertiary;
 	}
 
 	&[readonly] {
@@ -98,7 +98,7 @@ select {
 	position: relative;
 	vertical-align: top;
 	background-color: white;
-	border: 1px solid #dbdbdb;
+	border: 1px solid $border-color;
 	color: $text-primary;
 	cursor: pointer;
 	max-width: 100%;
@@ -118,7 +118,7 @@ select {
 	&::-webkit-input-placeholder,
 	&::-moz-placeholder,
 	&::-ms-input-placeholder {
-		color: $text-hint;
+		color: $text-tertiary;
 	}
 
 	&:hover {
@@ -136,7 +136,7 @@ select {
 		background-color: whitesmoke;
 		border-color: whitesmoke;
 		box-shadow: none;
-		color: $text-disabled;
+		color: $text-tertiary;
 	}
 }
 

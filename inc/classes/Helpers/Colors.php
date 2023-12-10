@@ -133,10 +133,10 @@ class Colors {
 		$luminance = static::calculate_color_luminance( $color );
 
 		if ( $luminance > 0.55 ) {
-			// bright color, use dark font
+			// bright color, use dark font.
 			return '#000000';
 		} else {
-			// dark color, use bright font
+			// dark color, use bright font.
 			return '#ffffff';
 		}
 	}
@@ -209,6 +209,7 @@ class Colors {
 		self::$colors['primary-variant'] = static::adjust_color_brightness( self::$colors['primary'], - 25 );
 		self::$colors['on-primary']      = static::find_color_invert( self::$colors['primary'] );
 		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['primary'] );
+		self::$colors['primary-rgb']   = sprintf( '%s, %s, %s', $r, $g, $b );
 		self::$colors['primary-alpha'] = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
 		$secondary                         = static::get_color_option( 'secondary' );
@@ -216,32 +217,47 @@ class Colors {
 		self::$colors['secondary-variant'] = static::adjust_color_brightness( self::$colors['secondary'], - 25 );
 		self::$colors['on-secondary']      = static::find_color_invert( self::$colors['secondary'] );
 		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['secondary'] );
+		self::$colors['secondary-rgb']   = sprintf( '%s, %s, %s', $r, $g, $b );
 		self::$colors['secondary-alpha'] = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
 		self::$colors['success']    = static::get_color_option( 'success' );
 		self::$colors['on-success'] = static::find_color_invert( self::$colors['success'] );
 		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['success'] );
+		self::$colors['success-rgb']   = sprintf( '%s, %s, %s', $r, $g, $b );
 		self::$colors['success-alpha'] = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
 		self::$colors['error']    = static::get_color_option( 'error' );
 		self::$colors['on-error'] = static::find_color_invert( self::$colors['error'] );
 		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['error'] );
+		self::$colors['error-rgb']   = sprintf( '%s, %s, %s', $r, $g, $b );
 		self::$colors['error-alpha'] = sprintf( 'rgba(%s, %s, %s, 0.25)', $r, $g, $b );
 
 		self::$colors['surface']    = static::get_color_option( 'surface' );
 		self::$colors['on-surface'] = static::find_color_invert( self::$colors['surface'] );
 
-		self::$colors['background'] = self::$colors['surface'];
+		self::$colors['white-rgb'] = '255, 255, 255';
+		self::$colors['black-rgb'] = '0, 0, 0';
 
-		self::$colors['text-primary']   = static::get_color_option( 'text_primary' );
-		self::$colors['text-secondary'] = static::get_color_option( 'text_secondary' );
-		self::$colors['text-tertiary']  = static::get_color_option( 'text_tertiary' );
+		$is_dark_mode = '#ffffff' === self::$colors['on-surface'];
+		if ( $is_dark_mode ) {
+			self::$colors['background']        = '#1b1b1b';
+			self::$colors['surface-secondary'] = '#343434';
+			self::$colors['text-primary']      = 'rgba(255, 255, 255, 0.87)';
+			self::$colors['text-secondary']    = 'rgba(255, 255, 255, 0.60)';
+			self::$colors['text-tertiary']     = 'rgba(255, 255, 255, 0.38)';
+			self::$colors['border-color']      = 'rgba(var(--shapla-white-rgb), 0.12)';
+		} else {
+			self::$colors['background']        = '#ffffff';
+			self::$colors['surface-secondary'] = '#f9f9fb';
+			self::$colors['text-primary']      = 'rgba(0, 0, 0, 0.87)';
+			self::$colors['text-secondary']    = 'rgba(0, 0, 0, 0.54)';
+			self::$colors['text-tertiary']     = 'rgba(0, 0, 0, 0.38)';
+			self::$colors['border-color']      = 'rgba(var(--shapla-black-rgb), 0.12)';
+		}
 
-		list( $r, $g, $b ) = static::find_rgb_color( self::$colors['text-primary'] );
-
-		self::$colors['text-hint']     = sprintf( 'rgba(%s, %s, %s, 0.38)', $r, $g, $b );
-		self::$colors['text-disabled'] = sprintf( 'rgba(%s, %s, %s, 0.38)', $r, $g, $b );
-		self::$colors['text-icon']     = sprintf( 'rgba(%s, %s, %s, 0.38)', $r, $g, $b );
+		self::$colors['text-hint']     = 'var(--shapla-text-tertiary)';
+		self::$colors['text-disabled'] = 'var(--shapla-text-tertiary)';
+		self::$colors['text-icon']     = 'var(--shapla-text-tertiary)';
 
 		static::$read = true;
 	}
@@ -293,8 +309,10 @@ class Colors {
 				'type'        => 'color',
 				'section'     => 'theme_colors',
 				'label'       => __( 'Primary Color', 'shapla' ),
-				'description' => __( 'A primary color is the color displayed most frequently across your site.',
-					'shapla' ),
+				'description' => __(
+					'A primary color is the color displayed most frequently across your site.',
+					'shapla'
+				),
 				'default'     => static::get_default_color( 'primary' ),
 				'priority'    => 10,
 			),

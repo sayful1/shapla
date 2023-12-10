@@ -59,7 +59,7 @@ class WooCommerceWishlist {
 		   title="<?php esc_attr_e( 'View wishlist', 'shapla' ); ?>"
 		   href="<?php echo esc_url( $wishlist_url ) ?>"
 		>
-			<?php echo SvgIcon::get_svg( 'ui', 'favorite', 24 ); ?>
+			<?php echo SvgIcon::get_svg( 'favorite', 24, 'ui' ); ?>
 			<span class="wishlist-item-count wishlist_products_counter_number">
 				<?php echo esc_html( yith_wcwl_count_all_products() ) ?>
 			</span>

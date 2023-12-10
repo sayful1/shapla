@@ -323,7 +323,7 @@ class WooCommerce {
 							<button class="is-icon drawer-cart-close" data-dismiss="drawer"
 									aria-label="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>"
 									title="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>">
-								<?php echo SvgIcon::get_svg( 'ui', 'close', 24 ) ?>
+								<?php echo SvgIcon::get_svg( 'close', 24, 'ui' ) ?>
 							</button>
 						</div>
 						<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
@@ -345,7 +345,7 @@ class WooCommerce {
 		?>
 		<button id="header__cart-toggle" class="header__cart-toggle" data-toggle="drawer" data-target="#drawer-cart"
 				title="<?php esc_attr_e( 'View cart', 'shapla' ); ?>">
-			<?php echo SvgIcon::get_svg( 'ui', 'shopping_cart', 24 ); ?>
+			<?php echo SvgIcon::get_svg( 'shopping_cart', 24, 'ui' ); ?>
 			<span class="item-count"><?php echo wp_kses_data( WC()->cart->get_cart_contents_count() ); ?></span>
 		</button>
 		<?php
@@ -360,7 +360,7 @@ class WooCommerce {
 		?>
 		<a id="header__my-account" class="button is-icon" title="<?php esc_attr_e( 'View dashboard', 'shapla' ); ?>"
 		   href="<?php echo get_permalink( wc_get_page_id( 'myaccount' ) ); ?>">
-			<?php echo SvgIcon::get_svg( 'ui', 'person', 24 ); ?>
+			<?php echo SvgIcon::get_svg( 'person', 24, 'ui' ); ?>
 		</a>
 		<?php
 	}

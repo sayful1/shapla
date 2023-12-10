@@ -1,222 +1,202 @@
 .comments-area {
-	margin: 3.125rem 0;
+  margin: 3.125rem 0;
 
-	.comments-title {
-		font-size: $font-size-h5;
-		border-bottom: 1px solid rgba(0, 0, 0, .05);
-		padding-bottom: 1rem;
-		margin: 0 0 3.125rem;
-	}
+  .comments-title {
+    font-size: $font-size-h5;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    padding-bottom: 1rem;
+    margin: 0 0 3.125rem;
+  }
 
-	.comment-list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		width: 100%;
+  .comment-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
-		.comment-content {
-			padding-bottom: 1.5rem;
-			margin-bottom: 1.5rem;
+    .comment.depth-1 {
+      display: flex;
+      width: 100%;
+      border: 1px solid $border-color;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 4px;
+      flex-direction: column;
+    }
 
-			.comment-text {
-				padding: 1.5rem;
-				border-radius: 3px;
-				background-color: rgba(#000, 0.02);
+    .comment-content {
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
 
-				p:last-child {
-					margin-bottom: 0;
-				}
-			}
+      .comment-text {
+        padding: 1.5rem;
+        border-radius: 3px;
+        background-color: rgba(#000, 0.02);
 
-			a {
-				word-wrap: break-word;
-			}
-		}
+        p:last-child {
+          margin-bottom: 0;
+        }
+      }
 
-		.comment-meta {
-			margin-bottom: 1em;
+      a {
+        word-wrap: break-word;
+      }
+    }
 
-			.avatar {
-				border-radius: 32px;
-				height: 64px;
-				margin-bottom: 1em;
-				max-width: 64px;
-			}
+    .comment-meta {
+      margin-bottom: 1em;
 
-			a.comment-date {
-				font-size: 0.875rem;
-			}
+      .avatar {
+        border-radius: 32px;
+        height: 64px;
+        margin-bottom: 1em;
+        max-width: 64px;
+      }
 
-			cite {
-				font-style: normal;
-				clear: both;
-				display: block;
-			}
-		}
+      a.comment-date {
+        font-size: 0.875rem;
+      }
 
-		.reply {
-			@include clearfix;
-			margin-bottom: 1.5rem;
-			padding-top: 0.5rem;
+      cite {
+        font-style: normal;
+        clear: both;
+        display: block;
+      }
+    }
 
-			a {
-				display: inline-block;
-				margin-right: 1em;
+    .reply {
+      @include clearfix;
+      margin-bottom: 1.5rem;
+      padding-top: 0.5rem;
 
-				&.comment-edit-link:before,
-				&.comment-reply-link:before {
-					@include fa-solid();
-				}
+      a {
+        display: inline-block;
+        margin-right: 1em;
 
-				&.comment-reply-link:before {
-					content: "\f3e5"; // fa-reply
-					margin-right: 0.25rem;
-				}
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
 
-				&.comment-edit-link:before {
-					content: "\f303"; // fa-pencil
-					margin-right: 0.25rem;
-				}
-
-				&:last-child {
-					margin-right: 0;
-				}
-			}
-		}
-
-		.children {
-			list-style: none;
-			margin-left: 3.125rem;
-		}
-	}
+    .children {
+      list-style: none;
+      margin-left: 3.125rem;
+    }
+  }
 }
 
 .comment-respond {
-	@include clearfix();
-	padding: 2.5rem;
-	background-color: rgba(#000, 0.04);
-	position: relative;
+  @include clearfix();
+  padding: 2.5rem;
+  background-color: $surface-secondary;
+  position: relative;
 
-	.comment-reply-title {
-		font-size: 1.25rem;
-		font-weight: $headings_font-weight;
-		margin: 0 0 1rem;
-		display: block;
-	}
+  .comment-reply-title {
+    font-size: 1.25rem;
+    font-weight: $headings_font-weight;
+    margin: 0 0 1rem;
+    display: block;
+  }
 
-	.comment-form-author,
-	.comment-form-email,
-	.comment-form-url {
-		input {
-			width: 100%;
-		}
-	}
+  .comment-form-author,
+  .comment-form-email,
+  .comment-form-url {
+    input {
+      width: 100%;
+    }
+  }
 
-	.form-submit,
-	form {
-		margin-bottom: 0;
-	}
+  .form-submit,
+  form {
+    margin-bottom: 0;
+  }
 
-	#cancel-comment-reply-link {
-		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
-		display: block;
-		height: 1em;
-		width: 1em;
-		overflow: hidden;
-		line-height: 1;
-		font-size: 1.75rem;
-		text-align: center;
-		transition: transform, ease, .3s;
-
-		&:hover {
-			transform: scale(1.3);
-		}
-
-		&:before {
-			@include fa-solid();
-			content: "\f057";
-			display: block;
-		}
-	}
+  #cancel-comment-reply-link {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: block;
+    overflow: hidden;
+    font-size: 1rem;
+  }
 }
 
 @include media('tablet') {
-	.comment-list {
+  .comment-list {
 
-		.comment {
-			clear: both;
-		}
+    .comment {
+      clear: both;
+    }
 
-		.comment-meta {
-			width: 25%;
-			margin-right: 2rem;
-			float: left;
-			text-align: right;
+    .comment-meta {
+      width: 25%;
+      margin-right: 2rem;
+      float: left;
+      text-align: right;
 
-			.avatar {
-				float: right;
-			}
-		}
+      .avatar {
+        float: right;
+      }
+    }
 
-		.comment-content,
-		.comment-respond {
-			width: calc(75% - 2rem);
-			float: right;
-		}
+    .comment-content,
+    .comment-respond {
+      width: calc(75% - 2rem);
+      float: right;
+    }
 
-		.comment-respond {
-			float: right;
+    .comment-respond {
+      float: right;
 
-			.comment-form-author,
-			.comment-form-email,
-			.comment-form-url {
-				width: 100%;
-				margin-right: 0;
-			}
-		}
+      .comment-form-author,
+      .comment-form-email,
+      .comment-form-url {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
 
-		.comment-body {
-			.comment-respond {
-				box-shadow: 0 6px 2em rgba(#000, .2);
-				margin-bottom: 2.5rem;
-				margin-top: -1.5rem;
-			}
-		}
+    .comment-body {
+      .comment-respond {
+        box-shadow: 0 6px 2em rgba(#000, .2);
+        margin-bottom: 2.5rem;
+        margin-top: -1.5rem;
+      }
+    }
 
-		.reply {
-			clear: both;
-			text-align: right;
-		}
-	}
+    .reply {
+      clear: both;
+      text-align: right;
+    }
+  }
 }
 
 .full-screen {
-	.comments-area {
-		margin: 3.125rem 1rem;
-		max-width: 100%;
+  .comments-area {
+    margin: 3.125rem 1rem;
+    max-width: 100%;
 
-		@include media(tablet-small) {
-			margin: 3.125rem auto;
-			max-width: $container-sm;
-		}
+    @include media(tablet-small) {
+      margin: 3.125rem auto;
+      max-width: $container-sm;
+    }
 
-		@include media(tablet) {
-			max-width: $container-md;
-		}
+    @include media(tablet) {
+      max-width: $container-md;
+    }
 
-		@include media(desktop) {
-			max-width: $container-lg;
-		}
+    @include media(desktop) {
+      max-width: $container-lg;
+    }
 
-		@include media(wide) {
-			max-width: $container-xl;
-		}
-	}
+    @include media(wide) {
+      max-width: $container-xl;
+    }
+  }
 }
 
 // Required by WordPress theme review
 .bypostauthor {
-	clear: both;
+  clear: both;
 }

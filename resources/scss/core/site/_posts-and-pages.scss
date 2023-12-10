@@ -1,10 +1,6 @@
 .sticky {
-	display: block;
-
 	.entry-title > a:before {
-		@include fa-solid();
-		content: "\f08d"; // thumbtack
-		margin-right: 1rem;
+		// margin-right: 1rem;
 	}
 }
 

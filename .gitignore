@@ -1,6 +1,7 @@
 # Ignore Idea generated files
 /.idea/
 /vendor
+/wordpress
 
 # Ignore all Node modules
 /node_modules/
