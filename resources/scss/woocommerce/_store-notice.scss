@@ -1,39 +1,28 @@
 p.demo_store,
 .woocommerce-store-notice {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	margin: 0;
-	padding: 1rem 2rem;
-	z-index: 999;
-	display: none;
-	background-color: $primary;
-	color: $on-primary;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  padding: 1rem 2rem;
+  z-index: 999;
+  display: none;
+  background-color: $primary;
+  color: $on-primary;
 
-	a {
-		background-color: rgba(#000, .2);
-		color: #ffffff;
-		text-decoration: underline;
-		float: right;
-		display: inline-block;
-		padding: 1em;
-		margin: -1em -2em;
+  a {
+    background-color: rgba(#000, .2);
+    color: $on-primary;
+    float: right;
+    display: inline-block;
+    padding: 1rem;
+    margin: -1rem -2rem;
+    min-width: 100px;
+    text-align: center;
 
-		&:hover {
-			text-decoration: none;
-		}
-
-		&:before {
-			@include fa-solid();
-			content: "\f057"; // times-circle
-			margin-right: 0.5em;
-		}
-	}
-
-	&:before {
-		@include fa-solid();
-		content: "\f05a"; // info-circle
-		margin-right: 0.5em;
-	}
+    &:hover {
+      font-weight: $headings-font-weight;
+    }
+  }
 }

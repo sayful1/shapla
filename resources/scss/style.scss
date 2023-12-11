@@ -83,3 +83,12 @@
 # Gutenberg Blocks style
 --------------------------------------------------------------*/
 @import "core/modules/gutenberg-blocks";
+
+@keyframes shaplaButtonSpinAround {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

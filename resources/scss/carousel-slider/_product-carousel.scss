@@ -44,19 +44,7 @@
 	// Buttons
 	a.add_to_cart_button {
 		&.loading {
-			color: transparent !important;
-			pointer-events: none;
-			padding-right: 1.5em;
-			opacity: 1;
-
-			&:after {
-				content: "";
-				animation: fa-spin .75s linear infinite;
-			}
-		}
-
-		&.added:after {
-			content: '';
+			@include loader;
 		}
 	}
 }

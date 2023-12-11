@@ -1,138 +1,73 @@
 // My Account
 .woocommerce-MyAccount-navigation {
 
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		border-top: 1px solid #f1f1f1;
-	}
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid $border-color;
+  }
 
-	&-link {
-		list-style: none;
-		border-bottom: 1px solid #f1f1f1;
-		position: relative;
+  &-link {
+    list-style: none;
+    border-bottom: 1px solid $border-color;
+    position: relative;
 
-		&.is-active {
-			a:before {
-				opacity: 1;
-			}
-		}
+    &.is-active {
+      a:before {
+        opacity: 1;
+      }
+    }
 
-		a {
-			color: $text-primary;
-			display: block;
-			padding: 1em 0;
-
-			&:before {
-				@include fa-solid();
-				content: "\f15c"; // file-alt
-				line-height: 1.1;
-				margin-left: 0.5em;
-				width: 1.5em;
-				text-align: right;
-				float: right;
-				opacity: .25;
-			}
-
-			&:hover {
-				&:before {
-					opacity: 1;
-				}
-			}
-		}
-
-		&--dashboard a:before {
-			content: "\f3fd"; // dashboard
-		}
-
-		&--orders a:before {
-			content: "\f291"; // shopping-basket
-		}
-
-		&--downloads a:before {
-			content: "\f019"; // download
-		}
-
-		&--edit-address a:before {
-			content: "\f2bb"; // address-card
-		}
-
-		&--payment-methods a:before {
-			content: "\f09d"; // credit-card
-		}
-
-		&--edit-account a:before {
-			content: "\f007"; // user
-		}
-
-		&--customer-logout a:before {
-			content: "\f2f5"; // sign-out-alt
-		}
-	}
+    a {
+      color: $text-primary;
+      display: block;
+      padding: 1rem 0;
+    }
+  }
 }
 
 .woocommerce-account {
-	.woocommerce {
-		@include clearfix();
-	}
+  .woocommerce {
+    @include clearfix();
+  }
 
-	.addresses {
-		.title {
-			@include clearfix();
+  .addresses {
+    .title {
+      @include clearfix();
 
-			h3 {
-				float: left;
-				font-size: $size-large;
-			}
+      h3 {
+        float: left;
+        font-size: $size-large;
+      }
 
-			.edit {
-				display: block;
-				color: $text-secondary;
-				float: right;
-				width: 1em;
-				height: 1em;
-				text-indent: -9999px;
-				position: relative;
-				padding: 0.5em;
-
-				&:before {
-					@include fa-solid();
-					content: "\f303"; // pencil-alt
-					line-height: 1.618;
-					position: absolute;
-					top: 0;
-					left: 0;
-					height: 100%;
-					width: 100%;
-					text-align: center;
-					text-indent: 0;
-				}
-			}
-		}
-	}
+      .edit {
+        float: right;
+      }
+    }
+  }
 }
 
 @include media(mobile) {
-	.woocommerce,
-	.woocommerce-page {
-		table.my_account_orders {
-			tr {
-				td {
-					&.order-actions {
-						text-align: left;
+  .woocommerce,
+  .woocommerce-page {
+    table.my_account_orders {
+      tr {
+        td {
+          &.order-actions {
+            text-align: left;
 
-						&::before {
-							display: none;
-						}
+            &::before {
+              display: none;
+            }
 
-						.button {
-							float: none;
-							margin: 0.125em 0.25em 0.125em 0;
-						}
-					}
-				}
-			}
-		}
-	}
+            .button {
+              float: none;
+              margin: 0.125em 0.25em 0.125em 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -23,8 +23,8 @@
     "build": "webpack --mode=production"
   },
   "browserslist": [
-	"last 2 years",
-	">= 1%"
+    "last 2 years",
+    ">= 1%"
   ],
   "devDependencies": {
     "@babel/core": "^7.23.3",
@@ -61,7 +61,6 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.4.2",
     "@popperjs/core": "^2.11.8",
     "@wordpress/block-editor": "^12.14.0",
     "@wordpress/blocks": "^12.23.0",

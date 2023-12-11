@@ -242,22 +242,18 @@ class Colors {
 		if ( $is_dark_mode ) {
 			self::$colors['background']        = '#1b1b1b';
 			self::$colors['surface-secondary'] = '#343434';
-			self::$colors['text-primary']      = 'rgba(255, 255, 255, 0.87)';
-			self::$colors['text-secondary']    = 'rgba(255, 255, 255, 0.60)';
-			self::$colors['text-tertiary']     = 'rgba(255, 255, 255, 0.38)';
-			self::$colors['border-color']      = 'rgba(var(--shapla-white-rgb), 0.12)';
+			self::$colors['text-rgb']          = 'var(--shapla-white-rgb)';
 		} else {
 			self::$colors['background']        = '#ffffff';
 			self::$colors['surface-secondary'] = '#f9f9fb';
-			self::$colors['text-primary']      = 'rgba(0, 0, 0, 0.87)';
-			self::$colors['text-secondary']    = 'rgba(0, 0, 0, 0.54)';
-			self::$colors['text-tertiary']     = 'rgba(0, 0, 0, 0.38)';
-			self::$colors['border-color']      = 'rgba(var(--shapla-black-rgb), 0.12)';
+			self::$colors['text-rgb']          = 'var(--shapla-black-rgb)';
 		}
 
-		self::$colors['text-hint']     = 'var(--shapla-text-tertiary)';
-		self::$colors['text-disabled'] = 'var(--shapla-text-tertiary)';
-		self::$colors['text-icon']     = 'var(--shapla-text-tertiary)';
+		self::$colors['text-primary']      = 'rgba(var(--shapla-text-rgb), 0.87)';
+		self::$colors['text-secondary']    = 'rgba(var(--shapla-text-rgb), 0.60)';
+		self::$colors['text-tertiary']     = 'rgba(var(--shapla-text-rgb), 0.38)';
+		self::$colors['border-color']      = 'rgba(var(--shapla-text-rgb), 0.12)';
+		self::$colors['border-color-dark'] = 'rgba(var(--shapla-text-rgb), 0.38)';
 
 		static::$read = true;
 	}

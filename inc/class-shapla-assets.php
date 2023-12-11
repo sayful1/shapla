@@ -43,17 +43,6 @@ class Shapla_Assets {
 	 * @since  0.1.0
 	 */
 	public function shapla_scripts() {
-		// Font Awesome Free icons
-		if ( ! shapla_is_fontawesome_activated() ) {
-			wp_enqueue_style(
-				'fontawesome-free',
-				SHAPLA_THEME_URI . '/assets/css/fontawesome-free.css',
-				array(),
-				'6.4.2',
-				'all'
-			);
-		}
-
 		// Theme stylesheet.
 		wp_enqueue_style(
 			'shapla-style',

@@ -14,7 +14,7 @@ if ( ! function_exists( 'shapla_is_woocommerce_activated' ) ) {
 
 if ( ! function_exists( 'shapla_is_fontawesome_activated' ) ) {
 	/**
-	 * Query ShaplaTools activation
+	 * Query FontAwesome activation
 	 */
 	function shapla_is_fontawesome_activated() {
 		return defined( 'FONTAWESOME_DIR_PATH' );

@@ -1,61 +1,39 @@
 .woocommerce-message,
 .woocommerce-error,
 .woocommerce-info {
-	@include clearfix();
-	padding: 1rem;
-	margin: 0 0 2rem;
-	position: relative;
-	list-style: none outside;
-	width: auto;
-	word-wrap: break-word;
-	border-left: .5em solid rgba(#000, .2);
-	color: $on-primary;
-	background-color: $primary;
+  @include clearfix();
+  padding: 1rem;
+  margin: 0 0 2rem;
+  position: relative;
+  list-style: none outside;
+  width: auto;
+  word-wrap: break-word;
+  border-left: .5em solid $border-active-color;
+  color: $text-primary;
+  background-color: $surface-secondary;
 
-	a {
-		color: $on-primary;
-		font-weight: $text-font-weight;
+  a:not(.button) {
+    color: $primary;
+    font-weight: $text-font-weight;
+  }
 
-		&:hover {
-			color: $on-primary;
-			opacity: 0.7;
-		}
-
-		&.button:hover {
-			opacity: 1;
-		}
-	}
-
-	.button {
-		float: right;
-		background: none;
-		box-shadow: none;
-		line-height: 1.5;
-		padding: 0 0 0 1em;
-		border-width: 0;
-		border-left-style: solid;
-		border-left-width: 1px !important;
-		border-radius: 0;
-		border-left-color: rgba(#fff, 0.25) !important;
-		color: $on-primary;
-
-		&:hover {
-			background: none;
-			color: $on-primary;
-			opacity: 0.7;
-		}
-	}
+  .button {
+    float: right;
+    background: none;
+    padding: .25rem;
+    color: currentColor;
+  }
 }
 
 .woocommerce-message {
-	// background-color: $success;
+  // background-color: $success;
 }
 
 .woocommerce-info {
-	// background-color: $primary;
+  // background-color: $primary;
 }
 
 .woocommerce-error {
-	background-color: $error;
-	color: $on-error;
+  background-color: $error;
+  color: $on-error;
 }

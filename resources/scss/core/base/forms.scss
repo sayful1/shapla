@@ -46,7 +46,7 @@ textarea {
 	}
 
 	&:hover {
-		border-color: #b5b5b5;
+		border-color: $border-active-color;
 	}
 
 	&:focus,
