@@ -175,11 +175,11 @@ class WooCommerce {
 	 */
 	public function woocommerce_scripts() {
 		wp_enqueue_style(
-				'shapla-woocommerce-style',
-				get_template_directory_uri() . '/assets/css/woocommerce.css',
-				array(),
-				SHAPLA_THEME_VERSION,
-				'all'
+			'shapla-woocommerce-style',
+			get_template_directory_uri() . '/assets/css/woocommerce.css',
+			array(),
+			SHAPLA_THEME_VERSION,
+			'all'
 		);
 
 		$font_path   = WC()->plugin_url() . '/assets/fonts/';
@@ -323,7 +323,7 @@ class WooCommerce {
 							<button class="is-icon drawer-cart-close" data-dismiss="drawer"
 									aria-label="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>"
 									title="<?php esc_attr_e( 'Close sidebar', 'shapla' ); ?>">
-								<?php echo SvgIcon::get_svg( 'close', 24, 'ui' ) ?>
+								<?php echo SvgIcon::get_svg( 'close', 24, 'ui' ); ?>
 							</button>
 						</div>
 						<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
@@ -386,6 +386,8 @@ class WooCommerce {
 	 * @return void
 	 */
 	public function product_search_form_post_type() {
-		?><input type="hidden" name="post_type" value="product"/><?php
+		?>
+		<input type="hidden" name="post_type" value="product"/>
+		<?php
 	}
 }

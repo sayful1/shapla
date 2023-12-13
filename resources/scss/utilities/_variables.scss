@@ -120,9 +120,9 @@ $headings-font-weight: var(--shapla-headings-font-weight, #{$font-weight-bold}) 
 $headings-color: inherit !default;
 
 //== Table
-$table-background-color: $color--white !default;
-$table-header-color: rgba(#000, 0.54) !default;
-$table-divider-color: rgba(#000, 0.12) !default;
+$table-background-color: $surface !default;
+$table-header-color: $text-secondary !default;
+$table-divider-color: $border-color !default;
 $table-dividers: 1px solid $table-divider-color !default;
 $table-column-spacing: 2.25rem !default;
 $table-column-padding: math.div($table-column-spacing, 2) !default;

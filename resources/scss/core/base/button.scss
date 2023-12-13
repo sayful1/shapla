@@ -6,91 +6,91 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	--shapla-button-color: #{$secondary};
-	--shapla-button-color-dark: #{$secondary-variant};
-	--shapla-button-on-color: #{$on-secondary};
-	--shapla-button-color-alpha: #{$secondary-alpha};
+  --shapla-button-color: #{$secondary};
+  --shapla-button-color-dark: #{$secondary-variant};
+  --shapla-button-on-color: #{$on-secondary};
+  --shapla-button-color-alpha: #{$secondary-alpha};
 
-	appearance: none;
-	align-items: center;
-	border: 1px solid transparent;
-	box-shadow: none;
-	display: inline-flex;
-	line-height: 1;
-	position: relative;
-	vertical-align: top;
-	user-select: none;
-	cursor: pointer;
-	justify-content: center;
-	padding: 0.75em 1.5em;
-	text-align: center;
-	white-space: nowrap;
-	border-radius: 3px; // 2px for Small
-	font-size: 1rem; // 1.25rem for medium, 1.5rem for large
-	margin: 0;
-	transition: all 0.3s ease-in-out;
+  appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  box-shadow: none;
+  display: inline-flex;
+  line-height: 1;
+  position: relative;
+  vertical-align: top;
+  user-select: none;
+  cursor: pointer;
+  justify-content: center;
+  padding: 0.75em 1.5em;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 3px; // 2px for Small
+  font-size: 1rem; // 1.25rem for medium, 1.5rem for large
+  margin: 0;
+  transition: all 0.3s ease-in-out;
 
-	background-color: var(--shapla-button-color);
-	color: var(--shapla-button-on-color);
+  background-color: var(--shapla-button-color);
+  color: var(--shapla-button-on-color);
 
-	&:not(:disabled):hover,
-	&:not(:disabled):active {
-		background-color: var(--shapla-button-color-dark);
-		color: var(--shapla-button-on-color);
-	}
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
+    background-color: var(--shapla-button-color-dark);
+    color: var(--shapla-button-on-color);
+  }
 
-	&:hover,
-	&:active,
-	&:focus {
-		outline: none;
-	}
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
 
-	&:focus {
-		&:not(:active) {
-			box-shadow: 0 0 0 1px transparent, 0 0 0 3px var(--shapla-button-color-alpha);
-		}
-	}
+  &:focus {
+    &:not(:active) {
+      box-shadow: 0 0 0 1px transparent, 0 0 0 3px var(--shapla-button-color-alpha);
+    }
+  }
 
-	strong {
-		color: currentColor;
-	}
+  strong {
+    color: currentColor;
+  }
 
-	svg {
-		fill: currentColor;
-	}
+  svg {
+    fill: currentColor;
+  }
 
-	&[disabled],
-	fieldset[disabled] &,
-	&.disabled {
-		box-shadow: none;
-		cursor: not-allowed;
-		opacity: 0.5;
-	}
+  &[disabled],
+  fieldset[disabled] &,
+  &.disabled {
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 
-	&.is-primary,
-	&.alt {
-		--shapla-button-color: #{$primary};
-		--shapla-button-color-dark: #{$primary-variant};
-		--shapla-button-color-alpha: #{$primary-alpha};
-		--shapla-button-on-color: #{$on-primary};
-	}
+  &.is-primary,
+  &.alt {
+    --shapla-button-color: #{$primary};
+    --shapla-button-color-dark: #{$primary-variant};
+    --shapla-button-color-alpha: #{$primary-alpha};
+    --shapla-button-on-color: #{$on-primary};
+  }
 
-	&.is-icon {
-		border: none;
-		font-size: 1.5rem;
-		height: 3rem;
-		padding: .75rem;
-		width: 3rem;
+  &.is-icon {
+    border: none;
+    font-size: 1.5rem;
+    height: 3rem;
+    padding: .75rem;
+    width: 3rem;
 
-		&:not(.is-static) {
-			border-radius: 50%;
-			background-color: transparent;
-			color: inherit;
+    &:not(.is-static) {
+      border-radius: 50%;
+      background-color: transparent;
+      color: inherit;
 
-			&:hover {
-				background-color: rgba(#9e9e9e, .2);
-				color: currentColor;
-			}
-		}
-	}
+      &:hover {
+        background-color: rgba(var(--shapla-text-rgb), .12);
+        color: currentColor;
+      }
+    }
+  }
 }

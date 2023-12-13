@@ -32,6 +32,13 @@ class Colors {
 	protected static $colors = array();
 
 	/**
+	 * List of colors for dark mode
+	 *
+	 * @var array
+	 */
+	protected static $dark_colors = array();
+
+	/**
 	 * Check if color has been read already
 	 *
 	 * @var bool
@@ -235,20 +242,11 @@ class Colors {
 		self::$colors['surface']    = static::get_color_option( 'surface' );
 		self::$colors['on-surface'] = static::find_color_invert( self::$colors['surface'] );
 
-		self::$colors['white-rgb'] = '255, 255, 255';
-		self::$colors['black-rgb'] = '0, 0, 0';
-
-		$is_dark_mode = '#ffffff' === self::$colors['on-surface'];
-		if ( $is_dark_mode ) {
-			self::$colors['background']        = '#1b1b1b';
-			self::$colors['surface-secondary'] = '#343434';
-			self::$colors['text-rgb']          = 'var(--shapla-white-rgb)';
-		} else {
-			self::$colors['background']        = '#ffffff';
-			self::$colors['surface-secondary'] = '#f9f9fb';
-			self::$colors['text-rgb']          = 'var(--shapla-black-rgb)';
-		}
-
+		self::$colors['white-rgb']         = '255, 255, 255';
+		self::$colors['black-rgb']         = '0, 0, 0';
+		self::$colors['background']        = '#ffffff';
+		self::$colors['surface-secondary'] = '#f9f9fb';
+		self::$colors['text-rgb']          = 'var(--shapla-black-rgb)';
 		self::$colors['text-primary']      = 'rgba(var(--shapla-text-rgb), 0.87)';
 		self::$colors['text-secondary']    = 'rgba(var(--shapla-text-rgb), 0.60)';
 		self::$colors['text-tertiary']     = 'rgba(var(--shapla-text-rgb), 0.38)';
@@ -256,6 +254,22 @@ class Colors {
 		self::$colors['border-color-dark'] = 'rgba(var(--shapla-text-rgb), 0.38)';
 
 		static::$read = true;
+	}
+
+	/**
+	 * Get dark colors
+	 *
+	 * @return array
+	 */
+	public static function get_dark_colors(): array {
+		if ( empty( static::$dark_colors ) ) {
+			self::$dark_colors['background']        = '#121212';
+			self::$dark_colors['surface']           = '#343434';
+			self::$dark_colors['surface-secondary'] = '#4e4e4e';
+			self::$dark_colors['text-rgb']          = 'var(--shapla-white-rgb)';
+		}
+
+		return static::$dark_colors;
 	}
 
 	/**
@@ -267,6 +281,22 @@ class Colors {
 		static::calculate_colors();
 
 		return self::$colors;
+	}
+
+	public static function get_dark_color_scheme_css(): string {
+		$style = '<style id="shapla-color-scheme-dark-css" type="text/css">' . PHP_EOL;
+		$style .= '@media (prefers-color-scheme: dark) {:root:not(.light) {' . PHP_EOL;
+		foreach ( static::get_dark_colors() as $key => $color ) {
+			$style .= '--shapla-' . $key . ':' . $color . ';';
+		}
+		$style .= '}}' . PHP_EOL;
+		$style .= ':root.dark {' . PHP_EOL;
+		foreach ( static::get_dark_colors() as $key => $color ) {
+			$style .= '--shapla-' . $key . ':' . $color . ';';
+		}
+		$style .= '</style>' . PHP_EOL;
+
+		return $style;
 	}
 
 	public static function get_color_scheme_css(): string {
